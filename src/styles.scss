@@ -8,3 +8,9 @@ $gutter: .5rem; //for primeflex grid system
 @import "../node_modules/@fullcalendar/timegrid/main.min.css";
 @import "assets/demo/flags/flags.css";
 @import "assets/demo/documentation.scss";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+a {
+  text-decoration: none  !important;
+}
+
