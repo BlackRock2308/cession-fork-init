@@ -30,6 +30,7 @@ import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
+import {TestComponent} from './core/generic-componant/test/test.component';
 
 @NgModule({
     imports: [
@@ -63,6 +64,7 @@ import {BlocksComponent} from './blocks/blocks/blocks.component';
                     {path: 'components/file', component: FileDemoComponent},
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
+                    {path: 'test', component: TestComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},
