@@ -91,6 +91,7 @@ import {TestComponent} from './generic-componant/test/test.component';
 import {HttpReqInterceptor} from './utils/http.interceptor';
 import {TranslateModule} from '@ngx-translate/core';
 import {ConfirmationService} from 'primeng/api';
+import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 // @ts-ignore
@@ -189,7 +190,7 @@ import {ConfirmationService} from 'primeng/api';
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        TranslateModule,
+        TranslateModule, NgbDropdownModule, NgbModule
     ],
 
     providers: [
