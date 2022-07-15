@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng/api';
 import {BreadcrumbService} from '../../breadcrumb.service';
 import {ProductService} from '../service/productservice';
@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs';
     templateUrl: './dashboard.component.html',
     styleUrls: ['../../../assets/demo/badges.scss']
 })
-export class DashboardDemoComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
     lineChartData: any;
 
@@ -36,16 +36,16 @@ export class DashboardDemoComponent implements OnInit {
     config: AppConfig;
 
     constructor(private productService: ProductService, private breadcrumbService: BreadcrumbService, public configService: ConfigService) {
-      this.breadcrumbService.setItems([
-          {label: 'Dashboard', routerLink: ['/']}
-      ]); 
-    
+        this.breadcrumbService.setItems([
+            {label: 'Dashboard', routerLink: ['/']}
+        ]);
 
-      this.config = this.configService.config;
-      this.subscription = this.configService.configUpdate$.subscribe(config => {
-          this.config = config;
-          this.updateChartOptions();
-      });
+
+        this.config = this.configService.config;
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+            this.updateChartOptions();
+        });
     }
 
     ngOnInit() {
@@ -120,11 +120,13 @@ export class DashboardDemoComponent implements OnInit {
             {label: '2014', value: 2014}
         ];
     }
+
     updateChartOptions() {
-        if (this.config.dark)
+        if (this.config.dark) {
             this.applyDarkTheme();
-        else
+        } else {
             this.applyLightTheme();
+        }
 
     }
 
@@ -159,7 +161,7 @@ export class DashboardDemoComponent implements OnInit {
     }
 
     applyLightTheme() {
-            this.lineChartOptions = {
+        this.lineChartOptions = {
             plugins: {
                 legend: {
                     labels: {
