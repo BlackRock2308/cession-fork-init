@@ -1,31 +1,47 @@
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
-import {DashboardComponent} from './demo/view/dashboard.component';
+import {DashboardComponent} from './core/dashboard/dashboard.component';
 
-import {AppMainComponent} from './app.main.component';
-import {AppNotfoundComponent} from './pages/app.notfound.component';
-import {AppErrorComponent} from './pages/app.error.component';
-import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
-import {AppLoginComponent} from './pages/app.login.component';
-import {TestComponent} from './core/generic-componant/test/test.component';
+import {AppMainComponent} from './core/app-layout/main/app.main.component';
+import {AppNotfoundComponent} from './core/not-found/app.notfound.component';
+import {AppErrorComponent} from './core/error/app.error.component';
+import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.component';
+import {AppLoginComponent} from './auth/login/app.login.component';
+import {TestComponent} from './core/generic-component/test/test.component';
+
+const routes: Routes = [
+    // Root Path
+    {
+        path: '', component: AppMainComponent,
+        children: [
+            {path: '', component: DashboardComponent},
+            // Workstation
+            {
+                path: 'workstation',
+                loadChildren: () => import('./workstation/workstation.module')
+                    .then(m => m.WorkstationModule)
+            },
+        ]
+    },
+    // Testing
+    {path: 'test', component: TestComponent},
+
+    // Auth path
+    {path: 'login', component: AppLoginComponent},
+
+    // Error Handling
+    {path: '404', component: AppNotfoundComponent},
+    {path: '**', redirectTo: '/notfound'},
+    {path: 'error', component: AppErrorComponent},
+    {path: 'accessdenied', component: AppAccessdeniedComponent},
+
+
+];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot([
-            {
-                path: '', component: AppMainComponent,
-                children: [
-                    {path: '', component: DashboardComponent},
-                    {path: 'test', component: TestComponent},
-                ]
-            },
-            {path: 'error', component: AppErrorComponent},
-            {path: 'accessdenied', component: AppAccessdeniedComponent},
-            {path: 'notfound', component: AppNotfoundComponent},
-            {path: 'login', component: AppLoginComponent},
-            {path: '**', redirectTo: '/notfound'},
-        ], {scrollPositionRestoration: 'enabled'})
+        RouterModule.forRoot(routes)
     ],
     exports: [RouterModule]
 })

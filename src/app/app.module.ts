@@ -7,21 +7,20 @@ import {FullCalendarModule} from '@fullcalendar/angular';
 
 // Application Components
 import {AppComponent} from './app.component';
-import {AppMainComponent} from './app.main.component';
-import {AppNotfoundComponent} from './pages/app.notfound.component';
-import {AppErrorComponent} from './pages/app.error.component';
-import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
-import {AppLoginComponent} from './pages/app.login.component';
-import {AppMenuComponent} from './app.menu.component';
-import {AppMenuitemComponent} from './app.menuitem.component';
-import {AppBreadcrumbComponent} from './app.breadcrumb.component';
-import {AppConfigComponent} from './app.config.component';
-import {AppRightPanelComponent} from './app.rightpanel.component';
-import {AppTopBarComponent} from './app.topbar.component';
-import {AppFooterComponent} from './app.footer.component';
+import {AppMainComponent} from './core/app-layout/main/app.main.component';
+import {AppNotfoundComponent} from './core/not-found/app.notfound.component';
+import {AppErrorComponent} from './core/error/app.error.component';
+import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.component';
+import {AppLoginComponent} from './auth/login/app.login.component';
+import {AppMenuComponent} from './core/app-layout/side-menu/app.menu.component';
+import {AppMenuitemComponent} from './core/app-layout/side-menu/app.menuitem.component';
+import {AppBreadcrumbComponent} from './core/breadcrumb/app.breadcrumb.component';
+import {AppRightPanelComponent} from './core/app-layout/right-panel/app.rightpanel.component';
+import {AppTopBarComponent} from './core/app-layout/top-bar/app.topbar.component';
+import {AppFooterComponent} from './core/app-layout/footer/app.footer.component';
 
 // Demo pages
-import {DashboardComponent} from './demo/view/dashboard.component';
+import {DashboardComponent} from './core/dashboard/dashboard.component';
 
 // Demo services
 import {CountryService} from './demo/service/countryservice';
@@ -34,8 +33,8 @@ import {IconService} from './demo/service/iconservice';
 import {ConfigService} from './demo/service/app.config.service';
 
 // Application services
-import {BreadcrumbService} from './breadcrumb.service';
-import {MenuService} from './app.menu.service';
+import {BreadcrumbService} from './core/breadcrumb/breadcrumb.service';
+import {MenuService} from './core/app-layout/side-menu/app.menu.service';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -72,7 +71,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppTopBarComponent,
         AppFooterComponent,
         AppRightPanelComponent,
-        AppConfigComponent,
         AppBreadcrumbComponent,
         AppNotfoundComponent,
         AppErrorComponent,

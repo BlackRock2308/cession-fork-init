@@ -1,8 +1,8 @@
-/idea
 /.idea
 /.angular
 node_modules
 .angular
 package-lock.json
+.vscode
 
 
