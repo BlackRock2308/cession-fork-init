@@ -84,10 +84,9 @@ import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {AppRoutingModule} from '../app-routing.module';
-import {AppCodeModule} from '../blocks/app-code/app.code.component';
-import {CdmpDialogComponent} from './generic-componant/cdmp-dialog/cdmp-dialog.component';
-import {CdmpTableComponent} from './generic-componant/cdmp-table/cdmp-table.component';
-import {TestComponent} from './generic-componant/test/test.component';
+import {CdmpDialogComponent} from './generic-component/cdmp-dialog/cdmp-dialog.component';
+import {CdmpTableComponent} from './generic-component/cdmp-table/cdmp-table.component';
+import {TestComponent} from './generic-component/test/test.component';
 import {HttpReqInterceptor} from './utils/http.interceptor';
 import {TranslateModule} from '@ngx-translate/core';
 import {ConfirmationService} from 'primeng/api';
@@ -107,7 +106,6 @@ import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     imports: [BrowserModule,
         FormsModule,
         AppRoutingModule,
-        AppCodeModule,
         HttpClientModule,
         BrowserAnimationsModule,
         AccordionModule,
@@ -206,7 +204,6 @@ import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
         BrowserModule,
         FormsModule,
         AppRoutingModule,
-        AppCodeModule,
         HttpClientModule,
         BrowserAnimationsModule,
         AccordionModule,
