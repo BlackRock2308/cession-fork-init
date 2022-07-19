@@ -9,16 +9,18 @@ import {AppErrorComponent} from './core/error/app.error.component';
 import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.component';
 import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
     // Root Path
     {
         path: '', component: AppMainComponent,
         children: [
-            {path: '', component: DashboardComponent},
+            {path: '', redirectTo: 'home', pathMatch: 'full'},
+            {path: 'home', component: HomeComponent},
             // Workstation
             {
-                path: 'workstation',
+                path: '',
                 loadChildren: () => import('./workstation/workstation.module')
                     .then(m => m.WorkstationModule)
             },

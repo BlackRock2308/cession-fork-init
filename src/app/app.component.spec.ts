@@ -11,7 +11,6 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CalendarModule } from 'primeng/calendar';
 import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
-import { AppConfigComponent } from './app.config.component';
 import { AppRightPanelComponent } from './core/app-layout/right-panel/app.rightpanel.component';
 import { AppBreadcrumbComponent } from './core/breadcrumb/app.breadcrumb.component';
 import { BreadcrumbService } from './core/breadcrumb/breadcrumb.service';
@@ -25,7 +24,6 @@ describe('AppComponent', () => {
                 AppMainComponent,
                 AppMenuComponent,
                 AppTopBarComponent,
-                AppConfigComponent,
                 AppRightPanelComponent,
                 AppFooterComponent,
                 AppBreadcrumbComponent
