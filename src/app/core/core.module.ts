@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -91,6 +91,17 @@ import {HttpReqInterceptor} from './utils/http.interceptor';
 import {TranslateModule} from '@ngx-translate/core';
 import {ConfirmationService} from 'primeng/api';
 import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AppAccessdeniedComponent} from './access-denied/app.accessdenied.component';
+import {AppFooterComponent} from './app-layout/footer/app.footer.component';
+import {AppMainComponent} from './app-layout/main/app.main.component';
+import {AppRightPanelComponent} from './app-layout/right-panel/app.rightpanel.component';
+import {AppMenuComponent} from './app-layout/side-menu/app.menu.component';
+import {AppMenuitemComponent} from './app-layout/side-menu/app.menuitem.component';
+import {AppTopBarComponent} from './app-layout/top-bar/app.topbar.component';
+import {AppBreadcrumbComponent} from './breadcrumb/app.breadcrumb.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {AppErrorComponent} from './error/app.error.component';
+import {AppNotfoundComponent} from './not-found/app.notfound.component';
 
 
 // @ts-ignore
@@ -98,6 +109,17 @@ import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     declarations: [
         CdmpTableComponent,
         CdmpDialogComponent,
+        AppAccessdeniedComponent,
+        AppFooterComponent,
+        AppMainComponent,
+        AppRightPanelComponent,
+        AppMenuComponent,
+        AppMenuitemComponent,
+        AppTopBarComponent,
+        AppBreadcrumbComponent,
+        DashboardComponent,
+        AppErrorComponent,
+        AppNotfoundComponent,
         TestComponent
     ],
 
