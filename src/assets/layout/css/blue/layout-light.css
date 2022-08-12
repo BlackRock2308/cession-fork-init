@@ -462,6 +462,8 @@ a {
   height: calc(100% - 72px);
 }
 .layout-sidebar .layout-menu-container .layout-menu {
+  color: red;
+  font-weight: bold;
   list-style-type: none;
   margin: 10px 0 0 0;
   padding: 0;
@@ -943,13 +945,13 @@ a {
   outline: none;
 }
 .layout-menu-light .layout-sidebar .layout-menu li > a.active-menuitem-routerlink .menuitem-text {
-  color: #5e81ac;
+  color: #A6C733;
 }
 .layout-menu-light .layout-sidebar .layout-menu li > a.active-menuitem-routerlink i {
   color: #5e81ac;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li > a .menuitem-text {
-  color: #2e3440;
+  color: #A6C733;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li > a i {
   color: #4c566a;
@@ -967,16 +969,18 @@ a {
   color: #ffffff;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li.active-menuitem > a.active-menuitem-routerlink {
-  background-color: #5e81ac;
+  /*background-color: #5e81ac;*/
+  background-color: #fff;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li.active-menuitem > a.active-menuitem-routerlink .menuitem-text {
-  color: #ffffff;
+  color: #A6C733;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li.active-menuitem > a.active-menuitem-routerlink i {
   color: #ffffff;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li ul {
   background-color: #e8e8e8;
+  border: 2px solid #707070;
 }
 .layout-menu-light .layout-sidebar .layout-menu > li ul li a .menuitem-text {
   color: #2e3440;
