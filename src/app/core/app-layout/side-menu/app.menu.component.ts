@@ -3,19 +3,26 @@ import {AppMainComponent} from '../main/app.main.component';
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+    templateUrl: './app.menu.component.html',
+    styleUrls: ['./app-menu.component.css']
 })
 export class AppMenuComponent implements OnInit {
 
     model: any[];
+    logoCDMPpath: string;
 
     constructor(public appMain: AppMainComponent) {
     }
 
     ngOnInit() {
+        this.logoCDMPpath = '../../../../assets/layout/images/logo-cdmp.svg';
         this.model = [
-            {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
-            {
+            // les routes /espace-cdmp, /espace-pme, /espace-ministere et /espace-autre à créer dans le module workstation
+            {label: 'Espace CDMP', icon: '', routerLink: ['/espace-cdmp']},
+            {label: 'Espace PME', icon: '', routerLink: ['/espace-pme']},
+            {label: 'Espace Ministère', icon: '', routerLink: ['/espace-ministere']},
+            {label: 'Autres', icon: '', routerLink: ['/espace-autre']},
+           /* {
                 label: 'Hierarchy', icon: 'pi pi-fw pi-sitemap',
                 items: [
                     {
@@ -64,7 +71,7 @@ export class AppMenuComponent implements OnInit {
             }, {
                 label: 'Menu 3', icon: 'pi pi-fw pi-file', routerLink: ['/path1']
             }
-
+*/
         ];
     }
 

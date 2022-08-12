@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import { MenuService } from '../side-menu/app.menu.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
@@ -19,7 +19,7 @@ import {AppComponent} from '../../../app.component';
         ])
     ]
 })
-export class AppMainComponent {
+export class AppMainComponent implements OnInit{
 
     rightPanelClick: boolean;
 
@@ -54,9 +54,14 @@ export class AppMainComponent {
     menuHoverActive: boolean;
 
     configActive: boolean;
+    isAuthenticated: boolean;
 
     constructor(public renderer: Renderer2, private menuService: MenuService,
                 private primengConfig: PrimeNGConfig, public app: AppComponent) {}
+
+    ngOnInit(): void {
+        this.isAuthenticated = false;
+    }
 
     onLayoutClick() {
         if (!this.topbarItemClick) {
