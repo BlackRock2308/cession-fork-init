@@ -24,6 +24,9 @@ import {CoreModule} from './core/core.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HomeComponent} from './home/home.component';
+import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
+import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
+import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -49,6 +52,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppComponent,
         AppLoginComponent,
         HomeComponent,
+        MajMdpComponent,
+        RecupMdpComponent,
+        CodeVerificationComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

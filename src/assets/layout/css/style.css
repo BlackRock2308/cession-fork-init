@@ -109,6 +109,17 @@ img{
     margin-right: auto;
 	
 }
+
+.logo-cdmp{
+	bottom: 50px;
+	position: relative;
+	height: 25px;
+	color:#fff;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	
+}
 .form-v7-content .form-detail .form-row label#valid {
     position: absolute;
     right: 20px;
@@ -214,11 +225,14 @@ img{
 }
 
 
+
 .form-row-last{
 	position: relative;
 	left: 120px;
 	
 }
+
+
 
 .input-text{
 	border-radius: 7px;
