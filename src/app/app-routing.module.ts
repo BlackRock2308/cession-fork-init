@@ -10,6 +10,7 @@ import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.co
 import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
 import {HomeComponent} from './home/home.component';
+import { AdhesionComponent } from './adhesion/adhesion.component';
 
 const routes: Routes = [
     // Root Path
@@ -31,6 +32,9 @@ const routes: Routes = [
 
     // Auth path
     {path: 'login', component: AppLoginComponent},
+
+    //Adhesion path
+    {path:'adh',component:AdhesionComponent},
 
     // Error Handling
     {path: '404', component: AppNotfoundComponent},

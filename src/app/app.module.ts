@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // PrimeNG Components for demos
 import {FullCalendarModule} from '@fullcalendar/angular';
@@ -24,6 +26,7 @@ import {CoreModule} from './core/core.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HomeComponent} from './home/home.component';
+import { AdhesionComponent } from './adhesion/adhesion.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -44,11 +47,16 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule ,
+
     ],
     declarations: [
         AppComponent,
         AppLoginComponent,
         HomeComponent,
+        AdhesionComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

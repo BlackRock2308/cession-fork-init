@@ -1,0 +1,101 @@
+<div class="">
+    <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="...">
+
+</div>
+
+<div class="card card-w-title">
+</div>
+
+<div class="col-7 ml-auto">
+
+    <div class="mt-8 p-fluid">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="field grid">
+            <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-1 text">Ninea</label>
+
+            <div class="col-12 md:col-4 mb-2">
+                <input formControlName="ninea" pInputText id="name3" type="text" />
+            </div>
+
+            <div class="col-12 md:col-6 mb-2">
+                    <div class="col-12">
+
+                        <div class="formgroup-inline">
+
+                            <div class="field col-12 md:col-5 mb-1">
+                                <label for="NINEAfile" class="p-sr-only">NINEA File</label>
+                                <input  *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file" placeholder="Choose a file">
+                                <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedNINEAFiles.name}}</ng-template>
+                                <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-NINEAfile"  ngf-max-size="2MB" (change)="selectNINEAFile($event)">
+                            </div>
+
+                            <div class="field col-12 md:col-5 mb-1">
+
+                                <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la la-upload" id="upload-NINEAfile" (click)="handleNINEAClick()" ></button>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+            </div>
+            
+        </div>
+
+        <div class="field grid">
+            <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-0 text">RCCM</label>
+
+            <div class="col-12 md:col-4">
+                <input formControlName="rccm" pInputText id="name3" type="text" />
+            </div>
+
+            <div class="col-12 md:col-6 mb-2">
+
+                <div class="col-12">
+
+                    <div class="formgroup-inline">
+
+                        <div class="field col-12 md:col-5 mb-1">
+                            <label for="RCCMfile" class="p-sr-only">RCCMFile</label>
+                            <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile" type="text" pInputText  pTooltip="Upload RCCM file" placeholder="Choose a file">
+                            <ng-template #elseRCCMBlock id="RCCMfile" type="text" pInputText  pTooltip="Upload file">{{selectedRCCMFiles.name}}</ng-template>
+                            <input formControlName="rccmFile" class="hidden" type="file" id="upload-RCCMfile" name="upload-RCCMfile"  ngf-max-size="2MB" (change)="selectRCCMFile($event)">
+                        </div>
+
+                        <div class="field col-12 md:col-5 mb-1">
+
+                            <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la la-upload" id="upload-RCCMfile" (click)="handleRCCMClick()" ></button>
+                        </div>
+
+                    </div>
+        
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="field grid">
+            <label htmlFor="email3" class="col-12 mb-2 md:col-1 md:mb-0 text">Email</label>
+            <div class="col-12 md:col-4">
+                <input formControlName="email" pInputText id="email3" type="text" placeholder="...@.....sn"/>
+            </div>
+
+        </div>
+
+        <div class="field grid" style="margin-top: 30px;">
+            <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+
+            <div class="col-12 md:col-4">
+                <button type="submit"
+                class="btn btn-success"
+                [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"
+                routerLink="/home"></button>
+            </div>
+
+        </div>
+        </form>
+    </div>
+
+</div>
