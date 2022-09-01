@@ -109,7 +109,11 @@ img{
     margin-right: auto;
 	
 }
-
+.btn-close{
+	background-color: wheat;
+	float: left;
+	position: relative;
+}
 .logo-cdmp{
 	bottom: 50px;
 	position: relative;

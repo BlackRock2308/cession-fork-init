@@ -49,6 +49,7 @@
 			
 			</div>
 			<form class="form-detail" action="#" method="post" id="myform">
+                <button type="button" class="btn-close" aria-label="Close"></button>
                 <div>
                     <img class="img-person" src="../../../assets/layout/images/person.png ">
                 </div>
@@ -83,29 +84,19 @@
                 
                 
 				
-				<div class="form-row">
-					<label for="comfirm_password"></label>
-				</div>
-                <div>
-                    <br>
-                    
-                </div>
+				
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register"  [routerLink]="['maj_pwd']" value="Se connecter">
 					
 				</div>
-
+                <div class="form-row form-group row">
+                    <h4 for="" class="  col-form-label" style="color: white;font-style:italic;">Mot de passe oublié?<a class="" style="color: #d31e1e;" [routerLink]="['recup_pwd']" > Recuperer le ici</a></h4>
+                </div>
                 
-
-                <div class="form-row form-group row">
-                    <h4 for="" class=" col-sm-6 col-form-label" style="color: white;font-style:italic;">Mot de passe oublié?</h4>
-                    <a class=" col-sm-6" style="color: #d31e1e;" [routerLink]="['recup_pwd']" >Recuperer le ici</a>
-                </div>
-                <div>
                     <br>
-                </div>
+                
                 <div class="form-row form-group row">
-                    <label for="" class="col-form-label" style="text-align: center; font-size: large; ">Creer un compte</label>
+                    <h4 for="" class="col-form-label" style="text-align: center; font-size: large;  "><a href="#" style="color:rgb(83, 198, 83);">Creer un compte</a></h4>
                 </div>
                
 			</form>

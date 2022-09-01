@@ -18,7 +18,7 @@ export class AppMenuComponent implements OnInit {
         this.logoCDMPpath = '../../../../assets/layout/images/logo-cdmp.svg';
         this.model = [
             // les routes /espace-cdmp, /espace-pme, /espace-ministere et /espace-autre à créer dans le module workstation
-            {label: 'Espace CDMP', icon: '', routerLink: ['/espace-cdmp']},
+            {label: 'Espace CDMP', icon: '', routerLink: ['/login']},
             {label: 'Espace PME', icon: '', routerLink: ['/espace-pme']},
             {label: 'Espace Ministère', icon: '', routerLink: ['/espace-ministere']},
             {label: 'Autres', icon: '', routerLink: ['/espace-autre']},

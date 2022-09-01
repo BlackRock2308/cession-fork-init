@@ -21,6 +21,7 @@ const routes: Routes = [
         children: [
             {path: '', redirectTo: 'home', pathMatch: 'full'},
             {path: 'home', component: HomeComponent},
+            
             // Workstation
             {
                 path: '',
