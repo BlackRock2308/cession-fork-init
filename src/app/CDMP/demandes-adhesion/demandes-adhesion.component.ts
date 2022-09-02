@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../model/product';
-import {ProductService} from '../service/product.service';
+import {Product} from '../../workstation/model/product';
+import {ProductService} from '../../workstation/service/product/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import { BreadcrumbService } from '../core/breadcrumb/breadcrumb.service';
+import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-demandes-adhesion',
