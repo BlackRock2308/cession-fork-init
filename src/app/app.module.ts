@@ -24,6 +24,8 @@ import {CoreModule} from './core/core.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HomeComponent} from './home/home.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './data.services';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -44,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        HttpClientInMemoryWebApiModule.forRoot(DataService),
     ],
     declarations: [
         AppComponent,
