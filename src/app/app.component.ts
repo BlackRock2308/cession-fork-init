@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PrimeNGConfig} from 'primeng/api';
-import { PmeService } from './pme.service';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
