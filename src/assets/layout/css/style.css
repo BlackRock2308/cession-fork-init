@@ -79,7 +79,7 @@ img{
     padding: 73px 80px 41px;
 	position: relative;
 	width: 100%;
-	background-color: #222373;
+	background-color: #030c50ec;
 	box-shadow: 18px 15px 33px -16px rgba(0,0,0,0.75);
 	-webkit-box-shadow: 18px 15px 33px -16px rgba(0,0,0,0.75);
 	-moz-box-shadow: 18px 15px 33px -16px rgba(0,0,0,0.75);
@@ -89,6 +89,17 @@ img{
 	-webkit-border-radius: 10px 10px 10px 10px;
 	-moz-border-radius: 10px 10px 10px 10px;
 	
+}
+
+#top-right-img {
+	position: relative;
+}
+
+#top-right-img img {
+	position: absolute;
+	bottom: 150px;
+	right: 0px;
+	height: 30px;
 }
 .form-v7-content .form-detail .form-row {
     width: 100%;
@@ -107,6 +118,55 @@ img{
 	display: block;
     margin-left: auto;
     margin-right: auto;
+	
+}
+
+.fa-twitter{
+	position: absolute;
+	bottom: 300px;
+	right: 25px;
+	height: 80px;
+	color: #030c50ec;
+	font-size: large;
+	
+}
+.fa-facebook{
+	position: absolute;
+	bottom: 340px;
+	right: 25px;
+	height: 80px;
+	color: #030c50ec;
+	
+}
+h5{
+	color: white;
+	text-align:center;
+	font-style:italic;
+}
+
+.recup-ici{
+	color: #d31e1e;
+}
+.creer-compte{
+	color:rgb(83, 198, 83);
+	font-size: large;
+	font-style: normal;
+	text-align: center;
+	
+}
+
+h4{
+	color: white;
+	font-style: italic;
+	text-align: center;
+	
+}
+.fa-google{
+	position: absolute;
+	bottom: 380px;
+	right: 25px;
+	height: 80px;
+	color: #030c50ec;
 	
 }
 .btn-close{
@@ -242,7 +302,7 @@ img{
 	border-radius: 7px;
 }
 .form-v7-content .form-detail .register:hover {
-	background: #2a2cb0;
+	background: #51526f;
 }
 .form-v7-content .form-detail .form-row-last {
     margin-top: 35px;

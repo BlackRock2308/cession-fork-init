@@ -1,48 +1,4 @@
-<!-- <div class="login-body" [ngClass]="{'layout-dark': dark, 'layout-light': !dark}">
-
-    <div class="login-content">
-        <div class="night-switch">
-            <p-button styleClass="dark-switch"  icon="pi pi-circle-on" (click)="dark = true"></p-button>
-            <p-button styleClass="light-switch"  icon="pi pi-circle-off" (click)="dark = false"></p-button>
-        </div>
-        <div class="login-panel">
-            <div class="login-panel-content">
-                <div class="logo">
-                    <img src="../../../assets/layout/images/logo-mirage@2x.png" alt="mirage-layout" />
-                </div>
-                <h1>Sign in to Mirage</h1>
-                <p>Welcome, please use the form to sign-in Mirage network</p>
-                <div class="forms">
-                    <div class="login-input-wrapper">
-                        <label for="username">Username</label>
-                        <input id="username" pInputText placeholder="Type your username..." />
-                        <i class="pi pi-user"></i>
-                    </div>
-
-                    <div class="login-input-wrapper">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Type your password" pPassword [feedback]="false"/>
-                        <i class="pi pi-lock"></i>
-                    </div>
-
-                    <div class="col-12">
-                        <p-checkbox [(ngModel)]="checked" label="Remember me" value="SaveInfo" binary="true"></p-checkbox>
-                    </div>
-
-
-                    <div class="buttons">
-                        <button pButton type="button" [routerLink]="['/']" label="Login"></button>
-                        <a href="#" class="secondary-button">Forget Password?</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="desert"></div>
-    </div>
-</div>
--->
-	<div class="page-content">
+<div class="page-content">
 		<div class="form-v7-content">
 			<div class="form-left">
 				<img class="form-img" src="../../../assets/layout/images/login.png "  alt="form">
@@ -73,7 +29,6 @@
                 
                 <div>
                     <br>
-                    
                 </div>
                 <div class="form-row form-group row">
                     <label for="inputEmail3"  class="col-sm-4 col-form-label">Mot de passe</label>
@@ -82,32 +37,33 @@
                     </div>
                 </div>
                 
-                
-				
-				
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register"  [routerLink]="['maj_pwd']" value="Se connecter">
 					
 				</div>
                 <div class="form-row form-group row">
-                    <h4 for="" class="  col-form-label" style="color: white;font-style:italic;">Mot de passe oublié?<a class="" style="color: #d31e1e;" [routerLink]="['recup_pwd']" > Recuperer le ici</a></h4>
+                    <h4 for="" class="  col-form-label">Mot de passe oublié?<a class="recup-ici"  [routerLink]="['recup_pwd']" > Recuperer le ici</a></h4>
                 </div>
                 
                     <br>
                 
                 <div class="form-row form-group row">
-                    <h4 for="" class="col-form-label" style="text-align: center; font-size: large;  "><a href="#" style="color:rgb(83, 198, 83);">Creer un compte</a></h4>
+                    <h4 for="" class="col-form-label"><a href="#" class="creer-compte">Creer un compte</a></h4>
                 </div>
                
 			</form>
-
-            
             
 		</div>
-
-        
+        <div>
+        <a href="#" class="fa fa-facebook row"></a>
+        <a href="#" class="fa fa-twitter row"></a>
+        <a href="#" class="fa fa-google row"></a>
+        </div>
+       
 	</div>
-	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <div id="top-right-img">
+        <img src="../../../assets/layout/images/logo-cdmp.svg" class="top-right-img" alt="" />
+    </div>
+
+
 	
