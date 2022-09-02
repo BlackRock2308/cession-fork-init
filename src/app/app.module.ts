@@ -27,6 +27,9 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HomeComponent} from './home/home.component';
 import { AdhesionComponent } from './adhesion/adhesion.component';
+import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
+import { ProductService } from './service/product.service';
+import { MessageService } from 'primeng/api';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -57,10 +60,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppLoginComponent,
         HomeComponent,
         AdhesionComponent,
+        DemandesAdhesionComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         MenuService, BreadcrumbService
+         MenuService, BreadcrumbService,ProductService,MessageService
     ],
     bootstrap: [AppComponent]
 })

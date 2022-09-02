@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators,ReactiveFormsModule,FormsModule, For
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdhesionService } from './adhesion.service';
-import { PME } from './pme';
+import { PME } from '../model/pme';
 
 @Component({
   selector: 'app-adhesion',
@@ -33,8 +33,6 @@ export class AdhesionComponent implements OnInit {
 }
 
   ngOnInit(): void {
-
-    
         this.form = this.formBuilder.group({
             ninea: ['', Validators.required],
             rccm: ['', Validators.required],
@@ -44,34 +42,50 @@ export class AdhesionComponent implements OnInit {
         });
   }
 
+
+//sélectionner le fichier du ninea
   selectNINEAFile(files: any): void {
     this.selectedNINEAFiles = files.target.files[0];
     console.log(this.selectedNINEAFiles);
   }
+
+
+//ouvrir la boite de dialogue du répertoire
   handleNINEAClick() {
     document.getElementById('upload-NINEAfile').click();
   }
 
+
+  //sélectionner le fichier du rccm
   selectRCCMFile(files: any): void {
     this.selectedRCCMFiles = files.target.files[0];
     console.log(this.selectedRCCMFiles);
   }
+
+
+  //ouvrir la boite de dialogue du répertoire
   handleRCCMClick() {
     document.getElementById('upload-RCCMfile').click();
   }
 
+
+  //envoie du formulaire
   onSubmit() {
     // arrêter si le formulaire est invalide
     if (this.form.invalid) {
         return;
     }
-
-        this.enregistrerPme();
+  
+    this.enregistrerPme();
     
 }
 
+
+//enregistrement du pme avec l'appel du service d'enregistrement
 private enregistrerPme() {
   this.pme=this.form.value;
+  this.pme.nineaFile=this.selectedNINEAFiles;
+  this.pme.rccmFile=this.selectedRCCMFiles;
   //fonction à continuer 
   console.log(this.pme);
   /*this.adhesionService.postPME(this.pme)

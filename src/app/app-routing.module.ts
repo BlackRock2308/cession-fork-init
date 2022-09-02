@@ -11,6 +11,7 @@ import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
 import {HomeComponent} from './home/home.component';
 import { AdhesionComponent } from './adhesion/adhesion.component';
+import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
 
 const routes: Routes = [
     // Root Path
@@ -35,6 +36,9 @@ const routes: Routes = [
 
     //Adhesion path
     {path:'adh',component:AdhesionComponent},
+
+    //Demandes d'adhesion path
+    {path:'demandes',component:DemandesAdhesionComponent},
 
     // Error Handling
     {path: '404', component: AppNotfoundComponent},
