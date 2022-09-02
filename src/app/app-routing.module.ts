@@ -29,8 +29,9 @@ const routes: Routes = [
                     .then(m => m.WorkstationModule)
             },
         ]
+
     },
-    // Testing
+    // Testing...
     {path: 'test', component: TestComponent},
 
     // Auth path
