@@ -1,5 +1,6 @@
 <div class="">
     <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="...">
+
 </div>
 
 <div class="card card-w-title">
@@ -31,7 +32,7 @@
 
                             <div class="field col-12 md:col-5 mb-1">
 
-                                <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la la-upload" id="upload-NINEAfile" (click)="handleNINEAClick()" ></button>
+                                <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleNINEAClick()" ></button>
                             </div>
 
                         </div>
@@ -64,7 +65,7 @@
 
                         <div class="field col-12 md:col-5 mb-1">
 
-                            <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la la-upload" id="upload-RCCMfile" (click)="handleRCCMClick()" ></button>
+                            <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-RCCMfile" (click)="handleRCCMClick()" ></button>
                         </div>
 
                     </div>
@@ -89,7 +90,8 @@
             <div class="col-12 md:col-4">
                 <button type="submit"
                 class="btn btn-success"
-                [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"></button>
+                [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"
+                routerLink="/home"></button>
             </div>
 
         </div>
