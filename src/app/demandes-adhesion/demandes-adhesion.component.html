@@ -88,10 +88,16 @@
                     <div class="field grid">
                         <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">Ninea existant</label>
                         <div class="col-12 md:col-4">
-                            <p-button id="oui" label="Oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-button>
+                            <div class="field-radiobutton">
+                                <p-radioButton name="nineaValide" value="true" [(ngModel)]="valRadio" id="oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-radioButton>
+                                <label for="city1">Oui</label>
+                            </div>
                         </div>
                         <div class="col-12 md:col-4 ">
-                            <p-button label="Non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-button>
+                            <div class="field-radiobutton">
+                                <p-radioButton name="nineaNonValide" value="false" [(ngModel)]="valRadio" id="non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-radioButton>
+                                <label for="city1">Non</label>
+                            </div>
                         </div>
                     </div>
                 
@@ -101,11 +107,18 @@
                         
                             <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">PME actif</label>
                             <div class="col-12 md:col-4 ml-auto">
-                                <p-button id="oui" label="Oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-button>
-                            </div>
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="pmeActif" value="true" [(ngModel)]="valRadio" id="oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-radioButton>
+                                    <label for="city1">Oui</label>
+                                </div>
+                             </div>
                             <div class="col-12 md:col-4 ml-auto">
                                 <p-button label="Non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-button>
                             </div>
+                            <div class="col-12 md:col-4 ml-auto">
+                                <button pButton pRipple label="Submit" icon="pi " iconPos="right" class="mr-2 mb-2"></button>
+                            </div>
+
                     </div>
                 </div>
                 

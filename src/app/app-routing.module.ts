@@ -10,14 +10,11 @@ import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.co
 import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
 import {HomeComponent} from './home/home.component';
-<<<<<<< HEAD
 import { AdhesionComponent } from './adhesion/adhesion.component';
 import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
-=======
 import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
->>>>>>> 7de37c4a0da94511d5a3fe02243fecf965fa997a
 
 const routes: Routes = [
     // Root Path
@@ -40,8 +37,19 @@ const routes: Routes = [
     {path: 'test', component: TestComponent},
 
     // Auth path
-    {path: 'login', component: AppLoginComponent},
+    {path: 'login/maj_pwd', component: MajMdpComponent},
 
+    //Adhesion path
+    {path:'adh',component:AdhesionComponent},
+
+    //Demandes d'adhesion path
+    {path:'demandes',component:DemandesAdhesionComponent},
+
+    //Recuperation mot de passe
+    {path: 'login/recup_pwd', component: RecupMdpComponent},
+    {path: 'login/recup_pwd/code_checking', component: CodeVerificationComponent},
+    //Mise a jour mot de passe
+    {path: 'login', component: AppLoginComponent},
     // Error Handling
     {path: '404', component: AppNotfoundComponent},
     {path: '**', redirectTo: '/notfound'},
