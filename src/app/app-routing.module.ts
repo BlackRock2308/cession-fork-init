@@ -10,6 +10,9 @@ import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.co
 import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
 import {HomeComponent} from './home/home.component';
+import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
+import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
+import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 
 const routes: Routes = [
     // Root Path
@@ -18,6 +21,7 @@ const routes: Routes = [
         children: [
             {path: '', redirectTo: 'home', pathMatch: 'full'},
             {path: 'home', component: HomeComponent},
+            
             // Workstation
             {
                 path: '',
@@ -25,13 +29,19 @@ const routes: Routes = [
                     .then(m => m.WorkstationModule)
             },
         ]
+
     },
-    // Testing
+    // Testing...
     {path: 'test', component: TestComponent},
 
     // Auth path
-    {path: 'login', component: AppLoginComponent},
+    {path: 'login/maj_pwd', component: MajMdpComponent},
 
+    //Recuperation mot de passe
+    {path: 'login/recup_pwd', component: RecupMdpComponent},
+    {path: 'login/recup_pwd/code_checking', component: CodeVerificationComponent},
+    //Mise a jour mot de passe
+    {path: 'login', component: AppLoginComponent},
     // Error Handling
     {path: '404', component: AppNotfoundComponent},
     {path: '**', redirectTo: '/notfound'},
