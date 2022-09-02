@@ -10,6 +10,8 @@ import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.co
 import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
 import {HomeComponent} from './home/home.component';
+import { AdhesionComponent } from './adhesion/adhesion.component';
+import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
 import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
@@ -36,6 +38,12 @@ const routes: Routes = [
 
     // Auth path
     {path: 'login/maj_pwd', component: MajMdpComponent},
+
+    //Adhesion path
+    {path:'adh',component:AdhesionComponent},
+
+    //Demandes d'adhesion path
+    {path:'demandes',component:DemandesAdhesionComponent},
 
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},

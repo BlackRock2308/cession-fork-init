@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // PrimeNG Components for demos
 import {FullCalendarModule} from '@fullcalendar/angular';
@@ -27,6 +29,10 @@ import {HomeComponent} from './home/home.component';
 import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
+import { AdhesionComponent } from './adhesion/adhesion.component';
+import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
+import { ProductService } from './service/product.service';
+import { MessageService } from 'primeng/api';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -47,6 +53,10 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule ,
+
     ],
     declarations: [
         AppComponent,
@@ -55,10 +65,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         MajMdpComponent,
         RecupMdpComponent,
         CodeVerificationComponent,
+        AdhesionComponent,
+        DemandesAdhesionComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         MenuService, BreadcrumbService
+         MenuService, BreadcrumbService,ProductService,MessageService
     ],
     bootstrap: [AppComponent]
 })
