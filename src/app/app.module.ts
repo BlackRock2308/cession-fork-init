@@ -33,7 +33,6 @@ import { AdhesionComponent } from './PME/adhesion/adhesion.component';
 import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adhesion.component';
 import { ProductService } from './workstation/service/product/product.service';
 import { MessageService } from 'primeng/api';
-
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
