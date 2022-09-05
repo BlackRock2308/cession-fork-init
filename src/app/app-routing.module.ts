@@ -43,7 +43,7 @@ const routes: Routes = [
     {path:'adh',component:AdhesionComponent},
 
     //Demandes d'adhesion path
-    {path:'demandes',component:DemandesAdhesionComponent},
+    {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
 
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},

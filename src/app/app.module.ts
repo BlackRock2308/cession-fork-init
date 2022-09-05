@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         RecupMdpComponent,
         CodeVerificationComponent,
         AdhesionComponent,
-        DemandesAdhesionComponent,
+        DemandesAdhesionComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

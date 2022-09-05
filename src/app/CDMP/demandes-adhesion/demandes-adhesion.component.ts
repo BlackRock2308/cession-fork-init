@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../workstation/model/product';
 import {ProductService} from '../../workstation/service/product/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
+import { VerificationComponent } from './adhesion-process/verification/verification.component';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./demandes-adhesion.component.scss']
 })
 export class DemandesAdhesionComponent implements OnInit {
+
 
 
   productDialog: boolean;
@@ -35,6 +37,7 @@ export class DemandesAdhesionComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   routeItems: MenuItem[];
+
 
   constructor(private productService: ProductService, private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
@@ -62,10 +65,8 @@ export class DemandesAdhesionComponent implements OnInit {
       ];
 
       this.routeItems = [
-        {label: 'Personal', routerLink:'personal'},
-        {label: 'Seat', routerLink:'seat'},
-        {label: 'Payment', routerLink:'payment'},
-        {label: 'Confirmation', routerLink:'confirmation'},
+        {label: 'Verification', routerLink:'verification'},
+        {label: 'Informations Complémentaires', routerLink:'informations_complémentaire'},
     ];
 
       
@@ -84,6 +85,8 @@ export class DemandesAdhesionComponent implements OnInit {
   editProduct(product: Product) {
       this.product = {...product};
       this.productDialog = true;
+      this.productService.setProductObs(product);
+
       
   }
 
