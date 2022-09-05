@@ -3,6 +3,8 @@ import {Product} from '../../workstation/model/product';
 import {ProductService} from '../../workstation/service/product/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
+import { MenuItem } from 'primeng/api';
+
 
 @Component({
   selector: 'app-demandes-adhesion',
@@ -32,6 +34,8 @@ export class DemandesAdhesionComponent implements OnInit {
 
   rowsPerPageOptions = [5, 10, 20];
 
+  routeItems: MenuItem[];
+
   constructor(private productService: ProductService, private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
       this.breadcrumbService.setItems([
@@ -56,6 +60,13 @@ export class DemandesAdhesionComponent implements OnInit {
           {label: 'LOWSTOCK', value: 'lowstock'},
           {label: 'OUTOFSTOCK', value: 'outofstock'}
       ];
+
+      this.routeItems = [
+        {label: 'Personal', routerLink:'personal'},
+        {label: 'Seat', routerLink:'seat'},
+        {label: 'Payment', routerLink:'payment'},
+        {label: 'Confirmation', routerLink:'confirmation'},
+    ];
 
       
   }
