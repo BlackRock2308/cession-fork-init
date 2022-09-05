@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PME } from '../model/pme';
+import { PME } from '../../model/pme';
 
 @Injectable({
   providedIn: 'root'
