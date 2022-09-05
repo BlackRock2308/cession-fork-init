@@ -9,7 +9,8 @@ import { FormControl,FormGroup,Validators } from '@angular/forms';
 export class AppComponent implements OnInit{
 
     horizontalMenu: boolean;
-
+    policyId: number;
+    
     darkMode = false;
 
     menuColorMode = 'light';
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit{
     ripple = true;
 
     inputStyle = 'outlined';
+    pmes: any[] = [];
 
     constructor(private primengConfig: PrimeNGConfig) {}
 
