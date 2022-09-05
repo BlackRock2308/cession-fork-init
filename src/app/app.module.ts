@@ -34,7 +34,6 @@ import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adh
 import { ProductService } from './workstation/service/product/product.service';
 import { MessageService } from 'primeng/api';
 import { MenuComponent } from './PME/menu/menu.component';
-
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
