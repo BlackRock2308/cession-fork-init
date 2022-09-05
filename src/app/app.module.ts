@@ -33,9 +33,6 @@ import { AdhesionComponent } from './adhesion/adhesion.component';
 import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
 import { ProductService } from './service/product.service';
 import { MessageService } from 'primeng/api';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DataService } from './data.services';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
