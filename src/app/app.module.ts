@@ -33,6 +33,7 @@ import { AdhesionComponent } from './PME/adhesion/adhesion.component';
 import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adhesion.component';
 import { ProductService } from './workstation/service/product/product.service';
 import { MessageService } from 'primeng/api';
+import { MenuComponent } from './PME/menu/menu.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CodeVerificationComponent,
         AdhesionComponent,
         DemandesAdhesionComponent,
+        MenuComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
