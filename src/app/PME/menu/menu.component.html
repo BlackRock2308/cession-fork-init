@@ -1,90 +1,70 @@
+    <p-menubar [model]="items1">
+      <ng-template pTemplate="start">
+          <img src="../../../assets/layout/images/logo-cdmp.svg" height="40" class="mr-2">
+      </ng-template>
+      <ng-template pTemplate="end">
+          <input type="text" pInputText placeholder="Search">
+      </ng-template>
+    </p-menubar>
+<!-- 
+    <p-menubar  [model]="items2">
+      <ng-template pTemplate="start">
+        <button pButton pRipple type="button" class="p-button-rounded" icon="pi pi-bars"></button>
 
-	<nav  id="navbara" class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
-
-          <div>
-            <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.svg" alt="mirage-layout" />
-
-          </div>
-          
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 
-                
-            <ul class="nav navbar-nav ml-auto">
-                 <!-- Actual search box -->
-                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
-                        <div class="input-group-append">
-                          <button class="btn btn-secondary" type="button">
-                            <i class="pi pi-search"></i>
-                          </button>
-                        </div>
-                    </div>
-                 </div>
-                 <div class="collapse navbar-collapse" id="navbar-list-4">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="../../../assets/layout/images/logo-cdmp.svg" width="40" height="40" class="rounded-circle">
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item" href="#">Dashboard</a>
-                          <a class="dropdown-item" href="#">Edit Profile</a>
-                          <a class="dropdown-item" href="#">Log Out</a>
-                        </div>
-                      </li>   
-                    </ul>
-                  </div>
-                  <li class="nav-item active">
-                    <p class="abdou" href="#">Abdou Diop</p>
-                    
-                </li>
-                
-              
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
+      </ng-template>
+      
+    </p-menubar> -->
     <nav  id="navbar" class="navbar navbar-expand-lg ">
-            <div class="container-fluid">
+      <div class="container-fluid">
+
+       
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active">
+              
+                <a class="nav-link" href="#">Se deconnecter</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
   
-              <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="pi pi-bars"></i>
-                <span class="sr-only">Toggle Menu</span>
-              </button>
-              <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <i class="fa fa-bars"></i>
-                  
-              </button>
-              <div class="mymenu">
-              <p>     MENU</p>
-                </div>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav navbar-nav ml-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Se deconnecter</a>
-                  </li>
-                  
-                </ul>
-              </div>
-            </div>
-          </nav>
-		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
-				<div class="p-4 pt-5">
-                    
-                    <div>
-                        <br>
-                        <br>
-                    </div>
-		  		<h1>Wootoo</h1>
-                <div>
-                    <br>
-                    <br>
-                </div>
-	        <ul class="list-unstyled components mb-5">
+    <!-- Page Content  -->
+    <div  class="layout-wrapper" (click)="onLayoutClick()"
+     [ngClass]="{'layout-horizontal': app.horizontalMenu,
+                'layout-wrapper-static': staticMenuActive,
+                'layout-rightpanel-active': rightPanelActive,
+                'layout-topbar-mobile-active': topbarMobileMenuActive,
+                'layout-megamenu-mobile-active': megaMenuMobileActive,
+                'layout-sidebar-mobile-active': menuMobileActive,
+                'p-input-filled': app.inputStyle === 'filled',
+                'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
+
+    <div class="layout-sidebar dark-blue-bg" style="color:white" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="onSidebarClick($event)"
+      (mouseover)="sidebarActive=true" (mouseleave)="sidebarActive=false">
+     <div class="sidebar-logo">
+         <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="onToggleMenuClick($event)">
+            
+             <i class="pi pi-lock" *ngIf="staticMenuActive"></i>
+             <i class="pi pi-lock-open" *ngIf="!staticMenuActive"></i>
+         </a>
+         <i class="pi pi-bars" ></i>
+         
+     </div>
+ 
+     <div class="layout-menu-container" *ngIf="sidebarActive"(click)="onMenuClick()">
+ <!--        <ul class="layout-menu" *ngIf="appMain.sidebarActive">-->
+         <ul class="layout-menu">
+          <div class="p-4 pt-5">
+           
+           <h1>Wootoo</h1>
+        <div>
+            <br>
+            <br>
+        </div>
+          <ul class="list-unstyled components mb-5">
                 <div class="tableau_bord">
                 <li>
                     <h3>Tableau de bord</h3>
@@ -95,39 +75,36 @@
                 <br>
                 <br>
             </div>
-	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
+            <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Nouvelles demandes</a>
+                    <a href="#">Nouvelle demande</a>
                 </li>
                 <li>
                     <a href="#">Demandes en cours</a>
                 </li>
-               
-	            </ul>
-	          </li>
-	          <li>
-	              <a href="#">Suivi des paiements</a>
-	          </li>
-	         
-	        </ul>
+              
+              </ul>
+            </li>
+            <li>
+                <a href="#">Suivi des paiements</a>
+            </li>
+          
+          </ul>
 
-	        <div class="footer">
-	        	
-	        </div>
+  
+          <span class="horizontal-text" *ngIf="!staticMenuActive && !sidebarActive ">espaces</span>
+          </div>
+         </ul>
+         
+         <span class="bottom-menu-text" *ngIf="staticMenuActive || sidebarActive">caisse des marchés publics</span>
+     </div>
+ </div>
+    <div class="layout-main" >
+      
+ 
 
-	      </div>
-    	</nav>
-
-        <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5">
-
-        
-      </div>
-		</div>
-
-    <script src="../../../assets/layout/js/jquery.min.js"></script>
-    <script src="../../../js/popper.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/main.js"></script>
+  </div>
+  </div>
+   

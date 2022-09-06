@@ -40,7 +40,7 @@ export class AdhesionComponent implements OnInit {
             nineaFile: ['', Validators.required],
             rccmFile: ['', [Validators.required]],
         });
-  }c
+  }
 
 
 //sélectionner le fichier du ninea

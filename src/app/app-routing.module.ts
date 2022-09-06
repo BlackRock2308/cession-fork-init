@@ -1,8 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
-import {DashboardComponent} from './core/dashboard/dashboard.component';
-
 import {AppMainComponent} from './core/app-layout/main/app.main.component';
 import {AppNotfoundComponent} from './core/not-found/app.notfound.component';
 import {AppErrorComponent} from './core/error/app.error.component';
@@ -16,6 +14,7 @@ import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { MenuComponent } from './PME/menu/menu.component';
+import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
 
 const routes: Routes = [
     // Root Path
@@ -35,6 +34,9 @@ const routes: Routes = [
         ]
 
     },
+
+    //Nouvelle demande PME
+    {path: 'pme/new_demande', component: NouvelleDemandeComponent},
     // Testing...
     {path: 'test', component: TestComponent},
 

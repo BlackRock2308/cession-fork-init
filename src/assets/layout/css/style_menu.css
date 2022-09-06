@@ -8215,7 +8215,7 @@ h1, h2, h3, h4, h5,
 
 #sidebar {
   position: relative;
-  top:-74px;
+ 
   min-width: 300px;
   max-width: 300px;
   background: #1d1919;

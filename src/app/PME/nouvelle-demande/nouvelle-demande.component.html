@@ -1,0 +1,187 @@
+
+
+	<nav  id="navbara" class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+
+          <div>
+            <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.svg" alt="mirage-layout" />
+
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 
+                
+            <ul class="nav navbar-nav ml-auto">
+                 <!-- Actual search box -->
+                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search this blog">
+                        <div class="input-group-append">
+                          <button class="btn btn-secondary" type="button">
+                            <i class="pi pi-search"></i>
+                          </button>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="collapse navbar-collapse" id="navbar-list-4">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="../../../assets/layout/images/logo-cdmp.svg" width="40" height="40" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="#">Dashboard</a>
+                          <a class="dropdown-item" href="#">Edit Profile</a>
+                          <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                      </li>   
+                    </ul>
+                  </div>
+                  <li class="nav-item active">
+                    <p class="abdou" href="#">Abdou Diop</p>
+                    
+                </li>
+                
+              
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <nav  id="navbar" class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+  
+              <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="pi pi-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+              </button>
+              <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fa fa-bars"></i>
+                  
+              </button>
+              <div class="mymenu">
+              <p>     MENU</p>
+                </div>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="#">Se deconnecter</a>
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+          </nav>
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="p-4 pt-5">
+                    
+                    <div>
+                        <br>
+                        <br>
+                    </div>
+		  		<h1>Wootoo</h1>
+                <div>
+                    <br>
+                    <br>
+                </div>
+	        <ul class="list-unstyled components mb-5">
+                <div class="tableau_bord">
+                <li>
+                    <h3>Tableau de bord</h3>
+                </li>
+                
+            </div>
+            <div>
+                <br>
+                <br>
+            </div>
+	          <li class="active">
+	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
+	            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="#">Nouvelle demande</a>
+                </li>
+                <li>
+                    <a href="#">Demandes en cours</a>
+                </li>
+               
+	            </ul>
+	          </li>
+	          <li>
+	              <a href="#">Suivi des paiements</a>
+	          </li>
+	         
+	        </ul>
+
+	        <div class="footer">
+	        	
+	        </div>
+
+	      </div>
+    	</nav>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+
+        
+        <div class="col-7 ml-auto">
+            <div>
+                <h2 style="color: black;font-weight:100;position: relative;left: 57px;">Reference du bon d'engagement</h2>
+            </div>
+    
+
+            <div class="mt-8 p-fluid">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+                <div class="field grid">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-1 text"></label>
+        
+                    <div class="col-12 md:col-4 mb-2">
+                        <input formControlName="ninea" pInputText id="name3" placeholder="30126789324" type="text" />
+                    </div>
+        
+                    <div class="col-12 md:col-6 mb-2">
+                            <div class="col-12">
+        
+                                <div class="formgroup-inline">
+        
+                                    <div class="field col-12 md:col-5 mb-1">
+                                        <label for="NINEAfile" class="p-sr-only">NINEA File</label>
+                                        <input  *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file" placeholder="Choose a file">
+                                        <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedNINEAFiles.name}}</ng-template>
+                                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-NINEAfile"  ngf-max-size="2MB" (change)="selectNINEAFile($event)">
+                                    </div>
+        
+                                    <div class="field col-12 md:col-5 mb-1">
+        
+                                        <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la la-upload" id="upload-NINEAfile" (click)="handleNINEAClick()" ></button>
+                                    </div>
+        
+                                </div>
+                                
+                            </div>
+        
+                    </div>
+                    
+                </div>
+        
+               
+        
+               
+                <div class="field grid" style="margin-top: 30px;">
+                    <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+        
+                    <div class="col-12 md:col-4">
+                        <button type="submit"
+                        class="btn btn-success"
+                        [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"></button>
+                    </div>
+        
+                </div>
+                </form>
+            </div>
+        
+        </div>
+    </div>
+    
+		</div>
