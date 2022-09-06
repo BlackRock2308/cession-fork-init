@@ -7,6 +7,8 @@ import { MenuItem } from 'primeng/api';
 import { VerificationComponent } from './adhesion-process/verification/verification.component';
 import {DialogModule} from 'primeng/dialog';
 import { PrimeNGConfig } from 'primeng/api';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class DemandesAdhesionComponent implements OnInit {
   deleteProductsDialog: boolean = false;
 
   products: Product[];
+  demandes:DemandeAdhesion[];
 
+  demande:DemandeAdhesion;
   product: Product;
 
   selectedProducts: Product[];
@@ -41,7 +45,7 @@ export class DemandesAdhesionComponent implements OnInit {
   routeItems: MenuItem[];
 
 
-  constructor(private productService: ProductService, private messageService: MessageService,
+  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService, private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig) {
       this.breadcrumbService.setItems([
           { label: 'Pages' },
@@ -51,6 +55,9 @@ export class DemandesAdhesionComponent implements OnInit {
 
   ngOnInit() {
       this.productService.getProducts().then(data => this.products = data);
+      this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
+        this.demandes=data
+    console.log(this.demandes)});
 
       this.primengConfig.ripple=true;
       
@@ -86,10 +93,10 @@ export class DemandesAdhesionComponent implements OnInit {
       this.deleteProductsDialog = true;
   }
 
-  editProduct(product: Product) {
-      this.product = {...product};
+  editProduct(demande: DemandeAdhesion) {
+      this.demande = {...demande};
       this.productDialog = true;
-      this.productService.setProductObs(product);
+      //this.productService.setProductObs(product);
 
       
   }
