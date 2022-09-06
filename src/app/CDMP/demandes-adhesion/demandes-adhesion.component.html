@@ -64,21 +64,16 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="productDialog" [style]="{width: '80%'}" header="" [modal]="true" class="p-fluid">
+        <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
+            <ng-template pTemplate="header">
+                Header content here
+            </ng-template>
             <div class="col-12">
-                <div class="">
-                    <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="...">
                 
-                </div>
-                
-                <div class="card card-w-title">
-                </div>
                 <div class="card card-w-title flex flex-wrap">
                     <div class="col-12 md:col-8 h-full">
                         <h5>TabMenu</h5>
                         <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
-        
-                        <h5>Steps</h5>
                     </div>
                     <div class="col-12 md:col-4 mt-5 md:mt-0">
                         <router-outlet>

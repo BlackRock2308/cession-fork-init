@@ -5,6 +5,8 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
 import { VerificationComponent } from './adhesion-process/verification/verification.component';
+import {DialogModule} from 'primeng/dialog';
+import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
@@ -40,7 +42,7 @@ export class DemandesAdhesionComponent implements OnInit {
 
 
   constructor(private productService: ProductService, private messageService: MessageService,
-              private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+              private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig) {
       this.breadcrumbService.setItems([
           { label: 'Pages' },
           { label: 'Crud', routerLink: ['/pages/crud'] }
@@ -50,6 +52,8 @@ export class DemandesAdhesionComponent implements OnInit {
   ngOnInit() {
       this.productService.getProducts().then(data => this.products = data);
 
+      this.primengConfig.ripple=true;
+      
       this.cols = [
           {field: 'ninea', header: 'NINEA'},
           {field: 'rccm', header: 'RCCM'},
@@ -160,9 +164,10 @@ export class DemandesAdhesionComponent implements OnInit {
       return id;
   }
 
-  nineaValide():any{const targetDiv = document.getElementById("actif");
-  const btn = document.getElementById("oui");
-      targetDiv.style.display = "flex";
+  nineaValide():any{
+    const targetDiv = document.getElementById("actif");
+    const btn = document.getElementById("oui");
+    targetDiv.style.display = "flex";
   
 }
 }

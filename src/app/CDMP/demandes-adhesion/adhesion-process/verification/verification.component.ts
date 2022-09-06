@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/workstation/model/product';
 import { ProductService } from 'src/app/workstation/service/product/product.service';
+import {SelectItem} from 'primeng/api';
+
 
 @Component({
   selector: 'app-verification',
@@ -10,7 +12,7 @@ import { ProductService } from 'src/app/workstation/service/product/product.serv
 })
 export class VerificationComponent implements OnInit {
   product: Product;
-  form: FormGroup;
+  verificationForm: FormGroup;
 
 
   constructor(private productService:ProductService,    private formBuilder: FormBuilder,
@@ -19,13 +21,35 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProductObs().subscribe(product => this.product = product);
     
-    this.form = this.formBuilder.group({
+    this.verificationForm = this.formBuilder.group({
       ninea: ['', Validators.required],
       rccm: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      nineaFile: ['', Validators.required],
-      rccmFile: ['', [Validators.required]],
+      nineaValide: ['', [Validators.required]],
+      pmeActive: ['', Validators.required]
   });
+  this.verificationForm.controls.pmeActive.setValue(false);
   }
+
+    //envoie du formulaire
+    onSubmit() {
+      // arrêter si le formulaire est invalide
+      if (this.verificationForm.invalid) {
+          return;
+      }
+      console.log(this.verificationForm)
+      //this.enregistrerDemande();
+      
+  }
+  enregistrerDemande() {
+    throw new Error('Method not implemented.');
+  }
+
+  nineaValide():any{
+    const targetDiv = document.getElementById("actif");
+    const btn = document.getElementById("oui");
+    targetDiv.style.display = "flex";
+  
+}
+
 
 }
