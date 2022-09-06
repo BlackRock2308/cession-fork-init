@@ -1,0 +1,69 @@
+<div class="grid">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+        <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}"
+            styleClass="shadow-2">
+            <div class="p-card-title" [style]="{'background-color': 'rgb(174, 173, 173)', 'text-align': 'center'}"
+            styleClass="shadow-2">Identification Budgétaire</div>
+            <p-toast></p-toast>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-4">
+                    <h4>NINEA</h4>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
+                            <label for="inputtext">586542098</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-4">
+                    <h4>Référence du BE</h4>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
+                            <label for="inputtext">20-42098</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-4">
+                    <h4>Date de soumission</h4>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
+                            <label for="inputtext">20/05/2022</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-12" id="outerContainer" styleClass="shadow-8">
+                <pdf-viewer [src]="pdfSrc" [rotation]="0" [original-size]="false" [show-all]="true"
+                    [fit-to-page]="false" [zoom]="0.8" [zoom-scale]="'page-width'" [stick-to-page]="false"
+                    [render-text]="true" [external-link-target]="'blank'" [autoresize]="true" [show-borders]="true"
+                    style="width: 100%; height: 600px;"></pdf-viewer>
+            </div>
+            <br><br>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-12">
+                    <h4>Commentaire du service de cession</h4>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="boutton">
+                <button pButton type="button" class="p-button-danger ">Fermer</button>
+            </div>
+            <ng-template pTemplate="footer">
+                
+            </ng-template>
+            <br>
+        </p-card>
+    </div>
+    <div class="col-2">
+    </div>
+</div>

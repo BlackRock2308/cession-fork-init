@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
 
 // PrimeNG Components for demos
 import {FullCalendarModule} from '@fullcalendar/angular';
@@ -34,6 +37,7 @@ import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adh
 import { ProductService } from './workstation/service/product/product.service';
 import { MessageService } from 'primeng/api';
 import { MenuComponent } from './PME/menu/menu.component';
+import { VisualiserDemandesComponent } from './CDMP/visualiser-demandes/visualiser-demandes.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -56,6 +60,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule ,
+        PdfViewerModule,
+        CardModule,
+        ButtonModule
 
     ],
     declarations: [
@@ -68,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AdhesionComponent,
         DemandesAdhesionComponent,
         MenuComponent,
+        VisualiserDemandesComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
