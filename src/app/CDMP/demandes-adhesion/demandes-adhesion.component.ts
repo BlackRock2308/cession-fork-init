@@ -1,14 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../workstation/model/product';
 import {ProductService} from '../../workstation/service/product/product.service';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
-import { VerificationComponent } from './adhesion-process/verification/verification.component';
-import {DialogModule} from 'primeng/dialog';
-import { PrimeNGConfig } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -45,21 +41,13 @@ export class DemandesAdhesionComponent implements OnInit {
   routeItems: MenuItem[];
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService, private messageService: MessageService,
-              private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig) {
-      this.breadcrumbService.setItems([
-          { label: 'Pages' },
-          { label: 'Crud', routerLink: ['/pages/crud'] }
-      ]);
-  }
+  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService,private messageService:MessageService
+              ) {}
 
   ngOnInit() {
       this.productService.getProducts().then(data => this.products = data);
       this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
-        this.demandes=data
-    console.log(this.demandes)});
-
-      this.primengConfig.ripple=true;
+    this.demandes=data});
       
       this.cols = [
           {field: 'ninea', header: 'NINEA'},
@@ -67,12 +55,6 @@ export class DemandesAdhesionComponent implements OnInit {
           {field: 'datesoumission', header: 'Date Soumission'},
           {field: 'rating', header: 'Reviews'},
           {field: 'inventoryStatus', header: 'Status'}
-      ];
-
-      this.statuses = [
-          {label: 'INSTOCK', value: 'instock'},
-          {label: 'LOWSTOCK', value: 'lowstock'},
-          {label: 'OUTOFSTOCK', value: 'outofstock'}
       ];
 
       this.routeItems = [
@@ -83,42 +65,23 @@ export class DemandesAdhesionComponent implements OnInit {
       
   }
 
-  openNew() {
-      this.product = {};
-      this.submitted = false;
-      this.productDialog = true;
-  }
 
-  deleteSelectedProducts() {
-      this.deleteProductsDialog = true;
-  }
+
+
 
   editProduct(demande: DemandeAdhesion) {
       this.demande = {...demande};
       this.productDialog = true;
+      console.log(demande)
       //this.productService.setProductObs(product);
 
       
   }
 
-  deleteProduct(product: Product) {
-      this.deleteProductDialog = true;
-      this.product = {...product};
-  }
 
-  confirmDeleteSelected(){
-      this.deleteProductsDialog = false;
-      this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-      this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
-      this.selectedProducts = null;
-  }
 
-  confirmDelete(){
-      this.deleteProductDialog = false;
-      this.products = this.products.filter(val => val.id !== this.product.id);
-      this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-      this.product = {};
-  }
+  
+
 
   hideDialog() {
       this.productDialog = false;

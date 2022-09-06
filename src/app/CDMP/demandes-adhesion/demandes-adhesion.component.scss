@@ -40,3 +40,22 @@
     color: #203359;
 
 }
+
+::ng-deep div.p-dialog-header.ng-tns-c94-0.ng-star-inserted{
+    //border: none;
+    display: none;
+
+}
+
+.modalTitle{
+    background-color: #F2F2F2;
+    justify-content: center;
+    height: 30px;
+    border-radius: 2%;
+    
+}
+
+.label{
+    color: #A5A5A5;
+                    font-weight: bolder;
+}
