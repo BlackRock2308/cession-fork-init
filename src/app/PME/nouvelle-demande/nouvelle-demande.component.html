@@ -1,0 +1,94 @@
+
+      <div class="layout-wrapper" (click)="onLayoutClick()"
+      [ngClass]="{'layout-horizontal': app.horizontalMenu,
+                 'layout-wrapper-static': staticMenuActive,
+                 'layout-rightpanel-active': rightPanelActive,
+                 'layout-topbar-mobile-active': topbarMobileMenuActive,
+                 'layout-megamenu-mobile-active': megaMenuMobileActive,
+                 'layout-sidebar-mobile-active': menuMobileActive,
+                 'p-input-filled': app.inputStyle === 'filled',
+                 'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
+ 
+     <app-side-bar></app-side-bar>
+ 
+     <div class="layout-main">
+         <app-navbar></app-navbar>
+ 
+        
+ 
+         <div class="layout-content">
+            
+
+               <div id="" class="p-4 p-md-5">
+
+        
+        <div class="col-10 ml-auto">
+            <div>
+                <h2 style="color: black;font-weight:100;position: relative;left: 57px;">Reference du bon d'engagement</h2>
+            </div>
+    
+
+            <div class="mt-8 p-fluid">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+                <div class="field grid">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-1 text"></label>
+        
+                    <div class="col-12 md:col-4 mb-2">
+                        <input formControlName="ninea" pInputText id="name3" placeholder="30126789324" type="text" />
+                    </div>
+        
+                    <div class="col-12 md:col-6 mb-2">
+                            <div class="col-12">
+        
+                                <div class="formgroup-inline">
+        
+                                    <div class="field col-12 md:col-5 mb-1">
+                                        <label for="NINEAfile" class="p-sr-only" style>NINEA File</label>
+                                        <input  *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file" placeholder="Choose a file">
+                                        <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedNINEAFiles.name}}</ng-template>
+                                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-NINEAfile"  ngf-max-size="2MB" (change)="selectNINEAFile($event)">
+                                    </div>
+        
+                                    <div class="field col-12 md:col-5 mb-1">
+        
+                                        <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload " id="upload-NINEAfile" (click)="handleNINEAClick()" ></button>
+                                    </div>
+        
+                                </div>
+                                
+                            </div>
+        
+                    </div>
+                    
+                </div>
+               
+                <div class="field grid" style="margin-top: 30px;">
+                    <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+        
+                    <div class="col-12 md:col-4">
+                        <button type="submit"
+                        class="btn btn-success"
+                        [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"></button>
+                    </div>
+        
+                </div>
+                </form>
+            </div>
+        
+        </div>
+    </div> 
+             
+         </div>
+ 
+         
+         
+         
+        
+     </div>
+ </div>
+ 
+   
+
+    
+	

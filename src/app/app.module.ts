@@ -3,7 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AppFooterComponent } from './core/app-layout/footer/app.footer.component';
+import { AppBreadcrumbComponent } from './core/breadcrumb/app.breadcrumb.component';
 // PrimeNG Components for demos
 import {FullCalendarModule} from '@fullcalendar/angular';
 
@@ -34,6 +35,12 @@ import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adh
 import { ProductService } from './workstation/service/product/product.service';
 import { MessageService } from 'primeng/api';
 import { MenuComponent } from './PME/menu/menu.component';
+import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
+import { AppRightPanelComponent } from './core/app-layout/right-panel/app.rightpanel.component';
+import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.component';
+import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component';
+import { SideBarComponent } from './PME/side-bar/side-bar.component';
+import { NavbarComponent } from './PME/navbar/navbar.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -67,6 +74,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         CodeVerificationComponent,
         AdhesionComponent,
         DemandesAdhesionComponent,
+        MenuComponent,
+        NouvelleDemandeComponent,
+        AppFooterComponent,
+        AppRightPanelComponent,
+        AppBreadcrumbComponent,
+        AppTopBarComponent,
+        SideBarComponent,
+        NavbarComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
