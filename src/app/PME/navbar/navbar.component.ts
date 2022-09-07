@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { PME } from 'src/app/workstation/model/pme';
-import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
-import {Renderer2 } from '@angular/core';
+import { Component, OnInit , Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
-import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
-
+import { AppComponent } from 'src/app/app.component';
 @Component({
-  selector: 'app-nouvelle-demande',
-  templateUrl: './nouvelle-demande.component.html',
-  styleUrls: ['./nouvelle-demande.component.scss'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
   animations: [
     trigger('mask-anim', [
         state('void', style({
@@ -24,9 +17,10 @@ import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service'
         })),
         transition('* => *', animate('250ms cubic-bezier(0, 0, 0.2, 1)'))
     ])
-],
+]
 })
-export class NouvelleDemandeComponent implements OnInit {
+export class NavbarComponent implements OnInit {
+
   rightPanelClick: boolean;
 
   rightPanelActive: boolean;
@@ -61,45 +55,10 @@ export class NouvelleDemandeComponent implements OnInit {
 
   configActive: boolean;
 
-
-  selectedNINEAFiles: File | null = null;
-  currentFile?: File;
-  progress = 0;
-  message = '';
-  fileInfos?: Observable<any>;
-  form!: FormGroup;
-  submitted = false;
-  pme: PME;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private adhesionService: AdhesionService,
-    public renderer: Renderer2, private menuService: MenuService,
-    private primengConfig: PrimeNGConfig,
-    public app: AppComponent
-  ) { }
-
-  ngOnInit(): void {
-
-    this.form = this.formBuilder.group({
-      ninea: ['', Validators.required],
-      rccm: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      nineaFile: ['', Validators.required],
-      rccmFile: ['', [Validators.required]],
-  });
-  }
-
-  //sélectionner le fichier du ninea
-  selectNINEAFile(files: any): void {
-    this.selectedNINEAFiles = files.target.files[0];
-    console.log(this.selectedNINEAFiles);
-  }
+  constructor(public renderer: Renderer2, private menuService: MenuService,
+    private primengConfig: PrimeNGConfig,public app: AppComponent) {}
 
 
-  
   onLayoutClick() {
     if (!this.topbarItemClick) {
         this.activeTopbarItem = null;
@@ -228,43 +187,7 @@ isMobile() {
 isHorizontal() {
     return this.app.horizontalMenu === true;
 }
-
-//ouvrir la boite de dialogue du répertoire
-  handleNINEAClick() {
-    document.getElementById('upload-NINEAfile').click();
+  ngOnInit(): void {
   }
-
-
-
-  //ouvrir la boite de dialogue du répertoire
-  handleRCCMClick() {
-    document.getElementById('upload-RCCMfile').click();
-  }
-
-
-  //envoie du formulaire
-  onSubmit() {
-    // arrêter si le formulaire est invalide
-    if (this.form.invalid) {
-        return;
-    }
-  
-    this.enregistrerBon();
-    
-}
-
-
-//enregistrement du bbn d'engagement avec l'appel du service d'enregistrement
-private enregistrerBon() {
-  this.pme=this.form.value;
-  this.pme.nineaFile=this.selectedNINEAFiles;
-  //fonction à continuer 
-  console.log(this.pme);
-  /*this.adhesionService.postPME(this.pme)
-      .subscribe(() => {
-         })*/
-      
-}
-
 
 }

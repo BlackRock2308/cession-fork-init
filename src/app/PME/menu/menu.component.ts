@@ -25,6 +25,7 @@ import { AppMainComponent } from 'src/app/core/app-layout/main/app.main.componen
 })
 export class MenuComponent implements OnInit  {
 
+    activeItem : number;
   rightPanelClick: boolean;
 
     rightPanelActive: boolean;
@@ -110,6 +111,10 @@ export class MenuComponent implements OnInit  {
     ];
   
 
+    }
+    mobileMegaMenuItemClick(index) {
+        this.megaMenuMobileClick = true;
+        this.activeItem = this.activeItem === index ? null : index;
     }
     onMenuClick() {
       this.menuClick = true;

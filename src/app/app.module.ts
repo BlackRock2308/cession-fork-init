@@ -39,6 +39,8 @@ import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demand
 import { AppRightPanelComponent } from './core/app-layout/right-panel/app.rightpanel.component';
 import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.component';
 import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component';
+import { SideBarComponent } from './PME/side-bar/side-bar.component';
+import { NavbarComponent } from './PME/navbar/navbar.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -77,7 +79,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppFooterComponent,
         AppRightPanelComponent,
         AppBreadcrumbComponent,
-        AppTopBarComponent
+        AppTopBarComponent,
+        SideBarComponent,
+        NavbarComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
