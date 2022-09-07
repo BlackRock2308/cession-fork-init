@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+
+import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppFooterComponent } from './core/app-layout/footer/app.footer.component';
 import { AppBreadcrumbComponent } from './core/breadcrumb/app.breadcrumb.component';
 // PrimeNG Components for demos
 import {FullCalendarModule} from '@fullcalendar/angular';
-
+import { RouterModule } from '@angular/router';
 // Application Components
 import {AppComponent} from './app.component';
 import {AppLoginComponent} from './auth/login/app.login.component';
@@ -32,7 +33,6 @@ import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { AdhesionComponent } from './PME/adhesion/adhesion.component';
 import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adhesion.component';
-import { ProductService } from './workstation/service/product/product.service';
 import { MessageService } from 'primeng/api';
 import { MenuComponent } from './PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
@@ -54,6 +54,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     imports: [
         CoreModule,
+        RouterModule,
+        CommonModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -75,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CodeVerificationComponent,
         AdhesionComponent,
         DemandesAdhesionComponent,
+        DemandeAdhesionComponent,
         MenuComponent,
         NouvelleDemandeComponent,
         AppFooterComponent,
@@ -87,7 +90,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         MenuService, BreadcrumbService,ProductService,MessageService
+         MenuService, BreadcrumbService,MessageService
     ],
     bootstrap: [AppComponent]
 })

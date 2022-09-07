@@ -8,7 +8,6 @@ import { FormBuilder } from '@angular/forms';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { ProductService } from 'src/app/workstation/service/product/product.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 
@@ -90,7 +89,7 @@ export class DemandeAdhesionComponent implements OnInit {
 
   configActive: boolean;
   constructor(
-    private productService: ProductService, private messageService: MessageService,
+    private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -105,7 +104,7 @@ export class DemandeAdhesionComponent implements OnInit {
   ]);
   }
   ngOnInit() {
-    this.productService.getProducts().then(data => this.products = data);
+   
     this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
       this.demandes=data
   console.log(this.demandes)});
