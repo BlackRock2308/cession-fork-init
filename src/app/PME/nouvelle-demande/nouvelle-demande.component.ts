@@ -62,7 +62,7 @@ export class NouvelleDemandeComponent implements OnInit {
   configActive: boolean;
 
 
-  selectedNINEAFiles: File | null = null;
+  selectedBONFiles: File | null = null;
   currentFile?: File;
   progress = 0;
   message = '';
@@ -85,20 +85,21 @@ export class NouvelleDemandeComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       ninea: ['', Validators.required],
-      rccm: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      nineaFile: ['', Validators.required],
-      rccmFile: ['', [Validators.required]],
+      nineaFile: ['', Validators.required]
+     
   });
   }
 
   //sélectionner le fichier du ninea
-  selectNINEAFile(files: any): void {
-    this.selectedNINEAFiles = files.target.files[0];
-    console.log(this.selectedNINEAFiles);
+  selectBONFile(files: any): void {
+    this.selectedBONFiles = files.target.files[0];
+    console.log(this.selectedBONFiles);
   }
 
-
+//ouvrir la boite de dialogue du répertoire
+handleBONClick() {
+  document.getElementById('upload-NINEAfile').click();
+}
   
   onLayoutClick() {
     if (!this.topbarItemClick) {
@@ -192,6 +193,9 @@ onMegaMenuMobileButtonClick(event) {
     event.preventDefault();
 }
 
+onMenuClick() {
+  this.menuClick = true;
+}
 onMenuButtonClick(event) {
     this.menuClick = true;
     this.topbarMenuActive = false;
@@ -229,18 +233,10 @@ isHorizontal() {
     return this.app.horizontalMenu === true;
 }
 
-//ouvrir la boite de dialogue du répertoire
-  handleNINEAClick() {
-    document.getElementById('upload-NINEAfile').click();
-  }
 
 
 
-  //ouvrir la boite de dialogue du répertoire
-  handleRCCMClick() {
-    document.getElementById('upload-RCCMfile').click();
-  }
-
+  
 
   //envoie du formulaire
   onSubmit() {
@@ -257,7 +253,7 @@ isHorizontal() {
 //enregistrement du bbn d'engagement avec l'appel du service d'enregistrement
 private enregistrerBon() {
   this.pme=this.form.value;
-  this.pme.nineaFile=this.selectedNINEAFiles;
+  this.pme.nineaFile=this.selectedBONFiles;
   //fonction à continuer 
   console.log(this.pme);
   /*this.adhesionService.postPME(this.pme)
