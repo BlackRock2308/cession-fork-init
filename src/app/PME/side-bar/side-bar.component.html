@@ -1,20 +1,12 @@
 
-<div  class="layout-wrapper" (click)="onLayoutClick()"
-[ngClass]="{'layout-horizontal': app.horizontalMenu,
-           'layout-wrapper-static': staticMenuActive,
-           'layout-rightpanel-active': rightPanelActive,
-           'layout-topbar-mobile-active': topbarMobileMenuActive,
-           'layout-megamenu-mobile-active': megaMenuMobileActive,
-           'layout-sidebar-mobile-active': menuMobileActive,
-           'p-input-filled': app.inputStyle === 'filled',
-           'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
 
-<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="onSidebarClick($event)"
+
+<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="appnew.onSidebarClick($event)"
      (mouseover)="sidebarActive=true" (mouseleave)="sidebarActive=false">
     <div class="sidebar-logo">
-        <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="onToggleMenuClick($event)">
-            <i class="pi pi-lock" *ngIf="staticMenuActive"></i>
-            <i class="pi pi-lock-open" *ngIf="!staticMenuActive"></i>
+        <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="appnew.onToggleMenuClick($event)">
+            <i class="pi pi-lock" *ngIf="appnew.staticMenuActive"></i>
+            <i class="pi pi-lock-open" *ngIf="!appnew.staticMenuActive"></i>
         </a>
         <a routerLink="/">
             <i class="pi pi-bars"></i>
@@ -23,7 +15,7 @@
         
     </div>
 
-    <div class="layout-menu-container"  (click)="onMenuClick()">
+    <div class="layout-menu-container"  (click)="appnew.onMenuClick()">
         
         <ul class="layout-menu">
             
@@ -53,10 +45,10 @@
       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
       <ul class="collapse list-unstyled" id="homeSubmenu">
         <li>
-            <a href="#">Nouvelle demande</a>
+            <a>Nouvelle demande</a>
         </li>
         <li>
-            <a href="#">Demandes en cours</a>
+            <a>Demandes en cours</a>
         </li>
        
       </ul>

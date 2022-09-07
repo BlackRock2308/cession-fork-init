@@ -85,10 +85,8 @@ export class NouvelleDemandeComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       ninea: ['', Validators.required],
-      rccm: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      nineaFile: ['', Validators.required],
-      rccmFile: ['', [Validators.required]],
+      nineaFile: ['', Validators.required]
+     
   });
   }
 
@@ -98,7 +96,10 @@ export class NouvelleDemandeComponent implements OnInit {
     console.log(this.selectedNINEAFiles);
   }
 
-
+//ouvrir la boite de dialogue du répertoire
+handleNINEAClick() {
+  document.getElementById('upload-NINEAfile').click();
+}
   
   onLayoutClick() {
     if (!this.topbarItemClick) {
@@ -192,6 +193,9 @@ onMegaMenuMobileButtonClick(event) {
     event.preventDefault();
 }
 
+onMenuClick() {
+  this.menuClick = true;
+}
 onMenuButtonClick(event) {
     this.menuClick = true;
     this.topbarMenuActive = false;
@@ -229,10 +233,6 @@ isHorizontal() {
     return this.app.horizontalMenu === true;
 }
 
-//ouvrir la boite de dialogue du répertoire
-  handleNINEAClick() {
-    document.getElementById('upload-NINEAfile').click();
-  }
 
 
 
