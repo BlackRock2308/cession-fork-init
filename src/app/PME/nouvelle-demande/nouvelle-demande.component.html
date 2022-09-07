@@ -43,15 +43,14 @@
                                 <div class="formgroup-inline">
         
                                     <div class="field col-12 md:col-5 mb-1">
-                                        <label for="NINEAfile" class="p-sr-only" style>NINEA File</label>
-                                        <input  *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file" placeholder="Choose a file">
-                                        <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedNINEAFiles.name}}</ng-template>
-                                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-NINEAfile"  ngf-max-size="2MB" (change)="selectNINEAFile($event)">
+                                        <input  *ngIf="selectedBONFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Charger le fichier du bon" placeholder="Choose a file">
+                                        <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedBONFiles.name}}</ng-template>
+                                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-BONfile"  ngf-max-size="2MB" (change)="selectBONFile($event)">
                                     </div>
         
                                     <div class="field col-12 md:col-5 mb-1">
         
-                                        <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload " id="upload-NINEAfile" (click)="handleNINEAClick()" ></button>
+                                        <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload " id="upload-NINEAfile" (click)="handleBONClick()" ></button>
                                     </div>
         
                                 </div>

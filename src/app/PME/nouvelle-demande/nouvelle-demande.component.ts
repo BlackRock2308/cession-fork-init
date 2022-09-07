@@ -62,7 +62,7 @@ export class NouvelleDemandeComponent implements OnInit {
   configActive: boolean;
 
 
-  selectedNINEAFiles: File | null = null;
+  selectedBONFiles: File | null = null;
   currentFile?: File;
   progress = 0;
   message = '';
@@ -91,13 +91,13 @@ export class NouvelleDemandeComponent implements OnInit {
   }
 
   //sélectionner le fichier du ninea
-  selectNINEAFile(files: any): void {
-    this.selectedNINEAFiles = files.target.files[0];
-    console.log(this.selectedNINEAFiles);
+  selectBONFile(files: any): void {
+    this.selectedBONFiles = files.target.files[0];
+    console.log(this.selectedBONFiles);
   }
 
 //ouvrir la boite de dialogue du répertoire
-handleNINEAClick() {
+handleBONClick() {
   document.getElementById('upload-NINEAfile').click();
 }
   
@@ -236,11 +236,7 @@ isHorizontal() {
 
 
 
-  //ouvrir la boite de dialogue du répertoire
-  handleRCCMClick() {
-    document.getElementById('upload-RCCMfile').click();
-  }
-
+  
 
   //envoie du formulaire
   onSubmit() {
@@ -257,7 +253,7 @@ isHorizontal() {
 //enregistrement du bbn d'engagement avec l'appel du service d'enregistrement
 private enregistrerBon() {
   this.pme=this.form.value;
-  this.pme.nineaFile=this.selectedNINEAFiles;
+  this.pme.nineaFile=this.selectedBONFiles;
   //fonction à continuer 
   console.log(this.pme);
   /*this.adhesionService.postPME(this.pme)
