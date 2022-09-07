@@ -10,7 +10,6 @@ export class InformationsComplementaireComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //console.log(history.state)
   }
 
 }

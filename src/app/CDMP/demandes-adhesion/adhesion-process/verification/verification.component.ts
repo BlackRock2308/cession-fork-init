@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/workstation/model/product';
+import { ProductService } from 'src/app/workstation/service/product/product.service';
 import {SelectItem} from 'primeng/api';
-import { Route } from '@angular/router';
-import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { CommunicationService } from 'src/app/workstation/service/communication/communication.service';
 
 
 @Component({
@@ -15,26 +13,21 @@ import { CommunicationService } from 'src/app/workstation/service/communication/
 export class VerificationComponent implements OnInit {
   product: Product;
   verificationForm: FormGroup;
-  router: Route;
-  basicInfo:BasicInfo;
-  id: number;
 
-  constructor(private demandesAdhesionService:DemandesAdhesionService,    private formBuilder: FormBuilder, private communicationService:CommunicationService) { }
+
+  constructor(private productService:ProductService,    private formBuilder: FormBuilder,
+    ) { }
 
   ngOnInit(): void {
+    this.productService.getProductObs().subscribe(product => this.product = product);
     
-    //Récupérer l'id de la demande en cours de vérification
-    this.demandesAdhesionService.getDemandeObs().subscribe(data=>this.id=data.id);
-
-    //formulaire de la première étape de vérification à patcher
     this.verificationForm = this.formBuilder.group({
-      id: [''],
+      ninea: ['', Validators.required],
+      rccm: ['', Validators.required],
       nineaValide: ['', [Validators.required]],
-      pmeActive: ['']
+      pmeActive: ['', Validators.required]
   });
-
-  // remplir l'id dans le formulaire
-  this.verificationForm.controls.id.setValue(this.id);
+  this.verificationForm.controls.pmeActive.setValue(false);
   }
 
     //envoie du formulaire
@@ -43,44 +36,20 @@ export class VerificationComponent implements OnInit {
       if (this.verificationForm.invalid) {
           return;
       }
-      //console.log(this.verificationForm);
-
-      //appeller la fonction d'enregistrement 
-      this.enregistrerBasicInformation();
-
-      //le modal doit se fermer
-      this.communicationService.setDialogObs(false);
-
+      console.log(this.verificationForm)
+      //this.enregistrerDemande();
       
   }
-
-  //fonction d'enregistrement des informations basic tel l'état du ninea et de la pme
-  enregistrerBasicInformation() {
-    this.basicInfo=this.verificationForm.value;
-    console.log(this.basicInfo)
-    this.demandesAdhesionService.patchBasicInformation(this.id,this.basicInfo).subscribe(data=>console.log(data));
+  enregistrerDemande() {
+    throw new Error('Method not implemented.');
   }
 
-  //afficher les champs du formulaire de l'état de la pme au cas où le ninea est valide
   nineaValide():any{
     const targetDiv = document.getElementById("actif");
-    targetDiv.style.display = "inline";
-
-    const btn = document.getElementById("valider");
-    btn.style.display = "flex";
+    const btn = document.getElementById("oui");
+    targetDiv.style.display = "flex";
   
 }
-
-  //fermer les champs du formulaire de l'état de la pme au cas où le ninea est valide
-  nineaInvalide():any{
-  const targetDiv = document.getElementById("actif");
-  targetDiv.style.display = "none";
-
-  const btn = document.getElementById("valider");
-  btn.style.display = "flex";
-
-}
-
 
 
 }
