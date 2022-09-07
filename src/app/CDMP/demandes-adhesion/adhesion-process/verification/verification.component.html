@@ -1,69 +1,45 @@
+<div class="d-flex justify-content-center col 12">
+    <div class="col-12 md:col-8 modalTitle d-flex justify-content-center">
+        <h5 class="label">Vérification</h5>
+    </div>
+</div>
 
-                <button pButton pRipple label="Suivant" icon="pi pi-times" class="p-button-text" routerLink="/../informations_complémentaires"></button>
+<div class="col-12 mx-auto">
 
-
-<!--div class="col-7 ml-auto">
-
-    <div class="mt-8 p-fluid">
-        <form formGroup="verificationForm" (ngSubmit)="onSubmit()">
-
-            <div class="field grid">
-                <div class="field grid">
-                    <label htmlFor="ninea" class="col-12 mb-2 md:col-2 md:mb-0">NINEA</label>
-                    <div class="col-12 md:col-8 ml-4">
-                        <label>{{product.name}}</label>
-                </div>
-                </div>
-                <div class="field grid ml-auto">
-                    <label htmlFor="rccm" class="col-12 mb-2 md:col-2 md:mb-0">RCCM</label>
-                    <div class="col-12 md:col-8 ml-4">
-                        <label>{{product.category}}</label>
+    <div class="mt-5  p-fluid">
+        <form [(formGroup)]="verificationForm" (ngSubmit)="onSubmit()">
+            <div class=" my-8 p-fluid mx-auto">
+                <div class="field grid mx-auto">
+                    <h5  class="col-12 md:col-3 md:mb-0 mr-auto" style="color: #203359;">Ninea existant</h5>
+                    <div class="col-12 mb-3 md:col-3 md:mb-0 flex ok">
+                        <input (click)="nineaValide()" class="p-button-success" type="radio" name="nineaValide" value="true" formControlName="nineaValide" />
+                        <h5 class="mx-auto " >Oui</h5>
+                    </div>
+                    <div class="col-12 mb-2 md:col-3 md:mb-0 flex no">
+                        <input (click)="nineaInvalide()" class="p-button-danger" style type="radio" name="nineaValide" value="false" formControlName="nineaValide"  />
+                        <h5 class="mx-auto ">Non</h5>
                     </div>
                 </div>
-
-                <div class="field grid flex">
-
-                    <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-1">Ninea existant</label>
-                    <div class="col-12 md:col-4">
-                        <div class="field-radiobutton">
-                            <input type="checkbox" formControlName="nineaValide" value="true"  id="oui" icon="pi pi-check-circle"  styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()">
-                            <label for="city1">Oui</label>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-4 ">
-                        <div class="field-radiobutton">
-                            <input type="checkbox" formControlName="nineaNonValide" value="false"  id="non" icon="pi pi-ban"  styleClass="p-button-danger mr-2 mb-2">
-                            <label for="city1">Non</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="actif" class="field grid" style="display:none;">
-                
-                    <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">PME actif</label>
-                    <div class="col-12 md:col-4 ml-auto">
-                        <div class="field-radiobutton">
-                            <input type="checkbox" formControlName="pmeActif" value="true"  id="oui" icon="pi pi-check-circle"  styleClass="p-button-success mr-2 mb-2">
-                            <label for="city1">Oui</label>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-4 ml-auto">
-                        <div class="field-radiobutton">
-                            <input type="checkbox" formControlName="pmeActif" value="false"  id="non" icon="pi pi-check-circle"  styleClass="p-button-success mr-2 mb-2" >
-                            <label for="city1">Oui</label>
-                        </div>                
-                    </div>
-                    <div class="col-12 md:col-4 ">
-                        <button pButton pRipple label="Submit" icon="pi " iconPos="right" class="mr-2 mb-2"></button>
-                    </div>
-
-                </div>
-
-                
-                
             </div>
+
+            <div class=" p-fluid mx-auto" style="display:none;" id="actif">
+                <div class="field grid mx-auto col-12">
+                    <h5  class="col-12 md:col-3 md:mb-0 mr-auto" style="color: #203359;">PME actif</h5>
+                    <div class="col-12 mb-3 md:col-3 md:mb-0 flex ok">
+                        <input class="p-button-success" type="radio" name="pmeActive" value="true" formControlName="pmeActive" />
+                        <h5 class="mx-auto " >Oui</h5>
+                    </div>
+                    <div class="col-12 mb-2 md:col-3 md:mb-0 flex no">
+                        <input class="p-button-danger" type="radio" name="pmeActive" value="false" formControlName="pmeActive"/>
+                        <h5 class="mx-auto ">Non</h5>
+                    </div>
+                </div>
+                <button style="width: min-content;background-color:#203359 ;" pButton pRipple type="button" label="Suivant" class="p-button-raised mb-5  float-right"  [routerLink]="['../informations_complementaire']" [state]="{ verification:this.basicInfo }">
+                    </button>
+            </div>
+            <button  [disabled]="!verificationForm.valid" type="submit" id="valider"style="width: min-content;background-color:#203359 ;display: none;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-raised float-right"  routerLink="../demandes"></button>
 
         </form>
     </div>
 
-</div-->
+</div>

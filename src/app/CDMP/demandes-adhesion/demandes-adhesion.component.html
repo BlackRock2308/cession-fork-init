@@ -51,7 +51,7 @@
             </p-table>
         </div>
 
-        <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
+        <p-dialog showHeader="false" [(visible)]="productDialog"  [style]="{width: '60%'}"  [modal]="true" >
             <ng-template pTemplate="header">
         
             </ng-template>
@@ -59,25 +59,25 @@
             <ng-template pTemplate="content" >
                 <div class="d-flex justify-content-center col 12">
                     <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                        <label class="label">Demande en cours</label>
+                        <h3 class="label">Demande en cours</h3>
                     </div>
-                    </div>
+                </div>
                 <div class=" justify-content-center p-fluid mt-5">
                     <div class="p-formgrid grid">
                         <div class="field col">
                             <div class="col-12 md:col-12  d-flex justify-content-center">
-                                <label style="font-weight: bold;">NINEA</label>
+                                <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
                 </div>
                             <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                                <label class="label">{{demande.ninea}}</label>
+                                <h4 class="label">{{demande.ninea}}</h4>
             </div>
                        </div>
                         <div class="field col">
                             <div class="col-12 md:col-12  d-flex justify-content-center">
-                                <label style="font-weight: bold;">RCCM</label>
+                                <h4 style="font-weight: bold;color: #203359">RCCM</h4>
                     </div>
                             <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                                <label class="label">{{demande.rccm}}</label>
+                                <h4 class="label">{{demande.rccm}}</h4>
                         </div>
                     </div>
                         </div>
@@ -87,20 +87,13 @@
 
                 <div class="col-12">
                 
-                    <div class="card card-w-title flex flex-wrap">
-                        <div class="col-12 md:col-8 h-full">
-                            <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
-                                </div>
-                        <div class="col-12 md:col-4 mt-5 md:mt-0">
                             <router-outlet>
                             </router-outlet>
-                             </div>
-                    </div>
                 </div>
                 
             </ng-template>
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()" routerLink="./verification"></button>
             </ng-template>
 
           

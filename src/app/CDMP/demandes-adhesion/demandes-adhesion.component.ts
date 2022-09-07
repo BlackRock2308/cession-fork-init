@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../workstation/model/product';
-import {ProductService} from '../../workstation/service/product/product.service';
 import { MenuItem } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { MessageService } from 'primeng/api';
+import { CommunicationService } from 'src/app/workstation/service/communication/communication.service';
 
 
 @Component({
@@ -41,11 +41,12 @@ export class DemandesAdhesionComponent implements OnInit {
   routeItems: MenuItem[];
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService,private messageService:MessageService
+  constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService,private communicationService:CommunicationService
               ) {}
 
   ngOnInit() {
-      this.productService.getProducts().then(data => this.products = data);
+    this.productDialog = this.communicationService.getDialogObs();
+      //this.productService.getProducts().then(data => this.products = data);
       this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
     this.demandes=data});
       
@@ -59,8 +60,9 @@ export class DemandesAdhesionComponent implements OnInit {
 
       this.routeItems = [
         {label: 'Verification', routerLink:'verification'},
-        {label: 'Informations Complémentaires', routerLink:'informations_complémentaire'},
+        {label: 'Informations', routerLink:'informations_complementaire'},
     ];
+    console.log(this.productDialog)
 
       
   }
@@ -73,7 +75,7 @@ export class DemandesAdhesionComponent implements OnInit {
       this.demande = {...demande};
       this.productDialog = true;
       console.log(demande)
-      //this.productService.setProductObs(product);
+      this.demandesAdhesionService.setDemandeObs(demande);
 
       
   }
