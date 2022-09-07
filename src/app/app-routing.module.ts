@@ -15,6 +15,7 @@ import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { MenuComponent } from './PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
+import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 
 const routes: Routes = [
     // Root Path
@@ -37,6 +38,9 @@ const routes: Routes = [
 
     //Nouvelle demande PME
     {path: 'pme/new_demande', component: NouvelleDemandeComponent},
+
+    //Demandes en cours de la PME
+    {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
     // Testing...
     {path: 'test', component: TestComponent},
 

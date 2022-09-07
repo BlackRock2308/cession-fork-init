@@ -41,9 +41,7 @@ import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.compone
 import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component';
 import { SideBarComponent } from './PME/side-bar/side-bar.component';
 import { NavbarComponent } from './PME/navbar/navbar.component';
-import { VerificationComponent } from './CDMP/demandes-adhesion/adhesion-process/verification/verification.component';
-import { InformationsComplementaireComponent } from './CDMP/demandes-adhesion/adhesion-process/informations-complementaire/informations-complementaire.component';
-
+import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -85,8 +83,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppTopBarComponent,
         SideBarComponent,
         NavbarComponent,
-        VerificationComponent,
-        InformationsComplementaireComponent
+        DemandeAdhesionComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
