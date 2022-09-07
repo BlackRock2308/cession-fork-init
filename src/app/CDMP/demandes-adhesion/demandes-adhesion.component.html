@@ -41,9 +41,9 @@
                         
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" (click)="editProduct(product)" disabled></button>
-                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" (click)="editProduct(product)" disabled></button>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" (click)="editProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button"  disabled></button>
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" disabled></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" (click)="editProduct(demande)"></button>
                             </div>
                         </td>
                     </tr>
@@ -51,105 +51,53 @@
             </p-table>
         </div>
 
-        <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
+        <p-dialog showHeader="false" [(visible)]="productDialog"  [style]="{width: '60%'}"  [modal]="true" >
             <ng-template pTemplate="header">
-                Header content here
+        
             </ng-template>
-            <div class="col-12">
                 
-                <div class="card card-w-title flex flex-wrap">
-                    <div class="col-12 md:col-8 h-full">
-                        <h5>TabMenu</h5>
-                        <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
-                    </div>
-                    <div class="col-12 md:col-4 mt-5 md:mt-0">
-                        <router-outlet>
-                        </router-outlet>
+            <ng-template pTemplate="content" >
+                <div class="d-flex justify-content-center col 12">
+                    <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
+                        <h3 class="label">Demande en cours</h3>
                     </div>
                 </div>
+                <div class=" justify-content-center p-fluid mt-5">
+                    <div class="p-formgrid grid">
+                        <div class="field col">
+                            <div class="col-12 md:col-12  d-flex justify-content-center">
+                                <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
+                </div>
+                            <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
+                                <h4 class="label">{{demande.ninea}}</h4>
             </div>
-            <ng-template pTemplate="content">
-                <div class="p-formgrid grid ml-auto">
-                    <div class="field grid">
-                        <label htmlFor="ninea" class="col-12 mb-2 md:col-2 md:mb-0">NINEA</label>
-                        <div class="col-12 md:col-8 ml-4">
-                            <input pInputText id="name3" type="text" [(ngModel)]="product.name" />
                        </div>
+                        <div class="field col">
+                            <div class="col-12 md:col-12  d-flex justify-content-center">
+                                <h4 style="font-weight: bold;color: #203359">RCCM</h4>
                     </div>
-                    <div class="field grid ml-auto">
-                        <label htmlFor="rccm" class="col-12 mb-2 md:col-2 md:mb-0">RCCM</label>
-                        <div class="col-12 md:col-8 ml-4">
-                            <input pInputText id="name3" type="text" [(ngModel)]="product.category" />
+                            <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
+                                <h4 class="label">{{demande.rccm}}</h4>
                         </div>
                     </div>
-                </div><br>
-                <div class="mx-auto" style="width: 200px;">
-                       Vérification
-                </div>
-                <br>
-                <div class="">
-                    <div class="field grid">
-                        <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">Ninea existant</label>
-                        <div class="col-12 md:col-4">
-                            <div class="field-radiobutton">
-                                <p-radioButton name="nineaValide" value="true" [(ngModel)]="valRadio" id="oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-radioButton>
-                                <label for="city1">Oui</label>
-                            </div>
-                        </div>
-                        <div class="col-12 md:col-4 ">
-                            <div class="field-radiobutton">
-                                <p-radioButton name="nineaNonValide" value="false" [(ngModel)]="valRadio" id="non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-radioButton>
-                                <label for="city1">Non</label>
-                            </div>
                         </div>
                     </div>
                 
                 
 
-                    <div id="actif" class="field grid" style="display:none;">
-                        
-                            <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">PME actif</label>
-                            <div class="col-12 md:col-4 ml-auto">
-                                <div class="field-radiobutton">
-                                    <p-radioButton name="pmeActif" value="true" [(ngModel)]="valRadio" id="oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-radioButton>
-                                    <label for="city1">Oui</label>
-                                </div>
-                             </div>
-                            <div class="col-12 md:col-4 ml-auto">
-                                <p-button label="Non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-button>
-                            </div>
-                            <div class="col-12 md:col-4 ml-auto">
-                                <button pButton pRipple label="Submit" icon="pi " iconPos="right" class="mr-2 mb-2"></button>
-                            </div>
-
-                    </div>
+                <div class="col-12">
+                
+                            <router-outlet>
+                            </router-outlet>
                 </div>
                 
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()" routerLink="./verification"></button>
             </ng-template>
 
           
         </p-dialog>
 
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
-            </ng-template>
-        </p-dialog>
-
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
-            </ng-template>
-        </p-dialog>
     </div>
 </div>

@@ -32,7 +32,7 @@ import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { AdhesionComponent } from './PME/adhesion/adhesion.component';
 import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adhesion.component';
-import { ProductService } from './workstation/service/product/product.service';
+import { CommunicationService } from './workstation/service/communication/communication.service';
 import { MessageService } from 'primeng/api';
 import { MenuComponent } from './PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
@@ -41,6 +41,9 @@ import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.compone
 import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component';
 import { SideBarComponent } from './PME/side-bar/side-bar.component';
 import { NavbarComponent } from './PME/navbar/navbar.component';
+import { VerificationComponent } from './CDMP/demandes-adhesion/adhesion-process/verification/verification.component';
+import { InformationsComplementaireComponent } from './CDMP/demandes-adhesion/adhesion-process/informations-complementaire/informations-complementaire.component';
+
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -81,11 +84,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppBreadcrumbComponent,
         AppTopBarComponent,
         SideBarComponent,
-        NavbarComponent
+        NavbarComponent,
+        VerificationComponent,
+        InformationsComplementaireComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         MenuService, BreadcrumbService,ProductService,MessageService
+         MenuService, BreadcrumbService,CommunicationService,MessageService
     ],
     bootstrap: [AppComponent]
 })
