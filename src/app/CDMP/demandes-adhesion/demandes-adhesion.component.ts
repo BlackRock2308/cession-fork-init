@@ -1,8 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../workstation/model/product';
 import {ProductService} from '../../workstation/service/product/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
+import { MenuItem } from 'primeng/api';
+import { VerificationComponent } from './adhesion-process/verification/verification.component';
+import {DialogModule} from 'primeng/dialog';
+import { PrimeNGConfig } from 'primeng/api';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { DemandeAdhesion } from 'src/app/workstation/model/demande';
+
 
 @Component({
   selector: 'app-demandes-adhesion',
@@ -12,6 +19,7 @@ import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 export class DemandesAdhesionComponent implements OnInit {
 
 
+
   productDialog: boolean;
 
   deleteProductDialog: boolean = false;
@@ -19,7 +27,9 @@ export class DemandesAdhesionComponent implements OnInit {
   deleteProductsDialog: boolean = false;
 
   products: Product[];
+  demandes:DemandeAdhesion[];
 
+  demande:DemandeAdhesion;
   product: Product;
 
   selectedProducts: Product[];
@@ -32,8 +42,11 @@ export class DemandesAdhesionComponent implements OnInit {
 
   rowsPerPageOptions = [5, 10, 20];
 
-  constructor(private productService: ProductService, private messageService: MessageService,
-              private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+  routeItems: MenuItem[];
+
+
+  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService, private messageService: MessageService,
+              private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig) {
       this.breadcrumbService.setItems([
           { label: 'Pages' },
           { label: 'Crud', routerLink: ['/pages/crud'] }
@@ -42,7 +55,12 @@ export class DemandesAdhesionComponent implements OnInit {
 
   ngOnInit() {
       this.productService.getProducts().then(data => this.products = data);
+      this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
+        this.demandes=data
+    console.log(this.demandes)});
 
+      this.primengConfig.ripple=true;
+      
       this.cols = [
           {field: 'ninea', header: 'NINEA'},
           {field: 'rccm', header: 'RCCM'},
@@ -57,6 +75,11 @@ export class DemandesAdhesionComponent implements OnInit {
           {label: 'OUTOFSTOCK', value: 'outofstock'}
       ];
 
+      this.routeItems = [
+        {label: 'Verification', routerLink:'verification'},
+        {label: 'Informations Complémentaires', routerLink:'informations_complémentaire'},
+    ];
+
       
   }
 
@@ -70,9 +93,11 @@ export class DemandesAdhesionComponent implements OnInit {
       this.deleteProductsDialog = true;
   }
 
-  editProduct(product: Product) {
-      this.product = {...product};
+  editProduct(demande: DemandeAdhesion) {
+      this.demande = {...demande};
       this.productDialog = true;
+      //this.productService.setProductObs(product);
+
       
   }
 
@@ -146,9 +171,10 @@ export class DemandesAdhesionComponent implements OnInit {
       return id;
   }
 
-  nineaValide():any{const targetDiv = document.getElementById("actif");
-  const btn = document.getElementById("oui");
-      targetDiv.style.display = "flex";
+  nineaValide():any{
+    const targetDiv = document.getElementById("actif");
+    const btn = document.getElementById("oui");
+    targetDiv.style.display = "flex";
   
 }
 }

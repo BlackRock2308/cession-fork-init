@@ -1,6 +1,9 @@
-export interface Demande {
+export interface DemandeAdhesion {
 
-    id?:number;
-    dateDemande?:Date;
-    pmeId?:number;
+    id?:number,
+    ninea?:string,
+    rccm?:string,
+    dateSoumission?: string,
+    nineaFile?:File,
+    rccmFile?:File 
 }
