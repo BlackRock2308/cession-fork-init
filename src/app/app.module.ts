@@ -13,6 +13,8 @@ import {AppLoginComponent} from './auth/login/app.login.component';
 
 // Demo pages
 
+//modal dynamique avec primeng
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 
 // Application services
@@ -36,6 +38,7 @@ import { MessageService } from 'primeng/api';
 import { MenuComponent } from './PME/menu/menu.component';
 import { VerificationComponent } from './CDMP/demandes-adhesion/adhesion-process/verification/verification.component';
 import { InformationsComplementaireComponent } from './CDMP/demandes-adhesion/adhesion-process/informations-complementaire/informations-complementaire.component';
+import { DynamicmodalComponent } from './CDMP/demandes-adhesion/dynamicmodal/dynamicmodal.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -58,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule ,
+        DynamicDialogModule
 
     ],
     declarations: [
@@ -70,13 +74,17 @@ export function HttpLoaderFactory(http: HttpClient) {
         AdhesionComponent,
         DemandesAdhesionComponent,
         VerificationComponent,
-        InformationsComplementaireComponent
+        InformationsComplementaireComponent,
+        DynamicmodalComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
          MenuService, BreadcrumbService,CommunicationService,MessageService
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        DynamicmodalComponent
+    ]
 })
 export class AppModule {
 }
