@@ -131,7 +131,7 @@
                                     <td>
                                         <div class="flex">
                                             <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" pInputText  pTooltip="Consulter les dossiers" (click)="editProduct(product)" ></button>
-                                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" pTooltip="Completer le dossier" (click)="editProduct(product)"></button>
+                                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" pTooltip="Completer le dossier" [routerLink]="['/complement_documents']" [state]="{ infos:this.basicInfo }"></button>
                                         </div>
                                     </td>
                                 </tr>

@@ -42,8 +42,10 @@ const routes: Routes = [
 
     //Menu de la CDMP
     {path: 'cdmp/menu', component: MenuCdmpComponent,
-children: [
+    children: [
+        //demandes en cours du coté de la cdmp
         {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
+
       ]},
 
     //Demandes adhesion pour la CDMP
@@ -67,7 +69,15 @@ children: [
 
      // Menu-pme
      {path: 'menu', 
-     component: MenuComponent},
+     component: MenuComponent,
+     children: [
+        //demandes en cours du coté de la cdmp
+        {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
+        //Identification budgétaire
+        {path: 'complement_documents', component: ComplementDocumentsComponent},
+
+      ]},
+     
 
     //Adhesion path
     {path:'adh',component:AdhesionComponent},
@@ -75,8 +85,6 @@ children: [
     //Demandes d'adhesion path
     //{path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
 
-    //Identification budgétaire
-    {path: 'identification_budgetaire', component: ComplementDocumentsComponent},
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},
     {path: 'login/recup_pwd/code_checking', component: CodeVerificationComponent},

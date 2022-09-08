@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service'
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
-import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 
@@ -99,6 +99,10 @@ export class DemandeAdhesionComponent implements OnInit {
   form!: FormGroup;
   cities : Product[];
   pme: PME;
+
+  //basic info as reference be ninea and date
+  basicInfo:DemandeInfo;
+
   constructor(
     private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private formBuilder: FormBuilder,
@@ -189,7 +193,7 @@ console.log(this.pme);
 }
 
   openNew() {
-    this.product = {};
+    this.product= {};
     this.submitted = false;
     this.productDialog = true;
 }
@@ -200,7 +204,10 @@ deleteSelectedProducts() {
 
 editProduct(demande: DemandeAdhesion) {
     this.demande = {...demande};
-    this.productDialog = true;
+    this.basicInfo.dateSoumission=this.demande.dateSoumission;
+    this.basicInfo.ninea=this.demande.ninea;
+    this.basicInfo.referenceBE=this.demande.rccm;
+    //this.productDialog = true;
     //this.productService.setProductObs(product);
 
     
@@ -419,4 +426,9 @@ isHorizontal() {
 }
 
 
+}
+interface DemandeInfo{
+    referenceBE?:String;
+    ninea?:String;
+    dateSoumission?:String;
 }
