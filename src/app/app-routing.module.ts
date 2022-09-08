@@ -16,6 +16,7 @@ import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { MenuComponent } from './PME/menu/menu.component';
+import { IdentificationBudgetaireComponent } from './CDMP/identification-budgetaire/identification-budgetaire.component';
 
 const routes: Routes = [
     // Root Path
@@ -50,6 +51,8 @@ const routes: Routes = [
     //Demandes d'adhesion path
     {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
 
+    //Identification budgétaire
+    {path: 'identification_budgetaire', component: IdentificationBudgetaireComponent},
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},
     {path: 'login/recup_pwd/code_checking', component: CodeVerificationComponent},

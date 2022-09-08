@@ -39,6 +39,7 @@ import { MenuComponent } from './PME/menu/menu.component';
 import { VerificationComponent } from './CDMP/demandes-adhesion/adhesion-process/verification/verification.component';
 import { InformationsComplementaireComponent } from './CDMP/demandes-adhesion/adhesion-process/informations-complementaire/informations-complementaire.component';
 import { DynamicmodalComponent } from './CDMP/demandes-adhesion/dynamicmodal/dynamicmodal.component';
+import { IdentificationBudgetaireComponent } from './CDMP/identification-budgetaire/identification-budgetaire.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -75,7 +76,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         DemandesAdhesionComponent,
         VerificationComponent,
         InformationsComplementaireComponent,
-        DynamicmodalComponent
+        DynamicmodalComponent,
+        IdentificationBudgetaireComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -43,7 +43,7 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button"  disabled></button>
                                 <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" disabled></button>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" (click)="editProduct(demande)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" (click)="editProduct(demande)" routerLink="../verification"></button>
                             </div>
                         </td>
                     </tr>
@@ -51,7 +51,7 @@
             </p-table>
         </div>
 
-        <p-dialog showHeader="false" [(visible)]="productDialog"  [style]="{width: '40%'}"  [modal]="true" >
+        <p-dialog showHeader="true" [(visible)]="productDialog"  [style]="{width: '40%'}"  [modal]="true" >
             <ng-template pTemplate="header">
         
             </ng-template>
@@ -92,9 +92,9 @@
                 </div>
                 
             </ng-template>
-            <ng-template pTemplate="footer">
+            <!--ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()" routerLink="./verification"></button>
-            </ng-template>
+            </ng-template-->
 
           
         </p-dialog>
