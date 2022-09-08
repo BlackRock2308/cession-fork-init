@@ -5,7 +5,6 @@ import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
-import { ProductService } from 'src/app/workstation/service/product/product.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
@@ -91,10 +90,10 @@ export class AnalyseRisqueComponent implements OnInit {
 
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService, private messageService: MessageService,
+  constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService,
     private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig,public renderer: Renderer2, private menuService: MenuService,
     public app: AppComponent) { 
-      this.productService.getProducts().then(data => this.products = data);
+     // this.productService.getProducts().then(data => this.products = data);
       this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
         this.demandes=data
     console.log(this.demandes)});
