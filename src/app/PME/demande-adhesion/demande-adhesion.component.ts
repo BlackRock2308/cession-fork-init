@@ -4,12 +4,14 @@ import { AppComponent } from 'src/app/app.component';
 import { ConfirmationService, MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { Observable } from 'rxjs';
+import { PME } from 'src/app/workstation/model/pme';
 
 @Component({
   selector: 'app-demande-adhesion',
@@ -88,6 +90,15 @@ export class DemandeAdhesionComponent implements OnInit {
   menuHoverActive: boolean;
 
   configActive: boolean;
+
+  selectedBONFiles: File | null = null;
+  currentFile?: File;
+  progress = 0;
+  message = '';
+  fileInfos?: Observable<any>;
+  form!: FormGroup;
+  cities : Product[];
+  pme: PME;
   constructor(
     private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private formBuilder: FormBuilder,
@@ -101,9 +112,23 @@ export class DemandeAdhesionComponent implements OnInit {
     this.breadcrumbService.setItems([
       { label: 'Pages' },
       { label: 'Crud', routerLink: ['/pages/crud'] }
+
   ]);
+  this.cities = [
+    {name: 'RCCM', code: 'NY'},
+    {name: 'NINEA', code: 'RM'},
+    {name: 'CDI', code: 'LDN'},
+    {name: 'Autres', code: 'IST'}
+    
+];
+
   }
-  ngOnInit() {
+  ngOnInit():void {
+    this.form = this.formBuilder.group({
+      ninea: ['', Validators.required],
+      nineaFile: ['', Validators.required]
+     
+  });
    
     this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
       this.demandes=data
@@ -125,11 +150,41 @@ export class DemandeAdhesionComponent implements OnInit {
         {label: 'OUTOFSTOCK', value: 'outofstock'}
     ];
 
-    this.routeItems = [
-      {label: 'Verification', routerLink:'verification'},
-      {label: 'Informations Complémentaires', routerLink:'informations_complémentaire'},
-  ];
+  
 
+    
+}
+onSubmit() {
+  // arrêter si le formulaire est invalide
+  if (this.form.invalid) {
+      return;
+  }
+
+  this.enregistrerBon();
+  
+
+}
+ //sélectionner le fichier du ninea
+ selectBONFile(files: any): void {
+  this.selectedBONFiles = files.target.files[0];
+  console.log(this.selectedBONFiles);
+}
+
+//ouvrir la boite de dialogue du répertoire
+handleBONClick() {
+document.getElementById('upload-NINEAfile').click();
+}
+
+
+//enregistrement du bbn d'engagement avec l'appel du service d'enregistrement
+private enregistrerBon() {
+this.pme=this.form.value;
+this.pme.nineaFile=this.selectedBONFiles;
+//fonction à continuer 
+console.log(this.pme);
+/*this.adhesionService.postPME(this.pme)
+    .subscribe(() => {
+       })*/
     
 }
 

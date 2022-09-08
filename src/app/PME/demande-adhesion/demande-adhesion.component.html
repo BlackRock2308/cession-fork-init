@@ -108,7 +108,7 @@
                                     <th pSortableColumn="datesoumission" style="color: #203359;">Date soumission <p-sortIcon field="datesoumission"></p-sortIcon></th>
                                     <th pSortableColumn="rccm" style="color: #203359;">Statut <p-sortIcon field="rccm"></p-sortIcon></th>
 
-                                    <th style="color: #203359;">Action</th>
+                                    <th style="color: #203359;">Actions</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-demande>
@@ -130,9 +130,8 @@
                                     
                                     <td>
                                         <div class="flex">
-                                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" (click)="editProduct(product)" disabled></button>
-                                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" (click)="editProduct(product)" disabled></button>
-                                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" (click)="editProduct(product)"></button>
+                                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" pInputText  pTooltip="Consulter les dossiers" (click)="editProduct(product)" ></button>
+                                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" pTooltip="Completer le dossier" (click)="editProduct(product)"></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -142,14 +141,14 @@
             
                     <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
                         <ng-template pTemplate="header">
-                            Header content here
+                            
                         </ng-template>
                         <div class="col-12">
                             
-                            <div class="card card-w-title flex flex-wrap">
+                            <div class="cardDoc card-w-title flex flex-wrap">
                                 <div class="col-12 md:col-8 h-full">
-                                    <h5>TabMenu</h5>
-                                    <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+                                    <h5 style="text-align:center;position: relative; right: -200px;">Documents Complementaires</h5>
+                                    
                                 </div>
                                 <div class="col-12 md:col-4 mt-5 md:mt-0">
                                     <router-outlet>
@@ -157,61 +156,81 @@
                                 </div>
                             </div>
                         </div>
+                        <div><br></div>
                         <ng-template pTemplate="content">
                             <div class="p-formgrid grid ml-auto">
                                 <div class="field grid">
-                                    <label htmlFor="ninea" class="col-12 mb-2 md:col-2 md:mb-0">NINEA</label>
+                                    <label htmlFor="ninea" class="col-10 mb-2 md:col-2 md:mb-0">Reference du BE</label>
                                     <div class="col-12 md:col-8 ml-4">
-                                        <input pInputText id="name3" type="text" [(ngModel)]="product.name" />
+                                        <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText>{{demande.ninea}}</ng-template>
                                    </div>
                                 </div>
                                 <div class="field grid ml-auto">
-                                    <label htmlFor="rccm" class="col-12 mb-2 md:col-2 md:mb-0">RCCM</label>
+                                    <label htmlFor="rccm" class="col-12 mb-2 md:col-2 md:mb-0">Date Soumission</label>
                                     <div class="col-12 md:col-8 ml-4">
-                                        <input pInputText id="name3" type="text" [(ngModel)]="product.category" />
+                                        <span>{{demande.statut}}</span>
                                     </div>
                                 </div>
                             </div><br>
-                            <div class="mx-auto" style="width: 200px;">
-                                   Vérification
-                            </div>
+                            
                             <br>
                             <div class="">
-                                <div class="field grid">
-                                    <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">Ninea existant</label>
-                                    <div class="col-12 md:col-4">
-                                        <div class="field-radiobutton">
-                                            <p-radioButton name="nineaValide" value="true" [(ngModel)]="valRadio" id="oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-radioButton>
-                                            <label for="city1">Oui</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 md:col-4 ">
-                                        <div class="field-radiobutton">
-                                            <p-radioButton name="nineaNonValide" value="false" [(ngModel)]="valRadio" id="non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-radioButton>
-                                            <label for="city1">Non</label>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="mt-8 p-fluid">
+                                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             
+                                    <div class="field grid">
                             
-            
-                                <div id="actif" class="field grid" style="display:none;">
+                                        
+    <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Selectionner le type du document" optionLabel="name" [showClear]="true"></p-dropdown>
+
+    
+                                        
+                            
+                                        <div class="col-12 md:col-6 mb-2">
+                                                <div class="col-12">
+                            
+                                                    <div class="formgroup-inline">
+                            
+                                                        <div class="field col-12 md:col-5 mb-1">
+                                                            <input  *ngIf="selectedBONFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Charger le fichier du bon" placeholder="Here">
+                                                            <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedBONFiles.name}}</ng-template>
+                                                            <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-BONfile"  ngf-max-size="2MB" (change)="selectBONFile($event)">
+                                                        </div>
+                            
+                                                        <div class="field col-12 md:col-5 mb-1">
+                            
+                                                            <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload " id="upload-NINEAfile" (click)="handleBONClick()" ></button>
+                                                        </div>
+                            
+                                                    </div>
+                                                    
+                                                </div>
+                            
+                                        </div>
+
+                                        
+                                        
+                                    </div>
+
                                     
-                                        <label htmlFor="rccm" class="col-12 mb-4 md:col-4 md:mb-0">PME actif</label>
-                                        <div class="col-12 md:col-4 ml-auto">
-                                            <div class="field-radiobutton">
-                                                <p-radioButton name="pmeActif" value="true" [(ngModel)]="valRadio" id="oui" icon="pi pi-check-circle" [model]="items" styleClass="p-button-success mr-2 mb-2" (click)="nineaValide()"></p-radioButton>
-                                                <label for="city1">Oui</label>
-                                            </div>
-                                         </div>
-                                        <div class="col-12 md:col-4 ml-auto">
-                                            <p-button label="Non" icon="pi pi-ban" [model]="items" styleClass="p-button-danger mr-2 mb-2"></p-button>
+                                   
+                                    <div class="field grid" style="margin-top: 30px;">
+                                        <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+                            
+                                        <div class="col-12 md:col-4">
+                                            <button type="submit"
+                                            class="btn btn-success"
+                                            [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"></button>
                                         </div>
-                                        <div class="col-12 md:col-4 ml-auto">
-                                            <button pButton pRipple label="Submit" icon="pi " iconPos="right" class="mr-2 mb-2"></button>
-                                        </div>
-            
+                            
+                                    </div>
+                                    </form>
+                                    
                                 </div>
+                            
+                            
+                            
+            
                             </div>
                             
                         </ng-template>
