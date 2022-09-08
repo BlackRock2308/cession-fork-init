@@ -16,6 +16,7 @@ import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/co
 import { MenuComponent } from './PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
+import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 
 const routes: Routes = [
     // Root Path
@@ -36,6 +37,12 @@ const routes: Routes = [
 
     },
 
+    //Menu de la CDMP
+    {path: 'cdmp/menu', component: MenuCdmpComponent},
+
+    //Demandes adhesion pour la CDMP
+    {path: 'cdmp/demandes', component: DemandesAdhesionComponent},
+
     //Nouvelle demande PME
     {path: 'pme/new_demande', component: NouvelleDemandeComponent},
 
@@ -46,6 +53,8 @@ const routes: Routes = [
 
     // Auth path
     {path: 'login/maj_pwd', component: MajMdpComponent},
+
+
 
      // Menu-pme
      {path: 'menu', component: MenuComponent},

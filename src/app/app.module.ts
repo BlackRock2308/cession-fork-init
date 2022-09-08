@@ -42,6 +42,7 @@ import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component
 import { SideBarComponent } from './PME/side-bar/side-bar.component';
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 import { NavbarComponent } from './PME/navbar/navbar.component';
+import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -85,7 +86,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppBreadcrumbComponent,
         AppTopBarComponent,
         SideBarComponent,
-        NavbarComponent
+        NavbarComponent,
+        MenuCdmpComponent
         
     ],
     providers: [
