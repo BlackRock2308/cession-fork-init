@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-identification-budgetaire',
-  templateUrl: './identification-budgetaire.component.html',
-  styleUrls: ['./identification-budgetaire.component.scss']
+  selector: 'app-complement-documents',
+  templateUrl: './complement_documents.component.html',
+  styleUrls: ['./complement_documents.component.scss']
 })
-export class IdentificationBudgetaireComponent implements OnInit {
+export class ComplementDocumentsComponent implements OnInit {
   selectedFiles: File[]=[];
   selectedFile?:File;
   documentForm: FormGroup;

@@ -18,7 +18,7 @@ import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demand
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
-import { IdentificationBudgetaireComponent } from './CDMP/identification-budgetaire/identification-budgetaire.component';
+import { ComplementDocumentsComponent } from './CDMP/complement_documents/complement_documents.component';
 
 
 const routes: Routes = [
@@ -41,7 +41,10 @@ const routes: Routes = [
     },
 
     //Menu de la CDMP
-    {path: 'cdmp/menu', component: MenuCdmpComponent},
+    {path: 'cdmp/menu', component: MenuCdmpComponent,
+children: [
+        {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
+      ]},
 
     //Demandes adhesion pour la CDMP
     {path: 'cdmp/demandes', component: DemandesAdhesionComponent},
@@ -63,16 +66,17 @@ const routes: Routes = [
 
 
      // Menu-pme
-     {path: 'menu', component: MenuComponent},
+     {path: 'menu', 
+     component: MenuComponent},
 
     //Adhesion path
     {path:'adh',component:AdhesionComponent},
 
     //Demandes d'adhesion path
-    {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
+    //{path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
 
     //Identification budgétaire
-    {path: 'identification_budgetaire', component: IdentificationBudgetaireComponent},
+    {path: 'identification_budgetaire', component: ComplementDocumentsComponent},
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},
     {path: 'login/recup_pwd/code_checking', component: CodeVerificationComponent},
