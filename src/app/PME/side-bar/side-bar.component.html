@@ -1,0 +1,69 @@
+
+
+
+<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="appnew.onSidebarClick($event)"
+     (mouseover)="sidebarActive=true" (mouseleave)="sidebarActive=false">
+    <div class="sidebar-logo">
+        <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="appnew.onToggleMenuClick($event)">
+            <i class="pi pi-lock" *ngIf="appnew.staticMenuActive"></i>
+            <i class="pi pi-lock-open" *ngIf="!appnew.staticMenuActive"></i>
+        </a>
+        <a routerLink="/">
+            <i class="pi pi-bars"></i>
+            
+        </a>
+        
+    </div>
+
+    <div class="layout-menu-container"  (click)="appnew.onMenuClick()">
+        
+        <ul class="layout-menu">
+            
+          <div class="p-4 pt-5">
+                    
+            <div>
+                <br>
+                <br>
+            </div>
+  <h1>Wootoo</h1>
+        <div>
+            <br>
+            <br>
+        </div>
+  <ul class="list-unstyled components mb-5">
+        <div class="tableau_bord" *ngIf="sidebarActive" >
+        <li>
+            <h3>Tableau de bord</h3>
+        </li>
+        
+    </div>
+    <div>
+        <br>
+        <br>
+    </div>
+    <li class="active">
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+        <li>
+            <a>Nouvelle demande</a>
+        </li>
+        <li>
+            <a>Demandes en cours</a>
+        </li>
+       
+      </ul>
+    </li>
+    <li>
+        <a href="#">Suivi des paiements</a>
+    </li>
+   
+  </ul>
+
+  <div class="footer">
+    
+  </div>
+
+</div>
+        </ul>
+    </div>
+</div>

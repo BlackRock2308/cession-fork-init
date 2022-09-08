@@ -1,109 +1,33 @@
 
-<div  class="layout-wrapper" (click)="onLayoutClick()"
-[ngClass]="{'layout-horizontal': app.horizontalMenu,
-           'layout-wrapper-static': staticMenuActive,
-           'layout-rightpanel-active': rightPanelActive,
-           'layout-topbar-mobile-active': topbarMobileMenuActive,
-           'layout-megamenu-mobile-active': megaMenuMobileActive,
-           'layout-sidebar-mobile-active': menuMobileActive,
-           'p-input-filled': app.inputStyle === 'filled',
-           'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
 
-
-<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="onSidebarClick($event)"
-     (mouseover)="sidebarActive=true" (mouseleave)="sidebarActive=false">
-    <div class="sidebar-logo">
-        <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="onToggleMenuClick($event)">
-            <i class="pi pi-lock" *ngIf="staticMenuActive"></i>
-            <i class="pi pi-lock-open" *ngIf="!staticMenuActive"></i>
-        </a>
-        <a routerLink="/">
-            <i class="pi pi-bars"></i>
-            <span class="app-name">CDMP</span>
-        </a>
-    </div>
-
-    <div class="layout-menu-container"  (click)="onMenuClick()">
-        <ul class="layout-menu">
-          <div class="p-4 pt-5">
-                    
-            <div>
-                <br>
-                <br>
-            </div>
-  <h1>Wootoo</h1>
-        <div>
-            <br>
-            <br>
-        </div>
-  <ul class="list-unstyled components mb-5">
-        <div class="tableau_bord" *ngIf="sidebarActive" >
-        <li>
-            <h3>Tableau de bord</h3>
-        </li>
-        
-    </div>
-    <div>
-        <br>
-        <br>
-    </div>
-    <li class="active">
-      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
-      <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li>
-            <a  [routerLink]="['../pme/new_demande']">Nouvelle demande</a>
-        </li>
-        <li>
-            <a href="#">Demandes en cours</a>
-        </li>
-       
-      </ul>
-    </li>
-    <li>
-        <a href="#">Suivi des paiements</a>
-    </li>
-   
-  </ul>
-
-  <div class="footer">
-    
-  </div>
-
-</div>
-        </ul>
-    </div>
-</div>
-
-
-<div class="layout-main" >
-  <div class="layout-topbar">
+<div class="layout-topbar">
     <div class="layout-topbar-wrapper">
               <div class="layout-topbar-left">
         <div class="layout-topbar-logo-wrapper">
           <a href="#" class="layout-topbar-logo">
-            <img src="assets/layout/images/logo-mirage@2x.png" alt="mirage-layout" />
-            <span class="app-name">Mirage</span>
+            <img src="../../../assets/layout/images/logo-cdmp.svg" alt="mirage-layout" />
+            <span class="app-name"></span>
           </a>
         </div>
-  
+
         <a href="#" class="sidebar-menu-button" (click)="onMenuButtonClick($event)">
           <i class="pi pi-bars"></i>
         </a>
-  
+
         <a href="#" class="megamenu-mobile-button" >
           <i class="pi pi-align-right megamenu-icon"></i>
         </a>
-  
+
         <a href="#" class="topbar-menu-mobile-button" (click)="onTopbarMobileMenuButtonClick($event)">
           <i class="pi pi-ellipsis-v"></i>
         </a>
-  
+
         <div class="layout-megamenu-wrapper">
           <a class="layout-megamenu-button" href="#">
             <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.svg" alt="mirage-layout" />
 
           </a>
-         
+
         </div>
               </div>
               <div class="layout-topbar-right fadeInDown">
@@ -134,7 +58,7 @@
               </li>
             </ul>
           </li>
-  
+
           <li #message class="topbar-item" [ngClass]="{'active-topmenuitem': activeTopbarItem === message}">
             <a href="#" (click)="onTopbarItemClick($event,message)">
               <i class="topbar-icon pi pi-inbox"></i>
@@ -178,14 +102,14 @@
               </li>
             </ul>
           </li>
-  
+
           <li #gift class="topbar-item" [ngClass]="{'active-topmenuitem': activeTopbarItem === gift}">
             <a href="#" (click)="onTopbarItemClick($event,gift)">
               <i class="topbar-icon pi pi-envelope"></i>
             </a>
-            
+
           </li>
-  
+
           <li #profile class="topbar-item profile-item" [ngClass]="{'active-topmenuitem': activeTopbarItem === profile}">
             <a href="#" (click)="onTopbarItemClick($event,profile)">
                           <span class="profile-image-wrapper">
@@ -245,7 +169,7 @@
             </a>
           </li>
                   </ul>
-  
+
         <ul class="profile-mobile-wrapper">
           <li #mobileProfile class="topbar-item profile-item" [ngClass]="{'active-topmenuitem': activeTopbarItem === mobileProfile}">
             <a href="#" (click)="onTopbarItemClick($event,mobileProfile)">
@@ -305,46 +229,17 @@
       </div>
       <nav  id="navbar" class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-  
-         
-          
+
+
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
               <li class="nav-item active">
-                
+
                   <a class="nav-link" href="#">Se deconnecter</a>
               </li>
-              
+
             </ul>
           </div>
         </div>
       </nav>
-      
-      
-
-
-</div>
-</div>
-
-
-
-
-    <!-- <nav  id="navbar" class="navbar navbar-expand-lg ">
-      <div class="container-fluid">
-
-       
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item active">
-              
-                <a class="nav-link" href="#">Se deconnecter</a>
-            </li>
-            
-          </ul>
-        </div>
-      </div>
-    </nav> -->
-  
-    <!-- Page Content  -->
-    
