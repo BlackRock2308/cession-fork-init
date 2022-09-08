@@ -49,7 +49,8 @@ export class VerificationComponent implements OnInit {
       this.enregistrerBasicInformation();
 
       //le modal doit se fermer
-      this.communicationService.setDialogObs(false);
+      //this.communicationService.setDialogObs(false);
+      window.location.reload()
 
       
   }
