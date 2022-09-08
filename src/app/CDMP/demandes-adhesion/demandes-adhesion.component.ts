@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../workstation/model/product';
-import {ProductService} from '../../workstation/service/product/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
@@ -45,7 +44,7 @@ export class DemandesAdhesionComponent implements OnInit {
   routeItems: MenuItem[];
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService, private messageService: MessageService,
+  constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService,
               private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig) {
       this.breadcrumbService.setItems([
           { label: 'Pages' },
@@ -54,7 +53,7 @@ export class DemandesAdhesionComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.productService.getProducts().then(data => this.products = data);
+     // this.productService.getProducts().then(data => this.products = data);
       this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
         this.demandes=data
     console.log(this.demandes)});

@@ -29,7 +29,6 @@
         "ninea_file":"",
         "rccm_file":""
 
-
     },
     {       
         "id": 2,
@@ -73,5 +72,37 @@
         "ninea_file":"",
         "rccm_file":""    }
     
+    ],
+    "demandes": [
+        {       
+        "id": 1,
+        "numero": "2022-001",
+        "statut":"Soumise",
+        "ReferenceBE": "6543568778",
+        "date_soumission": "2020-12-12",
+        "PmeId": 1
+    },
+    {       
+        "id": 2,
+        "numero": "2022-002",
+        "statut":"Recevable",
+        "ReferenceBE": "6543568778",
+        "date_soumission": "2020-12-12",
+        "PmeId": 1   },
+    {       
+        "id": 1,
+        "numero": "2022-001",
+        "statut":"Soumise",
+        "ReferenceBE": "6543568778",
+        "date_soumission": "2020-12-12",
+        "PmeId": 1   },
+    {       
+        "id": 1,
+        "numero": "2022-001",
+        "statut":"Soumise",
+        "ReferenceBE": "6543568778",
+        "date_soumission": "2020-12-12",
+        "PmeId":  2 }            
+   
     ]
 }

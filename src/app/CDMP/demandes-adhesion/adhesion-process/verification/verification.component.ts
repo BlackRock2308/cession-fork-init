@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/workstation/model/product';
-import { ProductService } from 'src/app/workstation/service/product/product.service';
 import {SelectItem} from 'primeng/api';
 
 
@@ -15,11 +14,11 @@ export class VerificationComponent implements OnInit {
   verificationForm: FormGroup;
 
 
-  constructor(private productService:ProductService,    private formBuilder: FormBuilder,
+  constructor( private formBuilder: FormBuilder,
     ) { }
 
   ngOnInit(): void {
-    this.productService.getProductObs().subscribe(product => this.product = product);
+    //this.productService.getProductObs().subscribe(product => this.product = product);
     
     this.verificationForm = this.formBuilder.group({
       ninea: ['', Validators.required],
