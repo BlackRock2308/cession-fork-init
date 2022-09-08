@@ -17,6 +17,7 @@ import { MenuComponent } from './PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
+import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
 
 const routes: Routes = [
     // Root Path
@@ -42,6 +43,9 @@ const routes: Routes = [
 
     //Demandes adhesion pour la CDMP
     {path: 'cdmp/demandes', component: DemandesAdhesionComponent},
+
+    //Analyse du risque pour la CDMP
+    {path: 'cdmp/analyse_risque', component: AnalyseRisqueComponent},
 
     //Nouvelle demande PME
     {path: 'pme/new_demande', component: NouvelleDemandeComponent},
