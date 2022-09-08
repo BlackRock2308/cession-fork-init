@@ -37,7 +37,7 @@
                 <button style="width: min-content;background-color:#203359 ;" pButton pRipple type="button" label="Suivant" class="p-button-raised  float-right my-auto"  [routerLink]="['../informations_complementaire']" [state]="{ verification:this.basicInfo }">
                     </button>
             </div>
-            <button  [disabled]="!verificationForm.valid" type="submit" id="valider"style="width: min-content;background-color:#203359 ;display: none;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-raised float-right my-auto"  ></button>
+            <button  [disabled]="!verificationForm.valid" type="submit" id="valider"style="width: min-content;display: none;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-raised p-button-success mr-2 float-right"  ></button>
 
         </form>
     </div>

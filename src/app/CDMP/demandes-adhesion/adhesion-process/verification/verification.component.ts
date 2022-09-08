@@ -4,7 +4,6 @@ import { Product } from 'src/app/workstation/model/product';
 import {SelectItem} from 'primeng/api';
 import { Route } from '@angular/router';
 import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { CommunicationService } from 'src/app/workstation/service/communication/communication.service';
 
 
 @Component({
@@ -19,7 +18,7 @@ export class VerificationComponent implements OnInit {
   basicInfo:BasicInfo;
   id: number;
 
-  constructor(private demandesAdhesionService:DemandesAdhesionService,    private formBuilder: FormBuilder, private communicationService:CommunicationService) { }
+  constructor(private demandesAdhesionService:DemandesAdhesionService,    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     

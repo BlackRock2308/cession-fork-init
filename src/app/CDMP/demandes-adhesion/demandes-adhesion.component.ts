@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { MessageService } from 'primeng/api';
-import { CommunicationService } from 'src/app/workstation/service/communication/communication.service';
+//import { CommunicationService } from 'src/app/workstation/service/communication/communication.service';
 
 
 @Component({
@@ -41,11 +41,11 @@ export class DemandesAdhesionComponent implements OnInit {
   routeItems: MenuItem[];
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService,private communicationService:CommunicationService
+  constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService
               ) {}
 
   ngOnInit() {
-    this.productDialog = this.communicationService.getDialogObs();
+    //this.productDialog = this.communicationService.getDialogObs();
       //this.productService.getProducts().then(data => this.products = data);
       this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
     this.demandes=data});
