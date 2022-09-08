@@ -43,6 +43,7 @@ import { SideBarComponent } from './PME/side-bar/side-bar.component';
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 import { NavbarComponent } from './PME/navbar/navbar.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
+import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -87,7 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppTopBarComponent,
         SideBarComponent,
         NavbarComponent,
-        MenuCdmpComponent
+        MenuCdmpComponent,
+        AnalyseRisqueComponent
         
     ],
     providers: [
