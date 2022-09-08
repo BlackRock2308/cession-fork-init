@@ -1,71 +1,115 @@
 {
-    "pmes": [
-        {       
-        "id": 1,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "raisonSocial": "Modelsis"
+  "pmes": [
+    {
+      "id": 1,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "raisonSocial": "Modelsis"
     },
-    {       
-        "id": 2,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "raisonSocial": "Test1"
+    {
+      "id": 2,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "raisonSocial": "Test1"
     },
     {       
         "id": 3,
         "ninea": "567865467567",
         "rccm": "6543568778",
         "raisonSocial": "Test2"
+   
     }
-    ],
-    "demandes_adhesion": [
-        {       
-        "id": 1,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "date_soumission": "2020-12-12",
-        "ninea_file":"",
-        "rccm_file":""
-
-
+  ],
+  "demandes_adhesion": [
+    {
+      "id": 1,
+      "ninea": "567865467567",
+      "statut": "Soumise",
+      "rccm": "6543568778",
+      "date_soumission": "2020-12-12",
+      "ninea_file": "",
+      "rccm_file": "",
+      "nineaValide": "false",
+      "pmeActive": ""
     },
-    {       
-        "id": 2,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "date_soumission": "2022-12-12",
-        "ninea_file":"",
-        "rccm_file":""    },
-    {       
-        "id": 3,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "date_soumission": "2021-02-12",
-        "ninea_file":"",
-        "rccm_file":""    },
-    {       
-        "id": 4,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "date_soumission": "2021-02-12",
-        "ninea_file":"",
-        "rccm_file":""    },
-            
-    {       
-        "id": 5,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "date_soumission": "2021-02-12",
-        "ninea_file":"",
-        "rccm_file":""    },
-    {       
-        "id": 6,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "date_soumission": "2021-02-12",
-        "ninea_file":"",
-        "rccm_file":""    }
-    
-    ]
+    {
+      "id": 2,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "statut": "Recevable",
+      "date_soumission": "2022-12-12",
+      "ninea_file": "",
+      "rccm_file": ""
+    },
+    {
+      "id": 3,
+      "ninea": "567865467567",
+      "statut": "Soumise",
+      "rccm": "6543568778",
+      "date_soumission": "2021-02-12",
+      "ninea_file": "",
+      "rccm_file": ""
+    },
+    {
+      "id": 4,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "date_soumission": "2021-02-12",
+      "statut": "Rejetee",
+      "ninea_file": "",
+      "rccm_file": ""
+    },
+    {
+      "id": 5,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "statut": "Soumise",
+      "date_soumission": "2021-02-12",
+      "ninea_file": "",
+      "rccm_file": ""
+    },
+    {
+      "id": 6,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "statut": "Recevable",
+      "date_soumission": "2021-02-12",
+      "ninea_file": "",
+      "rccm_file": ""
+    }
+  ],
+  "demandes": [
+    {
+      "id": 1,
+      "numero": "2022-001",
+      "statut": "Soumise",
+      "ReferenceBE": "6543568778",
+      "date_soumission": "2020-12-12",
+      "PmeId": 1
+    },
+    {
+      "id": 2,
+      "numero": "2022-002",
+      "statut": "Recevable",
+      "ReferenceBE": "6543568778",
+      "date_soumission": "2020-12-12",
+      "PmeId": 1
+    },
+    {
+      "id": 1,
+      "numero": "2022-001",
+      "statut": "Soumise",
+      "ReferenceBE": "6543568778",
+      "date_soumission": "2020-12-12",
+      "PmeId": 1
+    },
+    {
+      "id": 1,
+      "numero": "2022-001",
+      "statut": "Soumise",
+      "ReferenceBE": "6543568778",
+      "date_soumission": "2020-12-12",
+      "PmeId": 2
+    }
+  ]
 }

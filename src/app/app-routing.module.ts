@@ -1,8 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
-import {DashboardComponent} from './core/dashboard/dashboard.component';
-
 import {AppMainComponent} from './core/app-layout/main/app.main.component';
 import {AppNotfoundComponent} from './core/not-found/app.notfound.component';
 import {AppErrorComponent} from './core/error/app.error.component';
@@ -17,6 +15,12 @@ import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { MenuComponent } from './PME/menu/menu.component';
 import { VisualiserDemandesComponent } from './CDMP/visualiser-demandes/visualiser-demandes.component';
+import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
+import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
+import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
+import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
+import { IdentificationBudgetaireComponent } from './CDMP/identification-budgetaire/identification-budgetaire.component';
+
 
 const routes: Routes = [
     // Root Path
@@ -36,12 +40,29 @@ const routes: Routes = [
         ]
 
     },
+
+    //Menu de la CDMP
+    {path: 'cdmp/menu', component: MenuCdmpComponent},
+
+    //Demandes adhesion pour la CDMP
+    {path: 'cdmp/demandes', component: DemandesAdhesionComponent},
+
+    //Analyse du risque pour la CDMP
+    {path: 'cdmp/analyse_risque', component: AnalyseRisqueComponent},
+
+    //Nouvelle demande PME
+    {path: 'pme/new_demande', component: NouvelleDemandeComponent},
+
+    //Demandes en cours de la PME
+    {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
     // Testing...
     {path: 'test', component: TestComponent},
     {path: 'visualiser-demandes', component: VisualiserDemandesComponent},
 
     // Auth path
     {path: 'login/maj_pwd', component: MajMdpComponent},
+
+
 
      // Menu-pme
      {path: 'menu', component: MenuComponent},
@@ -52,6 +73,8 @@ const routes: Routes = [
     //Demandes d'adhesion path
     {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
 
+    //Identification budgétaire
+    {path: 'identification_budgetaire', component: IdentificationBudgetaireComponent},
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},
     {path: 'login/recup_pwd/code_checking', component: CodeVerificationComponent},
