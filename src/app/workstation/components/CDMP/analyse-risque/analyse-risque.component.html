@@ -18,8 +18,7 @@
                                     
                                     <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
                                     <th pSortableColumn="rccm" style="color: #203359;">Raison Sociale <p-sortIcon field="rccm"></p-sortIcon></th>
-                                    <th pSortableColumn="datesoumission" style="color: #203359;">Date soumission <p-sortIcon field="datesoumission"></p-sortIcon></th>
-                                    <th pSortableColumn="ninea" style="color: #203359;">Denomination <p-sortIcon field="ninea"></p-sortIcon></th>
+                                    <th pSortableColumn="datesoumission" style="color: #203359;">Statut <p-sortIcon field="datesoumission"></p-sortIcon></th>
                                     <th pSortableColumn="ninea" style="color: #203359;">Reference BE <p-sortIcon field="ninea"></p-sortIcon></th>
                                     <th style="color: #203359;">Action</th>
                                 </tr>
@@ -34,16 +33,13 @@
                                     
                                     <td style="width:30%; min-width:8rem;">
                                         <span class="p-column-title">RCCM</span>
-                                        {{demande.rccm}}
+                                        {{demande.raisonSocial}}
                                     </td>
                                     <td style="width:30%;">
                                         <span class="p-column-title">Date Soumission</span>
-                                        {{demande.date_soumission}}
+                                        {{demande.statut}}
                                     </td>
-                                    <td style="width:30%;">
-                                        <span class="p-column-title">Date Soumission</span>
-                                        {{demande.denomination}}
-                                    </td>
+                                    
                                     <td style="width:30%;">
                                         <span class="p-column-title">Date Soumission</span>
                                         {{demande.refBE}}
@@ -51,7 +47,8 @@
                                     
                                     <td>
                                         <div class="flex">
-                                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" (click)="editProduct(product)"></button>
+                                            <i class="pi pi-eye pi-eye"  (click)="editProduct(product)" ></i>
+
                                             
                                         </div>
                                     </td>

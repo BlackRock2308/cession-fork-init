@@ -43,8 +43,7 @@
                         
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" pInputText  pTooltip="Consulter les dossiers" (click)="editProduct(product)" ></button>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" pTooltip="Completer le dossier" [routerLink]="['./complement_documents']" [state]="{ infos:this.basicInfo }"></button>
+                                <i class="pi pi-eye pi-eye"  (click)="editProduct(product)" ></i>
                             </div>
                         </td>
                     </tr>
@@ -52,7 +51,7 @@
             </p-table>
         </div>
 
-        <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
+        <!-- <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
             <ng-template pTemplate="header">
                 
             </ng-template>
@@ -171,7 +170,7 @@
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
             </ng-template>
-        </p-dialog>
+        </p-dialog> -->
     </div>
 </div>
 

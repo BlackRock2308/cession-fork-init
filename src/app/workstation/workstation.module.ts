@@ -10,6 +10,7 @@ import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse
 import { CoreModule } from '../core/core.module';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
 import { RouterModule } from '@angular/router';
+import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
     DemandesAdhesionComponent,
     DemandeAdhesionComponent,
     AdhesionComponent,
-    AnalyseRisqueComponent
+    AnalyseRisqueComponent,
+    TacheAnalyseComponent
     
   ],
   imports: [
