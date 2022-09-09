@@ -49,13 +49,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         CoreModule,
         BrowserModule,
         AppRoutingModule,
-       /*  TranslateModule.forRoot({
+        TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), */
+        }), 
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule ,
