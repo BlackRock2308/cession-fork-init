@@ -3,8 +3,8 @@ import {MenuItem} from 'primeng/api';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
-import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { AppMainComponent } from 'src/app/core/app-layout/main/app.main.component';
+import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 
 @Component({
   selector: 'app-menu',

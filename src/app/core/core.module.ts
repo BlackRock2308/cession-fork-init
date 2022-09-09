@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -82,7 +81,6 @@ import {TooltipModule} from 'primeng/tooltip';
 import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {AppRoutingModule} from '../app-routing.module';
 import {CdmpDialogComponent} from './generic-component/cdmp-dialog/cdmp-dialog.component';
 import {CdmpTableComponent} from './generic-component/cdmp-table/cdmp-table.component';
 import {TestComponent} from './generic-component/test/test.component';
@@ -100,6 +98,7 @@ import { SideBarComponent } from './app-layout/side-bar/side-bar.component';
 import { AppFooterComponent } from './app-layout/footer/app.footer.component';
 import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
 import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
+import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
 
 
 // @ts-ignore
@@ -109,7 +108,6 @@ import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
         CdmpDialogComponent,
         AppAccessdeniedComponent,
         AppMainComponent,
-        
         DashboardComponent,
         NavbarComponent,
         SideBarComponent,
@@ -118,7 +116,7 @@ import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
         AppFooterComponent,
         AppBreadcrumbComponent,
         AppTopBarComponent,
-        
+        AppMenuComponent,
         TestComponent
     ],
 

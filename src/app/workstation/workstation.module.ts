@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { WorkstationRoutingModule } from './workstation-routing.module';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';

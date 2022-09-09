@@ -1,8 +1,8 @@
 import { Component, OnInit , Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
-import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { AppMainComponent } from '../main/app.main.component';
+import { MenuService } from '../side-menu/app.menu.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

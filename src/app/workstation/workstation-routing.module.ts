@@ -20,6 +20,7 @@ const routes: Routes = [
   //Page d'accueil de la CDMP
   {path: 'cdmp/accueil', component: MenuCdmpComponent},
 
+ // {path:'demandes',loadChildren: () => import('./components/CDMP/demandes-adhesion/adhesion-process/adhesion-process-routing.module').then(m => m.AdhesionProcessModule)},
 
   //PME
   //Creation de compte de la PME
@@ -29,10 +30,6 @@ const routes: Routes = [
   //Page d'accueil de la PME
   {path: 'pme/accueil', component: MenuComponent},
   {path: 'pme/new_demande', component: NouvelleDemandeComponent},
-
-
-
-
 
 ];
 

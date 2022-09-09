@@ -32,6 +32,9 @@ import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { MessageService } from 'primeng/api';
 import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { MenuService } from './core/app-layout/side-menu/app.menu.service';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -44,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     imports: [
         CoreModule,
-        
+        BrowserModule,
+        AppRoutingModule,
        /*  TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -64,12 +68,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         HomeComponent,
         MajMdpComponent,
         RecupMdpComponent,
+        
         CodeVerificationComponent,
-        AppTopBarComponent,
+        
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         , BreadcrumbService,MessageService
+         , BreadcrumbService,MessageService,MenuService
     ],
     bootstrap: [AppComponent]
 })
