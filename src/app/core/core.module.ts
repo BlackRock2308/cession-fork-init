@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {AccordionModule} from 'primeng/accordion';
@@ -129,11 +128,10 @@ import { AppRightPanelComponent } from './app-layout/right-panel/app.rightpanel.
 
     schemas: [],
 
-    imports: [BrowserModule,
+    imports: [
         FormsModule,
-        AppRoutingModule,
+        
         HttpClientModule,
-        BrowserAnimationsModule,
         AccordionModule,
         AutoCompleteModule,
         AvatarModule,
@@ -227,11 +225,10 @@ import { AppRightPanelComponent } from './app-layout/right-panel/app.rightpanel.
     ],
 
     exports: [
-        BrowserModule,
+        
         FormsModule,
-        AppRoutingModule,
         HttpClientModule,
-        BrowserAnimationsModule,
+        
         AccordionModule,
         AutoCompleteModule,
         AvatarModule,

@@ -7,18 +7,10 @@ import {AppErrorComponent} from './core/error/app.error.component';
 import {AppAccessdeniedComponent} from './core/access-denied/app.accessdenied.component';
 import {AppLoginComponent} from './auth/login/app.login.component';
 import {TestComponent} from './core/generic-component/test/test.component';
-import {HomeComponent} from './home/home.component';
-import { AdhesionComponent } from './PME/adhesion/adhesion.component';
-import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adhesion.component';
 import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
-import { MenuComponent } from './PME/menu/menu.component';
-import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
-import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
-import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
-import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
-
+import { AdhesionProcessModule } from './workstation/components/CDMP/demandes-adhesion/adhesion-process/adhesion-process.module';
 const routes: Routes = [
     // Root Path
     {
@@ -45,7 +37,7 @@ const routes: Routes = [
 
 
     //Demandes d'adhesion path
-    {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
+    //{path:'demandes',loadChildren: () => import('./workstation/components/CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
 
     //Recuperation mot de passe
     {path: 'login/recup_pwd', component: RecupMdpComponent},

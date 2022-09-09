@@ -30,7 +30,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     RouterModule,
-    CoreModule,
+    //CoreModule,
     NouvelleDemandeComponent
     
       

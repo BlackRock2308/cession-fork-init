@@ -10,8 +10,7 @@ import { InformationsComplementaireComponent } from './informations-complementai
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    RouterModule.forChild([
+     RouterModule.forChild([
       {path:'',component: DemandesAdhesionComponent, children:[
       {path:'', redirectTo: 'verification', pathMatch: 'full'},
       {path: 'verification', component: VerificationComponent},

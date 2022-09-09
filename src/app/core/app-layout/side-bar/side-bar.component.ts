@@ -1,9 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit,Renderer2 } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
-import { AppComponent } from 'src/app/app.component';
-import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
-import { NouvelleDemandeComponent } from 'src/app/workstation/components/PME/nouvelle-demande/nouvelle-demande.component';
+import { Component, OnInit } from '@angular/core';
+import { AppMainComponent } from '../main/app.main.component';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -56,7 +53,7 @@ export class SideBarComponent implements OnInit {
     configActive: boolean;
 
 
-  constructor( public appMain: NouvelleDemandeComponent ) { }
+  constructor( public appMain: AppMainComponent ) { }
 
   
 

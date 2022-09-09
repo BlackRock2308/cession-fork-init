@@ -4,8 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppFooterComponent } from './core/app-layout/footer/app.footer.component';
-import { AppBreadcrumbComponent } from './core/breadcrumb/app.breadcrumb.component';
 // PrimeNG Components for demos
 import {FullCalendarModule} from '@fullcalendar/angular';
 import { RouterModule } from '@angular/router';
@@ -31,20 +29,10 @@ import {HomeComponent} from './home/home.component';
 import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
-import { AdhesionComponent } from './PME/adhesion/adhesion.component';
-import { DemandesAdhesionComponent } from './CDMP/demandes-adhesion/demandes-adhesion.component';
 import { MessageService } from 'primeng/api';
-import { MenuComponent } from './PME/menu/menu.component';
-import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
-import { AppRightPanelComponent } from './core/app-layout/right-panel/app.rightpanel.component';
-import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.component';
-import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component';
-import { SideBarComponent } from './PME/side-bar/side-bar.component';
-import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
-import { NavbarComponent } from './PME/navbar/navbar.component';
-import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
-import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -58,15 +46,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     imports: [
         CoreModule,
         AppRoutingModule,
-        RouterModule,
-        CommonModule,
-        TranslateModule.forRoot({
+        BrowserModule,
+        BrowserAnimationsModule,
+        
+       /*  TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }),
+        }), */
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule ,
@@ -88,5 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     bootstrap: [AppComponent]
 })
+
+
 export class AppModule {
 }
