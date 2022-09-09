@@ -1,0 +1,80 @@
+
+
+
+<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': appMain.sidebarActive}" (click)="appMain.onSidebarClick($event)"
+     (mouseover)="appMain.sidebarActive=true" (mouseleave)="appMain.sidebarActive=false">
+    <div class="sidebar-logo">
+        <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="appMain.onToggleMenuClick($event)">
+            <i class="pi pi-lock" *ngIf="appMain.staticMenuActive"></i>
+            <i class="pi pi-lock-open" *ngIf="!appMain.staticMenuActive"></i>
+        </a>
+        <a routerLink="/">
+            <i class="pi pi-bars"></i>
+            
+        </a>
+        
+    </div>
+
+    <div class="layout-menu-container"  (click)="onMenuClick()">
+        
+        <ul class="layout-menu">
+            
+          <div class="p-4 pt-5">
+                    
+            <div>
+                <br>
+                <br>
+            </div>
+  <h1>Wootoo</h1>
+        <div>
+            <br>
+            <br>
+        </div>
+  <ul class="list-unstyled components mb-5">
+        <div class="tableau_bord" *ngIf="appMain.sidebarActive" >
+        <li>
+            <h3>Tableau de bord</h3>
+        </li>
+        
+    </div>
+    <div>
+        <br>
+        <br>
+    </div>
+    <li class="active">
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+        <li>
+            <a  [routerLink]= "['workstation/pme/new_demande']" >Nouvelle demande</a>
+        </li>
+        <li>
+            <a [routerLink]="['workstation/pme/demandes_en_cours']" >Liste des demandes</a>
+        </li>
+       
+      </ul>
+    </li>
+    <li>
+        <a href="#">Suivi des paiements</a>
+    </li>
+
+    <li>
+        <a [routerLink]="['workstation/cdmp/demandes_en_cours']">Demandes Adhesion</a>
+    </li>
+    <li>
+        <a [routerLink]="['workstation/cdmp/demandes']">Recevabilite</a>
+    </li>
+    <li>
+        <a [routerLink]="['workstation/cdmp/analyse_risque']">Analyse du risque sur cession</a>
+    </li>
+
+   
+  </ul>
+
+  <div class="footer">
+    
+  </div>
+
+</div>
+        </ul>
+    </div>
+</div>
