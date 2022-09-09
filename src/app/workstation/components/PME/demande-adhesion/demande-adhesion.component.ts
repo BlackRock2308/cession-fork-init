@@ -134,7 +134,7 @@ export class DemandeAdhesionComponent implements OnInit {
      
   });
    
-    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
+    this.demandesAdhesionService.getDemandesAdhesionById().subscribe(data=>{
       this.demandes=data
   console.log(this.demandes)});
 
