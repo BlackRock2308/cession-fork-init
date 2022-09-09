@@ -1,0 +1,89 @@
+<div class="layout-wrapper" (click)="onLayoutClick()"
+[ngClass]="{'layout-horizontal': app.horizontalMenu,
+           'layout-wrapper-static': staticMenuActive,
+           'layout-rightpanel-active': rightPanelActive,
+           'layout-topbar-mobile-active': topbarMobileMenuActive,
+           'layout-megamenu-mobile-active': megaMenuMobileActive,
+           'layout-sidebar-mobile-active': menuMobileActive,
+           'p-input-filled': app.inputStyle === 'filled',
+           'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
+
+
+
+    <!-- Sidebar CDMP -->
+    <div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="onSidebarClick($event)"
+     (mouseover)="sidebarActive=true" (mouseleave)="sidebarActive=false">
+    <div class="sidebar-logo">
+        <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="onToggleMenuClick($event)">
+            <i class="pi pi-lock" *ngIf="staticMenuActive"></i>
+            <i class="pi pi-lock-open" *ngIf="!staticMenuActive"></i>
+        </a>
+        <a routerLink="/">
+            <i class="pi pi-bars"></i>
+            <span class="app-name">CDMP</span>
+        </a>
+    </div>
+
+    <div class="layout-menu-container"  (click)="onMenuClick()">
+        <ul class="layout-menu">
+          <div class="p-4 pt-5">
+                    
+            <div>
+                <br>
+                <br>
+            </div>
+  <h1>Wootoo</h1>
+        <div>
+            <br>
+            <br>
+        </div>
+  <ul class="list-unstyled components mb-5">
+        <div class="tableau_bord" *ngIf="sidebarActive" >
+        <li>
+            <h3>Tableau de bord</h3>
+        </li>
+        
+    </div>
+    <div>
+        <br>
+        <br>
+    </div>
+    <li class="active">
+      <a [routerLink]="['./demandes']">Demandes adhesion</a>
+      
+    </li>
+    <li>
+        <a href="#">Recevabilité</a>
+    </li>
+
+    <li>
+        <a [routerLink]="['../analyse_risque']">Analyse du risque sur cession</a>
+    </li>
+   
+  </ul>
+
+  <div class="footer">
+    
+  </div>
+
+</div>
+        </ul>
+    </div>
+</div>
+
+
+           
+     
+
+     <div class="layout-main">
+         <app-navbar></app-navbar>
+ 
+        
+ 
+         <div class="layout-content">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+
+</div>

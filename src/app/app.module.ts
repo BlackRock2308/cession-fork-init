@@ -13,6 +13,8 @@ import {AppLoginComponent} from './auth/login/app.login.component';
 
 // Demo pages
 
+//modal dynamique avec primeng
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 
 // Application services
@@ -29,9 +31,7 @@ import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
 import { MessageService } from 'primeng/api';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -44,9 +44,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     imports: [
         CoreModule,
-        AppRoutingModule,
-        BrowserModule,
-        BrowserAnimationsModule,
         
        /*  TranslateModule.forRoot({
             loader: {
@@ -58,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule ,
+        DynamicDialogModule
 
     ],
     declarations: [
@@ -66,9 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         HomeComponent,
         MajMdpComponent,
         RecupMdpComponent,
-        CodeVerificationComponent
-      
-        
+        CodeVerificationComponent,
+        AppTopBarComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

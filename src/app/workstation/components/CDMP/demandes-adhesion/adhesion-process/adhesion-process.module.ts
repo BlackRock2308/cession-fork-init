@@ -14,7 +14,7 @@ import { InformationsComplementaireComponent } from './informations-complementai
       {path:'',component: DemandesAdhesionComponent, children:[
       {path:'', redirectTo: 'verification', pathMatch: 'full'},
       {path: 'verification', component: VerificationComponent},
-      {path: 'informations_complémentaire', component: InformationsComplementaireComponent},
+      {path: 'informations_complementaire', component: InformationsComplementaireComponent},
       
       ]}
   ])

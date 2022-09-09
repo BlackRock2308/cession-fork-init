@@ -1,1 +1,52 @@
-<p>informations-complementaire works!</p>
+<div class="d-flex justify-content-center col 12">
+    <div class="col-12 md:col-8 modalTitle d-flex justify-content-center">
+        <h5 class="label">Informations Complémentaires</h5>
+    </div>
+</div>
+
+<div class="col-12 mx-auto">
+
+    <div class="mt-5  p-fluid">
+        <form>
+
+            <div class="p-fluid">
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="denomination">Dénomination</label>
+                        <input pInputText id="denomination" type="text" />
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="centrefiscal">Centre Fiscal</label>
+                        <input pInputText id="centrefiscal" type="text" />
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="formejuridique">Forme Juridique</label>
+                        <input pInputText id="formejuridique" type="text" />
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="adresse">Adresse</label>
+                        <input pInputText id="adresse" type="text" />
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="telephone">Téléphone</label>
+                        <input pInputText id="telephone" type="text" />
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="immatriculation">Date d'immatriculation</label>
+                        <input pInputText id="immatriculation" type="text" />
+                    </div>
+                </div>
+    
+            </div>
+            
+            <button id="valider"style="width: min-content;" pButton pRipple label="Sauvegarder" icon="pi pi-check" class="p-button-raised p-button-success ml-2 float-right"  ></button>
+            <button id="precedent"style="width: min-content;background-color:#203359 ;" pButton pRipple label="Précédent" icon="pi " class="p-button-raised float-right"  routerLink="../verification"></button>
+
+        </form>
+    </div>
+
+</div>

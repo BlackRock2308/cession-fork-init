@@ -5,7 +5,6 @@ import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
-import { ProductService } from 'src/app/workstation/service/product/product.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
