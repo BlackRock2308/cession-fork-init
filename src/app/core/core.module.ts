@@ -92,17 +92,14 @@ import {ConfirmationService} from 'primeng/api';
 import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppAccessdeniedComponent} from './access-denied/app.accessdenied.component';
 import {AppMainComponent} from './app-layout/main/app.main.component';
-import {AppMenuitemComponent} from './app-layout/side-menu/app.menuitem.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppErrorComponent} from './error/app.error.component';
 import {AppNotfoundComponent} from './not-found/app.notfound.component';
-import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
 import { NavbarComponent } from './app-layout/navbar/navbar.component';
 import { SideBarComponent } from './app-layout/side-bar/side-bar.component';
 import { AppFooterComponent } from './app-layout/footer/app.footer.component';
 import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
 import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
-import { AppRightPanelComponent } from './app-layout/right-panel/app.rightpanel.component';
 
 
 // @ts-ignore
@@ -112,7 +109,7 @@ import { AppRightPanelComponent } from './app-layout/right-panel/app.rightpanel.
         CdmpDialogComponent,
         AppAccessdeniedComponent,
         AppMainComponent,
-        AppMenuitemComponent,
+        
         DashboardComponent,
         NavbarComponent,
         SideBarComponent,
@@ -121,8 +118,7 @@ import { AppRightPanelComponent } from './app-layout/right-panel/app.rightpanel.
         AppFooterComponent,
         AppBreadcrumbComponent,
         AppTopBarComponent,
-        AppRightPanelComponent,
-        AppMenuComponent,
+        
         TestComponent
     ],
 

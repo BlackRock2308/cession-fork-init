@@ -17,7 +17,6 @@ import {AppLoginComponent} from './auth/login/app.login.component';
 
 // Application services
 import {BreadcrumbService} from './core/breadcrumb/breadcrumb.service';
-import {MenuService} from './core/app-layout/side-menu/app.menu.service';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -73,7 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         MenuService, BreadcrumbService,MessageService
+         , BreadcrumbService,MessageService
     ],
     bootstrap: [AppComponent]
 })
