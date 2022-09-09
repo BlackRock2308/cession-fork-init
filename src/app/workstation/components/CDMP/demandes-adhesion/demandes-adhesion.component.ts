@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Product} from '../../workstation/model/product';
+import {ConfirmationService} from 'primeng/api';
 import { MenuItem } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { MessageService } from 'primeng/api';
-//import { CommunicationService } from 'src/app/workstation/service/communication/communication.service';
+import { Product } from 'src/app/workstation/model/product';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
 
 @Component({

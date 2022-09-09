@@ -1,22 +1,6 @@
 
-      <div class="layout-wrapper" (click)="onLayoutClick()"
-      [ngClass]="{'layout-horizontal': app.horizontalMenu,
-                 'layout-wrapper-static': staticMenuActive,
-                 'layout-rightpanel-active': rightPanelActive,
-                 'layout-topbar-mobile-active': topbarMobileMenuActive,
-                 'layout-megamenu-mobile-active': megaMenuMobileActive,
-                 'layout-sidebar-mobile-active': menuMobileActive,
-                 'p-input-filled': app.inputStyle === 'filled',
-                 'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
- 
-     <app-side-bar></app-side-bar>
- 
-     <div class="layout-main">
-         <app-navbar></app-navbar>
- 
-        
- 
-         <div class="layout-content">
+
+      
             
 
                <div id="" class="p-4 p-md-5">
@@ -77,15 +61,8 @@
         </div>
     </div> 
              
-         </div>
+      
  
-         
-         
-         <div class="layout-main-mask"></div>
-         <div class="layout-config-mask" *ngIf="configActive" [@mask-anim]="'visible'"></div>
-        
-     </div>
- </div>
  
    
 

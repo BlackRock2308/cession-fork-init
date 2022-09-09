@@ -25,6 +25,9 @@
       "ninea": "567865467567",
       "statut": "Soumise",
       "rccm": "6543568778",
+      "denomination" : "XXX",
+        "raisonSocial" : "Modelsis SARL",
+        "refBE" : "294067",
       "date_soumission": "2020-12-12",
       "ninea_file": "",
       "rccm_file": "",
@@ -35,6 +38,9 @@
       "id": 2,
       "ninea": "567865467567",
       "rccm": "6543568778",
+      "denomination" : "ABC",
+      "refBE" : "120965",
+      "raisonSocial" : "ENEDIS",
       "statut": "Recevable",
       "date_soumission": "2022-12-12",
       "ninea_file": "",
@@ -45,6 +51,9 @@
       "ninea": "567865467567",
       "statut": "Soumise",
       "rccm": "6543568778",
+      "denomination" : "ABCD",
+      "raisonSocial" : "E.COM4",
+      "refBE" : "506978",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
       "rccm_file": ""
@@ -53,6 +62,9 @@
       "id": 4,
       "ninea": "567865467567",
       "rccm": "6543568778",
+      "raisonSocial" : "CAMAIEU INTERNATIONAL",
+      "denomination" : "XXX",
+      "refBE" : "294067",
       "date_soumission": "2021-02-12",
       "statut": "Rejetee",
       "ninea_file": "",
@@ -64,6 +76,9 @@
       "rccm": "6543568778",
       "statut": "Soumise",
       "date_soumission": "2021-02-12",
+      "raisonSocial" : "GUINDY SARL",
+      "denomination" : "XXX",
+      "refBE" : "294067",
       "ninea_file": "",
       "rccm_file": ""
     },
@@ -154,5 +169,83 @@
       "nom": "Relevé fiscal",
       "type": "pdf"
     }
+<<<<<<< HEAD
+    ],
+    "demandes_adhesion": [
+        {       
+        "id": 1,
+        "ninea": "567865467567",
+        "statut":"Soumise",
+        "rccm": "6543568778",
+        "denomination" : "XXX",
+        "raisonSocial" : "Modelsis SARL",
+        "refBE" : "294067",
+
+        "date_soumission": "2020-12-12",
+        "ninea_file":"",
+        "rccm_file":""
+
+
+    },
+    {       
+        "id": 2,
+        "ninea": "567865467567",
+        "rccm": "6543568778",
+        "denomination" : "ABC",
+        "refBE" : "120965",
+        "raisonSocial" : "ENEDIS",
+        "statut":"Recevable",
+        "date_soumission": "2022-12-12",
+        "ninea_file":"",
+        "rccm_file":""    },
+    {       
+        "id": 3,
+        "ninea": "567865467567",
+        "statut":"Soumise",
+        "rccm": "6543568778",
+        "denomination" : "ABCD",
+        "raisonSocial" : "E.COM4",
+        "refBE" : "506978",
+        "date_soumission": "2021-02-12",
+        "ninea_file":"",
+        "rccm_file":""    },
+    {       
+        "id": 4,
+        "ninea": "567865467567",
+        "rccm": "6543568778",
+        "date_soumission": "2021-02-12",
+        "denomination" : "XXX",
+        "refBE" : "294067",
+        "raisonSocial" : "SCI SENEGAL FIL",
+        "statut":"Rejetee",
+        "ninea_file":"",
+        "rccm_file":""    },
+            
+    {       
+        "id": 5,
+        "ninea": "567865467567",
+        "rccm": "6543568778",
+        "statut":"Soumise",
+        "date_soumission": "2021-02-12",
+        "raisonSocial" : "CAMAIEU INTERNATIONAL",
+        "denomination" : "XXX",
+        "refBE" : "294067",
+        "ninea_file":"",
+        "rccm_file":""    },
+    {       
+        "id": 6,
+        "ninea": "567865467567",
+        "rccm": "6543568778",
+        "statut":"Recevable",
+        "date_soumission": "2021-02-12",
+        "raisonSocial" : "GUINDY SARL",
+        "denomination" : "XXX",
+        "refBE" : "294067",
+        "ninea_file":"",
+        "rccm_file":""    }
+    
+    ]
+=======
   ]
+>>>>>>> 2e76f16079dd4a08750855be598211479669388e
 }

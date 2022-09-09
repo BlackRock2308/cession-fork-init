@@ -1,8 +1,8 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
-import { MenuService } from '../side-menu/app.menu.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
 import {AppComponent} from '../../../app.component';
+import { MenuService } from '../side-menu/app.menu.service';
 
 @Component({
     selector: 'app-main',
@@ -63,6 +63,17 @@ export class AppMainComponent implements OnInit{
         this.isAuthenticated = false;
     }
 
+    onTopbarItemClick(event, item) {
+        this.topbarItemClick = true;
+
+        if (this.activeTopbarItem === item) {
+            this.activeTopbarItem = null; } else {
+            this.activeTopbarItem = item; }
+
+        event.preventDefault();
+    }
+
+    
     onLayoutClick() {
         if (!this.topbarItemClick) {
             this.activeTopbarItem = null;
@@ -111,15 +122,7 @@ export class AppMainComponent implements OnInit{
         event.preventDefault();
     }
 
-    onTopbarItemClick(event, item) {
-        this.topbarItemClick = true;
-
-        if (this.activeTopbarItem === item) {
-            this.activeTopbarItem = null; } else {
-            this.activeTopbarItem = item; }
-
-        event.preventDefault();
-    }
+    
 
     onRightPanelButtonClick(event) {
         this.rightPanelClick = true;
@@ -191,5 +194,6 @@ export class AppMainComponent implements OnInit{
     isHorizontal() {
         return this.app.horizontalMenu === true;
     }
+    
 
 }

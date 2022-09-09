@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -83,7 +81,6 @@ import {TooltipModule} from 'primeng/tooltip';
 import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {AppRoutingModule} from '../app-routing.module';
 import {CdmpDialogComponent} from './generic-component/cdmp-dialog/cdmp-dialog.component';
 import {CdmpTableComponent} from './generic-component/cdmp-table/cdmp-table.component';
 import {TestComponent} from './generic-component/test/test.component';
@@ -93,10 +90,14 @@ import {ConfirmationService} from 'primeng/api';
 import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppAccessdeniedComponent} from './access-denied/app.accessdenied.component';
 import {AppMainComponent} from './app-layout/main/app.main.component';
-import {AppMenuitemComponent} from './app-layout/side-menu/app.menuitem.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppErrorComponent} from './error/app.error.component';
 import {AppNotfoundComponent} from './not-found/app.notfound.component';
+import { NavbarComponent } from './app-layout/navbar/navbar.component';
+import { SideBarComponent } from './app-layout/side-bar/side-bar.component';
+import { AppFooterComponent } from './app-layout/footer/app.footer.component';
+import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
+import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
 import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
 
 
@@ -107,21 +108,24 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
         CdmpDialogComponent,
         AppAccessdeniedComponent,
         AppMainComponent,
-        AppMenuitemComponent,
         DashboardComponent,
+        NavbarComponent,
+        SideBarComponent,
         AppErrorComponent,
         AppNotfoundComponent,
+        AppFooterComponent,
+        AppBreadcrumbComponent,
+        AppTopBarComponent,
         AppMenuComponent,
         TestComponent
     ],
 
     schemas: [],
 
-    imports: [BrowserModule,
+    imports: [
         FormsModule,
-        AppRoutingModule,
+        
         HttpClientModule,
-        BrowserAnimationsModule,
         AccordionModule,
         AutoCompleteModule,
         AvatarModule,
@@ -215,17 +219,17 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
     ],
 
     exports: [
-        BrowserModule,
+        
         FormsModule,
-        AppRoutingModule,
         HttpClientModule,
-        BrowserAnimationsModule,
+        
         AccordionModule,
         AutoCompleteModule,
         AvatarModule,
         AvatarGroupModule,
         BadgeModule,
         BreadcrumbModule,
+        ReactiveFormsModule,
         ButtonModule,
         CalendarModule,
         CardModule,

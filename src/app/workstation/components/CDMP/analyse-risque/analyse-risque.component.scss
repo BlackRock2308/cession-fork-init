@@ -13,6 +13,43 @@ h1{
 }
 
 
+
+
+.button{
+    background-color: #203359;
+
+}
+
+::ng-deep span.p-paginator-current.ng-star-inserted{
+    color: #203359;
+
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
+    background-color: #203359;
+
+}
+
+::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight{
+    background-color: #203359;
+
+}
+
+.title{
+    color:white;
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
+    color: #203359;
+
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
+    color: #203359;
+
+}
+
+
 .horizontal-text {
     text-transform: uppercase;
     writing-mode: vertical-rl;

@@ -5,13 +5,13 @@ import { ConfirmationService, MenuItem, MessageService, PrimeNGConfig } from 'pr
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
+import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 
 @Component({
   selector: 'app-demande-adhesion',
