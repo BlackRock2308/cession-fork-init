@@ -45,10 +45,10 @@
       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
       <ul class="collapse list-unstyled" id="homeSubmenu">
         <li>
-            <a>Nouvelle demande</a>
+            <a  [routerLink]= "['workstation/pme/new_demande']" >Nouvelle demande</a>
         </li>
         <li>
-            <a>Demandes en cours</a>
+            <a [routerLink]="['workstation/pme/demandes_en_cours']" >Liste des demandes</a>
         </li>
        
       </ul>
@@ -56,6 +56,17 @@
     <li>
         <a href="#">Suivi des paiements</a>
     </li>
+
+    <li>
+        <a [routerLink]="['workstation/cdmp/demandes_en_cours']">Demandes Adhesion</a>
+    </li>
+    <li>
+        <a href="#">Recevabilite</a>
+    </li>
+    <li>
+        <a [routerLink]="['workstation/cdmp/analyse_risque']">Analyse du risque sur cession</a>
+    </li>
+
    
   </ul>
 
