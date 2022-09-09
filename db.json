@@ -110,5 +110,49 @@
       "date_soumission": "2020-12-12",
       "PmeId": 2
     }
+  ],
+  "types_document": [
+    {
+      "id": 1,
+      "nom":"Business Plan",
+      "type": "pdf"
+    },
+    {
+      "id": 2,
+      "nom": "Etat Financier",
+      "type": "excel"
+    },
+    {
+      "id": 4,
+      "nom": "Rapport ou Compte rendu",
+      "type": "word"
+    },
+    {
+      "id": 5,
+      "nom": "Relevé fiscal",
+      "type": "pdf"
+    }
+  ],
+  "autres_document": [
+    {
+      "id": 1,
+      "nom":"Business Plan",
+      "type": "pdf"
+    },
+    {
+      "id": 2,
+      "nom": "Etat Financier",
+      "type": "excel"
+    },
+    {
+      "id": 4,
+      "nom": "Rapport ou Compte rendu",
+      "type": "word"
+    },
+    {
+      "id": 5,
+      "nom": "Relevé fiscal",
+      "type": "pdf"
+    }
   ]
 }

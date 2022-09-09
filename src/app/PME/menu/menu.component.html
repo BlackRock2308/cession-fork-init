@@ -1,5 +1,5 @@
 
-<div  class="layout-wrapper" (click)="onLayoutClick()"
+<div  class="layout-wrapper py-0 my-0" (click)="onLayoutClick()"
 [ngClass]="{'layout-horizontal': app.horizontalMenu,
            'layout-wrapper-static': staticMenuActive,
            'layout-rightpanel-active': rightPanelActive,
@@ -10,7 +10,7 @@
            'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
 
 
-<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="onSidebarClick($event)"
+<div class="layout-sidebar dark-blue-bg py-0 my-0" [ngClass]="{'layout-sidebar-active': sidebarActive}" (click)="onSidebarClick($event)"
      (mouseover)="sidebarActive=true" (mouseleave)="sidebarActive=false">
     <div class="sidebar-logo">
         <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="onToggleMenuClick($event)">
@@ -75,7 +75,7 @@
 </div>
 
 
-<div class="layout-main" >
+<div class="layout-main py-0 my-0" >
   <div class="layout-topbar">
     <div class="layout-topbar-wrapper">
               <div class="layout-topbar-left">
@@ -324,6 +324,13 @@
 
 
 </div>
+
+
+
+  <div class="layout-content py-0 my-0">
+     <router-outlet></router-outlet>
+
+  </div>
 </div>
 
 
@@ -347,4 +354,4 @@
     </nav> -->
   
     <!-- Page Content  -->
-    
+ 

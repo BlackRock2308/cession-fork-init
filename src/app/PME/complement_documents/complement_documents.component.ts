@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 
 @Component({
   selector: 'app-complement-documents',
@@ -13,10 +14,21 @@ export class ComplementDocumentsComponent implements OnInit {
   documents:Document[]=[];
   document:Document;
   cols: any[];
+  selectedProducts: Document[];
+  typesDocument:any[];
+  filteredtypeDocument: any[];
+  selectedTypeDocument: string;
 
-  constructor(    private formBuilder: FormBuilder) { }
+
+  constructor(    private formBuilder: FormBuilder,private pmeService:PmeService) { }
 
   ngOnInit(): void {
+
+    this.pmeService.getTypesDocument().subscribe(data=>{
+      this.typesDocument=data;
+      this.typesDocument.push({nom:"Autres"})
+      console.log(this.typesDocument)
+    })
 
     this.documentForm= this.formBuilder.group({
       typeDocument: [''],
@@ -76,11 +88,26 @@ export class ComplementDocumentsComponent implements OnInit {
            })*/
         
   }
+  filtertypeDocument(event) {
+    const filtered: any[] = [];
+    const query = event.query;
+    for (let i = 0; i < this.typesDocument.length; i++) {
+        const typeDocument = this.typesDocument[i];
+        if (typeDocument.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+            filtered.push(typeDocument);
+        }
+    }
 
+    this.filteredtypeDocument = filtered;
+}
   
 }
 interface Document{
     
   type?:String;
   file?:File;
+}
+
+interface typeDocument{
+  nom?:String;
 }

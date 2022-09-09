@@ -49,7 +49,7 @@ import { NavbarComponent } from './PME/navbar/navbar.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
 
-import { ComplementDocumentsComponent } from './CDMP/complement_documents/complement_documents.component';
+import { ComplementDocumentsComponent } from './PME/complement_documents/complement_documents.component';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,

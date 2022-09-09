@@ -18,7 +18,7 @@ import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demand
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
-import { ComplementDocumentsComponent } from './CDMP/complement_documents/complement_documents.component';
+import { ComplementDocumentsComponent } from './PME/complement_documents/complement_documents.component';
 
 
 const routes: Routes = [
@@ -72,9 +72,9 @@ const routes: Routes = [
      component: MenuComponent,
      children: [
         //demandes en cours du coté de la cdmp
-        {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
+        //{path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
         //Identification budgétaire
-        {path: 'complement_documents', component: ComplementDocumentsComponent},
+        {path: 'pme/demandes_en_cours/complement_documents', component: ComplementDocumentsComponent},
 
       ]},
      
