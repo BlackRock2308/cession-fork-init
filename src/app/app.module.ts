@@ -44,6 +44,7 @@ import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesio
 import { NavbarComponent } from './PME/navbar/navbar.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
+import { AppRoutingModule } from './app-routing.module';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -56,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     imports: [
         CoreModule,
+        AppRoutingModule,
         RouterModule,
         CommonModule,
         TranslateModule.forRoot({
@@ -76,20 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         HomeComponent,
         MajMdpComponent,
         RecupMdpComponent,
-        CodeVerificationComponent,
-        AdhesionComponent,
-        DemandesAdhesionComponent,
-        DemandeAdhesionComponent,
-        MenuComponent,
-        NouvelleDemandeComponent,
-        AppFooterComponent,
-        AppRightPanelComponent,
-        AppBreadcrumbComponent,
-        AppTopBarComponent,
-        SideBarComponent,
-        NavbarComponent,
-        MenuCdmpComponent,
-        AnalyseRisqueComponent
+        CodeVerificationComponent
+      
         
     ],
     providers: [

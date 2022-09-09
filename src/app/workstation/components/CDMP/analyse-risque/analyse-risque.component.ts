@@ -91,10 +91,15 @@ export class AnalyseRisqueComponent implements OnInit {
 
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private productService: ProductService, private messageService: MessageService,
-    private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig,public renderer: Renderer2, private menuService: MenuService,
-    public app: AppComponent) { 
-      this.productService.getProducts().then(data => this.products = data);
+  constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService,private menuService: MenuService,
+    private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,private primengConfig:PrimeNGConfig,public app: AppComponent) { 
+     
+
+    }
+
+  ngOnInit() {
+
+   // this.productService.getProducts().then(data => this.products = data);
       this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
         this.demandes=data
     console.log(this.demandes)});
@@ -115,24 +120,106 @@ export class AnalyseRisqueComponent implements OnInit {
           {label: 'OUTOFSTOCK', value: 'outofstock'}
       ];
 
-      this.routeItems = [
-        {label: 'Verification', routerLink:'verification'},
-        {label: 'Informations Complémentaires', routerLink:'informations_complémentaire'},
-    ];
+     
 
-    }
-
-  ngOnInit() {
 
   }
 
-  mobileMegaMenuItemClick(index) {
-    this.megaMenuMobileClick = true;
-    this.activeItem = this.activeItem === index ? null : index;
+  openNew() {
+    this.product = {};
+    this.submitted = false;
+    this.productDialog = true;
 }
-onMenuClick() {
-  this.menuClick = true;
+
+deleteSelectedProducts() {
+    this.deleteProductsDialog = true;
 }
+
+editProduct(demande: DemandeAdhesion) {
+    this.demande = {...demande};
+    this.productDialog = true;
+    //this.productService.setProductObs(product);
+
+    
+}
+
+deleteProduct(product: Product) {
+    this.deleteProductDialog = true;
+    this.product = {...product};
+}
+
+confirmDeleteSelected(){
+    this.deleteProductsDialog = false;
+    this.products = this.products.filter(val => !this.selectedProducts.includes(val));
+    this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
+    this.selectedProducts = null;
+}
+
+confirmDelete(){
+    this.deleteProductDialog = false;
+    this.products = this.products.filter(val => val.id !== this.product.id);
+    this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+    this.product = {};
+}
+
+hideDialog() {
+    this.productDialog = false;
+    this.submitted = false;
+}
+
+saveProduct() {
+    this.submitted = true;
+
+    if (this.product.name.trim()) {
+        if (this.product.id) {
+            // @ts-ignore
+            this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
+            this.products[this.findIndexById(this.product.id)] = this.product;
+            this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
+        } else {
+            this.product.id = this.createId();
+            this.product.code = this.createId();
+            this.product.image = 'product-placeholder.svg';
+            // @ts-ignore
+            this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
+            this.products.push(this.product);
+            this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
+        }
+
+        this.products = [...this.products];
+        this.productDialog = false;
+        this.product = {};
+    }
+}
+
+findIndexById(id: string): number {
+    let index = -1;
+    for (let i = 0; i < this.products.length; i++) {
+        if (this.products[i].id === id) {
+            index = i;
+            break;
+        }
+    }
+
+    return index;
+}
+
+createId(): string {
+    let id = '';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < 5; i++) {
+        id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+}
+
+nineaValide():any{
+  const targetDiv = document.getElementById("actif");
+  const btn = document.getElementById("oui");
+  targetDiv.style.display = "flex";
+
+}
+
 onLayoutClick() {
   if (!this.topbarItemClick) {
       this.activeTopbarItem = null;
@@ -225,6 +312,9 @@ onMegaMenuMobileButtonClick(event) {
   event.preventDefault();
 }
 
+onMenuClick() {
+this.menuClick = true;
+}
 onMenuButtonClick(event) {
   this.menuClick = true;
   this.topbarMenuActive = false;
@@ -261,100 +351,7 @@ isMobile() {
 isHorizontal() {
   return this.app.horizontalMenu === true;
 }
-
-openNew() {
-  this.product = {};
-  this.submitted = false;
-  this.productDialog = true;
 }
 
-deleteSelectedProducts() {
-  this.deleteProductsDialog = true;
-}
 
-editProduct(demande: DemandeAdhesion) {
-  this.demande = {...demande};
-  this.productDialog = true;
-  //this.productService.setProductObs(product);
 
-  
-}
-
-deleteProduct(product: Product) {
-  this.deleteProductDialog = true;
-  this.product = {...product};
-}
-
-confirmDeleteSelected(){
-  this.deleteProductsDialog = false;
-  this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-  this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
-  this.selectedProducts = null;
-}
-
-confirmDelete(){
-  this.deleteProductDialog = false;
-  this.products = this.products.filter(val => val.id !== this.product.id);
-  this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-  this.product = {};
-}
-
-hideDialog() {
-  this.productDialog = false;
-  this.submitted = false;
-}
-
-saveProduct() {
-  this.submitted = true;
-
-  if (this.product.name.trim()) {
-      if (this.product.id) {
-          // @ts-ignore
-          this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
-          this.products[this.findIndexById(this.product.id)] = this.product;
-          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
-      } else {
-          this.product.id = this.createId();
-          this.product.code = this.createId();
-          this.product.image = 'product-placeholder.svg';
-          // @ts-ignore
-          this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-          this.products.push(this.product);
-          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
-      }
-
-      this.products = [...this.products];
-      this.productDialog = false;
-      this.product = {};
-  }
-}
-
-findIndexById(id: string): number {
-  let index = -1;
-  for (let i = 0; i < this.products.length; i++) {
-      if (this.products[i].id === id) {
-          index = i;
-          break;
-      }
-  }
-
-  return index;
-}
-
-createId(): string {
-  let id = '';
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return id;
-}
-
-nineaValide():any{
-const targetDiv = document.getElementById("actif");
-const btn = document.getElementById("oui");
-targetDiv.style.display = "flex";
-
-}
-
-}

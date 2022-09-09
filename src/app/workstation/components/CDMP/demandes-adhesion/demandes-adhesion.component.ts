@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Product} from '../../workstation/model/product';
-import {ProductService} from '../../workstation/service/product/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import { BreadcrumbService } from '../../core/breadcrumb/breadcrumb.service';
 import { MenuItem } from 'primeng/api';
 import { VerificationComponent } from './adhesion-process/verification/verification.component';
 import {DialogModule} from 'primeng/dialog';
 import { PrimeNGConfig } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
+import { Product } from 'src/app/workstation/model/product';
+import { ProductService } from 'src/app/workstation/service/product/product.service';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
 
 @Component({

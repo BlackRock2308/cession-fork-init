@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FullCalendarModule} from '@fullcalendar/angular';
@@ -98,6 +98,12 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppErrorComponent} from './error/app.error.component';
 import {AppNotfoundComponent} from './not-found/app.notfound.component';
 import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
+import { NavbarComponent } from './app-layout/navbar/navbar.component';
+import { SideBarComponent } from './app-layout/side-bar/side-bar.component';
+import { AppFooterComponent } from './app-layout/footer/app.footer.component';
+import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
+import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
+import { AppRightPanelComponent } from './app-layout/right-panel/app.rightpanel.component';
 
 
 // @ts-ignore
@@ -109,8 +115,14 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
         AppMainComponent,
         AppMenuitemComponent,
         DashboardComponent,
+        NavbarComponent,
+        SideBarComponent,
         AppErrorComponent,
         AppNotfoundComponent,
+        AppFooterComponent,
+        AppBreadcrumbComponent,
+        AppTopBarComponent,
+        AppRightPanelComponent,
         AppMenuComponent,
         TestComponent
     ],
@@ -226,6 +238,7 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
         AvatarGroupModule,
         BadgeModule,
         BreadcrumbModule,
+        ReactiveFormsModule,
         ButtonModule,
         CalendarModule,
         CardModule,

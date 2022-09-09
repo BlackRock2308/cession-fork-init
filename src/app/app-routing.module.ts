@@ -24,47 +24,25 @@ const routes: Routes = [
     {
         path: '', component: AppMainComponent,
         children: [
-            {path: '', redirectTo: 'home', pathMatch: 'full'},
-            {path: 'home', component: HomeComponent},
-            
-            
-            // Workstation
+            {path: '', redirectTo: 'workstation', pathMatch: 'full'},
             {
-                path: '',
-                loadChildren: () => import('./workstation/workstation.module')
-                    .then(m => m.WorkstationModule)
+                path: 'workstation',
+                loadChildren:() =>import('./workstation/workstation.module').then(m =>m.WorkstationModule),
             },
+            
+            
+           
         ]
 
     },
 
-    //Menu de la CDMP
-    {path: 'cdmp/menu', component: MenuCdmpComponent},
-
-    //Demandes adhesion pour la CDMP
-    {path: 'cdmp/demandes', component: DemandesAdhesionComponent},
-
-    //Analyse du risque pour la CDMP
-    {path: 'cdmp/analyse_risque', component: AnalyseRisqueComponent},
-
-    //Nouvelle demande PME
-    {path: 'pme/new_demande', component: NouvelleDemandeComponent},
-
-    //Demandes en cours de la PME
-    {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
-    // Testing...
+    
     {path: 'test', component: TestComponent},
 
     // Auth path
     {path: 'login/maj_pwd', component: MajMdpComponent},
 
 
-
-     // Menu-pme
-     {path: 'menu', component: MenuComponent},
-
-    //Adhesion path
-    {path:'adh',component:AdhesionComponent},
 
     //Demandes d'adhesion path
     {path:'demandes',loadChildren: () => import('./CDMP/demandes-adhesion/adhesion-process/adhesion-process.module').then(m => m.AdhesionProcessModule)},
