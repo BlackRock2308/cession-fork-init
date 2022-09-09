@@ -24,7 +24,7 @@ const routes: Routes = [
 
   //PME
   //Creation de compte de la PME
-  {path: 'pme/adhesion', component: AdhesionComponent},
+  
   //Liste des demandes de la PME
   {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
   //Page d'accueil de la PME
