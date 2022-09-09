@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service'
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
-import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { BasicInfo, DemandeNantissemantInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 
@@ -100,8 +100,8 @@ export class DemandeAdhesionComponent implements OnInit {
   cities : Product[];
   pme: PME;
 
-  //basic info as reference be ninea and date
-  basicInfo:DemandeInfo;
+  //basic info as reference BE ninea and date
+  basicInfo:DemandeNantissemantInfo;
 
   constructor(
     private messageService: MessageService,
@@ -111,7 +111,8 @@ export class DemandeAdhesionComponent implements OnInit {
     private demandesAdhesionService: DemandesAdhesionService,
     public renderer: Renderer2, private menuService: MenuService,
     private primengConfig: PrimeNGConfig,
-    public app: AppComponent
+    public app: AppComponent,
+
   ) { 
     this.breadcrumbService.setItems([
       { label: 'Pages' },
@@ -202,11 +203,11 @@ deleteSelectedProducts() {
     this.deleteProductsDialog = true;
 }
 
-editProduct(demande: DemandeAdhesion) {
+completeDocuments(demande: DemandeAdhesion) {
     this.demande = {...demande};
-    this.basicInfo.dateSoumission=this.demande.dateSoumission;
-    this.basicInfo.ninea=this.demande.ninea;
-    this.basicInfo.referenceBE=this.demande.rccm;
+    //this.basicInfo.dateSoumission=this.demande.dateSoumission;
+    //this.basicInfo.ninea=this.demande.ninea;
+    //this.basicInfo.referenceBE=this.demande.rccm;
     //this.productDialog = true;
     //this.productService.setProductObs(product);
 
@@ -427,8 +428,4 @@ isHorizontal() {
 
 
 }
-interface DemandeInfo{
-    referenceBE?:String;
-    ninea?:String;
-    dateSoumission?:String;
-}
+

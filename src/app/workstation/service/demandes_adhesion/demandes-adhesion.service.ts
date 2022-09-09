@@ -18,6 +18,13 @@ export class DemandesAdhesionService {
     "rccm_file":""   
 });
 
+private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
+  "id": 0,
+  "ninea": "567865467567",
+  "be": "6543568778",
+  "date_soumission": "2021-02-12"   
+});
+
   constructor(private http: HttpClient) { }
 
   
@@ -29,16 +36,30 @@ export class DemandesAdhesionService {
     return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,basicInfo)
   }
 
-  setDemandeObs(demande: DemandeAdhesion) {
-    this.demandeObs.next(demande);
+  //recupérer(garder) les informations par rapport à une demande
+  setDemandenantissementObs(demande: DemandeNantissemantInfo) {
+    this.demandenantissementObs.next(demande);
+}
+getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
+  return this.demandenantissementObs.asObservable();
+}
+
+setDemandeObs(demande: DemandeAdhesion) {
+  this.demandeObs.next(demande);
 }
 getDemandeObs(): Observable<DemandeAdhesion> {
-  return this.demandeObs.asObservable();
+return this.demandeObs.asObservable();
 }
 }
 export class BasicInfo{
   id?:number=0;
   nineaExistant?:boolean=false;
   pmeActive?:boolean=false;
+}
+
+export interface DemandeNantissemantInfo{
+    referenceBE?:String;
+    ninea?:String;
+    dateSoumission?:String;
 }
 

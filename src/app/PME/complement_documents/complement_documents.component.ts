@@ -26,7 +26,7 @@ export class ComplementDocumentsComponent implements OnInit {
 
     this.pmeService.getTypesDocument().subscribe(data=>{
       this.typesDocument=data;
-      this.typesDocument.push({nom:"Autres"})
+      this.typesDocument.push({nom:"Autres..."})
       console.log(this.typesDocument)
     })
 

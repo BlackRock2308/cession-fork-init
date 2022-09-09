@@ -50,7 +50,7 @@
                                 <h4 style="font-weight: bold;color: #203359;">Type de document</h4>
                             </div>
                             <p-dropdown [options]="typesDocument" formControlName="typeDocument" [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="nom" [filter]="true" filterBy="name"
-                                [showClear]="true" placeholder="Sélectionnez un type de document">
+                                [showClear]="true" pTooltip="Sélectionner un type de fichier" placeholder="Sélectionnez un type de document">
                                 <ng-template pTemplate="selectedItem">
                                     <div class="country-item country-item-value" *ngIf="selectedTypeDocument">
                                         <div>{{selectedTypeDocument}}</div>
@@ -67,11 +67,11 @@
                 
                             </p-dropdown>                      
                         </div>
-                        <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres'">
+                        <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres...'">
                             <div class="col-12 md:col-12  d-flex justify-content-center ">
                                 <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
                             </div>
-                                <input  id="NINEAfile" type="text" pInputText  pTooltip="Charger un fichier" placeholder="Choisissez un ficher">
+                                <input  formControlName="typeDocument" id="NINEAfile" type="text" pInputText  pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
                         </div>
                         <div class="field col-3 ">
                             <div class="col-12 md:col-12  d-flex justify-content-center ">
