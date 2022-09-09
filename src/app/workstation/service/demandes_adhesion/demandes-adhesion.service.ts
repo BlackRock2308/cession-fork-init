@@ -15,4 +15,8 @@ export class DemandesAdhesionService {
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion`);
   }
+
+  getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
+    return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
+  }
 }
