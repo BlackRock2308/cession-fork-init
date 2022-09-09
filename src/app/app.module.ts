@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     imports: [
         CoreModule,
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         TranslateModule.forRoot({
             loader: {
