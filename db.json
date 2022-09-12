@@ -25,7 +25,7 @@
   "demandes_adhesion": [
     {
       "id": 1,
-      "ninea": "567865467567",
+      "ninea": "567567",
       "statut": "Completee",
       "rccm": "6543568778",
       "denomination" : "XXX",
@@ -35,8 +35,13 @@
       "ninea_file": "",
       "rccm_file": "",
       "nineaValide": "false",
-      "pmeActive": ""
+      "pmeActive": "",
+      "ATD": "Aucun ATD",
+      "nantissement" : "Creance non nanti",
+      "interdiction" : "Aucune interdiction bancaire",
       
+      "numero_demaande" : "2022-0123"
+          
 
     },
     {
@@ -49,7 +54,11 @@
       "statut": "Recevable",
       "date_soumission": "2022-12-12",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "ATD",
+      "nantissement" : "Creance nanti",
+      "interdiction" : "Aucune interdiction bancaire",
+      "numero_demande" : "2022-01987"
     },
     {
       "id": 3,
@@ -61,7 +70,12 @@
       "refBE" : "506978",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "Aucun ATD",
+      "nantissement" : "Creance  nanti",
+      "interdiction" : "Interdiction bancaire",
+      
+      "numero_demande" : "2022-0193"
     },
     {
       "id": 4,
@@ -73,7 +87,12 @@
       "date_soumission": "2021-02-12",
       "statut": "Non Risquee",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "Aucun ATD",
+      "nantissement" : "Creance non nanti",
+      "interdiction" : "Aucune interdiction bancaire",
+      
+      "numero_demande" : "2022-0123"
     },
     {
       "id": 5,
@@ -85,7 +104,12 @@
       "denomination" : "XXX",
       "refBE" : "294067",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "Aucun ATD",
+      "nantissement" : "Creance non nanti",
+      "interdiction" : "Aucune interdiction bancaire",
+      
+      "numero_demande" : "2022-0123"
     },
     {
       "id": 6,
@@ -94,7 +118,12 @@
       "statut": "Recevable",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "ATD",
+      "nantissement" : "Creance non nanti",
+      "interdiction" : "Aucune interdiction bancaire",
+      
+      "numero_demande" : "2022-3453"
     }
   ],
   "demandes": [
@@ -151,6 +180,45 @@
       "id": 5,
       "nom": "Relevé fiscal",
       "type": "pdf"
+    }
+  ],
+
+  "document" :[
+    {
+      "id": 1,
+      "nom":"Modelsis SARL",
+      "type": "RCCM",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 2,
+      "nom":"ENEDIS",
+      "type": "NINEA",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 3,
+      "nom":"Business Plan",
+      "type": "Autre",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 4,
+      "nom":"CAMAIEU INTERNATIONAL",
+      "type": "Bon engagement",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 5,
+      "nom":"Raport Fiscal",
+      "type": "Autres",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 6,
+      "nom":"Etat Financier",
+      "type": "Autres",
+      "date_soumission": "2020-12-12"
     }
   ],
   "autres_document": [

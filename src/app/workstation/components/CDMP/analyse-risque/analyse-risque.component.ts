@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ConfirmationService, MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
@@ -350,6 +350,12 @@ isMobile() {
 isHorizontal() {
   return this.app.horizontalMenu === true;
 }
+
+setPmeInfo(demande:DemandeAdhesion){
+  this.demandesAdhesionService.setDemandenantissementObs(demande);
+  console.log(this.demandesAdhesionService.getDemandenantissementObs())
+}
+
 }
 
 

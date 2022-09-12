@@ -47,15 +47,18 @@
                                     
                                     <td>
                                         <div class="flex">
-                                            <i class="pi pi-eye pi-eye"  (click)="editProduct(product)" ></i>
-
-                                            
+                                            <i class="pi pi-search pi-search" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' " [routerLink]= "['../analyser']" (click)="setPmeinfo(document)" ></i>
+                                            <i class="pi pi-eye pi-eye" *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' " [routerLink]= "['']" ></i>                                           
                                         </div>
                                     </td>
                                 </tr>
                             </ng-template>
                         </p-table>
+                       
+                        
+                      
                     </div>
+                   
             
                     <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}"  [modal]="true" >
                         <ng-template pTemplate="header">
