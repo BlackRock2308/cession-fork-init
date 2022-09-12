@@ -203,15 +203,8 @@ deleteSelectedProducts() {
     this.deleteProductsDialog = true;
 }
 
-completeDocuments(demande: DemandeAdhesion) {
-    this.demande = {...demande};
-    //this.basicInfo.dateSoumission=this.demande.dateSoumission;
-    //this.basicInfo.ninea=this.demande.ninea;
-    //this.basicInfo.referenceBE=this.demande.rccm;
-    //this.productDialog = true;
-    //this.productService.setProductObs(product);
-
-    
+consulterDemande(demande: DemandeAdhesion) {
+    this.router.navigate(['workstation/cdmp/visualiser-demandes']);
 }
 
 deleteProduct(product: Product) {

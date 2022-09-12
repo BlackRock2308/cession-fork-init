@@ -5,6 +5,7 @@ import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/c
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
+import { VisualiserDemandesComponent } from './components/CDMP/visualiser-demandes/visualiser-demandes.component';
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'cdmp/accueil', component: MenuCdmpComponent},
 
   {path:'cdmp/analyser' , component:TacheAnalyseComponent},
+  {path: 'cdmp/visualiser-demandes', component: VisualiserDemandesComponent},
 
   //Consulter une demande de cession a l'etat risque ou non risquee
   {path:'cdmp/consulter_demande' , component:ConsulterDemandeComponent},

@@ -42,11 +42,10 @@
                                     
                                     <td>
                                         <div class="flex">
-                                            <!-- <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button" pInputText  pTooltip="Consulter les dossiers" (click)="completeDocuments(product)" ></button>
-                                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded mr-2 button" pTooltip="Completer le dossier" [routerLink]="['complement_documents']" (click)="completeDocuments(demande)" [state]="{ infos:this.basicInfo }"></button> -->
-                                            <i class="pi pi-eye pi-eye mx-3 "  pTooltip="Consulter les dossiers" (click)="completeDocuments(product)" ></i>
+                                            <i class="pi pi-eye pi-eye mx-3 "  pTooltip="Consulter les dossiers" (click)="consulterDemande(demande)" ></i>
                                             
                                             <i class="pi pi-pencil pi-pencil"  pTooltip="Completer le dossier" [routerLink]="['complement_documents']" (click)="completeDocuments(demande)" [state]="{ infos:this.basicInfo }" ></i>
+                                        
                                         </div>
                                     </td>
                                 </tr>
@@ -122,13 +121,7 @@
                                                 </div>
                             
                                         </div>
-
-                                        
-                                        
                                     </div>
-
-                                    
-                                   
                                     <div class="field grid" style="margin-top: 30px;">
                                         <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
                             
@@ -142,10 +135,6 @@
                                     </form>
                                     
                                 </div>
-                            
-                            
-                            
-            
                             </div>
                             
                         </ng-template>
