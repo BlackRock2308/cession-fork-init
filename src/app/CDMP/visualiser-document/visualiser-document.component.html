@@ -1,0 +1,74 @@
+<div *ngIf="srcFile" class="container-fluid text-right">
+
+    <button [disabled]="pageVariable==1" class="mr-2 btn-icon btn-icon-only btn btn-outline-info icones-action"
+        ngbTooltip="Page précédente" (click)="previousPage()"><i class="pi pi-chevron-left">
+        </i>
+    </button>
+    &nbsp;
+    <button style="border: none; background-color: white;" class="mr-2 icones-action">
+        <span style="font-size: 120%; margin-top: 0%;text-align: center;">{{pageVariable}}/{{totalPages}}</span>
+    </button>
+    &nbsp;
+    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info icones-action" ngbTooltip="Page suivante"
+        (click)="nextPage()"><i class="pi pi-chevron-right">
+        </i>
+    </button>
+    &nbsp;
+    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-secondary icones-action" ngbTooltip="Zoom + "
+        (click)="plusZoom()"><i class="pi pi-plus-circle">
+        </i>
+    </button>
+    &nbsp;
+    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-secondary icones-action" ngbTooltip="Zoom - "
+        (click)="minusZoom()"><i class="pi-minus-circle">
+        </i>
+    </button>
+    &nbsp;
+    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning icones-action" ngbTooltip="Rotation "
+        (click)="rotate()"><i class="pi pi-refresh">
+        </i>
+    </button>
+    &nbsp;
+    <button class="mr-2 btn btn-outline-success " ngbTooltip="Télécharger"
+        (click)="download(true)"><i class="pi pi-download">
+        </i>
+    </button>
+    &nbsp;
+    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success icones-action" ngbTooltip="Imprimer"
+        (click)="print()"><i class="pi pi-print">
+        </i>
+    </button>
+    &nbsp;
+</div>
+&nbsp;
+
+<div style="display: block;">
+    <div class="modal-body">
+
+        <!-- <form #form="ngForm" (ngSubmit)="onUpdateCustomer(form)"> -->
+            <div *ngIf="srcFile" class="container-fluid">
+
+                <br />
+                <div *ngIf="ext=='PDF' || ext=='pdf'">
+                    <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
+                        [render-text]="true" [zoom]="zoom" [rotation]="angle" [original-size]="false"
+                        (after-load-complete)="afterLoadComplete($event)" (page-rendered)="pageRendered($event)"
+                        [fit-to-page]="true" (text-layer-rendered)="textLayerRendered($event)" class="pdf-container">
+                    </pdf-viewer>
+                </div>
+                <div *ngIf="ext=='jpeg' || ext=='png' || ext=='jpg'" class="pdf-container">
+                    <img [src]="srcFile" alt="">
+                </div>
+            </div>
+            <!-- <div class="pdf-container">
+            <pdf-viewer [src]="src" [original-size]="true" (on-progress)='docUploadProgress($event)'
+             [(page)]='pdfPage' [show-all]="false" [stick-to-page]='true' [fit-to-page]='true'
+            [render-text]='true' style='display: block'></pdf-viewer>
+        </div> -->
+    </div>
+</div>
+
+<div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-secondary" (click)="dismiss()">Fermer</button>
+</div>

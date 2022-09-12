@@ -21,7 +21,7 @@ import {AppLoginComponent} from './auth/login/app.login.component';
 
 //modal dynamique avec primeng
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
-
+import { OverlayModule } from '@angular/cdk/overlay';
 
 // Application services
 import {BreadcrumbService} from './core/breadcrumb/breadcrumb.service';
@@ -47,14 +47,15 @@ import { InformationsComplementaireComponent } from './CDMP/demandes-adhesion/ad
 import { NouvelleDemandeComponent } from './PME/nouvelle-demande/nouvelle-demande.component';
 import { AppRightPanelComponent } from './core/app-layout/right-panel/app.rightpanel.component';
 import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.component';
-import { AppMenuComponent } from './core/app-layout/side-menu/app.menu.component';
 import { SideBarComponent } from './PME/side-bar/side-bar.component';
 import { DemandeAdhesionComponent } from './PME/demande-adhesion/demande-adhesion.component';
 import { NavbarComponent } from './PME/navbar/navbar.component';
 import { MenuCdmpComponent } from './CDMP/menu-cdmp/menu-cdmp.component';
 import { AnalyseRisqueComponent } from './CDMP/analyse-risque/analyse-risque.component';
-
+import { VisualiserDocumentComponent } from './CDMP/visualiser-document/visualiser-document.component';
 import { IdentificationBudgetaireComponent } from './CDMP/identification-budgetaire/identification-budgetaire.component';
+import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CoreModule,
         RouterModule,
         CommonModule,
+        
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -82,7 +84,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PdfViewerModule,
         CardModule,
         ButtonModule,
-        DynamicDialogModule
+        DynamicDialogModule,
+        OverlayModule
 
     ],
     declarations: [
@@ -109,14 +112,19 @@ export function HttpLoaderFactory(http: HttpClient) {
         NavbarComponent,
         MenuCdmpComponent,
         AnalyseRisqueComponent,
-        IdentificationBudgetaireComponent
+        IdentificationBudgetaireComponent,
+        VisualiserDocumentComponent
         
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-         MenuService, BreadcrumbService,MessageService
+         MenuService, BreadcrumbService,MessageService, NgbActiveModal,
+         
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        VisualiserDocumentComponent
+    ],
 })
 export class AppModule {
 }
