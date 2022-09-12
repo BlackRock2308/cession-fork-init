@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { PME } from 'src/app/workstation/model/pme';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-adhesion',
@@ -76,6 +77,21 @@ export class AdhesionComponent implements OnInit {
     }
   
     this.enregistrerPme();
+
+    Swal.fire({
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande d'adhésion a été pris en compte.</p><br><p style='font-size: large;font-weight: bold;'>Vous allez recevoir un message de la part du service de cession de créances dans les plus brefs délais.</p>",
+      color:"#203359",
+      confirmButtonColor:"#A6C733",
+      confirmButtonText: '<i class="pi pi-check"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['../../login'])
+      }})
+
+    
+
     
 }
 
