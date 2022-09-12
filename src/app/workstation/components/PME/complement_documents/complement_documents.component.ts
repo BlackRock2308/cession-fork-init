@@ -49,7 +49,7 @@ export class ComplementDocumentsComponent implements OnInit {
 
 //récupérer les informations du nantissement en cours de modification
   this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
-  console.log(this.demandeNantissementInfos.ninea)
+  console.log(this.demandeNantissementInfos)
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier
@@ -57,7 +57,7 @@ export class ComplementDocumentsComponent implements OnInit {
     
     this.document=this.documentForm.value;
     this.document.file=files.target.files[0];
-    this.documents.push(this.document)
+    this.documents.push(this.document);
     console.log(this.documents)
         
   }

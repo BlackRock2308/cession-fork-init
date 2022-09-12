@@ -427,7 +427,7 @@ isHorizontal() {
 }
 
 //récupération des informations de la demandes
-getDemandeInfo(demande:DemandeAdhesion){
+setDemandeInfo(demande:DemandeAdhesion){
     this.demandesAdhesionService.setDemandenantissementObs(demande);
     console.log(this.demandesAdhesionService.getDemandenantissementObs())
 }

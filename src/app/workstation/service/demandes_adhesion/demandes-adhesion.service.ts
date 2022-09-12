@@ -19,10 +19,10 @@ export class DemandesAdhesionService {
 });
 
 private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
-  "id": 0,
-  "ninea": "567865467567",
-  "be": "6543568778",
-  "date_soumission": "2021-02-12"   
+  id: 0,
+  ninea: "567865467567",
+  refBE: "6543568778",
+  date_soumission: "2021-02-12"   
 });
 
   constructor(private http: HttpClient) { }
@@ -61,8 +61,9 @@ export class BasicInfo{
 }
 
 export interface DemandeNantissemantInfo{
-    referenceBE?:String;
+    id?:number;
+    refBE?:String;
     ninea?:String;
-    dateSoumission?:String;
+    date_soumission?:String;
 }
 
