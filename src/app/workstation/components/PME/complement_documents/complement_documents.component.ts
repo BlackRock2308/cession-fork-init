@@ -3,6 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 
 @Component({
   selector: 'app-complement-documents',
@@ -20,9 +21,10 @@ export class ComplementDocumentsComponent implements OnInit {
   typesDocument:any[];
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
+  demandeNantissementInfos:any;
 
 
-  constructor(    private formBuilder: FormBuilder,private pmeService:PmeService) { }
+  constructor(    private formBuilder: FormBuilder,private pmeService:PmeService,private demandeAdhesionService:DemandesAdhesionService) { }
 
   ngOnInit(): void {
 
@@ -44,6 +46,10 @@ export class ComplementDocumentsComponent implements OnInit {
     {field: 'rating', header: 'Reviews'},
     {field: 'inventoryStatus', header: 'Status'}
 ];
+
+//récupérer les informations du nantissement en cours de modification
+  this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
+  console.log(this.demandeNantissementInfos.ninea)
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier

@@ -426,6 +426,10 @@ isHorizontal() {
     return this.app.horizontalMenu === true;
 }
 
-
+//récupération des informations de la demandes
+getDemandeInfo(demande:DemandeAdhesion){
+    this.demandesAdhesionService.setDemandenantissementObs(demande);
+    console.log(this.demandesAdhesionService.getDemandenantissementObs())
+}
 }
 
