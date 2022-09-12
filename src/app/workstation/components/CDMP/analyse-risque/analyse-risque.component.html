@@ -47,7 +47,7 @@
                                     
                                     <td>
                                         <div class="flex">
-                                            <i class="pi pi-search pi-search" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' " [routerLink]= "['../analyser']" (click)="setPmeinfo(document)" ></i>
+                                            <i class="pi pi-search pi-search" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' " [routerLink]= "['../analyser']" (click)="setPmeInfo(demande)" ></i>
                                             <i class="pi pi-eye pi-eye" *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' " [routerLink]= "['../consulter_demande']" ></i>                                           
                                         </div>
                                     </td>
