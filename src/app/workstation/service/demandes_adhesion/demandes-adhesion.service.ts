@@ -18,27 +18,58 @@ export class DemandesAdhesionService {
     "rccm_file":""   
 });
 
+private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
+  "id": 0,
+  "ninea": "567865467567",
+  "be": "6543568778",
+  "date_soumission": "2021-02-12",
+  "denomination" : "Modelsis SARL",
+  "ATD": "Aucun ATD",
+  "nantissement" : "Creance non nanti",
+  "interdiction" : "Aucune interdiction bancaire",
+  "rccm" : "23058605",
+  "numero_demande" : "2022-0123"
+
+});
+
   constructor(private http: HttpClient) { }
 
   
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion`);
   }
+  getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
+    return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
+  }
 
   patchBasicInformation(id:number,basicInfo:BasicInfo):Observable<DemandeAdhesion>{
     return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,basicInfo)
   }
 
-  setDemandeObs(demande: DemandeAdhesion) {
-    this.demandeObs.next(demande);
+  //recupérer(garder) les informations par rapport à une demande
+  setDemandenantissementObs(demande: DemandeNantissemantInfo) {
+    this.demandenantissementObs.next(demande);
+}
+getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
+  return this.demandenantissementObs.asObservable();
+}
+
+setDemandeObs(demande: DemandeAdhesion) {
+  this.demandeObs.next(demande);
 }
 getDemandeObs(): Observable<DemandeAdhesion> {
-  return this.demandeObs.asObservable();
+return this.demandeObs.asObservable();
 }
 }
 export class BasicInfo{
   id?:number=0;
   nineaExistant?:boolean=false;
   pmeActive?:boolean=false;
+}
+
+export interface DemandeNantissemantInfo{
+    referenceBE?:String;
+    ninea?:String;
+    dateSoumission?:String;
 }
 

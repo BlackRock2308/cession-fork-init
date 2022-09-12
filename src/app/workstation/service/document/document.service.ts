@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Documents } from '../../model/document';
 
+import { Document } from '../../model/document';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,3 +17,4 @@ export class DocumentService {
   }
 
 }
+

@@ -4,7 +4,12 @@ export interface DemandeAdhesion {
     ninea?:string,
     rccm?:string,
     statut?:String;
-    dateSoumission?: string,
+    date_soumission?: string,
+    denomination ?:String,
+    interdiction ?: String,
+    numero_demande ?: number,
+    ATD?: String,
+    nantissement ?: String,
     nineaFile?:File,
     rccmFile?:File 
 }

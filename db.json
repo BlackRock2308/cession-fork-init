@@ -12,60 +12,95 @@
       "rccm": "6543568778",
       "raisonSocial": "Test1"
     },
-    {       
-        "id": 3,
-        "ninea": "567865467567",
-        "rccm": "6543568778",
-        "raisonSocial": "Test2"
+    {
+      "id": 3,
+      "ninea": "567865467567",
+      "rccm": "6543568778",
+      "raisonSocial": "Test2"
     }
   ],
   "demandes_adhesion": [
     {
       "id": 1,
-      "ninea": "567865467567",
-      "statut": "Soumise",
+      "ninea": "567567",
+      "statut": "Completee",
       "rccm": "6543568778",
+      "denomination": "XXX",
+      "raisonSocial": "Modelsis SARL",
+      "refBE": "294067",
       "date_soumission": "2020-12-12",
       "ninea_file": "",
       "rccm_file": "",
       "nineaValide": "false",
-      "pmeActive": ""
+      "pmeActive": "",
+      "ATD": "Aucun ATD",
+      "nantissement": "Creance non nanti",
+      "interdiction": "Aucune interdiction bancaire",
+      "numero_demaande": "2022-0123"
     },
     {
       "id": 2,
       "ninea": "567865467567",
       "rccm": "6543568778",
+      "denomination": "ABC",
+      "refBE": "120965",
+      "raisonSocial": "ENEDIS",
       "statut": "Recevable",
       "date_soumission": "2022-12-12",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "ATD",
+      "nantissement": "Creance nanti",
+      "interdiction": "Aucune interdiction bancaire",
+      "numero_demande": "2022-01987"
     },
     {
       "id": 3,
       "ninea": "567865467567",
-      "statut": "Soumise",
+      "statut": "Risquee",
       "rccm": "6543568778",
+      "denomination": "ABCD",
+      "raisonSocial": "E.COM4",
+      "refBE": "506978",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "Aucun ATD",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Interdiction bancaire",
+      "numero_demande": "2022-0193"
     },
     {
       "id": 4,
       "ninea": "567865467567",
       "rccm": "6543568778",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "denomination": "XXX",
+      "refBE": "294067",
       "date_soumission": "2021-02-12",
-      "statut": "Rejetee",
+      "statut": "Non Risquee",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "Aucun ATD",
+      "nantissement": "Creance non nanti",
+      "interdiction": "Aucune interdiction bancaire",
+      "numero_demande": "2022-0123"
     },
     {
       "id": 5,
       "ninea": "567865467567",
       "rccm": "6543568778",
-      "statut": "Soumise",
+      "statut": "Complement Requis",
       "date_soumission": "2021-02-12",
+      "raisonSocial": "GUINDY SARL",
+      "denomination": "XXX",
+      "refBE": "294067",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "Aucun ATD",
+      "nantissement": "Creance non nanti",
+      "interdiction": "Aucune interdiction bancaire",
+      "numero_demande": "2022-0123"
     },
     {
       "id": 6,
@@ -74,14 +109,18 @@
       "statut": "Recevable",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
-      "rccm_file": ""
+      "rccm_file": "",
+      "ATD": "ATD",
+      "nantissement": "Creance non nanti",
+      "interdiction": "Aucune interdiction bancaire",
+      "numero_demande": "2022-3453"
     }
   ],
   "demandes": [
     {
       "id": 1,
       "numero": "2022-001",
-      "statut": "Soumise",
+      "statut": "Completee",
       "ReferenceBE": "6543568778",
       "date_soumission": "2020-12-12",
       "PmeId": 1
@@ -97,7 +136,7 @@
     {
       "id": 1,
       "numero": "2022-001",
-      "statut": "Soumise",
+      "statut": "Risquee",
       "ReferenceBE": "6543568778",
       "date_soumission": "2020-12-12",
       "PmeId": 1
@@ -105,7 +144,7 @@
     {
       "id": 1,
       "numero": "2022-001",
-      "statut": "Soumise",
+      "statut": "Non Risquee",
       "ReferenceBE": "6543568778",
       "date_soumission": "2020-12-12",
       "PmeId": 2
@@ -120,18 +159,100 @@
       "path": "/assets/doctest.pdf"
     },
     {
-    "id": 1,
-    "nomDocument": "rccm",
-    "dateSoumission": "01/02/2022",
-    "typeDocument": "RCCM",
-    "path": "/assets/doctest2.pdf"
+      "id": 1,
+      "nomDocument": "rccm",
+      "dateSoumission": "01/02/2022",
+      "typeDocument": "RCCM",
+      "path": "/assets/doctest2.pdf"
     },
     {
-    "id": 1,
-    "nomDocument": "Bon d'engagement",
-    "dateSoumission": "04/03/2022",
-    "typeDocument": "BE",
-    "path": "/assets/doctest1.pdf"
+      "id": 1,
+      "nomDocument": "Bon d'engagement",
+      "dateSoumission": "04/03/2022",
+      "typeDocument": "BE",
+      "path": "/assets/doctest1.pdf"
     }
-]
+  ],
+  "types_document": [
+    {
+      "id": 1,
+      "nom": "Business Plan",
+      "type": "pdf"
+    },
+    {
+      "id": 2,
+      "nom": "Etat Financier",
+      "type": "excel"
+    },
+    {
+      "id": 4,
+      "nom": "Rapport ou Compte rendu",
+      "type": "word"
+    },
+    {
+      "id": 5,
+      "nom": "Relevé fiscal",
+      "type": "pdf"
+    }
+  ],
+  "document": [
+    {
+      "id": 1,
+      "nom": "Modelsis SARL",
+      "type": "RCCM",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 2,
+      "nom": "ENEDIS",
+      "type": "NINEA",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 3,
+      "nom": "Business Plan",
+      "type": "Autre",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 4,
+      "nom": "CAMAIEU INTERNATIONAL",
+      "type": "Bon engagement",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 5,
+      "nom": "Raport Fiscal",
+      "type": "Autres",
+      "date_soumission": "2020-12-12"
+    },
+    {
+      "id": 6,
+      "nom": "Etat Financier",
+      "type": "Autres",
+      "date_soumission": "2020-12-12"
+    }
+  ],
+  "autres_document": [
+    {
+      "id": 1,
+      "nom": "Business Plan",
+      "type": "pdf"
+    },
+    {
+      "id": 2,
+      "nom": "Etat Financier",
+      "type": "excel"
+    },
+    {
+      "id": 4,
+      "nom": "Rapport ou Compte rendu",
+      "type": "word"
+    },
+    {
+      "id": 5,
+      "nom": "Relevé fiscal",
+      "type": "pdf"
+    }
+  ]
 }

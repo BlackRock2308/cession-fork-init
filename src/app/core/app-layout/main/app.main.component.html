@@ -8,25 +8,23 @@
                 'p-input-filled': app.inputStyle === 'filled',
                 'p-ripple-disabled': !app.ripple}" [class]="app.menuColor">
 
-    <app-menu></app-menu>
-    <img style="width: 100%; height: 100vh" src="../../../../assets/layout/images/home-screen-cdmp-text.png" alt="cdmp" >
+    <app-side-bar></app-side-bar>
 
 
-    <div class="layout-main" *ngIf="isAuthenticated">
-        <app-topbar></app-topbar>
+    <div class="layout-main">
+        <app-navbar></app-navbar>
 
-        <app-rightpanel></app-rightpanel>
-
-        <app-breadcrumb></app-breadcrumb>
-
+       
         <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
 
-        <app-footer></app-footer>
+      
 
 
         <div class="layout-main-mask"></div>
+        <div class="layout-config-mask" *ngIf="configActive" [@mask-anim]="'visible'"></div>
+
 
     </div>
 </div>

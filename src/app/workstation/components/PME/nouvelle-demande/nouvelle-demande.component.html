@@ -1,0 +1,70 @@
+
+
+      
+            
+
+               <div id="" class="p-4 p-md-5">
+
+        
+        <div class="col-8 ml-auto">
+            <div>
+                <h2 style="color: black;font-weight:100;position: relative;left: 57px;">Reference du bon d'engagement</h2>
+            </div>
+    
+
+            <div class="mt-8 p-fluid">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        
+                <div class="field grid">
+        
+                    <div class="col-12 md:col-4 mb-2">
+                        <input formControlName="ninea" pInputText id="name3" placeholder="30126789324" type="text" />
+                    </div>
+        
+                    <div class="col-12 md:col-6 mb-2">
+                            <div class="col-12">
+        
+                                <div class="formgroup-inline">
+        
+                                    <div class="field col-12 md:col-5 mb-1">
+                                        <input  *ngIf="selectedBONFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Charger le fichier du bon" placeholder="Choose a file">
+                                        <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedBONFiles.name}}</ng-template>
+                                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-BONfile"  ngf-max-size="2MB" (change)="selectBONFile($event)">
+                                    </div>
+        
+                                    <div class="field col-12 md:col-5 mb-1">
+        
+                                        <button type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload " id="upload-NINEAfile" (click)="handleBONClick()" ></button>
+                                    </div>
+        
+                                </div>
+                                
+                            </div>
+        
+                    </div>
+                    
+                </div>
+               
+                <div class="field grid" style="margin-top: 30px;">
+                    <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+        
+                    <div class="col-12 md:col-4">
+                        <button type="submit"
+                        class="btn btn-success"
+                        [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"></button>
+                    </div>
+        
+                </div>
+                </form>
+            </div>
+        
+        </div>
+    </div> 
+             
+      
+ 
+ 
+   
+
+    
+	
