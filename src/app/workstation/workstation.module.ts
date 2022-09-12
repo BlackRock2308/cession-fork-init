@@ -12,6 +12,7 @@ import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouv
 import { RouterModule } from '@angular/router';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
+import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ComplementDocumentsComponent } from './components/PME/complement_docume
     AdhesionComponent,
     AnalyseRisqueComponent,
     TacheAnalyseComponent,
-    ComplementDocumentsComponent
+    ComplementDocumentsComponent,
+    ConsulterDemandeComponent
     
   ],
   imports: [
