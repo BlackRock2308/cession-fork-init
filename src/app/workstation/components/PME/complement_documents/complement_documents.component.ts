@@ -30,21 +30,18 @@ export class ComplementDocumentsComponent implements OnInit {
 
     this.pmeService.getTypesDocument().subscribe(data=>{
       this.typesDocument=data;
-      this.typesDocument.push({nom:"Autres..."})
-      console.log(this.typesDocument)
+      this.typesDocument.push({nom:"Autres"})
+      //console.log(this.typesDocument)
     })
 
     this.documentForm= this.formBuilder.group({
       typeDocument: [''],
-      file: [''],
+      file: ['']
   });
-
   this.cols = [
-    {field: 'ninea', header: 'NINEA'},
-    {field: 'rccm', header: 'RCCM'},
-    {field: 'datesoumission', header: 'Date Soumission'},
-    {field: 'rating', header: 'Reviews'},
-    {field: 'inventoryStatus', header: 'Status'}
+    {field: 'typeDocument', header: 'Type Document'},
+    {field: 'nomDocument', header: 'Nom Document'},
+    {field: 'action', header: 'Action'},
 ];
 
 //récupérer les informations du nantissement en cours de modification
@@ -58,6 +55,7 @@ export class ComplementDocumentsComponent implements OnInit {
     this.document=this.documentForm.value;
     this.document.file=files.target.files[0];
     this.documents.push(this.document);
+    files.target.files=null;
     console.log(this.documents)
         
   }
@@ -78,7 +76,7 @@ export class ComplementDocumentsComponent implements OnInit {
       }
 
       for(var i=0;i<this.documents.length;i++){
-        this.enregistrerDocuments(this.documents[i]);
+        this.enregistrerDocument(this.documents[i]);
 
 
       }
@@ -88,26 +86,22 @@ export class ComplementDocumentsComponent implements OnInit {
   
   
   //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerDocuments(document:Document) {
+  private enregistrerDocument(document:Document) {
     //fonction à continuer 
     console.log(this.documents);
-    /*this.adhesionService.postPME(this.pme)
+    this.pmeService.postDocument(document)
         .subscribe(() => {
-           })*/
+           })
         
   }
-  filtertypeDocument(event) {
-    const filtered: any[] = [];
-    const query = event.query;
-    for (let i = 0; i < this.typesDocument.length; i++) {
-        const typeDocument = this.typesDocument[i];
-        if (typeDocument.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-            filtered.push(typeDocument);
-        }
-    }
 
-    this.filteredtypeDocument = filtered;
-}
+  delete(document:Document){
+    var myIndex = this.documents.indexOf(document);
+    if (myIndex !== -1) {
+      this.documents.splice(myIndex, 1);
+  }
+  console.log(this.documents)
+  }
   
 }
 interface Document{
