@@ -12,7 +12,12 @@ import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouv
 import { RouterModule } from '@angular/router';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
-
+import { TableModule } from 'primeng/table';
+import {CardModule} from 'primeng/card';
+import { VisualiserDemandesComponent } from './components/CDMP/visualiser-demandes/visualiser-demandes.component';
+import { VisualiserDocumentComponent } from './components/CDMP/visualiser-document/visualiser-document.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,19 +29,30 @@ import { ComplementDocumentsComponent } from './components/PME/complement_docume
     AdhesionComponent,
     AnalyseRisqueComponent,
     TacheAnalyseComponent,
-    ComplementDocumentsComponent
+    ComplementDocumentsComponent,
+    VisualiserDemandesComponent,
+    VisualiserDocumentComponent
     
   ],
   imports: [
     CoreModule,
-    WorkstationRoutingModule
+    WorkstationRoutingModule,
+    CardModule,
+    TableModule,
+    PdfViewerModule
   ],
   exports: [
     RouterModule,
     //CoreModule,
-    NouvelleDemandeComponent
-    
+    NouvelleDemandeComponent,
       
-  ]
+  ],
+  entryComponents: [
+    VisualiserDocumentComponent
+     
+],
+providers: [
+  NgbActiveModal
+]
 })
 export class WorkstationModule { }

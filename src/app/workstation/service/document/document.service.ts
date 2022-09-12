@@ -16,5 +16,9 @@ export class DocumentService {
     return this.http.get<Documents[]>(`${this.baseUrl}/documents`);
   }
 
+  getDocuments(): Observable<Document[]> {
+    return this.http.get<Document[]>(`${this.baseUrl}/document`);
+  }
+
 }
 
