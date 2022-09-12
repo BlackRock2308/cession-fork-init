@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
+import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
@@ -25,6 +26,9 @@ const routes: Routes = [
 
   {path:'cdmp/analyser' , component:TacheAnalyseComponent},
   {path: 'cdmp/visualiser-demandes', component: VisualiserDemandesComponent},
+
+  //Consulter une demande de cession a l'etat risque ou non risquee
+  {path:'cdmp/consulter_demande' , component:ConsulterDemandeComponent},
 
  // {path:'demandes',loadChildren: () => import('./components/CDMP/demandes-adhesion/adhesion-process/adhesion-process-routing.module').then(m => m.AdhesionProcessModule)},
 

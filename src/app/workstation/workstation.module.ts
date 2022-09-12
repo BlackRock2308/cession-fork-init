@@ -18,6 +18,8 @@ import { VisualiserDemandesComponent } from './components/CDMP/visualiser-demand
 import { VisualiserDocumentComponent } from './components/CDMP/visualiser-document/visualiser-document.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     TacheAnalyseComponent,
     ComplementDocumentsComponent,
     VisualiserDemandesComponent,
-    VisualiserDocumentComponent
+    VisualiserDocumentComponent,
+    ConsulterDemandeComponent
     
   ],
   imports: [
