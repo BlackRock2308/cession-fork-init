@@ -1,20 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { Document } from '../../model/document';
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentService {
 
-  private baseUrl = 'http://localhost:3000/documents';
+  private baseUrl = 'http://localhost:3000';
 
 
   constructor(private http:HttpClient) { }
  
 
-  getTypesDocument(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/types_document`);
+  getDocuments(): Observable<Document[]> {
+    return this.http.get<Document[]>(`${this.baseUrl}/document`);
   }
 
   

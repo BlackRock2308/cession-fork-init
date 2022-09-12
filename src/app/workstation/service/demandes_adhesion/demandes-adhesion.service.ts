@@ -22,7 +22,14 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   "id": 0,
   "ninea": "567865467567",
   "be": "6543568778",
-  "date_soumission": "2021-02-12"   
+  "date_soumission": "2021-02-12",
+  "denomination" : "Modelsis SARL",
+  "ATD": "Aucun ATD",
+  "nantissement" : "Creance non nanti",
+  "interdiction" : "Aucune interdiction bancaire",
+  "rccm" : "23058605",
+  "numero_demande" : "2022-0123"
+
 });
 
   constructor(private http: HttpClient) { }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
+import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path: 'cdmp/demandes_en_cours', component: DemandesAdhesionComponent},
   //Page d'accueil de la CDMP
   {path: 'cdmp/accueil', component: MenuCdmpComponent},
+
+  {path:'cdmp/analyser' , component:TacheAnalyseComponent},
 
  // {path:'demandes',loadChildren: () => import('./components/CDMP/demandes-adhesion/adhesion-process/adhesion-process-routing.module').then(m => m.AdhesionProcessModule)},
 
