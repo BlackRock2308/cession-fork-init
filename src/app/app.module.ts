@@ -36,6 +36,7 @@ import { AppTopBarComponent } from './core/app-layout/top-bar/app.topbar.compone
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuService } from './core/app-layout/side-menu/app.menu.service';
+import { StepsModule } from 'primeng/steps';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -61,7 +62,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule ,
-        DynamicDialogModule
+        DynamicDialogModule,
+        StepsModule
 
     ],
     declarations: [

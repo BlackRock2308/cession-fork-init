@@ -12,6 +12,8 @@ import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouv
 import { RouterModule } from '@angular/router';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
+import { VerificationComponent } from './components/CDMP/verification/verification.component';
+import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { ComplementDocumentsComponent } from './components/PME/complement_docume
     AdhesionComponent,
     AnalyseRisqueComponent,
     TacheAnalyseComponent,
-    ComplementDocumentsComponent
+    ComplementDocumentsComponent,
+    VerificationComponent,
+    InformationsNineaComponent
     
   ],
   imports: [

@@ -16,7 +16,7 @@ const routes: Routes = [
     {
         path: '', component: AppMainComponent,
         children: [
-            {path: '', redirectTo: 'workstation', pathMatch: 'full'},
+            {path: '', redirectTo: 'workstation/pme/demandes_en_cours', pathMatch: 'full'},
             {
                 path: 'workstation',
                 loadChildren:() =>import('./workstation/workstation.module').then(m =>m.WorkstationModule),

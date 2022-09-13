@@ -80,8 +80,13 @@ export class ComplementDocumentsComponent implements OnInit {
 
 
       }
+
+      this.patchDemandeStatut(this.demandeNantissementInfos.id,{"statut":"Completee"})
     
       
+  }
+  patchDemandeStatut(id:number, statut: any) {
+    this.pmeService.patchStatutDemande(id,statut).subscribe()
   }
   
   

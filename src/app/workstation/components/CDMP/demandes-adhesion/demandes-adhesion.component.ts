@@ -17,19 +17,14 @@ export class DemandesAdhesionComponent implements OnInit {
 
 
 
-  productDialog: boolean;
+  demandeDialog: boolean;
 
-  deleteProductDialog: boolean = false;
 
-  deleteProductsDialog: boolean = false;
 
-  products: Product[];
   demandes:DemandeAdhesion[];
 
   demande:DemandeAdhesion;
-  product: Product;
 
-  selectedProducts: Product[];
 
   submitted: boolean;
 
@@ -39,7 +34,9 @@ export class DemandesAdhesionComponent implements OnInit {
 
   rowsPerPageOptions = [5, 10, 20];
 
-  routeItems: MenuItem[];
+  items: MenuItem[];
+   
+  activeIndex: number = 1;
 
 
   constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService
@@ -59,12 +56,17 @@ export class DemandesAdhesionComponent implements OnInit {
           {field: 'inventoryStatus', header: 'Status'}
       ];
 
-      this.routeItems = [
-        {label: 'Verification', routerLink:'verification'},
-        {label: 'Informations', routerLink:'informations_complementaire'},
-    ];
-    console.log(this.productDialog)
 
+    this.items = [
+    {
+        label: 'Verifications',
+        routerLink: 'steps/verificationn',
+    },
+    {
+        label: 'Informations',
+        routerLink: 'steps/informations_ninea',
+    }
+];
       
   }
 
@@ -72,9 +74,9 @@ export class DemandesAdhesionComponent implements OnInit {
 
 
 
-  editProduct(demande: DemandeAdhesion) {
+  verifierDemande(demande: DemandeAdhesion) {
       this.demande = {...demande};
-      this.productDialog = true;
+      this.demandeDialog = true;
       console.log(demande)
       this.demandesAdhesionService.setDemandeObs(demande);
 
@@ -87,54 +89,8 @@ export class DemandesAdhesionComponent implements OnInit {
 
 
   hideDialog() {
-      this.productDialog = false;
+      this.demandeDialog = false;
       this.submitted = false;
-  }
-
-  saveProduct() {
-      this.submitted = true;
-
-      if (this.product.name.trim()) {
-          if (this.product.id) {
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
-              this.products[this.findIndexById(this.product.id)] = this.product;
-              this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
-          } else {
-              this.product.id = this.createId();
-              this.product.code = this.createId();
-              this.product.image = 'product-placeholder.svg';
-              // @ts-ignore
-              this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-              this.products.push(this.product);
-              this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
-          }
-
-          this.products = [...this.products];
-          this.productDialog = false;
-          this.product = {};
-      }
-  }
-
-  findIndexById(id: string): number {
-      let index = -1;
-      for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].id === id) {
-              index = i;
-              break;
-          }
-      }
-
-      return index;
-  }
-
-  createId(): string {
-      let id = '';
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      for (let i = 0; i < 5; i++) {
-          id += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return id;
   }
 
   nineaValide():any{
@@ -143,4 +99,5 @@ export class DemandesAdhesionComponent implements OnInit {
     targetDiv.style.display = "flex";
   
 }
+
 }

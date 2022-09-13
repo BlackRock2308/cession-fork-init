@@ -34,9 +34,9 @@
 
 }
 
-::ng-deep div.p-dialog-header.ng-tns-c94-0.ng-star-inserted{
-    //border: none;
-    display: none;
+::ng-deep div.p-dialog-header.ng-tns-c96-4.ng-star-inserted{
+    border: none;
+    //display: none;
 
 }
 
@@ -67,4 +67,56 @@
 
 ::ng-deep .form-check-input{
     background-color: green;
+}
+
+.tabMenu{
+    display: flex;
+   
+}
+
+p-steps p-steps-item {
+    width: 25%;
+}
+
+p-steps.steps-custom {
+    margin-bottom: 30px;
+}
+
+p-steps.steps-custom p-steps-item p-menuitem-link {
+    padding: 0 1em;
+    overflow: visible;
+}
+
+.p-steps.steps-custom .p-steps-item .p-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 36px;
+    border-radius: 50%;
+    margin-top: -14px;
+    margin-bottom: 10px;
+}
+
+.p-steps.steps-custom .p-steps-item .p-steps-title {
+    color: #555555;
+}
+
+#steps {
+   
+}
+
+.p-steps.steps-custom .p-steps-item .p-steps-number {
+  background-color: #B33213;
+  color: transparent;
+  border-radius: 50%; 
+}
+
+.p-steps.steps-custom .p-steps-item {
+  color: #003399;
+}
+
+//change the color's label of each step
+.p-steps.steps-custom .p-steps-item .p-steps-title {
+  color: #003399;
+  font-size: medium;
 }

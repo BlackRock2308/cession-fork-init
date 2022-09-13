@@ -1,6 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DemandeAdhesion } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class PmeService {
       responseType: 'json'
     });
     return this.http.request(req);
+  }
+
+  patchStatutDemande(id:number,statut:any):Observable<DemandeAdhesion>{
+    return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,statut)
   }
 }
