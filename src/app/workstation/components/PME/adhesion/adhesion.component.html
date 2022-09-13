@@ -1,4 +1,4 @@
-<div class="">
+<div style="height: min-content;">
     <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="...">
 
 </div>
@@ -15,7 +15,7 @@
             <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-1 text">Ninea</label>
 
             <div class="col-12 md:col-3 mb-2">
-                <input formControlName="ninea" pInputText id="name3" type="text" />
+                <input formControlName="ninea" pInputText id="name3" type="text" placeholder="10585678"/>
             </div>
 
             <div class="col-12 md:col-6 mb-2">
@@ -25,8 +25,8 @@
 
                             <div class="field col-12 md:col-5 mb-1">
                                 <label for="NINEAfile" class="p-sr-only">NINEA File</label>
-                                <input  *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file" placeholder="Choose a file">
-                                <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Upload NINEA file">{{selectedNINEAFiles.name}}</ng-template>
+                                <input  *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text" pInputText  pTooltip="Charger document" placeholder="Document de référence du NINEA">
+                                <ng-template  #elseNINEABlock id="NINEAfile" type="text" pInputText  pTooltip="Charger document">{{selectedNINEAFiles.name}}</ng-template>
                                 <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile" name="upload-NINEAfile"  ngf-max-size="2MB" (change)="selectNINEAFile($event)">
                             </div>
 
@@ -47,7 +47,7 @@
             <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-0 text">RCCM</label>
 
             <div class="col-12 md:col-3">
-                <input formControlName="rccm" pInputText id="name3" type="text" />
+                <input formControlName="rccm" pInputText id="name3" type="text" placeholder="04056579"/>
             </div>
 
             <div class="col-12 md:col-6 mb-2">
@@ -58,7 +58,7 @@
 
                         <div class="field col-12 md:col-5 mb-1">
                             <label for="RCCMfile" class="p-sr-only">RCCMFile</label>
-                            <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile" type="text" pInputText  pTooltip="Upload RCCM file" placeholder="Choose a file">
+                            <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile" type="text" pInputText  pTooltip="Charger document" placeholder="Document de référence du RCCM">
                             <ng-template #elseRCCMBlock id="RCCMfile" type="text" pInputText  pTooltip="Upload file">{{selectedRCCMFiles.name}}</ng-template>
                             <input formControlName="rccmFile" class="hidden" type="file" id="upload-RCCMfile" name="upload-RCCMfile"  ngf-max-size="2MB" (change)="selectRCCMFile($event)">
                         </div>
@@ -93,9 +93,7 @@
                 [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2"
                 routerLink="/home"></button>
             </div>
-
         </div>
         </form>
     </div>
-
 </div>

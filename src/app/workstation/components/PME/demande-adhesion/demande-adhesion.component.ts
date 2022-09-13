@@ -135,7 +135,7 @@ export class DemandeAdhesionComponent implements OnInit {
      
   });
    
-    this.demandesAdhesionService.getDemandesAdhesionById().subscribe(data=>{
+    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
       this.demandes=data
   console.log(this.demandes)});
 
@@ -419,6 +419,10 @@ isHorizontal() {
     return this.app.horizontalMenu === true;
 }
 
-
+//récupération des informations de la demandes
+setDemandeInfo(demande:DemandeAdhesion){
+    this.demandesAdhesionService.setDemandenantissementObs(demande);
+    console.log(this.demandesAdhesionService.getDemandenantissementObs())
+}
 }
 

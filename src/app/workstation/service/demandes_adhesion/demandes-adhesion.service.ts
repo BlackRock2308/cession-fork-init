@@ -19,20 +19,18 @@ export class DemandesAdhesionService {
 });
 
 private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
-  "id": 0,
-  "ninea": "567865467567",
-  "be": "6543568778",
-  "date_soumission": "2021-02-12",
-  "denomination" : "Modelsis SARL",
-  "ATD": "Aucun ATD",
-  "nantissement" : "Creance non nanti",
-  "interdiction" : "Aucune interdiction bancaire",
-  "rccm" : "23058605",
-  "numero_demande" : "2022-0123"
-
+  id: 0,
+  ninea: "567865467567",
+  refBE: "6543568778",
+  date_soumission: "2021-02-12"   
 });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    //garder les infos en session au cas où l'on fait un refresh
+    let storedNantissement=localStorage.getItem('storedNantissement');
+    if(storedNantissement)
+      this.setDemandenantissementObs(JSON.parse(storedNantissement))
+  }
 
   
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
@@ -48,6 +46,7 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 
   //recupérer(garder) les informations par rapport à une demande
   setDemandenantissementObs(demande: DemandeNantissemantInfo) {
+    localStorage.setItem('storedNantissement',JSON.stringify(demande));
     this.demandenantissementObs.next(demande);
 }
 getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
@@ -68,8 +67,9 @@ export class BasicInfo{
 }
 
 export interface DemandeNantissemantInfo{
-    referenceBE?:String;
+    id?:number;
+    refBE?:String;
     ninea?:String;
-    dateSoumission?:String;
+    date_soumission?:String;
 }
 

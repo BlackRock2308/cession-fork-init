@@ -176,7 +176,7 @@
   "types_document": [
     {
       "id": 1,
-      "nom": "Business Plan",
+      "nom":  "Business Plan",
       "type": "pdf"
     },
     {
@@ -236,7 +236,7 @@
   "autres_document": [
     {
       "id": 1,
-      "nom": "Business Plan",
+      "nom":  "Business Plan",
       "type": "pdf"
     },
     {
@@ -253,6 +253,58 @@
       "id": 5,
       "nom": "Relevé fiscal",
       "type": "pdf"
+    }
+  ],
+  "documents_complementaire": [
+    {
+      "id": 1,
+      "type_document": "Business Plan",
+      "file": ""
+    },
+    {
+      "id": 2,
+      "type_document": "Autre",
+      "file": "File {name: 'Arbre à Problème.pdf', lastModified: 1639654648240, lastModifiedDate: Thu Dec 16 2021 10:37:28 GMT-0100 (heure normale des Açores), webkitRelativePath: '', size: 73322, …}"
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 3
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 4
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 5
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 6
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 7
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 8
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 9
+    },
+    {
+      "typeDocument": "Journal",
+      "file": {},
+      "id": 10
     }
   ]
 }

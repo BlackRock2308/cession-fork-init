@@ -27,12 +27,12 @@
                                 <tr>
                                    
                                     <td style="width:30%; min-width:10rem;">
-                                        <span class="p-column-title">NINEA</span>
-                                        {{demande.ninea}}
+                                        <span class="p-column-title">Reference du BE</span>
+                                        {{demande.refBE}}
                                     </td>
                                     
                                     <td style="width:30%; min-width:8rem;">
-                                        <span class="p-column-title">RCCM</span>
+                                        <span class="p-column-title">Date Soumission</span>
                                         {{demande.date_soumission}}
                                     </td>
                                     <td style="width:30%;">
@@ -42,10 +42,8 @@
                                     
                                     <td>
                                         <div class="flex">
-                                            <i class="pi pi-eye pi-eye mx-3 "  pTooltip="Consulter les dossiers" (click)="consulterDemande(demande)" ></i>
-                                            
-                                            <i class="pi pi-pencil pi-pencil"  pTooltip="Completer le dossier" [routerLink]="['complement_documents']" (click)="completeDocuments(demande)" [state]="{ infos:this.basicInfo }" ></i>
-                                        
+                                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text mr-2 button" pInputText  pTooltip="Consulter les dossiers" ></button>
+                                            <button *ngIf="demande.statut=='Complement Requis'" pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-text mr-2 button" pTooltip="Completer le dossier" [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)" ></button>
                                         </div>
                                     </td>
                                 </tr>

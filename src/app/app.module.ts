@@ -40,6 +40,7 @@ import { VisualiserDocumentComponent } from './workstation/components/CDMP/visua
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuService } from './core/app-layout/side-menu/app.menu.service';
+import { StepsModule } from 'primeng/steps';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,

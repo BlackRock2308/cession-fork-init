@@ -19,6 +19,8 @@ import { VisualiserDocumentComponent } from './components/CDMP/visualiser-docume
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
+import { VerificationComponent } from './components/CDMP/verification/verification.component';
+import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
 
 
 @NgModule({
@@ -34,7 +36,10 @@ import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/c
     ComplementDocumentsComponent,
     VisualiserDemandesComponent,
     VisualiserDocumentComponent,
-    ConsulterDemandeComponent
+    ConsulterDemandeComponent,
+    VerificationComponent,
+    InformationsNineaComponent
+
     
   ],
   imports: [
