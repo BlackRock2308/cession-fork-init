@@ -60,7 +60,7 @@ export class DemandesAdhesionComponent implements OnInit {
     this.items = [
     {
         label: 'Verifications',
-        routerLink: 'steps/verificationn',
+        routerLink: 'steps/verification',
     },
     {
         label: 'Informations',
