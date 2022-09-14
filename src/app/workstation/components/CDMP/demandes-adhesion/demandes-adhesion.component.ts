@@ -6,6 +6,7 @@ import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class DemandesAdhesionComponent implements OnInit {
   activeIndex: number = 1;
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService
+  constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService, private router: Router,
               ) {}
 
   ngOnInit() {
@@ -79,6 +80,7 @@ export class DemandesAdhesionComponent implements OnInit {
       this.demandeDialog = true;
       console.log(demande)
       this.demandesAdhesionService.setDemandeObs(demande);
+      this.router.navigate(['workstation/cdmp/visualiser-demandes']);
 
       
   }
