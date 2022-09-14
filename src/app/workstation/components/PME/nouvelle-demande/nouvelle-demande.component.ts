@@ -9,7 +9,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
-import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -27,18 +27,6 @@ import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 ],
 })
 export class NouvelleDemandeComponent implements OnInit {
-
-    selectedFiles: File[]=[];
-    selectedFile?:File;
-    documentForm: FormGroup;
-    documents:Document[]=[];
-    document:Document;
-    cols: any[];
-    selectedProducts: Document[];
-    typesDocument:any[];
-    filteredtypeDocument: any[];
-    selectedTypeDocument: string;
-  
   rightPanelClick: boolean;
 
   rightPanelActive: boolean;
@@ -90,94 +78,189 @@ export class NouvelleDemandeComponent implements OnInit {
     private adhesionService: AdhesionService,
     public renderer: Renderer2, private menuService: MenuService,
     private primengConfig: PrimeNGConfig,
-    public app: AppComponent,
-    private pmeService:PmeService
+    public app: AppComponent
   ) { }
 
   ngOnInit(): void {
 
-    this.pmeService.getTypesDocument().subscribe(data=>{
-        this.typesDocument=data;
-        this.typesDocument.push({nom:"Autres..."})
-        console.log(this.typesDocument)
-      })
+    this.form = this.formBuilder.group({
+      ninea: ['', Validators.required],
+      nineaFile: ['', Validators.required]
+     
+  });
+  }
+
+  //sélectionner le fichier du ninea
+  selectBONFile(files: any): void {
+    this.selectedBONFiles = files.target.files[0];
+    console.log(this.selectedBONFiles);
+  }
+
+//ouvrir la boite de dialogue du répertoire
+handleBONClick() {
+  document.getElementById('upload-NINEAfile').click();
+}
   
-      this.documentForm= this.formBuilder.group({
-        typeDocument: [''],
-        file: [''],
-    });
-  
-  }
-
-   //ajouter le fichier sélectionné au répertoire de fichier
-   selectFile(files: any): void {
-    
-    this.document=this.documentForm.value;
-    this.document.file=files.target.files[0];
-    this.documents.push(this.document)
-    console.log(this.documents)
-        
-  }
-
-  //ouvrir la boite de dialogue du répertoire
-  handleClick() {
-    document.getElementById('upload-file').click();
-  }
-
-    //envoie du formulaire
-    onSubmit() {
-
-
-      
-      // arrêter si le formulaire est invalide
-      if (this.documentForm.invalid) {
-          return;
-      }
-
-      for(var i=0;i<this.documents.length;i++){
-        this.enregistrerDocuments(this.documents[i]);
-
-
-      }
-    
-      
-  }
-  
-  
-  //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerDocuments(document:Document) {
-    //fonction à continuer 
-    console.log(this.documents);
-    /*this.adhesionService.postPME(this.pme)
-        .subscribe(() => {
-           })*/
-        
-  }
-  filtertypeDocument(event) {
-    const filtered: any[] = [];
-    const query = event.query;
-    for (let i = 0; i < this.typesDocument.length; i++) {
-        const typeDocument = this.typesDocument[i];
-        if (typeDocument.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-            filtered.push(typeDocument);
-        }
+  onLayoutClick() {
+    if (!this.topbarItemClick) {
+        this.activeTopbarItem = null;
+        this.topbarMenuActive = false;
     }
 
-    this.filteredtypeDocument = filtered;
+    if (!this.rightPanelClick) {
+        this.rightPanelActive = false;
+    }
+
+    if (!this.megaMenuClick) {
+        this.megaMenuActive = false;
+    }
+
+    if (!this.megaMenuMobileClick) {
+        this.megaMenuMobileActive = false;
+    }
+
+    if (!this.menuClick) {
+        if (this.isHorizontal()) {
+            this.menuService.reset();
+        }
+
+        if (this.menuMobileActive) {
+            this.menuMobileActive = false;
+        }
+
+        this.menuHoverActive = false;
+    }
+
+    this.menuClick = false;
+    this.topbarItemClick = false;
+    this.megaMenuClick = false;
+    this.megaMenuMobileClick = false;
+    this.rightPanelClick = false;
 }
+
+onMegaMenuButtonClick(event) {
+    this.megaMenuClick = true;
+    this.megaMenuActive = !this.megaMenuActive;
+    event.preventDefault();
+}
+
+onMegaMenuClick(event) {
+    this.megaMenuClick = true;
+    event.preventDefault();
+}
+
+onTopbarItemClick(event, item) {
+    this.topbarItemClick = true;
+
+    if (this.activeTopbarItem === item) {
+        this.activeTopbarItem = null; } else {
+        this.activeTopbarItem = item; }
+
+    event.preventDefault();
+}
+
+onRightPanelButtonClick(event) {
+    this.rightPanelClick = true;
+    this.rightPanelActive = !this.rightPanelActive;
+
+    event.preventDefault();
+}
+
+onRightPanelClose(event) {
+    this.rightPanelActive = false;
+    this.rightPanelClick = false;
+
+    event.preventDefault();
+}
+
+onRightPanelClick(event) {
+    this.rightPanelClick = true;
+
+    event.preventDefault();
+}
+
+onTopbarMobileMenuButtonClick(event) {
+    this.topbarMobileMenuClick = true;
+    this.topbarMobileMenuActive = !this.topbarMobileMenuActive;
+
+    event.preventDefault();
+}
+
+onMegaMenuMobileButtonClick(event) {
+    this.megaMenuMobileClick = true;
+    this.megaMenuMobileActive = !this.megaMenuMobileActive;
+
+    event.preventDefault();
+}
+
+onMenuClick() {
+  this.menuClick = true;
+}
+onMenuButtonClick(event) {
+    this.menuClick = true;
+    this.topbarMenuActive = false;
+
+    if (this.isMobile()) {
+        this.menuMobileActive = !this.menuMobileActive;
+    }
+
+    event.preventDefault();
+}
+
+onSidebarClick(event: Event) {
+    this.menuClick = true;
+}
+
+onToggleMenuClick(event: Event) {
+    this.staticMenuActive = !this.staticMenuActive;
+    event.preventDefault();
+}
+
+onRippleChange(event) {
+    this.app.ripple = event.checked;
+    this.primengConfig = event.checked;
+}
+
+isDesktop() {
+    return window.innerWidth > 991;
+}
+
+isMobile() {
+    return window.innerWidth <= 991;
+}
+
+isHorizontal() {
+    return this.app.horizontalMenu === true;
+}
+
+
+
+
   
-}
-interface Document{
+
+  //envoie du formulaire
+  onSubmit() {
+    // arrêter si le formulaire est invalide
+    if (this.form.invalid) {
+        return;
+    }
+  
+    this.enregistrerBon();
     
-  type?:String;
-  file?:File;
 }
 
-interface typeDocument{
-  nom?:String;
+
+//enregistrement du bbn d'engagement avec l'appel du service d'enregistrement
+private enregistrerBon() {
+  this.pme=this.form.value;
+  this.pme.nineaFile=this.selectedBONFiles;
+  //fonction à continuer 
+  console.log(this.pme);
+  /*this.adhesionService.postPME(this.pme)
+      .subscribe(() => {
+         })*/
+      
 }
 
-  
 
-
-
+}

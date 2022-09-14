@@ -21,13 +21,14 @@ const routes: Routes = [
     {
         path: 'workstation', component: AppMainComponent,
         children: [
+            {path: '', redirectTo: 'workstation/pme/demandes_en_cours', pathMatch: 'full'},
             {
                 path: '',
                 loadChildren: () => import('./workstation/workstation.module').then(m => m.WorkstationModule),
             },
         ]
     },
-    { path: '**', redirectTo: 'login' },
+    //{ path: '**', redirectTo: 'login' },
 
     { path: 'pme/adhesion', component: AdhesionComponent },
 
