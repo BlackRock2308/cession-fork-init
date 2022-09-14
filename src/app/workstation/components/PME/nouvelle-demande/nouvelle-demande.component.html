@@ -51,7 +51,7 @@
                     <div class="col-12 md:col-4">
                         <button type="button"
                         class="btn btn-success"
-                        [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2" routerLink="../demandes_en_cours"></button>
+                        [disabled]="!form.valid" pButton pRipple  label="Soumettre" class="p-button-danger mr-2 mb-2" routerLink="../demandes_en_cours" (click)="onSubmit()"></button>
                     </div>
         
                 </div>
