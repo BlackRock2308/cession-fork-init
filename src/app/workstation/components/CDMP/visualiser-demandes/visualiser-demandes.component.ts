@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Documents } from 'src/app/workstation/model/document';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 
@@ -26,8 +27,9 @@ export class VisualiserDemandesComponent implements OnInit {
   documents: any[];
   cols: any[];
   ref: DynamicDialogRef;
+  demandeNantissementInfos: any;
 
-  constructor( private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService) { }
+  constructor( private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService ,private demandeAdhesionService:DemandesAdhesionService) { }
 
   ngOnInit(): void {
     this.documentService.getDeocuments().subscribe(data => {
@@ -39,6 +41,11 @@ export class VisualiserDemandesComponent implements OnInit {
       { field: 'typeDocument', header: 'TypeDocument' },
       { field: 'dateSoumission', header: 'Date Soumission' },
     ];
+
+    //récupérer les informations du nantissement en cours de modification
+  this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
+  console.log(this.demandeNantissementInfos)
+  
   }
 
   /**
