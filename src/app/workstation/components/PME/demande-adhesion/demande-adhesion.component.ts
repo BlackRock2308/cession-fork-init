@@ -204,6 +204,7 @@ deleteSelectedProducts() {
 }
 
 consulterDemande(demande: DemandeAdhesion) {
+    this.setDemandeInfo(demande)
     this.router.navigate(['workstation/cdmp/visualiser-demandes']);
 }
 

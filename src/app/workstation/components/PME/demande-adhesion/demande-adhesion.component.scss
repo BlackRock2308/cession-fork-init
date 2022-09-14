@@ -157,6 +157,11 @@ a{
         background-color: #203359;
     
     }
+
+    ::ng-deep div.p-datatable-header.ng-star-inserted{
+        background-color: #EFEFEF;
+    
+    }
     
     .title{
         color:white;
