@@ -233,11 +233,6 @@ isHorizontal() {
     return this.app.horizontalMenu === true;
 }
 
-
-
-
-  
-
   //envoie du formulaire
   onSubmit() {
     // arrêter si le formulaire est invalide

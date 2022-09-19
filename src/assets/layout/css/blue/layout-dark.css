@@ -713,7 +713,7 @@ a {
     display: inline-block;
   }
   .layout-wrapper.layout-sidebar-mobile-active .layout-topbar .layout-topbar-wrapper .layout-topbar-left .sidebar-menu-button {
-    background-color: #d8dee9;
+    background-color: #ffffff;
     -moz-transition: background-color 0.15s;
     -o-transition: background-color 0.15s;
     -webkit-transition: background-color 0.15s;
@@ -7308,7 +7308,7 @@ a {
     width: 100%;
   }
   .layout-wrapper.layout-topbar-mobile-active .layout-topbar .layout-topbar-wrapper .layout-topbar-left .topbar-menu-mobile-button {
-    background-color: #d8dee9;
+    background-color: #ffffff;
     -moz-transition: background-color 0.15s;
     -o-transition: background-color 0.15s;
     -webkit-transition: background-color 0.15s;

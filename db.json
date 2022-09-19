@@ -23,7 +23,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Complement Requis",
+      "statut": "Completee",
       "rccm": "6543568778",
       "denomination": "XXX",
       "raisonSocial": "Modelsis SARL",
@@ -115,7 +115,6 @@
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3453",
       "refBE": "294527"
-
     },
     {
       "id": 7,
@@ -130,7 +129,6 @@
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3454",
       "refBE": "094067"
-
     }
   ],
   "demandes": [
@@ -322,6 +320,11 @@
       "typeDocument": "Journal",
       "file": {},
       "id": 10
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 11
     }
   ]
 }
