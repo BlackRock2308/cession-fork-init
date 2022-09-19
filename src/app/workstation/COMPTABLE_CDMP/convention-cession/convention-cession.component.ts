@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
+import { Convention } from '../../model/convention';
 import { DemandeAdhesion } from '../../model/demande';
 import { Documents } from '../../model/document';
 import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from '../../service/document/document.service';
+import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
 
 @Component({
   selector: 'app-convention-cession',
@@ -166,5 +168,17 @@ minusZoom() {
   if (this.zoom > 0.8) {
     this.zoom = this.zoom - 0.10
   }
+}
+
+ChargerConvention(convention: Convention) {
+  const ref = this.dialogService.open(ConventionEnregistreeComponent, {
+    data: {
+      convention: convention
+    },
+    header: "Charger la convention enregistree",
+    width: '40%',
+    height: 'calc(40% - 100px)',
+    baseZIndex: 50
+  });
 }
 }

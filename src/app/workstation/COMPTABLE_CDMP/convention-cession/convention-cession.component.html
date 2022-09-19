@@ -53,7 +53,7 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-search"  class="p-button-rounded p-button-text mr-2 button" pTooltip="Consulter la convention" *ngIf="demande.statut_convention === 'Convention générée' || demande.statut_convention === 'Convention enregistrée' || demande.statut_convention === 'Convention signée par la PME' || demande.statut_convention === 'Convention signée par le DG' "  (click)="visualiserDocument(document)"></button>
-                                <button pButton pRipple icon="pi pi-upload" class="p-button-rounded p-button-text mr-2 button" pTooltip="Charger un document" *ngIf="demande.statut_convention === 'Convention signée par le DG' " [routerLink]= "['../analyser']" (click)="setPmeInfo(demande)" ></button>
+                                <button pButton pRipple icon="pi pi-upload" class="p-button-rounded p-button-text mr-2 button" pTooltip="Charger un document" *ngIf="demande.statut_convention === 'Convention signée par le DG' " (click)="ChargerConvention(convention)"></button>
 
                                 <!-- <i  class="pi pi-search ml-3"  ></i> -->
                             </div>
