@@ -23,6 +23,7 @@ import { VerificationComponent } from './components/CDMP/verification/verificati
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
 import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
 import { ConventionEnregistreeComponent } from './COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
+import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/editer-convention.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ConventionEnregistreeComponent } from './COMPTABLE_CDMP/convention-enre
     VerificationComponent,
     InformationsNineaComponent,
     ConventionCessionComponent,
-    ConventionEnregistreeComponent
+    ConventionEnregistreeComponent,
+    EditerConventionComponent
 
     
   ],

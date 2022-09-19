@@ -9,6 +9,7 @@ import { Documents } from '../../model/document';
 import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
+import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
 
 @Component({
   selector: 'app-convention-cession',
@@ -178,6 +179,18 @@ ChargerConvention(convention: Convention) {
     header: "Charger la convention enregistree",
     width: '40%',
     height: 'calc(40% - 100px)',
+    baseZIndex: 50
+  });
+}
+
+EditerConvention(convention: Convention) {
+  const ref = this.dialogService.open(EditerConventionComponent, {
+    data: {
+      convention: convention
+    },
+    header: "",
+    width: '70%',
+    height: 'calc(200% - 250px)',
     baseZIndex: 50
   });
 }

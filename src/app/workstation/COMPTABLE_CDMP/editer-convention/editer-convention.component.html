@@ -1,0 +1,25 @@
+<div class="grid">
+   
+    <div class="col-12">
+        <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
+            <div class="p-card-title" [style]="{'background-color': '#eceff4', 'text-align': 'center'}"
+                styleClass="shadow-2">Convention de cession</div>
+            <p-toast></p-toast>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-12">
+                    <span class="h5texte">Observation de l'ordonnateur</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            </p-card>
+            <div class="p-card-title" [style]="{'background-color': '#eceff4', 'text-align': 'center','font-size':'large'}"
+                styleClass="shadow-2">Edition de la convention</div>
+                <div><br></div>
+            <app-visualiser-document></app-visualiser-document>
+
+            <button    type="button" id="valider"style="width: min-content;" pButton pRipple label="Soumettre" icon="pi pi-check" class="p-button-raised p-button-success my-auto "  ></button>
