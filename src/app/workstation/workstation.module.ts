@@ -25,6 +25,8 @@ import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/
 import { ConventionEnregistreeComponent } from './COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
+import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
+import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { DemandesCessionComponent } from './components/CDMP/demandes-cession/dem
     ConventionCessionComponent,
     ConventionEnregistreeComponent,
     EditerConventionComponent,
-    DemandesCessionComponent
+    DemandesCessionComponent,
+    PaimentsComponent,
+    ListPaiementCdmpComponent
 
     
   ],

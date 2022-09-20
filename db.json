@@ -398,5 +398,50 @@
       "file": {},
       "id": 11
     }
+  ],
+  "paiements": [
+    {
+    "id" :1,
+    "referenceBE": "20-117510",
+    "raisonSocial" : "Modelsis SARL",
+    "ninea" : "561205467567",
+    "totalMarche" : "2 000 000",
+    "statut" : "En attende de paiment",
+    "soldePME" : "1 800 000",
+    "montantRecu" : 0,
+    "referencePaiement" : "2022-0001",
+    "datePaiement" : "12/05/2022",
+    "payer" : "Abdou Diop",
+    "montant" : "400 000"
+    },
+    {
+      "id" :2,
+      "referenceBE": "20-900510",
+      "raisonSocial" : "CAMAIEU",
+      "ninea" : "123405467567",
+      "totalMarche" : "5 000 000",
+      "statut" : "PME totalement payee",
+      "soldePME" : "0",
+      "montantRecu" : "5 000 000",
+      "referencePaiement" : "2022-0002",
+      "datePaiement" : "12/06/2022",
+      "payer" : "Doudou Diallo",
+      "montant" : "1 000 000"
+      },
+      {
+        "id" :3,
+        "referenceBE": "20-247510",
+        "raisonSocial" : "ENEDIS",
+        "ninea" : "875305467567",
+        "totalMarche" : "10 000 000",
+        "statut" : "PME partiellement payee",
+        "soldePME" : "5 800 000",
+        "montantRecu" : 0,
+        "referencePaiement" : "2022-0003",
+        "datePaiement" : "02/01/2022",
+        "payer" : "Fatou Touré",
+        "montant" : "2 000 000"
+        }
+
   ]
 }
