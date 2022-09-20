@@ -463,7 +463,8 @@
     "referencePaiement" : "2022-0001",
     "datePaiement" : "12/05/2022",
     "payer" : "Abdou Diop",
-    "montant" : "400 000"
+    "montant" : "400 000",
+    "modePaiement": "Chèque"
     },
     {
       "id" :2,
@@ -477,7 +478,8 @@
       "referencePaiement" : "2022-0002",
       "datePaiement" : "12/06/2022",
       "payer" : "Doudou Diallo",
-      "montant" : "1 000 000"
+      "montant" : "1 000 000",
+      "modePaiement": "Virement"
       },
       {
         "id" :3,
@@ -491,7 +493,8 @@
         "referencePaiement" : "2022-0003",
         "datePaiement" : "02/01/2022",
         "payer" : "Fatou Touré",
-        "montant" : "2 000 000"
+        "montant" : "2 000 000",
+        "modePaiement": "Espèce"
         }
 
   ]

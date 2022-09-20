@@ -57,10 +57,11 @@ export class ListPaiementPMEComponent implements OnInit {
       this.paiements=data});
 
       this.cols = [
-        { field: 'referencePaiement', header: 'Référence Paiement' },
+        
         { field: 'datePaiement', header: 'Date Paiement' },
         { field: 'payer', header: 'Payeur' },
         { field: 'montant', header: 'Montant' },
+        { field: 'modePaiement', header: 'Mode Paiement' },
       ];
      
   }
