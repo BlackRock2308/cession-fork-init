@@ -116,11 +116,6 @@ export class VisualiserDemandesComponent implements OnInit {
       height: 'calc(100% - 100px)',
       baseZIndex: 10000
     });
-  //   this.ref.onClose.subscribe((document: Documents) =>{
-  //     if (document) {
-  //         this.messageService.add({severity:'info', summary: 'Document', detail: document.nomDocument});
-  //     }
-  // });
 
   }
   /**

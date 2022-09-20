@@ -8,13 +8,14 @@
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
                         <h4 class="title" style="color: #203359; position: relative; right: -200px;">Liste des paiements
-                            reçu de SICA sur le marché 20-247510</h4>
-                            <div class="flex">
-                                <button id="valider"  pButton pRipple label="Enregistrer paiement"
-                                    icon="pi pi-plus" class="p-button-raised p-button-success mx-4  my-auto ml-4"
-                                    (click)="visualiserPaimentCDMP()"></button>
-    
-                            </div>
+                            sur le marché 20-247510</h4>
+
+                        <div class="flex">
+                            <button id="valider" style="width: min-content;" pButton pRipple label="Payer"
+                                icon="pi pi-plus" class="p-button-raised p-button-success mx-1  my-auto ml-2"
+                                (click)="visualiserPaimentPME()"></button>
+
+                        </div>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">

@@ -7,6 +7,7 @@ import { Documents } from '../../model/document';
 import { Paiements } from '../../model/paiements';
 import { DocumentService } from '../../service/document/document.service';
 import { PaiementsService } from '../../service/paiements/paiements.service';
+import { PaiementCDMPComponent } from '../paiement-cdmp/paiement-cdmp.component';
 
 @Component({
   selector: 'app-list-paiement-cdmp',
@@ -71,14 +72,12 @@ export class ListPaiementCdmpComponent implements OnInit {
     
 }
 
-visualiserDocument(document: Documents) {
-  const ref = this.dialogService.open(VisualiserDocumentComponent, {
-    data: {
-      document: document
-    },
-    header: "Convention de Cession",
-    width: '70%',
-    height: 'calc(100% - 100px)',
+visualiserPaimentCDMP() {
+  const ref = this.dialogService.open(PaiementCDMPComponent, {
+  
+    header: "Paiement CDMP",
+    width: '60%',
+    height: 'calc(100% - 200px)',
     baseZIndex: 10000
   });
 }
