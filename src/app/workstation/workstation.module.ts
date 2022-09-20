@@ -45,7 +45,8 @@ import { DemandesCessionComponent } from './components/CDMP/demandes-cession/dem
     InformationsNineaComponent,
     ConventionCessionComponent,
     ConventionEnregistreeComponent,
-    EditerConventionComponent
+    EditerConventionComponent,
+    DemandesCessionComponent
 
     
   ],
