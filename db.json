@@ -520,7 +520,9 @@
     "datePaiement" : "12/05/2022",
     "payer" : "Abdou Diop",
     "montant" : "400 000",
-    "decode" : "15%"
+    "modePaiement": "Chèque",
+    "decode" : "10%"
+
     },
     {
       "id" :2,
@@ -535,7 +537,8 @@
       "datePaiement" : "12/06/2022",
       "payer" : "Doudou Diallo",
       "montant" : "1 000 000",
-      "decode" : "20%"
+      "modePaiement": "Virement",
+      "decode" : "10%"
 
       },
       {
@@ -551,6 +554,7 @@
         "datePaiement" : "02/01/2022",
         "payer" : "Fatou Touré",
         "montant" : "2 000 000",
+        "modePaiement": "Espèce",
         "decode" : "10%"
 
         }

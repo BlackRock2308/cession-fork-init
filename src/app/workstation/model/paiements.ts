@@ -10,6 +10,7 @@ export interface Paiements {
     soldePME?: number;
     montantRecu ?:number;
     referencePaiement ?: string;
+    modePaiement ?: string;
     datePaiement?: Date;
     montant?: number;
     payer?: string;

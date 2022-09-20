@@ -17,6 +17,7 @@ import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouv
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
+import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path:'comptable/convention_cession' , component:ConventionCessionComponent},
   {path:'comptable/paiements' , component:PaimentsComponent},
   {path:'comptable/list-paiements-cdmp' , component:ListPaiementCdmpComponent},
+  {path:'comptable/list-paiements-pme' , component:ListPaiementPMEComponent},
 
   //PME
   

@@ -27,6 +27,9 @@ import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/ed
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
+import { PaiementPMEComponent } from './COMPTABLE_CDMP/paiement-pme/paiement-pme.component';
+import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
+import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-cdmp.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
@@ -54,10 +57,13 @@ import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-
     DemandesCessionComponent,
     PaimentsComponent,
     ListPaiementCdmpComponent,
+    PaiementPMEComponent,
+    ListPaiementPMEComponent,
+    PaiementCDMPComponent,
+    PaiementsComponent,
     PaiementsComponent,
     DashboardDGComponent,
     DetailsTableauComponent
-
     
   ],
   imports: [
@@ -69,12 +75,13 @@ import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-
   ],
   exports: [
     RouterModule,
-    //CoreModule,
     NouvelleDemandeComponent,
       
   ],
   entryComponents: [
-    VisualiserDocumentComponent
+    VisualiserDocumentComponent,
+    PaiementPMEComponent,
+    PaiementCDMPComponent
      
 ],
 providers: [
