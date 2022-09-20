@@ -13,6 +13,7 @@ import { ComplementDocumentsComponent } from './components/PME/complement_docume
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
 import { MenuComponent } from './components/PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
+import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,9 @@ const routes: Routes = [
   {path:'cdmp/consulter_demande' , component:ConsulterDemandeComponent},
 
  // {path:'demandes',loadChildren: () => import('./components/CDMP/demandes-adhesion/adhesion-process/adhesion-process-routing.module').then(m => m.AdhesionProcessModule)},
+
+  //COMPTABLE CDMP
+  {path:'comptable/convention_cession' , component:ConventionCessionComponent},
 
   //PME
   //Creation de compte de la PME

@@ -21,6 +21,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { VerificationComponent } from './components/CDMP/verification/verification.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
+import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
+import { ConventionEnregistreeComponent } from './COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
+import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 
 
@@ -40,7 +43,9 @@ import { DemandesCessionComponent } from './components/CDMP/demandes-cession/dem
     ConsulterDemandeComponent,
     VerificationComponent,
     InformationsNineaComponent,
-    DemandesCessionComponent
+    ConventionCessionComponent,
+    ConventionEnregistreeComponent,
+    EditerConventionComponent
 
     
   ],
