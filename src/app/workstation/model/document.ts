@@ -4,6 +4,12 @@ export interface Documents {
     dateSoumission?:Date;
     typeDocument?:string;
     path:string;
+    ninea ?: number;
+    raisonSocial ?: string;
+    refBE ?: number;
+    refDemande ?: number;
+    statut ?: string
+    
 }
 export interface Document {
 

@@ -54,7 +54,8 @@ export class ConventionCessionComponent implements OnInit {
   pageVariable = 1;
   ref: DynamicDialogRef;
   
-  constructor(private documentService: DocumentService,private demandesAdhesionService: DemandesAdhesionService, public dialogService: DialogService,private messageService:MessageService, private router: Router,
+  constructor(
+    private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService
     ) { }
 
   ngOnInit() : void {
@@ -62,8 +63,7 @@ export class ConventionCessionComponent implements OnInit {
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
-      this.demandes=data});
+    
 
       this.cols = [
         { field: 'nomDocument', header: 'NomDocument' },
@@ -73,16 +73,7 @@ export class ConventionCessionComponent implements OnInit {
      
   }
 
-  verifierDemande(demande: DemandeAdhesion) {
-    this.demande = {...demande};
-    this.demandeDialog = true;
-    console.log(demande)
-    this.demandesAdhesionService.setDemandeObs(demande);
-    //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
-
-    
-}
-
+ 
 
 
 
@@ -184,6 +175,17 @@ ChargerConvention(convention: Convention) {
 }
 
 EditerConvention(convention: Convention) {
+  const ref = this.dialogService.open(EditerConventionComponent, {
+    data: {
+      convention: convention
+    },
+    header: "",
+    width: '70%',
+    height: 'calc(200% - 250px)',
+    baseZIndex: 50
+  });
+}
+EditConvention(convention: Convention) {
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention
