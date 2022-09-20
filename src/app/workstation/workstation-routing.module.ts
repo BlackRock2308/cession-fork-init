@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
+import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
@@ -39,6 +40,8 @@ const routes: Routes = [
   
   //Liste des demandes de la PME
   {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
+
+  {path: 'pme/convention', component: DemandesCessionComponent},
   //Page d'accueil de la PME
   {path: 'pme/accueil', component: MenuComponent},
   {path: 'pme/new_demande', component: NouvelleDemandeComponent},

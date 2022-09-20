@@ -21,6 +21,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { VerificationComponent } from './components/CDMP/verification/verification.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
+import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { InformationsNineaComponent } from './components/CDMP/informations-ninea
     VisualiserDocumentComponent,
     ConsulterDemandeComponent,
     VerificationComponent,
-    InformationsNineaComponent
+    InformationsNineaComponent,
+    DemandesCessionComponent
 
     
   ],

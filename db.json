@@ -131,6 +131,71 @@
       "refBE": "094067"
     }
   ],
+  "demandes_cession": [
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Non Risquée",
+      "raisonSocial": "Modelsis SARL",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0001"
+    },
+    {
+      "id": 2,
+      "ninea": "567567",
+      "statut": "Enregistrée",
+      "raisonSocial": "ENEDIS",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0002"
+    },
+    {
+      "id": 3,
+      "ninea": "678567",
+      "statut": "Générée",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "referenceBE": "294067",
+      "dateDemande": "15/07/2021",
+      "numeroDemande": "2022-0003"
+    },
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Signée par PME",
+      "raisonSocial": "INT Marketing",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0004"
+    },
+    {
+      "id": 1,
+      "ninea": "123567",
+      "statut": "Signée par DG",
+      "raisonSocial": "E.COM4",
+      "referenceBE": "294067",
+      "dateDemande": "05/09/2021",
+      "numeroDemande": "2022-0005"
+    },
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Rejetée par PME",
+      "raisonSocial": "SCI SENEGAL",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0006"
+    },
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Acceptée",
+      "raisonSocial": "IMME",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0007"
+    }
+  ],
   "demandes": [
     {
       "id": 1,
