@@ -4,7 +4,7 @@
         <div class="card">
             
 
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id" >
+            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id" >
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
                         <h4 class="title" style="color: #203359; position: relative; right: -400px;">Convention de cession : Liste des demandes de cession</h4>
@@ -25,36 +25,37 @@
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-demande>
+                <ng-template pTemplate="body" let-document>
                     <tr>
                        
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
-                            {{demande.ninea}}
+                            {{document.ninea}}
                         </td>
                         
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">RCCM</span>
-                            {{demande.raisonSocial}}
+                            {{document.raisonSocial}}
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.refBE}}
+                            {{document.refBE}}
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.numero_demande}}
+                            {{document.refDemande}}
                         </td>
                         <td style="width:40%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.statut_convention}}
+                            {{document.statut}}
                         </td>
                         
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-search"  class="p-button-rounded p-button-text mr-2 button" pTooltip="Consulter la convention" *ngIf="demande.statut_convention === 'Convention générée' || demande.statut_convention === 'Convention enregistrée' || demande.statut_convention === 'Convention signée par la PME' || demande.statut_convention === 'Convention signée par le DG' "  (click)="visualiserDocument(document)"></button>
-                                <button pButton pRipple icon="pi pi-upload" class="p-button-rounded p-button-text mr-2 button" pTooltip="Charger un document" *ngIf="demande.statut_convention === 'Convention signée par le DG' " (click)="ChargerConvention(convention)"></button>
-                                <button pButton pRipple icon="pi pi-file-excel" class="p-button-rounded p-button-text mr-2 button" pTooltip="Editer la convention" *ngIf="demande.statut_convention === 'Convention rejetée' " (click)="EditerConvention(convention)"></button>
+                                <button pButton pRipple icon="pi pi-search"  class="p-button-rounded p-button-text mr-2 button" pTooltip="Consulter la convention" *ngIf="document.statut === 'Convention générée' || document.statut === 'Convention enregistrée' || document.statut === 'Convention signée par la PME' || document.statut === 'Convention signée par la DG' "  (click)="visualiserDocument(document)"></button>
+                                <button pButton pRipple icon="pi pi-upload" class="p-button-rounded p-button-text mr-2 button" pTooltip="Charger un document" *ngIf="document.statut === 'Convention signée par la DG' " (click)="ChargerConvention(convention)"></button>
+                                <button pButton pRipple icon="pi pi-file-excel" class="p-button-rounded p-button-text mr-2 button" pTooltip="Editer la convention" *ngIf="document.statut === 'Convention rejetée' " (click)="EditerConvention(convention)"></button>
+                                <button pButton pRipple icon="pi pi-file" class="p-button-rounded p-button-text mr-2 button" pTooltip="Editer la convention" *ngIf="document.statut === 'Non Risquee' " (click)="EditConvention(convention)"></button>
 
                                 <!-- <i  class="pi pi-search ml-3"  ></i> -->
                             </div>
