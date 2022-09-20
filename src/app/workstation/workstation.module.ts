@@ -27,6 +27,7 @@ import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/ed
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
+import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/l
     EditerConventionComponent,
     DemandesCessionComponent,
     PaimentsComponent,
-    ListPaiementCdmpComponent
+    ListPaiementCdmpComponent,
+    PaiementsComponent
 
     
   ],
