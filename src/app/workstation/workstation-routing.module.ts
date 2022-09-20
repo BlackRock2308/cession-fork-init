@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
+import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
@@ -33,7 +34,7 @@ const routes: Routes = [
 
   {path:'cdmp/analyser' , component:TacheAnalyseComponent},
   {path: 'cdmp/visualiser-demandes', component: VisualiserDemandesComponent},
-
+  {path: 'cdmp/dashboard', component: DashboardDGComponent},
   //Consulter une demande de cession a l'etat risque ou non risquee
   {path:'cdmp/consulter_demande' , component:ConsulterDemandeComponent},
 

@@ -28,6 +28,8 @@ import { DemandesCessionComponent } from './components/CDMP/demandes-cession/dem
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
+import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
+import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { PaiementsComponent } from './components/PME/paiements/paiements.compone
     DemandesCessionComponent,
     PaimentsComponent,
     ListPaiementCdmpComponent,
-    PaiementsComponent
+    PaiementsComponent,
+    DashboardDGComponent,
+    DetailsTableauComponent
 
     
   ],
