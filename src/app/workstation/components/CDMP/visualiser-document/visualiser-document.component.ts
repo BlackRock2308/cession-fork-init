@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { fileUploadService } from 'src/app/workstation/service/fileUpload.service';
 
 @Component({
@@ -22,11 +23,19 @@ export class VisualiserDocumentComponent implements OnInit {
   textLayerRenderedCb = 0;
   totalPages: number;
   ext:string;
-  constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+  profil: string;
+  statut: string;
+  convention: any;
+  constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
   ngOnInit() {
     this.srcFile = './assets/doctest.pdf';
     this.dowloadFile(this.config.data.document.path);
+     this.convention = this.config.data.document;
+    
+    this.profil = localStorage.getItem('profil');
+
+    this.statut = this.config.data.document.statut;
     
     
   }
@@ -167,5 +176,18 @@ export class VisualiserDocumentComponent implements OnInit {
     // Finds anchors and sets hrefs void
     console.log('(text-layer-rendered)');
 
+  }
+
+  signerConvention() {
+    const ref = this.dialogService.open(ConventionSignerComponent, {
+      data: {
+        convention: this.convention
+      },
+      header: "Signer la convention",
+      width: '40%',
+      height: 'calc(40% - 100px)',
+      baseZIndex: 50
+    });
+    this.dismiss();
   }
 }

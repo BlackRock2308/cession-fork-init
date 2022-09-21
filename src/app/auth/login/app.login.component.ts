@@ -28,6 +28,10 @@ export class AppLoginComponent {
       this.router.navigate(['workstation']);
       localStorage.setItem('profil', 'comptable'); 
     }
+    if(username === 'DG'){
+      this.router.navigate(['workstation']);
+      localStorage.setItem('profil', 'DG'); 
+    }
     
    }
 

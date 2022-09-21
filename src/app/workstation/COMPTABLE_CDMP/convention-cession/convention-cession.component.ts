@@ -19,17 +19,11 @@ import { EditerConventionComponent } from '../editer-convention/editer-conventio
 })
 export class ConventionCessionComponent implements OnInit {
 
-
-  
-
   demandeDialog: boolean;
-
-
 
   demandes:DemandeAdhesion[];
 
   demande:DemandeAdhesion;
-
 
   submitted: boolean;
 
@@ -53,12 +47,14 @@ export class ConventionCessionComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
+  profil : string;
   
   constructor(
     private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService
     ) { }
 
-  ngOnInit() : void {
+  ngOnInit() {
+    this.profil = localStorage.getItem('profil');
    
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
@@ -72,12 +68,6 @@ export class ConventionCessionComponent implements OnInit {
       ];
      
   }
-
- 
-
-
-
-
 
 hideDialog() {
     this.demandeDialog = false;
