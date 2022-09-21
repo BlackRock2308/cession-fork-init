@@ -18,6 +18,9 @@ export class DemandesAdhesionService {
     pme_active:"false"
   });
 
+  //dialogue
+  private dialogObs: BehaviorSubject<any> = new BehaviorSubject(false);
+
   //localStorage.setItem('storedDemande',JSON.stringify(demandeObs));
 
 private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
@@ -76,6 +79,19 @@ setDemandeObs(demande: any) {
 //récupérer les informations de la demande d'adhesion sélectionné
 getDemandeObs(): Observable<any> {
   return this.demandeObs.asObservable();
+}
+
+//mettre à jour les informations de la pme
+patchDemande(id:number,demande:any):Observable<DemandeAdhesion>{
+  return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,demande)
+}
+
+// boîte dedialogue
+setDialog(bol:boolean){
+  this.dialogObs.next(bol)
+}
+getDialog(){
+  return this.dialogObs.asObservable();
 }
 }
 
