@@ -33,6 +33,7 @@ import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-c
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
+import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement-pme/modifier-paiement-pme.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-
     PaiementsComponent,
     PaiementsComponent,
     DashboardDGComponent,
-    DetailsTableauComponent
+    DetailsTableauComponent,
+    ModifierPaiementPMEComponent
     
   ],
   imports: [
@@ -81,7 +83,8 @@ import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-
   entryComponents: [
     VisualiserDocumentComponent,
     PaiementPMEComponent,
-    PaiementCDMPComponent
+    PaiementCDMPComponent,
+    ModifierPaiementPMEComponent
      
 ],
 providers: [
