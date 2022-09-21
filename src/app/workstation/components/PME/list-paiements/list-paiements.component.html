@@ -1,0 +1,79 @@
+<div class="grid">
+    <div class="col-12">
+        <p style="color:#203359; font-weight: 600;font-size: large;">Total Perçu :  3.400.000 F CFA</p>
+        <div class="card">
+                
+            
+            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {last} à {first} de {totalRecords} " [rowHover]="true" dataKey="id">
+                
+                   
+                
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
+                        <h4 class="title" style="color: #203359; position: relative; right: -200px;">Liste des paiements
+                            sur le marché 20-247510</h4>
+
+                       
+                    </div>
+                    
+                    
+                </ng-template>
+                
+                <ng-template pTemplate="header">
+                    <tr>
+                       
+                        <th pSortableColumn="datePaiement" style="color: #203359;">Date paiement<p-sortIcon
+                                field="datePaiement"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="payer" style="color: #203359;">Payeur<p-sortIcon field="payer">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="montant" style="color: #203359;">Montant<p-sortIcon field="montant">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="modePaiement" style="color: #203359;">Mode paiement<p-sortIcon
+                            field="modePaiement"></p-sortIcon>
+                    </th>
+                        <th style="color: #203359;">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-paiement>
+                    <tr>
+                        <td style="width:20%; min-width:8rem;">
+                            <span class="p-column-title">Date paiement</span>
+                            {{paiement.datePaiement}}
+                        </td>
+                        <td style="width:20%;">
+                            <span class="p-column-title">Payeur</span>
+                            {{paiement.payer}}
+                        </td>
+                        <td style="width:20%;">
+                            <span class="p-column-title">Montant</span>
+                            {{paiement.montant}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Mode paiement</span>
+                            {{paiement.modePaiement}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-search"
+                                    class="p-button-rounded p-button-text mr-2 button"
+                                    pTooltip="Voir details" (click)="detailPaimentPME()"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="textRight">
+                        SOLDE :  7.000.000 F CFA
+                    </div>
+                </ng-template>
+                
+            </p-table>
+        </div>
+    </div>
+</div>

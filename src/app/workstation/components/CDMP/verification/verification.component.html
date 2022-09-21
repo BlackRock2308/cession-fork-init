@@ -1,30 +1,66 @@
 
 <div class="stepsdemo-content">
     <p-card>
-        <ng-template pTemplate="title">
-            Personal Information
-        </ng-template>
-        <ng-template pTemplate="subtitle">
-            Enter your personal information
+        <ng-template pTemplate="header">
+            <div class="d-flex justify-content-center col-12">
+                <div class="col-12 modalTitle ">
+                    <h3 class="label1">Vérification</h3>
+                </div>
+            </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <div class="p-fluid"formgrid;grid class="field">
-                    <label for="firstname">Firstname</label>
-                    <input #firstname="ngModel" id="firstname" type="text" required pInputText [(ngModel)]="personalInformation.firstname" [ngClass]="{'ng-dirty': (firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)}"> 
-                    <small *ngIf="(firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)" class="p-error">Firstname is required.</small>
+            <div class="field col-12 d-flex">
+                <div class="col-4  d-flex justify-content-center">
+                    <h4 style="font-weight: bold;color: #203359;">NINEA existant</h4>
                 </div>
-                <div class="field">
-                    <label for="lastname">Lastname</label>
-                    <input #lastname="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="personalInformation.lastname" [ngClass]="{'ng-dirty': (lastname.invalid && submitted) || (lastname.dirty && lastname.invalid)}"> 
-                    <small class="p-error" *ngIf="(lastname.invalid && submitted )|| (lastname.dirty && lastname.invalid)">Lastname is required.</small>
+                <div class="col-4   d-flex justify-content-center">
+                    <div class="col-8 d-flex justify-content-center">
+                        <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="existant" id="active" (onChange)="handle1Change($event)">
+                        </p-inputSwitch>
+                    </div>    
+                    <div class="col-4 d-flex justify-content-center">
+                        <h4 style="font-weight: bold;color: #203359;">OUI</h4>
+                    </div>             
                 </div>
-                <div class="field">
-                    <label for="age">Age</label>
-                    <input #age="ngModel" id="age" type="number" required pInputText [(ngModel)]="personalInformation.age" [ngClass]="{'ng-dirty': (age.invalid && submitted) || (age.dirty && age.invalid)}"> 
-                    <small class="p-error" *ngIf="(age.invalid && submitted) || (age.dirty && age.invalid)">Age is required.</small>
+                <div class="col-4   d-flex justify-content-center">
+                    <div class="col-8 d-flex justify-content-center">
+                        <p-inputSwitch type="radio" name="ninea" styleClass="non" value="false" [(ngModel)]="pas_existant" id="pas_active" (onChange)="handle2Change($event)">
+                        </p-inputSwitch>
+                    </div>    
+                    <div class="col-4 d-flex justify-content-center">
+                        <h4 style="font-weight: bold;color: #203359;">NON</h4>
+                    </div>             
                 </div>
-        
+            </div>
+            <div class="field col-12 d-flex" *ngIf="existant">
+                <div class="col-4  d-flex justify-content-center">
+                    <h4 style="font-weight: bold;color: #203359;">PME Active</h4>
+                </div>
+                <div class="col-4   d-flex justify-content-center">
+                    <div class="col-8 d-flex justify-content-center">
+                        <p-inputSwitch styleClass="oui" [(ngModel)]="active" (onChange)="handle3Change($event)"></p-inputSwitch>
+                    </div>    
+                    <div class="col-4 d-flex justify-content-center">
+                        <h4 style="font-weight: bold;color: #203359;">OUI</h4>
+                    </div>             
+                </div>
+                <div class="col-4   d-flex justify-content-center">
+                    <div class="col-8 d-flex justify-content-center">
+                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_active" (onChange)="handle4Change($event)"></p-inputSwitch>
+                    </div>    
+                    <div class="col-4 d-flex justify-content-center">
+                        <h4 style="font-weight: bold;color: #203359;">NON</h4>
+                    </div>             
+                </div>
+            </div>
+        </ng-template>
         <ng-template pTemplate="footer">
-            <div class="grid grid-nogutter justify-content-end">
-                <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-           
+            <div class="row justify-content-end"  *ngIf="existant">
+                <button  id="suivant"style="width: min-content;" pButton pRipple label="Suivant" icon="pi pi-spinner" class="p-button-raised button"  (click)="nextPage()" ></button>
+            </div>
+            <div class="row justify-content-end" *ngIf="pas_existant">
+                <button id="terminer"style="width: min-content;" pButton pRipple label="Terminer" icon="pi pi-spinner" class="p-button-success" (click)="onSubmit()"></button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

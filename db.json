@@ -42,10 +42,10 @@
       "montant_total" : "10.000.000",
       "date_marche" : "2022-10-05",
       "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
+      "solde_PME" : "5.000.000",
       "decode" :"5%",
       "montant_debourse" : "5.000.000",
-      "Solde SICA" : "3.000.000"
+      "solde_sica" : "3.000.000"
     },
     {
       "id": 2,
@@ -69,8 +69,9 @@
       "montant_rembourse" : "1.000.000",
       "solde_PME" : "14.000.000",
       "decode" :"15%",
-      "montant_debourse" : "10.000.000",
-      "Solde SICA" : "7.000.000"
+      "montant_debourse" :"10.000.000",
+      "solde_sica" : "7.000.000",
+      "nineaValide": false
     },
     {
       "id": 3,
@@ -95,7 +96,7 @@
       "solde_PME" : "8.000.000",
       "decode" :"20%",
       "montant_debourse" : "5.000.000",
-      "Solde SICA" : "3.000.000"
+      "solde_sica" : "3.000.000"
     },
     {
       "id": 4,
@@ -120,7 +121,7 @@
       "solde_PME" : "2.000.000",
       "decode" :"5%",
       "montant_debourse" : "3.000.000",
-      "Solde SICA" : "2.000.000"
+      "solde_sica" : "2.000.000"
     },
     {
       "id": 5,
@@ -145,7 +146,7 @@
       "solde_PME" : "8.000.000",
       "decode" :"5%",
       "montant_debourse" : "5.000.000",
-      "Solde SICA" : "3.000.000"
+      "solde_sica" : "3.000.000"
     },
     {
       "id": 6,
@@ -168,7 +169,7 @@
       "solde_PME" : "7.000.000",
       "decode" :"5%",
       "montant_debourse" : "8.000.000",
-      "Solde SICA" : "4.000.000"
+      "solde_sica" : "4.000.000"
     },
     {
       "id": 7,
@@ -191,7 +192,7 @@
       "solde_PME" : "8.000.000",
       "decode" :"5%",
       "montant_debourse" : "5.000.000",
-      "Solde SICA" : "3.000.000"
+      "solde_sica" : "3.000.000"
     }
   ],
   "demandes_cession": [
@@ -508,56 +509,52 @@
   ],
   "paiements": [
     {
-    "id" :1,
-    "referenceBE": "20-117510",
-    "raisonSocial" : "Modelsis SARL",
-    "ninea" : "561205467567",
-    "totalMarche" : "2 000 000",
-    "statut" : "En attente de paiement",
-    "soldePME" : "1 800 000",
-    "montantRecu" : 0,
-    "referencePaiement" : "2022-0001",
-    "datePaiement" : "12/05/2022",
-    "payer" : "Abdou Diop",
-    "montant" : "400 000",
-    "modePaiement": "Chèque",
-    "decode" : "10%"
-
+      "id": 1,
+      "referenceBE": "20-117510",
+      "raisonSocial": "Modelsis SARL",
+      "ninea": "561205467567",
+      "totalMarche": "2 000 000",
+      "statut": "En attente de paiement",
+      "soldePME": "1 800 000",
+      "montantRecu": 0,
+      "referencePaiement": "2022-0001",
+      "datePaiement": "12/05/2022",
+      "payer": "Abdou Diop",
+      "montant": "400 000",
+      "modePaiement": "Chèque",
+      "decode": "10%"
     },
     {
-      "id" :2,
+      "id": 2,
       "referenceBE": "20-900510",
-      "raisonSocial" : "CAMAIEU",
-      "ninea" : "123405467567",
-      "totalMarche" : "5 000 000",
-      "statut" : "PME totalement payee",
-      "soldePME" : "0",
-      "montantRecu" : "5 000 000",
-      "referencePaiement" : "2022-0002",
-      "datePaiement" : "12/06/2022",
-      "payer" : "Doudou Diallo",
-      "montant" : "1 000 000",
+      "raisonSocial": "CAMAIEU",
+      "ninea": "123405467567",
+      "totalMarche": "5 000 000",
+      "statut": "PME totalement payee",
+      "soldePME": "0",
+      "montantRecu": "5 000 000",
+      "referencePaiement": "2022-0002",
+      "datePaiement": "12/06/2022",
+      "payer": "Doudou Diallo",
+      "montant": "1 000 000",
       "modePaiement": "Virement",
-      "decode" : "10%"
-
-      },
-      {
-        "id" :3,
-        "referenceBE": "20-247510",
-        "raisonSocial" : "ENEDIS",
-        "ninea" : "875305467567",
-        "totalMarche" : "10 000 000",
-        "statut" : "PME partiellement payee",
-        "soldePME" : "5 800 000",
-        "montantRecu" : 0,
-        "referencePaiement" : "2022-0003",
-        "datePaiement" : "02/01/2022",
-        "payer" : "Fatou Touré",
-        "montant" : "2 000 000",
-        "modePaiement": "Espèce",
-        "decode" : "10%"
-
-        }
-
+      "decode": "10%"
+    },
+    {
+      "id": 3,
+      "referenceBE": "20-247510",
+      "raisonSocial": "ENEDIS",
+      "ninea": "875305467567",
+      "totalMarche": "10 000 000",
+      "statut": "PME partiellement payee",
+      "soldePME": "5 800 000",
+      "montantRecu": 0,
+      "referencePaiement": "2022-0003",
+      "datePaiement": "02/01/2022",
+      "payer": "Fatou Touré",
+      "montant": "2 000 000",
+      "modePaiement": "Espèce",
+      "decode": "10%"
+    }
   ]
 }
