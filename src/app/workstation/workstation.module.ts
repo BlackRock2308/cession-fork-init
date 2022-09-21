@@ -64,7 +64,8 @@ import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement
     PaiementsComponent,
     PaiementsComponent,
     DashboardDGComponent,
-    DetailsTableauComponent
+    DetailsTableauComponent,
+    ModifierPaiementPMEComponent
     
   ],
   imports: [
