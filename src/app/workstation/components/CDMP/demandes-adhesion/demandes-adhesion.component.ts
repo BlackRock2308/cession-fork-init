@@ -38,6 +38,7 @@ export class DemandesAdhesionComponent implements OnInit {
   items: MenuItem[];
    
   activeIndex: number = 1;
+  activeItem: MenuItem;
 
 
   constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService, private router: Router,
@@ -60,14 +61,15 @@ export class DemandesAdhesionComponent implements OnInit {
 
     this.items = [
     {
-        label: 'Verifications',
+        label: 'Vérification du NINEA',
         routerLink: 'steps/verification',
     },
     {
         label: 'Informations',
         routerLink: 'steps/informations_ninea',
     }
-];
+];  
+    this.activeItem=this.items[0];
       
   }
 
@@ -80,7 +82,8 @@ export class DemandesAdhesionComponent implements OnInit {
       this.demandeDialog = true;
       console.log(demande)
       this.demandesAdhesionService.setDemandeObs(demande);
-      //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
+
+      this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/verification']);
 
       
   }

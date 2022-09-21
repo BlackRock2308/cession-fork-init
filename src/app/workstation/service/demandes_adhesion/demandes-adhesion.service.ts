@@ -9,14 +9,16 @@ import { DemandeAdhesion } from '../../model/demande';
 export class DemandesAdhesionService {
   private baseUrl = 'http://localhost:3000';
 
-  private demandeObs: BehaviorSubject<DemandeAdhesion> = new BehaviorSubject({
-    "id": 6,
-    "ninea": "567865467567",
-    "rccm": "6543568778",
-    "date_soumission": "2021-02-12",
-    "ninea_file":"",
-    "rccm_file":""   
-});
+  private demandeObs: BehaviorSubject<any> = new BehaviorSubject({
+    id: 6,
+    ninea: "567865467567",
+    rccm: "6543568778",
+    date_soumission: "2021-02-12",
+    ninea_existant:"true",
+    pme_active:"false"
+  });
+
+  //localStorage.setItem('storedDemande',JSON.stringify(demandeObs));
 
 private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
   id: 0,
@@ -32,10 +34,22 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 });
 
   constructor(private http: HttpClient) { 
-    //garder les infos en session au cas où l'on fait un refresh
+    //garder les infos nantissement en session au cas où l'on fait un refresh
    // let storedNantissement=localStorage.getItem('storedNantissement');
     //if(storedNantissement)
-      //this.setDemandenantissementObs(JSON.parse(storedNantissement))
+      //this.setDemandenantissementObs(JSON.parse(storedNantissement));
+
+    //garder les infos demandes en session au cas où l'on fait un refresh
+    try{
+      let storedDemande=localStorage.getItem('storedDemande');
+      if(storedDemande)
+        this.setDemandeObs(JSON.parse(storedDemande));
+
+    }
+    catch(e){
+      console.error("pas encore de variable de session pour une demande d'adhesion")
+    }
+     
   }
 
   
@@ -46,10 +60,10 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
   }
 
-  patchBasicInformation(id:number,basicInfo:BasicInfo):Observable<DemandeAdhesion>{
-    return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,basicInfo)
+  //renseigner l'existance du ninea
+  patchBasicInformation(id:number,nineaValide:any):Observable<DemandeAdhesion>{
+    return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,nineaValide)
   }
-
   //recupérer(garder) les informations par rapport à une demande
   setDemandenantissementObs(demande: DemandeNantissemantInfo) {
     localStorage.setItem('storedNantissement',JSON.stringify(demande));
@@ -59,17 +73,25 @@ getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
   return this.demandenantissementObs.asObservable();
 }
 
-setDemandeObs(demande: DemandeAdhesion) {
+//renseigner les informations de la demande d'adhesion sélectionné
+setDemandeObs(demande: any) {
+  localStorage.setItem('storedDemande',JSON.stringify(demande));
   this.demandeObs.next(demande);
 }
-getDemandeObs(): Observable<DemandeAdhesion> {
-return this.demandeObs.asObservable();
+
+//récupérer les informations de la demande d'adhesion sélectionné
+getDemandeObs(): Observable<any> {
+  return this.demandeObs.asObservable();
 }
 }
-export class BasicInfo{
-  id?:number=0;
-  nineaExistant?:boolean=false;
-  pmeActive?:boolean=false;
+
+
+export interface BasicInfo{
+  id?:number;
+  nineaValide?:boolean;
+  pmeActive?:boolean;
+
+  
 }
 
 export interface DemandeNantissemantInfo{

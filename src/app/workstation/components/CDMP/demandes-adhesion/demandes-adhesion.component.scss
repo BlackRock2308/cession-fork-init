@@ -45,25 +45,32 @@
     justify-content: center;
     height: 40px;
     border-radius: 2%;
+    display: flex;
+    width: fit-content;
+
     
 }
 
 .label{
     color: #A5A5A5;
-                    font-weight: bolder;
+    font-weight: bolder;
+}
+.label1{
+    color: #203359;
+    font-weight: bolder;
 }
 
 ::ng-deep li.p-element.p-steps-item.p-highlight.p-steps-current.ng-star-inserted{
-    display:none;
+    display:flex;
+    
+
 }
 
 ::ng-deep li.p-element.p-steps-item.ng-star-inserted::before{
     display:none;
 }
 
-::ng-deep span.p-steps-number{
-    display:none;
-}
+
 
 ::ng-deep .form-check-input{
     background-color: green;
@@ -78,45 +85,46 @@ p-steps p-steps-item {
     width: 25%;
 }
 
-p-steps.steps-custom {
+.p-steps.steps-custom {
     margin-bottom: 30px;
 }
 
-p-steps.steps-custom p-steps-item p-menuitem-link {
+.p-steps.steps-custom .p-steps-item .p-menuitem-link {
     padding: 0 1em;
     overflow: visible;
 }
 
-.p-steps.steps-custom .p-steps-item .p-steps-number {
-    background-color: #0081c2;
-    color: #FFFFFF;
-    display: inline-block;
-    width: 36px;
-    border-radius: 50%;
-    margin-top: -14px;
-    margin-bottom: 10px;
+::ng-deep .p-steps.steps-custom .p-steps-number {
+    background: green;
+    //display: none;
+    border-radius: 100%;
+    
+    width: 2px;
+    height: 2px;
+
+    
 }
 
-.p-steps.steps-custom .p-steps-item .p-steps-title {
-    color: #555555;
+::ng-deep .p-steps.steps-custom .p-steps-item.p-highlight .p-steps-number {
+    background: #AFBF34;
+    border-radius: 100%;
+    color: #AFBF34;
+
+    width: 2px;
+    height: 20px;
 }
 
-#steps {
-   
+::ng-deep.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+    color: #ffff;
+    border-radius: 100%;
+    
+    width: 2px;
+    height: 20px;
 }
 
-.p-steps.steps-custom .p-steps-item .p-steps-number {
-  background-color: #B33213;
-  color: transparent;
-  border-radius: 50%; 
+::ng-deep .p-steps.steps-custom .p-steps-item .p-steps-title {
+    color: #203359;
 }
-
-.p-steps.steps-custom .p-steps-item {
-  color: #003399;
-}
-
-//change the color's label of each step
-.p-steps.steps-custom .p-steps-item .p-steps-title {
-  color: #003399;
-  font-size: medium;
+.head{
+    border: none;
 }
