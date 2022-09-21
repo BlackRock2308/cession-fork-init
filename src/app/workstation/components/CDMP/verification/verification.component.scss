@@ -1,0 +1,84 @@
+::ng-deep .p-inputswitch.p-inputswitch-checked.oui .p-inputswitch-slider {
+    background: #71B47A;
+    
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.oui:not(p.disabled):hover .p-inputswitch-slider {
+    background: #71B47A;
+}
+
+::ng-deep .p-inputswitch.oui .p-inputswitch-slider {
+    background: #CEE5D1;
+    
+}
+
+::ng-deep .p-inputswitch.oui:not(p.disabled):hover .p-inputswitch-slider {
+    background: #CEE5D1;
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.non .p-inputswitch-slider {
+    background: #DD7A59;
+    
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.non:not(p.disabled):hover .p-inputswitch-slider {
+    background: #DD7A59;
+}
+
+::ng-deep .p-inputswitch.non .p-inputswitch-slider {
+    background: #F3D2C7;
+    
+}
+
+::ng-deep .p-inputswitch.non:not(p.disabled):hover .p-inputswitch-slider {
+    background:#F3D2C7;
+}
+
+.modalTitle{
+    background-color: #F2F2F2;
+    justify-content: center;
+    height: 40px;
+    border-radius: 2%;
+    display: flex;
+    width: fit-content;
+
+    
+}
+
+
+.label1{
+    color: #203359;
+    font-weight: bolder;
+}
+
+::ng-deep .p-inputswitch .p-inputswitch-slider {
+    border-radius: 2rem;
+    width: 55px;
+
+}
+
+::ng-deep .p-inputswitch .p-inputswitch-slider:before {
+    background: #ffffff;
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0.1rem;
+    margin-top: -0.625rem;
+    transition-duration: 0.2s;
+    border-radius: 50%;
+
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    background: #ffffff;
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 1.3rem;
+    margin-top: -0.625rem;
+    transition-duration: 0.2s;
+    border-radius: 50%;
+
+}
+
+.button{
+    background-color: #707070;
+}

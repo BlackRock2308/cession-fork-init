@@ -10,12 +10,12 @@ export class DemandesAdhesionService {
   private baseUrl = 'http://localhost:3000';
 
   private demandeObs: BehaviorSubject<DemandeAdhesion> = new BehaviorSubject({
-    "id": 6,
-    "ninea": "567865467567",
-    "rccm": "6543568778",
-    "date_soumission": "2021-02-12",
-    "ninea_file":"",
-    "rccm_file":""   
+    id: 6,
+    ninea: "567865467567",
+    rccm: "6543568778",
+    date_soumission: "2021-02-12",
+    ninea_file:"",
+    rccm_file:""   
 });
 
 private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new BehaviorSubject({
@@ -26,10 +26,16 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 });
 
   constructor(private http: HttpClient) { 
-    //garder les infos en session au cas où l'on fait un refresh
+    //garder les infos nantissement en session au cas où l'on fait un refresh
     let storedNantissement=localStorage.getItem('storedNantissement');
     if(storedNantissement)
-      this.setDemandenantissementObs(JSON.parse(storedNantissement))
+      this.setDemandenantissementObs(JSON.parse(storedNantissement));
+
+    //garder les infos demandes en session au cas où l'on fait un refresh
+    /*let storedDemande=localStorage.getItem('storedDemande');
+    if(storedDemande)
+      this.setDemandeObs(JSON.parse(storedDemande));
+*/
   }
 
   
@@ -53,12 +59,13 @@ getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
   return this.demandenantissementObs.asObservable();
 }
 
-setDemandeObs(demande: DemandeAdhesion) {
+/*setDemandeObs(demande: DemandeAdhesion) {
+  localStorage.setItem('storedDemande',JSON.stringify(demande));
   this.demandeObs.next(demande);
 }
 getDemandeObs(): Observable<DemandeAdhesion> {
 return this.demandeObs.asObservable();
-}
+}*/
 }
 export class BasicInfo{
   id?:number=0;
