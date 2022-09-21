@@ -81,8 +81,9 @@ export class DemandesAdhesionComponent implements OnInit {
       this.demande = {...demande};
       this.demandeDialog = true;
       console.log(demande)
-      //this.demandesAdhesionService.setDemandeObs(demande);
-      //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
+      this.demandesAdhesionService.setDemandeObs(demande);
+
+      this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/verification']);
 
       
   }
