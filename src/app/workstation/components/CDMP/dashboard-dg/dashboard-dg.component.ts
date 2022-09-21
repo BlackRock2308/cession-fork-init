@@ -62,7 +62,7 @@ export class DashboardDGComponent implements OnInit {
       },
       header: "Details Tableau",
       width: '70%',
-      height: 'calc(100% - 100px)',
+      height: 'calc(75% - 100px)',
       baseZIndex: 10000
     });
 

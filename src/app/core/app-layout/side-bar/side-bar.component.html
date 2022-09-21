@@ -51,7 +51,7 @@
       </ul>
     </li>
     <li *ngIf="profil === 'pme'">
-        <a href="#">Suivi des paiements</a>
+        <a [routerLink]="['pme/paiements']">Suivi des paiements</a>
     </li>
 
     <li *ngIf="profil === 'cdmp'">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 
 @Component({
   selector: 'app-details-tableau',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsTableauComponent implements OnInit {
 
-  constructor() { }
+  demandeNantissementInfos:any;
 
-  ngOnInit(): void {
-  }
+  constructor(private demandeAdhesionService:DemandesAdhesionService) { }
+
+  ngOnInit() {
+  
+
+
+  //récupérer les informations du nantissement en cours de modification
+  this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
+  console.log(this.demandeNantissementInfos)
+}
 
 }
