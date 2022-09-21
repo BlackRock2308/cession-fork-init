@@ -64,6 +64,7 @@ export class PaiementsComponent implements OnInit {
         { field: 'soldePME', header: 'Solde PME' },
         { field: 'montantReçu', header: 'Montant Reçu' },
         { field: 'statut', header: 'Statut' },
+        { field: 'decode', header: 'Decode' },
       ];
   }
 

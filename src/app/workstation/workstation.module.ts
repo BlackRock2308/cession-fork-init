@@ -31,6 +31,8 @@ import { PaiementPMEComponent } from './COMPTABLE_CDMP/paiement-pme/paiement-pme
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
 import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-cdmp.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
+import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
+import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
 import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement-pme/modifier-paiement-pme.component';
 
 
@@ -60,7 +62,9 @@ import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement
     ListPaiementPMEComponent,
     PaiementCDMPComponent,
     PaiementsComponent,
-    ModifierPaiementPMEComponent
+    PaiementsComponent,
+    DashboardDGComponent,
+    DetailsTableauComponent
     
   ],
   imports: [

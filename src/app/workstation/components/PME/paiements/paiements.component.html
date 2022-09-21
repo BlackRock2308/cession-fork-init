@@ -28,6 +28,9 @@
                         <th pSortableColumn="soldePME" style="color: #203359;">Solde PME<p-sortIcon field="soldePME">
                             </p-sortIcon>
                         </th>
+                        <th pSortableColumn="soldePME" style="color: #203359;">Decode<p-sortIcon field="decode">
+                        </p-sortIcon>
+                    </th>
                         <th pSortableColumn="montantRecu" style="color: #203359;">Montant Recu<p-sortIcon
                                 field="montantRecu"></p-sortIcon>
                         </th>
@@ -53,6 +56,10 @@
                         <td style="width:16%;">
                             <span class="p-column-title">Solde PME</span>
                             {{paiement.soldePME}}
+                        </td>
+                        <td style="width:16%;">
+                            <span class="p-column-title">Decode</span>
+                            {{paiement.decode}}
                         </td>
                         <td style="width:15%;">
                             <span class="p-column-title">Montant Reçu</span>

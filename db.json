@@ -37,7 +37,15 @@
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-0123"
+      "numero_demande": "2022-0123",
+      "type_marche" : "Travaux",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     },
     {
       "id": 2,
@@ -54,7 +62,15 @@
       "ATD": "ATD",
       "nantissement": "Creance nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-01987"
+      "numero_demande": "2022-01987",
+      "type_marche" : "Fournitures",
+      "montant_total" : "15.000.000",
+      "date_marche" : "2022-04-01",
+      "montant_rembourse" : "1.000.000",
+      "solde_PME" : "14.000.000",
+      "decode" :"15%",
+      "montant_debourse" : "10.000.000",
+      "Solde SICA" : "7.000.000"
     },
     {
       "id": 3,
@@ -71,7 +87,15 @@
       "ATD": "Aucun ATD",
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
-      "numero_demande": "2022-0193"
+      "numero_demande": "2022-0193",
+      "type_marche" : "Services",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-12-24",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"20%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     },
     {
       "id": 4,
@@ -88,7 +112,15 @@
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-0123"
+      "numero_demande": "2022-0123",
+      "type_marche" : "Travaux",
+      "montant_total" : "4.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "2.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "3.000.000",
+      "Solde SICA" : "2.000.000"
     },
     {
       "id": 5,
@@ -105,7 +137,15 @@
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-0123"
+      "numero_demande": "2022-0123",
+      "type_marche" : "Fournitures",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     },
     {
       "id": 6,
@@ -120,7 +160,15 @@
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3453",
-      "refBE": "294527"
+      "refBE": "294527",
+      "type_marche" : "Travaux",
+      "montant_total" : "32.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "12.000.000",
+      "solde_PME" : "7.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "8.000.000",
+      "Solde SICA" : "4.000.000"
     },
     {
       "id": 7,
@@ -135,7 +183,15 @@
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3454",
-      "refBE": "094067"
+      "refBE": "094067",
+      "type_marche" : "Travaux",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     }
   ],
   "demandes_cession": [
@@ -457,14 +513,16 @@
     "raisonSocial" : "Modelsis SARL",
     "ninea" : "561205467567",
     "totalMarche" : "2 000 000",
-    "statut" : "En attende de paiement",
+    "statut" : "En attente de paiement",
     "soldePME" : "1 800 000",
     "montantRecu" : 0,
     "referencePaiement" : "2022-0001",
     "datePaiement" : "12/05/2022",
     "payer" : "Abdou Diop",
     "montant" : "400 000",
-    "modePaiement": "Chèque"
+    "modePaiement": "Chèque",
+    "decode" : "10%"
+
     },
     {
       "id" :2,
@@ -479,7 +537,9 @@
       "datePaiement" : "12/06/2022",
       "payer" : "Doudou Diallo",
       "montant" : "1 000 000",
-      "modePaiement": "Virement"
+      "modePaiement": "Virement",
+      "decode" : "10%"
+
       },
       {
         "id" :3,
@@ -494,7 +554,9 @@
         "datePaiement" : "02/01/2022",
         "payer" : "Fatou Touré",
         "montant" : "2 000 000",
-        "modePaiement": "Espèce"
+        "modePaiement": "Espèce",
+        "decode" : "10%"
+
         }
 
   ]
