@@ -31,6 +31,7 @@ import { PaiementPMEComponent } from './COMPTABLE_CDMP/paiement-pme/paiement-pme
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
 import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-cdmp.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
+import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement-pme/modifier-paiement-pme.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { PaiementsComponent } from './components/PME/paiements/paiements.compone
     PaiementPMEComponent,
     ListPaiementPMEComponent,
     PaiementCDMPComponent,
-    PaiementsComponent
+    PaiementsComponent,
+    ModifierPaiementPMEComponent
     
   ],
   imports: [
@@ -76,7 +78,8 @@ import { PaiementsComponent } from './components/PME/paiements/paiements.compone
   entryComponents: [
     VisualiserDocumentComponent,
     PaiementPMEComponent,
-    PaiementCDMPComponent
+    PaiementCDMPComponent,
+    ModifierPaiementPMEComponent
      
 ],
 providers: [
