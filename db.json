@@ -23,20 +23,29 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Complement Requis",
+      "statut": "Completee",
       "rccm": "6543568778",
       "denomination": "XXX",
       "raisonSocial": "Modelsis SARL",
       "refBE": "294067",
       "date_soumission": "2020-12-12",
       "ninea_file": "",
+      "statut_convention": "Convention enregistrée",
       "rccm_file": "",
       "nineaValide": "false",
       "pmeActive": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demaande": "2022-0123"
+      "numero_demande": "2022-0123",
+      "type_marche" : "Travaux",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     },
     {
       "id": 2,
@@ -48,11 +57,20 @@
       "statut": "Recevable",
       "date_soumission": "2022-12-12",
       "ninea_file": "",
+      "statut_convention": "Convention générée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-01987"
+      "numero_demande": "2022-01987",
+      "type_marche" : "Fournitures",
+      "montant_total" : "15.000.000",
+      "date_marche" : "2022-04-01",
+      "montant_rembourse" : "1.000.000",
+      "solde_PME" : "14.000.000",
+      "decode" :"15%",
+      "montant_debourse" : "10.000.000",
+      "Solde SICA" : "7.000.000"
     },
     {
       "id": 3,
@@ -64,11 +82,20 @@
       "refBE": "506978",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
+      "statut_convention": "Convention signée par la PME",
       "rccm_file": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
-      "numero_demande": "2022-0193"
+      "numero_demande": "2022-0193",
+      "type_marche" : "Services",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-12-24",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"20%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     },
     {
       "id": 4,
@@ -80,27 +107,45 @@
       "date_soumission": "2021-02-12",
       "statut": "Non Risquee",
       "ninea_file": "",
+      "statut_convention": "Convention signée par le DG",
       "rccm_file": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-0123"
+      "numero_demande": "2022-0123",
+      "type_marche" : "Travaux",
+      "montant_total" : "4.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "2.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "3.000.000",
+      "Solde SICA" : "2.000.000"
     },
     {
       "id": 5,
       "ninea": "567865467567",
       "rccm": "6543568778",
-      "statut": "Complement Requis",
+      "statut": "Completee",
       "date_soumission": "2021-02-12",
       "raisonSocial": "GUINDY SARL",
       "denomination": "XXX",
       "refBE": "154067",
       "ninea_file": "",
+      "statut_convention": "Convention rejetée",
       "rccm_file": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "numero_demande": "2022-0123"
+      "numero_demande": "2022-0123",
+      "type_marche" : "Fournitures",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
     },
     {
       "id": 6,
@@ -109,13 +154,21 @@
       "statut": "Complement Requis",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
+      "statut_convention": "Convention générée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3453",
-      "refBE": "294527"
-
+      "refBE": "294527",
+      "type_marche" : "Travaux",
+      "montant_total" : "32.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "12.000.000",
+      "solde_PME" : "7.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "8.000.000",
+      "Solde SICA" : "4.000.000"
     },
     {
       "id": 7,
@@ -124,13 +177,86 @@
       "statut": "Rejetee",
       "date_soumission": "2021-02-12",
       "ninea_file": "",
+      "statut_convention": "Convention générée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3454",
-      "refBE": "094067"
-
+      "refBE": "094067",
+      "type_marche" : "Travaux",
+      "montant_total" : "10.000.000",
+      "date_marche" : "2022-10-05",
+      "montant_rembourse" : "2.000.000",
+      "solde_PME" : "8.000.000",
+      "decode" :"5%",
+      "montant_debourse" : "5.000.000",
+      "Solde SICA" : "3.000.000"
+    }
+  ],
+  "demandes_cession": [
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Non Risquée",
+      "raisonSocial": "Modelsis SARL",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0001"
+    },
+    {
+      "id": 2,
+      "ninea": "567567",
+      "statut": "Enregistrée",
+      "raisonSocial": "ENEDIS",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0002"
+    },
+    {
+      "id": 3,
+      "ninea": "678567",
+      "statut": "Générée",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "referenceBE": "294067",
+      "dateDemande": "15/07/2021",
+      "numeroDemande": "2022-0003"
+    },
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Signée par PME",
+      "raisonSocial": "INT Marketing",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0004"
+    },
+    {
+      "id": 1,
+      "ninea": "123567",
+      "statut": "Signée par DG",
+      "raisonSocial": "E.COM4",
+      "referenceBE": "294067",
+      "dateDemande": "05/09/2021",
+      "numeroDemande": "2022-0005"
+    },
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Rejetée par PME",
+      "raisonSocial": "SCI SENEGAL",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0006"
+    },
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Acceptée",
+      "raisonSocial": "IMME",
+      "referenceBE": "294067",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0007"
     }
   ],
   "demandes": [
@@ -173,21 +299,72 @@
       "nomDocument": "Ninea",
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
-      "path": "/assets/doctest.pdf"
+      "path": "/assets/doctest.pdf",
+      "statut": "Convention générée",
+      "refBE": "6543568778",
+      "ninea": "567865467567",
+      "refDemande": "2022-3454",
+      "raisonSocial": "CAMAIEU INTERNATIONAL"
     },
     {
-      "id": 1,
+      "id": 2,
       "nomDocument": "rccm",
       "dateSoumission": "01/02/2022",
       "typeDocument": "RCCM",
-      "path": "/assets/doctest2.pdf"
+      "path": "/assets/doctest2.pdf",
+      "statut": "Convention enregistrée",
+      "refBE": "9878543",
+      "ninea": "12345567",
+      "refDemande": "2022-3214",
+      "raisonSocial": "Modelsis SARL"
     },
     {
-      "id": 1,
+      "id": 3,
       "nomDocument": "Bon d'engagement",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
-      "path": "/assets/doctest1.pdf"
+      "ninea": "97685444",
+      "path": "/assets/doctest1.pdf",
+      "statut": "Convention signée par la PME",
+      "refBE": "99999866",
+      "refDemande": "2012-0000",
+      "raisonSocial": "SCI SENEGAL FIL"
+    },
+    {
+      "id": 4,
+      "nomDocument": "Bon d'engagement",
+      "dateSoumission": "04/03/2022",
+      "typeDocument": "BE",
+      "path": "/assets/doctest1.pdf",
+      "statut": "Convention signée par la DG",
+      "refBE": "99999866",
+      "ninea": "657358975",
+      "refDemande": "2012-1230",
+      "raisonSocial": "E.COM 4"
+    },
+    {
+      "id": 5,
+      "nomDocument": "Bon d'engagement",
+      "dateSoumission": "04/03/2022",
+      "typeDocument": "BE",
+      "path": "/assets/doctest1.pdf",
+      "statut": "Convention rejetée",
+      "refBE": "8650433",
+      "ninea": "4976855858",
+      "refDemande": "2016-2345",
+      "raisonSocial": "INT MARKETING OF TRADING"
+    },
+    {
+      "id": 6,
+      "nomDocument": "Bon d'engagement",
+      "dateSoumission": "04/03/2022",
+      "typeDocument": "BE",
+      "path": "/assets/doctest1.pdf",
+      "statut": "Non Risquee",
+      "ninea": "567865467567",
+      "refBE": "3446459",
+      "refDemande": "2021-6788",
+      "raisonSocial": "ENEDIS"
     }
   ],
   "types_document": [
@@ -322,6 +499,65 @@
       "typeDocument": "Journal",
       "file": {},
       "id": 10
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 11
     }
+  ],
+  "paiements": [
+    {
+    "id" :1,
+    "referenceBE": "20-117510",
+    "raisonSocial" : "Modelsis SARL",
+    "ninea" : "561205467567",
+    "totalMarche" : "2 000 000",
+    "statut" : "En attente de paiement",
+    "soldePME" : "1 800 000",
+    "montantRecu" : 0,
+    "referencePaiement" : "2022-0001",
+    "datePaiement" : "12/05/2022",
+    "payer" : "Abdou Diop",
+    "montant" : "400 000",
+    "modePaiement": "Chèque",
+    "decode" : "10%"
+
+    },
+    {
+      "id" :2,
+      "referenceBE": "20-900510",
+      "raisonSocial" : "CAMAIEU",
+      "ninea" : "123405467567",
+      "totalMarche" : "5 000 000",
+      "statut" : "PME totalement payee",
+      "soldePME" : "0",
+      "montantRecu" : "5 000 000",
+      "referencePaiement" : "2022-0002",
+      "datePaiement" : "12/06/2022",
+      "payer" : "Doudou Diallo",
+      "montant" : "1 000 000",
+      "modePaiement": "Virement",
+      "decode" : "10%"
+
+      },
+      {
+        "id" :3,
+        "referenceBE": "20-247510",
+        "raisonSocial" : "ENEDIS",
+        "ninea" : "875305467567",
+        "totalMarche" : "10 000 000",
+        "statut" : "PME partiellement payee",
+        "soldePME" : "5 800 000",
+        "montantRecu" : 0,
+        "referencePaiement" : "2022-0003",
+        "datePaiement" : "02/01/2022",
+        "payer" : "Fatou Touré",
+        "montant" : "2 000 000",
+        "modePaiement": "Espèce",
+        "decode" : "10%"
+
+        }
+
   ]
 }

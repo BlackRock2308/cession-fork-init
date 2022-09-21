@@ -21,6 +21,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { VerificationComponent } from './components/CDMP/verification/verification.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
+import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
+import { ConventionEnregistreeComponent } from './COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
+import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/editer-convention.component';
+import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
+import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
+import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
+import { PaiementPMEComponent } from './COMPTABLE_CDMP/paiement-pme/paiement-pme.component';
+import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
+import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-cdmp.component';
+import { PaiementsComponent } from './components/PME/paiements/paiements.component';
+import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
+import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
 
 
 @NgModule({
@@ -38,8 +50,20 @@ import { InformationsNineaComponent } from './components/CDMP/informations-ninea
     VisualiserDocumentComponent,
     ConsulterDemandeComponent,
     VerificationComponent,
-    InformationsNineaComponent
-
+    InformationsNineaComponent,
+    ConventionCessionComponent,
+    ConventionEnregistreeComponent,
+    EditerConventionComponent,
+    DemandesCessionComponent,
+    PaimentsComponent,
+    ListPaiementCdmpComponent,
+    PaiementPMEComponent,
+    ListPaiementPMEComponent,
+    PaiementCDMPComponent,
+    PaiementsComponent,
+    PaiementsComponent,
+    DashboardDGComponent,
+    DetailsTableauComponent
     
   ],
   imports: [
@@ -51,12 +75,13 @@ import { InformationsNineaComponent } from './components/CDMP/informations-ninea
   ],
   exports: [
     RouterModule,
-    //CoreModule,
     NouvelleDemandeComponent,
       
   ],
   entryComponents: [
-    VisualiserDocumentComponent
+    VisualiserDocumentComponent,
+    PaiementPMEComponent,
+    PaiementCDMPComponent
      
 ],
 providers: [

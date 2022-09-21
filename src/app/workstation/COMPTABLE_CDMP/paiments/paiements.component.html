@@ -1,0 +1,91 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['raisonSocial','referenceBE','totalMarche','statut']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {last} à {first} de {totalRecords} " [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
+                        <h4 class="title" style="color: #203359; position: relative; right: -400px;">Paiements /
+                            Recouvrements</h4>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Rechercher..." />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="raisonSocial" style="color: #203359;">Raison sociale<p-sortIcon
+                                field="raisonSocial"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="referenceBE" style="color: #203359;">Référence BE <p-sortIcon
+                                field="referenceBE"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="totalMarche" style="color: #203359;">Total Marché<p-sortIcon
+                                field="totalMarche"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="soldePME" style="color: #203359;">Solde PME<p-sortIcon field="soldePME">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="montantRecu" style="color: #203359;">Montant Recu<p-sortIcon
+                                field="montantRecu"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
+                            </p-sortIcon>
+                        </th>
+                        <th style="color: #203359;">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-paiement>
+                    <tr>
+
+                        <td style="width:16%; min-width:10rem;">
+                            <span class="p-column-title">Raison Sociale</span>
+                            {{paiement.raisonSocial}}
+                        </td>
+
+                        <td style="width:16%; min-width:8rem;">
+                            <span class="p-column-title">Référence BE</span>
+                            {{paiement.referenceBE}}
+                        </td>
+                        <td style="width:16%;">
+                            <span class="p-column-title">Total Marché</span>
+                            {{paiement.totalMarche}}
+                        </td>
+                        <td style="width:16%;">
+                            <span class="p-column-title">Solde PME</span>
+                            {{paiement.soldePME}}
+                        </td>
+                        <td style="width:15%;">
+                            <span class="p-column-title">Montant Reçu</span>
+                            {{paiement.montantRecu}}
+                        </td>
+                        <td style="width:18%;">
+                            <span class="p-column-title">Statut</span>
+                            {{paiement.statut}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <!-- <button pButton pRipple icon="pi pi-search"
+                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Consulter les détails"
+                                    (click)="visualiserPaiement(paiement)"></button> -->
+                                <button pButton pRipple icon="pi pi-money-bill"
+                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Paiment de la PME"
+                                    *ngIf="paiement.statut === 'En attende de paiement' || paiement.statut === 'PME partiellement payee'" (click)="visualiserPaiementListPME(paiement)"></button>
+                                <button pButton pRipple icon="pi pi-id-card"
+                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Paiment de la CDMP"
+                                    *ngIf="paiement.statut === 'PME totalement payee' || paiement.statut === 'CDMP partiellement payee'" (click)="visualiserPaiementListCDMP(paiement)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+
+    </div>
+
+</div>

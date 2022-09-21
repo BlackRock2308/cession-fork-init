@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
+import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
+import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
@@ -12,6 +14,11 @@ import { ComplementDocumentsComponent } from './components/PME/complement_docume
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
 import { MenuComponent } from './components/PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
+import { PaiementsComponent } from './components/PME/paiements/paiements.component';
+import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
+import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
+import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
+import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
 
 
 const routes: Routes = [
@@ -28,22 +35,32 @@ const routes: Routes = [
 
   {path:'cdmp/analyser' , component:TacheAnalyseComponent},
   {path: 'cdmp/visualiser-demandes', component: VisualiserDemandesComponent},
-
+  {path: 'cdmp/dashboard', component: DashboardDGComponent},
   //Consulter une demande de cession a l'etat risque ou non risquee
   {path:'cdmp/consulter_demande' , component:ConsulterDemandeComponent},
 
  // {path:'demandes',loadChildren: () => import('./components/CDMP/demandes-adhesion/adhesion-process/adhesion-process-routing.module').then(m => m.AdhesionProcessModule)},
 
+  //COMPTABLE CDMP
+  {path:'comptable/convention_cession' , component:ConventionCessionComponent},
+  {path:'comptable/paiements' , component:PaimentsComponent},
+  {path:'comptable/list-paiements-cdmp' , component:ListPaiementCdmpComponent},
+  {path:'comptable/list-paiements-pme' , component:ListPaiementPMEComponent},
+
   //PME
-  //Creation de compte de la PME
   
   //Liste des demandes de la PME
   {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
+
+  {path: 'pme/convention', component: DemandesCessionComponent},
   //Page d'accueil de la PME
   {path: 'pme/accueil', component: MenuComponent},
   {path: 'pme/new_demande', component: NouvelleDemandeComponent},
   //Compléments documents
-  {path:'pme/demandes_en_cours/complement_documents',component:ComplementDocumentsComponent}
+  {path:'pme/demandes_en_cours/complement_documents',component:ComplementDocumentsComponent},
+  //Paiements et Recouvrement de la PME
+  {path:'pme/paiements',component:PaiementsComponent},
+
 ];
 
 @NgModule({

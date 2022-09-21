@@ -30,7 +30,7 @@
   <ul class="list-unstyled components mb-5">
         <div class="tableau_bord" *ngIf="appMain.sidebarActive" >
         <li>
-            <h3>Tableau de bord</h3>
+            <a [routerLink]= "['cdmp/dashboard']"><h3>Tableau de bord</h3></a>
         </li>
         
     </div>
@@ -38,31 +38,38 @@
         <br>
         <br>
     </div>
-    <li class="active">
+    <li class="active" *ngIf="profil === 'pme'">
       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
       <ul class="collapse list-unstyled" id="homeSubmenu">
-        <li>
+        <li >
             <a  [routerLink]= "['pme/new_demande']" >Nouvelle demande</a>
         </li>
-        <li>
+        <li >
             <a [routerLink]="['pme/demandes_en_cours']" >Liste des demandes</a>
         </li>
        
       </ul>
     </li>
-    <li>
+    <li *ngIf="profil === 'pme'">
         <a href="#">Suivi des paiements</a>
     </li>
 
-    <li>
+    <li *ngIf="profil === 'cdmp'">
         <a disabled [routerLink]="['cdmp/demandes_en_cours']">Demandes Adhesion</a>
     </li>
-    <li>
+    <li *ngIf="profil === 'cdmp'">
         <a disabled [routerLink]="['cdmp/demandes']">Recevabilite</a>
     </li>
-    <li>                   
+    <li *ngIf="profil === 'cdmp'">                   
         <a disabled [routerLink]="['cdmp/analyse_risque']">Analyse du risque sur cession</a>
     </li>
+    <li *ngIf="profil === 'comptable'">
+        <a disabled [routerLink]="['comptable/convention_cession']">Convention de cession</a>
+    </li>
+    <li *ngIf="profil === 'comptable'">                   
+        <a disabled [routerLink]="['comptable/paiements']">Paiements/Recouvrements</a>
+    </li>
+    
 
    
   </ul>

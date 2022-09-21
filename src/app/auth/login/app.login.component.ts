@@ -24,6 +24,10 @@ export class AppLoginComponent {
       this.router.navigate(['workstation']);
       localStorage.setItem('profil', 'pme'); 
     }
+    if(username === 'comptable'){
+      this.router.navigate(['workstation']);
+      localStorage.setItem('profil', 'comptable'); 
+    }
     
    }
 

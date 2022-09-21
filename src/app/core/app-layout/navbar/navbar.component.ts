@@ -60,7 +60,9 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
     }
 
-
+    loggout(){
+      localStorage.removeItem('profil');
+    }
 
 
 }

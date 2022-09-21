@@ -52,6 +52,8 @@ export class SideBarComponent implements OnInit {
 
     configActive: boolean;
 
+    profil: string;
+
 
   constructor( public appMain: AppMainComponent ) { }
 
@@ -64,6 +66,7 @@ export class SideBarComponent implements OnInit {
 
 
   ngOnInit() {
+    this.profil = localStorage.getItem('profil');
   }
  
 

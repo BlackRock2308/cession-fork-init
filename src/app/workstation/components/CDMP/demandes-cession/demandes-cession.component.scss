@@ -1,0 +1,118 @@
+
+
+.button{
+    background-color: #203359;
+
+}
+
+::ng-deep span.p-paginator-current.ng-star-inserted{
+    color: #203359;
+
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
+    background-color: #203359;
+
+}
+
+::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight{
+    background-color: #203359;
+
+}
+
+.title{
+    color:white;
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
+    color: #203359;
+
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
+    color: #203359;
+
+}
+
+::ng-deep div.p-dialog-header.ng-tns-c96-4.ng-star-inserted{
+    border: none;
+    //display: none;
+
+}
+
+.modalTitle{
+    background-color: #F2F2F2;
+    justify-content: center;
+    height: 40px;
+    border-radius: 2%;
+    
+}
+
+.label{
+    color: #A5A5A5;
+                    font-weight: bolder;
+}
+
+::ng-deep li.p-element.p-steps-item.p-highlight.p-steps-current.ng-star-inserted{
+    display:none;
+}
+
+::ng-deep li.p-element.p-steps-item.ng-star-inserted::before{
+    display:none;
+}
+
+::ng-deep span.p-steps-number{
+    display:none;
+}
+
+::ng-deep .form-check-input{
+    background-color: green;
+}
+
+.tabMenu{
+    display: flex;
+   
+}
+
+p-steps p-steps-item {
+    width: 25%;
+}
+
+p-steps.steps-custom {
+    margin-bottom: 30px;
+}
+
+p-steps.steps-custom p-steps-item p-menuitem-link {
+    padding: 0 1em;
+    overflow: visible;
+}
+
+.p-steps.steps-custom .p-steps-item .p-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 36px;
+    border-radius: 50%;
+    margin-top: -14px;
+    margin-bottom: 10px;
+}
+
+.p-steps.steps-custom .p-steps-item .p-steps-title {
+    color: #555555;
+}
+
+.p-steps.steps-custom .p-steps-item .p-steps-number {
+  background-color: #B33213;
+  color: transparent;
+  border-radius: 50%; 
+}
+
+.p-steps.steps-custom .p-steps-item {
+  color: #003399;
+}
+
+//change the color's label of each step
+.p-steps.steps-custom .p-steps-item .p-steps-title {
+  color: #003399;
+  font-size: medium;
+}
