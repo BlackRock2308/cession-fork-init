@@ -1,0 +1,14 @@
+<form [formGroup]="form" >
+<div class="formgroup-inline">
+    <div class="field grid">
+        <label class="text" htmlFor="codePIN" >Code PIN: </label>
+        <div >
+            <input class="marge " pInputText id="codePIN" type="text" pTooltip="Code PIN" placeholder="****"/>
+        </div>
+    </div>
+    <div class="col-12 pr-0 d-flex flex-row-reverse">
+        <button id="fermer" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised p-button-danger mx-1  my-auto ml-2"  (click)="dismiss()" ></button>
+        <button type="button" id="valider"style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-raised p-button-success my-auto " (click)=" onSubmit()"></button>
+    </div>
+</div>
+</form>

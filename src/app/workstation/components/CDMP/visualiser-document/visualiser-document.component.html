@@ -29,8 +29,8 @@
         </i>
     </button>
     &nbsp;
-    <button class="mr-2 btn btn-outline-success " ngbTooltip="Télécharger"
-        (click)="download(true)"><i class="pi pi-download">
+    <button class="mr-2 btn btn-outline-success " ngbTooltip="Télécharger" (click)="download(true)"><i
+            class="pi pi-download">
         </i>
     </button>
     &nbsp;
@@ -46,29 +46,42 @@
     <div class="modal-body">
 
         <!-- <form #form="ngForm" (ngSubmit)="onUpdateCustomer(form)"> -->
-            <div *ngIf="srcFile" class="container-fluid">
+        <div *ngIf="srcFile" class="container-fluid">
 
-                <br />
-                <div *ngIf="ext=='PDF' || ext=='pdf'">
-                    <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
-                        [render-text]="true" [zoom]="zoom" [rotation]="angle" [original-size]="false"
-                        (after-load-complete)="afterLoadComplete($event)" (page-rendered)="pageRendered($event)"
-                        [fit-to-page]="true" (text-layer-rendered)="textLayerRendered($event)" class="pdf-container">
-                    </pdf-viewer>
-                </div>
-                <div *ngIf="ext=='jpeg' || ext=='png' || ext=='jpg'" class="pdf-container">
-                    <img [src]="srcFile" alt="">
-                </div>
+            <br />
+            <div *ngIf="ext=='PDF' || ext=='pdf'">
+                <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
+                    [render-text]="true" [zoom]="zoom" [rotation]="angle" [original-size]="false"
+                    (after-load-complete)="afterLoadComplete($event)" (page-rendered)="pageRendered($event)"
+                    [fit-to-page]="true" (text-layer-rendered)="textLayerRendered($event)" class="pdf-container">
+                </pdf-viewer>
             </div>
-            <!-- <div class="pdf-container">
-            <pdf-viewer [src]="src" [original-size]="true" (on-progress)='docUploadProgress($event)'
-             [(page)]='pdfPage' [show-all]="false" [stick-to-page]='true' [fit-to-page]='true'
-            [render-text]='true' style='display: block'></pdf-viewer>
-        </div> -->
+            <div *ngIf="ext=='jpeg' || ext=='png' || ext=='jpg'" class="pdf-container">
+                <img [src]="srcFile" alt="">
+            </div>
+        </div>
     </div>
+    <div *ngIf="(statut === 'Convention rejetée')">
+    <label class="form-label" for="textAreaExample">Observations</label>
+    <div class="d-flex flex-start w-100">
+        <div class="form-outline w-100">
+            <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;">Cette convention doit être revue.</textarea>
+        </div>
+    </div>
+</div>
 </div>
 
 <div class="modal-footer">
+    <div class="col-12  pr-0 d-flex  flex-row-reverse">
+        <button *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME'))" id="valider"
+            style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
+            class="p-button-raised p-button-danger mx-1  my-auto ml-2"></button>
+        <button *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME'))" type="button" id="valider"
+            style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil" (click)="signerConvention()"
+            class="p-button-raised p-button-success my-auto "></button>
+        <button *ngIf="!(profil === 'DG') || !(statut === 'Convention signée par la PME')" type="button"
+            class="p-button-raised btn-outline-secondary my-auto" (click)="dismiss()" pButton pRipple
+            label="Fermer"></button>
+    </div>
 
-    <button type="button" class="btn btn-outline-secondary" (click)="dismiss()">Fermer</button>
 </div>

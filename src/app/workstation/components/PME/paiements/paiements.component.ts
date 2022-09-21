@@ -68,12 +68,13 @@ export class PaiementsComponent implements OnInit {
       ];
   }
 
-  visualiserPaiement(paiement: Paiements) {
+  visualiserListPaiement(paiement: Paiements) {
     this.paiement = {...paiement};
     this.paiementDialog = true;
-    this.router.navigate(['workstation/comptable/list-paiements-cdmp']);
+    this.router.navigate(['workstation/pme/list-paiements']);
     
-}
+  }
+
 
 hideDialog() {
     this.paiementDialog = false;

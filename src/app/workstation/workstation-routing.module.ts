@@ -12,6 +12,7 @@ import { VisualiserDemandesComponent } from './components/CDMP/visualiser-demand
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
+import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { MenuComponent } from './components/PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
@@ -60,7 +61,7 @@ const routes: Routes = [
   {path:'pme/demandes_en_cours/complement_documents',component:ComplementDocumentsComponent},
   //Paiements et Recouvrement de la PME
   {path:'pme/paiements',component:PaiementsComponent},
-
+  {path:'pme/list-paiements',component:ListPaiementsComponent}
 ];
 
 @NgModule({

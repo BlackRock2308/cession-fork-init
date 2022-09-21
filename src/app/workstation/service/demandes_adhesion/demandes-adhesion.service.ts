@@ -27,14 +27,20 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   id: 0,
   ninea: "567865467567",
   refBE: "6543568778",
-  date_soumission: "2021-02-12"   
+  date_soumission: "2021-02-12" ,
+  date_cession: "2020-12-15" ,
+
+  montant_rembourse : "2.000.000",
+  solde_PME : "8.000.000",
+  montant_debourse : "5.000.000",
+  solde_sica : "3.000.000"  
 });
 
   constructor(private http: HttpClient) { 
     //garder les infos nantissement en session au cas où l'on fait un refresh
-    let storedNantissement=localStorage.getItem('storedNantissement');
-    if(storedNantissement)
-      this.setDemandenantissementObs(JSON.parse(storedNantissement));
+   // let storedNantissement=localStorage.getItem('storedNantissement');
+    //if(storedNantissement)
+      //this.setDemandenantissementObs(JSON.parse(storedNantissement));
 
     //garder les infos demandes en session au cas où l'on fait un refresh
     try{

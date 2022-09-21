@@ -26,28 +26,7 @@
                 <form  [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
                     <div class="p-fluid my-4 mx-6 px-0">
                         <div class="p-formgrid grid">
-                            <div class="field col-3 ">
-                                <div class="col-12 md:col-12  d-flex justify-content-center">
-                                    <h5 style="font-weight: bold;color: #203359;">Type de document</h5>
-                                </div>
-                                <p-dropdown [options]="typesDocument" formControlName="typeDocument" [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="nom" [filter]="true" filterBy="name"
-                                    [showClear]="true" pTooltip="Sélectionner un type de fichier" placeholder="Sélectionnez un type de document">
-                                    <ng-template pTemplate="selectedItem">
-                                        <div class="country-item country-item-value" *ngIf="selectedTypeDocument">
-                                            <div>{{selectedTypeDocument}}</div>
-                                        </div>
-                                    </ng-template>
-                                    
-                                    <ng-template let-typeDocument >
-                                        <div class="country-item">
-                                            <div>{{typeDocument.nom}}</div>
-                                        </div>
-                                        
-                                    </ng-template>
-                                   
-                    
-                                </p-dropdown>                      
-                            </div>
+                           
                             <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres'">
                                 <div class="col-12 md:col-12  d-flex justify-content-center ">
                                     <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
@@ -110,5 +89,5 @@
                         </p-table>
                     </div>
                     </form>
-                
-            <button    type="button" id="valider"style="width: min-content;" pButton pRipple label="Soumettre" icon="pi pi-check" class="p-button-raised p-button-success my-auto "  ></button>
+                <div><br></div>
+            <button    type="button" id="valider"style="width: min-content;" pButton pRipple label="Soumettre" icon="pi pi-check" class="p-button-raised p-button-success my-auto pull-right "  ></button>
