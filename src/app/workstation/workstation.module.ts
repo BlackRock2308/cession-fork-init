@@ -33,10 +33,8 @@ import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-c
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
-import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement-pme/modifier-paiement-pme.component';
 import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
-
 
 @NgModule({
   declarations: [
@@ -67,9 +65,8 @@ import { ListPaiementsComponent } from './components/PME/list-paiements/list-pai
     PaiementsComponent,
     DashboardDGComponent,
     DetailsTableauComponent,
-    ModifierPaiementPMEComponent,
     ConventionSignerComponent,
-    ListPaiementsComponent
+    ListPaiementsComponent,
     
   ],
   imports: [
@@ -88,7 +85,6 @@ import { ListPaiementsComponent } from './components/PME/list-paiements/list-pai
     VisualiserDocumentComponent,
     PaiementPMEComponent,
     PaiementCDMPComponent,
-    ModifierPaiementPMEComponent,
     ConventionSignerComponent
      
 ],

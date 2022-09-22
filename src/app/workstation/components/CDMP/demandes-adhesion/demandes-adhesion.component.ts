@@ -4,8 +4,6 @@ import { MenuItem } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { MessageService } from 'primeng/api';
-import { Product } from 'src/app/workstation/model/product';
-import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 
 

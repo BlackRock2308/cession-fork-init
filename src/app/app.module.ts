@@ -24,7 +24,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 // Application services
 import {BreadcrumbService} from './core/breadcrumb/breadcrumb.service';
-
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -68,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         HttpClientModule ,
         ButtonModule,
         DynamicDialogModule,
-        OverlayModule
+        OverlayModule,
+        BreadcrumbModule
 
     ],
     declarations: [

@@ -1,47 +1,54 @@
 <div class="container-fluid text-right">
-    <div style="display: block;">
-        <div class="modal-body">
-            <div class="card p-fluid">
-                <div class="field grid">
-                    <label htmlFor="modePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Mode Paiement</label>
-                    <div class="col-12 md:col-8">
-                        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiment"  ></p-dropdown>
-                    </div>
+    <div class="modal-body">
+        <div class="card p-fluid">
+            <div class="field grid">
+                <label htmlFor="modePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Mode Paiement</label>
+                <div class="col-12 md:col-8">
+                    <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiment"></p-dropdown>
                 </div>
-                <div class="field grid">
-                    <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0" >Montant</label>
-                    <div class="col-12 md:col-8">
-                        <input pInputText id="montant" type="text" pTooltip="Montant" placeholder="Montant"/>
-                    </div>
+            </div>
+            <div class="field grid">
+                <label htmlFor="referencePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Référence de
+                    Paiement</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText id="referencePaiement" type="text" pTooltip="Référence de paiement"
+                        placeholder="Référence de paiement" />
                 </div>
-                <div class="field grid">
-                    <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Payeur</label>
-                    <div class="col-12 md:col-8">
-                        <input pInputText id="payer" type="text" pTooltip="Payeur" placeholder="Abdou Diop" [disabled]="true"/>
-                    </div>
+            </div>
+            <div class="field grid">
+                <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Montant</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText id="montant" type="text" pTooltip="Montant" placeholder="Montant" />
                 </div>
-                <div class="field grid">
-                    <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
-                    <div class="col-8 md:col-8">
-                        <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
-                            placeholder="Choisissez un ficher">
-                        <input class="hidden" type="file" id="upload-file" name="upload-file" 
-                            (change)="selectFile($event)">
-                        <div class="col-4 ">
-                            <button style="background-color: #203359;" type="button" pButton pRipple label="Parcourir"
-                                icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile"
-                                (click)="handleClick()"></button>
-                        </div>
+            </div>
+            <div class="field grid">
+                <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Payeur</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText id="payer" type="text" pTooltip="Payeur" placeholder="Abdou Diop"
+                        [disabled]="true" />
+                </div>
+            </div>
+            <div class="field grid">
+                <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
+                <div class="col-8 md:col-8">
+                    <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
+                        placeholder="Choisissez un ficher">
+                    <input class="hidden" type="file" id="upload-file" name="upload-file" (change)="selectFile($event)">
+                    <div class="col-4 ">
+                        <button style="background-color: #203359;" type="button" pButton pRipple label="Parcourir"
+                            icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile"
+                            (click)="handleClick()"></button>
                     </div>
                 </div>
             </div>
-            <div class="col-12  pr-0 d-flex  flex-row-reverse">
-                <button id="valider"style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised p-button-danger mx-1  my-auto ml-2"  [routerLink]= "['../']" ></button>
-                <button type="button" id="valider"style="width: min-content;" pButton pRipple label="Sauvegarder" icon="pi pi-check" class="p-button-raised p-button-success my-auto "  ></button>
-            </div>
+        </div>
+        <div class="col-12  pr-0 d-flex  flex-row-reverse">
+            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised p-button-danger mx-1  my-auto ml-2" [routerLink]="['../']"></button>
+            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                icon="pi pi-check" class="p-button-raised p-button-success my-auto "></button>
         </div>
     </div>
     <div class="modal-footer">
         
-    
     </div>

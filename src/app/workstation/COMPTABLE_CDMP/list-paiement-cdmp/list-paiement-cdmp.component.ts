@@ -19,9 +19,9 @@ export class ListPaiementCdmpComponent implements OnInit {
 
   paiementDialog: boolean;
 
-  paiements:Paiements[];
+  paiements: Paiements[];
 
-  paiement:Paiements;
+  paiement: Paiements;
 
   submitted: boolean;
 
@@ -32,10 +32,10 @@ export class ListPaiementCdmpComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   items: MenuItem[];
-   
+
   activeIndex: number = 1;
   documents: any[];
-  
+
   angle = 0;
   zoom = 0.8;
   textLayerRenderedCb = 0;
@@ -44,56 +44,64 @@ export class ListPaiementCdmpComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
-  
-  constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,private messageService:MessageService, private router: Router,
-    ) { }
+  home: MenuItem;
 
-  ngOnInit() : void {
-   
+  constructor(private documentService: DocumentService, private paiementsService: PaiementsService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
+  ) { }
+
+  ngOnInit(): void {
+
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data=>{
-      this.paiements=data});
+    this.paiementsService.getPaiements().subscribe(data => {
+      this.paiements = data
+    });
 
-      this.cols = [
-        { field: 'referencePaiement', header: 'Référence Paiement' },
-        { field: 'datePaiement', header: 'Date Paiement' },
-        { field: 'payer', header: 'Payeur' },
-        { field: 'montant', header: 'Montant' },
-      ];
-     
+    this.cols = [
+      { field: 'referencePaiement', header: 'Référence Paiement' },
+      { field: 'datePaiement', header: 'Date Paiement' },
+      { field: 'payer', header: 'Payeur' },
+      { field: 'montant', header: 'Montant' },
+    ];
+    this.items = [
+      { label: 'Paiements' , url: '/#/workstation/comptable/paiements'},
+      { label: 'Paiment CDMP' },
+    ];
+
+    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+
   }
 
   verifierDemande(paiement: Paiements) {
-    this.paiement = {...paiement};
+    this.paiement = { ...paiement };
     this.paiementDialog = true;
     //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
-    
-}
 
-visualiserPaimentCDMP() {
-  const ref = this.dialogService.open(PaiementCDMPComponent, {
-  
-    header: "Paiement CDMP",
-    width: '60%',
-    height: 'calc(100% - 200px)',
-    baseZIndex: 10000
-  });
-}
+  }
 
-detailPaimentCDMP(document: Documents) {
-  let paiement = 'true';
-  const ref = this.dialogService.open(VisualiserDocumentComponent, {
-    data: {
-      document: document,
-      paiement: paiement
-    }, 
-    header: "Paiement PME",
-    width: '60%',
-    height: 'calc(100% - 200px)',
-    baseZIndex: 10000
-  });
-}
+  visualiserPaimentCDMP() {
+    const ref = this.dialogService.open(PaiementCDMPComponent, {
+
+      header: "Paiement CDMP",
+      width: '60%',
+      height: 'calc(100% - 200px)',
+      baseZIndex: 10000
+    });
+  }
+
+  detailPaimentCDMP(document: Documents) {
+    let paiement = 'true';
+    const ref = this.dialogService.open(VisualiserDocumentComponent, {
+      data: {
+        document: document,
+        paiement: paiement
+      },
+      header: "Paiement PME",
+      width: '60%',
+      height: 'calc(100% - 200px)',
+      baseZIndex: 10000
+    });
+  }
 
 }

@@ -24,9 +24,9 @@ export class PaimentsComponent implements OnInit {
 
   paiementDialog: boolean;
 
-  paiements:Paiements[];
+  paiements: Paiements[];
 
-  paiement:Paiements;
+  paiement: Paiements;
 
   submitted: boolean;
 
@@ -37,10 +37,10 @@ export class PaimentsComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   items: MenuItem[];
-   
+
   activeIndex: number = 1;
   documents: any[];
-  
+
   angle = 0;
   zoom = 0.8;
   textLayerRenderedCb = 0;
@@ -50,52 +50,59 @@ export class PaimentsComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
-  
-  constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,private messageService:MessageService, private router: Router,
-    ) { }
 
-  ngOnInit() : void {
-   
+  home: MenuItem;
+
+  constructor(private documentService: DocumentService, private paiementsService: PaiementsService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
+  ) { }
+
+  ngOnInit(): void {
+
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data=>{
-      this.paiements=data});
+    this.paiementsService.getPaiements().subscribe(data => {
+      this.paiements = data
+    });
 
-      this.cols = [
-        { field: 'raisonSocial', header: 'Raison Social' },
-        { field: 'referenceBE', header: 'Référence BE ' },
-        { field: 'totalMarche', header: 'Toatal Marché' },
-        { field: 'soldePME', header: 'Solde PME' },
-        { field: 'montantReçu', header: 'Montant Reçu' },
-        { field: 'statut', header: 'Statut' },
-      ];
-     
+    this.cols = [
+      { field: 'raisonSocial', header: 'Raison Social' },
+      { field: 'referenceBE', header: 'Référence BE ' },
+      { field: 'totalMarche', header: 'Toatal Marché' },
+      { field: 'soldePME', header: 'Solde PME' },
+      { field: 'montantReçu', header: 'Montant Reçu' },
+      { field: 'statut', header: 'Statut' },
+    ];
+    this.items = [
+      { label: 'Paiements/Recouvrements' },
+    ];
+
+    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
   }
 
   visualiserPaiementListCDMP(paiement: Paiements) {
-    this.paiement = {...paiement};
+    this.paiement = { ...paiement };
     this.paiementDialog = true;
     this.router.navigate(['workstation/comptable/list-paiements-cdmp']);
-    
-}
-visualiserPaiementListPME(paiement: Paiements) {
-  this.paiement = {...paiement};
-  this.paiementDialog = true;
-  this.router.navigate(['workstation/comptable/list-paiements-pme']);
-  
-}
 
-hideDialog() {
+  }
+  visualiserPaiementListPME(paiement: Paiements) {
+    this.paiement = { ...paiement };
+    this.paiementDialog = true;
+    this.router.navigate(['workstation/comptable/list-paiements-pme']);
+
+  }
+
+  hideDialog() {
     this.paiementDialog = false;
     this.submitted = false;
-}
+  }
 
-nineaValide():any{
-  const targetDiv = document.getElementById("actif");
-  const btn = document.getElementById("oui");
-  targetDiv.style.display = "flex";
+  nineaValide(): any {
+    const targetDiv = document.getElementById("actif");
+    const btn = document.getElementById("oui");
+    targetDiv.style.display = "flex";
 
-}
+  }
 
 }

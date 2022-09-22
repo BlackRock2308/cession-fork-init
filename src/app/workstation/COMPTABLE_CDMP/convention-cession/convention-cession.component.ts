@@ -48,6 +48,7 @@ export class ConventionCessionComponent implements OnInit {
   pageVariable = 1;
   ref: DynamicDialogRef;
   profil : string;
+  home: MenuItem;
   
   constructor(
     private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService
@@ -66,6 +67,13 @@ export class ConventionCessionComponent implements OnInit {
         { field: 'typeDocument', header: 'TypeDocument' },
         { field: 'dateSoumission', header: 'Date Soumission' },
       ];
+
+      this.items = [
+        { label: 'Convention de cession' },
+      ];
+  
+      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+  
      
   }
 

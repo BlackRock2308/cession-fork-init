@@ -100,7 +100,6 @@ import { AppBreadcrumbComponent } from './breadcrumb/app.breadcrumb.component';
 import { AppTopBarComponent } from './app-layout/top-bar/app.topbar.component';
 import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
 
-
 // @ts-ignore
 @NgModule({
     declarations: [

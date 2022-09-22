@@ -3,7 +3,7 @@
         <div class="modal-body">
             <div class="card p-fluid">
                 <div class="field grid">
-                    <label htmlFor="modePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Référence de Paiement</label>
+                    <label htmlFor="referencePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Référence de Paiement</label>
                     <div class="col-12 md:col-8">
                         <input pInputText id="referencePaiement" type="text" pTooltip="Référence de paiement"
                             placeholder="Référence de paiement" />
@@ -36,15 +36,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12  pr-0 d-flex  flex-row-reverse">
-                <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
-                    class="p-button-raised p-button-danger mx-1  my-auto ml-2"></button>
-                <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
-                    icon="pi pi-check" class="p-button-raised p-button-success my-auto "></button>
-            </div>
         </div>
     </div>
     <div class="modal-footer">
-
-
+        <div class="col-12  pr-0 d-flex  flex-row-reverse">
+            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
+            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                icon="pi pi-check" class="p-button-raised p-button-success my-auto "></button>
+        </div>
     </div>
