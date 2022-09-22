@@ -36,6 +36,8 @@ import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-
 import { ModifierPaiementPMEComponent } from './COMPTABLE_CDMP/modifier-paiement-pme/modifier-paiement-pme.component';
 import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
+import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
+import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import { ListPaiementsComponent } from './components/PME/list-paiements/list-pai
     DetailsTableauComponent,
     ModifierPaiementPMEComponent,
     ConventionSignerComponent,
-    ListPaiementsComponent
+    ListPaiementsComponent,
+    RecevabiliteComponent,
+    VerifierDemandeCessionComponent
     
   ],
   imports: [

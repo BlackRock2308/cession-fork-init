@@ -5,7 +5,7 @@
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id" >
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="title" style="color: #203359; position: relative; right: -400px;">Demandes en cours</h4>
+                        <h4 class="title" style="color: #203359; position: relative; right: -400px;">Recevabilité des demandes de cession</h4>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher..." />
@@ -14,11 +14,11 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
                         <th pSortableColumn="datesoumission" style="color: #203359;">RCCM <p-sortIcon field="datesoumission"></p-sortIcon></th>
+                        <th pSortableColumn="datesoumission" style="color: #203359;">Raison Sociale <p-sortIcon field="datesoumission"></p-sortIcon></th>
+                        <th pSortableColumn="datesoumission" style="color: #203359;">Reférence du BE <p-sortIcon field="datesoumission"></p-sortIcon></th>
                         <th pSortableColumn="rccm" style="color: #203359;">Date soumission <p-sortIcon field="rccm"></p-sortIcon></th>
-
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
@@ -34,15 +34,22 @@
                             <span class="p-column-title">RCCM</span>
                             {{demande.rccm}}
                         </td>
+                        <td style="width:30%; min-width:8rem;">
+                            <span class="p-column-title">Raison Sociale</span>
+                            {{demande.raisonSocial}}
+                        </td>
+                        <td style="width:30%; min-width:8rem;">
+                            <span class="p-column-title">Reférence du BE</span>
+                            {{demande.refBE}}
+                        </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.date_soumission}}
+                            {{demande.dateDemande}}
                         </td>
                         
                         <td>
                             <div class="flex">
-                                <i class="pi pi-eye" ></i>
-                                <i  class="pi pi-search ml-3" (click)="verifierDemande(demande)" ></i>
+                                <i  class="pi pi-search ml-3" (click)="verifierDemandeCession(demande)" ></i>
                             </div>
                         </td>
                     </tr>
@@ -54,48 +61,6 @@
     </div>
    
 </div>
-
-<p-card>
-<p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
-    <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
-        <div class="col-8 mx-auto px-auto" style="background-color:white ;" >
-            <div id="steps" >
-                <p-toast></p-toast>
-                <p-steps [model]="items" [readonly]="false" styleClass="steps-custom"></p-steps>
-            </div>
-        </div>
-    </ng-template>
-        <ng-template pTemplate="content" style="border: none;">
-            <div>
-                
-                <div class=" justify-content-center p-fluid ">
-                    <div class="p-formgrid grid">
-                        <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center">
-                                <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
-                            </div>
-                            <div class="col-6  modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demande.ninea}}</h4>
-                            </div>
-                        </div>
-                        <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center">
-                                <h4 style="font-weight: bold;color: #203359">RCCM</h4>
-                            </div>
-                            <div class="col-6 modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demande.rccm}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <router-outlet></router-outlet>
-        </ng-template>
-
-    </p-dialog>
-</p-card>
 
 
 

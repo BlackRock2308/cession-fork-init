@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DemandeAdhesion } from '../../model/demande';
+import { DemandeAdhesion, DemandeCession } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,14 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion`);
   }
+
+  //get l'ensemble des demandes de cession
+
+  getDemandesCession(): Observable<DemandeCession[]> {
+    return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
+  }
+
+
   getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
   }

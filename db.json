@@ -104,14 +104,14 @@
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
       "numero_demande": "2022-0193",
-      "type_marche" : "Services",
-      "montant_total" : "10.000.000",
-      "date_marche" : "2022-12-24",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
-      "decode" :"20%",
-      "montant_debourse" : "5.000.000",
-      "solde_sica" : "3.000.000"
+      "type_marche": "Services",
+      "montant_total": "10.000.000",
+      "date_marche": "2022-12-24",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "8.000.000",
+      "decode": "20%",
+      "montant_debourse": "5.000.000",
+      "solde_sica": "3.000.000"
     },
     {
       "id": 4,
@@ -129,14 +129,14 @@
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-0123",
-      "type_marche" : "Travaux",
-      "montant_total" : "4.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "2.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "3.000.000",
-      "solde_sica" : "2.000.000"
+      "type_marche": "Travaux",
+      "montant_total": "4.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "2.000.000",
+      "decode": "5%",
+      "montant_debourse": "3.000.000",
+      "solde_sica": "2.000.000"
     },
     {
       "id": 5,
@@ -154,14 +154,14 @@
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-0123",
-      "type_marche" : "Fournitures",
-      "montant_total" : "10.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "5.000.000",
-      "solde_sica" : "3.000.000"
+      "type_marche": "Fournitures",
+      "montant_total": "10.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "8.000.000",
+      "decode": "5%",
+      "montant_debourse": "5.000.000",
+      "solde_sica": "3.000.000"
     },
     {
       "id": 6,
@@ -177,14 +177,14 @@
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3453",
       "refBE": "294527",
-      "type_marche" : "Travaux",
-      "montant_total" : "32.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "12.000.000",
-      "solde_PME" : "7.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "8.000.000",
-      "solde_sica" : "4.000.000"
+      "type_marche": "Travaux",
+      "montant_total": "32.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "12.000.000",
+      "solde_PME": "7.000.000",
+      "decode": "5%",
+      "montant_debourse": "8.000.000",
+      "solde_sica": "4.000.000"
     },
     {
       "id": 7,
@@ -200,14 +200,14 @@
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3454",
       "refBE": "094067",
-      "type_marche" : "Travaux",
-      "montant_total" : "10.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "5.000.000",
-      "solde_sica" : "3.000.000"
+      "type_marche": "Travaux",
+      "montant_total": "10.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "8.000.000",
+      "decode": "5%",
+      "montant_debourse": "5.000.000",
+      "solde_sica": "3.000.000"
     }
   ],
   "demandes_cession": [
@@ -216,9 +216,11 @@
       "ninea": "567567",
       "statut": "Non Risquée",
       "raisonSocial": "Modelsis SARL",
-      "referenceBE": "294067",
+      "referenceBE": "20-294067",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0001"
+      "numeroDemande": "2022-0001",
+      "rccm": "401568778",
+      "denomination": "Modelsis"
     },
     {
       "id": 2,
@@ -273,6 +275,51 @@
       "referenceBE": "294067",
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0007"
+    }
+  ],
+  "recevabilites": [
+    {
+      "id": 1,
+      "demande_cession_id": 1,
+      "identification_budgetaire": true,
+      "atd": true,
+      "nantissement": true,
+      "interdiction_bancaire": false,
+      "observation": "",
+      "nature_prestation": "",
+      "nature_depense": "",
+      "imputation": "",
+      "mode_reglement": "",
+      "beneficiaire": "",
+      "identification_comptable": "",
+      "type_depense": "",
+      "objet_depense": "",
+      "montant_depense": "",
+      "date": "",
+      "destination": ""
+    },
+    {
+      "identificationBudgetaire": true,
+      "atd": true,
+      "nantissement": true,
+      "interdictionBancaire": false,
+      "observation": "test123",
+      "infoBE": {
+        "naturePrestation": "aaa",
+        "natureDepense": "",
+        "imputation": "bbb",
+        "modeReglement": "ccc",
+        "beneficiaire": "ddd",
+        "identificationComptable": "eee",
+        "typeDepense": "fff",
+        "objetDepense": "ggg",
+        "montantDepense": "hhh",
+        "date": "iii",
+        "destination": "jjj"
+      },
+      "referenceBE": "20-294067",
+      "demandeCessionId": 1,
+      "id": 2
     }
   ],
   "demandes": [
