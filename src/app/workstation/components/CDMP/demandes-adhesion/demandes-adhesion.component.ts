@@ -70,6 +70,7 @@ export class DemandesAdhesionComponent implements OnInit {
     }
 ];  
     this.activeItem=this.items[0];
+    this.demandesAdhesionService.getDialog().subscribe(data=>this.demandeDialog=data)
       
   }
 
