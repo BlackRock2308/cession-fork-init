@@ -26,6 +26,8 @@ export class VisualiserDocumentComponent implements OnInit {
   profil: string;
   statut: string;
   convention: any;
+  paiement: string;
+
   constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
   ngOnInit() {
@@ -36,7 +38,12 @@ export class VisualiserDocumentComponent implements OnInit {
     this.profil = localStorage.getItem('profil');
 
     this.statut = this.config.data.document.statut;
+    if(this.config.data.paiement === 'true'){
+      this.paiement  = 'true';
+    }
     
+    
+    console.log(this.paiement);
     
   }
   dowloadFile(path: string) {

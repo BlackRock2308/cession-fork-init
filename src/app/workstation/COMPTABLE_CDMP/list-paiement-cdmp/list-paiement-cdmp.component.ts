@@ -82,5 +82,18 @@ visualiserPaimentCDMP() {
   });
 }
 
+detailPaimentCDMP(document: Documents) {
+  let paiement = 'true';
+  const ref = this.dialogService.open(VisualiserDocumentComponent, {
+    data: {
+      document: document,
+      paiement: paiement
+    }, 
+    header: "Paiement PME",
+    width: '60%',
+    height: 'calc(100% - 200px)',
+    baseZIndex: 10000
+  });
+}
 
 }

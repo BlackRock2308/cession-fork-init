@@ -33,7 +33,7 @@
       "statut_convention": "Convention enregistrée",
       "rccm_file": "",
       "nineaValide": true,
-      "pmeActive": true,
+      "pmeActive": false,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
@@ -104,14 +104,14 @@
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
       "numero_demande": "2022-0193",
-      "type_marche" : "Services",
-      "montant_total" : "10.000.000",
-      "date_marche" : "2022-12-24",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
-      "decode" :"20%",
-      "montant_debourse" : "5.000.000",
-      "solde_sica" : "3.000.000"
+      "type_marche": "Services",
+      "montant_total": "10.000.000",
+      "date_marche": "2022-12-24",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "8.000.000",
+      "decode": "20%",
+      "montant_debourse": "5.000.000",
+      "solde_sica": "3.000.000"
     },
     {
       "id": 4,
@@ -129,14 +129,14 @@
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-0123",
-      "type_marche" : "Travaux",
-      "montant_total" : "4.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "2.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "3.000.000",
-      "solde_sica" : "2.000.000"
+      "type_marche": "Travaux",
+      "montant_total": "4.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "2.000.000",
+      "decode": "5%",
+      "montant_debourse": "3.000.000",
+      "solde_sica": "2.000.000"
     },
     {
       "id": 5,
@@ -154,14 +154,14 @@
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-0123",
-      "type_marche" : "Fournitures",
-      "montant_total" : "10.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "5.000.000",
-      "solde_sica" : "3.000.000"
+      "type_marche": "Fournitures",
+      "montant_total": "10.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "8.000.000",
+      "decode": "5%",
+      "montant_debourse": "5.000.000",
+      "solde_sica": "3.000.000"
     },
     {
       "id": 6,
@@ -177,14 +177,14 @@
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3453",
       "refBE": "294527",
-      "type_marche" : "Travaux",
-      "montant_total" : "32.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "12.000.000",
-      "solde_PME" : "7.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "8.000.000",
-      "solde_sica" : "4.000.000"
+      "type_marche": "Travaux",
+      "montant_total": "32.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "12.000.000",
+      "solde_PME": "7.000.000",
+      "decode": "5%",
+      "montant_debourse": "8.000.000",
+      "solde_sica": "4.000.000"
     },
     {
       "id": 7,
@@ -200,14 +200,14 @@
       "interdiction": "Aucune interdiction bancaire",
       "numero_demande": "2022-3454",
       "refBE": "094067",
-      "type_marche" : "Travaux",
-      "montant_total" : "10.000.000",
-      "date_marche" : "2022-10-05",
-      "montant_rembourse" : "2.000.000",
-      "solde_PME" : "8.000.000",
-      "decode" :"5%",
-      "montant_debourse" : "5.000.000",
-      "solde_sica" : "3.000.000"
+      "type_marche": "Travaux",
+      "montant_total": "10.000.000",
+      "date_marche": "2022-10-05",
+      "montant_rembourse": "2.000.000",
+      "solde_PME": "8.000.000",
+      "decode": "5%",
+      "montant_debourse": "5.000.000",
+      "solde_sica": "3.000.000"
     }
   ],
   "demandes_cession": [
@@ -477,49 +477,9 @@
       "file": "File {name: 'Arbre à Problème.pdf', lastModified: 1639654648240, lastModifiedDate: Thu Dec 16 2021 10:37:28 GMT-0100 (heure normale des Açores), webkitRelativePath: '', size: 73322, …}"
     },
     {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 3
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 4
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 5
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 6
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 7
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 8
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 9
-    },
-    {
       "typeDocument": "Journal",
       "file": {},
       "id": 10
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 11
     }
   ],
   "paiements": [
@@ -537,7 +497,19 @@
       "payer": "Abdou Diop",
       "montant": "400 000",
       "modePaiement": "Chèque",
-      "decode": "10%"
+      "decode": "10%",
+      "document" : {
+          "id": 1,
+          "nomDocument": "Ninea",
+          "dateSoumission": "01/02/2022",
+          "typeDocument": "NINEA",
+          "path": "/assets/doctest.pdf",
+          "statut": "Convention générée",
+          "refBE": "6543568778",
+          "ninea": "567865467567",
+          "refDemande": "2022-3454",
+          "raisonSocial": "CAMAIEU INTERNATIONAL"
+      }
     },
     {
       "id": 2,
@@ -553,7 +525,19 @@
       "payer": "Doudou Diallo",
       "montant": "1 000 000",
       "modePaiement": "Virement",
-      "decode": "10%"
+      "decode": "10%",
+      "document" : {
+        "id": 1,
+        "nomDocument": "Ninea",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/doctest.pdf",
+        "statut": "Convention générée",
+        "refBE": "6543568778",
+        "ninea": "567865467567",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
+    }
     },
     {
       "id": 3,
@@ -569,7 +553,19 @@
       "payer": "Fatou Touré",
       "montant": "2 000 000",
       "modePaiement": "Espèce",
-      "decode": "10%"
+      "decode": "10%",
+      "document" : {
+        "id": 1,
+        "nomDocument": "Ninea",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/doctest.pdf",
+        "statut": "Convention générée",
+        "refBE": "6543568778",
+        "ninea": "567865467567",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
+    }
     }
   ]
 }

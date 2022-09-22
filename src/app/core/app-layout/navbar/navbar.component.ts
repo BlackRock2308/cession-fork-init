@@ -2,7 +2,7 @@ import { Component, OnInit , Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppMainComponent } from '../main/app.main.component';
-import { MenuService } from '../side-menu/app.menu.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -54,13 +54,17 @@ export class NavbarComponent implements OnInit {
   menuHoverActive: boolean;
 
   configActive: boolean;
+  profil : string;
 
-  constructor(public renderer: Renderer2, private menuService: MenuService,
-    private primengConfig: PrimeNGConfig,public appMain: AppMainComponent) {}
+  constructor(public renderer: Renderer2,
+    private primengConfig: PrimeNGConfig,public appMain: AppMainComponent, public router: Router) {}
     ngOnInit() {
+      this.profil = localStorage.getItem('profil')
+      
     }
 
     loggout(){
+      this.router.navigate(['/login']);
       localStorage.removeItem('profil');
     }
 

@@ -913,7 +913,7 @@ a {
   }
   .layout-wrapper.layout-horizontal .layout-topbar .layout-topbar-logo-wrapper .layout-topbar-logo .app-name {
     font-size: 22.5px;
-    color: #d8dee9;
+    color: #ffffff;
     margin: 0 10px;
   }
   .layout-wrapper.layout-horizontal .layout-topbar .layout-topbar-logo-wrapper .layout-topbar-logo img {
@@ -6889,11 +6889,11 @@ a {
   cursor: pointer;
 }
 .layout-topbar .layout-topbar-wrapper .layout-topbar-right .profile-item > ul > li.layout-submenu-footer button.signout-button {
-  color: #434c5e;
+  color: #ffffff;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  background-color: #d8dee9;
+  background-color:  #981639;
 }
 .layout-topbar .layout-topbar-wrapper .layout-topbar-right .profile-item > ul > li.layout-submenu-footer button.buy-mirage-button {
   color: #5e81ac;

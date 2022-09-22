@@ -1,3 +1,4 @@
+import { Documents } from "./document";
 
 export interface Paiements {
 
@@ -14,4 +15,5 @@ export interface Paiements {
     datePaiement?: Date;
     montant?: number;
     payer?: string;
+    document: Documents;
 }

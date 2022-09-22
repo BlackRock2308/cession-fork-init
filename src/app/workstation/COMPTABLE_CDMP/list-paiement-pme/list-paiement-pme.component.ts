@@ -7,7 +7,6 @@ import { Documents } from '../../model/document';
 import { Paiements } from '../../model/paiements';
 import { DocumentService } from '../../service/document/document.service';
 import { PaiementsService } from '../../service/paiements/paiements.service';
-import { ModifierPaiementPMEComponent } from '../modifier-paiement-pme/modifier-paiement-pme.component';
 import { PaiementPMEComponent } from '../paiement-pme/paiement-pme.component';
 
 @Component({
@@ -83,8 +82,13 @@ visualiserPaimentPME() {
   });
 }
 
-detailPaimentPME() {
-  const ref = this.dialogService.open(ModifierPaiementPMEComponent, {
+detailPaimentPME(document: Documents) {
+  let paiement = 'true';
+  const ref = this.dialogService.open(VisualiserDocumentComponent, {
+    data: {
+      document: document,
+      paiement: paiement
+    }, 
     header: "Paiement PME",
     width: '60%',
     height: 'calc(100% - 200px)',
