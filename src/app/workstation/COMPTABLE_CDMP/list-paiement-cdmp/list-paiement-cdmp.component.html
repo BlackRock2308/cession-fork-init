@@ -1,3 +1,6 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <div class="card">
@@ -8,13 +11,13 @@
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
                         <h4 class="title" style="color: #203359; position: relative; right: -200px;">Liste des paiements
-                            reçu de SICA sur le marché 20-247510</h4>
-                            <div class="flex">
-                                <button id="valider"  pButton pRipple label="Enregistrer paiement"
-                                    icon="pi pi-plus" class="p-button-raised p-button-success mx-4  my-auto ml-4"
-                                    (click)="visualiserPaimentCDMP()"></button>
-    
-                            </div>
+                            reçu de SICA sur le marché. Réf. BE: 20-247510</h4>
+                        <div class="flex">
+                            <button id="valider" pButton pRipple label="Enregistrer paiement" icon="pi pi-plus"
+                                class="p-button-raised p-button-success mx-4  my-auto ml-4"
+                                (click)="visualiserPaimentCDMP()"></button>
+
+                        </div>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -37,36 +40,39 @@
                 <ng-template pTemplate="body" let-paiement>
                     <tr>
 
-                        <td style="width:20%; min-width:10rem;">
+                        <td style="width:25%; min-width:10rem;">
                             <span class="p-column-title">Référence paiement</span>
                             {{paiement.referencePaiement}}
                         </td>
 
-                        <td style="width:20%; min-width:8rem;">
+                        <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
                             {{paiement.datePaiement}}
                         </td>
-                        <td style="width:20%;">
+                        <td style="width:25%;">
                             <span class="p-column-title">Payeur</span>
                             {{paiement.payer}}
                         </td>
-                        <td style="width:20%;">
+                        <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
-                            {{paiement.montant}}
+                            <span class="pull-right">{{paiement.montant}}</span>
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-search"
+                                <button pButton pRipple icon="pi pi-file"
                                     class="p-button-rounded p-button-text mr-2 button"
-                                    pTooltip="Consulter les détails"></button>
+                                    pTooltip="Visualiser le paiement" (click)="detailPaimentCDMP(paiement.document)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
-                    <div class="textRight">
-                        SOLDE :  7 000 000 F CFA
-                    </div>
+                    <span class="textLeft">
+                        SOLDE : 5 000 000 F CFA
+                    </span>
+                    <span class="textRight">
+                        Montant total : 7 000 000 F CFA
+                    </span>
                 </ng-template>
             </p-table>
         </div>

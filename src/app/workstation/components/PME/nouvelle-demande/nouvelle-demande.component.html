@@ -1,7 +1,10 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="card mx-0 my-0 py-0 px-0">
-    
+
     <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
-    
+
         <div class="card mx-0 my-0 py-0 px-0">
             <div>
                 <div class="d-flex justify-content-center col-11 mx-6 px-0">
@@ -9,121 +12,137 @@
                         <h3 class="label" style="color:  #203359;">Nouvelle Demande</h3>
                     </div>
                 </div>
-                
+
                 <br>
                 <div class="form-group row">
-                    
-                    <label for="inputPassword" class="col-sm-2  col-form-label " style="position: relative; left:60px;">Reference du BE valide</label>
+
+                    <label for="inputPassword" class="col-sm-2  col-form-label "
+                        style="position: relative; left:60px;">Référence du BE valide</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" id="text" placeholder="                                                                                                       ....">
+                        <input type="text" class="form-control" id="text"
+                            placeholder="Référence du BE valide">
                     </div>
-                  </div>
+                </div>
                 <div><br><br></div>
                 <div class="d-flex justify-content-center col-12">
                     <div class="col-12 md:col-8 modalTitle d-flex justify-content-center">
                         <h5 class="label">Documents Justificatifs</h5>
                     </div>
                 </div>
-                    <div class="p-fluid my-5 mx-6 px-0">
-                        <div class="p-formgrid grid">
-                            <div class="field col-3 ">
-                                <div class="col-12 md:col-12  d-flex justify-content-center">
-                                    <h4 style="font-weight: bold;color: #203359;">Type de document</h4>
-                                </div>
-                                <p-dropdown [options]="typesDocument" formControlName="typeDocument" [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="nom" [filter]="true" filterBy="name"
-                                    [showClear]="true" pTooltip="Sélectionner un type de fichier" placeholder="Sélectionnez un type de document">
-                                    <ng-template pTemplate="selectedItem">
-                                        <div class="country-item country-item-value" *ngIf="selectedTypeDocument">
-                                            <div>{{selectedTypeDocument}}</div>
-                                        </div>
-                                    </ng-template>
-                                    
-                                    <ng-template let-typeDocument >
-                                        <div class="country-item">
-                                            <div>{{typeDocument.nom}}</div>
-                                        </div>
-                                        
-                                    </ng-template>
-                                   
-                    
-                                </p-dropdown>                      
+                <div class="p-fluid my-5 mx-6 px-0">
+                    <div class="p-formgrid grid">
+                        <div class="field col-3 ">
+                            <div class="col-12 md:col-12  d-flex justify-content-center">
+                                <h4 style="font-weight: bold;color: #203359;">Type de document</h4>
                             </div>
-                            <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres...'">
-                                <div class="col-12 md:col-12  d-flex justify-content-center ">
-                                    <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
-                                </div>
-                                    <input  formControlName="typeDocument" id="NINEAfile" type="text" pInputText  pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
+                            <p-dropdown [options]="typesDocument" formControlName="typeDocument"
+                                [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="nom" [filter]="true"
+                                filterBy="name" [showClear]="true" pTooltip="Sélectionner un type de fichier"
+                                placeholder="Sélectionnez un type de document">
+                                <ng-template pTemplate="selectedItem">
+                                    <div class="country-item country-item-value" *ngIf="selectedTypeDocument">
+                                        <div>{{selectedTypeDocument}}</div>
+                                    </div>
+                                </ng-template>
+                                <ng-template let-typeDocument>
+                                    <div class="country-item">
+                                        <div>{{typeDocument.nom}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </div>
+                        <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres...'">
+                            <div class="col-12 md:col-12  d-flex justify-content-center ">
+                                <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
                             </div>
-                            <div class="field col-3 ">
-                                <div class="col-12 md:col-12  d-flex justify-content-center ">
-                                    <h4 style="font-weight: bold;color: #203359;">Documents</h4>
-                                </div>
-                                <input  id="NINEAfile" type="text" pInputText  pTooltip="Charger un fichier" placeholder="Choisissez un ficher">
-                                <input  formControlName="file" class="hidden" type="file"  id="upload-file" name="upload-file"  ngf-max-size="2MB" (change)="selectFile($event)">
+                            <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
+                                pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
+                        </div>
+                        <div class="field col-3 ">
+                            <div class="col-12 md:col-12  d-flex justify-content-center ">
+                                <h4 style="font-weight: bold;color: #203359;">Documents</h4>
                             </div>
-                            <div class="field col-2 mt-auto">
-                                <button style="background-color: #203359;" type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()" ></button>
-                            </div>
+                            <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
+                                placeholder="Choisissez un ficher">
+                            <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
+                                ngf-max-size="2MB" (change)="selectFile($event)">
+                        </div>
+                        <div class="field col-2 mt-auto">
+                            <button style="background-color: #203359;" type="button" pButton pRipple label="Parcourir"
+                                icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile"
+                                (click)="handleClick()"></button>
                         </div>
                     </div>
-        
-                    <div class="card">
-                    
-        
-            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id" >
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="m-2 title" style="color:  #203359; position: relative; right: -600px;">Documents</h4>
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                        </span>
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        
-                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon field="ninea"></p-sortIcon></th>
-                        <th pSortableColumn="nomDocument" style="color: #203359;">Nom document<p-sortIcon field="rccm"></p-sortIcon></th>
-                        <th style="color: #203359;">Action</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-document>
-                    <tr>
-                       
-                        <td style="width:30%; min-width:10rem;">
-                            <span class="p-column-title">Type document</span>
-                            {{document.typeDocument}}
-                        </td>
-                        
-                        <td style="width:30%; min-width:8rem;">
-                            <span class="p-column-title">Nom du document</span>
-                            {{document.file.name}}
-                        </td>
-        
-                        <td>
-                            <div class="flex">
-                                <i class="pi pi-eye mx-3"></i>
-                               <i class="pi pi-trash" (click)="delete(selectedFile)"></i>
-                               
+                </div>
+                <div class="card" *ngIf="documents.length !== 0">
+                    <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                        [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+                        [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                        currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries"
+                        [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                        <ng-template pTemplate="caption">
+                            <div
+                                class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
+                                <h4 class="m-2 title" style="color:  #203359; position: relative; right: -600px;">
+                                    Documents</h4>
+                                <span class="block mt-2 md:mt-0 p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        placeholder="Search..." />
+                                </span>
                             </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+
+                                <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
+                                        field="ninea"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="nomDocument" style="color: #203359;">Nom document<p-sortIcon
+                                        field="rccm"></p-sortIcon>
+                                </th>
+                                <th style="color: #203359;">Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-document>
+                            <tr>
+
+                                <td style="width:30%; min-width:10rem;">
+                                    <span class="p-column-title">Type document</span>
+                                    {{document.typeDocument}}
+                                </td>
+
+                                <td style="width:30%; min-width:8rem;">
+                                    <span class="p-column-title">Nom du document</span>
+                                    {{document.file.name}}
+                                </td>
+
+                                <td>
+                                    <div class="flex">
+                                        <i class="pi pi-eye mx-3"></i>
+                                        <i class="pi pi-trash" (click)="delete(selectedFile)"></i>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
             </div>
-            
-            
+
+
         </div>
-        
-        <button   id="valider"style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-check" class="p-button-raised p-button-danger float-right my-auto ml-2"  ></button>
-        <button   type="submit" id="valider"style="width: min-content;" pButton pRipple label="Soumettre" icon="pi pi-check" class="p-button-raised p-button-success float-right my-auto mr-2"  ></button>
-        
-        </form>
-        
-        
-                
-            
-    
-    </div>
+        <div class="pull-right">
+        <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-check"
+            class="p-button-raised p-button-danger float-right my-auto ml-2"></button>
+        <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
+            icon="pi pi-check" class="p-button-raised p-button-success float-right my-auto mr-2"></button>
+        </div>
+    </form>
+
+
+
+
+
+</div>

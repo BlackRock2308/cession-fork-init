@@ -41,13 +41,9 @@
     &nbsp;
 </div>
 &nbsp;
-
 <div style="display: block;">
     <div class="modal-body">
-
-        <!-- <form #form="ngForm" (ngSubmit)="onUpdateCustomer(form)"> -->
         <div *ngIf="srcFile" class="container-fluid">
-
             <br />
             <div *ngIf="ext=='PDF' || ext=='pdf'">
                 <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
@@ -61,27 +57,38 @@
             </div>
         </div>
     </div>
-    <div *ngIf="(statut === 'Convention rejetée')">
-    <label class="form-label" for="textAreaExample">Observations</label>
-    <div class="d-flex flex-start w-100">
-        <div class="form-outline w-100">
-            <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;">Cette convention doit être revue.</textarea>
+    <div *ngIf="!(paiement === 'true')">
+        <div *ngIf="(statut === 'Convention rejetée') || (statut === 'Convention générée')">
+            <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
+                <p-toast></p-toast>
+                <div class="grid p-fluid">
+                    <div class="col-12 md:col-12">
+                        <span class="h5texte">Observation</span>
+                        <div class="p-inputgroup">
+                            <span class="p-float-label">
+                                <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </p-card>
         </div>
     </div>
 </div>
-</div>
-
 <div class="modal-footer">
     <div class="col-12  pr-0 d-flex  flex-row-reverse">
-        <button *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME'))" id="valider"
-            style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
+        <button
+            *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME')) || ((profil === 'pme') && (statut === 'Convention générée'))"
+            id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
             class="p-button-raised p-button-danger mx-1  my-auto ml-2"></button>
-        <button *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME'))" type="button" id="valider"
-            style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil" (click)="signerConvention()"
-            class="p-button-raised p-button-success my-auto "></button>
-        <button *ngIf="!(profil === 'DG') || !(statut === 'Convention signée par la PME')" type="button"
-            class="p-button-raised btn-outline-secondary my-auto" (click)="dismiss()" pButton pRipple
+        <button
+            *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME'))  || ((profil === 'pme') && (statut === 'Convention générée'))"
+            type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
+            (click)="signerConvention()" class="p-button-raised p-button-success my-auto "></button>
+        <button
+            *ngIf="!(((profil === 'DG') && (statut === 'Convention signée par la PME')) || ((profil === 'pme') && (statut === 'Convention générée')))"
+            type="button" class="p-button-raised btn-outline-secondary my-auto" (click)="dismiss()" pButton pRipple
             label="Fermer"></button>
     </div>
-
 </div>

@@ -70,7 +70,7 @@ export class MenuComponent implements OnInit  {
       private primengConfig: PrimeNGConfig, public app: AppComponent) {}
 
   ngOnInit():void {
-    this.logoCDMPpath = '../../../../assets/layout/images/logo-cdmp.svg';
+    this.logoCDMPpath = '../../../../assets/layout/images/logo-cdmp.png';
     this.model = [
         // les routes /espace-cdmp, /espace-pme, /espace-ministere et /espace-autre à créer dans le module workstation
         {label: 'Espace CDMP', icon: '', routerLink: ['/login']},

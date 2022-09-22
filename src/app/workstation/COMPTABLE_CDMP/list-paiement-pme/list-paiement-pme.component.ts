@@ -7,7 +7,6 @@ import { Documents } from '../../model/document';
 import { Paiements } from '../../model/paiements';
 import { DocumentService } from '../../service/document/document.service';
 import { PaiementsService } from '../../service/paiements/paiements.service';
-import { ModifierPaiementPMEComponent } from '../modifier-paiement-pme/modifier-paiement-pme.component';
 import { PaiementPMEComponent } from '../paiement-pme/paiement-pme.component';
 
 @Component({
@@ -20,9 +19,9 @@ export class ListPaiementPMEComponent implements OnInit {
 
   paiementDialog: boolean;
 
-  paiements:Paiements[];
+  paiements: Paiements[];
 
-  paiement:Paiements;
+  paiement: Paiements;
 
   submitted: boolean;
 
@@ -33,10 +32,10 @@ export class ListPaiementPMEComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   items: MenuItem[];
-   
+
   activeIndex: number = 1;
   documents: any[];
-  
+
   angle = 0;
   zoom = 0.8;
   textLayerRenderedCb = 0;
@@ -45,52 +44,65 @@ export class ListPaiementPMEComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
-  
-  constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,private messageService:MessageService, private router: Router,
-    ) { }
+  home: MenuItem;
 
-  ngOnInit() : void {
-   
+  constructor(private documentService: DocumentService, private paiementsService: PaiementsService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
+  ) { }
+
+  ngOnInit(): void {
+
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data=>{
-      this.paiements=data});
+    this.paiementsService.getPaiements().subscribe(data => {
+      this.paiements = data
+    });
 
-      this.cols = [
-        
-        { field: 'datePaiement', header: 'Date Paiement' },
-        { field: 'payer', header: 'Payeur' },
-        { field: 'montant', header: 'Montant' },
-        { field: 'modePaiement', header: 'Mode Paiement' },
-      ];
-     
+    this.cols = [
+
+      { field: 'datePaiement', header: 'Date Paiement' },
+      { field: 'payer', header: 'Payeur' },
+      { field: 'montant', header: 'Montant' },
+      { field: 'modePaiement', header: 'Mode Paiement' },
+    ];
+    this.items = [
+      { label: 'Paiements' , url: '/#/workstation/comptable/paiements'},
+      { label: 'Paiment PME' },
+    ];
+
+    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+
   }
 
   verifierDemande(paiement: Paiements) {
-    this.paiement = {...paiement};
+    this.paiement = { ...paiement };
     this.paiementDialog = true;
     //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
-    
-}
 
-visualiserPaimentPME() {
-  const ref = this.dialogService.open(PaiementPMEComponent, {
-    header: "Paiement PME",
-    width: '60%',
-    height: 'calc(100% - 200px)',
-    baseZIndex: 10000
-  });
-}
+  }
 
-detailPaimentPME() {
-  const ref = this.dialogService.open(ModifierPaiementPMEComponent, {
-    header: "Paiement PME",
-    width: '60%',
-    height: 'calc(100% - 200px)',
-    baseZIndex: 10000
-  });
-}
+  visualiserPaimentPME() {
+    const ref = this.dialogService.open(PaiementPMEComponent, {
+      header: "Paiement PME",
+      width: '60%',
+      height: 'calc(100% - 200px)',
+      baseZIndex: 10000
+    });
+  }
+
+  detailPaimentPME(document: Documents) {
+    let paiement = 'true';
+    const ref = this.dialogService.open(VisualiserDocumentComponent, {
+      data: {
+        document: document,
+        paiement: paiement
+      },
+      header: "Paiement PME",
+      width: '60%',
+      height: 'calc(100% - 200px)',
+      baseZIndex: 10000
+    });
+  }
 
 
 }

@@ -1,8 +1,6 @@
-
-
-
-<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': appMain.sidebarActive}" (click)="appMain.onSidebarClick($event)"
-     (mouseover)="appMain.sidebarActive=true" (mouseleave)="appMain.sidebarActive=false">
+<div class="layout-sidebar dark-blue-bg" [ngClass]="{'layout-sidebar-active': appMain.sidebarActive}"
+    (click)="appMain.onSidebarClick($event)" (mouseover)="appMain.sidebarActive=true"
+    (mouseleave)="appMain.sidebarActive=false">
     <div class="sidebar-logo">
         <a href="#" class="sidebar-pin" title="Toggle Menu" (click)="appMain.onToggleMenuClick($event)">
             <i class="pi pi-lock" *ngIf="appMain.staticMenuActive"></i>
@@ -10,13 +8,9 @@
         </a>
         <a routerLink="/">
             <i class="pi pi-bars"></i>
-            
         </a>
-        
     </div>
-
-    <div class="layout-menu-container"  (click)="onMenuClick()">
-        
+    <div class="layout-menu-container" (click)="onMenuClick()">
         <ul class="layout-menu">
             
           <div class="p-4 pt-5">

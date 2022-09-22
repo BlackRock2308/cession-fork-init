@@ -1,3 +1,6 @@
+<p-breadcrumb class="dark-blue-bg" [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <div class="card">
@@ -37,7 +40,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-document>
-                    <tr *ngIf="!((profil === 'DG') && ((document.statut === 'Non Risquee') || (document.statut === 'Convention générée')))">
+                    <tr *ngIf="!((profil === 'DG') && ((document.statut === 'Non Risquee') || (document.statut === 'Convention générée'))) && !((profil === 'pme') && (document.statut === 'Non Risquee'))">
                         <td style="width:16%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{document.ninea}}

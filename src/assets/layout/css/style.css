@@ -20,7 +20,7 @@ body {
 }
 
 .form-row-last{
-	color:red;
+	color:  #981639;
 }
 .form-v7-content  {
 	width: 910px;
@@ -180,7 +180,6 @@ h4{
 	bottom: 50px;
 	position: relative;
 	height: 25px;
-	color:#fff;
 	display: block;
     margin-left: auto;
     margin-right: auto;
@@ -273,7 +272,7 @@ h4{
 	border-bottom: 2px solid #2bb33e;
 }
 .form-v7-content .form-detail .register {
-	background: #d31e1e;
+	background:  #981639;
 	border-radius: 4px;
 	-o-border-radius: 4px;
 	-ms-border-radius: 4px;
