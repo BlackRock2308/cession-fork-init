@@ -1,9 +1,9 @@
-
+<p-breadcrumb [model]="items1" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            
-
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id" >
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
@@ -16,22 +16,18 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
                         <th pSortableColumn="datesoumission" style="color: #203359;">RCCM <p-sortIcon field="datesoumission"></p-sortIcon></th>
                         <th pSortableColumn="rccm" style="color: #203359;">Date soumission <p-sortIcon field="rccm"></p-sortIcon></th>
-
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
-                       
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{demande.ninea}}
                         </td>
-                        
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">RCCM</span>
                             {{demande.rccm}}
@@ -40,7 +36,6 @@
                             <span class="p-column-title">Date Soumission</span>
                             {{demande.date_soumission}}
                         </td>
-                        
                         <td>
                             <div class="flex">
                                 <i class="pi pi-eye" ></i>
@@ -51,12 +46,8 @@
                 </ng-template>
             </p-table>
         </div>
-
-
     </div>
-   
 </div>
-
 <p-card>
 <p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false">
@@ -69,8 +60,7 @@
         </div>
     </ng-template>
         <ng-template pTemplate="content" style="border: none;">
-            <div>
-                
+            <div>   
                 <div class=" justify-content-center p-fluid ">
                     <div class="p-formgrid grid">
                         <div class="field col-6 d-flex">
@@ -90,22 +80,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div> 
             </div>
             <router-outlet></router-outlet>
         </ng-template>
-
     </p-dialog>
 </p-card>
-
-
-
-  
- 
-
-
-
-
-
-

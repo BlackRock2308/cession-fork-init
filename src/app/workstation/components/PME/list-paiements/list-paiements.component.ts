@@ -40,6 +40,7 @@ export class ListPaiementsComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
+  home: MenuItem;
   
   constructor(private paiementsService: PaiementsService, public dialogService: DialogService) { }
 
@@ -55,6 +56,12 @@ export class ListPaiementsComponent implements OnInit {
         { field: 'montant', header: 'Montant' },
         { field: 'modePaiement', header: 'Mode Paiement' },
       ];
+      this.items = [
+        { label: 'Paiements' }
+      ];
+  
+      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+  
   }
 
 }

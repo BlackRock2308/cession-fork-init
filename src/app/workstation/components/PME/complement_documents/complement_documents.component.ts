@@ -4,6 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-complement-documents',
@@ -22,7 +23,8 @@ export class ComplementDocumentsComponent implements OnInit {
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
   demandeNantissementInfos:any;
-
+  items: MenuItem[];
+  home: MenuItem;
 
   constructor(    private formBuilder: FormBuilder,private pmeService:PmeService,private demandeAdhesionService:DemandesAdhesionService) { }
 
@@ -43,6 +45,13 @@ export class ComplementDocumentsComponent implements OnInit {
     {field: 'nomDocument', header: 'Nom Document'},
     {field: 'action', header: 'Action'},
 ];
+this.items = [
+  { label: 'Liste de Damandes ', url: '/#/workstation/pme/demandes_en_cours ' },
+  { label: 'Compléter les documents' }
+];
+
+this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+
 
 //récupérer les informations du nantissement en cours de modification
   this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);

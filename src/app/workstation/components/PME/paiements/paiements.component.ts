@@ -35,6 +35,7 @@ export class PaiementsComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   items: MenuItem[];
+  home: MenuItem
    
   activeIndex: number = 1;
   documents: any[];
@@ -66,6 +67,12 @@ export class PaiementsComponent implements OnInit {
         { field: 'statut', header: 'Statut' },
         { field: 'decode', header: 'Decode' },
       ];
+      this.items = [
+        { label: 'Paiements' }
+      ];
+  
+      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+  
   }
 
   visualiserListPaiement(paiement: Paiements) {

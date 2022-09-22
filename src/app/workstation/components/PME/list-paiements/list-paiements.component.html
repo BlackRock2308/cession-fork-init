@@ -1,9 +1,10 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <p style="color:#203359; font-weight: 600;font-size: large;">Total Perçu :  3.400.000 F CFA</p>
         <div class="card">
-                
-            
             <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
