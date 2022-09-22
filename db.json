@@ -312,7 +312,7 @@
   "documents": [
     {
       "id": 1,
-      "nomDocument": "Ninea",
+      "nomDocument": "NINEA",
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
       "path": "/assets/doctest.pdf",
@@ -500,7 +500,7 @@
       "decode": "10%",
       "document" : {
           "id": 1,
-          "nomDocument": "Ninea",
+          "nomDocument": "NINEA",
           "dateSoumission": "01/02/2022",
           "typeDocument": "NINEA",
           "path": "/assets/doctest.pdf",
@@ -528,7 +528,7 @@
       "decode": "10%",
       "document" : {
         "id": 1,
-        "nomDocument": "Ninea",
+        "nomDocument": "NINEA",
         "dateSoumission": "01/02/2022",
         "typeDocument": "NINEA",
         "path": "/assets/doctest.pdf",
@@ -556,7 +556,7 @@
       "decode": "10%",
       "document" : {
         "id": 1,
-        "nomDocument": "Ninea",
+        "nomDocument": "NINEA",
         "dateSoumission": "01/02/2022",
         "typeDocument": "NINEA",
         "path": "/assets/doctest.pdf",

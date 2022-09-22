@@ -63,9 +63,9 @@ export class ConventionCessionComponent implements OnInit {
     
 
       this.cols = [
-        { field: 'nomDocument', header: 'NomDocument' },
-        { field: 'typeDocument', header: 'TypeDocument' },
-        { field: 'dateSoumission', header: 'Date Soumission' },
+        { field: 'nomDocument', header: 'Nom de Document' },
+        { field: 'typeDocument', header: 'Type de Document' },
+        { field: 'dateSoumission', header: 'Date de Soumission' },
       ];
 
       this.items = [
