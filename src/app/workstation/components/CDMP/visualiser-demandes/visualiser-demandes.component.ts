@@ -6,8 +6,6 @@ import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_ad
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 
-
-
 @Component({
   selector: 'app-visualiser-demandes',
   templateUrl: './visualiser-demandes.component.html',
@@ -37,9 +35,9 @@ export class VisualiserDemandesComponent implements OnInit {
     });
 
     this.cols = [
-      { field: 'nomDocument', header: 'NomDocument' },
-      { field: 'typeDocument', header: 'TypeDocument' },
-      { field: 'dateSoumission', header: 'Date Soumission' },
+      { field: 'nomDocument', header: 'Nom de Document' },
+      { field: 'typeDocument', header: 'Type de Document' },
+      { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
 
     //récupérer les informations du nantissement en cours de modification
