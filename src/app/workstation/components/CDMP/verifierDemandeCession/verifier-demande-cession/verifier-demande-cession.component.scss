@@ -1,0 +1,128 @@
+.modalTitle{
+    background-color: #F2F2F2;
+    justify-content: center;
+    height: 40px;
+    border-radius: 0.5rem;
+    display: flex;
+    
+
+    
+}
+
+.label{
+    color: #A5A5A5;
+    font-weight: bolder;
+}
+
+.labelTitle{
+    
+}
+
+::ng-deep span.p-paginator-current.ng-star-inserted{
+    color: #203359;
+
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
+    background-color: #203359;
+
+}
+
+::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight{
+    background-color: #203359;
+
+}
+
+.title{
+    color:white;
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
+    color: #203359;
+
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
+    color: #203359;
+
+}
+
+//inputswitch customisation
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.oui .p-inputswitch-slider {
+    background: #71B47A;
+    
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.oui:not(p.disabled):hover .p-inputswitch-slider {
+    background: #71B47A;
+}
+
+::ng-deep .p-inputswitch.oui .p-inputswitch-slider {
+    background: #CEE5D1;
+    
+}
+
+::ng-deep .p-inputswitch.oui:not(p.disabled):hover .p-inputswitch-slider {
+    background: #CEE5D1;
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.non .p-inputswitch-slider {
+    background: #DD7A59;
+    
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked.non:not(p.disabled):hover .p-inputswitch-slider {
+    background: #DD7A59;
+}
+
+::ng-deep .p-inputswitch.non .p-inputswitch-slider {
+    background: #F3D2C7;
+    
+}
+
+::ng-deep .p-inputswitch.non:not(p.disabled):hover .p-inputswitch-slider {
+    background:#F3D2C7;
+}
+
+::ng-deep .p-inputswitch .p-inputswitch-slider {
+    border-radius: 2rem;
+    width: 55px;
+
+}
+
+::ng-deep .p-inputswitch .p-inputswitch-slider:before {
+    background: #ffffff;
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0.1rem;
+    margin-top: -0.625rem;
+    transition-duration: 0.2s;
+    border-radius: 50%;
+
+}
+
+::ng-deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    background: #ffffff;
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 1.3rem;
+    margin-top: -0.625rem;
+    transition-duration: 0.2s;
+    border-radius: 50%;
+
+}
+
+.etape{
+    height: 25px;
+}
+
+
+::ng-deep div.p-dialog-header {
+    display: none;
+}
+
+input{
+    display: flex;
+    align-items: flex-end;
+}

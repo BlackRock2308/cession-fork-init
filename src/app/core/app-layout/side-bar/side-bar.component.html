@@ -12,57 +12,65 @@
     </div>
     <div class="layout-menu-container" (click)="onMenuClick()">
         <ul class="layout-menu">
-            <div class="p-4 pt-5">
-                <h3>Wootoo</h3>
-                <div>
-                    <br>
-                    <br>
-                </div>
-                <ul class="list-unstyled components mb-5">
-                    <div class="tableau_bord" *ngIf="appMain.sidebarActive">
-                        <li>
-                            <a [routerLink]="['cdmp/dashboard']">
-                                Tableau de bord
-                            </a>
-                        </li>
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                    <li class="active" *ngIf="profil === 'pme'">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle">Demandes</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a [routerLink]="['pme/new_demande']">Nouvelle demande</a>
-                            </li>
-                            <li>
-                                <a [routerLink]="['pme/demandes_en_cours']">Liste des demandes</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li *ngIf="profil === 'pme'">
-                        <a [routerLink]="['pme/paiements']">Suivi des paiements</a>
-                    </li>
-                    <li *ngIf="profil === 'cdmp'">
-                        <a disabled [routerLink]="['cdmp/demandes_en_cours']">Demandes Adhesion</a>
-                    </li>
-                    <li *ngIf="profil === 'cdmp'">
-                        <a disabled [routerLink]="['cdmp/demandes']">Recevabilite</a>
-                    </li>
-                    <li *ngIf="profil === 'cdmp'">
-                        <a disabled [routerLink]="['cdmp/analyse_risque']">Analyse du risque sur cession</a>
-                    </li>
-                    <li *ngIf="profil === 'comptable' || profil === 'pme' || profil === 'DG'">
-                        <a disabled [routerLink]="['comptable/convention_cession']">Convention de cession</a>
-                    </li>
-                    <li *ngIf="profil === 'comptable'">
-                        <a disabled [routerLink]="['comptable/paiements']">Paiements/Recouvrements</a>
-                    </li>
-                </ul>
-                <div class="footer">
-                </div>
-            </div>
+            
+          <div class="p-4 pt-5">
+                    
+           
+  <h1>Wootoo</h1>
+        <div>
+            <br>
+            <br>
+        </div>
+  <ul class="list-unstyled components mb-5">
+        <div class="tableau_bord" *ngIf="appMain.sidebarActive" >
+        <li>
+            <a [routerLink]= "['cdmp/dashboard']"><h3>Tableau de bord</h3></a>
+        </li>
+        
+    </div>
+    <div>
+        <br>
+        <br>
+    </div>
+    <li class="active" *ngIf="profil === 'pme'">
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Demandes</a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+        <li >
+            <a  [routerLink]= "['pme/new_demande']" >Nouvelle demande</a>
+        </li>
+        <li >
+            <a [routerLink]="['pme/demandes_en_cours']" >Liste des demandes</a>
+        </li>
+       
+      </ul>
+    </li>
+    <li *ngIf="profil === 'pme'">
+        <a [routerLink]="['pme/paiements']">Suivi des paiements</a>
+    </li>
+
+    <li *ngIf="profil === 'cdmp'">
+        <a disabled [routerLink]="['cdmp/demandes_en_cours']">Demandes Adhesion</a>
+    </li>
+    <li *ngIf="profil === 'cdmp'">
+        <a disabled [routerLink]="['cdmp/recevabilite']">Recevabilite</a>
+    </li>
+    <li *ngIf="profil === 'cdmp'">                   
+        <a disabled [routerLink]="['cdmp/analyse_risque']">Analyse du risque sur cession</a>
+    </li>
+    <li *ngIf="profil === 'comptable' || profil === 'pme' || profil === 'DG'">
+        <a disabled [routerLink]="['comptable/convention_cession']">Convention de cession</a>
+    </li>
+    <li *ngIf="profil === 'comptable'">                   
+        <a disabled [routerLink]="['comptable/paiements']">Paiements/Recouvrements</a>
+    </li>
+   
+  </ul>
+
+  <div class="footer">
+    
+  </div>
+
+</div>
         </ul>
     </div>
 </div>

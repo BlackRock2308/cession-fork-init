@@ -8,7 +8,9 @@ import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/d
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
 import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
+import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
+import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
 import { VisualiserDemandesComponent } from './components/CDMP/visualiser-demandes/visualiser-demandes.component';
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
@@ -40,6 +42,13 @@ const routes: Routes = [
   {path: 'cdmp/dashboard', component: DashboardDGComponent},
   //Consulter une demande de cession a l'etat risque ou non risquee
   {path:'cdmp/consulter_demande' , component:ConsulterDemandeComponent},
+
+  //liste des demandes de cession
+  {path:'cdmp/recevabilite' , component:RecevabiliteComponent},
+
+  //verifier une demande de cession
+  {path:'cdmp/recevabilite/verifier' , component:VerifierDemandeCessionComponent},
+
 
  // {path:'demandes',loadChildren: () => import('./components/CDMP/demandes-adhesion/adhesion-process/adhesion-process-routing.module').then(m => m.AdhesionProcessModule)},
 

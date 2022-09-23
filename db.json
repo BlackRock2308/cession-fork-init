@@ -216,9 +216,11 @@
       "ninea": "567567",
       "statut": "Non Risquée",
       "raisonSocial": "Modelsis SARL",
-      "referenceBE": "294067",
+      "referenceBE": "20-294067",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0001"
+      "numeroDemande": "2022-0001",
+      "rccm": "401568778",
+      "denomination": "Modelsis"
     },
     {
       "id": 2,
@@ -273,6 +275,51 @@
       "referenceBE": "294067",
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0007"
+    }
+  ],
+  "recevabilites": [
+    {
+      "id": 1,
+      "demande_cession_id": 1,
+      "identification_budgetaire": true,
+      "atd": true,
+      "nantissement": true,
+      "interdiction_bancaire": false,
+      "observation": "",
+      "nature_prestation": "",
+      "nature_depense": "",
+      "imputation": "",
+      "mode_reglement": "",
+      "beneficiaire": "",
+      "identification_comptable": "",
+      "type_depense": "",
+      "objet_depense": "",
+      "montant_depense": "",
+      "date": "",
+      "destination": ""
+    },
+    {
+      "identificationBudgetaire": true,
+      "atd": true,
+      "nantissement": true,
+      "interdictionBancaire": false,
+      "observation": "test123",
+      "infoBE": {
+        "naturePrestation": "aaa",
+        "natureDepense": "",
+        "imputation": "bbb",
+        "modeReglement": "ccc",
+        "beneficiaire": "ddd",
+        "identificationComptable": "eee",
+        "typeDepense": "fff",
+        "objetDepense": "ggg",
+        "montantDepense": "hhh",
+        "date": "iii",
+        "destination": "jjj"
+      },
+      "referenceBE": "20-294067",
+      "demandeCessionId": 1,
+      "id": 2
     }
   ],
   "demandes": [
