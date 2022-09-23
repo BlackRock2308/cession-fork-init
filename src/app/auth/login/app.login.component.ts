@@ -32,6 +32,10 @@ export class AppLoginComponent {
       this.router.navigate(['workstation']);
       localStorage.setItem('profil', 'DG'); 
     }
+    if(username === 'ordonnateur'){
+      this.router.navigate(['workstation']);
+      localStorage.setItem('profil', 'Ordonnateur'); 
+    }
     
    }
 

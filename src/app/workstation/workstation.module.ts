@@ -37,6 +37,7 @@ import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/co
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
 import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
+import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDeman
     ConventionSignerComponent,
     ListPaiementsComponent,
     RecevabiliteComponent,
-    VerifierDemandeCessionComponent
+    VerifierDemandeCessionComponent,
+    ListeConventionsComponent
     
   ],
   imports: [

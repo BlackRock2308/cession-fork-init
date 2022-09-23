@@ -63,7 +63,7 @@ export class RecevabiliteComponent implements OnInit {
 
   verifierDemandeCession(demande: DemandeCession) {
       this.demande = {...demande};
-      console.log(demande)
+      //console.log(demande)
       this.demandeCessionService.setDemandeObs(demande);
 
       this.router.navigate(['workstation/cdmp/recevabilite/verifier']);
