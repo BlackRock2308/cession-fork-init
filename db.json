@@ -545,17 +545,17 @@
       "montant": "400 000",
       "modePaiement": "Chèque",
       "decode": "10%",
-      "document" : {
-          "id": 1,
-          "nomDocument": "NINEA",
-          "dateSoumission": "01/02/2022",
-          "typeDocument": "NINEA",
-          "path": "/assets/doctest.pdf",
-          "statut": "Convention générée",
-          "refBE": "6543568778",
-          "ninea": "567865467567",
-          "refDemande": "2022-3454",
-          "raisonSocial": "CAMAIEU INTERNATIONAL"
+      "document": {
+        "id": 1,
+        "nomDocument": "NINEA",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/doctest.pdf",
+        "statut": "Convention générée",
+        "refBE": "6543568778",
+        "ninea": "567865467567",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
       }
     },
     {
@@ -573,7 +573,7 @@
       "montant": "1 000 000",
       "modePaiement": "Virement",
       "decode": "10%",
-      "document" : {
+      "document": {
         "id": 1,
         "nomDocument": "NINEA",
         "dateSoumission": "01/02/2022",
@@ -584,7 +584,7 @@
         "ninea": "567865467567",
         "refDemande": "2022-3454",
         "raisonSocial": "CAMAIEU INTERNATIONAL"
-    }
+      }
     },
     {
       "id": 3,
@@ -601,7 +601,7 @@
       "montant": "2 000 000",
       "modePaiement": "Espèce",
       "decode": "10%",
-      "document" : {
+      "document": {
         "id": 1,
         "nomDocument": "NINEA",
         "dateSoumission": "01/02/2022",
@@ -612,7 +612,7 @@
         "ninea": "567865467567",
         "refDemande": "2022-3454",
         "raisonSocial": "CAMAIEU INTERNATIONAL"
-    }
+      }
     }
   ]
 }

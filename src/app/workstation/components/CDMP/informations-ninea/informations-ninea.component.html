@@ -8,60 +8,55 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <div class="p-formgrid grid " [formGroup]="informationsForm">
-                <div class="p-formgrid grid col">
-                    <div class="field grid">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-4 md:mb-0" style="font-weight: bold;color: #203359;">Dénommination</label>
+            <div class="p-formgrid grid row row-cols-2 row-cols-lg-5 g-2 g-lg-3" [formGroup]="informationsForm">
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Dénommination</label>
                         <div class="col-12 md:col-6">
                             <input pInputText id="name3" type="text" placeholder="Modelsis" formControlName="denomination" />
                         </div>
                     </div>
-                    <div class="field grid">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Formule Juridique</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" placeholder="SARL" formControlName="formuleJuridique"/>
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Centre Fiscal</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" placeholder="....@......sn" formControlName="centreFiscal"/>
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Adresse</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" placeholder="....@......sn" formControlName="adresse"/>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="p-formgrid grid col">
-                    <div class="field grid">
+                    <div class="field grid col-6">
                         <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Représentant Légal</label>
                         <div class="col-12 md:col-6">
                             <input pInputText id="name3" type="text" placeholder="Mme Ndiaye" formControlName="representantLegal"/>
                         </div>
                     </div>
-                    <div class="field grid">
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Formule Juridique</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" placeholder="SARL" formControlName="formuleJuridique"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
                         <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">CNI du Représentant</label>
                         <div class="col-12 md:col-6">
                             <input pInputText id="name3" type="text" placeholder="00000000000" formControlName="cniRepresentant"/>
                         </div>
                     </div>
-                    <div class="field grid">
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Centre Fiscal</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" placeholder="....@......sn" formControlName="centreFiscal"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
                         <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Date d'immatriculation</label>
                         <div class="col-12 md:col-6">
                             <input pInputText id="name3" type="text" placeholder="11111111111" formControlName="dateImmatriculation"/>
                         </div>
                     </div>
-                    <div class="field grid">
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Adresse</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" placeholder="....@......sn" formControlName="adresse"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
                         <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Téléphone</label>
                         <div class="col-12 md:col-6">
                             <input pInputText id="name3" type="text" placeholder="33 333 33 33" formControlName="telephone"/>
                         </div>
                     </div>
-                </div>
             </div>
            
         </ng-template>

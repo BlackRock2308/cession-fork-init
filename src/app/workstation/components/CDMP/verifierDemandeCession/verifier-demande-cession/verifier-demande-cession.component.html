@@ -1,10 +1,12 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
+<br>
 <p-card >
     <div class="col-12">
         <div class="">
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 modalTitle  ">
-                    <h3 class="labelTitle">Traitement de la recevabilité de la demande de cession</h3>
+                    <h3 class="title">Traitement de la recevabilité de la demande de cession</h3>
                 </div>
             </div>
             <div class="p-fluid"  >
@@ -82,21 +84,21 @@
                        
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">Type</span>
-                            {{document.type}}
+                            {{document.typeDocument}}
                         </td>
                         
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Nom</span>
-                            {{document.nom}}
+                            {{document.nomDocument}}
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{document.date_soumission}}
+                            {{document.dateSoumission}}
                         </td>
                         
                         <td>
                             <div class="flex">
-                                <i class="pi pi-search pi-search"  (click)="editProduct(product)" ></i>
+                                <i class="pi pi-search pi-search"  (click)="visualiserDocument(document)" ></i>
                             </div>
                         </td>
                     </tr>
@@ -214,98 +216,94 @@
 </p-card>
 
   
-<p-card>
-    <p-dialog styleClass="custom-dialog" showHeader=false [(visible)]="infosBEDialog" [modal]="true" [style]="{width: '80vw',heigth:'60vw'}" [baseZIndex]="10000"
+
+<p-dialog styleClass="custom-dialog" showHeader=false [(visible)]="infosBEDialog" [modal]="true" [style]="{width: '80vw',heigth:'60vw'}" [baseZIndex]="10000"
         [draggable]="false" [resizable]="false">
+    <p-card>
         <br>
             <ng-template pTemplate="content" style="border: none;">
-                <div class="p-formgrid grid " [formGroup]="infosBEForm">
-                    <div class="p-formgrid grid col">
-                        <div class="field grid">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-4 md:mb-0" style="font-weight: bold;color: #203359;">Exercice</label>
-                                <div class="col-12 md:col-6">
-                                    <input pInputText id="name3" type="text" disabled value='{{demandeCession.dateDemande.split("/")[2]}}'/>
-                                </div>
+                <div class="p-formgrid grid row" [formGroup]="infosBEForm">
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Exercice</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" disabled value='{{demandeCession.dateDemande.split("/")[2]}}'/>
                         </div>
-                        <div class="field grid">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Nature prestation</label>
-                                <div class="col-12 md:col-6">
-                                    <input pInputText id="name3" type="text" formControlName="naturePrestation"/>
-                                </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Imputation</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="imputation"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Mode de réglement</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="modeReglement"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Bénéficiaire</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="beneficiaire"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Identification Comptable</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="identificationComptable"/>
-                                        </div>
-                                    </div>
-                                </div>
-                    
-                                <div class="p-formgrid grid col">
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Référence du BE validé</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Type de la dépense</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="typeDepense"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Objet de la dépense</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="objetDepense"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Montant de la dépense</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text"  formControlName="montantDepense"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Date</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="date"  formControlName="date"/>
-                                        </div>
-                                    </div>
-                                    <div class="field grid">
-                                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Destination</label>
-                                        <div class="col-12 md:col-6">
-                                            <input pInputText id="name3" type="text" formControlName="destination"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-end">
-                                <button  style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-success mr-2" (click)="onSubmit()"></button>
-                                    <button  style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-danger button" (click)="closeDialog()"></button>
-                            </div>
-                        </ng-template>
-                           
-        </p-dialog>
-    </p-card>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Référence du BE validé</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Nature prestation</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" formControlName="naturePrestation"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Type de la dépense</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="typeDepense"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Imputation</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="imputation"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Objet de la dépense</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="objetDepense"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Mode de réglement</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="modeReglement"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Montant de la dépense</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="montantDepense"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Bénéficiaire</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="beneficiaire"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Date</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="date"  formControlName="date"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Identification Comptable</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text"  formControlName="identificationComptable"/>
+                        </div>
+                    </div>
+                    <div class="field grid col-6">
+                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Destination</label>
+                        <div class="col-12 md:col-6">
+                            <input pInputText id="name3" type="text" formControlName="destination"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <button  style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-success mr-2" (click)="onSubmit()"></button>
+                    <button  style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-danger button" (click)="closeDialog()"></button>
+                </div>
+        </ng-template> 
+    </p-card>              
+</p-dialog>
+
  
 
 

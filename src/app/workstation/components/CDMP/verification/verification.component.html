@@ -9,11 +9,11 @@
             </div>
         </ng-template>
         <ng-template pTemplate="content">
-            <div class="field col-12 d-flex">
-                <div class="col-4  d-flex justify-content-center">
+            <div class="field col-12 d-flex justify-content-center">
+                <div class="col-4  d-flex justify-content-start">
                     <h4 style="font-weight: bold;color: #203359;">NINEA existant</h4>
                 </div>
-                <div class="col-4   d-flex justify-content-center">
+                <div class="col-2   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
                         <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="existant" id="active" (onChange)="handle1Change($event)">
                         </p-inputSwitch>
@@ -22,7 +22,7 @@
                         <h4 style="font-weight: bold;color: #203359;">OUI</h4>
                     </div>             
                 </div>
-                <div class="col-4   d-flex justify-content-center">
+                <div class="col-2   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
                         <p-inputSwitch type="radio" name="ninea" styleClass="non" value="false" [(ngModel)]="pas_existant" id="pas_active" (onChange)="handle2Change($event)">
                         </p-inputSwitch>
@@ -32,11 +32,11 @@
                     </div>             
                 </div>
             </div>
-            <div class="field col-12 d-flex" *ngIf="existant">
-                <div class="col-4  d-flex justify-content-center">
+            <div class="field col-12 d-flex justify-content-center" *ngIf="existant">
+                <div class="col-4  d-flex justify-content-start">
                     <h4 style="font-weight: bold;color: #203359;">PME Active</h4>
                 </div>
-                <div class="col-4   d-flex justify-content-center">
+                <div class="col-2   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
                         <p-inputSwitch styleClass="oui" [(ngModel)]="active" (onChange)="handle3Change($event)"></p-inputSwitch>
                     </div>    
@@ -44,7 +44,7 @@
                         <h4 style="font-weight: bold;color: #203359;">OUI</h4>
                     </div>             
                 </div>
-                <div class="col-4   d-flex justify-content-center">
+                <div class="col-2   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
                         <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_active" (onChange)="handle4Change($event)"></p-inputSwitch>
                     </div>    

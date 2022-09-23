@@ -1,13 +1,18 @@
 <p-breadcrumb [model]="items1" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
 <br>
+    <div class="d-flex justify-content-center col-12">
+        <div class="col-12 modalTitle ">
+            <h3 class="title">Demandes d'adhesion</h3>
+        </div>
+    </div>
+<br>
 <div class="grid">
     <div class="col-12">
-        <div class="card">
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id" >
+        <div class="">
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} Demandes d'adhesion" [rowHover]="true" dataKey="id" >
                 <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="title" style="color: #203359; position: relative; right: -400px;">Demandes en cours</h4>
+                    <div class="flex flex-column md:flex-row md:justify-content-end md:align-items-center tab">
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher..." />
@@ -64,19 +69,19 @@
                 <div class=" justify-content-center p-fluid ">
                     <div class="p-formgrid grid">
                         <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center">
+                            <div class="col-4  d-flex justify-content-center mt-2">
                                 <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
                             </div>
-                            <div class="col-6  modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demande.ninea}}</h4>
+                            <div class="col-6  d-flex justify-content-center">
+                                <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.ninea}}'/>
                             </div>
                         </div>
                         <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center">
+                            <div class="col-4  d-flex justify-content-center mt-2">
                                 <h4 style="font-weight: bold;color: #203359">RCCM</h4>
                             </div>
-                            <div class="col-6 modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demande.rccm}}</h4>
+                            <div class="col-6 d-flex justify-content-center">
+                                <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.rccm}}'/>
                             </div>
                         </div>
                     </div>

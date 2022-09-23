@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ThirdPartyDraggable } from '@fullcalendar/interaction';
-import { SortEvent } from 'primeng/api';
+import { MenuItem, SortEvent } from 'primeng/api';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
+import {  Documents } from 'src/app/workstation/model/document';
+import { DialogService } from 'primeng/dynamicdialog';
+import { VisualiserDocumentComponent } from '../../visualiser-document/visualiser-document.component';
 
 @Component({
   selector: 'app-verifier-demande-cession',
   templateUrl: './verifier-demande-cession.component.html',
-  styleUrls: ['./verifier-demande-cession.component.scss']
+  styleUrls: ['./verifier-demande-cession.component.scss'],
+  providers: [DialogService]
 })
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: any;
-  documents: import("c:/Users/conta/Desktop/Modelsis/Projects/CDMP/cdmp-ui/src/app/workstation/model/document").Document[];
+  documents:Documents[];
   cols: any[];
   pas_identifie: boolean;
   identifie: boolean;
@@ -27,12 +31,15 @@ export class VerifierDemandeCessionComponent implements OnInit {
   infosBEForm: any;
   infosBEDialog: boolean=false;
   observation: any;
+  items: MenuItem[];
+  home: MenuItem
 
   constructor(
     private demandeCessionService:DemandesCessionService,
     private documentService:DocumentService,
     private recevabiliteService:RecevabiliteService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialogService:DialogService
     ) { }
 
   ngOnInit(): void {
@@ -41,7 +48,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
         console.log(this.demandeCession)
       })
 
-      this.documentService.getDocuments().subscribe(data=>{
+      this.documentService.getDeocuments().subscribe(data=>{
         this.documents=data
       })
 
@@ -65,6 +72,13 @@ export class VerifierDemandeCessionComponent implements OnInit {
       destination: ['']
 
   });
+  this.items = [
+    { label: 'Liste des demandes de cession',url:'/#/workstation/cdmp/recevabilite' },
+    {label:'Traitement recevabilité'}
+  ];
+
+  this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+
   }
 
   
@@ -132,5 +146,18 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
   closeDialog(){
     this.infosBEDialog=false;
+  }
+
+  visualiserDocument(document: Documents) {
+    let nom = document.nomDocument;
+    const ref = this.dialogService.open(VisualiserDocumentComponent, {
+      data: {
+        document: document
+      },
+      header: nom,
+      width: '70%',
+      height: 'calc(100% - 100px)',
+      baseZIndex: 10000
+    });
   }
 }
