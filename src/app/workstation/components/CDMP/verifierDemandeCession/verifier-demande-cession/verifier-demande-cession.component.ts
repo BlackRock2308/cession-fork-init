@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import { SortEvent } from 'primeng/api';
+import { Document } from 'src/app/workstation/model/document';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
@@ -13,7 +14,7 @@ import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/re
 })
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: any;
-  documents: import("c:/Users/conta/Desktop/Modelsis/Projects/CDMP/cdmp-ui/src/app/workstation/model/document").Document[];
+  documents: Document[];
   cols: any[];
   pas_identifie: boolean;
   identifie: boolean;

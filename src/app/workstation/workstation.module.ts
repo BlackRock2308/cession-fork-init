@@ -37,6 +37,7 @@ import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/co
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
 import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
+import { AppConfigService } from './service/appconfigservice';
 
 
 @NgModule({
@@ -94,7 +95,8 @@ import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDeman
      
 ],
 providers: [
-  NgbActiveModal
+  NgbActiveModal,
+  AppConfigService
 ]
 })
 export class WorkstationModule { }

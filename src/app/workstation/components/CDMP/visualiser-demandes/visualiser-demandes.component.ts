@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
@@ -24,6 +24,8 @@ export class VisualiserDemandesComponent implements OnInit {
   pageVariable = 1;
   documents: any[];
   cols: any[];
+  items1: MenuItem[];
+  home: MenuItem
   ref: DynamicDialogRef;
   demandeNantissementInfos: any;
 
@@ -39,6 +41,13 @@ export class VisualiserDemandesComponent implements OnInit {
       { field: 'typeDocument', header: 'Type de Document' },
       { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
+    this.items1 = [
+      { label: 'Liste des demandes' , url:'/#/workstation/cdmp/demandes_en_cours/steps/verification'},
+      { label: 'Visualisation de la demande' }
+    ];
+
+    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+
 
     //récupérer les informations du nantissement en cours de modification
   this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
