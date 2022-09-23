@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
+import { Convention } from 'src/app/workstation/model/convention';
 import { DemandeCession } from 'src/app/workstation/model/demande';
+import { PME } from 'src/app/workstation/model/pme';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 
 @Component({
@@ -14,7 +17,7 @@ export class ListeConventionsComponent implements OnInit {
   items: MenuItem[];
   home:MenuItem;
   cols: any[];
-  demande: { id?: number; pme?: import("c:/Users/conta/Desktop/Modelsis/Projects/CDMP/cdmp-ui/src/app/workstation/model/pme").PME; referenceBE?: string; raisonSocial?: string; ninea?: string; convention?: import("c:/Users/conta/Desktop/Modelsis/Projects/CDMP/cdmp-ui/src/app/workstation/model/demande").Convention; statut?: string; dateDemande?: Date; BE?: import("c:/Users/conta/Desktop/Modelsis/Projects/CDMP/cdmp-ui/src/app/workstation/model/bonEngagement").BonEngagement; numeroDemande?: number; };
+  demande: { id?: number; pme?: PME; referenceBE?: string; raisonSocial?: string; ninea?: string; convention?: Convention; statut?: string; dateDemande?: Date; BE?:BonEngagement; numeroDemande?: number; };
 
   constructor(
     private demandesCessionService:DemandesCessionService,
