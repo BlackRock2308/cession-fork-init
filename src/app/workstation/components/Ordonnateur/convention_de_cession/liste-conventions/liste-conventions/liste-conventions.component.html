@@ -7,7 +7,7 @@
         <div class="">
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 modalTitle  ">
-                    <h3 class="title">Recevabilité des demandes de cession</h3>
+                    <h3 class="title">Conventions de cession:liste des demandes de cession</h3>
                 </div>
             </div>
             <br>
@@ -23,10 +23,9 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">RCCM <p-sortIcon field="datesoumission"></p-sortIcon></th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">Raison Sociale <p-sortIcon field="datesoumission"></p-sortIcon></th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">Reférence du BE <p-sortIcon field="datesoumission"></p-sortIcon></th>
-                        <th pSortableColumn="rccm" style="color: #203359;">Date soumission <p-sortIcon field="rccm"></p-sortIcon></th>
+                        <th pSortableColumn="raisonSociale" style="color: #203359;">Raison Sociale <p-sortIcon field="raisonSociale"></p-sortIcon></th>
+                        <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon field="referenceBE"></p-sortIcon></th>
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut"></p-sortIcon></th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
@@ -37,27 +36,22 @@
                             <span class="p-column-title">NINEA</span>
                             {{demande.ninea}}
                         </td>
-                        
-                        <td style="width:30%; min-width:8rem;">
-                            <span class="p-column-title">RCCM</span>
-                            {{demande.rccm}}
-                        </td>
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Raison Sociale</span>
                             {{demande.raisonSocial}}
                         </td>
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Reférence du BE</span>
-                            {{demande.refBE}}
+                            {{demande.referenceBE}}
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.dateDemande}}
+                            {{demande.statut}}
                         </td>
                         
                         <td>
                             <div class="flex">
-                                <i  class="pi pi-search ml-3" (click)="verifierDemandeCession(demande)" ></i>
+                                <i  class="pi pi-search ml-3" (click)="editerDemandeCession(demande)" ></i>
                             </div>
                         </td>
                     </tr>

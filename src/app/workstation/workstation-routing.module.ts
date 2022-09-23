@@ -12,6 +12,7 @@ import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabili
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
 import { VisualiserDemandesComponent } from './components/CDMP/visualiser-demandes/visualiser-demandes.component';
+import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
@@ -71,7 +72,11 @@ const routes: Routes = [
   {path:'pme/demandes_en_cours/complement_documents',component:ComplementDocumentsComponent},
   //Paiements et Recouvrement de la PME
   {path:'pme/paiements',component:PaiementsComponent},
-  {path:'pme/list-paiements',component:ListPaiementsComponent}
+  {path:'pme/list-paiements',component:ListPaiementsComponent},
+
+  //ordonnateur
+
+  {path:'ordonnateur/conventions',component:ListeConventionsComponent}
 ];
 
 @NgModule({

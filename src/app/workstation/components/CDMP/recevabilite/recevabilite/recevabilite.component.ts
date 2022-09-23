@@ -29,6 +29,7 @@ export class RecevabiliteComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   items: MenuItem[];
+  home: MenuItem;
    
 
 
@@ -47,6 +48,13 @@ export class RecevabiliteComponent implements OnInit {
           {field: 'raisonSociale', header: 'Raison Sociale'},
           {field: 'refBE', header: 'Reférence du BE'}
       ];
+
+      this.items = [
+        { label: 'Liste des demandes de cession' },
+      ];
+  
+      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+  
   }
 
 
@@ -55,7 +63,7 @@ export class RecevabiliteComponent implements OnInit {
 
   verifierDemandeCession(demande: DemandeCession) {
       this.demande = {...demande};
-      console.log(demande)
+      //console.log(demande)
       this.demandeCessionService.setDemandeObs(demande);
 
       this.router.navigate(['workstation/cdmp/recevabilite/verifier']);

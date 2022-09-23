@@ -21,7 +21,8 @@
 }
 
 .title{
-    color:white;
+    color:#203359;
+    font-weight: bold;
 }
 
 ::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
@@ -31,12 +32,6 @@
 
 ::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
     color: #203359;
-
-}
-
-::ng-deep div.p-dialog-header.ng-tns-c96-4.ng-star-inserted{
-    border: none;
-    //display: none;
 
 }
 
@@ -53,7 +48,9 @@
 
 .label{
     color: #A5A5A5;
-    font-weight: bolder;
+    font-weight:700;
+    text-align: center;
+    font-size: larger;
 }
 .label1{
     color: #203359;
@@ -124,7 +121,4 @@ p-steps p-steps-item {
 
 ::ng-deep .p-steps.steps-custom .p-steps-item .p-steps-title {
     color: #203359;
-}
-.head{
-    border: none;
 }

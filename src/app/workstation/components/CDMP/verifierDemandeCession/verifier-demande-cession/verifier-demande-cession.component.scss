@@ -14,8 +14,9 @@
     font-weight: bolder;
 }
 
-.labelTitle{
-    
+.title{
+    color:#203359;
+    font-weight: bold;
 }
 
 ::ng-deep span.p-paginator-current.ng-star-inserted{
@@ -33,9 +34,7 @@
 
 }
 
-.title{
-    color:white;
-}
+
 
 ::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
     color: #203359;

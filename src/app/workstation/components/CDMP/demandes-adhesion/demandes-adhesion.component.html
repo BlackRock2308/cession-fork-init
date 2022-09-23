@@ -1,6 +1,12 @@
 <p-breadcrumb [model]="items1" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
 <br>
+    <div class="d-flex justify-content-center col-12">
+        <div class="col-12 modalTitle ">
+            <h3 class="title">Demandes d'adhesion</h3>
+        </div>
+    </div>
+<br>
 <div class="grid">
     <div class="col-12">
         <div class="card">
@@ -75,19 +81,19 @@
                 <div class=" justify-content-center p-fluid ">
                     <div class="p-formgrid grid">
                         <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center">
+                            <div class="col-4  d-flex justify-content-center mt-2">
                                 <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
                             </div>
-                            <div class="col-6  modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demande.ninea}}</h4>
+                            <div class="col-6  d-flex justify-content-center">
+                                <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.ninea}}'/>
                             </div>
                         </div>
                         <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center">
+                            <div class="col-4  d-flex justify-content-center mt-2">
                                 <h4 style="font-weight: bold;color: #203359">RCCM</h4>
                             </div>
-                            <div class="col-6 modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demande.rccm}}</h4>
+                            <div class="col-6 d-flex justify-content-center">
+                                <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.rccm}}'/>
                             </div>
                         </div>
                     </div>

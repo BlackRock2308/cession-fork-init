@@ -545,17 +545,17 @@
       "montant": "400 000",
       "modePaiement": "Chèque",
       "decode": "10%",
-      "document" : {
-          "id": 1,
-          "nomDocument": "NINEA",
-          "dateSoumission": "01/02/2022",
-          "typeDocument": "NINEA",
-          "path": "/assets/doctest.pdf",
-          "statut": "Convention générée",
-          "refBE": "6543568778",
-          "ninea": "567865467567",
-          "refDemande": "2022-3454",
-          "raisonSocial": "CAMAIEU INTERNATIONAL"
+      "document": {
+        "id": 1,
+        "nomDocument": "NINEA",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/doctest.pdf",
+        "statut": "Convention générée",
+        "refBE": "6543568778",
+        "ninea": "567865467567",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
       }
     },
     {
@@ -573,7 +573,7 @@
       "montant": "1 000 000",
       "modePaiement": "Virement",
       "decode": "10%",
-      "document" : {
+      "document": {
         "id": 1,
         "nomDocument": "NINEA",
         "dateSoumission": "01/02/2022",
@@ -584,7 +584,7 @@
         "ninea": "567865467567",
         "refDemande": "2022-3454",
         "raisonSocial": "CAMAIEU INTERNATIONAL"
-    }
+      }
     },
     {
       "id": 3,
@@ -601,7 +601,7 @@
       "montant": "2 000 000",
       "modePaiement": "Espèce",
       "decode": "10%",
-      "document" : {
+      "document": {
         "id": 1,
         "nomDocument": "NINEA",
         "dateSoumission": "01/02/2022",
@@ -612,7 +612,85 @@
         "ninea": "567865467567",
         "refDemande": "2022-3454",
         "raisonSocial": "CAMAIEU INTERNATIONAL"
+      }
     }
+  ],
+  "conventions":[
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Convention enregistrée",
+      "raisonSocial": "Modelsis SARL",
+      "referenceBE": "20-294065",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0001",
+      "rccm": "401568778",
+      "denomination": "Modelsis"
+    },
+    {
+      "id": 2,
+      "ninea": "567567",
+      "statut": "Convention enregistrée",
+      "raisonSocial": "ENEDIS",
+      "referenceBE": "21-294066",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0002"
+    },
+    {
+      "id": 3,
+      "ninea": "678567",
+      "statut": "Convention rejetée",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "referenceBE": "15-294067",
+      "dateDemande": "15/07/2021",
+      "numeroDemande": "2022-0003"
+    },
+    {
+      "id": 4,
+      "ninea": "567567",
+      "statut": "Convention acceptée",
+      "raisonSocial": "INT Marketing",
+      "referenceBE": "45-294068",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0004"
+    },
+    {
+      "id": 5,
+      "ninea": "123567",
+      "statut": "Substitution effectuée",
+      "raisonSocial": "E.COM4",
+      "referenceBE": "20-294069",
+      "dateDemande": "05/09/2021",
+      "numeroDemande": "2022-0005"
+    },
+    {
+      "id": 6,
+      "ninea": "567567",
+      "statut": "Convention enregistrée",
+      "raisonSocial": "SCI SENEGAL",
+      "referenceBE": "20-294070",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0006"
+    },
+    {
+      "id": 7,
+      "ninea": "567567",
+      "statut": "Convention acceptée",
+      "raisonSocial": "IMME",
+      "referenceBE": "20-294071",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0007"
+    },
+    {
+      "id": 8,
+      "ninea": "567567",
+      "statut": "Substitution effectuée",
+      "raisonSocial": "IMME",
+      "referenceBE": "20-294072",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0008"
     }
+
+
   ]
 }

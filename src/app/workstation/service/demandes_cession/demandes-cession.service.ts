@@ -50,5 +50,10 @@ export class DemandesCessionService {
     return this.cessionObs.asObservable();
   }
 
+  //récupéreer les demandes de cession au stade de convention par l'ordonnateur
+  getConventions(): Observable<DemandeCession[]> {
+    return this.http.get<DemandeCession[]>(`${this.baseUrl}/conventions`);
+  }
+
 }
 
