@@ -10,21 +10,14 @@
 
     <app-side-bar></app-side-bar>
 
-
     <div class="layout-main">
         <app-navbar></app-navbar>
-
-       
         <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
-
-      
-
-
         <div class="layout-main-mask"></div>
         <div class="layout-config-mask" *ngIf="configActive" [@mask-anim]="'visible'"></div>
-
+        <app-footer></app-footer>
 
     </div>
 </div>
