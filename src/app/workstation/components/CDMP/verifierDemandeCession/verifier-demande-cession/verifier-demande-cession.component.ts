@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ThirdPartyDraggable } from '@fullcalendar/interaction';
-import { MenuItem, SortEvent } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';

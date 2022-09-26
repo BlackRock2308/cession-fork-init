@@ -1,3 +1,6 @@
+<p-breadcrumb [model]="items1" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
@@ -41,7 +44,7 @@
                     <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                         [globalFilterFields]="['nomDocument']" [rows]="5" [paginator]="true"
                         [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                        currentPageReportTemplate=" {last} to {first} of {totalRecords}"
+                        currentPageReportTemplate=" {totalRecords} lignes"
                         [(selection)]="selectedDocuments" selectionMode="multiple" [rowHover]="true" dataKey="id">
                         <ng-template pTemplate="caption">
                             <div

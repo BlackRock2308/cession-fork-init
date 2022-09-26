@@ -1,7 +1,7 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
 <br>
-<p-card >
+<p-card>
     <div class="col-12">
         <div class="">
             <div class="d-flex justify-content-center col-12">
@@ -9,14 +9,14 @@
                     <h3 class="title">Traitement de la recevabilité de la demande de cession</h3>
                 </div>
             </div>
-            <div class="p-fluid"  >
+            <div class="p-fluid">
                 <div class="p-formgrid grid d-flex justify-content-center">
                     <div class="field col-5 ">
                         <div class="col-12 md:col-12  d-flex justify-content-start">
                             <h4 style="color: black;">NINEA</h4>
                         </div>
                         <div class="col-12 md:col-12 modalTitle d-flex justify-content-start">
-                            <h4 class="label"  >{{demandeCession.ninea}}</h4>
+                            <h4 class="label">{{demandeCession.ninea}}</h4>
                         </div>
                     </div>
                     <div class="field col-5">
@@ -24,10 +24,10 @@
                             <h4 style="color: black">Reference du BE</h4>
                         </div>
                         <div class="col-12 md:col-12 modalTitle d-flex justify-content-start">
-                            <h4 class="label" >{{demandeCession.referenceBE}}</h4>
+                            <h4 class="label">{{demandeCession.referenceBE}}</h4>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
             <div class="p-fluid">
@@ -58,35 +58,45 @@
             </div>
             <br>
             <br>
-            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true"
+                [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="d-flex justify-content-end">
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher..." />
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Rechercher..." />
                         </span>
                     </div>
                 </ng-template>
-                
+
 
                 <ng-template pTemplate="header">
                     <tr>
-                        
-                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon field="typeDocument"></p-sortIcon></th>
-                        <th pSortableColumn="nomDocument" style="color: #203359;">Nom du document <p-sortIcon field="nomDocument"></p-sortIcon></th>
-                        <th pSortableColumn="dateSoumission" style="color: #203359;">Date soumission <p-sortIcon field="dateSoumission"></p-sortIcon></th>
+
+                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
+                                field="typeDocument"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="nomDocument" style="color: #203359;">Nom du document <p-sortIcon
+                                field="nomDocument"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="dateSoumission" style="color: #203359;">Date soumission <p-sortIcon
+                                field="dateSoumission"></p-sortIcon>
+                        </th>
 
                         <th style="color: #203359;">Action</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-document>
                     <tr>
-                       
+
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">Type</span>
                             {{document.typeDocument}}
                         </td>
-                        
+
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Nom</span>
                             {{document.nomDocument}}
@@ -95,10 +105,10 @@
                             <span class="p-column-title">Date Soumission</span>
                             {{document.dateSoumission}}
                         </td>
-                        
+
                         <td>
                             <div class="flex">
-                                <i class="pi pi-search pi-search"  (click)="visualiserDocument(document)" ></i>
+                                <i class="pi pi-search pi-search" (click)="visualiserDocument(document)"></i>
                             </div>
                         </td>
                     </tr>
@@ -113,21 +123,23 @@
             </div>
             <div class="col-3   d-flex justify-content-center">
                 <div class="col-8 d-flex justify-content-center">
-                    <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="identifie" id="active" (onChange)="handleChange11($event)">
+                    <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="identifie"
+                        id="active" (onChange)="handleChange11($event)">
                     </p-inputSwitch>
-                </div>    
+                </div>
                 <div class="col-4 d-flex justify-content-center">
                     <h4 style="font-weight: bold;color: #203359;">OUI</h4>
-                </div>             
+                </div>
             </div>
             <div class="col-3   d-flex justify-content-center">
                 <div class="col-8 d-flex justify-content-center">
-                    <p-inputSwitch type="radio" name="ninea" styleClass="non" value="false" [(ngModel)]="pas_identifie" id="pas_active" (onChange)="handleChange12($event)">
+                    <p-inputSwitch type="radio" name="ninea" styleClass="non" value="false" [(ngModel)]="pas_identifie"
+                        id="pas_active" (onChange)="handleChange12($event)">
                     </p-inputSwitch>
-                </div>    
+                </div>
                 <div class="col-4 d-flex justify-content-center">
                     <h4 style="font-weight: bold;color: #203359;">NON</h4>
-                </div>             
+                </div>
             </div>
         </div>
         <div *ngIf="identifie">
@@ -137,19 +149,21 @@
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="oui" [(ngModel)]="atd" (onChange)="handleChange21($event)"></p-inputSwitch>
-                    </div>    
+                        <p-inputSwitch styleClass="oui" [(ngModel)]="atd" (onChange)="handleChange21($event)">
+                        </p-inputSwitch>
+                    </div>
                     <div class="col-4 d-flex justify-content-center">
                         <h4 style="font-weight: bold;color: #203359;">OUI</h4>
-                    </div>             
+                    </div>
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_atd" (onChange)="handleChange22($event)"></p-inputSwitch>
-                    </div>    
+                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_atd"
+                            (onChange)="handleChange22($event)"></p-inputSwitch>
+                    </div>
                     <div class="col-4 d-flex justify-content-center">
                         <h4 style="font-weight: bold;color: #203359;">NON</h4>
-                    </div>             
+                    </div>
                 </div>
             </div>
             <div class="field col-10 d-flex etape">
@@ -158,19 +172,21 @@
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="oui" [(ngModel)]="nantissement" (onChange)="handleChange31($event)"></p-inputSwitch>
-                    </div>    
+                        <p-inputSwitch styleClass="oui" [(ngModel)]="nantissement" (onChange)="handleChange31($event)">
+                        </p-inputSwitch>
+                    </div>
                     <div class="col-4 d-flex justify-content-center">
                         <h4 style="font-weight: bold;color: #203359;">OUI</h4>
-                    </div>             
+                    </div>
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_nantissement" (onChange)="handleChange32($event)"></p-inputSwitch>
-                    </div>    
+                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_nantissement"
+                            (onChange)="handleChange32($event)"></p-inputSwitch>
+                    </div>
                     <div class="col-4 d-flex justify-content-center">
                         <h4 style="font-weight: bold;color: #203359;">NON</h4>
-                    </div>             
+                    </div>
                 </div>
             </div>
             <div class="field col-10 d-flex etape">
@@ -179,19 +195,21 @@
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="oui" [(ngModel)]="interdiction" (onChange)="handleChange41($event)"></p-inputSwitch>
-                    </div>    
+                        <p-inputSwitch styleClass="oui" [(ngModel)]="interdiction" (onChange)="handleChange41($event)">
+                        </p-inputSwitch>
+                    </div>
                     <div class="col-4 d-flex justify-content-center">
                         <h4 style="font-weight: bold;color: #203359;">OUI</h4>
-                    </div>             
+                    </div>
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_interdiction" (onChange)="handleChange42($event)"></p-inputSwitch>
-                    </div>    
+                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_interdiction"
+                            (onChange)="handleChange42($event)"></p-inputSwitch>
+                    </div>
                     <div class="col-4 d-flex justify-content-center">
                         <h4 style="font-weight: bold;color: #203359;">NON</h4>
-                    </div>             
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,115 +217,175 @@
         <br>
         <label class="form-label" for="textAreaExample">Observations</label>
         <div class="d-flex flex-start w-100">
-                
+
             <div class="form-outline w-100">
-              <textarea class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
-                style="background: #fff;"></textarea>
-              
+                <textarea class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
+                    style="background: #fff;"></textarea>
+
             </div>
-          </div>
-          <br>
-          <div class="float-end">
-            <button pButton pRipple icon="pi pi-check" class="p-button-raised p-button-success" label="Valider" (click)="renseignerInfosBE()"></button>
-            <button pButton pRipple icon="pi pi-times" class="p-button-raised ml-2  p-button-danger" label="Annuler" routerLink=""></button>
         </div>
-       
+        <br>
+        <div class="float-end">
+            <button pButton pRipple icon="pi pi-check" class="p-button-raised p-button-success" label="Valider"
+                (click)="renseignerInfosBE()"></button>
+            <button pButton pRipple icon="pi pi-times" class="p-button-raised ml-2  p-button-danger" label="Annuler"
+                routerLink=""></button>
+        </div>
+
     </div>
 </p-card>
 
-  
 
-<p-dialog styleClass="custom-dialog" showHeader=false [(visible)]="infosBEDialog" [modal]="true" [style]="{width: '80vw',heigth:'60vw'}" [baseZIndex]="10000"
-        [draggable]="false" [resizable]="false">
+
+<p-dialog styleClass="custom-dialog" showHeader=false [(visible)]="infosBEDialog" [modal]="true"
+    [style]="{width: '80vw',heigth:'60vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
     <p-card>
         <br>
-            <ng-template pTemplate="content" style="border: none;">
-                <div class="p-formgrid grid row" [formGroup]="infosBEForm">
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Exercice</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" disabled value='{{demandeCession.dateDemande.split("/")[2]}}'/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Référence du BE validé</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Nature prestation</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" formControlName="naturePrestation"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Type de la dépense</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="typeDepense"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Imputation</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="imputation"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Objet de la dépense</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="objetDepense"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Mode de réglement</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="modeReglement"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Montant de la dépense</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="montantDepense"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Bénéficiaire</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="beneficiaire"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Date</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="date"  formControlName="date"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Identification Comptable</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text"  formControlName="identificationComptable"/>
-                        </div>
-                    </div>
-                    <div class="field grid col-6">
-                        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Destination</label>
-                        <div class="col-12 md:col-6">
-                            <input pInputText id="name3" type="text" formControlName="destination"/>
-                        </div>
+        <ng-template pTemplate="content" style="border: none;">
+            <div class="p-formgrid grid row" [formGroup]="infosBEForm">
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Exercice</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" disabled
+                            value='{{demandeCession.dateDemande.split("/")[2]}}' />
                     </div>
                 </div>
-                <div class="row justify-content-end">
-                    <button  style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-success mr-2" (click)="onSubmit()"></button>
-                    <button  style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-danger button" (click)="closeDialog()"></button>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Référence du BE validé</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}" />
+                    </div>
                 </div>
-        </ng-template> 
-    </p-card>              
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Nature prestation</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="naturePrestation" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Type de la dépense</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="typeDepense" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Imputation</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="imputation" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Objet de la dépense</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="objetDepense" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Mode de réglement</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="modeReglement" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Montant de la dépense</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="montantDepense" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Bénéficiaire</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="beneficiaire" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Date</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="date" formControlName="date" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Identification Comptable</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="identificationComptable" />
+                    </div>
+                </div>
+                <div class="field grid col-6">
+                    <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        style="font-weight: bold;color: #203359;">Destination</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="name3" type="text" formControlName="destination" />
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <button style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check"
+                    class="p-button-success mr-2" (click)="onSubmit()"></button>
+                <button style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
+                    class="p-button-danger button" (click)="closeDialog()"></button>
+            </div>
+        </ng-template>
+    </p-card>
 </p-dialog>
 
- 
-
-
-
-
-
-
+<div class="p-formgrid grid col">
+    <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Référence
+            du BE validé</label>
+        <div class="col-12 md:col-6">
+            <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}" />
+        </div>
+    </div>
+    <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Type de la
+            dépense</label>
+        <div class="col-12 md:col-6">
+            <input pInputText id="name3" type="text" formControlName="typeDepense" />
+        </div>
+    </div>
+    <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Objet de
+            la dépense</label>
+        <div class="col-12 md:col-6">
+            <input pInputText id="name3" type="text" formControlName="objetDepense" />
+        </div>
+    </div>
+    <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Montant de
+            la dépense</label>
+        <div class="col-12 md:col-6">
+            <input pInputText id="name3" type="text" formControlName="montantDepense" />
+        </div>
+    </div>
+    <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+            style="font-weight: bold;color: #203359;">Date</label>
+        <div class="col-12 md:col-6">
+            <input pInputText id="name3" type="date" formControlName="date" />
+        </div>
+    </div>
+    <div class="field grid">
+        <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+            style="font-weight: bold;color: #203359;">Destination</label>
+        <div class="col-12 md:col-6">
+            <input pInputText id="name3" type="text" formControlName="destination" />
+        </div>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <button style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-success mr-2"
+        (click)="onSubmit()"></button>
+    <button style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
+        class="p-button-danger button" (click)="closeDialog()"></button>
+</div>

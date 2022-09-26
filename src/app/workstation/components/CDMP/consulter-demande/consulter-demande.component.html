@@ -14,7 +14,7 @@
                     </div>
                     <div class="field col-8">
                         <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Numero demande</h4>
+                            <h4 style="color: #203359">Numéro demande</h4>
                         </div>
                         <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
                             <h4 class="label">{{demandeNantissementInfos.numero_demande}}</h4>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="field col-4">
                         <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Denomination</h4>
+                            <h4 style="color: #203359">Dénomination</h4>
                         </div>
                         <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
                             <h4 class="label">{{demandeNantissementInfos.denomination}}</h4>
@@ -83,7 +83,7 @@
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries"
+                currentPageReportTemplate="{totalRecords} lignes "
                 [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">

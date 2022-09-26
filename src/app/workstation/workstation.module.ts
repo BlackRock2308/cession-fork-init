@@ -37,6 +37,7 @@ import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/co
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
 import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
+import { AppConfigService } from './service/appconfigservice';
 import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
 import { DetailsConventionComponent } from './components/Ordonnateur/convention_de_cession/details-convention/details-convention.component';
 
@@ -98,7 +99,8 @@ import { DetailsConventionComponent } from './components/Ordonnateur/convention_
      
 ],
 providers: [
-  NgbActiveModal
+  NgbActiveModal,
+  AppConfigService
 ]
 })
 export class WorkstationModule { }
