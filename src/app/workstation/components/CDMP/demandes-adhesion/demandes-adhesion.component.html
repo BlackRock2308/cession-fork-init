@@ -66,16 +66,16 @@
     </div>
 </div>
 <p-card>
-    <p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000"
-        [draggable]="false" [resizable]="false">
-        <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
-            <div class="col-8 mx-auto px-auto" style="background-color:white ;">
-                <div id="steps">
-                    <p-toast></p-toast>
-                    <p-steps [model]="items" [readonly]="false" styleClass="steps-custom"></p-steps>
-                </div>
+<p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
+        <div class="col-8 mx-auto px-auto" style="background-color:white ;" >
+            <div id="steps" >
+                <p-toast></p-toast>
+                <p-steps [model]="items" [readonly]="false" styleClass="steps-custom"></p-steps>
             </div>
-        </ng-template>
+        </div>
+    </ng-template>
         <ng-template pTemplate="content" style="border: none;">
             <div>
                 <div class=" justify-content-center p-fluid ">
