@@ -3,7 +3,6 @@
 <br>
 <div class="grid">
     <div class="col-12">
-        <p style="color:#203359; font-weight: 600;font-size: large;">Total Perçu :  3.400.000 F CFA</p>
         <div class="card">
             <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
@@ -32,10 +31,10 @@
                         <th pSortableColumn="payer" style="color: #203359;">Payeur<p-sortIcon field="payer">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="montant" style="color: #203359;">Montant<p-sortIcon field="montant">
+                        <th pSortableColumn="montant" style="color: #203359;">Mode paiement<p-sortIcon field="montant">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="modePaiement" style="color: #203359;">Mode paiement<p-sortIcon
+                        <th pSortableColumn="modePaiement" style="color: #203359;">Montant<p-sortIcon
                             field="modePaiement"></p-sortIcon>
                     </th>
                         <th style="color: #203359;">Actions</th>
@@ -53,11 +52,11 @@
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Montant</span>
-                            {{paiement.montant}}
+                            {{paiement.modePaiement}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Mode paiement</span>
-                            {{paiement.modePaiement}}
+                            {{paiement.montant}}
                         </td>
                         <td>
                             <div class="flex">
@@ -68,10 +67,14 @@
                         </td>
                     </tr>
                 </ng-template>
+                
                 <ng-template pTemplate="summary">
-                    <div class="textRight">
-                        SOLDE :  7.000.000 F CFA
-                    </div>
+                    <span class="textLeft">
+                        SOLDE : 5 000 000 F CFA
+                    </span>
+                    <span class="textRight">
+                        Montant total : 7 000 000 F CFA
+                    </span>
                 </ng-template>
                 
             </p-table>

@@ -84,8 +84,8 @@ export class ListPaiementPMEComponent implements OnInit {
   visualiserPaimentPME() {
     const ref = this.dialogService.open(PaiementPMEComponent, {
       header: "Paiement PME",
-      width: '60%',
-      height: 'calc(100% - 200px)',
+      width: '50%',
+      height: 'calc(80% - 200px)',
       baseZIndex: 10000
     });
   }
@@ -98,7 +98,7 @@ export class ListPaiementPMEComponent implements OnInit {
         paiement: paiement
       },
       header: "Paiement PME",
-      width: '60%',
+      width: '50%',
       height: 'calc(100% - 200px)',
       baseZIndex: 10000
     });
