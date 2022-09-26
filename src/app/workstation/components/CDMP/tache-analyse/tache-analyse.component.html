@@ -148,10 +148,20 @@
 
             </div>
         </div>
-        <div class="float-end mt-2 pt-1">
+        <!-- <div class="float-end mt-2 pt-1">
             <button type="button" class="btn btn-primary btn-sm" style="background-color: #203359;">Valider</button>
             <button type="button" class="btn btn-success btn-sm">Demander Complements</button>
             <button type="button" class="btn btn-danger btn-sm" [routerLink]="['../analyse_risque']">Rejeter</button>
+        </div> -->
+        <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
+            <button id="valider" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-check"
+                class="p-button-raised p-button-danger  my-auto ml-2" routerLink="../"></button>
+                <button id="valider"  pButton pRipple label="Demander Complements" icon="pi pi-check"
+                class="p-button-raised p-button-info  my-auto ml-3" routerLink="../"></button>
+            <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
+                label="Valider" icon="pi pi-check" class="p-button-raised p-button-success my-auto " routerLink="../"
+                ></button>
+
         </div>
 
     </div>
