@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DemandeAdhesion, DemandeCession } from '../../model/demande';
+import { DemandeAdhesion, DemandeCession, DemandeNantissemantInfo } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   id: 0,
   ninea: "567865467567",
   refBE: "6543568778",
-  date_soumission: "2021-02-12" ,
+  date_soumission: new Date("2021/02/12") ,
   date_cession: "2020-12-15" ,
 
   montant_rembourse : "2.000.000",
@@ -116,12 +116,5 @@ export interface BasicInfo{
   pmeActive?:boolean;
 
   
-}
-
-export interface DemandeNantissemantInfo{
-    id?:number;
-    refBE?:String;
-    ninea?:String;
-    date_soumission?:String;
 }
 

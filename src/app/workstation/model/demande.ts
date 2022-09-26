@@ -7,7 +7,7 @@ export interface DemandeAdhesion {
     ninea?:string,
     rccm?:string,
     statut?:String;
-    date_soumission?: string,
+    date_soumission?:Date,
     denomination ?:String,
     interdiction ?: String,
     numero_demande ?: number,
@@ -38,3 +38,11 @@ export interface Convention {
     decote?:string,
     modePaiement?:String;
 }
+
+export interface DemandeNantissemantInfo{
+    id?:number;
+    refBE?:String;
+    ninea?:String;
+    date_soumission?:Date;
+}
+

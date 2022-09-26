@@ -122,3 +122,12 @@ p-steps p-steps-item {
 ::ng-deep .p-steps.steps-custom .p-steps-item .p-steps-title {
     color: #203359;
 }
+
+//cacher les bouton de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
+}
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
+}
