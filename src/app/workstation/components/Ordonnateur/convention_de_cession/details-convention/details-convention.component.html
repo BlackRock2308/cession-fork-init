@@ -87,8 +87,8 @@
     </div>
     
 <div class="float-end" *ngIf="demandeCession.statut=='Convention enregistrée'||demandeCession.statut=='Substitution effectuée';else fermerBoutton">
-    <button pButton pRipple icon="pi pi-check" class="p-button-raised p-button-success" label="Accepter"  routerLink="../"></button>
-    <button pButton pRipple icon="pi pi-times" class="p-button-raised ml-2  p-button-danger" label="Rejeter" routerLink="../"></button>
+    <button pButton pRipple icon="pi pi-check" class="p-button-raised p-button-success" label="Accepter" (click)="onSubmit('Convention acceptée')" routerLink="../"></button>
+    <button pButton pRipple icon="pi pi-times" class="p-button-raised ml-2  p-button-danger" label="Rejeter" (click)="onSubmit('Convention rejetée')" routerLink="../"></button>
 </div>
 
 <ng-template #fermerBoutton  class="float-end ">

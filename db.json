@@ -629,7 +629,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Convention enregistrée",
+      "statut": "Convention acceptée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294065",
       "dateDemande": "21/03/2021",
@@ -641,12 +641,12 @@
     {
       "id": 2,
       "ninea": "567567",
-      "statut": "Convention enregistrée",
+      "statut": "Convention rejetée",
       "raisonSocial": "ENEDIS",
       "referenceBE": "21-294066",
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0002",
-      "observation": ""
+      "observation": "Décode élevée"
     },
     {
       "id": 3,
