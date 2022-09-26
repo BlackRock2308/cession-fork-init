@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DemandeCession } from '../../model/demande';
@@ -53,6 +53,15 @@ export class DemandesCessionService {
   //récupéreer les demandes de cession au stade de convention par l'ordonnateur
   getConventions(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/conventions`);
+  }
+
+  //mettre à jour la demande de cession
+  patchConvention(demandeCession:DemandeCession): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/conventions`,demandeCession, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
   }
 
 }

@@ -38,6 +38,7 @@ import { ListPaiementsComponent } from './components/PME/list-paiements/list-pai
 import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
 import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
 import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
+import { DetailsConventionComponent } from './components/Ordonnateur/convention_de_cession/details-convention/details-convention.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { ListeConventionsComponent } from './components/Ordonnateur/convention_d
     ListPaiementsComponent,
     RecevabiliteComponent,
     VerifierDemandeCessionComponent,
-    ListeConventionsComponent
+    ListeConventionsComponent,
+    DetailsConventionComponent
     
   ],
   imports: [
