@@ -68,3 +68,44 @@
 ::ng-deep .form-check-input{
     background-color: green;
 }
+
+.modalTitle{
+    background-color: #F2F2F2;
+    justify-content: center;
+    height: 40px;
+    border-radius: 0rem;
+    display: flex;
+    
+
+    
+}
+
+::ng-deep span.p-paginator-current.ng-star-inserted{
+    color: #203359;
+
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
+    background-color: #203359;
+
+}
+
+::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight{
+    background-color: #203359;
+
+}
+
+.title{
+    color:#203359;
+    font-weight: bold;
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
+    color: #203359;
+
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
+    color: #203359;
+
+}

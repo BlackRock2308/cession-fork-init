@@ -10,10 +10,15 @@ import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import { Documents } from 'src/app/workstation/model/document';
+import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visualiser-document.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DocumentService } from 'src/app/workstation/service/document/document.service';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
   styleUrls: ['./nouvelle-demande.component.scss'],
+  providers: [DialogService],
   animations: [
     trigger('mask-anim', [
       state('void', style({
@@ -40,6 +45,7 @@ export class NouvelleDemandeComponent implements OnInit {
   selectedTypeDocument: string;
   items: MenuItem[];
   home: MenuItem;
+  documentes: any[];
 
   rightPanelClick: boolean;
 
@@ -93,7 +99,9 @@ export class NouvelleDemandeComponent implements OnInit {
     public renderer: Renderer2, private menuService: MenuService,
     private primengConfig: PrimeNGConfig,
     public app: AppComponent,
-    private pmeService: PmeService
+    private pmeService: PmeService,
+    public dialogService: DialogService,
+    private documentService: DocumentService
   ) { }
 
   ngOnInit(): void {
@@ -102,6 +110,9 @@ export class NouvelleDemandeComponent implements OnInit {
       this.typesDocument.push({ nom: "Autres..." })
       console.log(this.typesDocument)
     })
+    this.documentService.getDeocuments().subscribe(data => {
+      this.documentes = data
+    });
 
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
@@ -173,7 +184,30 @@ export class NouvelleDemandeComponent implements OnInit {
     this.filteredtypeDocument = filtered;
   }
 
+  
+  delete(document:Document){
+    var myIndex = this.documents.indexOf(document);
+    if (myIndex !== -1) {
+      this.documents.splice(myIndex, 1);
+  }
+  console.log(this.documents)
+  }
+
+  visualiserDocument(document: Documents) {
+    let nom = document.nomDocument;
+    const ref = this.dialogService.open(VisualiserDocumentComponent, {
+      data: {
+        document: document
+      },
+      header: nom,
+      width: '70%',
+      height: 'calc(100% - 100px)',
+      baseZIndex: 10000
+    });
+
+  }
 }
+
 interface Document {
 
   type?: String;

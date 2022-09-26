@@ -32,7 +32,7 @@
       "ninea_file": "",
       "statut_convention": "Convention enregistrée",
       "rccm_file": "",
-      "nineaValide": true,
+      "nineaValide": false,
       "pmeActive": false,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
@@ -671,7 +671,7 @@
     {
       "id": 5,
       "ninea": "123567",
-      "statut": "Substitution effectuée",
+      "statut": "Convention acceptée",
       "raisonSocial": "E.COM4",
       "referenceBE": "20-294069",
       "dateDemande": "05/09/2021",
