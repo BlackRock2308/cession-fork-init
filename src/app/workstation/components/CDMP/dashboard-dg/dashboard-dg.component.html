@@ -16,20 +16,32 @@
     </div>
 </div>
 <br>
+<div class="d-flex justify-content-center col-12">
+    <div class="col-12 md:col-10 modalTitle  ">
+        <h3 class="title">Marchés</h3>
+    </div>
+</div>
+<br>
 <div class="card">
-    <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+    
+        
+    
+    <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="10"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" [rows]="10"
         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
         currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
         <ng-template pTemplate="caption">
             <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                <h4 class="title" style="color: #203359; position: relative; right: -700px;">Marchés</h4>
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
                         placeholder="Rechercher..." />
                 </span>
             </div>
+            <button id="valider" style="width: min-content; left: 1230px; top: -30px; position: relative;" pButton pRipple label="Exporter"
+            icon="pi pi-upload" (click)="exportexcel()" class="p-button-raised p-button-success mx-1  my-auto ml-2"
+            ></button>
+
         </ng-template>
         <ng-template pTemplate="header">
             <tr>

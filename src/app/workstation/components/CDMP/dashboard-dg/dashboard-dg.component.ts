@@ -9,6 +9,7 @@ import { DetailsTableauComponent } from './details-tableau/details-tableau.compo
 import {Subscription} from 'rxjs';
 import { AppConfig } from 'src/app/workstation/model/appconfig';
 import { AppConfigService } from 'src/app/workstation/service/appconfigservice';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-dashboard-dg',
@@ -21,6 +22,7 @@ export class DashboardDGComponent implements OnInit {
 
   demandeDialog: boolean;
 
+  fileName= 'MarchesCDMP.xlsx';
   demandes:DemandeAdhesion[];
 
   demande:DemandeAdhesion;
@@ -275,6 +277,21 @@ export class DashboardDGComponent implements OnInit {
   
   }
 
+
+  exportexcel(): void
+  {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+ 
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ 
+    /* save to file */  
+    XLSX.writeFile(wb, this.fileName);
+ 
+  }
   visualiserDetails(demande: DemandesAdhesionComponent) {
     const ref = this.dialogService.open(DetailsTableauComponent, {
       data: {
