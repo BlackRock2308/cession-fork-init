@@ -58,6 +58,8 @@ onSubmit(statut:string){
     statut:statut
   }
 
+  this.mettreAJourStatutConvention(body)
+
 
 }
 
@@ -75,8 +77,8 @@ visualiserDocument(document: Documents) {
   });
 }
 
-mettreAJourStatutConvention(){
-  //this.demandeCessionService.patchConvention()
+mettreAJourStatutConvention(body:any){
+  this.demandeCessionService.patchConvention(this.demandeCession.id,body).subscribe()
 }
 
 }

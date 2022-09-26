@@ -56,8 +56,8 @@ export class DemandesCessionService {
   }
 
   //mettre à jour la demande de cession
-  patchConvention(demandeCession:DemandeCession): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('PATCH', `${this.baseUrl}/conventions`,demandeCession, {
+  patchConvention(id:number,demandeCession:DemandeCession): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/conventions/${id}`,demandeCession, {
       reportProgress: true,
       responseType: 'json'
     });

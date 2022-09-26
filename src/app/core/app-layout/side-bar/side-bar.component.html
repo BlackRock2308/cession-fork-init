@@ -54,6 +54,9 @@
                     <li *ngIf="profil === 'comptable'">
                         <a disabled [routerLink]="['comptable/paiements']">Paiements/Recouvrements</a>
                     </li>
+                    <li *ngIf="profil === 'ordonnateur'">
+                        <a [routerLink]="['ordonnateur/conventions']">Conventions de cession</a>
+                    </li>
                 </ul>
                 <div class="footer">
                 </div>
