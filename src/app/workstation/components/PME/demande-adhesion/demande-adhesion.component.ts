@@ -142,19 +142,14 @@ export class DemandeAdhesionComponent implements OnInit {
     this.primengConfig.ripple=true;
     
     this.cols = [
-        {field: 'ninea', header: 'NINEA'},
-        {field: 'rccm', header: 'RCCM'},
-        {field: 'datesoumission', header: 'Date Soumission'},
-        {field: 'rating', header: 'Reviews'},
-        {field: 'inventoryStatus', header: 'Status'}
+        {field: 'refBE', header: 'Reference BE'},
+        {field: 'date_soumission', header: 'Date Soumission'},
+        {field: 'statut', header: 'Statut'},
+
+      
     ];
 
-    this.statuses = [
-        {label: 'INSTOCK', value: 'instock'},
-        {label: 'LOWSTOCK', value: 'lowstock'},
-        {label: 'OUTOFSTOCK', value: 'outofstock'}
-    ];
-
+    
   
 
     

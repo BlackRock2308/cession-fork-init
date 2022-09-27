@@ -5,14 +5,13 @@
 <div class="grid">
     <div class="col-12">
         <p-card>
+            <div class="d-flex justify-content-center col-12">
+                <h4 class="title" style="color: #203359;">Demandes d'Adhesion</h4>
+            </div>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id" sortMode="multiple">
-                <ng-template pTemplate="caption">
-                    <div class="d-flex justify-content-center col-12">
-                        <h4 class="title" style="color: #203359;">Demandes d'Adhesion</h4>
-                    </div>
-                </ng-template>
+               
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
