@@ -28,11 +28,11 @@
       "denomination": "",
       "raisonSocial": "Modelsis SARL",
       "refBE": "294067",
-      "date_soumission": "2020-12-12",
+      "date_soumission": "2020/12/12",
       "ninea_file": "",
       "statut_convention": "Convention enregistrée",
       "rccm_file": "",
-      "nineaValide": true,
+      "nineaValide": false,
       "pmeActive": false,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
@@ -91,7 +91,7 @@
     {
       "id": 3,
       "ninea": "567865467567",
-      "statut": "Complement Requis",
+      "statut": "Completee",
       "rccm": "6543568778",
       "denomination": "ABCD",
       "raisonSocial": "E.COM4",
@@ -527,6 +527,16 @@
       "typeDocument": "Journal",
       "file": {},
       "id": 10
+    },
+    {
+      "typeDocument": "Business Plan",
+      "file": {},
+      "id": 11
+    },
+    {
+      "typeDocument": "Journal",
+      "file": {},
+      "id": 12
     }
   ],
   "paiements": [
@@ -615,26 +625,28 @@
       }
     }
   ],
-  "conventions":[
+  "conventions": [
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Convention enregistrée",
+      "statut": "Convention acceptée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294065",
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
-      "denomination": "Modelsis"
+      "denomination": "Modelsis",
+      "observation": ""
     },
     {
       "id": 2,
       "ninea": "567567",
-      "statut": "Convention enregistrée",
+      "statut": "Convention rejetée",
       "raisonSocial": "ENEDIS",
       "referenceBE": "21-294066",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0002"
+      "numeroDemande": "2022-0002",
+      "observation": "Décode élevée"
     },
     {
       "id": 3,
@@ -643,7 +655,8 @@
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "15-294067",
       "dateDemande": "15/07/2021",
-      "numeroDemande": "2022-0003"
+      "numeroDemande": "2022-0003",
+      "observation": "Contrat non conforme"
     },
     {
       "id": 4,
@@ -652,16 +665,18 @@
       "raisonSocial": "INT Marketing",
       "referenceBE": "45-294068",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0004"
+      "numeroDemande": "2022-0004",
+      "observation": ""
     },
     {
       "id": 5,
       "ninea": "123567",
-      "statut": "Substitution effectuée",
+      "statut": "Convention acceptée",
       "raisonSocial": "E.COM4",
       "referenceBE": "20-294069",
       "dateDemande": "05/09/2021",
-      "numeroDemande": "2022-0005"
+      "numeroDemande": "2022-0005",
+      "observation": "Document manquant"
     },
     {
       "id": 6,
@@ -670,7 +685,8 @@
       "raisonSocial": "SCI SENEGAL",
       "referenceBE": "20-294070",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0006"
+      "numeroDemande": "2022-0006",
+      "observation": ""
     },
     {
       "id": 7,
@@ -679,7 +695,8 @@
       "raisonSocial": "IMME",
       "referenceBE": "20-294071",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0007"
+      "numeroDemande": "2022-0007",
+      "observation": ""
     },
     {
       "id": 8,
@@ -688,9 +705,8 @@
       "raisonSocial": "IMME",
       "referenceBE": "20-294072",
       "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0008"
+      "numeroDemande": "2022-0008",
+      "observation": "Document manquant"
     }
-
-
   ]
 }

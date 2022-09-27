@@ -1,43 +1,46 @@
 <p-breadcrumb [model]="items1" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
 <br>
-    <div class="d-flex justify-content-center col-12">
-        <div class="col-12 modalTitle ">
-            <h3 class="title">Demandes d'adhesion</h3>
-        </div>
-    </div>
 <br>
 <div class="grid">
     <div class="col-12">
-        <div class="card">
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+        <p-card>
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
+                currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id" sortMode="multiple">
                 <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="title" style="color: #203359; position: relative; right: -400px;">Demandes en cours
-                        </h4>
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
+                    <div class="d-flex justify-content-center col-12">
+                        <h4 class="title" style="color: #203359;">Demandes d'Adhesion</h4>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
+                        <th>
+                            <p-columnFilter type="text" field="ninea"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="rccm"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+                        </th>
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
+                        </th>
+                    </tr>
+                    <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">RCCM <p-sortIcon
-                                field="datesoumission"></p-sortIcon>
+                        <th pSortableColumn="rccm" style="color: #203359;">RCCM <p-sortIcon
+                                field="rccm"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="rccm" style="color: #203359;">Date soumission <p-sortIcon field="rccm">
+                        <th pSortableColumn="date_soumission" style="color: #203359;">Date soumission <p-sortIcon field="date_soumission">
                             </p-sortIcon>
                         </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
+                    
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
@@ -62,20 +65,19 @@
                     </tr>
                 </ng-template>
             </p-table>
-        </div>
+        </p-card>
     </div>
 </div>
-<p-card>
-    <p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000"
-        [draggable]="false" [resizable]="false">
-        <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
-            <div class="col-8 mx-auto px-auto" style="background-color:white ;">
-                <div id="steps">
-                    <p-toast></p-toast>
-                    <p-steps [model]="items" [readonly]="false" styleClass="steps-custom"></p-steps>
-                </div>
+<p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
+        <div class="col-8 mx-auto px-auto" style="background-color:white ;" >
+            <div id="steps" >
+                <p-toast></p-toast>
+                <p-steps [model]="items" [readonly]="false" styleClass="steps-custom"></p-steps>
             </div>
-        </ng-template>
+        </div>
+    </ng-template>
         <ng-template pTemplate="content" style="border: none;">
             <div>
                 <div class=" justify-content-center p-fluid ">
@@ -102,4 +104,3 @@
             <router-outlet></router-outlet>
         </ng-template>
     </p-dialog>
-</p-card>

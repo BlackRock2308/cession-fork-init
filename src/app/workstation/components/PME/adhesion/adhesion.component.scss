@@ -50,10 +50,6 @@
     background-color: #A6325C;
 }
 
-.upload{
-    background-color:#203359;
-}
-
 .hidden {
     visibility: hidden;
     width: 1px;
@@ -62,10 +58,21 @@
 
   
 
-.upload{
-    background-color:#203359;
-    
-}
+  .container {
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+  
+  .upload {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    font-size: 108px;
+    font-weight:1000;
+    color: #203359;
+  }
+  
 
 .image{
     width: 150px;
@@ -84,8 +91,11 @@
     margin-bottom: 10px; /* Added */
 }
 
-.p-button-danger{
-    background-color: #A6325C;
+.soumettre{
+    background-color: #981639;
+}
+.confirm{
+    background-color: #99CC33;
 }
 .card-w-title{
     background-color:#203359;

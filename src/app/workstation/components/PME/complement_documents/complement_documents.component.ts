@@ -46,7 +46,7 @@ export class ComplementDocumentsComponent implements OnInit {
     {field: 'action', header: 'Action'},
 ];
 this.items = [
-  { label: 'Liste de Damandes ', url: '/#/workstation/pme/demandes_en_cours ' },
+  { label: 'Liste de Demandes ', url: '/#/workstation/pme/demandes_en_cours ' },
   { label: 'Compléter les documents' }
 ];
 

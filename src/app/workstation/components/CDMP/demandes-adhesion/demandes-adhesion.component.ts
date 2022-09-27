@@ -42,14 +42,13 @@ export class DemandesAdhesionComponent implements OnInit {
     //this.productService.getProducts().then(data => this.products = data);
     this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
       this.demandes = data
+      console.log(this.demandes[0].date_soumission)
     });
 
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
       { field: 'rccm', header: 'RCCM' },
-      { field: 'datesoumission', header: 'Date Soumission' },
-      { field: 'rating', header: 'Reviews' },
-      { field: 'inventoryStatus', header: 'Status' }
+      { field: 'date_soumission', header: 'Date Soumission' }
     ];
     this.items1 = [
       { label: 'Liste des demandes' }
