@@ -24,7 +24,10 @@
 <br>
 <div class="card">
     
-        
+    <button id="valider" style="width: min-content; left: 1230px; top: -10px; position: relative;" pButton pRipple label="Exporter"
+    icon="pi pi-upload" (click)="exportexcel()" class="p-button-raised p-button-info mx-1  my-auto ml-2"
+    ></button>
+
     
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="10"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" [rows]="10"
@@ -38,10 +41,7 @@
                         placeholder="Rechercher..." />
                 </span>
             </div>
-            <button id="valider" style="width: min-content; left: 1230px; top: -30px; position: relative;" pButton pRipple label="Exporter"
-            icon="pi pi-upload" (click)="exportexcel()" class="p-button-raised p-button-info mx-1  my-auto ml-2"
-            ></button>
-
+            
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
