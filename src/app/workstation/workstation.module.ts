@@ -40,6 +40,7 @@ import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDeman
 import { AppConfigService } from './service/appconfigservice';
 import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
 import { DetailsConventionComponent } from './components/Ordonnateur/convention_de_cession/details-convention/details-convention.component';
+import { ChartModule } from 'primeng/chart';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { DetailsConventionComponent } from './components/Ordonnateur/convention_
     WorkstationRoutingModule,
     CardModule,
     TableModule,
-    PdfViewerModule
+    PdfViewerModule,
+    ChartModule
   ],
   exports: [
     RouterModule,

@@ -6,597 +6,641 @@ import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandesAdhesionComponent } from '../demandes-adhesion/demandes-adhesion.component';
 import { DetailsTableauComponent } from './details-tableau/details-tableau.component';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AppConfig } from 'src/app/workstation/model/appconfig';
 import { AppConfigService } from 'src/app/workstation/service/appconfigservice';
 import * as XLSX from 'xlsx';
 
 @Component({
-  selector: 'app-dashboard-dg',
-  templateUrl: './dashboard-dg.component.html',
-  styleUrls: ['./dashboard-dg.component.scss'],
-  providers: [DialogService]
+    selector: 'app-dashboard-dg',
+    templateUrl: './dashboard-dg.component.html',
+    styleUrls: ['./dashboard-dg.component.scss'],
+    providers: [DialogService]
 
 })
 export class DashboardDGComponent implements OnInit {
 
-  demandeDialog: boolean;
+    demandeDialog: boolean;
 
-  fileName= 'MarchesCDMP.xlsx';
-  demandes:DemandeAdhesion[];
+    fileName = 'MarchesCDMP.xlsx';
+    demandes: DemandeAdhesion[];
 
-  demande:DemandeAdhesion;
+    demande: DemandeAdhesion;
 
-  submitted: boolean;
+    submitted: boolean;
 
-  cols: any[];
+    cols: any[];
 
-  statuses: any[];
+    statuses: any[];
 
-  rowsPerPageOptions = [5, 10, 20];
+    rowsPerPageOptions = [5, 10, 20];
 
-  items: MenuItem[];
-  home: MenuItem;
-   
-  activeIndex: number = 1;
-  basicData: any;
+    items: MenuItem[];
+    home: MenuItem;
 
-  basicOptions: any;
+    activeIndex: number = 1;
+    basicData: any;
 
-  multiAxisData: any;
+    basicOptions: any;
 
-  chartOptions: any;
+    multiAxisData: any;
 
-  multiAxisOptions: any;
+    chartOptions: any;
 
-  stackedData: any;
+    multiAxisOptions: any;
 
-  stackedOptions: any;
+    stackedData: any;
 
-  horizontalOptions: any;
+    stackedData1: any;
 
-  subscription: Subscription;
+    stackedOptions: any;
 
-  config: AppConfig;
+    horizontalOptions: any;
 
-  constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService,private messageService:MessageService, private router: Router,) { }
+    subscription: Subscription;
 
-  ngOnInit() {
+    config: AppConfig;
 
-    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data=>{
-      this.demandes=data});
-        
+    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, public dialogService: DialogService, private messageService: MessageService, private router: Router,) { }
+
+    ngOnInit() {
+
+        this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+            this.demandes = data
+        });
+
         this.cols = [
-            {field: 'ninea', header: 'NINEA'},
-            {field: 'rccm', header: 'RCCM'},
-            {field: 'datesoumission', header: 'Date Soumission'},
-            {field: 'rating', header: 'Reviews'},
-            {field: 'inventoryStatus', header: 'Status'}
+            { field: 'ninea', header: 'NINEA' },
+            { field: 'rccm', header: 'RCCM' },
+            { field: 'datesoumission', header: 'Date Soumission' },
+            { field: 'rating', header: 'Reviews' },
+            { field: 'inventoryStatus', header: 'Status' }
         ];
         this.items = [
-          {}
+            {}
         ];
-    
+
         this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-    
+
         this.basicData = {
-          labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-          datasets: [
-              {
-                  label: 'PME',
-                  backgroundColor: '#333366',
-                  data: [65, 59, 80, 81, 56, 55, 40, 34, 12, 67, 90, 100]
-              }
-          ]
-      };
-    
-      this.multiAxisData = {
-          labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-          datasets: [{
-              label: 'Rembourse',
-              backgroundColor: [
-                  '#EC407A',
-                  '#AB47BC',
-                  '#42A5F5',
-                  '#7E57C2',
-                  '#66BB6A',
-                  '#FFCA28',
-                  '#26A69A'
-              ],
-              yAxisID: 'Rembourse',
-              data: [1000000, 3000000, 50000000, 8000000, 5000000, 5500000, 10000000,3000000,4000090,2000000,1000000,7000000]
-          }, {
-              label: 'Debourse',
-              backgroundColor: '#78909C',
-              yAxisID: 'Debourse',
-              data: [1000000, 2500000, 45000000, 7500000, 4500000, 5000000, 9000000,2000000,3500090,1000000,500000,6500000]
-          }]
-      };
-    
-      this.multiAxisOptions = {
-          plugins: {
-              legend: {
-                  labels: {
-                      color: '#495057'
-                  }
-              },
-              tooltips: {
-                  mode: 'index',
-                  intersect: true
-              }
-          },
-          scales: {
-              x: {
-                  ticks: {
-                      color: '#495057'
-                  },
-                  grid: {
-                      color: '#ebedef'
-                  }
-              },
-              y: {
-                  type: 'linear',
-                  display: true,
-                  position: 'left',
-                  ticks: {
-                      min: 0,
-                      max: 100,
-                      color: '#495057'
-                  },
-                  grid: {
-                      color: '#ebedef'
-                  }
-              },
-              y1: {
-                  type: 'linear',
-                  display: true,
-                  position: 'right',
-                  grid: {
-                      drawOnChartArea: false,
-                      color: '#ebedef'
-                  },
-                  ticks: {
-                      min: 0,
-                      max: 100,
-                      color: '#495057'
-                  }
-              }
-          }
-      };
-    
-      this.horizontalOptions = {
-          indexAxis: 'y',
-          plugins: {
-              legend: {
-                  labels: {
-                      color: '#495057'
-                  }
-              }
-          },
-          scales: {
-              x: {
-                  ticks: {
-                      color: '#495057'
-                  },
-                  grid: {
-                      color: '#ebedef'
-                  }
-              },
-              y: {
-                  ticks: {
-                      color: '#495057'
-                  },
-                  grid: {
-                      color: '#ebedef'
-                  }
-              }
-          }
-      };
-    
-      this.stackedData = {
-          labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-          datasets: [{
-              type: 'bar',
-              label: 'Remboursé',
-              backgroundColor: ' #99CC33',
-              data: [
-                  1000000,
-                  900000,
-                  700000,
-                  900000,
-                  800000,
-                  1100000,
-                  1200000,
-                  700000,
-                  900000,
-                  800000,
-                  1100000,
-                  1200000
-              ]
-          }, {
-            type: 'bar',
-            label: 'Déboursé',
-            backgroundColor: ' #333366',
-            data: [
-                1100000,
-                1000000,
-                900000,
-                1100000,
-                1000000,
-                1200000,
-                1500000,
-                900000,
-                1100000,
-                1000000,
-                1200000,
-                1500000
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            datasets: 
+                [{
+                    data: [65, 59, 80, 81, 56, 55, 40, 34, 12, 67, 90, 100],
+                    backgroundColor: [
+                        "#42A5F5",
+                        "#66BB6A",
+                        "#FFA726",
+                        "#26C6DA",
+                        "#7E57C2",
+                        "#99CC33",
+                        "#495057",
+                        "#26A69A",
+                        "#EC407A",
+                        "#78909C",
+                        "#333366",
+                        "#981639"
+                        
+                    ],
+                    label: 'PME'
+                }]
+            
+        };
+
+        this.multiAxisData = {
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            datasets: [{
+                label: 'Rembourse',
+                backgroundColor: [
+                    '#EC407A',
+                    '#AB47BC',
+                    '#42A5F5',
+                    '#7E57C2',
+                    '#66BB6A',
+                    '#FFCA28',
+                    '#26A69A'
+                ],
+                yAxisID: 'Rembourse',
+                data: [1000000, 3000000, 50000000, 8000000, 5000000, 5500000, 10000000, 3000000, 4000090, 2000000, 1000000, 7000000]
+            }, {
+                label: 'Debourse',
+                backgroundColor: '#78909C',
+                yAxisID: 'Debourse',
+                data: [1000000, 2500000, 45000000, 7500000, 4500000, 5000000, 9000000, 2000000, 3500090, 1000000, 500000, 6500000]
+            }]
+        };
+
+        this.multiAxisOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: true
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                        color: '#ebedef'
+                    },
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        color: '#495057'
+                    }
+                }
+            }
+        };
+
+        this.stackedData1 = {
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            datasets: [{
+                type: 'bar',
+                label: 'Remboursé',
+                backgroundColor: ' #99CC33',
+                data: [
+                    1000000,
+                    900000,
+                    700000,
+                    900000,
+                    800000,
+                    1100000,
+                    1200000,
+                    700000,
+                    900000,
+                    800000,
+                    1100000,
+                    1200000
+                ]
+            }, {
+                type: 'bar',
+                label: 'Solde',
+                backgroundColor: ' #981639',
+                data: [
+                    100000,
+                    300000,
+                    200000,
+                    300000,
+                    200000,
+                    100000,
+                    300000,
+                    200000,
+                    300000,
+                    200000,
+                    100000,
+                    300000
+                ]
+            }, {
+                type: 'bar',
+                label: 'Décote',
+                backgroundColor: ' #333366',
+                data: [
+                    100000,
+                    200000,
+                    200000,
+                    100000,
+                    200000,
+                    100000,
+                    150000,
+                    150000,
+                    100000,
+                    200000,
+                    100000,
+                    200000
+                ]
+            }
             ]
-          }, {
-            type: 'bar',
-            label: 'Solde',
-            backgroundColor: ' #981639',
-            data: [
-                100000,
-                300000,
-                200000,
-                300000,
-                200000,
-                100000,
-                300000,
-                200000,
-                300000,
-                200000,
-                100000,
-                300000
+        };
+
+        this.stackedData = {
+            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            datasets: [{
+                label: 'Remboursé',
+                backgroundColor: ' #99CC33',
+                data: [
+                    1000000,
+                    900000,
+                    700000,
+                    900000,
+                    800000,
+                    1100000,
+                    1200000,
+                    700000,
+                    900000,
+                    800000,
+                    1100000,
+                    1200000
+                ]
+            }, {
+                label: 'Engagé',
+                backgroundColor: ' #333366',
+                data: [
+                    1100000,
+                    1000000,
+                    900000,
+                    1100000,
+                    1000000,
+                    1200000,
+                    1500000,
+                    900000,
+                    1100000,
+                    1000000,
+                    1200000,
+                    1500000
+                ]
+            }, {
+                label: 'Solde',
+                backgroundColor: ' #981639',
+                data: [
+                    100000,
+                    300000,
+                    200000,
+                    300000,
+                    200000,
+                    100000,
+                    300000,
+                    200000,
+                    300000,
+                    200000,
+                    100000,
+                    300000
+                ]
+            }
             ]
-          }]
-      };
+        };
+
+        this.stackedOptions = {
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        };
+
+        this.config = this.configService.config;
+        this.updateChartOptions();
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+            this.updateChartOptions();
+        });
+
+    }
     
-      this.stackedOptions = {
-          tooltips: {
-              mode: 'index',
-              intersect: false
-          },
-          responsive: true,
-          scales: {
-              xAxes: [{
-                  stacked: true,
-              }],
-              yAxes: [{
-                  stacked: true
-              }]
-          }
-      };
-    
-      this.config = this.configService.config;
-      this.updateChartOptions();
-      this.subscription = this.configService.configUpdate$.subscribe(config => {
-          this.config = config;
-          this.updateChartOptions();
-      });
-  
-  }
 
 
-  exportexcel(): void
-  {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
- 
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
- 
-    /* save to file */  
-    XLSX.writeFile(wb, this.fileName);
- 
-  }
-  visualiserDetails(demande: DemandesAdhesionComponent) {
-    const ref = this.dialogService.open(DetailsTableauComponent, {
-      data: {
-        demande: demande
-      },
-      header: "Details Tableau",
-      width: '70%',
-      height: 'calc(75% - 100px)',
-      baseZIndex: 10000
-    });
+    exportexcel(): void {
+        /* pass here the table id */
+        let element = document.getElementById('excel-table');
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
+        /* generate workbook and add the worksheet */
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+        /* save to file */
+        XLSX.writeFile(wb, this.fileName);
+
+    }
+    visualiserDetails(demande: DemandesAdhesionComponent) {
+        const ref = this.dialogService.open(DetailsTableauComponent, {
+            data: {
+                demande: demande
+            },
+            header: "Details Tableau",
+            width: '70%',
+            height: 'calc(75% - 100px)',
+            baseZIndex: 10000
+        });
+
+    }
+
+
+    updateChartOptions() {
+        this.chartOptions = this.config && this.config.dark ? this.applyDarkTheme() : this.applyLightTheme();
+    }
+
+    applyDarkTheme() {
+        this.basicOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                }
+            }
+        };
+
+        this.horizontalOptions = {
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                }
+            }
+        };
+
+        this.multiAxisOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: true
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                        color: 'rgba(255,255,255,0.2)'
+                    },
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        this.stackedOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: ''
+                    }
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                }
+            },
+            scales: {
+                x: {
+                    stacked: true,
+                    ticks: {
+                        color: ' #981639'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                },
+                y: {
+                    stacked: true,
+                    ticks: {
+                        color: ' #333366'
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.2)'
+                    }
+                }
+            }
+        };
+    }
+
+    applyLightTheme() {
+        this.basicOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        this.horizontalOptions = {
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        this.multiAxisOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: true
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                        color: '#ebedef'
+                    },
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        color: '#495057'
+                    }
+                }
+            }
+        };
+
+        this.stackedOptions = {
+            plugins: {
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                legend: {
+                    labels: {
+                        color: ''
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    stacked: true,
+                    ticks: {
+                        color: ' #981639'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                },
+                y: {
+                    stacked: true,
+                    ticks: {
+                        color: ' #333366'
+                    },
+                    grid: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+    }
 }
-
-
-updateChartOptions() {
-  if (this.config.dark)
-      this.applyDarkTheme();
-  else
-      this.applyLightTheme();
-}
-
-applyDarkTheme() {
-  this.basicOptions = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#ebedef'
-              }
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#ebedef'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          },
-          y: {
-              ticks: {
-                  color: '#ebedef'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          }
-      }
-  };
-
-  this.horizontalOptions = {
-      indexAxis: 'y',
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#ebedef'
-              }
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#ebedef'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          },
-          y: {
-              ticks: {
-                  color: '#ebedef'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          }
-      }
-  };
-
-  this.multiAxisOptions = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#ebedef'
-              }
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: true
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#ebedef'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          },
-          y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
-              ticks: {
-                  min: 0,
-                  max: 100,
-                  color: '#ebedef'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          },
-          y1: {
-              type: 'linear',
-              display: true,
-              position: 'right',
-              grid: {
-                  drawOnChartArea: false,
-                  color: 'rgba(255,255,255,0.2)'
-              },
-              ticks: {
-                  min: 0,
-                  max: 100,
-                  color: '#ebedef'
-              }
-          }
-      }
-  };
-
-  this.stackedOptions = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: ' #99CC33'
-              }
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: false
-          }
-      },
-      scales: {
-          x: {
-              stacked: true,
-              ticks: {
-                  color: ' #981639'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          },
-          y: {
-              stacked: true,
-              ticks: {
-                  color: ' #333366'
-              },
-              grid: {
-                  color: 'rgba(255,255,255,0.2)'
-              }
-          }
-      }
-  };
-}
-
-applyLightTheme() {
-  this.basicOptions = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#495057'
-              }
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          },
-          y: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          }
-      }
-  };
-
-  this.horizontalOptions = {
-      indexAxis: 'y',
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#495057'
-              }
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          },
-          y: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          }
-      }
-  };
-
-  this.multiAxisOptions = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#495057'
-              }
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: true
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          },
-          y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
-              ticks: {
-                  min: 0,
-                  max: 100,
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          },
-          y1: {
-              type: 'linear',
-              display: true,
-              position: 'right',
-              grid: {
-                  drawOnChartArea: false,
-                  color: '#ebedef'
-              },
-              ticks: {
-                  min: 0,
-                  max: 100,
-                  color: '#495057'
-              }
-          }
-      }
-  };
-
-  this.stackedOptions = {
-      plugins: {
-          tooltips: {
-              mode: 'index',
-              intersect: false
-          },
-          legend: {
-              labels: {
-                  color: ' #99CC33'
-              }
-          }
-      },
-      scales: {
-          x: {
-              stacked: true,
-              ticks: {
-                  color: ' #981639'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          },
-          y: {
-              stacked: true,
-              ticks: {
-                  color: ' #333366'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          }
-      }
-  };
-}}

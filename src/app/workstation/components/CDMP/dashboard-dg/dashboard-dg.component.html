@@ -1,62 +1,55 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
-<p-toast></p-toast>
 <br>
 <div class="row">
     <div class="col-sm-6">
         <div class="card flex flex-column ">
-            <span style="font-weight: bold;">PME bénéficiare par mois</span>
-            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+            <span style="font-weight: bold;">Remboursement du Trésor</span>
+            <p-chart type="bar" [data]="stackedData1" [options]="stackedOptions"></p-chart>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card flex flex-column ">
-            <span style="font-weight: bold;">Montant déboursé/Montant remboursé/solde</span>
-            <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+            <span style="font-weight: bold;">Remboursement de la CDMP</span>
+            <p-chart type="bar" [data]="stackedData" [options]="basicOptions"></p-chart>
+        </div><br />
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-5">
+        <div class="card flex flex-column ">
+            <span style="font-weight: bold;">PME bénéficiare par mois</span>
+            <p-chart type="polarArea" [data]="basicData" [options]="chartOptions" [style]="{'width': '100%' }">
+            </p-chart>
         </div>
     </div>
 </div>
 
-<div class="d-flex justify-content-center col-12">
-    <div class="col-12 md:col-10 modalTitle  ">
-        <h3 class="title">Marchés</h3>
-    </div>
-</div>
 <br>
 <div class="card">
-    
-    <button id="valider" style="width: min-content; left: 1230px; top: -10px; position: relative;" pButton pRipple label="Exporter"
-    icon="pi pi-upload" (click)="exportexcel()" class="p-button-raised p-button-info mx-1  my-auto ml-2"
-    ></button>
 
-    
+    <button id="valider" style="width: min-content; left: 1230px; top: -10px; position: relative;" pButton pRipple
+        label="Exporter" icon="pi pi-upload" (click)="exportexcel()"
+        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button>
+        <h3 style=" margin-left: 40%;"> Liste des marchés </h3>
+
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="10"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" [rows]="10"
         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
         currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
-        <ng-template pTemplate="caption">
-            <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                <span class="block mt-2 md:mt-0 p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                        placeholder="Rechercher..." />
-                </span>
-            </div>
-            
-        </ng-template>
+      
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon>
                 </th>
-                <th pSortableColumn="datesoumission" style="color: #203359;">Raison Sociale <p-sortIcon
+                <th pSortableColumn="datesoumission" style="color: #203359;">Raison sociale <p-sortIcon
                         field="datesoumission"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Type de Marché <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="rccm" style="color: #203359;">Type de marché <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Montant Total <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="rccm" style="color: #203359;">Montant total <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
                 <th pSortableColumn="rccm" style="color: #203359;">Date marché <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Decode <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="rccm" style="color: #203359;">Décode <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
                 <th style="color: #203359;">Actions</th>
             </tr>
@@ -88,29 +81,29 @@
                     {{demande.ninea}}
                 </td>
                 <td style="width:15%; min-width:8rem;">
-                    <span class="p-column-title">Raison Sociale</span>
+                    <span class="p-column-title">Raison sociale</span>
                     {{demande.raisonSocial}}
                 </td>
                 <td style="width:15%;">
-                    <span class="p-column-title">Type de Marche</span>
+                    <span class="p-column-title">Type de marché</span>
                     {{demande.type_marche}}
                 </td>
                 <td style="width:15%;">
-                    <span class="p-column-title">Montant Total</span>
+                    <span class="p-column-title">Montant total</span>
                     {{demande.montant_total}}
                 </td>
                 <td style="width:15%;">
-                    <span class="p-column-title">Date marche</span>
+                    <span class="p-column-title">Date marché</span>
                     {{demande.date_marche}}
                 </td>
                 <td style="width:15%;">
-                    <span class="p-column-title">Date marche</span>
+                    <span class="p-column-title">Décote</span>
                     {{demande.decode}}
                 </td>
                 <td>
                     <div class="flex">
                         <button pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-text mr-2 button"
-                            (click)="visualiserDetails(demande)" pInputText pTooltip="Details"></button>
+                            (click)="visualiserDetails(demande)" pInputText pTooltip="Détails"></button>
                         <!-- <i  class="pi pi-search ml-3"  ></i> -->
                     </div>
                 </td>
