@@ -15,17 +15,30 @@
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true"
                 dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                       
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
                 <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <p-columnFilter  type="text" field="ninea"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="refBE"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="refDemande"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                        </th>
+                       
+                        
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                        </th>
+                    </tr>
                     <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
                             </p-sortIcon>
@@ -46,15 +59,15 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-document>
                     <tr *ngIf="!((profil === 'DG') && ((document.statut === 'Non Risquee') || (document.statut === 'Convention générée'))) && !((profil === 'pme') && (document.statut === 'Non Risquee'))">
-                        <td style="width:16%; min-width:10rem;">
+                        <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{document.ninea}}
                         </td>
-                        <td style="width:16%; min-width:8rem;">
+                        <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">RCCM</span>
                             {{document.raisonSocial}}
                         </td>
-                        <td style="width:16%;">
+                        <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
                             {{document.refBE}}
                         </td>
@@ -62,7 +75,7 @@
                             <span class="p-column-title">Date Soumission</span>
                             {{document.refDemande}}
                         </td>
-                        <td style="width:23%;">
+                        <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
                             {{document.statut}}
                         </td>
