@@ -11,11 +11,9 @@ export class VerificationComponent implements OnInit {
 
   existant:boolean=false;
 
-  pas_existant:boolean=false;
 
-  active:boolean;
+  active:boolean=false;
 
-  pas_active:boolean=false;
   demande: any;
   id: any;
 
@@ -35,31 +33,32 @@ export class VerificationComponent implements OnInit {
       this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/informations_ninea']);
       }
   
-      handle1Change(e){
-        this.pas_existant=false
-       
-      }
-      handle2Change(e){
-        this.existant=false
-      }
-
-      handle3Change(e){
-        this.pas_active=false
-       
-      }
-      handle4Change(e){
-        this.active=false
-      }
+      
   onSubmit(){
-      this.verifierDemandeAdhesion();
+      this.demande.nineaValide=this.existant
+      //this.demande.pmeActive=this.active
+
+      let body={
+        nineaValide:this.demande.nineaValide,
+        //pmeActive:this.demande.pmeActive
+      }
+      this.verifierDemandeAdhesion(body);
+
+       //fermer la boite de dialogue
+      this.demandeAdhesionService.setDialog(false)
+
+      //
+      this.router.navigate(['workstation/cdmp/demandes_en_cours/']);
 
 
     }
   
   
-  verifierDemandeAdhesion() {
-    this.demande.nineaValide=this.existant
-    this.demandeAdhesionService.patchBasicInformation(this.id,{"nineaValide":this.demande.nineaValide}).subscribe()
+  verifierDemandeAdhesion(body:any) {
+    
+    this.demandeAdhesionService.patchBasicInformation(this.id,body).subscribe(data=>{
+      console.log(this.demande,data)
+    })
 
   }
 }

@@ -15,17 +15,32 @@
                 [globalFilterFields]="['raisonSocial','referenceBE','totalMarche','statut']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                       
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
                 <ng-template pTemplate="header">
+                        <tr>
+                        <th>
+                            <p-columnFilter  type="text" field="raisonSocial"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="refBE"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="total_marche"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="soldePME"></p-columnFilter>
+                        </th>
+                       
+                        <th>
+                            <p-columnFilter type="text" field="montantRecu"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                        </th>
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                        </th>
+                    </tr>
                     <tr>
                         <th pSortableColumn="raisonSocial" style="color: #203359;">Raison sociale<p-sortIcon
                                 field="raisonSocial"></p-sortIcon>
@@ -68,11 +83,11 @@
                             <span class="p-column-title">Solde PME</span>
                             {{paiement.soldePME}}
                         </td>
-                        <td style="width:15%;">
+                        <td style="width:16%;">
                             <span class="p-column-title">Montant Reçu</span>
                             {{paiement.montantRecu}}
                         </td>
-                        <td style="width:18%;">
+                        <td style="width:16%;">
                             <span class="p-column-title">Statut</span>
                             {{paiement.statut}}
                         </td>

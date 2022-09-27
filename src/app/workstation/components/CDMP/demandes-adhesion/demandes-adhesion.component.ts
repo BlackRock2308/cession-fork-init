@@ -33,6 +33,7 @@ export class DemandesAdhesionComponent implements OnInit {
   activeIndex: number = 1;
   activeItem: MenuItem;
   home: MenuItem;
+  nineas:any;
 
   constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private router: Router,
   ) { }
@@ -50,6 +51,7 @@ export class DemandesAdhesionComponent implements OnInit {
       { field: 'rccm', header: 'RCCM' },
       { field: 'date_soumission', header: 'Date Soumission' }
     ];
+    console.log(this.nineas)
     this.items1 = [
       { label: 'Liste des demandes' }
     ];
@@ -62,7 +64,7 @@ export class DemandesAdhesionComponent implements OnInit {
         routerLink: 'steps/verification',
       },
       {
-        label: 'Informations',
+        label: 'Compléments',
         routerLink: 'steps/informations_ninea',
       }
     ];

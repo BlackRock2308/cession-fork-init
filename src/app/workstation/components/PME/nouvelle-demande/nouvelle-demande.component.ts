@@ -33,6 +33,9 @@ import { DocumentService } from 'src/app/workstation/service/document/document.s
 })
 export class NouvelleDemandeComponent implements OnInit {
 
+  value1: any;
+  valueIconLeft: any;
+
   selectedFiles: File[] = [];
   selectedFile?: File;
   documentForm: FormGroup;

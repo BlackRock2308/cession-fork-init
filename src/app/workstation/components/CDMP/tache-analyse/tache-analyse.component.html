@@ -85,25 +85,17 @@
                     </div>
                 </div>
                 </div>
-            <br>
 
+            <div class="col-12 md:col-10 modalTitle  ">
+                <h3 class="">Documents</h3>
+            </div>
+            <br>
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="m-2 title justify-content-center"
-                            style="color: #203359; position: relative; right: -600px;">Liste des documents</h4>
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
-
+                
 
                 <ng-template pTemplate="header">
                     <tr>

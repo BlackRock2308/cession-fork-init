@@ -26,7 +26,7 @@
                                 <input  formControlName="file" class="hidden" type="file"  id="upload-file" name="upload-file"  ngf-max-size="2MB" (change)="selectFile($event)">
                             </div>
                             <div class="field col-2 mt-auto">
-                                <button [disabled]="!documentForm.value.typeDocument" style="background-color: #203359;" type="button" pButton pRipple label="Parcourir" icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()" ></button>
+                                <button  style="background-color: #203359;" type="button" pButton pRipple  icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()" ></button>
                             </div>
                         </div>
                     </div>
@@ -34,15 +34,7 @@
                 
     
                         <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id" >
-                            <ng-template pTemplate="caption">
-                                <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center ">
-                                    <h4 class="m-2 title" style="color:#203359;position: relative; right: -400px;">Document</h4>
-                                    <span class="block mt-2 md:mt-0 p-input-icon-left">
-                                        <i class="pi pi-search"></i>
-                                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                                    </span>
-                                </div>
-                            </ng-template>
+                           
                             <ng-template pTemplate="header">
                                 <tr>
                                     

@@ -3,7 +3,7 @@
 <br><div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
-            <div class="col-12 md:col-10 modalTitle  ">
+            <div class="col-12 md:col-10   ">
                 <h3 class="title">Analyse du risque</h3>
             </div>
         </div>
@@ -14,32 +14,8 @@
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes"
                 [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                      
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
                 <ng-template pTemplate="header">
-                    <tr>
-                        <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
-                            </p-sortIcon>
-                        </th>
-                        <th pSortableColumn="rccm" style="color: #203359;">Raison Sociale <p-sortIcon field="rccm">
-                            </p-sortIcon>
-                        </th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">Statut <p-sortIcon
-                                field="datesoumission"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="ninea" style="color: #203359;">Reference BE <p-sortIcon field="ninea">
-                            </p-sortIcon>
-                        </th>
-                        <th style="color: #203359;">Action</th>
-                    </tr>
                     <tr>
                         <th>
                             <p-columnFilter  type="text" field="ninea"></p-columnFilter>
@@ -48,40 +24,68 @@
                             <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
                         </th>
                         <th>
+                            <p-columnFilter type="text" field="nomMarche"></p-columnFilter>
+                        </th>
+                        <th>
                             <p-columnFilter type="text" field="statut"></p-columnFilter>
                         </th>
+                       
                         <th>
                             <p-columnFilter type="text" field="refBE"></p-columnFilter>
                         </th>
-                       
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                        </th>
                     </tr>
+                    <tr>
+                        <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="rccm" style="color: #203359;">Raison Sociale <p-sortIcon field="rccm">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="rccm" style="color: #203359;">Nom du marché <p-sortIcon field="rccm">
+                        </p-sortIcon>
+                    </th>
+                        <th pSortableColumn="datesoumission" style="color: #203359;">Statut <p-sortIcon
+                                field="datesoumission"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="ninea" style="color: #203359;">Reference BE <p-sortIcon field="ninea">
+                            </p-sortIcon>
+                        </th>
+                        <th style="color: #203359;">Action</th>
+                    </tr>
+                   
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
-                        <td style="width:30%; min-width:10rem;">
+                        <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{demande.ninea}}
                         </td>
-                        <td style="width:30%; min-width:8rem;">
+                        <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">RCCM</span>
                             {{demande.raisonSocial}}
                         </td>
-                        <td style="width:30%;">
+                        <td style="width:20%; min-width:8rem;">
+                            <span class="p-column-title">RCCM</span>
+                            {{demande.nomMarche}}
+                        </td>
+                        <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
                             {{demande.statut}}
                         </td>
-                        <td style="width:30%;">
+                        <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
                             {{demande.refBE}}
                         </td>
                         <td>
                             <div class="flex">
-                                <i class="pi pi-search pi-search"
-                                    *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' "
-                                    [routerLink]="['../analyser']" (click)="setPmeInfo(demande)"></i>
-                                <i class="pi pi-eye pi-eye"
-                                    *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' "
-                                    [routerLink]="['../consulter_demande']"></i>
+                                <button pButton pRipple icon="pi pi-search" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' "
+                                [routerLink]="['../analyser']" (click)="setPmeInfo(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Analyser le dossier" ></button>
+                                <button pButton pRipple icon="pi pi-eye" *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' "
+                                [routerLink]="['../consulter_demande']" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Visualiser le dossier" ></button>
+                                
                             </div>
                         </td>
                     </tr>

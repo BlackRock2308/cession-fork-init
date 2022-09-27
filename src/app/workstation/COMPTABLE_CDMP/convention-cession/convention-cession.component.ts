@@ -179,7 +179,7 @@ EditerConvention(convention: Convention) {
     },
     header: "",
     width: '60%',
-    height: 'calc(107% - 250px)',
+    height: 'calc(98% - 250px)',
     baseZIndex: 50
   });
 }
@@ -190,7 +190,7 @@ EditConvention(convention: Convention) {
     },
     header: "",
     width: '60%',
-    height: 'calc(100% - 250px)',
+    height: 'calc(98% - 250px)',
     baseZIndex: 50
   });
 }

@@ -1,8 +1,9 @@
+@import "../../../../../assets/sass/custom/variables.scss";
+
+@import "../../../../../assets/sass/custom/layout.scss";
 
 
-.upload{
-    background-color:#203359;
-}
+
 
 .hidden {
     visibility: hidden;
@@ -10,11 +11,7 @@
     height: 1px;
   }
 
-.card {
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
-}
+
 
 .p-button-danger{
     background-color: #A6325C;

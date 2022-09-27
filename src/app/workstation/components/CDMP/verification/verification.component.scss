@@ -1,37 +1,20 @@
 ::ng-deep .p-inputswitch.p-inputswitch-checked.oui .p-inputswitch-slider {
-    background: #71B47A;
+    background: #99CC33;
     
 }
 
 ::ng-deep .p-inputswitch.p-inputswitch-checked.oui:not(p.disabled):hover .p-inputswitch-slider {
-    background: #71B47A;
+    background: #99CC33;
 }
 
 ::ng-deep .p-inputswitch.oui .p-inputswitch-slider {
-    background: #CEE5D1;
+    background: #98163988;
+    
     
 }
 
 ::ng-deep .p-inputswitch.oui:not(p.disabled):hover .p-inputswitch-slider {
-    background: #CEE5D1;
-}
-
-::ng-deep .p-inputswitch.p-inputswitch-checked.non .p-inputswitch-slider {
-    background: #DD7A59;
-    
-}
-
-::ng-deep .p-inputswitch.p-inputswitch-checked.non:not(p.disabled):hover .p-inputswitch-slider {
-    background: #DD7A59;
-}
-
-::ng-deep .p-inputswitch.non .p-inputswitch-slider {
-    background: #F3D2C7;
-    
-}
-
-::ng-deep .p-inputswitch.non:not(p.disabled):hover .p-inputswitch-slider {
-    background:#F3D2C7;
+    background: #98163988;
 }
 
 .modalTitle{
@@ -80,5 +63,22 @@
 }
 
 .button{
-    background-color: #707070;
+    background-color: #707070DD;
+    border-color: #707070DD;
+}
+
+.button:hover{
+    background-color: #707070FF;
+    border-color: #707070FF;
+}
+
+.danger{
+    background:#981639DD;
+    border-color: #981639DD;
+}
+
+.danger:hover{
+    background: #981639FF;
+    border-color: #981639FF;
+
 }

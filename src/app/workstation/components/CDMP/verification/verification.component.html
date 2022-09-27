@@ -4,57 +4,36 @@
        
         <ng-template pTemplate="content">
             <div class="field col-12 d-flex justify-content-center">
-                <div class="col-4  d-flex justify-content-start">
-                    <h4 style="font-weight: bold;color: #203359;">NINEA existant</h4>
-                </div>
-                <div class="col-2   d-flex justify-content-center">
-                    <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="existant" id="active" (onChange)="handle1Change($event)">
-                        </p-inputSwitch>
-                    </div>    
-                    <div class="col-4 d-flex justify-content-center">
-                        <h4 style="font-weight: bold;color: #203359;">OUI</h4>
-                    </div>             
+                <div class="col-8  d-flex justify-content-start">
+                    <h4 style="font-weight: bold;color: #203359;">Le ninea fournit existe?</h4>
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch type="radio" name="ninea" styleClass="non" value="false" [(ngModel)]="pas_existant" id="pas_active" (onChange)="handle2Change($event)">
+                        <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="existant" id="active" >
                         </p-inputSwitch>
-                    </div>    
-                    <div class="col-4 d-flex justify-content-center">
-                        <h4 style="font-weight: bold;color: #203359;">NON</h4>
-                    </div>             
+                    </div>                 
                 </div>
             </div>
             <div class="field col-12 d-flex justify-content-center" *ngIf="existant">
-                <div class="col-4  d-flex justify-content-start">
-                    <h4 style="font-weight: bold;color: #203359;">PME Active</h4>
+                <div class="col-8  d-flex justify-content-start">
+                    <h4 style="font-weight: bold;color: #203359;">La pme est active?</h4>
                 </div>
                 <div class="col-3   d-flex justify-content-center">
                     <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="oui" [(ngModel)]="active" (onChange)="handle3Change($event)"></p-inputSwitch>
-                    </div>    
-                    <div class="col-4 d-flex justify-content-center">
-                        <h4 style="font-weight: bold;color: #203359;">OUI</h4>
-                    </div>             
-                </div>
-                <div class="col-2   d-flex justify-content-center">
-                    <div class="col-8 d-flex justify-content-center">
-                        <p-inputSwitch styleClass="non" ariaLabel="NON" [(ngModel)]="pas_active" (onChange)="handle4Change($event)"></p-inputSwitch>
-                    </div>    
-                    <div class="col-4 d-flex justify-content-center">
-                        <h4 style="font-weight: bold;color: #203359;">NON</h4>
-                    </div>             
+                        <p-inputSwitch styleClass="oui" [(ngModel)]="active" ></p-inputSwitch>
+                    </div>                
                 </div>
             </div>
         </ng-template>
         <ng-template pTemplate="footer">
-            <div class="row justify-content-end"  *ngIf="existant">
+            <div class="row justify-content-end"  *ngIf="existant;else elseBlock">
                 <button  id="suivant"style="width: min-content;" pButton pRipple label="Suivant" icon="pi pi-spinner" class="p-button-raised button"  (click)="nextPage()" ></button>
             </div>
-            <div class="row justify-content-end" *ngIf="pas_existant">
-                <button id="terminer"style="width: min-content;" pButton pRipple label="Terminer" icon="pi pi-spinner" class="p-button-success" (click)="onSubmit()"></button>
-            </div>
+            <ng-template #elseBlock>
+                <div class="row justify-content-end">
+                    <button class="col-sm-12 col-lg-8 col-xl-4 danger" id="terminer" pButton pRipple label="Rejeter l'adhesion" icon="pi pi-times" (click)="onSubmit()"></button>
+                </div>
+            </ng-template>
         </ng-template>
     </p-card>
 </div>
