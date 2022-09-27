@@ -61,7 +61,7 @@
                             <div class="formgroup-inline">
                                 <div class="field col-12 md:col-12 mb-1 container">
                                     <label for="RCCMfile" class="p-sr-only">RCCMFile</label>
-                                    <div class="field col-12 md:col-4 mb-1 container"></div>
+                                    <div class="field col-12 md:col-4 mb-1 inputContainer"></div>
                                         <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile" type="text"
                                             pInputText pTooltip="Charger le document de référence du RCCM" placeholder="RCCM">
                                         <ng-template #elseRCCMBlock id="RCCMfile" type="text" pInputText pTooltip="Upload file">
