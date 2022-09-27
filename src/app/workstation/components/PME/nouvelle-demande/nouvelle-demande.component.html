@@ -12,18 +12,26 @@
                         <h3 class="label" style="color:  #203359;">Nouvelle Demande</h3>
                     </div>
                 </div>
+                <br>
 
                 <br>
-                <div class="form-group row">
-
-                    <label for="inputPassword" class="col-sm-2  col-form-label "
-                        style="position: relative; left:60px;">Référence du BE valide</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="text"
-                            placeholder="Référence du BE valide">
+                <div class="p-fluid grid justify-content-center">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label p-input-icon-left">
+                            <i class="pi pi-angle-right"></i>
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="value1"> 
+                            <label for="inputtext">Reference BE valide</label>
+                        </span>
                     </div>
-                </div>
-                <div><br><br></div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label p-input-icon-left">
+                            <i class="pi pi-angle-right"></i>
+                            <input type="text" id="inputtext-left" pInputText [(ngModel)]="valueIconLeft"> 
+                            <label for="inputtext-left">Nom du Marché</label>
+                        </span>
+                    </div>
+                    </div>
+                <div></div>
                 <div class="d-flex justify-content-center col-12">
                     <div class="col-12 md:col-8 modalTitle d-flex justify-content-center">
                         <h5 class="label">Documents Justificatifs</h5>
@@ -85,21 +93,16 @@
                                 class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
                                 <h4 class="m-2 title" style="color:  #203359; position: relative; right: -600px;">
                                     Documents</h4>
-                                <span class="block mt-2 md:mt-0 p-input-icon-left">
-                                    <i class="pi pi-search"></i>
-                                    <input pInputText type="text"
-                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                        placeholder="Search..." />
-                                </span>
+                              
                             </div>
                         </ng-template>
                         <ng-template pTemplate="header">
                             <tr>
 
-                                <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
+                                <th pSortableColumn="typeDocument" style="color: #203359;">Type de document <p-sortIcon
                                         field="ninea"></p-sortIcon>
                                 </th>
-                                <th pSortableColumn="nomDocument" style="color: #203359;">Nom document<p-sortIcon
+                                <th pSortableColumn="nomDocument" style="color: #203359;">Nom du document<p-sortIcon
                                         field="rccm"></p-sortIcon>
                                 </th>
                                 <th style="color: #203359;">Action</th>
@@ -134,10 +137,10 @@
 
         </div>
         <div class="pull-right">
-        <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-check"
-            class="p-button-raised p-button-danger float-right my-auto ml-2"></button>
+        <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
+            class="p-button-raised p-button-danger float-right my-2 mx-2 ml-2"></button>
         <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
-            icon="pi pi-check" class="p-button-raised p-button-success float-right my-auto mr-2"></button>
+            icon="pi pi-check" class="p-button-raised p-button-success float-right my-2 mr-2"></button>
         </div>
     </form>
 

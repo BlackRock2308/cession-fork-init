@@ -14,11 +14,16 @@ h1{
 
 
 
-
-.button{
-    background-color: #203359;
-
+//cacher les bouton de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
 }
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
+}
+
+
 
 ::ng-deep span.p-paginator-current.ng-star-inserted{
     color: #203359;
