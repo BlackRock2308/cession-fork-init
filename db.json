@@ -27,7 +27,7 @@
       "rccm": "6543568778",
       "denomination": "",
       "raisonSocial": "Modelsis SARL",
-      "nomMarche" : "Service de gardiennage",
+      "nomMarche": "Service de gardiennage",
       "refBE": "294067",
       "date_soumission": "2020/12/12",
       "ninea_file": "",
@@ -66,8 +66,7 @@
       "date_soumission": "2022-12-12",
       "ninea_file": "",
       "statut_convention": "Convention générée",
-      "nomMarche" : "Reparation , entretien et installation",
-
+      "nomMarche": "Reparation , entretien et installation",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance nanti",
@@ -106,8 +105,7 @@
       "ATD": "Aucun ATD",
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
-      "nomMarche" : "Service de decoration",
-
+      "nomMarche": "Service de decoration",
       "numero_demande": "2022-0193",
       "type_marche": "Services",
       "montant_total": "10.000.000",
@@ -133,8 +131,7 @@
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
-      "nomMarche" : "Service divers",
-
+      "nomMarche": "Service divers",
       "numero_demande": "2022-0123",
       "type_marche": "Travaux",
       "montant_total": "4.000.000",
@@ -164,8 +161,7 @@
       "type_marche": "Fournitures",
       "montant_total": "10.000.000",
       "date_marche": "2022-10-05",
-      "nomMarche" : "Fournitures de lots de materiels",
-
+      "nomMarche": "Fournitures de lots de materiels",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -187,8 +183,7 @@
       "numero_demande": "2022-3453",
       "refBE": "294527",
       "type_marche": "Travaux",
-      "nomMarche" : "Service divers",
-
+      "nomMarche": "Service divers",
       "montant_total": "32.000.000",
       "date_marche": "2022-10-05",
       "montant_rembourse": "12.000.000",
@@ -213,8 +208,7 @@
       "refBE": "094067",
       "type_marche": "Travaux",
       "montant_total": "10.000.000",
-      "nomMarche" : "Transport",
-
+      "nomMarche": "Transport",
       "date_marche": "2022-10-05",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",

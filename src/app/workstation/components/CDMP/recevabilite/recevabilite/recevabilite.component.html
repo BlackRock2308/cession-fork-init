@@ -12,14 +12,7 @@
             </div>
             <br>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id" >
-                <ng-template pTemplate="caption">
-                    <div class="d-flex justify-content-end">
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
                 <ng-template pTemplate="header">
                     <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
