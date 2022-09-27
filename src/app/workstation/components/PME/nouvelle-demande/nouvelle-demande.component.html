@@ -66,19 +66,21 @@
                             <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
                                 pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
                         </div>
-                        <div class="field col-3 ">
+                        <div class="field col-3">
                             <div class="col-12 md:col-12  d-flex justify-content-center ">
                                 <h4 style="font-weight: bold;color: #203359;">Document</h4>
                             </div>
-                            <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
-                                placeholder="Choisissez un ficher">
+                            <div class="field container">
+                                <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
+                                    placeholder="Choisissez un ficher">
+                                
+                                <button type="button" pButton pRipple
+                                icon="pi pi-upload" class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
+                                (click)="handleClick()"></button>
+                            </div>
                             <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
                                 ngf-max-size="2MB" (change)="selectFile($event)">
-                        </div>
-                        <div class="field col-2 mt-auto">
-                            <button style="background-color: #203359;" type="button" pButton pRipple label="Parcourir"
-                                icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile"
-                                (click)="handleClick()"></button>
+                            
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,16 @@
+@use "variables.scss";
+.container {
+    position: relative;
+    top: 0px;
+    left: 0px;
+
+    .upload {
+        position: absolute;
+        top: 2px;
+        right: 0px;
+        font-size: 108px;
+        font-weight:1000;
+        color:$autre-fonce;
+      }
+  }
+  
