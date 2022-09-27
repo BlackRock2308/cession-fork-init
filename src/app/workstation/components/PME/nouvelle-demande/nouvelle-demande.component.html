@@ -1,12 +1,10 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
 <br>
-<div class="card mx-0 my-0 py-0 px-0">
 
     <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
 
-        <div class="card mx-0 my-0 py-0 px-0">
-            <div>
+        <p-card>
                 <div class="d-flex justify-content-center col-11 mx-6 px-0">
                     <div class="col-12 md:col-12 modalTitle d-flex justify-content-center ">
                         <h3 class="label" style="color:  #203359;">Nouvelle Demande</h3>
@@ -39,7 +37,7 @@
                 </div>
                 <div class="p-fluid my-5 mx-6 px-0">
                     <div class="p-formgrid grid">
-                        <div class="field col-3 ">
+                        <div class="field col-4 ">
                             <div class="col-12 md:col-12  d-flex justify-content-center">
                                 <h4 style="font-weight: bold;color: #203359;">Type de document</h4>
                             </div>
@@ -134,20 +132,17 @@
                         </ng-template>
                     </p-table>
                 </div>
+            <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
+                <button type="submit" id="valider"  pButton pRipple label="Soumettre"
+                    icon="pi pi-check" class="float-right successButton"></button>
+                <button id="valider" pButton pRipple label="Annuler" icon="pi pi-times"
+                    class="float-right dangerButton"></button>
             </div>
-
-
-        </div>
-        <div class="pull-right">
-        <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
-            class="p-button-raised p-button-danger float-right my-2 mx-2 ml-2"></button>
-        <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
-            icon="pi pi-check" class="p-button-raised p-button-success float-right my-2 mr-2"></button>
-        </div>
+        </p-card>
+        
     </form>
 
 
 
 
 
-</div>

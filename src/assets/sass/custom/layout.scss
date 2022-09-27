@@ -13,4 +13,46 @@
         color:$autre-fonce;
       }
   }
-  
+
+%button{
+    margin: 5px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.simpleButton{
+    @extend %button;
+    background-color:$autre-clair-clair;
+    border-color:$autre-clair-clair;
+}
+
+.simpleButton:hover{
+    @extend %button;
+    background-color:$autre-clair;
+    border-color: $autre-clair;
+}
+
+.dangerButton{
+    @extend %button;
+    background:$danger-clair;
+    border-color: $danger-clair;
+}
+
+.dangerButton:hover{
+    @extend %button;
+    background: $danger;
+    border-color: $danger;
+}
+
+.successButton{
+    @extend %button;
+    background:$success-clair;
+    border-color: $success-clair;
+}
+
+.successButton:hover{
+    @extend %button;
+    background: $success;
+    border-color: $success;
+}
+
