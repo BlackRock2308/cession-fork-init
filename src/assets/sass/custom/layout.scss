@@ -31,6 +31,17 @@
     background-color:$autre-clair;
     border-color: $autre-clair;
 }
+.simpleBoldButton{
+    @extend %button;
+    background-color:$autre-clair;
+    border-color:$autre-clair;
+}
+
+.simpleBoldButton:hover{
+    @extend %button;
+    background-color:$autre-fonce;
+    border-color: $autre-fonce;
+}
 
 .dangerButton{
     @extend %button;

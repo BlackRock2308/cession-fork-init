@@ -18,19 +18,25 @@
                                         </p-columnFilter>
                                     </th>
                                     <th>
+                                        <p-columnFilter type="text" field="type_marche">
+                                           
+                                        </p-columnFilter>
+                                    </th>
+                                    <th>
                                         <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
                                     </th>
                                     <th>
                                         <p-columnFilter type="text" field="statut"></p-columnFilter>
                                     </th>
                                     <th>
-                                        <button pButton pRipple icon="pi pi-search" style="background-color :#203359; color:white;" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(refBE,datesoumission,statut)"></button>
+                                        <button pButton pRipple icon="pi pi-search"  class="p-button-rounded simpleButton" label="Rechercher" (click)="dt.filter(refBE,datesoumission,statut)"></button>
                                     </th>
                                 </tr>
                                 <tr>
                                     
-                                    <th pSortableColumn="refBE" style="color: #203359;">Reference du BE <p-sortIcon field="ninea"></p-sortIcon></th>
-                                    <th pSortableColumn="date_soumission" style="color: #203359;">Date soumission <p-sortIcon field="datesoumission"></p-sortIcon></th>
+                                    <th pSortableColumn="refBE" style="color: #203359;">Reference du BE <p-sortIcon field="refBE"></p-sortIcon></th>
+                                    <th pSortableColumn="type_marche" style="color: #203359;">Nom du marché<p-sortIcon field="type_marche"></p-sortIcon></th>
+                                    <th pSortableColumn="date_soumission" style="color: #203359;">Date de demande <p-sortIcon field="datesoumission"></p-sortIcon></th>
                                     <th pSortableColumn="statut" style="color: #203359;">Statut <p-sortIcon field="rccm"></p-sortIcon></th>
 
                                     <th style="color: #203359;">Actions</th>
@@ -43,9 +49,13 @@
                                         <span class="p-column-title">Reference du BE</span>
                                         {{demande.refBE}}
                                     </td>
+                                    <td style="width:30%; min-width:10rem;">
+                                        <span class="p-column-title">Nom du marché</span>
+                                        {{demande.type_marche}}
+                                    </td>
                                     
                                     <td style="width:30%; min-width:8rem;">
-                                        <span class="p-column-title">Date Soumission</span>
+                                        <span class="p-column-title">Date demande</span>
                                         {{demande.date_soumission}}
                                     </td>
                                     <td style="width:30%;">
