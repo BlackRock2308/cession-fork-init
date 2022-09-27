@@ -60,8 +60,8 @@ export class PaiementsComponent implements OnInit {
 
       this.cols = [
         { field: 'raisonSocial', header: 'Raison Social' },
-        { field: 'referenceBE', header: 'Référence BE ' },
-        { field: 'totalMarche', header: 'Toatal Marché' },
+        { field: 'refBE', header: 'Référence BE ' },
+        { field: 'total_marche', header: 'Toatal Marché' },
         { field: 'soldePME', header: 'Solde PME' },
         { field: 'montantReçu', header: 'Montant Reçu' },
         { field: 'statut', header: 'Statut' },
