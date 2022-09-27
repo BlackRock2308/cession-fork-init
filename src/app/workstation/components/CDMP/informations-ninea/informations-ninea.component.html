@@ -1,15 +1,8 @@
 <div class="stepsdemo-content">
-    <p-card>
-        <ng-template pTemplate="title">
-            <div class="d-flex justify-content-center col-12">
-                <div class="col-12 modalTitle ">
-                    <h3 class="label1">Informations Complémentaires</h3>
-                </div>
-            </div>
-        </ng-template>
+    <p-card >
         <ng-template pTemplate="content">
-            <div class="p-formgrid grid row row-cols-2 row-cols-lg-5 g-2 g-lg-3" [formGroup]="informationsForm">
-                    <div class="field grid col-6">
+            <div class="p-formgrid grid row cols-2 row-cols-lg-5 g-2 g-lg-3" [formGroup]="informationsForm">
+                    <div class="field grid col-12 sm:col-6 md:col-6">
                         <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0" style="font-weight: bold;color: #203359;">Dénommination</label>
                         <div class="col-12 md:col-6">
                             <input pInputText id="name3" type="text" placeholder="Modelsis" formControlName="denomination" />

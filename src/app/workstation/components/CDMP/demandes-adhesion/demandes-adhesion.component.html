@@ -69,7 +69,7 @@
     </div>
 </div>
 <p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
+    [draggable]="false" [resizable]="true">
     <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
         <div class="col-8 mx-auto px-auto" style="background-color:white ;" >
             <div id="steps" >
@@ -83,16 +83,16 @@
                 <div class=" justify-content-center p-fluid ">
                     <div class="p-formgrid grid">
                         <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center mt-2">
-                                <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
+                            <div class="col-4  d-flex justify-content-center mt-3">
+                                <h6 style="font-weight: bold;color: #203359;">NINEA</h6>
                             </div>
                             <div class="col-6  d-flex justify-content-center">
                                 <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.ninea}}'/>
                             </div>
                         </div>
                         <div class="field col-6 d-flex">
-                            <div class="col-4  d-flex justify-content-center mt-2">
-                                <h4 style="font-weight: bold;color: #203359">RCCM</h4>
+                            <div class="col-4  d-flex justify-content-center mt-3">
+                                <h6 style="font-weight: bold;color: #203359">RCCM</h6>
                             </div>
                             <div class="col-6 d-flex justify-content-center">
                                 <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.rccm}}'/>

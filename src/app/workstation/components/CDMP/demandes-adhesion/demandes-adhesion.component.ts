@@ -62,7 +62,7 @@ export class DemandesAdhesionComponent implements OnInit {
         routerLink: 'steps/verification',
       },
       {
-        label: 'Informations',
+        label: 'Compléments',
         routerLink: 'steps/informations_ninea',
       }
     ];
