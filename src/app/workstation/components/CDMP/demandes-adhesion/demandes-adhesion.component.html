@@ -5,29 +5,30 @@
 <div class="grid">
     <div class="col-12">
         <p-card>
+            <div class="d-flex justify-content-center col-12">
+                <div class="col-12 md:col-10 tabTitle">
+                    <h3 class="titleTab">Demandes d'adhésion</h3>
+                </div>
+            </div>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id" sortMode="multiple">
-                <ng-template pTemplate="caption">
-                    <div class="d-flex justify-content-center col-12">
-                        <h4 class="title" style="color: #203359;">Demandes d'Adhesion</h4>
-                    </div>
-                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="ninea"></p-columnFilter>
+                            <p-columnFilter type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="rccm"></p-columnFilter>
+                            <p-columnFilter type="text" field="rccm" placeholder="RCCM"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+                            <p-columnFilter type="text" field="date_soumission" placeholder="Date demande"></p-columnFilter>
                         </th>
                         <th>
                             <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
                         </th>
                     </tr>
+                    
                     <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
                             </p-sortIcon>
@@ -35,7 +36,7 @@
                         <th pSortableColumn="rccm" style="color: #203359;">RCCM <p-sortIcon
                                 field="rccm"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="date_soumission" style="color: #203359;">Date soumission <p-sortIcon field="date_soumission">
+                        <th pSortableColumn="date_soumission" style="color: #203359;">Date demande<p-sortIcon field="date_soumission">
                             </p-sortIcon>
                         </th>
                         <th style="color: #203359;">Actions</th>
@@ -68,8 +69,8 @@
         </p-card>
     </div>
 </div>
-<p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="true">
+<p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
     <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
         <div class="col-8 mx-auto px-auto" style="background-color:white ;" >
             <div id="steps" >
