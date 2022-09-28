@@ -15,6 +15,26 @@
                 
                 <ng-template pTemplate="header">
                     <tr>
+                        <th>
+                            <p-columnFilter type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="rccm" placeholder="RCCM"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="referenceBE" placeholder="Rerence du BE"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="dateDemande" placeholder="Date demande"></p-columnFilter>
+                        </th>
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" label="Rechercher" style="background-color :#203359; " (click)="dt.filter(ninea,rccm,datesoumission)"></button>
+                        </th>
+                    </tr>
+                    <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
                         <th pSortableColumn="datesoumission" style="color: #203359;">RCCM <p-sortIcon field="datesoumission"></p-sortIcon></th>
                         <th pSortableColumn="datesoumission" style="color: #203359;">Raison Sociale <p-sortIcon field="datesoumission"></p-sortIcon></th>
@@ -26,31 +46,31 @@
                 <ng-template pTemplate="body" let-demande>
                     <tr>
                        
-                        <td style="width:30%; min-width:10rem;">
+                        <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{demande.ninea}}
                         </td>
                         
-                        <td style="width:30%; min-width:8rem;">
+                        <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">RCCM</span>
                             {{demande.rccm}}
                         </td>
-                        <td style="width:30%; min-width:8rem;">
+                        <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Raison Sociale</span>
                             {{demande.raisonSocial}}
                         </td>
-                        <td style="width:30%; min-width:8rem;">
+                        <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Reférence du BE</span>
-                            {{demande.refBE}}
+                            {{demande.referenceBE}}
                         </td>
-                        <td style="width:30%;">
+                        <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
                             {{demande.dateDemande}}
                         </td>
                         
                         <td>
                             <div class="flex">
-                                <i  class="pi pi-search ml-3" (click)="verifierDemandeCession(demande)" ></i>
+                                <i  class="pi pi-pencil ml-3" (click)="verifierDemandeCession(demande)" ></i>
                             </div>
                         </td>
                     </tr>

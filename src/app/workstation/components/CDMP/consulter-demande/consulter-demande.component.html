@@ -1,113 +1,122 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-
-            <div class=" justify-content-center p-fluid  mx-6 px-0">
-                <div class="p-formgrid grid">
-                    <div class="field col-4 mx-0">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359;">NINEA</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.ninea}}</h4>
-                        </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">NINEA</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.ninea}}</label>
+                        </span>
                     </div>
-                    <div class="field col-8">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Numéro demande</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.numero_demande}}</h4>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-            <div class=" justify-content-center p-fluid  mx-6 px-0">
-                <div class="p-formgrid grid">
-                    <div class="field col-4 mx-0">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359;">ATD</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.ATD}}</h4>
-                        </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Numero demande</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.numero_demande}}</label>
+                        </span>
                     </div>
-                    <div class="field col-4">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Nantissement</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.nantissement}}</h4>
-                        </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">ATD</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.ATD}}</label>
+                        </span>
                     </div>
-                    <div class="field col-4">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Interdiction Bancaire</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.interdiction}}</h4>
-                        </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Denomination</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.denomination}}</label>
+                        </span>
                     </div>
                 </div>
             </div>
-            <div class=" justify-content-center p-fluid mx-6 px-0">
-                <div class="p-formgrid grid">
-                    <div class="field col-4 mx-0">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359;">RCCM</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.rccm}}</h4>
-                        </div>
-                    </div>
-                    <div class="field col-4">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Dénomination</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.denomination}}</h4>
-                        </div>
-                    </div>
-                    <div class="field col-4">
-                        <div class="col-12 md:col-12  d-flex justify-content-center">
-                            <h4 style="color: #203359">Reference du BE validé</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                            <h4 class="label">{{demandeNantissementInfos.be}}</h4>
-                        </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Nantissement</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.nantissement}}</label>
+                        </span>
                     </div>
                 </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Interdiction Bancaire</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.interdiction}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">RCCM</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.rccm}}</label>
+                        </span>
+                    </div>
+                </div>
+                    <div class="col-12 md:col-3">
+                        <span class="h5texte">Reference du BE validé</span>
+                        <div class="p-inputgroup">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                                <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
+                            </span>
+                        </div>
+                    </div>
+                
             </div>
+            <br>
+            <br>
+            
+            
+           
 
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="{totalRecords} lignes "
                 [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="m-2 title justify-content-center"
-                            style="color: #203359; position: relative; right: -600px;">Liste des documents</h4>
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
 
 
                 <ng-template pTemplate="header">
                     <tr>
+                        <th>
+                            <p-columnFilter  type="text" field="type"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="nom"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+                        </th>
+                        
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(type,nom,date_soumission)"></button>
+                        </th>
+                    </tr>
+                    <tr>
 
-                        <th pSortableColumn="ninea" style="color: #203359;">Type document <p-sortIcon field="ninea">
+                        <th pSortableColumn="type" style="color: #203359;">Type document <p-sortIcon field="type">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">Nom document <p-sortIcon
-                                field="datesoumission"></p-sortIcon>
+                        <th pSortableColumn="nom" style="color: #203359;">Nom document <p-sortIcon
+                                field="nom"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="rccm" style="color: #203359;">Date soumission <p-sortIcon field="rccm">
+                        <th pSortableColumn="date_soumission" style="color: #203359;">Date soumission <p-sortIcon field="date_soumission">
                             </p-sortIcon>
                         </th>
 

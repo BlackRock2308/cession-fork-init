@@ -26,9 +26,9 @@
 <br>
 <div class="card">
 
-    <button id="valider" style="width: min-content; left: 1230px; top: -10px; position: relative;" pButton pRipple
+    <button id="valider" style="width: min-content; left: 1230px; background-color: #203359; top: -10px; position: relative;" pButton pRipple
         label="Exporter" icon="pi pi-upload" (click)="exportexcel()"
-        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button>
+        class=" p-button-raised p-button-info mx-1  my-auto ml-2"></button>
         <h3 style=" margin-left: 40%;"> Liste des marchés </h3>
 
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="10"
@@ -72,6 +72,11 @@
                 <th>
                     <p-columnFilter type="text" field="decode"></p-columnFilter>
                 </th>
+                    
+                    <th>
+                        <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button " style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                    </th>
+                
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-demande>

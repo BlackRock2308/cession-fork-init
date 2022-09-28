@@ -11,45 +11,49 @@
                         <h3 class="label">Identification Budgétaire</h3>
                     </div>
                 </div>
-                <div class=" justify-content-center p-fluid mt-5 mx-6 px-0">
-                    <div class="p-formgrid grid">
-                        <div class="field col-4 mx-0">
-                            <div class="col-12 md:col-12  d-flex justify-content-center">
-                                <h4 style="font-weight: bold;color: #203359;">NINEA</h4>
-                            </div>
-                            <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demandeNantissementInfos.ninea}}</h4>
-                            </div>
-                        </div>
-                        <div class="field col-4">
-                            <div class="col-12 md:col-12  d-flex justify-content-center">
-                                <h4 style="font-weight: bold;color: #203359">REFERENCE DU BE</h4>
-                            </div>
-                            <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demandeNantissementInfos.refBE}}</h4>
-                            </div>
-                        </div>
-                        <div class="field col-4">
-                            <div class="col-12 md:col-12  d-flex justify-content-center">
-                                <h4 style="font-weight: bold;color: #203359">Date soumission</h4>
-                            </div>
-                            <div class="col-12 md:col-12 modalTitle d-flex justify-content-center">
-                                <h4 class="label">{{demandeNantissementInfos.date_soumission}}</h4>
-                            </div>
+                <div class="grid p-fluid">
+                    <div class="col-12 md:col-4">
+                        <span class="h5texte">NINEA</span>
+                        <div class="p-inputgroup">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                                <label for="inputtext">{{demandeNantissementInfos.ninea}}</label>
+                            </span>
                         </div>
                     </div>
+                    <div class="col-12 md:col-4">
+                        <span class="h5texte">Reference du BE</span>
+                        <div class="p-inputgroup">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                                <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <span class="h5texte">Date soumission</span>
+                        <div class="p-inputgroup">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                                <label for="inputtext">{{demandeNantissementInfos.date_soumission}}</label>
+                            </span>
+                        </div>
+                    </div>
+                    
                 </div>
+                
+<br>
 
                 <div class="d-flex justify-content-center col-12">
                     <div class="col-12 md:col-8 modalTitle d-flex justify-content-center">
-                        <h5 class="label">Documents Supplémentaires</h5>
+                        <h5 class="labele">Documents Supplémentaires</h5>
                     </div>
                 </div>
-                <div class="p-fluid my-8 mx-6 px-0">
-                    <div class="p-formgrid grid">
+                <div class="p-fluid my-5 mx-6 px-0">
+                    <div class="p-formgrid grid justify-content-center">
                         <div class="field col-3 ">
                             <div class="col-12 md:col-12  d-flex justify-content-center">
-                                <h4 style="font-weight: bold;color: #203359;">Type de document</h4>
+                                <h4 style="color: #203359;">Type de document</h4>
                             </div>
                             <p-dropdown [options]="typesDocument" formControlName="typeDocument"
                                 [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="nom" [filter]="true"
@@ -80,7 +84,7 @@
                         </div>
                         <div class="field col-3 ">
                             <div class="col-12 md:col-12  d-flex justify-content-center ">
-                                <h4 style="font-weight: bold;color: #203359;">Document</h4>
+                                <h4 style="color: #203359;">Document</h4>
                             </div>
                             <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
                                 placeholder="Choisissez un ficher">
@@ -89,7 +93,7 @@
                         </div>
                         <div class="field col-2 mt-auto">
                             <button [disabled]="!documentForm.value.typeDocument" style="background-color: #203359;"
-                                type="button" pButton pRipple label="Parcourir" icon="pi pi-upload"
+                                type="button" pButton pRipple icon="pi pi-upload"
                                 class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()"></button>
                         </div>
                     </div>
@@ -102,18 +106,7 @@
                         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                         currentPageReportTemplate=" {totalRecords} lignes "
                         [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                        <ng-template pTemplate="caption">
-                            <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center ">
-                                <h4 class="m-2 title" style="color:#203359;position: relative; right: -400px;">Douments
-                                </h4>
-                                <span class="block mt-2 md:mt-0 p-input-icon-left">
-                                    <i class="pi pi-search"></i>
-                                    <input pInputText type="text"
-                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                        placeholder="Search..." />
-                                </span>
-                            </div>
-                        </ng-template>
+                        
                         <ng-template pTemplate="header">
                             <tr>
 
@@ -156,7 +149,7 @@
         </div>
 
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
-            <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-check"
+            <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
                 class="p-button-raised p-button-danger  my-auto ml-2" routerLink="../"></button>
             <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
                 label="Soumettre" icon="pi pi-check" class="p-button-raised p-button-success my-auto " routerLink="../"

@@ -81,7 +81,7 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-search" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' "
+                                <button pButton pRipple icon="pi pi-pencil" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' "
                                 [routerLink]="['../analyser']" (click)="setPmeInfo(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Analyser le dossier" ></button>
                                 <button pButton pRipple icon="pi pi-eye" *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' "
                                 [routerLink]="['../consulter_demande']" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Visualiser le dossier" ></button>

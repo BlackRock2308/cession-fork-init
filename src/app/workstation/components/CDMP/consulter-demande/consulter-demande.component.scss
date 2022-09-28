@@ -15,6 +15,15 @@
 
 }
 
+//cacher les bouton de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
+}
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
+}
+
 ::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight{
     background-color: #203359;
 
