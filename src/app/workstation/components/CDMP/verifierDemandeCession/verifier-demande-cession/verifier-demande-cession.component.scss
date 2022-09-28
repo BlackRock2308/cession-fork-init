@@ -1,8 +1,5 @@
 .modalTitle{
-    background-color: #F2F2F2;
     justify-content: center;
-    height: 40px;
-    border-radius: 0.5rem;
     display: flex;
     
 
@@ -18,6 +15,15 @@
     color:#203359;
     font-weight: bold;
 }
+//cacher les boutons de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
+}
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
+}
+
 
 ::ng-deep span.p-paginator-current.ng-star-inserted{
     color: #203359;
