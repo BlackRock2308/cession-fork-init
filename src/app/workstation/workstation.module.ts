@@ -41,6 +41,7 @@ import { AppConfigService } from './service/appconfigservice';
 import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
 import { DetailsConventionComponent } from './components/Ordonnateur/convention_de_cession/details-convention/details-convention.component';
 import { ChartModule } from 'primeng/chart';
+import { ListPaiementsDetailsComponent } from './components/PME/list-paiements-details/list-paiements-details.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { ChartModule } from 'primeng/chart';
     RecevabiliteComponent,
     VerifierDemandeCessionComponent,
     ListeConventionsComponent,
-    DetailsConventionComponent
+    DetailsConventionComponent,
+    ListPaiementsDetailsComponent
     
   ],
   imports: [
