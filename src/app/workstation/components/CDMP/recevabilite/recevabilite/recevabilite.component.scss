@@ -12,6 +12,15 @@
 
 }
 
+//cacher les bouton de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
+}
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
+}
+
 ::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
     background-color: #203359;
 

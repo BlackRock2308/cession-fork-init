@@ -18,10 +18,10 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="refBE"></p-columnFilter>
+                            <p-columnFilter type="text" field="referenceBE"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="total_marche"></p-columnFilter>
+                            <p-columnFilter type="text" field="totalMarche"></p-columnFilter>
                         </th>
                         <th>
                             <p-columnFilter type="text" field="soldePME"></p-columnFilter>
@@ -36,7 +36,7 @@
                             <p-columnFilter type="text" field="statut"></p-columnFilter>
                         </th>
                         <th>
-                            <button pButton pRipple icon="pi pi-search" style="background-color:#203359 ;" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(refBE,total_marche,soldePME,decode,montantRecu,statut)"></button>
+                            <button pButton pRipple icon="pi pi-search" style="background-color:#203359 ;" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(referenceBE,totalMarche,soldePME,decode,montantRecu,statut)"></button>
                         </th>
                     </tr>
                     <tr>
@@ -93,7 +93,7 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-search"
+                                <button pButton pRipple icon="pi pi-eye"
                                     class="p-button-rounded p-button-text mr-2 button"
                                     pTooltip="Consulter les détails" (click)="visualiserListPaiement(paiement)" ></button>
                                
