@@ -18,23 +18,23 @@ export class AppLoginComponent {
 
   login(username, motdepasse){
     if(username === 'cdmp'){
-      this.router.navigate(['workstation']);
+      this.router.navigate(['workstation/cdmp/dashboard']);
       localStorage.setItem('profil', 'cdmp'); 
     }
     if(username === 'pme'){
-      this.router.navigate(['workstation']);
+      this.router.navigate(['workstation/pme/demandes_en_cours']);
       localStorage.setItem('profil', 'pme'); 
     }
     if(username === 'comptable'){
-      this.router.navigate(['workstation']);
+      this.router.navigate(['workstation/cdmp/dashboard']);
       localStorage.setItem('profil', 'comptable'); 
     }
     if(username === 'DG'){
-      this.router.navigate(['workstation']);
+      this.router.navigate(['workstation/cdmp/dashboard']);
       localStorage.setItem('profil', 'DG'); 
     }
     if(username === 'ordonnateur'){
-      this.router.navigate(['workstation']);
+      this.router.navigate(['workstation/ordonnateur/conventions']);
       localStorage.setItem('profil', 'ordonnateur'); 
     }
    }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
@@ -61,9 +61,17 @@ export class DashboardDGComponent implements OnInit {
 
     config: AppConfig;
 
+    profil: string;
+
+    dropdownYears: SelectItem[];
+
+    selectedYear: any;
+
     constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, public dialogService: DialogService, private messageService: MessageService, private router: Router,) { }
 
     ngOnInit() {
+
+        this.profil = localStorage.getItem('profil');
 
         this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
             this.demandes = data
@@ -80,31 +88,40 @@ export class DashboardDGComponent implements OnInit {
             {}
         ];
 
+        this.dropdownYears = [
+            {label: '2021', value: 2021},
+            {label: '2020', value: 2020},
+            {label: '2019', value: 2019},
+            {label: '2018', value: 2018},
+            {label: '2017', value: 2017},
+            {label: '2016', value: 2016},
+            {label: '2015', value: 2015},
+            {label: '2014', value: 2014}
+        ];
+
         this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
 
         this.basicData = {
             labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            datasets: 
-                [{
-                    data: [65, 59, 80, 81, 56, 55, 40, 34, 12, 67, 90, 100],
-                    backgroundColor: [
-                        "#42A5F5",
-                        "#66BB6A",
-                        "#FFA726",
-                        "#26C6DA",
-                        "#7E57C2",
-                        "#99CC33",
-                        "#495057",
-                        "#26A69A",
-                        "#EC407A",
-                        "#78909C",
-                        "#333366",
-                        "#981639"
-                        
-                    ],
-                    label: 'PME'
-                }]
-            
+            datasets:
+                [
+                    {
+                        label: 'PME bénéficiare',
+                        data: [65, 59, 80, 81, 56, 55, 40, 34, 12, 67, 90, 100],
+                        fill: false,
+                        borderColor: '#99CC33',
+                        tension: .4
+                    },
+                    {
+                        label: 'PME rejeté',
+                        data: [5, 9, 8, 12, 6, 2, 4, 20, 3, 7, 0, 10],
+                        fill: false,
+                        borderColor: '#981639',
+                        tension: .4
+                    }
+                ]
+
+
         };
 
         this.multiAxisData = {
@@ -322,7 +339,7 @@ export class DashboardDGComponent implements OnInit {
         });
 
     }
-    
+
 
 
     exportexcel(): void {
