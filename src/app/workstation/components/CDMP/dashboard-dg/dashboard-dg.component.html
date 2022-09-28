@@ -87,27 +87,27 @@
         </ng-template>
         <ng-template pTemplate="body" let-demande>
             <tr>
-                <td style="width:15%; min-width:10rem;">
+                <td >
                     <span class="p-column-title">NINEA</span>
                     {{demande.ninea}}
                 </td>
-                <td style="width:15%; min-width:8rem;">
+                <td >
                     <span class="p-column-title">Raison sociale</span>
                     {{demande.raisonSocial}}
                 </td>
-                <td style="width:15%;">
+                <td >
                     <span class="p-column-title">Type de marché</span>
                     {{demande.type_marche}}
                 </td>
-                <td style="width:15%;">
+                <td >
                     <span class="p-column-title">Montant total</span>
                     {{demande.montant_total}}
                 </td>
-                <td style="width:15%;">
+                <td >
                     <span class="p-column-title">Date marché</span>
                     {{demande.date_marche}}
                 </td>
-                <td style="width:15%;" *ngIf="profil === 'DG'">
+                <td  *ngIf="profil === 'DG'">
                     <span class="p-column-title">Décote</span>
                     {{demande.decode}}
                 </td>

@@ -1,12 +1,20 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <div class="card">
             <div class="grid p-fluid">
+                <div class="d-flex justify-content-center col-12">
+                    <div class="col-12 md:col-10 ">
+                        <h3 class="title">Visualisation de la demande</h3>
+                    </div>
+                </div>
                 <div class="col-12 md:col-3">
                     <span class="h5texte">NINEA</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.ninea}}</label>
                         </span>
                     </div>
@@ -15,7 +23,7 @@
                     <span class="h5texte">Numero demande</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.numero_demande}}</label>
                         </span>
                     </div>
@@ -24,7 +32,7 @@
                     <span class="h5texte">ATD</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.ATD}}</label>
                         </span>
                     </div>
@@ -33,7 +41,7 @@
                     <span class="h5texte">Denomination</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.denomination}}</label>
                         </span>
                     </div>
@@ -44,7 +52,7 @@
                     <span class="h5texte">Nantissement</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.nantissement}}</label>
                         </span>
                     </div>
@@ -53,7 +61,7 @@
                     <span class="h5texte">Interdiction Bancaire</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.interdiction}}</label>
                         </span>
                     </div>
@@ -62,40 +70,40 @@
                     <span class="h5texte">RCCM</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.rccm}}</label>
                         </span>
                     </div>
                 </div>
-                    <div class="col-12 md:col-3">
-                        <span class="h5texte">Reference du BE validé</span>
-                        <div class="p-inputgroup">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                                <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
-                            </span>
-                        </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Reference du BE validé</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
+                        </span>
                     </div>
-                
+                </div>
+
             </div>
             <br>
             <br>
-            
-            
-           
+
+
+
 
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                currentPageReportTemplate="{totalRecords} lignes "
-                [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                
+                currentPageReportTemplate="{totalRecords} lignes " [(selection)]="selectedProducts"
+                selectionMode="multiple" [rowHover]="true" dataKey="id">
+
 
 
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter  type="text" field="type"></p-columnFilter>
+                            <p-columnFilter type="text" field="type"></p-columnFilter>
                         </th>
                         <th>
                             <p-columnFilter type="text" field="nom"></p-columnFilter>
@@ -103,9 +111,11 @@
                         <th>
                             <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
                         </th>
-                        
+
                         <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(type,nom,date_soumission)"></button>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button"
+                                style="background-color: #203359;" label="Rechercher"
+                                (click)="dt.filter(type,nom,date_soumission)"></button>
                         </th>
                     </tr>
                     <tr>
@@ -113,10 +123,11 @@
                         <th pSortableColumn="type" style="color: #203359;">Type document <p-sortIcon field="type">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="nom" style="color: #203359;">Nom document <p-sortIcon
-                                field="nom"></p-sortIcon>
+                        <th pSortableColumn="nom" style="color: #203359;">Nom document <p-sortIcon field="nom">
+                            </p-sortIcon>
                         </th>
-                        <th pSortableColumn="date_soumission" style="color: #203359;">Date soumission <p-sortIcon field="date_soumission">
+                        <th pSortableColumn="date_soumission" style="color: #203359;">Date soumission <p-sortIcon
+                                field="date_soumission">
                             </p-sortIcon>
                         </th>
 

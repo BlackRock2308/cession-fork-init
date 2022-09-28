@@ -10,7 +10,7 @@ import { VisualiserDocumentComponent } from '../../../CDMP/visualiser-document/v
   selector: 'app-details-convention',
   templateUrl: './details-convention.component.html',
   styleUrls: ['./details-convention.component.scss'],
-  providers:[DialogService]
+  providers: [DialogService]
 })
 export class DetailsConventionComponent implements OnInit {
   items: ({ label: string; url: string; } | { label: string; url?: undefined; })[];
@@ -18,67 +18,67 @@ export class DetailsConventionComponent implements OnInit {
   cols: { field: string; header: string; }[];
   demandeCession: DemandeCession;
   documents: Documents[];
-  observation:string;
+  observation: string;
 
   constructor(
-    private demandeCessionService:DemandesCessionService,
-    private documentService:DocumentService,
-    private dialogService:DialogService
+    private demandeCessionService: DemandesCessionService,
+    private documentService: DocumentService,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
-    this.demandeCessionService.getDemandeObs().subscribe(data=>{
-      this.demandeCession=data
+    this.demandeCessionService.getDemandeObs().subscribe(data => {
+      this.demandeCession = data
       console.log(this.demandeCession)
 
     })
 
-    this.documentService.getDeocuments().subscribe(data=>{
-      this.documents=data
+    this.documentService.getDeocuments().subscribe(data => {
+      this.documents = data
     })
 
     this.cols = [
-      {field: 'typeDocument', header: 'Type de document'},
-      {field: 'nomDocument', header: 'Nom Document'},
-      {field: 'dateSoumission', header: 'Date Soumission'}
-  ];
-this.items = [
-  { label: 'Liste des demandes de cession',url:'/#/workstation/ordonnateur/conventions' },
-  {label:'Traitement recevabilité'}
-];
+      { field: 'typeDocument', header: 'Type de document' },
+      { field: 'nomDocument', header: 'Nom Document' },
+      { field: 'dateSoumission', header: 'Date Soumission' }
+    ];
+    this.items = [
+      { label: 'Liste des conventions', url: '/#/workstation/ordonnateur/conventions' },
+      { label: 'Détail de la convention' }
+    ];
 
-this.home = { icon: 'pi pi-home', url: '/#/workstation/ordonnateur/conventions' };
+    this.home = { icon: 'pi pi-home', url: '/#/workstation/ordonnateur/conventions' };
 
-}
-
-
-onSubmit(statut:string){
-  let body={
-    observation:this.observation,
-    statut:statut
   }
 
-  this.mettreAJourStatutConvention(body)
+
+  onSubmit(statut: string) {
+    let body = {
+      observation: this.observation,
+      statut: statut
+    }
+
+    this.mettreAJourStatutConvention(body)
 
 
-}
+  }
 
 
-visualiserDocument(document: Documents) {
-  let nom = document.nomDocument;
-  const ref = this.dialogService.open(VisualiserDocumentComponent, {
-    data: {
-      document: document
-    },
-    header: nom,
-    width: '70%',
-    height: 'calc(100% - 100px)',
-    baseZIndex: 10000
-  });
-}
+  visualiserDocument(document: Documents) {
+    let nom = document.nomDocument;
+    const ref = this.dialogService.open(VisualiserDocumentComponent, {
+      data: {
+        document: document
+      },
+      header: nom,
+      width: '70%',
+      height: 'calc(100% - 100px)',
+      baseZIndex: 10000
+    });
+  }
 
-mettreAJourStatutConvention(body:any){
-  this.demandeCessionService.patchConvention(this.demandeCession.id,body).subscribe()
-}
+  mettreAJourStatutConvention(body: any) {
+    this.demandeCessionService.patchConvention(this.demandeCession.id, body).subscribe()
+  }
 
 }

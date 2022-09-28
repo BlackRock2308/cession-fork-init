@@ -22,7 +22,7 @@ export class VisualiserDocumentComponent implements OnInit {
   pageRenderCb = 0;
   textLayerRenderedCb = 0;
   totalPages: number;
-  ext:string;
+  ext: string;
   profil: string;
   statut: string;
   convention: any;
@@ -33,21 +33,21 @@ export class VisualiserDocumentComponent implements OnInit {
   ngOnInit() {
     this.srcFile = './assets/doctest.pdf';
     this.dowloadFile(this.config.data.document.path);
-     this.convention = this.config.data.document;
-    
+    this.convention = this.config.data.document;
+
     this.profil = localStorage.getItem('profil');
 
     this.statut = this.config.data.document.statut;
-    if(this.config.data.paiement === 'true'){
-      this.paiement  = 'true';
+    if (this.config.data.paiement === 'true') {
+      this.paiement = 'true';
     }
-    
-    
+
+
     console.log(this.paiement);
-    
+
   }
   dowloadFile(path: string) {
-    
+
     this.uploadFileService.dowloadFile(path)
       .subscribe(
         (data: any) => {
@@ -65,7 +65,7 @@ export class VisualiserDocumentComponent implements OnInit {
         }
         ,
         (error) => {
-          console.log("erreur de recuperation du document", error);
+          console.log("erreur de récupération du document", error);
         }
       )
   }
@@ -79,9 +79,9 @@ export class VisualiserDocumentComponent implements OnInit {
       this.docLoading = false;
     }
   }
-/**
- * Permet de faire un zoom plus sur l'affichage du document
- */
+  /**
+   * Permet de faire un zoom plus sur l'affichage du document
+   */
   plusZoom() {
     this.zoom = this.zoom + 0.10;
   }
@@ -119,7 +119,7 @@ export class VisualiserDocumentComponent implements OnInit {
   print() {
     var dataView = this.src;
     const url = this.src.path;
-    console.log('donne ' +JSON.stringify(url))
+    console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         const element = document.createElement('iframe');   // Create an IFrame.
@@ -147,15 +147,15 @@ export class VisualiserDocumentComponent implements OnInit {
     }
   }
 
-/**
- * Permet d'aller à la page suivante dans le document
- */
+  /**
+   * Permet d'aller à la page suivante dans le document
+   */
   nextPage() {
     this.pageVariable++;
   }
-/**
- * Permet de retourner à la page précédente dans le document
- */
+  /**
+   * Permet de retourner à la page précédente dans le document
+   */
   previousPage() {
     if (this.pageVariable > 1) {
       this.pageVariable--;
