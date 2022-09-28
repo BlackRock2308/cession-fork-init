@@ -7,6 +7,10 @@
         
 }
 
+.anne{
+    margin-left: 85%;
+}
+
 ::ng-deep span.p-paginator-current.ng-star-inserted{
     color: #203359;
 
@@ -35,4 +39,13 @@
 ::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
     color: #203359;
 
+}
+
+//cacher les bouton de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
+}
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
 }

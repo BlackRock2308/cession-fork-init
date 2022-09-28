@@ -110,8 +110,17 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 .img-person{
-	height: 70px;
+	height: 40px;
+	width: 50px;
 	color:#fff;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	
+}
+.img-pwd{
+	height: 40px;
+	width: 40px;
 	display: block;
     margin-left: auto;
     margin-right: auto;
@@ -148,7 +157,7 @@ h5{
 }
 
 .recup-ici{
-	color: #d31e1e;
+	color:  #981639;
 }
 .creer-compte{
 	color:rgb(83, 198, 83);
@@ -162,6 +171,8 @@ h4{
 	color: white;
 	
 }
+
+
 .fa-google{
 	position: absolute;
 	bottom: 380px;
@@ -292,7 +303,7 @@ h4{
 
 .form-row-last{
 	position: relative;
-	left: 120px;
+	left: 105px;
 	
 }
 

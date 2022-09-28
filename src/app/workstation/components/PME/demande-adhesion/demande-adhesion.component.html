@@ -29,7 +29,7 @@
                                         <p-columnFilter type="text" field="statut"></p-columnFilter>
                                     </th>
                                     <th>
-                                        <button pButton pRipple icon="pi pi-search"  class="p-button-rounded simpleButton" label="Rechercher" (click)="dt.filter(refBE,datesoumission,statut)"></button>
+                                        <button pButton pRipple icon="pi pi-search"  class="p-button-rounded simpleButton" style="background-color:#203359;" label="Rechercher" (click)="dt.filter(refBE,datesoumission,statut)"></button>
                                     </th>
                                 </tr>
                                 <tr>
@@ -66,7 +66,7 @@
                                     <td>
                                         <div class="flex">
                                             <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text mr-2 button" (click)="consulterDemande(demande)" pInputText  pTooltip="Consulter les dossiers" ></button>
-                                            <button *ngIf="demande.statut=='Complement Requis'" pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-text mr-2 button" pTooltip="Completer le dossier" [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)" ></button>
+                                            <button *ngIf="demande.statut=='Complement Requis'" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text mr-2 button" pTooltip="Completer le dossier" [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)" ></button>
                                         </div>
                                     </td>
                                 </tr>

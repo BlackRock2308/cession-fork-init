@@ -5,8 +5,9 @@
     <div class="col-12">
         <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
             <div class="p-card-title" [style]="{'background-color': '#eceff4', 'text-align': 'center'}"
-                styleClass="shadow-2">Détails de la demande</div>
+                styleClass="shadow-2">Détails de la demande de cession</div>
             <p-toast></p-toast>
+            <br>
             <div class="grid p-fluid">
                 <div class="col-12 md:col-4">
                     <span class="h5texte">NINEA</span>
@@ -47,7 +48,7 @@
             </div>
             <br>
             <div class="col-12" id="outerContainer" styleClass="shadow-8">
-                <div class="p-card-title" [style]="{'background-color': '#eceff4', 'text-align': 'center'}"
+                <div class="p-card-title" [style]="{'text-align': 'center'}"
                     styleClass="shadow-2">Liste des documents</div>
                 <div class="card">
                     <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
@@ -55,11 +56,7 @@
                         [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                         currentPageReportTemplate=" {totalRecords} lignes"
                         [(selection)]="selectedDocuments" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                        <ng-template pTemplate="caption">
-                            <div
-                                class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                            </div>
-                        </ng-template>
+                        
                         <ng-template pTemplate="header">
                             <tr>
                                 <th pSortableColumn="typeDocument" style="color: #203359;">Type de Document <p-sortIcon
@@ -93,7 +90,7 @@
                                 </td>
                                 <td>
                                     <div class="flex">
-                                        <button pButton pRipple icon="pi pi-eye" class="p-button-rounded mr-2 button"
+                                        <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text mr-2 button"
                                             (click)="visualiserDocument(document)"></button>
                                     </div>
                                 </td>

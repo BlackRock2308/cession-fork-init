@@ -59,9 +59,12 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <i class="pi pi-eye" (click)="visualiserDemande(demande)"></i>
-                                <i class="pi pi-search ml-3" (click)="verifierDemande(demande)"></i>
+                                <button pButton pRipple icon="pi pi-eye"
+                                 (click)="visualiserDemande(demande)" class="p-button-rounded p-button-text  button"  pInputText  pTooltip="Visualiser la demande" ></button>
+                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemande(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Analyser le dossier" ></button>
+                                
                             </div>
+                          
                         </td>
                     </tr>
                 </ng-template>

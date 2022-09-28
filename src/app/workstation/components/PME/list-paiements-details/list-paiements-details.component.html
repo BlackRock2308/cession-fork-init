@@ -1,0 +1,41 @@
+<div class="container-fluid text-right">
+    <div style="display: block;">
+        <div class="modal-body">
+            <div class="card p-fluid">
+                
+                <div class="field grid">
+                    <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0" >Date Paiement</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="montant" type="text" pTooltip="Date" placeholder="{{paiementCession.datePaiement}}" [disabled]="true"/>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Payeur</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="payer" type="text" pTooltip="Montant" placeholder="{{paiementCession.payer}}" [disabled]="true"/>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Mode Paiement</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="payer" type="text" pTooltip="Solde" placeholder="{{paiementCession.modePaiement}}" [disabled]="true"/>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Montant</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="payer" type="text" pTooltip="Montant" placeholder="{{paiementCession.montant}}"[disabled]="true"/>
+                    </div>
+                </div>
+               
+                
+            </div>
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button id="valider"style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised p-button-danger mx-1  my-auto ml-2"  [routerLink]= "['../']" ></button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        
+    
+    </div>

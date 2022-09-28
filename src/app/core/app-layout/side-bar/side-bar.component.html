@@ -19,11 +19,13 @@
                     <br>
                 </div>
                 <ul class="list-unstyled components mb-5 menu">
+                    <div *ngIf="profil === 'DG' || profil === 'cdmp' || profil === 'comptable'">
                     <div class="tableau_bord" *ngIf="appMain.sidebarActive">
                         <li>
                             <a [routerLink]="['cdmp/dashboard']">Tableau de bord</a>
                         </li>
                     </div>
+                </div>
                     <li class="active" *ngIf="profil === 'pme'">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                             class="dropdown-toggle">Demandes</a>
