@@ -3,6 +3,8 @@ import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Paiements } from 'src/app/workstation/model/paiements';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
+import { ListPaiementsDetailsComponent } from '../list-paiements-details/list-paiements-details.component';
+import { PaiementsComponent } from '../paiements/paiements.component';
 
 @Component({
   selector: 'app-list-paiements',
@@ -63,5 +65,18 @@ export class ListPaiementsComponent implements OnInit {
       this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
   
   }
+
+  visualiserDetails(paiement: PaiementsComponent) {
+    const ref = this.dialogService.open(ListPaiementsDetailsComponent, {
+        data: {
+            paiement: paiement
+        },
+        header: "Details Tableau",
+        width: '70%',
+        height: 'calc(75% - 100px)',
+        baseZIndex: 10000
+    });
+
+}
 
 }
