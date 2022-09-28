@@ -33,8 +33,8 @@
       "ninea_file": "",
       "statut_convention": "Convention enregistrée",
       "rccm_file": "",
-      "nineaValide": false,
-      "pmeActive": false,
+      "nineaValide": true,
+      "pmeActive": true,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
@@ -214,7 +214,8 @@
       "solde_PME": "8.000.000",
       "decode": "5%",
       "montant_debourse": "5.000.000",
-      "solde_sica": "3.000.000"
+      "solde_sica": "3.000.000",
+      "nineaValide": false
     }
   ],
   "demandes_cession": [
