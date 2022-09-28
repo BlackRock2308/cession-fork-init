@@ -33,8 +33,8 @@
 }
 .simpleBoldButton{
     @extend %button;
-    background-color:$autre-clair;
-    border-color:$autre-clair;
+    background-color:$autre-fonce-clair;
+    border-color:$autre-fonce-clair;
 }
 
 .simpleBoldButton:hover{

@@ -82,7 +82,7 @@ export class AdhesionComponent implements OnInit {
       html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande d'adhésion a été pris en compte.</p><br><p style='font-size: large;font-weight: bold;'>Vous allez recevoir un message de la part du service de cession de créances dans les plus brefs délais.</p>",
       color:"#203359",
       confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm"></i>OK',
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
       allowOutsideClick:false,
       
     }).then((result) => {
@@ -101,11 +101,19 @@ private enregistrerPme() {
   this.pme=this.form.value;
   this.pme.nineaFile=this.selectedNINEAFiles;
   this.pme.rccmFile=this.selectedRCCMFiles;
-  //fonction à continuer 
   console.log(this.pme);
-  /*this.adhesionService.postPME(this.pme)
-      .subscribe(() => {
-         })*/
-      
+  let body={
+    ninea:this.pme.ninea,
+    rccm:this.pme.rccm,
+    email:this.pme.email,
+    nineaFile:this.selectedNINEAFiles,
+    rccmFile:this.selectedRCCMFiles,
+    date_soumission:new Date()
+  }
+  this.adhesionService.postPME(body)
+      .subscribe(data=>console.log(this.pme,data));
+  this.adhesionService.postAdhesionDemande(body).subscribe()
 }
+
+
 }

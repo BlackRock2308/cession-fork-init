@@ -1,6 +1,8 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 
 @Component({
   selector: 'app-verification',
@@ -17,7 +19,8 @@ export class VerificationComponent implements OnInit {
   demande: any;
   id: any;
 
-  constructor(private router: Router,private demandeAdhesionService:DemandesAdhesionService) { }
+  constructor(private router: Router,private demandeAdhesionService:DemandesAdhesionService,
+    private adhesionDemandeService:AdhesionService) { }
 
   ngOnInit(): void {
    this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
@@ -56,9 +59,13 @@ export class VerificationComponent implements OnInit {
   
   verifierDemandeAdhesion(body:any) {
     
-    this.demandeAdhesionService.patchBasicInformation(this.id,body).subscribe(data=>{
+    /*this.demandeAdhesionService.patchBasicInformation(this.id,body).subscribe(data=>{
       console.log(this.demande,data)
-    })
+    })*/
+    this.adhesionDemandeService.delateAdhesionDemande(this.demande.id).subscribe();
+
+    this.adhesionDemandeService.patchPME(this.demande.id,body).subscribe();
+
 
   }
 }

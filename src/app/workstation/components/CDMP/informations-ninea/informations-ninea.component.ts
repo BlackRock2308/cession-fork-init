@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class InformationsNineaComponent implements OnInit {
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private demandeAdhesionService:DemandesAdhesionService
+    private demandeAdhesionService:DemandesAdhesionService,
+    private adhesionService:AdhesionService
     ) { }
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ onSubmit(){
   //arreter si li formulaire n'est pas valide
   
 
+  
   //
   this.enregistrerInfos()
 
@@ -59,8 +62,16 @@ onSubmit(){
 
 }
   enregistrerInfos() {
-    this.demandeAdhesionService.patchDemande(this.demande.id,this.demande).subscribe(data=>console.log(data))
-    this.demandeAdhesionService.patchDemande(this.demande.id,this.informationsForm.value).subscribe(data=>console.log(data))
+    //this.demandeAdhesionService.patchDemande(this.demande.id,this.demande).subscribe(data=>console.log(data))
+    //this.demandeAdhesionService.patchDemande(this.demande.id,this.informationsForm.value).subscribe(data=>console.log(data))
+    this.adhesionService.patchPME(this.demande.id,this.informationsForm.value).subscribe((data)=>{
+      console.log(data)
+    });
+    this.adhesionService.patchPME(this.demande.id,this.demande).subscribe((data)=>{
+      console.log(data)
+    });
+    //à enlever après connexion avec le backend
+    this.adhesionService.delateAdhesionDemande(this.demande.id).subscribe()
   }
 
 }

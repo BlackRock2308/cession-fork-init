@@ -5,7 +5,7 @@
     <div class="col-12">
         <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
             <div class="p-card-title" [style]="{'background-color': '#eceff4', 'text-align': 'center'}"
-                styleClass="shadow-2">Détails de la demande de cession</div>
+                styleClass="shadow-2">Détails de la demande</div>
             <p-toast></p-toast>
             <div class="grid p-fluid">
                 <div class="col-12 md:col-4">
@@ -13,7 +13,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">586542098</label>
+                            <label for="inputtext">{{demande.ninea}}</label>
                         </span>
                     </div>
                 </div>
@@ -22,16 +22,25 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">20-42098</label>
+                            <label for="inputtext">{{demande.refBE}}</label>
                         </span>
                     </div>
                 </div>
                 <div class="col-12 md:col-4">
-                    <span class="h5texte">Date de soumission</span>
+                    <span class="h5texte">Date de la demande</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">20/05/2022</label>
+                            <label for="inputtext">{{demande.date_soumission}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="demande.type_marche" class="col-12 md:col-4">
+                    <span class="h5texte">Nom du marche</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
+                            <label for="inputtext">{{demande.type_marche}}</label>
                         </span>
                     </div>
                 </div>

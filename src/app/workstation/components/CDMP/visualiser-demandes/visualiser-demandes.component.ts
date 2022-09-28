@@ -28,6 +28,7 @@ export class VisualiserDemandesComponent implements OnInit {
   home: MenuItem
   ref: DynamicDialogRef;
   demandeNantissementInfos: any;
+  demande: any;
 
   constructor( private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService ,private demandeAdhesionService:DemandesAdhesionService) { }
 
@@ -35,6 +36,10 @@ export class VisualiserDemandesComponent implements OnInit {
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
+
+    this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
+      this.demande=data;
+    })
 
     this.cols = [
       { field: 'nomDocument', header: 'Nom de Document' },
