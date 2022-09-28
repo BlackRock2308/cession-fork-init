@@ -5,6 +5,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="">
+            
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 modalTitle  ">
                     <h3 class="title">Recevabilité des demandes de cession</h3>
@@ -69,8 +70,10 @@
                         </td>
                         
                         <td>
+                            
                             <div class="flex">
-                                <i  class="pi pi-pencil ml-3" (click)="verifierDemandeCession(demande)" ></i>
+                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemandeCession(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Verifier la demande" ></button>
+
                             </div>
                         </td>
                     </tr>
