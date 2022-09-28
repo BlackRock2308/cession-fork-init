@@ -33,7 +33,7 @@
       "ninea_file": "",
       "statut_convention": "Convention enregistrée",
       "rccm_file": "",
-      "nineaValide": true,
+      "nineaValide": false,
       "pmeActive": true,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
