@@ -20,44 +20,49 @@
                 </div>
                 <ul class="list-unstyled components mb-5 menu">
                     <div *ngIf="profil === 'DG' || profil === 'cdmp' || profil === 'comptable'">
-                    <div class="tableau_bord" *ngIf="appMain.sidebarActive">
-                        <li>
-                            <a [routerLink]="['cdmp/dashboard']">Tableau de bord</a>
-                        </li>
+                        <div class="tableau_bord" *ngIf="appMain.sidebarActive">
+                            <li>
+                                <a class="pi pi-chart-line" [routerLink]="['cdmp/dashboard']">Tableau de bord</a>
+                            </li>
+                        </div>
                     </div>
-                </div>
                     <li class="active" *ngIf="profil === 'pme'">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle">Demandes</a>
+                            class="dropdown-toggle pi pi-folder-open">Demandes</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
-                                <a [routerLink]="['pme/new_demande']">Nouvelle demande</a>
+                                <a class="pi pi-plus-circle" [routerLink]="['pme/new_demande']">Nouvelle demande</a>
                             </li>
                             <li>
-                                <a [routerLink]="['pme/demandes_en_cours']">Liste des demandes</a>
+                                <a class="pi pi-folder-open" [routerLink]="['pme/demandes_en_cours']">Liste des
+                                    demandes</a>
                             </li>
                         </ul>
                     </li>
                     <li *ngIf="profil === 'pme'">
-                        <a [routerLink]="['pme/paiements']">Suivi des paiements</a>
+                        <a class="pi pi-money-bill" [routerLink]="['pme/paiements']">Suivi des paiements</a>
                     </li>
                     <li *ngIf="profil === 'cdmp'">
-                        <a disabled [routerLink]="['cdmp/demandes_en_cours']">Demandes Adhesion</a>
+                        <a class="pi pi-folder-open" disabled [routerLink]="['cdmp/demandes_en_cours']">Demandes
+                            Adhésion</a>
                     </li>
                     <li *ngIf="profil === 'cdmp'">
-                        <a disabled [routerLink]="['cdmp/recevabilite']">Recevabilite</a>
+                        <a class="pi pi-directions" disabled [routerLink]="['cdmp/recevabilite']">Recevabilite</a>
                     </li>
                     <li *ngIf="profil === 'cdmp'">
-                        <a disabled [routerLink]="['cdmp/analyse_risque']">Analyse du risque sur cession</a>
+                        <a class="pi pi-exclamation-circle" disabled [routerLink]="['cdmp/analyse_risque']">Analyse du
+                            risque</a>
                     </li>
                     <li *ngIf="profil === 'comptable' || profil === 'pme' || profil === 'DG'">
-                        <a disabled [routerLink]="['comptable/convention_cession']">Convention de cession</a>
+                        <a class="pi pi-file" disabled [routerLink]="['comptable/convention_cession']">Convention de
+                            cession</a>
                     </li>
                     <li *ngIf="profil === 'comptable'">
-                        <a disabled [routerLink]="['comptable/paiements']">Paiements/Recouvrements</a>
+                        <a class="pi pi-money-bill" disabled [routerLink]="['comptable/paiements']">
+                            Paiements/Recouvrement</a>
                     </li>
                     <li *ngIf="profil === 'ordonnateur'">
-                        <a [routerLink]="['ordonnateur/conventions']">Conventions de cession</a>
+                        <a class="pi pi-file" [routerLink]="['ordonnateur/conventions']">Conventions de cession</a>
                     </li>
                 </ul>
                 <div class="footer">

@@ -4,7 +4,9 @@ import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Product } from 'src/app/workstation/model/product';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
-import { Document } from 'src/app/workstation/model/document';
+import { Document, Documents } from 'src/app/workstation/model/document';
+import { DialogService } from 'primeng/dynamicdialog';
+import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 @Component({
     selector: 'app-consulter-demande',
     templateUrl: './consulter-demande.component.html',
@@ -41,7 +43,7 @@ export class ConsulterDemandeComponent implements OnInit {
     home: MenuItem;
 
 
-    constructor(private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
+    constructor(public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
 
     ngOnInit() {
 
@@ -75,6 +77,20 @@ export class ConsulterDemandeComponent implements OnInit {
         this.productDialog = false;
         this.submitted = false;
     }
+
+    visualiserDocument(document: Documents) {
+        let nom = document.nomDocument;
+        const ref = this.dialogService.open(VisualiserDocumentComponent, {
+          data: {
+            document: document
+          },
+          header: nom,
+          width: '70%',
+          height: 'calc(100% - 100px)',
+          baseZIndex: 10000
+        });
+    
+      }
 
     saveProduct() {
         this.submitted = true;
