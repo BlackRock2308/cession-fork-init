@@ -138,7 +138,7 @@ export class DemandeAdhesionComponent implements OnInit {
 
         });
 
-        this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+        this.demandesAdhesionService.getDemandesCession().subscribe(data => {
             this.demandes = data
             console.log(this.demandes)
         });
@@ -204,8 +204,11 @@ export class DemandeAdhesionComponent implements OnInit {
     }
 
     consulterDemande(demande: DemandeAdhesion) {
-        this.setDemandeInfo(demande)
-        this.router.navigate(['workstation/cdmp/visualiser-demandes']);
+        this.demande = { ...demande };
+        //this.demandeDialog = true;
+        console.log(demande)
+        this.demandesAdhesionService.setDemandeObs(demande);
+        this.router.navigate(['workstation/cdmp/visualiser-demandes'], {  queryParams: {  page: 'demande cession' } });
     }
 
     deleteProduct(product: Product) {

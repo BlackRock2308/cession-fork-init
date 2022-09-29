@@ -32,7 +32,7 @@
                             <p-columnFilter type="text" field="dateDemande" placeholder="Date demande"></p-columnFilter>
                         </th>
                         <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" label="Rechercher" style="background-color :#203359; " (click)="dt.filter(ninea,rccm,datesoumission)"></button>
+                            <button pTooltip="Rechercher"  pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
                         </th>
                     </tr>
                     <tr>
@@ -66,13 +66,13 @@
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.dateDemande}}
+                            {{demande.dateDemande.toString().split("T")[0]}}
                         </td>
                         
                         <td>
                             
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemandeCession(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Verifier la demande" ></button>
+                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemandeCession(demande)" class="p-button-rounded simpleButton"  pInputText  pTooltip="Verifier la demande" ></button>
 
                             </div>
                         </td>

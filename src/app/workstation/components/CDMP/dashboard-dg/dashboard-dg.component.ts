@@ -73,7 +73,7 @@ export class DashboardDGComponent implements OnInit {
 
         this.profil = localStorage.getItem('profil');
 
-        this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+        this.demandesAdhesionService.getDemandesCession().subscribe(data => {
             this.demandes = data
         });
 

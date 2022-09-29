@@ -113,9 +113,9 @@ export class NouvelleDemandeComponent implements OnInit {
       this.typesDocument.push({ nom: "Autres..." })
       console.log(this.typesDocument)
     })
-    this.documentService.getDeocuments().subscribe(data => {
-      this.documentes = data
-    });
+    // this.documentService.getDeocuments().subscribe(data => {
+    //   this.documentes = data
+    // });
 
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
@@ -136,7 +136,7 @@ export class NouvelleDemandeComponent implements OnInit {
     this.document = this.documentForm.value;
     this.document.file = files.target.files[0];
     this.documents.push(this.document)
-    console.log(this.documents)
+    //console.log(this.documents)
 
   }
 

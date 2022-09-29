@@ -20,20 +20,20 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="refBE">
+                            <p-columnFilter type="text" field="refBE" placeholder="Reference du BE">
 
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="type_marche">
+                            <p-columnFilter type="text" field="type_marche" placeholder="Nom du marche">
 
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+                            <p-columnFilter type="text" field="date_soumission" placeholder="Date de demande"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
                         <th>
                             <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
@@ -64,16 +64,16 @@
 
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">Reference du BE</span>
-                            {{demande.refBE}}
+                            {{demande.referenceBE}}
                         </td>
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">Nom du marché</span>
-                            {{demande.type_marche}}
+                            {{demande.nomMarche}}
                         </td>
 
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{demande.date_soumission}}
+                            {{demande.dateDemande.toString().split("T")[0]}}
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
@@ -83,11 +83,11 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-eye"
-                                    class="p-button-rounded p-button-text mr-2 button"
+                                    class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
                                 <button *ngIf="demande.statut=='Complement Requis'" pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Completer le dossier"
+                                    class="p-button-rounded simpleButton" pTooltip="Completer le dossier"
                                     [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)"></button>
                             </div>
                         </td>

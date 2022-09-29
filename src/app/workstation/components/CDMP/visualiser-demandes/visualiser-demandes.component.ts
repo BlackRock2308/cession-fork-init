@@ -46,6 +46,7 @@ export class VisualiserDemandesComponent implements OnInit {
       this.documents = data
     });
 
+    //récupérer les infos de la page précédente
     this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
       this.demande=data;
     })
@@ -67,6 +68,7 @@ export class VisualiserDemandesComponent implements OnInit {
     this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
     console.log(this.demandeNantissementInfos)
 
+    //détail à visualiser( page préceédente)
     this.route.queryParams.subscribe(
       params => {
         this.page = params['page'];
