@@ -26,12 +26,12 @@
             </div>
         </ng-template>
         <ng-template pTemplate="footer">
-            <div class="row justify-content-end"  *ngIf="existant;else elseBlock">
-                <button  id="suivant"style="width: min-content;" pButton pRipple label="Suivant" icon="pi pi-spinner" class="p-button-raised button"  (click)="nextPage()" ></button>
+            <div class="col-12 float-right d-flex justify-content-end"  *ngIf="existant;else elseBlock">
+                <button  id="suivant" pButton pRipple label="Suivant" icon="pi pi-spinner" class="p-button-raised simpleButton"  (click)="nextPage()" ></button>
             </div>
             <ng-template #elseBlock>
-                <div class="row justify-content-end">
-                    <button class="col-sm-12 col-lg-8 col-xl-4 danger" id="terminer" pButton pRipple label="Rejeter l'adhesion" icon="pi pi-times" (click)="onSubmit()"></button>
+                <div class="col-12 float-right d-flex justify-content-end">
+                    <button class="p-button-raised dangerButton" id="terminer" pButton pRipple label="Rejeter l'adhesion" icon="pi pi-times" (click)="onSubmit()"></button>
                 </div>
             </ng-template>
         </ng-template>

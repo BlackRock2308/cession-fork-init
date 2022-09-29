@@ -571,54 +571,59 @@
   "recevabilites":[
     {
       "id": 1,
-  "ninea": "567567",
-  "statut": "Non Risquée",
-  "raisonSocial": "Modelsis SARL",
-  "referenceBE": "20-294067",
-  "dateDemande":"2022-09-28T10:10:13.678Z",
-  "numeroDemande": "2022-0001",
-  "rccm": "401568778"
-    },
-    {
-      "id": 2,
       "ninea": "567567",
-      "statut": "Enregistrée",
-      "raisonSocial": "ENEDIS",
-      "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0002",
-      "rccm": "401548015"
-    },
-    {
-      "id": 3,
-      "ninea": "678567",
-      "statut": "Risquée",
-      "raisonSocial": "CAMAIEU INTERNATIONAL",
-      "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0003",
-      "rccm": "401548780"
-    },
-    {
-      "id": 4,
-      "ninea": "567567",
-      "statut": "Signée par PME",
-      "raisonSocial": "INT Marketing",
-      "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0004",
-      "rccm": "001548015"
-    },
-    {
-      "id": 5,
-      "ninea": "123567",
-      "statut": "Signée par DG",
-      "raisonSocial": "E.COM4",
-      "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z1",
-      "numeroDemande": "2022-0005",
-      "rccm": "001548015"
-    }
+      "statut": "Non Risquée",
+      "raisonSocial": "Modelsis SARL",
+      "referenceBE": "20-294067",
+      "dateDemande":"2022-09-28T10:10:13.678Z",
+      "numeroDemande": "2022-0001",
+      "rccm": "401568778",
+      "nomMarche":"Fournitures de lots de materiels"
+        },
+        {
+          "id": 2,
+          "ninea": "567567",
+          "statut": "Enregistrée",
+          "raisonSocial": "ENEDIS",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z",
+          "numeroDemande": "2022-0002",
+          "rccm": "401548015",
+          "nomMarche":"Reparation , entretien et installation"
+        },
+        {
+          "id": 3,
+          "ninea": "678567",
+          "statut": "Risquée",
+          "raisonSocial": "CAMAIEU INTERNATIONAL",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z",
+          "numeroDemande": "2022-0003",
+          "rccm": "401548780",
+          "nomMarche":"Service de decoration"
+        },
+        {
+          "id": 4,
+          "ninea": "567567",
+          "statut": "Signée par PME",
+          "raisonSocial": "INT Marketing",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z",
+          "numeroDemande": "2022-0004",
+          "rccm": "001548015",
+          "nomMarche":"Service de gardiennage"
+        },
+        {
+          "id": 5,
+          "ninea": "123567",
+          "statut": "Signée par DG",
+          "raisonSocial": "E.COM4",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z1",
+          "numeroDemande": "2022-0005",
+          "rccm": "001548015",
+          "nomMarche":"Transport"
+        }
   ],
   "demandes": [
     {

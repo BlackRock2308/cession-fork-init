@@ -80,38 +80,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
   }
 
-
-  handleChange11(e) {
-    this.pas_identifie = false
-
-  }
-  handleChange12(e) {
-    this.identifie = false
-  }
-
-  handleChange21(e) {
-    this.pas_atd = false
-
-  }
-  handleChange22(e) {
-    this.atd = false
-  }
-  handleChange31(e) {
-    this.pas_nantissement = false
-
-  }
-  handleChange32(e) {
-    this.nantissement = false
-  }
-
-  handleChange41(e) {
-    this.pas_interdiction = false
-
-  }
-  handleChange42(e) {
-    this.interdiction = false
-  }
-
   onSubmit() {
 
     this.recevabiliteDemande = {

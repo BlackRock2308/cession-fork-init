@@ -12,7 +12,7 @@ export class RecevabiliteService {
 
   //afficher les demandes de cession à l'étape de la recevabilité
   getRecevabilites(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession/recevabilites`);
+    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession`);
   }
   getRecevabiliteById(id:number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/demandes_cession?id=${id}`);
