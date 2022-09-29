@@ -59,7 +59,8 @@ export class ListPaiementsComponent implements OnInit {
         { field: 'modePaiement', header: 'Mode Paiement' },
       ];
       this.items = [
-        { label: 'Paiements' }
+        { label: 'Paiements',url: '/#/workstation/pme/paiements' },
+        { label: 'Détails Paiements'}
       ];
   
       this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
@@ -73,7 +74,7 @@ export class ListPaiementsComponent implements OnInit {
         },
         header: "Détails Tableau",
         width: '70%',
-        height: 'calc(75% - 100px)',
+        height: 'calc(50% - 100px)',
         baseZIndex: 10000
     });
 

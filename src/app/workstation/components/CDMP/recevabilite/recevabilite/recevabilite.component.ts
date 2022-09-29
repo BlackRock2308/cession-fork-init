@@ -8,6 +8,7 @@ import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
 
 
 @Component({
@@ -33,12 +34,16 @@ export class RecevabiliteComponent implements OnInit {
    
 
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,private messageService:MessageService, private router: Router,private demandeCessionService :DemandesCessionService) {}
+  constructor(private demandesAdhesionService: DemandesAdhesionService,
+    private messageService:MessageService,
+     private router: Router,
+     private demandeCessionService :DemandesCessionService,
+     private recevabiliteService:RecevabiliteService) {}
 
   ngOnInit() {
     //this.productDialog = this.communicationService.getDialogObs();
       //this.productService.getProducts().then(data => this.products = data);
-      this.demandesAdhesionService.getDemandesCession().subscribe(data=>{
+      this.recevabiliteService.getRecevabilites().subscribe(data=>{
     this.demandes=data});
       
       this.cols = [

@@ -10,13 +10,15 @@ export class RecevabiliteService {
   
   constructor(private http: HttpClient) {}
 
+  //afficher les demandes de cession à l'étape de la recevabilité
   getRecevabilites(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/recevabilites`);
+    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession/recevabilites`);
   }
   getRecevabiliteById(id:number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/demandes_cession?id=${id}`);
   }
 
+  //
   postRecevabilite(demandeRecevabilite:any): Observable<HttpEvent<any>> {
     const req = new HttpRequest('POST', `${this.baseUrl}/recevabilites`,demandeRecevabilite, {
       reportProgress: true,

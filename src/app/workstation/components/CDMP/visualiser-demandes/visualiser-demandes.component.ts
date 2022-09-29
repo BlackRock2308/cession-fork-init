@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { filter } from 'rxjs/operators';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
@@ -28,13 +30,26 @@ export class VisualiserDemandesComponent implements OnInit {
   home: MenuItem
   ref: DynamicDialogRef;
   demandeNantissementInfos: any;
+  demande: any;
+  detail: any;
+  page: any;
 
-  constructor( private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService ,private demandeAdhesionService:DemandesAdhesionService) { }
+  constructor( 
+    private documentService: DocumentService, 
+    public dialogService: DialogService, 
+    public messageService: MessageService ,
+    private route:ActivatedRoute,
+    private demandeAdhesionService:DemandesAdhesionService) { }
 
   ngOnInit(): void {
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
+
+    //récupérer les infos de la page précédente
+    this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
+      this.demande=data;
+    })
 
     this.cols = [
       { field: 'nomDocument', header: 'Nom de Document' },
@@ -50,8 +65,15 @@ export class VisualiserDemandesComponent implements OnInit {
 
 
     //récupérer les informations du nantissement en cours de modification
-  this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
-  console.log(this.demandeNantissementInfos)
+    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
+    console.log(this.demandeNantissementInfos)
+
+    //détail à visualiser( page préceédente)
+    this.route.queryParams.subscribe(
+      params => {
+        this.page = params['page'];
+      }
+    )
   
   }
 

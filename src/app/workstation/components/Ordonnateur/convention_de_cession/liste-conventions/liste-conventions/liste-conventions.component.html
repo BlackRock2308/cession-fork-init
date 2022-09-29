@@ -16,17 +16,17 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter  type="text" field="ninea"></p-columnFilter>
+                            <p-columnFilter  type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
+                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="referenceBE"></p-columnFilter>
+                            <p-columnFilter type="text" field="referenceBE" placeholder="Reference du BE"></p-columnFilter>
                         </th>
                        
                         <th>
-                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
                        
                         
@@ -64,7 +64,7 @@
                         
                         <td>
                             <div class="flex">
-                                <i  class="pi pi-search ml-3" (click)="editerDemandeCession(demande)" ></i>
+                                <button pButton pRipple icon="pi pi-search"  class="p-button-rounded simpleButton" (click)="editerDemandeCession(demande)" ></button>
                             </div>
                         </td>
                     </tr>
