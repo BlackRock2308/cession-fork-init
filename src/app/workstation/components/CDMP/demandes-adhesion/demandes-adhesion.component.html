@@ -25,7 +25,7 @@
                             <p-columnFilter type="text" field="date_soumission" placeholder="Date demande"></p-columnFilter>
                         </th>
                         <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
+                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
                         </th>
                     </tr>
                     
@@ -60,8 +60,8 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-eye"
-                                 (click)="visualiserDemande(demande)" class="p-button-rounded p-button-text  button"  pInputText  pTooltip="Visualiser la demande" ></button>
-                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemande(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Analyser le dossier" ></button>
+                                 class="p-button-rounded  simpleButton"  pInputText  pTooltip="Visualiser la demande" (click)="visualiserDemande(demande)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemande(demande)" class="p-button-rounded simpleButton"  pInputText  pTooltip="Analyser le dossier" ></button>
                                 
                             </div>
                           
