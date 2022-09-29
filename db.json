@@ -52,7 +52,7 @@
       "adresse": "",
       "representantLegal": "",
       "cniRepresentant": "",
-      "dateImmatriculation": "",
+      "dateImmatriculation": "03/09/2021",
       "telephone": ""
     },
     {
@@ -328,7 +328,7 @@
         "typeDepense": "fff",
         "objetDepense": "ggg",
         "montantDepense": "hhh",
-        "date": "iii",
+        "date": "03/04/2019",
         "destination": "jjj"
       },
       "referenceBE": "20-294067",

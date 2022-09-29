@@ -360,7 +360,7 @@ export class DashboardDGComponent implements OnInit {
             data: {
                 demande: demande
             },
-            header: "Details Tableau",
+            header: "Détails Tableau",
             width: '70%',
             height: 'calc(75% - 100px)',
             baseZIndex: 10000

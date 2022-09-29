@@ -13,7 +13,7 @@ export class DemandesAdhesionService {
     id: 6,
     ninea: "567865467567",
     rccm: "6543568778",
-    date_soumission: "2021-02-12",
+    date_soumission: "12/02/2021",
     ninea_existant:"true",
     pme_active:"false"
   });
@@ -28,7 +28,7 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   ninea: "567865467567",
   refBE: "6543568778",
   date_soumission: new Date("2021/02/12") ,
-  date_cession: "2020-12-15" ,
+  date_cession: "12/12/2020" ,
 
   montant_rembourse : "2.000.000",
   solde_PME : "8.000.000",

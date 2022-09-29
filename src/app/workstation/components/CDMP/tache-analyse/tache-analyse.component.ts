@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/workstation/model/product';
-import { Document } from 'src/app/workstation/model/document';
+import { Document, Documents } from 'src/app/workstation/model/document';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { PME } from 'src/app/workstation/model/pme';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
+import { DialogService } from 'primeng/dynamicdialog';
+import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
-    styleUrls: ['./tache-analyse.component.scss']
+    styleUrls: ['./tache-analyse.component.scss'],
+    providers: [DialogService]
 })
 export class TacheAnalyseComponent implements OnInit {
 
-
     demandeNantissementInfos: any;
-
 
     editNinea: PME;
 
@@ -27,7 +28,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     demande: DemandeAdhesion;
     products: Product[];
-    documents: Document[];
+    documents: Documents[];
 
     document: Document;
     product: Product;
@@ -47,11 +48,11 @@ export class TacheAnalyseComponent implements OnInit {
     items: MenuItem[];
     home: MenuItem;
 
-    constructor(private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
+    constructor(public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
 
     ngOnInit() {
         //this.productService.getProducts().then(data => this.products = data);
-        this.documentService.getDocuments().subscribe(data => {
+        this.documentService.getDeocuments().subscribe(data => {
             this.documents = data
         });
 
@@ -67,14 +68,12 @@ export class TacheAnalyseComponent implements OnInit {
         this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
 
         this.items = [
-            { label: 'Liste de demandes à analyser',url:'/#/workstation/cdmp/analyse_risque' },
-            {label:'Analyse du risque'}
-          ];
-        
-          this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-        
-    }
+            { label: 'Liste de demandes à analyser', url: '/#/workstation/cdmp/analyse_risque' },
+            { label: 'Analyse du risque' }
+        ];
 
+        this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+    }
 
     hideDialog() {
         this.productDialog = false;
@@ -131,6 +130,21 @@ export class TacheAnalyseComponent implements OnInit {
         const targetDiv = document.getElementById("actif");
         const btn = document.getElementById("oui");
         targetDiv.style.display = "flex";
+
+    }
+
+    visualiserDocument(document: Documents) {
+        let nom = document.nomDocument;
+        console.log('nom: ' + document.nomDocument + 'path ' +document.path )
+        const ref = this.dialogService.open(VisualiserDocumentComponent, {
+            data: {
+                document: document
+            },
+            header: nom,
+            width: '70%',
+            height: 'calc(100% - 100px)',
+            baseZIndex: 10000
+        });
 
     }
 
