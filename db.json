@@ -515,7 +515,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Non Risquée",
+      "statut": "Non-Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
       "dateDemande":"2022-09-28T10:10:13.678Z",
@@ -548,7 +548,7 @@
         {
           "id": 4,
           "ninea": "567567",
-          "statut": "Signée par PME",
+          "statut": "Signée-par-pme",
           "raisonSocial": "INT Marketing",
           "referenceBE": "294067",
           "dateDemande": "2022-09-28T10:10:13.678Z",
@@ -559,7 +559,7 @@
         {
           "id": 5,
           "ninea": "123567",
-          "statut": "Signée par DG",
+          "statut": "Signée-par-dg",
           "raisonSocial": "E.COM4",
           "referenceBE": "294067",
           "dateDemande": "2022-09-28T10:10:13.678Z1",

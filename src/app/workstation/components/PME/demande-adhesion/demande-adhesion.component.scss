@@ -10,25 +10,25 @@
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-completée {
+    &.status-enregistrée {
         background: #C8E6C9;
         color: #256029;
     }
 
-    &.status-rejetée {
+    &.status-risquée {
         background: #FFCDD2;
         color: #C63737;
     }
 
-    &.status-recevable {
+    &.status-signée-par-pme {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-signée-par-dg {
         background: #FEEDAF;
         color: #8A5340;
     }
     &.status-non-risquée {
-        background: #FEEDAF;
-        color: #8A5340;
-    }
-    &.status-complément-requis {
         background: #c9ddfa;
         color: #354d8f;
     }
