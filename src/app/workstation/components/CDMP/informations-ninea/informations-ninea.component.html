@@ -54,9 +54,9 @@
            
         </ng-template>
         <ng-template pTemplate="footer">
-            <div class="row justify-content-end">
-                    <button  id="suivant" pButton pRipple label="Précedent" class="p-button-raised button col-sm-6 col-lg-4  col-xl-2" (click)="prevPage()"></button>
-                    <button  id="suivant" pButton pRipple label="Valider l'adhésion" icon="pi pi-check" class="success col-sm-6 col-lg-6 col-xl-4 ml-1" (click)="onSubmit()"></button>
+            <div class="col-12 float-right d-flex justify-content-end">
+                    <button  id="suivant" pButton pRipple label="Précedent" class="p-button-raised simpleButton" (click)="prevPage()"></button>
+                    <button  id="suivant" pButton pRipple label="Valider l'adhésion" icon="pi pi-check" class="successButton" (click)="onSubmit()"></button>
             </div>
         </ng-template>
     </p-card>
