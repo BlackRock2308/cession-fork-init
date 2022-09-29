@@ -18,7 +18,6 @@ import { AdhesionComponent } from './components/PME/adhesion/adhesion.component'
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
-import { MenuComponent } from './components/PME/menu/menu.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
@@ -67,7 +66,6 @@ const routes: Routes = [
 
   {path: 'pme/convention', component: DemandesCessionComponent},
   //Page d'accueil de la PME
-  {path: 'pme/accueil', component: MenuComponent},
   {path: 'pme/new_demande', component: NouvelleDemandeComponent},
   //Compléments documents
   {path:'pme/demandes_en_cours/complement_documents',component:ComplementDocumentsComponent},
