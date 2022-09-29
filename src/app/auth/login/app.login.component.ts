@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.login.component.scss']
 })
 export class AppLoginComponent {
+  
+  valCheck: string[] = ['remember'];
+
+  password!: string;
 
   username: string;
   motdepasse: string;

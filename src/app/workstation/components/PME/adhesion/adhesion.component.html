@@ -1,11 +1,11 @@
 <div class="layout-topbar-left">
     <div class="layout-topbar-logo-wrapper">
-    <a href="#" class="layout-topbar-logo">
-        <img src="../../../assets/layout/images/logo-cdmp.png" class="image" alt="mirage-layout" />
-        <span class="app-name"></span>
-      </a>
-    <!-- <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="..."> -->
-</div>
+        <a href="#" class="layout-topbar-logo">
+            <img src="../../../assets/layout/images/logo-cdmp.png" class="image" alt="mirage-layout" />
+            <span class="app-name"></span>
+        </a>
+        <!-- <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="..."> -->
+    </div>
 </div>
 <div class="card card-w-title">
     <h5>Demande d'adhésion</h5>
@@ -78,6 +78,8 @@
                                             (click)="handleRCCMClick()"></button>
                                     </div>
                                 </div>
+                                <input formControlName="rccmFile" class="hidden" type="file" id="upload-RCCMfile"
+                                    name="upload-RCCMfile" ngf-max-size="2MB" (change)="selectRCCMFile($event)">
                             </div>
                         </div>
                     </div>
