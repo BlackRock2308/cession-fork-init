@@ -1,6 +1,7 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
-<br><div class="grid">
+<br>
+<div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
             <div class="col-12 md:col-10   ">
@@ -12,13 +13,13 @@
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                currentPageReportTemplate=" {totalRecords} lignes"
-                [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                
+                currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts"
+                selectionMode="multiple" [rowHover]="true" dataKey="id">
+
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter  type="text" field="ninea"></p-columnFilter>
+                            <p-columnFilter type="text" field="ninea"></p-columnFilter>
                         </th>
                         <th>
                             <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
@@ -29,12 +30,14 @@
                         <th>
                             <p-columnFilter type="text" field="statut"></p-columnFilter>
                         </th>
-                       
+
                         <th>
                             <p-columnFilter type="text" field="refBE"></p-columnFilter>
                         </th>
                         <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button"
+                                style="background-color: #203359;" label="Rechercher"
+                                (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
                         </th>
                     </tr>
                     <tr>
@@ -45,8 +48,8 @@
                             </p-sortIcon>
                         </th>
                         <th pSortableColumn="rccm" style="color: #203359;">Nom du marché <p-sortIcon field="rccm">
-                        </p-sortIcon>
-                    </th>
+                            </p-sortIcon>
+                        </th>
                         <th pSortableColumn="datesoumission" style="color: #203359;">Statut <p-sortIcon
                                 field="datesoumission"></p-sortIcon>
                         </th>
@@ -55,7 +58,7 @@
                         </th>
                         <th style="color: #203359;">Action</th>
                     </tr>
-                   
+
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
@@ -64,28 +67,34 @@
                             {{demande.ninea}}
                         </td>
                         <td style="width:20%; min-width:8rem;">
-                            <span class="p-column-title">RCCM</span>
+                            <span class="p-column-title">Raison sociale</span>
                             {{demande.raisonSocial}}
                         </td>
                         <td style="width:20%; min-width:8rem;">
-                            <span class="p-column-title">RCCM</span>
+                            <span class="p-column-title">Nom marché</span>
                             {{demande.nomMarche}}
                         </td>
                         <td style="width:20%;">
-                            <span class="p-column-title">Date Soumission</span>
+                            <span class="p-column-title">Statut</span>
                             {{demande.statut}}
                         </td>
                         <td style="width:20%;">
-                            <span class="p-column-title">Date Soumission</span>
+                            <span class="p-column-title">Référence BE</span>
                             {{demande.refBE}}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' "
-                                [routerLink]="['../analyser']" (click)="setPmeInfo(demande)" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Analyser le dossier" ></button>
-                                <button pButton pRipple icon="pi pi-eye" *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' "
-                                [routerLink]="['../consulter_demande']" class="p-button-rounded p-button-text mr-2 button"  pInputText  pTooltip="Visualiser le dossier" ></button>
-                                
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    *ngIf="demande.statut === 'Completee' || demande.statut === 'Recevable' "
+                                    [routerLink]="['../analyser']" (click)="setPmeInfo(demande)"
+                                    class="p-button-rounded p-button-text mr-2 button" pInputText
+                                    pTooltip="Analyser le dossier"></button>
+                                <button pButton pRipple icon="pi pi-eye"
+                                    *ngIf="demande.statut === 'Risquee' || demande.statut === 'Non Risquee' || demande.statut === 'Complement Requis' "
+                                    [routerLink]="['../consulter_demande']"
+                                    class="p-button-rounded p-button-text mr-2 button" pInputText
+                                    pTooltip="Visualiser le dossier"></button>
+
                             </div>
                         </td>
                     </tr>

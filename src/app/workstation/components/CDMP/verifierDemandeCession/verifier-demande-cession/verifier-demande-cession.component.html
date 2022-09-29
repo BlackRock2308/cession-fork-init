@@ -1,4 +1,6 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 
 <br>
 <p-card>
@@ -6,50 +8,49 @@
         <div class="">
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 modalTitle  ">
-                    <h3 class="title">Traitement de la recevabilité de la demande de cession</h3>
+                    <h3 class="title">Recevabilité de la demande de cession</h3>
                 </div>
             </div>
-            <div class="p-fluid">
-                <div class="p-formgrid grid d-flex justify-content-center">
-                    <div class="field col-5 ">
-                        <div class="col-12 md:col-12  d-flex justify-content-start">
-                            <h4 style="color: black;">NINEA</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-start">
-                            <h4 class="label">{{demandeCession.ninea}}</h4>
-                        </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">NINEA</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.ninea}}</label>
+                        </span>
                     </div>
-                    <div class="field col-5">
-                        <div class="col-12 md:col-12  d-flex justify-content-start">
-                            <h4 style="color: black">Reference du BE</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-start">
-                            <h4 class="label">{{demandeCession.referenceBE}}</h4>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-            <div class="p-fluid">
-                <div class="p-formgrid grid d-flex justify-content-center">
-                    <div class="field col-5">
-                        <div class="col-12 md:col-12  d-flex justify-content-start">
-                            <h4 style="color: black;">RCCM</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-start">
-                            <h4 class="label">{{demandeCession.rccm}}</h4>
-                        </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Reference du BE</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.referenceBE}}</label>
+                        </span>
                     </div>
-                    <div class="field col-5">
-                        <div class="col-12 md:col-12  d-flex justify-content-start">
-                            <h4 style="color: black">Denomination</h4>
-                        </div>
-                        <div class="col-12 md:col-12 modalTitle d-flex justify-content-start">
-                            <h4 class="label">{{demandeCession.denomination}}</h4>
-                        </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">RCCM</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.rccm}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Denomination</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.denomination}}</label>
+                        </span>
                     </div>
                 </div>
             </div>
+            
+            
             <br>
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-5 modalTitle  ">
@@ -62,18 +63,24 @@
                 [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true"
                 [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="d-flex justify-content-end">
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
 
 
                 <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <p-columnFilter  type="text" field="typeDocument"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="nomDocument"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="dateSoumission"></p-columnFilter>
+                        </th>
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                        </th>
+                    </tr>
                     <tr>
 
                         <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon

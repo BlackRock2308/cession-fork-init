@@ -1,3 +1,6 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
@@ -12,7 +15,7 @@
                     <span class="h5texte">NINEA</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.ninea}}</label>
                         </span>
                     </div>
@@ -21,7 +24,7 @@
                     <span class="h5texte">Numero demande</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.numero_demande}}</label>
                         </span>
                     </div>
@@ -30,7 +33,7 @@
                     <span class="h5texte">ATD</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.ATD}}</label>
                         </span>
                     </div>
@@ -39,7 +42,7 @@
                     <span class="h5texte">Denomination</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.denomination}}</label>
                         </span>
                     </div>
@@ -50,7 +53,7 @@
                     <span class="h5texte">Nantissement</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.nantissement}}</label>
                         </span>
                     </div>
@@ -59,7 +62,7 @@
                     <span class="h5texte">Interdiction Bancaire</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.interdiction}}</label>
                         </span>
                     </div>
@@ -68,21 +71,21 @@
                     <span class="h5texte">RCCM</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText  [disabled]="true" />
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext">{{demandeNantissementInfos.rccm}}</label>
                         </span>
                     </div>
                 </div>
-                    <div class="col-12 md:col-3">
-                        <span class="h5texte">Reference du BE validé</span>
-                        <div class="p-inputgroup">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                                <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
-                            </span>
-                        </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Reference du BE validé</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
+                            <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
+                        </span>
                     </div>
-                
+                </div>
+
             </div>
             <br>
 
@@ -95,7 +98,7 @@
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
-                
+
 
                 <ng-template pTemplate="header">
                     <tr>
@@ -132,7 +135,7 @@
 
                         <td>
                             <div class="flex">
-                                <i class="pi pi-search pi-search" (click)="editProduct(product)"></i>
+                                <i class="pi pi-eye pi-eye" (click)="editProduct(product)"></i>
                             </div>
                         </td>
                     </tr>
@@ -154,12 +157,12 @@
         </div> -->
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
             <button id="valider" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-check"
-                class="p-button-raised p-button-danger  my-auto ml-2" routerLink="../"></button>
-                <button id="valider"  pButton pRipple label="Demander Complements" icon="pi pi-check"
-                class="p-button-raised p-button-info  my-auto ml-3" routerLink="../"></button>
+                class="p-button-raised p-button-danger  my-auto ml-1" routerLink="../"></button>
+            <button id="valider" pButton pRipple label="Demander Complements" icon="pi pi-check"
+                class="p-button-raised p-button-info  my-auto ml-1" routerLink="../"></button>
             <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
-                label="Valider" icon="pi pi-check" class="p-button-raised p-button-success my-auto " routerLink="../"
-                ></button>
+                label="Valider" icon="pi pi-check" class="p-button-raised p-button-success my-auto "
+                routerLink="../"></button>
 
         </div>
 
