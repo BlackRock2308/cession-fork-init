@@ -518,6 +518,9 @@
       "statut": "Non-Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
+      "type_marche": "Travaux",
+      "montant_total": "10.000.000",
+      "date_marche": "05/10/2022",
       "dateDemande":"2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
@@ -531,6 +534,9 @@
           "referenceBE": "294067",
           "dateDemande": "2022-09-28T10:10:13.678Z",
           "numeroDemande": "2022-0002",
+          "type_marche": "Travaux",
+      "montant_total": "32.000.000",
+      "date_marche": "05/10/2022",
           "rccm": "401548015",
           "nomMarche":"Reparation , entretien et installation"
         },
@@ -543,7 +549,11 @@
           "dateDemande": "2022-09-28T10:10:13.678Z",
           "numeroDemande": "2022-0003",
           "rccm": "401548780",
-          "nomMarche":"Service de decoration"
+          "nomMarche":"Service de decoration",
+          "montant_total": "4.000.000",
+          "date_marche": "07/05/2017",
+          "type_marche": "Services"
+
         },
         {
           "id": 4,
@@ -554,7 +564,10 @@
           "dateDemande": "2022-09-28T10:10:13.678Z",
           "numeroDemande": "2022-0004",
           "rccm": "001548015",
-          "nomMarche":"Service de gardiennage"
+          "nomMarche":"Transport Materiels",
+          "type_marche": "Fournitures",
+          "montant_total": "7.000.000",
+          "date_marche": "01/04/2002"
         },
         {
           "id": 5,
@@ -565,7 +578,10 @@
           "dateDemande": "2022-09-28T10:10:13.678Z1",
           "numeroDemande": "2022-0005",
           "rccm": "001548015",
-          "nomMarche":"Transport"
+          "nomMarche":"Transport",
+          "type_marche": "Fournitures",
+          "montant_total": "15.000.000",
+          "date_marche": "01/04/2002"
         }
   ],
   "recevabilites":[

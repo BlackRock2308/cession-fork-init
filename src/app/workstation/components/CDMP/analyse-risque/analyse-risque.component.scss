@@ -12,7 +12,37 @@ h1{
    
 }
 
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
 
+    &.status-enregistrée {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-risquée {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+
+    &.status-signée-par-pme {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-signée-par-dg {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-non-risquée {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+}
 
 //cacher les bouton de filtre
 ::ng-deep button.p-column-filter-menu-button {

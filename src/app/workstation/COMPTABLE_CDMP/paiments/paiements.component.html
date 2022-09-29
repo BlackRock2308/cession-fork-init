@@ -87,9 +87,9 @@
                             <span class="p-column-title">Montant Reçu</span>
                             {{paiement.montantRecu}}
                         </td>
-                        <td style="width:16%;">
+                        <td style="width:18%;">
                             <span class="p-column-title">Statut</span>
-                            {{paiement.statut}}
+                            <span [class]="'product-badge status-' + (paiement.statut ? paiement.statut.toLowerCase() : '')">{{paiement.statut}}</span>
                         </td>
                         <td>
                             <div class="flex">
@@ -98,10 +98,10 @@
                                     (click)="visualiserPaiement(paiement)"></button> -->
                                 <button pButton pRipple icon="pi pi-money-bill"
                                     class="p-button-rounded p-button-text mr-2 button" pTooltip="Paiment de la PME"
-                                    *ngIf="paiement.statut === 'En attente de paiement' || paiement.statut === 'PME partiellement payee'" (click)="visualiserPaiementListPME(paiement)"></button>
+                                    *ngIf="paiement.statut === 'En attente de paiement' || paiement.statut === 'PME-partiellement-payée'" (click)="visualiserPaiementListPME(paiement)"></button>
                                 <button pButton pRipple icon="pi pi-id-card"
                                     class="p-button-rounded p-button-text mr-2 button" pTooltip="Paiment de la CDMP"
-                                    *ngIf="paiement.statut === 'PME totalement payee' || paiement.statut === 'CDMP partiellement payee'" (click)="visualiserPaiementListCDMP(paiement)"></button>
+                                    *ngIf="paiement.statut === 'PME-totalement-payée' || paiement.statut === 'CDMP partiellement payee'" (click)="visualiserPaiementListCDMP(paiement)"></button>
                             </div>
                         </td>
                     </tr>
