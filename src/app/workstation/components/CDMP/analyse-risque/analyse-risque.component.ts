@@ -95,7 +95,7 @@ export class AnalyseRisqueComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+    this.demandesAdhesionService.getDemandesCession().subscribe(data => {
       this.demandes = data
       console.log(this.demandes)
     });

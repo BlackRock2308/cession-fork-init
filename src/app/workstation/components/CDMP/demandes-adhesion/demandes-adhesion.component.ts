@@ -5,6 +5,8 @@ import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_ad
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 
 @Component({
   selector: 'app-demandes-adhesion',
@@ -36,14 +38,15 @@ export class DemandesAdhesionComponent implements OnInit {
   nineas:any;
 
   constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private router: Router,
+    private adhesionDemandesService:AdhesionService
   ) { }
 
   ngOnInit() {
     //this.productDialog = this.communicationService.getDialogObs();
     //this.productService.getProducts().then(data => this.products = data);
-    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+    this.adhesionDemandesService.getAdhesionDemandes().subscribe(data => {
       this.demandes = data
-      console.log(this.demandes[0].date_soumission)
+      console.log(this.demandes[0].date_soumission.toString().split("T")[0])
     });
 
     this.cols = [
@@ -85,11 +88,11 @@ export class DemandesAdhesionComponent implements OnInit {
 
   visualiserDemande(demande: DemandeAdhesion) {
     this.demande = { ...demande };
-    this.demandeDialog = true;
+    //this.demandeDialog = true;
     console.log(demande)
     this.demandesAdhesionService.setDemandeObs(demande);
-    this.router.navigate(['workstation/cdmp/visualiser-demandes']);
-
+    this.router.navigate(['workstation/cdmp/visualiser-demandes'], {  queryParams: {  page: 'adhesion' } });
+    
 
   }
 

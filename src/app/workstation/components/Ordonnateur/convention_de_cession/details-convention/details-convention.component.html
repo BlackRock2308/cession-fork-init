@@ -5,8 +5,8 @@
     <div class="col-12">
         <div class="">
             <div class="d-flex justify-content-center col-12">
-                <div class="col-12 md:col-10 modalTitle  ">
-                    <h3 class="title">Convention de cession</h3>
+                <div class="col-12 md:col-10 tabTitle  ">
+                    <h3 class="titleTab">Convention de cession</h3>
                 </div>
             </div>
             <br>
@@ -25,22 +25,10 @@
                 </div>
             </div>
             <br>
-            <div class="d-flex justify-content-center col-12">
-                <div class="col-12 md:col-5 modalTitle  ">
-                    <h3 class="labelTitle">Liste des documents</h3>
-                </div>
-            </div>
             <br>
             <br>
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="d-flex justify-content-end">
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher..." />
-                        </span>
-                    </div>
-                </ng-template>
+                
                 
 
                 <ng-template pTemplate="header">
@@ -72,7 +60,7 @@
                         
                         <td>
                             <div class="flex">
-                                <i class="pi pi-search pi-search"  (click)="visualiserDocument(document)" ></i>
+                                <button icon="pi pi-search" class="p-button-rounded simpleButton" pRipple pButton (click)="visualiserDocument(document)" ></button>
                             </div>
                         </td>
                     </tr>
@@ -87,13 +75,13 @@
     </div>
     
 <div class="float-end" *ngIf="demandeCession.statut=='Convention enregistrée'||demandeCession.statut=='Substitution effectuée';else fermerBoutton">
-    <button pButton pRipple icon="pi pi-check" class="p-button-raised p-button-success" label="Accepter" (click)="onSubmit('Convention acceptée')" routerLink="../"></button>
-    <button pButton pRipple icon="pi pi-times" class="p-button-raised ml-2  p-button-danger" label="Rejeter" (click)="onSubmit('Convention rejetée')" routerLink="../"></button>
+    <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter" (click)="onSubmit('Convention acceptée')" routerLink="../"></button>
+    <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter" (click)="onSubmit('Convention rejetée')" routerLink="../"></button>
 </div>
 
 <ng-template #fermerBoutton  class="float-end ">
     <div class="float-end ">
-        <button pButton pRipple icon="pi pi-times" class="p-button-raised ml-2  p-button-danger" label="Fermer" routerLink="../"></button>
+        <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Fermer" routerLink="../"></button>
     </div>
 </ng-template>
 <br>

@@ -56,9 +56,9 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   }
 
   
-  getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
+  /*getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion`);
-  }
+  }*/
 
   //get l'ensemble des demandes de cession
 

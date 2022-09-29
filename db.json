@@ -1,22 +1,312 @@
 {
+  "adhesion_demandes": [
+    {
+      "id": 10,
+      "ninea": "45800124",
+      "rccm": "458730015",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 11,
+      "ninea": "45892100",
+      "rccm": "45895200",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 12,
+      "ninea": "12805459",
+      "rccm": "48923584",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 13,
+      "ninea": "4592005",
+      "rccm": "64856892",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 14,
+      "ninea": "45892305",
+      "rccm": "458320",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 15,
+      "ninea": "45860021",
+      "rccm": "12578201",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "ninea": 125485620,
+      "rccm": 124412888,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 16
+    }
+  ],
   "pmes": [
     {
       "id": 1,
-      "ninea": "567865467567",
-      "rccm": "6543568778",
-      "raisonSocial": "Modelsis"
+      "ninea": "56786067",
+      "rccm": "43568778",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
     },
     {
       "id": 2,
-      "ninea": "567865467567",
-      "rccm": "6543568778",
-      "raisonSocial": "Test1"
+      "ninea": "45822015",
+      "rccm": "021588656",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
     },
     {
       "id": 3,
-      "ninea": "567865467567",
-      "rccm": "6543568778",
-      "raisonSocial": "Test2"
+      "ninea": "00567567",
+      "rccm": "45785552",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
+    },
+    {
+      "id": 4,
+      "ninea": "45892205",
+      "rccm": "45822058",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 5,
+      "ninea": "45922805",
+      "rccm": "1289500",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
+    },
+    {
+      "id": 6,
+      "ninea": "54615155",
+      "rccm": "45588205",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {}
+      
+    },
+    {
+      "id": 7,
+      "ninea": "12589200",
+      "rccm": "45820028",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "denomination": "2",
+        "formuleJuridique": "",
+        "centreFiscal": "21",
+        "adresse": "2",
+        "representantLegal": "12",
+        "cniRepresentant": "13",
+        "dateImmatriculation": "321",
+        "telephone": "12",
+   
+        "pmeActive": true,
+        "nineaValide": true
+      
+    },
+    {
+      "id": 8,
+      "ninea": "12589332",
+      "rccm": "01258520",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
+    },
+    {
+      "id": 9,
+      "ninea": "00120245",
+      "rccm": "45890012",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
+    },
+    {
+      "id": 10,
+      "ninea": "45800124",
+      "rccm": "458730015",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 11,
+      "ninea": "45892100",
+      "rccm": "45895200",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 12,
+      "ninea": "12805459",
+      "rccm": "48923584",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 13,
+      "ninea": "4592005",
+      "rccm": "64856892",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 14,
+      "ninea": "45892305",
+      "rccm": "458320",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "id": 15,
+      "ninea": "45860021",
+      "rccm": "12578201",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z"
+    },
+    {
+      "ninea": 125485620,
+      "rccm": 124412888,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 16
+    },
+    {
+      "ninea": 45488555,
+      "rccm": 2547520,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 17,
+      "nineaValide": false
+    },
+    {
+      "ninea": 12548754,
+      "rccm": 21558221,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {
+        "lastModified": 1664185083277,
+        "lastModifiedDate": "Mon Sep 26 2022 09:38:03 GMT+0000 (heure d’été des Açores)",
+        "name": "NewCharteGraphiqueCDMP.pdf",
+        "size": 654168,
+        "type": "application/pdf",
+        "webkitRelativePath": ""
+      },
+      "rccmFile": {
+        "lastModified": 1664185083277,
+        "lastModifiedDate": "Mon Sep 26 2022 09:38:03 GMT+0000 (heure d’été des Açores)",
+        "name": "NewCharteGraphiqueCDMP.pdf",
+        "size": 654168,
+        "type": "application/pdf",
+        "webkitRelativePath": ""
+      },
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 18,
+      "nineaValide": false
+    },
+    {
+      "ninea": 7854201,
+      "rccm": 5125896,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 19,
+      "nineaValide": false
+    },
+    {
+      "ninea": 12252225,
+      "rccm": 4545212,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 20
+    },
+    {
+      "ninea": 12500022,
+      "rccm": 21305525,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 21,
+      "nineaValide": false
+    },
+    {
+      "ninea": 12558555,
+      "rccm": 25458825,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:06:40.330Z",
+      "id": 22
+    },
+    {
+      "ninea": 895320000,
+      "rccm": 125458200,
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "id": 23
     }
   ],
   "demandes_adhesion": [
@@ -25,15 +315,15 @@
       "ninea": "567567",
       "statut": "Completée",
       "rccm": "6543568778",
-      "denomination": "",
+      "denomination": "Modelsis",
       "raisonSocial": "Modelsis SARL",
       "nomMarche": "Service de gardiennage",
       "refBE": "294067",
-      "date_soumission": "12/12/2020",
+      "date_soumission": "2022-09-28T10:10:13.678Z",
       "ninea_file": "",
       "statut_convention": "Convention enregistrée",
       "rccm_file": "",
-      "nineaValide": false,
+      "nineaValide": true,
       "pmeActive": true,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
@@ -47,13 +337,16 @@
       "decode": "5%",
       "montant_debourse": "5.000.000",
       "Solde SICA": "3.000.000",
-      "formuleJuridique": "",
-      "centreFiscal": "",
-      "adresse": "",
-      "representantLegal": "",
-      "cniRepresentant": "",
-      "dateImmatriculation": "03/09/2021",
-      "telephone": ""
+      "formuleJuridique": "SARL",
+      "centreFiscal": "Dakar",
+      "adresse": "Mermoz",
+      "representantLegal": "Sahaba",
+      "cniRepresentant": "1619199901436",
+      "dateImmatriculation": "10-12-2022",
+      "telephone": "333158568",
+      "email": "ndiayeoumarsahaba@ept.sn",
+      "nineaFile": {},
+      "rccmFile": {}
     },
     {
       "id": 2,
@@ -225,10 +518,66 @@
       "statut": "Non Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
-      "dateDemande": "21/03/2021",
+      "dateDemande":"2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
-      "denomination": "Modelsis"
+      "nomMarche":"Fournitures de lots de materiels"
+        },
+        {
+          "id": 2,
+          "ninea": "567567",
+          "statut": "Enregistrée",
+          "raisonSocial": "ENEDIS",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z",
+          "numeroDemande": "2022-0002",
+          "rccm": "401548015",
+          "nomMarche":"Reparation , entretien et installation"
+        },
+        {
+          "id": 3,
+          "ninea": "678567",
+          "statut": "Risquée",
+          "raisonSocial": "CAMAIEU INTERNATIONAL",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z",
+          "numeroDemande": "2022-0003",
+          "rccm": "401548780",
+          "nomMarche":"Service de decoration"
+        },
+        {
+          "id": 4,
+          "ninea": "567567",
+          "statut": "Signée par PME",
+          "raisonSocial": "INT Marketing",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z",
+          "numeroDemande": "2022-0004",
+          "rccm": "001548015",
+          "nomMarche":"Service de gardiennage"
+        },
+        {
+          "id": 5,
+          "ninea": "123567",
+          "statut": "Signée par DG",
+          "raisonSocial": "E.COM4",
+          "referenceBE": "294067",
+          "dateDemande": "2022-09-28T10:10:13.678Z1",
+          "numeroDemande": "2022-0005",
+          "rccm": "001548015",
+          "nomMarche":"Transport"
+        }
+  ],
+  "recevabilites":[
+    {
+      "id": 1,
+  "ninea": "567567",
+  "statut": "Non Risquée",
+  "raisonSocial": "Modelsis SARL",
+  "referenceBE": "20-294067",
+  "dateDemande":"2022-09-28T10:10:13.678Z",
+  "numeroDemande": "2022-0001",
+  "rccm": "401568778"
     },
     {
       "id": 2,
@@ -236,104 +585,39 @@
       "statut": "Enregistrée",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
-      "rccm": "00759483",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0002"
+      "dateDemande": "2022-09-28T10:10:13.678Z",
+      "numeroDemande": "2022-0002",
+      "rccm": "401548015"
     },
     {
       "id": 3,
       "ninea": "678567",
-      "statut": "Générée",
+      "statut": "Risquée",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "294067",
-      "rccm": "23455555",
-      "dateDemande": "15/07/2021",
-      "numeroDemande": "2022-0003"
+      "dateDemande": "2022-09-28T10:10:13.678Z",
+      "numeroDemande": "2022-0003",
+      "rccm": "401548780"
     },
     {
-      "id": 1,
+      "id": 4,
       "ninea": "567567",
       "statut": "Signée par PME",
       "raisonSocial": "INT Marketing",
       "referenceBE": "294067",
-      "rccm": "99991233",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0004"
+      "dateDemande": "2022-09-28T10:10:13.678Z",
+      "numeroDemande": "2022-0004",
+      "rccm": "001548015"
     },
     {
-      "id": 1,
+      "id": 5,
       "ninea": "123567",
       "statut": "Signée par DG",
       "raisonSocial": "E.COM4",
       "referenceBE": "294067",
-      "rccm": "2111876",
-      "dateDemande": "05/09/2021",
-      "numeroDemande": "2022-0005"
-    },
-    {
-      "id": 1,
-      "ninea": "567567",
-      "statut": "Rejetée par PME",
-      "raisonSocial": "SCI SENEGAL",
-      "referenceBE": "294067",
-      "rccm": "65433211",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0006"
-    },
-    {
-      "id": 1,
-      "ninea": "567567",
-      "statut": "Acceptée",
-      "raisonSocial": "IMME",
-      "referenceBE": "294067",
-      "rccm": "77789605",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0007"
-    }
-  ],
-  "recevabilites": [
-    {
-      "id": 1,
-      "demande_cession_id": 1,
-      "identification_budgetaire": true,
-      "atd": true,
-      "nantissement": true,
-      "interdiction_bancaire": false,
-      "observation": "",
-      "nature_prestation": "",
-      "nature_depense": "",
-      "imputation": "",
-      "mode_reglement": "",
-      "beneficiaire": "",
-      "identification_comptable": "",
-      "type_depense": "",
-      "objet_depense": "",
-      "montant_depense": "",
-      "date": "",
-      "destination": ""
-    },
-    {
-      "identificationBudgetaire": true,
-      "atd": true,
-      "nantissement": true,
-      "interdictionBancaire": false,
-      "observation": "test123",
-      "infoBE": {
-        "naturePrestation": "aaa",
-        "natureDepense": "",
-        "imputation": "bbb",
-        "modeReglement": "ccc",
-        "beneficiaire": "ddd",
-        "identificationComptable": "eee",
-        "typeDepense": "fff",
-        "objetDepense": "ggg",
-        "montantDepense": "hhh",
-        "date": "03/04/2019",
-        "destination": "jjj"
-      },
-      "referenceBE": "20-294067",
-      "demandeCessionId": 1,
-      "id": 2
+      "dateDemande": "2022-09-28T10:10:13.678Z1",
+      "numeroDemande": "2022-0005",
+      "rccm": "001548015"
     }
   ],
   "demandes": [

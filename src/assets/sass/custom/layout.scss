@@ -15,15 +15,16 @@
   }
 
 %button{
-    margin: 5px;
+    margin: 2px;
     display: inline-block;
     white-space: nowrap;
+    color: white;
 }
 
 .simpleButton{
     @extend %button;
-    background-color:$autre-clair-clair;
-    border-color:$autre-clair-clair;
+    background-color:$autre-clair;
+    border-color:$autre-clair;
 }
 
 .simpleButton:hover{
@@ -33,8 +34,8 @@
 }
 .simpleBoldButton{
     @extend %button;
-    background-color:$autre-clair;
-    border-color:$autre-clair;
+    background-color:$autre-fonce;
+    border-color:$autre-fonce;
 }
 
 .simpleBoldButton:hover{
@@ -67,3 +68,21 @@
     border-color: $success;
 }
 
+//Page title
+.tabTitle{
+    justify-content: center;
+    height: 40px;
+    border-radius: 2%;
+    display: flex;
+    width: fit-content;
+
+    .titleTab{
+        color:#203359;
+        font-weight: bold;
+    }
+}
+
+//Table custom
+
+    
+    

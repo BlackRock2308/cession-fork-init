@@ -19,19 +19,19 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter  type="text" field="ninea"></p-columnFilter>
+                            <p-columnFilter  type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
+                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="refBE"></p-columnFilter>
+                            <p-columnFilter type="text" field="refBE" placeholder="Reference du BE"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="refDemande"></p-columnFilter>
+                            <p-columnFilter type="text" field="refDemande" placeholder="Reference demande"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
                        
                         
@@ -82,20 +82,20 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-search"
-                                    class="p-button-rounded p-button-text mr-2 button"
+                                    class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
                                     *ngIf="document.statut === 'Convention générée' || document.statut === 'Convention enregistrée' || document.statut === 'Convention signée par la PME' || document.statut === 'Convention signée par la DG' || document.statut === 'Convention rejetée' "
                                     (click)="visualiserDocument(document)"></button>
                                 <button pButton pRipple icon="pi pi-upload"
-                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Charger un document"
+                                    class="p-button-rounded simpleButton" pTooltip="Charger un document"
                                     *ngIf="((document.statut === 'Convention signée par la DG') && (profil === 'comptable')) "
                                     (click)="ChargerConvention(convention)"></button>
                                 <button pButton pRipple icon="pi pi-file-excel"
-                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Editer la convention"
+                                    class="p-button-rounded simpleButton" pTooltip="Editer la convention"
                                     *ngIf="((document.statut === 'Convention rejetée') && (profil === 'comptable')) "
                                     (click)="EditerConvention(convention)"></button>
                                 <button pButton pRipple icon="pi pi-file"
-                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Editer la convention"
+                                    class="p-button-rounded simpleButton" pTooltip="Editer la convention"
                                     *ngIf="document.statut === 'Non Risquee' "
                                     (click)="EditConvention(convention)"></button>
                             </div>
