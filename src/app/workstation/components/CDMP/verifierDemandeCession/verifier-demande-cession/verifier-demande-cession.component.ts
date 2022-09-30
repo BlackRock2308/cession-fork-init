@@ -73,7 +73,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     });
     this.items = [
       { label: 'Liste des demandes de cession', url: '/#/workstation/cdmp/recevabilite' },
-      { label: 'Traitement recevabilité' }
+      { label: 'Recevabilité' }
     ];
 
     this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
