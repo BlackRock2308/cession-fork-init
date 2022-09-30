@@ -1,24 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "id": 11,
-      "ninea": "45892100",
-      "rccm": "45895200",
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
-    },
-    {
-      "id": 12,
-      "ninea": "12805459",
-      "rccm": "48923584",
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
-    },
-    {
       "id": 13,
       "ninea": "4592005",
       "rccm": "64856892",
@@ -53,6 +35,15 @@
       "rccmFile": {},
       "date_soumission": "2022-09-28T10:10:13.678Z",
       "id": 16
+    },
+    {
+      "ninea": 567876546,
+      "rccm": 876546756,
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-30T15:17:25.483Z",
+      "id": 17
     }
   ],
   "pmes": [
@@ -169,7 +160,17 @@
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "denomination": "",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "representantLegal": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": "",
+      "pmeActive": true,
+      "nineaValide": true
     },
     {
       "id": 12,
@@ -178,7 +179,8 @@
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
     },
     {
       "id": 13,
@@ -296,6 +298,15 @@
       "rccmFile": {},
       "date_soumission": "2022-09-28T10:10:13.678Z",
       "id": 23
+    },
+    {
+      "ninea": 567876546,
+      "rccm": 876546756,
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-09-30T15:17:25.483Z",
+      "id": 24
     }
   ],
   "demandes_adhesion": [
@@ -375,7 +386,6 @@
       "dateImmatriculation": "10/03/2008",
       "telephone": "33 320 35 89",
       "solde_sica": "7.000.000"
-
     },
     {
       "id": 3,
@@ -451,7 +461,6 @@
       "montant_total": "10.000.000",
       "date_marche": "01/02/2008",
       "date_cession": "24/11/2022",
-
       "nomMarche": "Fournitures de lots de materiels",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
@@ -478,7 +487,6 @@
       "montant_total": "32.000.000",
       "date_marche": "05/10/2022",
       "date_cession": "03/02/2022",
-
       "montant_rembourse": "12.000.000",
       "solde_PME": "7.000.000",
       "decode": "5%",
@@ -504,7 +512,6 @@
       "nomMarche": "Transport",
       "date_marche": "05/10/2022",
       "date_cession": "15/12/2006",
-
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -527,10 +534,10 @@
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels",
-      "ATD" :"Aucun ATD",
-      "denomination" : "Modelsis SARL",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "Modelsis SARL",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Aucune interdiction bancaire"
     },
     {
       "id": 2,
@@ -545,10 +552,10 @@
       "date_marche": "05/10/2022",
       "rccm": "401548015",
       "nomMarche": "Reparation , entretien et installation",
-      "ATD" :"ATD en cours",
-      "denomination" : "ENEDIS",
-      "nantissement" :"Creance non nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "ATD en cours",
+      "denomination": "ENEDIS",
+      "nantissement": "Creance non nanti",
+      "interdiction": "Aucune interdiction bancaire"
     },
     {
       "id": 3,
@@ -563,10 +570,10 @@
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
       "type_marche": "Services",
-      "ATD" :"Aucun ATD",
-      "denomination" : "CAMAIEU",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :" Interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "CAMAIEU",
+      "nantissement": "Creance  nanti",
+      "interdiction": " Interdiction bancaire"
     },
     {
       "id": 4,
@@ -581,10 +588,10 @@
       "type_marche": "Fournitures",
       "montant_total": "7.000.000",
       "date_marche": "01/04/2002",
-      "ATD" :"Aucun ATD",
-      "denomination" : "INT Marketing",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "INT Marketing",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Aucune interdiction bancaire"
     },
     {
       "id": 5,
@@ -599,20 +606,20 @@
       "type_marche": "Fournitures",
       "montant_total": "15.000.000",
       "date_marche": "01/04/2002",
-      "ATD" :"Aucun ATD",
-      "denomination" : "E.COM4",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "E.COM4",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Aucune interdiction bancaire"
     }
   ],
-  "recevabilites":  [
+  "recevabilites": [
     {
       "id": 1,
       "ninea": "567567",
       "statut": "soumis",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
-      "dateDemande":  "2022-09-28T10:10:13.678Z",
+      "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels"
@@ -667,7 +674,7 @@
       "statut": "soumis",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
-      "dateDemande":  "2022-09-28T10:10:13.678Z",
+      "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels"
@@ -722,7 +729,7 @@
       "statut": "soumis",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
-      "dateDemande":  "2022-09-28T10:10:13.678Z",
+      "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels"
@@ -777,7 +784,7 @@
       "statut": "soumis",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
-      "dateDemande":  "2022-09-28T10:10:13.678Z",
+      "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels"
@@ -827,7 +834,7 @@
       "nomMarche": "Transport"
     }
   ],
-  "analyse_risque":  [
+  "analyse_risque": [
     {
       "id": 1,
       "ninea": "567567",
@@ -841,10 +848,10 @@
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels",
-      "ATD" :"Aucun ATD",
-      "denomination" : "Modelsis SARL",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "Modelsis SARL",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Aucune interdiction bancaire"
     },
     {
       "id": 2,
@@ -859,10 +866,10 @@
       "date_marche": "05/10/2022",
       "rccm": "401548015",
       "nomMarche": "Reparation , entretien et installation",
-      "ATD" :"ATD en cours",
-      "denomination" : "ENEDIS",
-      "nantissement" :"Creance non nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "ATD en cours",
+      "denomination": "ENEDIS",
+      "nantissement": "Creance non nanti",
+      "interdiction": "Aucune interdiction bancaire"
     },
     {
       "id": 3,
@@ -877,10 +884,10 @@
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
       "type_marche": "Services",
-      "ATD" :"Aucun ATD",
-      "denomination" : "CAMAIEU",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :" Interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "CAMAIEU",
+      "nantissement": "Creance  nanti",
+      "interdiction": " Interdiction bancaire"
     },
     {
       "id": 4,
@@ -895,10 +902,10 @@
       "type_marche": "Fournitures",
       "montant_total": "7.000.000",
       "date_marche": "01/04/2002",
-      "ATD" :"Aucun ATD",
-      "denomination" : "INT Marketing",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "INT Marketing",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Aucune interdiction bancaire"
     },
     {
       "id": 5,
@@ -913,10 +920,10 @@
       "type_marche": "Fournitures",
       "montant_total": "15.000.000",
       "date_marche": "01/04/2002",
-      "ATD" :"Aucun ATD",
-      "denomination" : "E.COM4",
-      "nantissement" :"Creance  nanti",
-      "interdiction" :"Aucune interdiction bancaire"
+      "ATD": "Aucun ATD",
+      "denomination": "E.COM4",
+      "nantissement": "Creance  nanti",
+      "interdiction": "Aucune interdiction bancaire"
     }
   ],
   "demandes": [
