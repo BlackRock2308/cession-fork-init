@@ -20,6 +20,7 @@ import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/dema
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
+import { ProfilComponent } from './components/profil/profil.component';
 import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
@@ -72,6 +73,8 @@ const routes: Routes = [
   //Paiements et Recouvrement de la PME
   {path:'pme/paiements',component:PaiementsComponent},
   {path:'pme/list-paiements',component:ListPaiementsComponent},
+
+  {path:'profil',component:ProfilComponent},
 
   //ordonnateur
 

@@ -1,0 +1,44 @@
+<div class="container-fluid ">
+    <div style="display: block;">
+        <div class="modal-body">
+            <div class="row">
+            <div class="col-2"></div>
+            <div class="card p-fluid col-8" >
+                <h1 class="infostitre">Informations personnelles</h1>
+                <div class="field grid">
+                    <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Nom:</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="nom" type="text" pTooltip="Nom" placeholder="{{nom}}"
+                            [disabled]="true" />
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="prenom" class="col-12 mb-2 md:col-4 md:mb-0">Prénom:</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="prenom" type="text" pTooltip="Prénom" placeholder="{{prenom}}"
+                            [disabled]="true" />
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="email" class="col-12 mb-2 md:col-4 md:mb-0">Email:</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="email" type="text" pTooltip="Email" placeholder="{{email}}"
+                            [disabled]="true" />
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="profile" class="col-12 mb-2 md:col-4 md:mb-0">Profil:</label>
+                    <div class="col-12 md:col-8">
+                        <input pInputText id="profil" type="text" pTooltip="Profil" placeholder="{{poste.toUpperCase()}}"
+                            [disabled]="true" />
+                    </div>
+                </div>
+            </div></div>
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

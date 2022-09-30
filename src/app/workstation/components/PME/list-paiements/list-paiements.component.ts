@@ -41,7 +41,6 @@ export class ListPaiementsComponent implements OnInit {
   totalPages: number;
   afterpageLoadedCb = 0;
   pageVariable = 1;
-  ref: DynamicDialogRef;
   home: MenuItem;
   
   constructor(private paiementsService: PaiementsService, public dialogService: DialogService) { }
