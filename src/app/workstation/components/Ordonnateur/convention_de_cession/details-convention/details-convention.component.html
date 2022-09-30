@@ -15,7 +15,7 @@
             <div class="d-flex flex-start w-100">
                 
                 <div class="form-outline w-100">
-                    <textarea *ngIf="demandeCession.statut=='Convention enregistrée'||demandeCession.statut=='Substitution effectuée';else elseBlock" class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
+                    <textarea *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else elseBlock" class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
                     style="background: #fff;"></textarea>
 
                     <ng-template #elseBlock>
@@ -74,9 +74,9 @@
         
     </div>
     
-<div class="float-end" *ngIf="demandeCession.statut=='Convention enregistrée'||demandeCession.statut=='Substitution effectuée';else fermerBoutton">
-    <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter" (click)="onSubmit('Convention acceptée')" routerLink="../"></button>
-    <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter" (click)="onSubmit('Convention rejetée')" routerLink="../"></button>
+<div class="float-end" *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else fermerBoutton">
+    <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter" (click)="onSubmit('Convention-acceptée')" routerLink="../"></button>
+    <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter" (click)="onSubmit('Convention-rejetée')" routerLink="../"></button>
 </div>
 
 <ng-template #fermerBoutton  class="float-end ">
