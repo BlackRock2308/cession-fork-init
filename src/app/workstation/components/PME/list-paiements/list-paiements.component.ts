@@ -41,7 +41,6 @@ export class ListPaiementsComponent implements OnInit {
   totalPages: number;
   afterpageLoadedCb = 0;
   pageVariable = 1;
-  ref: DynamicDialogRef;
   home: MenuItem;
   
   constructor(private paiementsService: PaiementsService, public dialogService: DialogService) { }
@@ -73,8 +72,8 @@ export class ListPaiementsComponent implements OnInit {
             paiement: paiement
         },
         header: "Détails Tableau",
-        width: '70%',
-        height: 'calc(50% - 100px)',
+        width: '50%',
+        height: 'calc(70% - 100px)',
         baseZIndex: 10000
     });
 

@@ -1,70 +1,82 @@
 <div class="grid">
-
     <div class="col-12">
-     
-            
-                <div class="d-flex justify-content-center col-12">
-                    <div class="col-12 md:col-6 modalTitle d-flex justify-content-center">
-                        <h5 class="label">Edition de la convention</h5>
+        <div class="d-flex justify-content-center col-12">
+            <div class="col-12 md:col-6 modalTitle d-flex justify-content-center">
+                <h5 class="label">Edition de la convention</h5>
+            </div>
+        </div>
+        <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
+            <div class="p-fluid my-4 mx-6 px-0">
+                <div class="p-formgrid grid">
+
+                    <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres'">
+                        <div class="col-12 md:col-12  d-flex justify-content-center ">
+                            <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
+                        </div>
+                        <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
+                            pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
+                    </div>
+                    <div class="field col-3 ">
+                        <div class="col-12 md:col-12  d-flex justify-content-center ">
+                            <h5 style="font-weight: bold;color: #203359;">Document</h5>
+                        </div>
+                        <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
+                            placeholder="Choisissez un ficher">
+                        <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
+                            ngf-max-size="2MB" (change)="selectFile($event)">
+                    </div>
+                    <div class="field col-2 mt-auto">
+                        <button style="background-color: #203359;" type="button" pButton pRipple icon="pi pi-upload"
+                            class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()"></button>
                     </div>
                 </div>
-                <form  [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
-                    <div class="p-fluid my-4 mx-6 px-0">
-                        <div class="p-formgrid grid">
-                           
-                            <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres'">
-                                <div class="col-12 md:col-12  d-flex justify-content-center ">
-                                    <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
+            </div>
+            <div class="card">
+                <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                    [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                    currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts"
+                    selectionMode="multiple" [rowHover]="true" dataKey="id">
+                    <ng-template pTemplate="header">
+                        <tr>
+
+                            <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
+                                    field="ninea"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nomDocument" style="color: #203359;">Nom document<p-sortIcon
+                                    field="rccm"></p-sortIcon>
+                            </th>
+                            <th style="color: #203359;">Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-document>
+                        <tr>
+                            <td style="width:30%; min-width:10rem;">
+                                <span class="p-column-title">Type document</span>
+                                {{document.typeDocument}}
+                            </td>
+                            <td style="width:30%; min-width:8rem;">
+                                <span class="p-column-title">Nom du document</span>
+                                {{document.file.name}}
+                            </td>
+                            <td>
+                                <div class="flex">
+                                    <button pButton pRipple icon="pi pi-trash"
+                                        class="p-button-rounded p-button-text mr-2  p-button-danger"
+                                        (click)="delete(document)"></button>
                                 </div>
-                                    <input  formControlName="typeDocument" id="NINEAfile" type="text" pInputText  pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
-                            </div>
-                            <div class="field col-3 ">
-                                <div class="col-12 md:col-12  d-flex justify-content-center ">
-                                    <h5 style="font-weight: bold;color: #203359;">Document</h5>
-                                </div>
-                                <input  id="NINEAfile" type="text" pInputText  pTooltip="Charger un fichier" placeholder="Choisissez un ficher">
-                                <input  formControlName="file" class="hidden" type="file"  id="upload-file" name="upload-file"  ngf-max-size="2MB" (change)="selectFile($event)">
-                            </div>
-                            <div class="field col-2 mt-auto">
-                                <button  style="background-color: #203359;" type="button" pButton pRipple  icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()" ></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                
-    
-                        <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id" >
-                           
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    
-                                    <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon field="ninea"></p-sortIcon></th>
-                                    <th pSortableColumn="nomDocument" style="color: #203359;">Nom document<p-sortIcon field="rccm"></p-sortIcon></th>
-                                    <th style="color: #203359;">Action</th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-document>
-                                <tr>
-                                   
-                                    <td style="width:30%; min-width:10rem;">
-                                        <span class="p-column-title">Type document</span>
-                                        {{document.typeDocument}}
-                                    </td>
-                                    
-                                    <td style="width:30%; min-width:8rem;">
-                                        <span class="p-column-title">Nom du document</span>
-                                        {{document.file.name}}
-                                    </td>
-                    
-                                    <td>
-                                        <div class="flex">
-                                           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text mr-2  p-button-danger" (click)="delete(document)"></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </div>
-                    </form>
-                <div><br></div>
-            <button    type="button" id="valider"style="width: min-content;" pButton pRipple label="Soumettre" icon="pi pi-check" class="p-button-raised p-button-success my-auto pull-right "  ></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </form>
+        <div><br></div>
+        <div class="col-12  pr-0 d-flex  flex-row-reverse">
+            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
+                icon="pi pi-check" class="p-button-raised p-button-success my-auto pull-right "></button>
+
+            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
+        </div>
+    </div>
+</div>
