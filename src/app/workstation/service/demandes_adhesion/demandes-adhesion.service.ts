@@ -60,6 +60,12 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
   }
 
+  /*//get l'ensemble des demandes d'analyse de risque
+
+  getDemandesAnalyseRisque(): Observable<DemandeCession[]> {
+    return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession/analyse_risque`);
+  }*/
+
 
   getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
@@ -93,6 +99,8 @@ getDemandeObs(): Observable<any> {
 patchDemande(id:number,demande:any):Observable<DemandeAdhesion>{
   return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,demande)
 }
+
+
 
 // boîte dedialogue
 setDialog(bol:boolean){

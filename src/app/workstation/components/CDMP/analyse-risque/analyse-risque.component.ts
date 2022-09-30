@@ -9,6 +9,7 @@ import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_ad
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { DialogService } from 'primeng/dynamicdialog';
 @Component({
   selector: 'app-analyse-risque',
   templateUrl: './analyse-risque.component.html',
@@ -23,7 +24,8 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
       })),
       transition('* => *', animate('250ms cubic-bezier(0, 0, 0.2, 1)'))
     ])
-  ]
+  ],
+  providers:[DialogService]
 })
 export class AnalyseRisqueComponent implements OnInit {
 

@@ -93,7 +93,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
         interdictionBancaire: this.interdiction,
         observation: this.observation,
         referenceBE: this.demandeCession.referenceBE,
-        statut:"recevable"},
+        statut:"Enregistrée"},
         ...this.infosBEForm.value
 
     }
@@ -128,7 +128,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   }
   enregistrerTraitementRecevabilite(demande: any) {
    this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(1)).subscribe(data=>{
-      //ces deux appels suivantes ligne est à supprimer lorsque l'on fera la connexion avec le back
+      //ces deux appels suivantes sont à supprimer lorsque l'on fera la connexion avec le back
       this.recevabiliteService.postAnalyseRisque(demande).pipe(take(1)).subscribe(data => {
         this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).pipe(take(1)).subscribe(()=>{
           this.router.navigate(['workstation/cdmp/recevabilite/'])
