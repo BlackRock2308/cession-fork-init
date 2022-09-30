@@ -113,22 +113,24 @@ p-steps p-steps-item {
     
 }
 
-::ng-deep .p-steps.steps-custom .p-steps-item.p-highlight .p-steps-number {
-    background: #AFBF34;
-    border-radius: 100%;
-    color: #AFBF34;
-
-    width: 2px;
-    height: 20px;
-}
-
-::ng-deep.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+::ng-deep .p-steps.steps-custom .p-steps-item .p-menuitem-link .p-steps-number {
     color: #ffff;
-    border-radius: 100%;
+    border-radius: 50rem;
     
     width: 2px;
     height: 20px;
 }
+
+::ng-deep .p-steps.steps-custom .p-steps-item.p-highlight .p-steps-number {
+    background: $success;
+    border-radius: 50rem;
+    color: $success;
+
+    width: 2px;
+    height: 20px;
+}
+
+
 
 ::ng-deep .p-steps.steps-custom .p-steps-item .p-steps-title {
     color: #203359;
