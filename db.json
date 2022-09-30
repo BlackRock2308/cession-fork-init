@@ -321,6 +321,7 @@
       "type_marche": "Travaux",
       "montant_total": "10.000.000",
       "date_marche": "20/10/2005",
+      "date_cession": "15/12/2006",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -335,7 +336,8 @@
       "telephone": "333158568",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
-      "rccmFile": {}
+      "rccmFile": {},
+      "solde_sica": "2.000.000"
     },
     {
       "id": 2,
@@ -357,6 +359,7 @@
       "type_marche": "Fournitures",
       "montant_total": "15.000.000",
       "date_marche": "01/04/2002",
+      "date_cession": "09/08/2003",
       "montant_rembourse": "1.000.000",
       "solde_PME": "14.000.000",
       "decode": "15%",
@@ -370,7 +373,9 @@
       "representantLegal": "Mme Ndiaye",
       "cniRepresentant": "1 619 1999 01436 ",
       "dateImmatriculation": "10/03/2008",
-      "telephone": "33 320 35 89"
+      "telephone": "33 320 35 89",
+      "solde_sica": "7.000.000"
+
     },
     {
       "id": 3,
@@ -392,6 +397,7 @@
       "type_marche": "Services",
       "montant_total": "10.000.000",
       "date_marche": "24/12/2022",
+      "date_cession": "20/12/2022",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "20%",
@@ -418,6 +424,7 @@
       "type_marche": "Travaux",
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
+      "date_cession": "04/04/2018",
       "montant_rembourse": "2.000.000",
       "solde_PME": "2.000.000",
       "decode": "5%",
@@ -443,6 +450,8 @@
       "type_marche": "Fournitures",
       "montant_total": "10.000.000",
       "date_marche": "01/02/2008",
+      "date_cession": "24/11/2022",
+
       "nomMarche": "Fournitures de lots de materiels",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
@@ -468,6 +477,8 @@
       "nomMarche": "Service divers",
       "montant_total": "32.000.000",
       "date_marche": "05/10/2022",
+      "date_cession": "03/02/2022",
+
       "montant_rembourse": "12.000.000",
       "solde_PME": "7.000.000",
       "decode": "5%",
@@ -492,6 +503,8 @@
       "montant_total": "10.000.000",
       "nomMarche": "Transport",
       "date_marche": "05/10/2022",
+      "date_cession": "15/12/2006",
+
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -513,7 +526,11 @@
       "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
-      "nomMarche": "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels",
+      "ATD" :"Aucun ATD",
+      "denomination" : "Modelsis SARL",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     },
     {
       "id": 2,
@@ -527,7 +544,11 @@
       "montant_total": "32.000.000",
       "date_marche": "05/10/2022",
       "rccm": "401548015",
-      "nomMarche": "Reparation , entretien et installation"
+      "nomMarche": "Reparation , entretien et installation",
+      "ATD" :"ATD en cours",
+      "denomination" : "ENEDIS",
+      "nantissement" :"Creance non nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     },
     {
       "id": 3,
@@ -541,7 +562,11 @@
       "nomMarche": "Service de decoration",
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
-      "type_marche": "Services"
+      "type_marche": "Services",
+      "ATD" :"Aucun ATD",
+      "denomination" : "CAMAIEU",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :" Interdiction bancaire"
     },
     {
       "id": 4,
@@ -555,7 +580,11 @@
       "nomMarche": "Transport Materiels",
       "type_marche": "Fournitures",
       "montant_total": "7.000.000",
-      "date_marche": "01/04/2002"
+      "date_marche": "01/04/2002",
+      "ATD" :"Aucun ATD",
+      "denomination" : "INT Marketing",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     },
     {
       "id": 5,
@@ -569,7 +598,11 @@
       "nomMarche": "Transport",
       "type_marche": "Fournitures",
       "montant_total": "15.000.000",
-      "date_marche": "01/04/2002"
+      "date_marche": "01/04/2002",
+      "ATD" :"Aucun ATD",
+      "denomination" : "E.COM4",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     }
   ],
   "recevabilites": [

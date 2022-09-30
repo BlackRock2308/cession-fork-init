@@ -86,7 +86,7 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
                                     *ngIf="demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' || demande.statut === 'Signée-par-pme' || demande.statut === 'Signée-par-dg'"
-                                    [routerLink]="['../analyser']" (click)="setPmeInfo(demande)"
+                                     (click)="pmeInfo(demande)"
                                     class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Analyser le dossier"></button>
                                 <button pButton pRipple icon="pi pi-eye"

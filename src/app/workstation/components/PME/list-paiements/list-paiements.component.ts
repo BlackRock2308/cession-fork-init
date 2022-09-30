@@ -66,13 +66,16 @@ export class ListPaiementsComponent implements OnInit {
   
   }
 
-  visualiserDetails(paiement: PaiementsComponent) {
+  visualiserDetails(paiement: Paiements) {
+    this.paiement = {...paiement};
+    //console.log(demande)
+    this.paiementsService.setPaiementObs(paiement);
     const ref = this.dialogService.open(ListPaiementsDetailsComponent, {
         data: {
             paiement: paiement
         },
         header: "Détails Tableau",
-        width: '70%',
+        width: '40%',
         height: 'calc(70% - 100px)',
         baseZIndex: 10000
     });
