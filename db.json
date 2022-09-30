@@ -1,15 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "id": 10,
-      "ninea": "45800124",
-      "rccm": "458730015",
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
-    },
-    {
       "id": 11,
       "ninea": "45892100",
       "rccm": "45895200",
@@ -168,7 +159,8 @@
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "nineaValide": false
     },
     {
       "id": 11,

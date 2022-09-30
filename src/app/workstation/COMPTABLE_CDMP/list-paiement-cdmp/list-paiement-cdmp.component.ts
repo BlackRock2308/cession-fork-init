@@ -84,8 +84,8 @@ export class ListPaiementCdmpComponent implements OnInit {
     const ref = this.dialogService.open(PaiementCDMPComponent, {
 
       header: "Paiement CDMP",
-      width: '60%',
-      height: 'calc(100% - 200px)',
+      width: '50%',
+      height: 'calc(90% - 200px)',
       baseZIndex: 10000
     });
   }

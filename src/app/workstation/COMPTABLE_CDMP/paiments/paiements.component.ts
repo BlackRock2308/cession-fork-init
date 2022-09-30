@@ -2,17 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
-import { Convention } from '../../model/convention';
-import { DemandeAdhesion } from '../../model/demande';
 import { Documents } from '../../model/document';
 import { Paiements } from '../../model/paiements';
-import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from '../../service/document/document.service';
 import { PaiementsService } from '../../service/paiements/paiements.service';
-import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
-import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
-import { PaiementPMEComponent } from '../paiement-pme/paiement-pme.component';
 
 @Component({
   selector: 'app-paiements',

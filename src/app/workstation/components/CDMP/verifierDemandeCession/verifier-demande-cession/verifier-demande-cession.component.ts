@@ -121,7 +121,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
       data: {
         document: document
       },
-      header: nom,
+      header:nom,
       width: '70%',
       height: 'calc(100% - 100px)',
       baseZIndex: 10000

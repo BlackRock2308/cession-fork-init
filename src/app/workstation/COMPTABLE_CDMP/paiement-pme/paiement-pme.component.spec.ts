@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaiementPMEComponent } from './paiement-pme.component';
 
-describe('VisualiserDocumentComponent', () => {
+describe('PaiementPMEComponent', () => {
   let component: PaiementPMEComponent;
   let fixture: ComponentFixture<PaiementPMEComponent>;
 

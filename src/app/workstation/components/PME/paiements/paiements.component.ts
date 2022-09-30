@@ -9,7 +9,6 @@ import { Documents } from 'src/app/workstation/model/document';
 import { Paiements } from 'src/app/workstation/model/paiements';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
-import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visualiser-document.component';
 
 @Component({
   selector: 'app-paiements',

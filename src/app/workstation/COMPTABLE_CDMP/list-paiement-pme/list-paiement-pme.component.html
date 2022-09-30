@@ -3,24 +3,20 @@
 <br>
 <div class="grid">
     <div class="col-12">
+        <div class="d-flex justify-content-center col-12">
+            <div class="col-12 md:col-10 modalTitle  ">
+                <h3 class="title">Liste des paiements
+                    sur le marché. Réf. BE: 20-247510</h3>
+            </div>
+        </div>
         <div class="card">
+            <button id="valider" style=" float: right;" pButton pRipple label="Payer"
+            icon="pi pi-plus" class="boutton"
+            (click)="visualiserPaimentPME()"></button>
             <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="caption">
-                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                        <h4 class="title" style="color: #203359; position: relative; right: -200px;">Liste des paiements
-                            sur le marché. Réf. BE: 20-247510</h4>
-
-                        <div class="flex">
-                            <button id="valider" style="width: min-content;" pButton pRipple label="Payer"
-                                icon="pi pi-plus" class="p-button-raised p-button-success mx-1  my-auto ml-2"
-                                (click)="visualiserPaimentPME()"></button>
-
-                        </div>
-                    </div>
-                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
 
@@ -67,7 +63,7 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-file"
-                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Visualiser la preuve de paiement"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton" pTooltip="Visualiser la preuve de paiement"
                                     (click)="detailPaimentPME(paiement.document)"></button>
                             </div>
                         </td>

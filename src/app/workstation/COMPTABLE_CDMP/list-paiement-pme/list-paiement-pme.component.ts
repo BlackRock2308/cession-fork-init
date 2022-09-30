@@ -85,7 +85,7 @@ export class ListPaiementPMEComponent implements OnInit {
     const ref = this.dialogService.open(PaiementPMEComponent, {
       header: "Paiement PME",
       width: '50%',
-      height: 'calc(80% - 200px)',
+      height: 'calc(90% - 200px)',
       baseZIndex: 10000
     });
   }
