@@ -7,6 +7,9 @@ import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/re
 import { Documents } from 'src/app/workstation/model/document';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../../visualiser-document/visualiser-document.component';
+import { DemandeCession } from 'src/app/workstation/model/demande';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-verifier-demande-cession',
@@ -38,7 +41,8 @@ export class VerifierDemandeCessionComponent implements OnInit {
     private documentService: DocumentService,
     private recevabiliteService: RecevabiliteService,
     private formBuilder: FormBuilder,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -83,15 +87,17 @@ export class VerifierDemandeCessionComponent implements OnInit {
   onSubmit() {
 
     this.recevabiliteDemande = {
-      identificationBudgetaire: this.identifie,
-      atd: this.atd,
-      nantissement: this.nantissement,
-      interdictionBancaire: this.interdiction,
-      observation: this.observation,
-      infoBE: this.infosBEForm.value,
-      referenceBE: this.demandeCession.referenceBE,
-      demandeCessionId: this.demandeCession.id
+      ...{identificationBudgetaire: this.identifie,
+        atd: this.atd,
+        nantissement: this.nantissement,
+        interdictionBancaire: this.interdiction,
+        observation: this.observation,
+        referenceBE: this.demandeCession.referenceBE,
+        statut:"recevable"},
+        ...this.infosBEForm.value
+
     }
+    
 
     console.log(this.recevabiliteDemande)
 
@@ -101,10 +107,39 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
 
   }
-  enregistrerTraitementRecevabilite(demande: any) {
-    this.recevabiliteService.postRecevabilite(demande).subscribe(data => {
-      console.log("done")
+
+  
+  rejeterDemande(){
+    let demande = {
+      observation: this.observation,
+      statut:"rejeté"
+    }
+    console.log("0");
+    this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(1)).subscribe(data => {
+      console.log("1:",data);
+      //cette ligne est à supprimer lorsque l'on fera la connexion avec le back
+      this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).pipe(take(1)).subscribe(data=>{
+        console.log("done:",data);
+        this.router.navigate(['workstation/cdmp/recevabilite/'])
+        console.log("done");
+      }
+        )
     })
+  }
+  enregistrerTraitementRecevabilite(demande: any) {
+   this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(1)).subscribe(data=>{
+      //ces deux appels suivantes ligne est à supprimer lorsque l'on fera la connexion avec le back
+      this.recevabiliteService.postAnalyseRisque(demande).pipe(take(1)).subscribe(data => {
+        this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).pipe(take(1)).subscribe(()=>{
+          this.router.navigate(['workstation/cdmp/recevabilite/'])
+          console.log("done");
+
+        }
+        )
+        
+    })
+      
+   })
   }
 
   renseignerInfosBE() {

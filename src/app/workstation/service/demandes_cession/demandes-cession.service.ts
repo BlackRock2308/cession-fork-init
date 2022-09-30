@@ -64,5 +64,18 @@ export class DemandesCessionService {
     return this.http.request(req);
   }
 
+  //patch demande de cession
+  patchDemandeCession(id:number,demandeCession:DemandeCession): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandes_cession/${id}`,demandeCession, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
+  //get analyse risque
+  getAnalyseRisque(): Observable<DemandeCession[]> {
+    return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession/analyse_risque`);
+  }
 }
 

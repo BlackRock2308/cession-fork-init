@@ -31,6 +31,7 @@ export class RecevabiliteComponent implements OnInit {
 
   items: MenuItem[];
   home: MenuItem;
+  subscribe: any;
    
 
 
@@ -43,7 +44,7 @@ export class RecevabiliteComponent implements OnInit {
   ngOnInit() {
     //this.productDialog = this.communicationService.getDialogObs();
       //this.productService.getProducts().then(data => this.products = data);
-      this.recevabiliteService.getRecevabilites().subscribe(data=>{
+      this.subscribe=this.recevabiliteService.getRecevabilites().subscribe(data=>{
     this.demandes=data});
       
       this.cols = [
@@ -74,6 +75,10 @@ export class RecevabiliteComponent implements OnInit {
       this.router.navigate(['workstation/cdmp/recevabilite/verifier']);
 
       
+  }
+
+  ngOnDestroy(){
+    this.subscribe.unsubscribe();
   }
 
 }
