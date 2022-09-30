@@ -66,30 +66,30 @@
                 <ng-template pTemplate="body" let-paiement>
                     <tr>
 
-                        <td style="width:16%; min-width:10rem;">
+                        <td style="width:15%; min-width:10rem;">
                             <span class="p-column-title">Raison Sociale</span>
                             {{paiement.raisonSocial}}
                         </td>
 
-                        <td style="width:16%; min-width:8rem;">
+                        <td style="width:15%; min-width:8rem;">
                             <span class="p-column-title">Référence BE</span>
                             {{paiement.referenceBE}}
                         </td>
-                        <td style="width:16%;">
+                        <td style="width:15%;">
                             <span class="p-column-title">Total Marché</span>
                             {{paiement.totalMarche}}
                         </td>
-                        <td style="width:16%;">
+                        <td style="width:15%;">
                             <span class="p-column-title">Solde PME</span>
                             {{paiement.soldePME}}
                         </td>
-                        <td style="width:16%;">
+                        <td style="width:15%;">
                             <span class="p-column-title">Montant Reçu</span>
                             {{paiement.montantRecu}}
                         </td>
-                        <td style="width:16%;">
+                        <td style="width:22%;">
                             <span class="p-column-title">Statut</span>
-                            {{paiement.statut}}
+                            <span [class]="'product-badge status-' + (paiement.statut ? paiement.statut.toLowerCase() : '')">{{paiement.statut.replaceAll('-', ' ')}}</span>
                         </td>
                         <td>
                             <div class="flex">

@@ -6,6 +6,29 @@
     
 }
 
+.button{
+    background-color: #203359;
+}
+
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+
+    &.status-pme-totalement-payée {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-pme-partiellement-payée {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+}
+
 //cacher les bouton de filtre
 ::ng-deep button.p-column-filter-menu-button {
     display: none;

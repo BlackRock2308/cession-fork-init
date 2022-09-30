@@ -4,10 +4,11 @@ import { ConfirmationService, MenuItem, MessageService, PrimeNGConfig } from 'pr
 import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
-import { DemandeAdhesion } from 'src/app/workstation/model/demande';
+import { DemandeAdhesion, DemandeCession } from 'src/app/workstation/model/demande';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-
+import { Router } from '@angular/router';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 @Component({
   selector: 'app-analyse-risque',
   templateUrl: './analyse-risque.component.html',
@@ -26,6 +27,10 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 })
 export class AnalyseRisqueComponent implements OnInit {
 
+  demandes:DemandeCession[];
+
+  demande:DemandeCession;
+
 
 
   productDialog: boolean;
@@ -35,9 +40,7 @@ export class AnalyseRisqueComponent implements OnInit {
   deleteProductsDialog: boolean = false;
 
   products: Product[];
-  demandes: DemandeAdhesion[];
 
-  demande: DemandeAdhesion;
   product: Product;
 
   selectedProducts: Product[];
@@ -90,7 +93,9 @@ export class AnalyseRisqueComponent implements OnInit {
   items: MenuItem[];
   home: MenuItem;
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private menuService: MenuService,
+  constructor(
+    private router: Router,
+    private demandeCessionService :DemandesCessionService,private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private menuService: MenuService,
     private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, private primengConfig: PrimeNGConfig, public app: AppComponent) {
   }
 
@@ -132,11 +137,7 @@ export class AnalyseRisqueComponent implements OnInit {
     this.deleteProductsDialog = true;
   }
 
-  editProduct(demande: DemandeAdhesion) {
-    this.demande = { ...demande };
-    this.productDialog = true;
-
-  }
+ 
 
   deleteProduct(product: Product) {
     this.deleteProductDialog = true;
@@ -349,12 +350,15 @@ export class AnalyseRisqueComponent implements OnInit {
     return this.app.horizontalMenu === true;
   }
 
-  setPmeInfo(demande: DemandeAdhesion) {
-    this.demandesAdhesionService.setDemandenantissementObs(demande);
-    console.log(this.demandesAdhesionService.getDemandenantissementObs())
-  }
+  pmeInfo(demande: DemandeCession) {
+    this.demande = {...demande};
+    //console.log(demande)
+    this.demandeCessionService.setDemandeObs(demande);
+
+    this.router.navigate(['workstation/cdmp/analyser']);
+
 
 }
-
+}
 
 

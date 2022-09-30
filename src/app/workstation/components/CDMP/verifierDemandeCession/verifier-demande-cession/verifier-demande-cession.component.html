@@ -50,8 +50,9 @@
                         </span>
                     </div>
                 </div>
-                
+               
                 <div class="row justify-content-center">
+                    
                     <span class="h5texte col-6 mt-2">Raison Sociale</span>
                     <div class="p-inputgroup col-6">
                         <span class="p-float-label">
@@ -194,7 +195,7 @@
                                 style="font-weight: bold;color: #203359;">Exercice</label>
                             <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" disabled
-                                    value='{{demandeCession.dateDemande.split("/")[2]}}' />
+                                    value='{{demandeCession.dateDemande.split("-")[0]}}' />
                             </div>
                         </div>
                         <div class="field grid col-12 md:col-6">
@@ -293,9 +294,9 @@
         <br>
         <div class="float-end">
             <button *ngIf="identifie" pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Valider"
-                (click)="onSubmit()"></button>
+                (click)="onSubmit()" ></button>
             <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter la demande"
-                routerLink=""></button>
+                (click)="rejeterDemande()"></button>
         </div>
 
     </div>

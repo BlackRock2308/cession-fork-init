@@ -16,7 +16,11 @@ export class DemandesCessionService {
     raisonSocial: "Modelsis SARL",
     referenceBE: "294067",
     dateDemande: "21/03/2021",
-    numeroDemande: "2022-0001"
+    numeroDemande: "2022-0001",
+    ATD :"Aucun ATD",
+    denomination : "Modelsis SARL",
+    nantissement :"Creance  nanti",
+    interdiction :"Aucune interdiction bancaire"
   });
 
   constructor(private http: HttpClient) {
@@ -64,5 +68,18 @@ export class DemandesCessionService {
     return this.http.request(req);
   }
 
+  //patch demande de cession
+  patchDemandeCession(id:number,demandeCession:DemandeCession): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandes_cession/${id}`,demandeCession, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
+  //get analyse risque
+  getAnalyseRisque(): Observable<DemandeCession[]> {
+    return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession/analyse_risque`);
+  }
 }
 

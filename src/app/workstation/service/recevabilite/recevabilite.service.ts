@@ -12,18 +12,28 @@ export class RecevabiliteService {
 
   //afficher les demandes de cession à l'étape de la recevabilité
   getRecevabilites(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession`);
+    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession/recevabilites`);
   }
   getRecevabiliteById(id:number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/demandes_cession?id=${id}`);
   }
 
   //
-  postRecevabilite(demandeRecevabilite:any): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('POST', `${this.baseUrl}/recevabilites`,demandeRecevabilite, {
+  postAnalyseRisque(demandeRecevabilite:any): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('POST', `${this.baseUrl}/demandes_cession/analyse_risque`,demandeRecevabilite, {
       reportProgress: true,
       responseType: 'json'
     });
     return this.http.request(req);
+  }
+
+  //fonction à supprimer lorsque la connexion avec le back sera établie
+  deleteRecevabilite(demandeId:number): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('DELETE', `${this.baseUrl}/recevabilites/${demandeId}`, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+    
   }
 }

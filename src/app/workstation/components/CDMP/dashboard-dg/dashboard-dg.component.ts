@@ -355,14 +355,17 @@ export class DashboardDGComponent implements OnInit {
         XLSX.writeFile(wb, this.fileName);
 
     }
-    visualiserDetails(demande: DemandesAdhesionComponent) {
+    visualiserDetails(demande: DemandeAdhesion) {
+        this.demande = {...demande};
+        //console.log(demande)
+        this.demandesAdhesionService.setDemandenantissementObs(demande);
         const ref = this.dialogService.open(DetailsTableauComponent, {
             data: {
                 demande: demande
             },
             header: "Détails Tableau",
-            width: '70%',
-            height: 'calc(75% - 100px)',
+            width: '40%',
+            height: 'calc(74% - 100px)',
             baseZIndex: 10000
         });
 

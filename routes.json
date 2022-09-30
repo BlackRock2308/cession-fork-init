@@ -1,4 +1,6 @@
 {
     "/demandes_cession/recevabilites?langCode=undefined":"/recevabilites",
-    "/demandes_cession/conventions":"/conventions"
+    "/demandes_cession/conventions":"/conventions",
+    "/demandes_cession/analyse_risque?langCode=undefined":"/analyse_risque"
+
 }

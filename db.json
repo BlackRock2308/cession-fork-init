@@ -310,7 +310,7 @@
       "refBE": "294067",
       "date_soumission": "2022-09-28T10:10:13.678Z",
       "ninea_file": "",
-      "statut_convention": "Convention enregistrée",
+      "statut_convention": "Convention-enregistrée",
       "rccm_file": "",
       "nineaValide": true,
       "pmeActive": true,
@@ -321,6 +321,7 @@
       "type_marche": "Travaux",
       "montant_total": "10.000.000",
       "date_marche": "20/10/2005",
+      "date_cession": "15/12/2006",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -335,7 +336,8 @@
       "telephone": "333158568",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
-      "rccmFile": {}
+      "rccmFile": {},
+      "solde_sica": "2.000.000"
     },
     {
       "id": 2,
@@ -347,7 +349,7 @@
       "statut": "Recevable",
       "date_soumission": "12/12/2020",
       "ninea_file": "",
-      "statut_convention": "Convention générée",
+      "statut_convention": "Convention-générée",
       "nomMarche": "Reparation , entretien et installation",
       "rccm_file": "",
       "ATD": "ATD",
@@ -357,6 +359,7 @@
       "type_marche": "Fournitures",
       "montant_total": "15.000.000",
       "date_marche": "01/04/2002",
+      "date_cession": "09/08/2003",
       "montant_rembourse": "1.000.000",
       "solde_PME": "14.000.000",
       "decode": "15%",
@@ -370,7 +373,9 @@
       "representantLegal": "Mme Ndiaye",
       "cniRepresentant": "1 619 1999 01436 ",
       "dateImmatriculation": "10/03/2008",
-      "telephone": "33 320 35 89"
+      "telephone": "33 320 35 89",
+      "solde_sica": "7.000.000"
+
     },
     {
       "id": 3,
@@ -382,7 +387,7 @@
       "refBE": "506978",
       "date_soumission": "12/02/2021",
       "ninea_file": "",
-      "statut_convention": "Convention signée par la PME",
+      "statut_convention": "Convention-signée-par-la-PME",
       "rccm_file": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance  nanti",
@@ -392,6 +397,7 @@
       "type_marche": "Services",
       "montant_total": "10.000.000",
       "date_marche": "24/12/2022",
+      "date_cession": "20/12/2022",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "20%",
@@ -408,7 +414,7 @@
       "date_soumission": "12/02/2021",
       "statut": "Non-Risquée",
       "ninea_file": "",
-      "statut_convention": "Convention signée par le DG",
+      "statut_convention": "Convention-signée-par-le-DG",
       "rccm_file": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
@@ -418,6 +424,7 @@
       "type_marche": "Travaux",
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
+      "date_cession": "04/04/2018",
       "montant_rembourse": "2.000.000",
       "solde_PME": "2.000.000",
       "decode": "5%",
@@ -434,7 +441,7 @@
       "denomination": "XXX",
       "refBE": "154067",
       "ninea_file": "",
-      "statut_convention": "Convention rejetée",
+      "statut_convention": "Convention-rejetée",
       "rccm_file": "",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
@@ -443,6 +450,8 @@
       "type_marche": "Fournitures",
       "montant_total": "10.000.000",
       "date_marche": "01/02/2008",
+      "date_cession": "24/11/2022",
+
       "nomMarche": "Fournitures de lots de materiels",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
@@ -457,7 +466,7 @@
       "statut": "Complément-Requis",
       "date_soumission": "05/07/2018",
       "ninea_file": "",
-      "statut_convention": "Convention générée",
+      "statut_convention": "Convention-générée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
@@ -468,6 +477,8 @@
       "nomMarche": "Service divers",
       "montant_total": "32.000.000",
       "date_marche": "05/10/2022",
+      "date_cession": "03/02/2022",
+
       "montant_rembourse": "12.000.000",
       "solde_PME": "7.000.000",
       "decode": "5%",
@@ -492,6 +503,8 @@
       "montant_total": "10.000.000",
       "nomMarche": "Transport",
       "date_marche": "05/10/2022",
+      "date_cession": "15/12/2006",
+
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -504,13 +517,20 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Non-Risquée",
+      "statut": "rejeté",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
+      "type_marche": "Travaux",
+      "montant_total": "10.000.000",
+      "date_marche": "05/10/2022",
       "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
-      "nomMarche": "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels",
+      "ATD" :"Aucun ATD",
+      "denomination" : "Modelsis SARL",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     },
     {
       "id": 2,
@@ -520,8 +540,15 @@
       "referenceBE": "294067",
       "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0002",
+      "type_marche": "Travaux",
+      "montant_total": "32.000.000",
+      "date_marche": "05/10/2022",
       "rccm": "401548015",
-      "nomMarche": "Reparation , entretien et installation"
+      "nomMarche": "Reparation , entretien et installation",
+      "ATD" :"ATD en cours",
+      "denomination" : "ENEDIS",
+      "nantissement" :"Creance non nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     },
     {
       "id": 3,
@@ -532,7 +559,14 @@
       "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0003",
       "rccm": "401548780",
-      "nomMarche": "Service de decoration"
+      "nomMarche": "Service de decoration",
+      "montant_total": "4.000.000",
+      "date_marche": "07/05/2017",
+      "type_marche": "Services",
+      "ATD" :"Aucun ATD",
+      "denomination" : "CAMAIEU",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :" Interdiction bancaire"
     },
     {
       "id": 4,
@@ -543,7 +577,14 @@
       "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0004",
       "rccm": "001548015",
-      "nomMarche": "Service de gardiennage"
+      "nomMarche": "Transport Materiels",
+      "type_marche": "Fournitures",
+      "montant_total": "7.000.000",
+      "date_marche": "01/04/2002",
+      "ATD" :"Aucun ATD",
+      "denomination" : "INT Marketing",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     },
     {
       "id": 5,
@@ -554,17 +595,24 @@
       "dateDemande": "2022-09-28T10:10:13.678Z1",
       "numeroDemande": "2022-0005",
       "rccm": "001548015",
-      "nomMarche": "Transport"
+      "nomMarche": "Transport",
+      "type_marche": "Fournitures",
+      "montant_total": "15.000.000",
+      "date_marche": "01/04/2002",
+      "ATD" :"Aucun ATD",
+      "denomination" : "E.COM4",
+      "nantissement" :"Creance  nanti",
+      "interdiction" :"Aucune interdiction bancaire"
     }
   ],
-  "recevabilites": [
+  "recevabilites":  [
     {
       "id": 1,
       "ninea": "567567",
       "statut": "Non Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
+      "dateDemande":  "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "nomMarche": "Fournitures de lots de materiels"
@@ -612,6 +660,28 @@
       "numeroDemande": "2022-0005",
       "rccm": "001548015",
       "nomMarche": "Transport"
+    },
+    {
+      "identificationBudgetaire": true,
+      "atd": true,
+      "nantissement": true,
+      "interdictionBancaire": true,
+      "infoBE": {
+        "naturePrestation": "",
+        "natureDepense": "",
+        "imputation": "",
+        "modeReglement": "",
+        "beneficiaire": "",
+        "identificationComptable": "",
+        "typeDepense": "",
+        "objetDepense": "",
+        "montantDepense": "",
+        "date": "",
+        "destination": ""
+      },
+      "referenceBE": "294067",
+      "demandeCessionId": 2,
+      "id": 6
     }
   ],
   "demandes": [
@@ -655,7 +725,7 @@
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
       "path": "/assets/doctest.pdf",
-      "statut": "Convention générée",
+      "statut": "Convention-générée",
       "refBE": "6543568778",
       "ninea": "567865467567",
       "refDemande": "2022-3454",
@@ -667,7 +737,7 @@
       "dateSoumission": "01/02/2022",
       "typeDocument": "RCCM",
       "path": "/assets/doctest2.pdf",
-      "statut": "Convention enregistrée",
+      "statut": "Convention-enregistrée",
       "refBE": "9878543",
       "ninea": "12345567",
       "refDemande": "2022-3214",
@@ -680,7 +750,7 @@
       "typeDocument": "BE",
       "ninea": "97685444",
       "path": "/assets/doctest1.pdf",
-      "statut": "Convention signée par la PME",
+      "statut": "Convention-signée-par-la-PME",
       "refBE": "99999866",
       "refDemande": "2012-0000",
       "raisonSocial": "SCI SENEGAL FIL"
@@ -691,7 +761,7 @@
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/doctest1.pdf",
-      "statut": "Convention signée par la DG",
+      "statut": "Convention-signée-par-la-DG",
       "refBE": "99999866",
       "ninea": "657358975",
       "refDemande": "2012-1230",
@@ -703,7 +773,7 @@
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/doctest1.pdf",
-      "statut": "Convention rejetée",
+      "statut": "Convention-rejetée",
       "refBE": "8650433",
       "ninea": "4976855858",
       "refDemande": "2016-2345",
@@ -715,7 +785,7 @@
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/doctest1.pdf",
-      "statut": "Non Risquee",
+      "statut": "Non-Risquee",
       "ninea": "567865467567",
       "refBE": "3446459",
       "refDemande": "2021-6788",
@@ -853,7 +923,7 @@
         "dateSoumission": "01/02/2022",
         "typeDocument": "NINEA",
         "path": "/assets/doctest.pdf",
-        "statut": "Convention générée",
+        "statut": "Convention-générée",
         "refBE": "6543568778",
         "ninea": "567865467567",
         "refDemande": "2022-3454",
@@ -881,7 +951,7 @@
         "dateSoumission": "01/02/2022",
         "typeDocument": "NINEA",
         "path": "/assets/doctest.pdf",
-        "statut": "Convention générée",
+        "statut": "Convention-générée",
         "refBE": "6543568778",
         "ninea": "567865467567",
         "refDemande": "2022-3454",
@@ -909,7 +979,7 @@
         "dateSoumission": "01/02/2022",
         "typeDocument": "NINEA",
         "path": "/assets/doctest.pdf",
-        "statut": "Convention générée",
+        "statut": "Convention-générée",
         "refBE": "6543568778",
         "ninea": "567865467567",
         "refDemande": "2022-3454",
@@ -921,7 +991,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Convention acceptée",
+      "statut": "Convention-acceptée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294065",
       "dateDemande": "21/03/2021",
@@ -933,7 +1003,7 @@
     {
       "id": 2,
       "ninea": "567567",
-      "statut": "Convention rejetée",
+      "statut": "Convention-rejetée",
       "raisonSocial": "ENEDIS",
       "referenceBE": "21-294066",
       "dateDemande": "21/03/2021",
@@ -943,7 +1013,7 @@
     {
       "id": 3,
       "ninea": "678567",
-      "statut": "Convention rejetée",
+      "statut": "Convention-rejetée",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "15-294067",
       "dateDemande": "15/07/2021",
@@ -953,7 +1023,7 @@
     {
       "id": 4,
       "ninea": "567567",
-      "statut": "Convention acceptée",
+      "statut": "Convention-acceptée",
       "raisonSocial": "INT Marketing",
       "referenceBE": "45-294068",
       "dateDemande": "21/03/2021",
@@ -963,7 +1033,7 @@
     {
       "id": 5,
       "ninea": "123567",
-      "statut": "Convention acceptée",
+      "statut": "Convention-acceptée",
       "raisonSocial": "E.COM4",
       "referenceBE": "20-294069",
       "dateDemande": "05/09/2021",
@@ -973,7 +1043,7 @@
     {
       "id": 6,
       "ninea": "567567",
-      "statut": "Convention enregistrée",
+      "statut": "Convention-enregistrée",
       "raisonSocial": "SCI SENEGAL",
       "referenceBE": "20-294070",
       "dateDemande": "21/03/2021",
@@ -983,7 +1053,7 @@
     {
       "id": 7,
       "ninea": "567567",
-      "statut": "Convention acceptée",
+      "statut": "Convention-acceptée",
       "raisonSocial": "IMME",
       "referenceBE": "20-294071",
       "dateDemande": "21/03/2021",
