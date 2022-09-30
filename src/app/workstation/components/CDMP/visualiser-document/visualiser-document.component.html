@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <!-- <div *ngIf="!(paiement === 'true')">
+     <div *ngIf="!(paiement === 'true')">
         <div *ngIf="(statut === 'Convention rejetée') || (statut === 'Convention générée')">
             <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
                 <p-toast></p-toast>
@@ -72,13 +72,13 @@
                     </div>
                 </div>
             </p-card>
-        </div>
-    </div> -->
+   Convention signée par la PME     </div>
+    </div> 
 </div>
 <div class="modal-footer">
     <div class="col-12  pr-0 d-flex  flex-row-reverse">
         <button
-            *ngIf="((profil === 'DG') && (statut === 'Convention signée par la PME')) || ((profil === 'pme') && (statut === 'Convention générée'))"
+            *ngIf="((profil === 'DG') && (statut === '')) || ((profil === 'pme') && (statut === 'Convention générée'))"
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
             class="p-button-raised p-button-danger mx-1  my-auto ml-2"></button>
         <button
