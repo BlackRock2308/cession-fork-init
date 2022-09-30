@@ -10,7 +10,9 @@ import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-d
 @Component({
     selector: 'app-consulter-demande',
     templateUrl: './consulter-demande.component.html',
-    styleUrls: ['./consulter-demande.component.scss']
+    styleUrls: ['./consulter-demande.component.scss'],
+    providers: [DialogService]
+
 })
 export class ConsulterDemandeComponent implements OnInit {
 
