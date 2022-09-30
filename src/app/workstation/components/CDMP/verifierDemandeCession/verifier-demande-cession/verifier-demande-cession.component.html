@@ -186,103 +186,96 @@
                 </div>
             </div>
             
-            <div class="col-10 mt-7" *ngIf="identifie">
+            <div class="col-10 mt-7" *ngIf="identifie" >
                 <p-card>
                     <div class="p-formgrid grid row container" [formGroup]="infosBEForm">
-                        <div class="field grid col-sm-6">
-                            <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Exercice</label>
-                            <div class="col-sm-12 col-md-12 col-xl-12">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" disabled
                                     value='{{demandeCession.dateDemande.split("/")[2]}}' />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Référence du BE validé</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Nature prestation</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="naturePrestation" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Type de la dépense</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="typeDepense" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Imputation</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="imputation" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Objet de la dépense</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="objetDepense" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Mode de réglement</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="modeReglement" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Montant de la dépense</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="montantDepense" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Bénéficiaire</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="beneficiaire" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Date</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="date" formControlName="date" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Identification Comptable</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="identificationComptable" />
                             </div>
                         </div>
-                        <div class="field grid col-6">
-                            <label htmlFor="name3" class="col-12 mb-2 md:col-6 md:mb-0"
+                        <div class="field grid col-12 md:col-6">
+                            <label htmlFor="name3" class="col-12 lg:col-4"
                                 style="font-weight: bold;color: #203359;">Destination</label>
-                            <div class="col-12 md:col-6">
+                            <div class="col-12 lg:col-6">
                                 <input pInputText id="name3" type="text" formControlName="destination" />
                             </div>
                         </div>
                     </div>
                 </p-card>
-                
-                <div class="row justify-content-end">
-                    <button style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check"
-                        class="p-button-success mr-2" (click)="onSubmit()"></button>
-                    <button style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
-                        class="p-button-danger button" (click)="closeDialog()"></button>
-                </div>
         </div>
         </div>
         
@@ -299,9 +292,9 @@
         </div>
         <br>
         <div class="float-end">
-            <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Valider"
-                (click)="renseignerInfosBE()"></button>
-            <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Annuler"
+            <button *ngIf="identifie" pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Valider"
+                (click)="onSubmit()"></button>
+            <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter la demande"
                 routerLink=""></button>
         </div>
 
