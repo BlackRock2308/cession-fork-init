@@ -74,7 +74,7 @@ export class ListPaiementsComponent implements OnInit {
         },
         header: "Détails Tableau",
         width: '70%',
-        height: 'calc(50% - 100px)',
+        height: 'calc(70% - 100px)',
         baseZIndex: 10000
     });
 

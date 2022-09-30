@@ -19,10 +19,10 @@ export class PaiementsService {
       soldePME: "1 800 000",
       montantRecu: 0,
       referencePaiement: "2022-0001",
-      datePaiement: "12/05/2022",
-      payer: "Abdou Diop",
-      montant: "400 000",
-      modePaiement: "Chèque"
+      datePaiement: "12/06/2022",
+      payer: "Demba Gueye",
+      montant: "1.000.000",
+      modePaiement: "Virement"
   });
 
 

@@ -75,7 +75,7 @@
                             {{demande.nomMarche}}
                         </td>
                         <td style="width:20%;">
-                            <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut}}</span>
+                            <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-', ' ')}}</span>
 
                         </td>
                         <td style="width:20%;">
@@ -87,12 +87,12 @@
                                 <button pButton pRipple icon="pi pi-pencil"
                                     *ngIf="demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' || demande.statut === 'Signée-par-pme' || demande.statut === 'Signée-par-dg'"
                                     [routerLink]="['../analyser']" (click)="setPmeInfo(demande)"
-                                    class="p-button-rounded p-button-text mr-2 button" pInputText
+                                    class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Analyser le dossier"></button>
                                 <button pButton pRipple icon="pi pi-eye"
                                     *ngIf="demande.statut === 'Risquée' || demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' "
                                     [routerLink]="['../consulter_demande']"
-                                    class="p-button-rounded p-button-text mr-2 button" pInputText
+                                    class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Visualiser le dossier"></button>
 
                             </div>

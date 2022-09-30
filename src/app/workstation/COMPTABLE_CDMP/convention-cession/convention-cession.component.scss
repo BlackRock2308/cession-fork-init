@@ -148,3 +148,47 @@ a{
         color: #203359;
     
     }
+
+    .product-badge {
+        border-radius: var(--border-radius);
+        padding: .25em .5rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: .3px;
+    
+        &.status-convention-rejetée {
+            background: #FFCDD2;
+            color: #C63737;
+        }
+        
+        &.status-non-risquee {
+            background: #C8E6C9;
+            color: #256029;
+        }
+
+        &.status-risquée {
+            background: #FFCDD2;
+            color: #C63737;
+        }
+    
+        &.status-convention-signée-par-la-pme {
+            background: #FEEDAF;
+            color: #8A5340;
+        }
+        &.status-convention-signée-par-la-dg {
+            background: #FEEDAF;
+            color: #8A5340;
+        }
+        &.status-convention-générée {
+            background: #c9ddfa;
+            color: #354d8f;
+        }
+        &.status-convention-enregistrée {
+            background: #c9ddfa;
+            color: #354d8f;
+        }
+    
+       
+    }
+    
