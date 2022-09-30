@@ -13,7 +13,7 @@ export class DetailsTableauComponent implements OnInit {
 
   constructor(public ref: DynamicDialogRef, private demandeAdhesionService: DemandesAdhesionService) { }
 
-  ngOnInit() {
+  ngOnInit() : void {
     //récupérer les informations du nantissement en cours de modification
     this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
     console.log(this.demandeNantissementInfos)

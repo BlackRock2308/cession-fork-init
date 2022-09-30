@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpEvent,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Paiements } from '../../model/paiements';
@@ -19,14 +19,24 @@ export class PaiementsService {
       soldePME: "1 800 000",
       montantRecu: 0,
       referencePaiement: "2022-0001",
-      datePaiement: "12/05/2022",
-      payer: "Abdou Diop",
-      montant: "400 000",
-      modePaiement: "Chèque"
+      datePaiement: "12/06/2022",
+      payer: "Demba Gueye",
+      montant: "1.000.000",
+      modePaiement: "Virement"
   });
 
 
   constructor(private http: HttpClient) {
+     //garder les infos demandes de cession en variable de session au cas où l'on fait un refresh
+     try{
+      let storedPaiementCession=localStorage.getItem('storedPaiementCession');
+      if(storedPaiementCession)
+        this.setPaiementObs(JSON.parse(storedPaiementCession));
+
+    }
+    catch(e){
+      console.error("pas encore de variable de session pour le paiement.Certainement c'est la première connexion")
+    }
   }
    
 
@@ -46,6 +56,7 @@ export class PaiementsService {
   getPaiementObs(): Observable<any> {
     return this.paiementObs.asObservable();
   }
+
 
 }
 

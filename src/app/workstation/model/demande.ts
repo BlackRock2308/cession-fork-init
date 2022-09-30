@@ -27,7 +27,8 @@ export interface DemandeCession {
     statut?:string;
     dateDemande?: Date,
     BE ?:BonEngagement,
-    numeroDemande ?: number
+    numeroDemande ?: number,
+    nantissement ?: string
    
 }
 

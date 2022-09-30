@@ -8,6 +8,7 @@ import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_ad
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -16,7 +17,7 @@ import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-d
 })
 export class TacheAnalyseComponent implements OnInit {
 
-    demandeNantissementInfos: any;
+    demandeCession: any;
 
     editNinea: PME;
 
@@ -48,9 +49,15 @@ export class TacheAnalyseComponent implements OnInit {
     items: MenuItem[];
     home: MenuItem;
 
-    constructor(public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
+    constructor(    private demandeCessionService: DemandesCessionService,
+        private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
 
     ngOnInit() {
+        this.demandeCessionService.getDemandeObs().subscribe(data => {
+            this.demandeCession = data
+            console.log(this.demandeCession)
+          })
+      
         //this.productService.getProducts().then(data => this.products = data);
         this.documentService.getDeocuments().subscribe(data => {
             this.documents = data
@@ -63,9 +70,6 @@ export class TacheAnalyseComponent implements OnInit {
             { field: 'rating', header: 'Reviews' },
             { field: 'inventoryStatus', header: 'Status' }
         ];
-
-        //récupérer les informations du nantissement en cours de modification
-        this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
 
         this.items = [
             { label: 'Liste de demandes à analyser', url: '/#/workstation/cdmp/analyse_risque' },
@@ -147,5 +151,7 @@ export class TacheAnalyseComponent implements OnInit {
         });
 
     }
+
+ 
 
 }

@@ -16,7 +16,11 @@ export class DemandesCessionService {
     raisonSocial: "Modelsis SARL",
     referenceBE: "294067",
     dateDemande: "21/03/2021",
-    numeroDemande: "2022-0001"
+    numeroDemande: "2022-0001",
+    ATD :"Aucun ATD",
+    denomination : "Modelsis SARL",
+    nantissement :"Creance  nanti",
+    interdiction :"Aucune interdiction bancaire"
   });
 
   constructor(private http: HttpClient) {

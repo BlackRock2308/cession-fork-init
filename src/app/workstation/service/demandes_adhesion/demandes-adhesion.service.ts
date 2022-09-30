@@ -37,22 +37,16 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 });
 
   constructor(private http: HttpClient) { 
-    //garder les infos nantissement en session au cas où l'on fait un refresh
-   // let storedNantissement=localStorage.getItem('storedNantissement');
-    //if(storedNantissement)
-      //this.setDemandenantissementObs(JSON.parse(storedNantissement));
-
-    //garder les infos demandes en session au cas où l'on fait un refresh
+    //garder les infos demandes de cession en variable de session au cas où l'on fait un refresh
     try{
-      let storedDemande=localStorage.getItem('storedDemande');
+      let storedDemande=localStorage.getItem('storedPaiementCession');
       if(storedDemande)
         this.setDemandeObs(JSON.parse(storedDemande));
 
     }
     catch(e){
-      console.error("pas encore de variable de session pour une demande d'adhesion")
+      console.error("pas encore de variable de session pour le paiement.Certainement c'est la première connexion")
     }
-     
   }
 
   
