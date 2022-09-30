@@ -41,6 +41,7 @@ import { ListeConventionsComponent } from './components/Ordonnateur/convention_d
 import { DetailsConventionComponent } from './components/Ordonnateur/convention_de_cession/details-convention/details-convention.component';
 import { ChartModule } from 'primeng/chart';
 import { ListPaiementsDetailsComponent } from './components/PME/list-paiements-details/list-paiements-details.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { ListPaiementsDetailsComponent } from './components/PME/list-paiements-d
     VerifierDemandeCessionComponent,
     ListeConventionsComponent,
     DetailsConventionComponent,
-    ListPaiementsDetailsComponent
+    ListPaiementsDetailsComponent,
+    ProfilComponent
     
   ],
   imports: [

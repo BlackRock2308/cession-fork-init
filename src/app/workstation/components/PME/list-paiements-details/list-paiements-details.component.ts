@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Paiements } from 'src/app/workstation/model/paiements';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 
@@ -14,7 +15,7 @@ export class ListPaiementsDetailsComponent implements OnInit {
 
   paiement:Paiements;
 
-  constructor(private paiementsService: PaiementsService) { }
+  constructor(public ref: DynamicDialogRef,private paiementsService: PaiementsService) { }
 
   ngOnInit(): void {
     this.paiementsService.getPaiementObs().subscribe(data=>{
@@ -22,6 +23,10 @@ export class ListPaiementsDetailsComponent implements OnInit {
       console.log(this.paiementCession)
     })
 
+  }
+
+  dismiss() {
+    this.ref.close();
   }
 
 }

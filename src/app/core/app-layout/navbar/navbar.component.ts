@@ -1,23 +1,26 @@
-import { Component, OnInit , Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppMainComponent } from '../main/app.main.component';
 import { Router } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ProfilComponent } from '../../../workstation/components/profil/profil.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   animations: [
     trigger('mask-anim', [
-        state('void', style({
-            opacity: 0
-        })),
-        state('visible', style({
-            opacity: 0.8
-        })),
-        transition('* => *', animate('250ms cubic-bezier(0, 0, 0.2, 1)'))
+      state('void', style({
+        opacity: 0
+      })),
+      state('visible', style({
+        opacity: 0.8
+      })),
+      transition('* => *', animate('250ms cubic-bezier(0, 0, 0.2, 1)'))
     ])
-]
+  ],
+  providers: [ DialogService]
 })
 export class NavbarComponent implements OnInit {
 
@@ -54,19 +57,22 @@ export class NavbarComponent implements OnInit {
   menuHoverActive: boolean;
 
   configActive: boolean;
-  profil : string;
+  profil: string;
 
-  constructor(public renderer: Renderer2,
-    private primengConfig: PrimeNGConfig,public appMain: AppMainComponent, public router: Router) {}
-    ngOnInit() {
-      this.profil = localStorage.getItem('profil')
-      
-    }
+  constructor(public renderer: Renderer2, public dialogService: DialogService,
+    public appMain: AppMainComponent, public router: Router) { }
+  ngOnInit() {
+    this.profil = localStorage.getItem('profil')
 
-    loggout(){
-      this.router.navigate(['/login']);
-      localStorage.removeItem('profil');
-    }
+  }
 
+  loggout() {
+    this.router.navigate(['/login']);
+    localStorage.removeItem('profil');
+  }
+
+  visualiserProfil() {
+    this.router.navigate(['workstation/profil']);
+  }
 
 }
