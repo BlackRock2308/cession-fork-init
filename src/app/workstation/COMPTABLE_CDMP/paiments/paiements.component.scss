@@ -27,6 +27,10 @@
         background: #FEEDAF;
         color: #8A5340;
     }
+    &.status-en-attente-de-payement {
+        background: #b7b5b0;
+        color: #373737;
+    }
 }
 
 //cacher les bouton de filtre
