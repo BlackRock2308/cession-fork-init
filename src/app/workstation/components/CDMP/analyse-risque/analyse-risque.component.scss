@@ -27,6 +27,11 @@ h1{
         background: #C8E6C9;
         color: #256029;
     }
+   
+    &.status-rejetée {
+        background: #FFCDD2;
+        color: #C63737;
+    }
 
     &.status-risquée {
         background: #FFCDD2;
