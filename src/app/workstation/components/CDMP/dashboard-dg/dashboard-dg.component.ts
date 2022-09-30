@@ -261,7 +261,7 @@ export class DashboardDGComponent implements OnInit {
         this.stackedData = {
             labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             datasets: [{
-                label: 'Remboursé',
+                label: 'Déboursé',
                 backgroundColor: ' #99CC33',
                 data: [
                     1000000,

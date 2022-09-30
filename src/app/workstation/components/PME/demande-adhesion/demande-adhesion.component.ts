@@ -146,7 +146,7 @@ export class DemandeAdhesionComponent implements OnInit {
         this.primengConfig.ripple = true;
 
         this.cols = [
-            { field: 'refBE', header: 'Reference BE' },
+            { field: 'refBE', header: 'Référence BE' },
             { field: 'date_soumission', header: 'Date Soumission' },
             { field: 'statut', header: 'Statut' },
 

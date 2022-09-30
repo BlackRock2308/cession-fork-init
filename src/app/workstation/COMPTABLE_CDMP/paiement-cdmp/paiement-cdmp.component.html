@@ -23,26 +23,27 @@
                 </div>
                 <div class="field grid">
                     <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
-                    <div class="col-8 md:col-8">
+                    <div class="field inputContainer col-12 md:col-8">
                         <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
                             placeholder="Choisissez un ficher">
-                        <input class="hidden" type="file" id="upload-file" name="upload-file"
-                            (change)="selectFile($event)">
-                        <div class="col-4">
-                            <button style="background-color: #203359;" type="button" pButton pRipple label="Parcourir"
-                                icon="pi pi-upload" class="mr-2 mb-2 upload la " id="upload-NINEAfile"
-                                (click)="handleClick()"></button>
-                        </div>
+                        
+                        <button type="button" pButton pRipple
+                        icon="pi pi-upload" class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
+                        (click)="handleClick()"></button>
                     </div>
+                    <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
+                        ngf-max-size="2MB" (change)="selectFile($event)">
+                    
                 </div>
+            </div>
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                    class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
+                <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                    icon="pi pi-check" class="p-button-raised boutton my-auto "></button>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <div class="col-12  pr-0 d-flex  flex-row-reverse">
-            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
-                class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
-            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
-                icon="pi pi-check" class="p-button-raised p-button-success my-auto "></button>
-        </div>
+      
     </div>

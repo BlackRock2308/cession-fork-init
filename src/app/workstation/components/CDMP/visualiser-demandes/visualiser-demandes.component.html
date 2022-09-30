@@ -36,7 +36,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.date_soumission.toString().split("T")[0]}}</label>
+                            <label for="inputtext">{{demande.date_soumission  | date:'dd/MM/yyyy'}}</label>
                         </span>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.dateDemande.toString().split("T")[0]}}</label>
+                            <label for="inputtext">{{demande.dateDemande  | date:'dd/MM/yyyy'}}</label>
                         </span>
                     </div>
                 </div>
