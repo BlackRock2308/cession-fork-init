@@ -1,8 +1,8 @@
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
-            <div class="col-12 md:col-6 modalTitle d-flex justify-content-center">
-                <h5 class="label">Edition de la convention</h5>
+            <div class="col-12 md:col-6 tabTitle d-flex justify-content-center">
+                <h5 class="titleTab">Edition de la convention</h5>
             </div>
         </div>
         <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
@@ -16,19 +16,21 @@
                         <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
                             pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
                     </div>
-                    <div class="field col-3 ">
+                    <div class="field col-6 ">
                         <div class="col-12 md:col-12  d-flex justify-content-center ">
                             <h5 style="font-weight: bold;color: #203359;">Document</h5>
                         </div>
-                        <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
-                            placeholder="Choisissez un ficher">
+                        <div class="field inputContainer">
+
+                            <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
+                                placeholder="Choisissez un ficher">
+                            <button  type="button" pButton pRipple icon="pi pi-upload"
+                                class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile" (click)="handleClick()"></button>
+                        </div>
                         <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
                             ngf-max-size="2MB" (change)="selectFile($event)">
                     </div>
-                    <div class="field col-2 mt-auto">
-                        <button style="background-color: #203359;" type="button" pButton pRipple icon="pi pi-upload"
-                            class="mr-2 mb-2 upload la " id="upload-NINEAfile" (click)="handleClick()"></button>
-                    </div>
+                    
                 </div>
             </div>
             <div class="card">
@@ -73,10 +75,10 @@
         <div><br></div>
         <div class="col-12  pr-0 d-flex  flex-row-reverse">
             <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
-                icon="pi pi-check" class="p-button-raised p-button-success my-auto pull-right "></button>
+                icon="pi pi-check" class="p-button-raised successButton pull-right "></button>
 
             <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
-                class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
+                class="p-button-raised dangerButton" (click)="dismiss()"></button>
         </div>
     </div>
 </div>
