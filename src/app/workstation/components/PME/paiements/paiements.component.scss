@@ -23,6 +23,10 @@
         background: #C8E6C9;
         color: #256029;
     }
+    &.status-en-attente-de-paiement {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
 
     &.status-pme-partiellement-payée {
         background: #FEEDAF;
