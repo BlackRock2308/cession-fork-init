@@ -41,7 +41,7 @@ export class VisualiserDemandesComponent implements OnInit {
     private demandeAdhesionService:DemandesAdhesionService) { }
 
   ngOnInit(): void {
-    this.documentService.getDeocuments().subscribe(data => {
+    this.documentService.getDocumentsADH().subscribe(data => {
       this.documents = data
     });
 

@@ -58,7 +58,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-document>
-                    <tr *ngIf="!((profil === 'DG') && ((document.statut === 'Non Risquee') || (document.statut === 'Convention générée'))) && !((profil === 'pme') && (document.statut === 'Non Risquee'))">
+                    <tr *ngIf="!((profil === 'DG') && ((document.statut === 'Non-Risquee') || (document.statut === 'Convention-générée'))) && !((profil === 'pme') && (document.statut === 'Non-Risquee'))">
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{document.ninea}}
@@ -75,7 +75,7 @@
                             <span class="p-column-title">Date Soumission</span>
                             {{document.refDemande}}
                         </td>
-                        <td style="width:25%;">
+                        <td style="width:25%;" >
                             <span [class]="'product-badge status-' + (document.statut ? document.statut.toLowerCase() : '')">{{document.statut.replaceAll('-', ' ')}}</span>
 
                         </td>
@@ -95,7 +95,7 @@
                                     *ngIf="((document.statut === 'Convention-rejetée') && (profil === 'comptable')) "
                                     (click)="EditerConvention(convention)"></button>
                                 <button pButton pRipple icon="pi pi-file"
-                                    class="p-button-rounded simpleButton" pTooltip="Editer la convention"
+                                    class="p-button-rounded simpleButton" pTooltip="Générer la convention"
                                     *ngIf="document.statut === 'Non-Risquee' "
                                     (click)="EditConvention(convention)"></button>
                             </div>

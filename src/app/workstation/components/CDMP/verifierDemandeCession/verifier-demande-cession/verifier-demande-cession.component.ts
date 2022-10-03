@@ -51,7 +51,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
       console.log(this.demandeCession)
     })
 
-    this.documentService.getDeocuments().subscribe(data => {
+    this.documentService.getDeocumentVRF().subscribe(data => {
       this.documents = data
     })
 

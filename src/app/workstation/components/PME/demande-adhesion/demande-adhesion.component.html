@@ -87,7 +87,7 @@
                                     class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
-                                <button *ngIf="demande.statut=='Complement-requis'" pButton pRipple icon="pi pi-pencil"
+                                <button *ngIf="demande.statut=='Complément-Requis'" pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded simpleButton" pTooltip="Completer le dossier"
                                     [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)"></button>
                             </div>
