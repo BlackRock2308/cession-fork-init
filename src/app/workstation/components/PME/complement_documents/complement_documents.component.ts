@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { MenuItem } from 'primeng/api';
+import { DocumentService } from 'src/app/workstation/service/document/document.service';
 
 @Component({
   selector: 'app-complement-documents',
@@ -26,7 +27,11 @@ export class ComplementDocumentsComponent implements OnInit {
   items: MenuItem[];
   home: MenuItem;
 
-  constructor(    private formBuilder: FormBuilder,private pmeService:PmeService,private demandeAdhesionService:DemandesAdhesionService) { }
+  constructor(    
+    private formBuilder: FormBuilder,
+    private pmeService:PmeService,
+    private demandeAdhesionService:DemandesAdhesionService,
+    private documentService:DocumentService) { }
 
   ngOnInit(): void {
 
@@ -37,7 +42,7 @@ export class ComplementDocumentsComponent implements OnInit {
     })
 
     this.documentForm= this.formBuilder.group({
-      typeDocument: [''],
+      type: [''],
       file: ['']
   });
   this.cols = [
@@ -56,6 +61,11 @@ this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
 //récupérer les informations du nantissement en cours de modification
   this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
   console.log(this.demandeNantissementInfos)
+
+  this.documentService.getDocuments().subscribe(data => {
+    this.documents = data
+    console.log(this.documents)
+});
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier
@@ -63,6 +73,7 @@ this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
     
     this.document=this.documentForm.value;
     this.document.file=files.target.files[0];
+    this.document.nom=files.target.files[0].name;
     this.documents.push(this.document);
     files.target.files=null;
     console.log(this.documents)
@@ -122,8 +133,6 @@ interface Document{
     
   type?:String;
   file?:File;
-}
-
-interface typeDocument{
   nom?:String;
 }
+

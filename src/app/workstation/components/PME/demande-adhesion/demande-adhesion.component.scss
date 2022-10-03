@@ -10,7 +10,7 @@
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-enregistrée {
+    &.status-completée {
         background: #C8E6C9;
         color: #256029;
     }
@@ -24,11 +24,11 @@
         color: #C63737;
     }
 
-    &.status-signée-par-pme {
+    &.status-recevable {
         background: #FEEDAF;
         color: #8A5340;
     }
-    &.status-signée-par-dg {
+    &.status-complément-requis {
         background: #FEEDAF;
         color: #8A5340;
     }

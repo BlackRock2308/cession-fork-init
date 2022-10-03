@@ -3,7 +3,7 @@
 <br>
 <div class="grid">
     <div class="col-12">
-        <div class="card">
+        <p-card>
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10   ">
                     <h3 class="title">Mes demandes de cession</h3>
@@ -64,7 +64,7 @@
 
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Référence du BE</span>
-                            {{demande.referenceBE}}
+                            {{demande.refBE}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Nom du marché</span>
@@ -73,7 +73,7 @@
 
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{demande.dateDemande  | date:'dd/MM/yyyy'}}
+                            {{demande.date_soumission  | date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:20%;">
                             <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-', ' ')}}</span>
@@ -87,7 +87,7 @@
                                     class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
-                                <button *ngIf="demande.statut=='Complement Requis'" pButton pRipple icon="pi pi-pencil"
+                                <button *ngIf="demande.statut=='Complement-requis'" pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded simpleButton" pTooltip="Completer le dossier"
                                     [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)"></button>
                             </div>
@@ -95,7 +95,7 @@
                     </tr>
                 </ng-template>
             </p-table>
-        </div>
+        </p-card>
 
         <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}" [modal]="true">
             <ng-template pTemplate="header">
