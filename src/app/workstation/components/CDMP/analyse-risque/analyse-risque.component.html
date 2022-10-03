@@ -90,7 +90,7 @@
                                     class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Analyser le dossier"></button>
                                 <button pButton pRipple icon="pi pi-eye"
-                                    *ngIf="demande.statut === 'Risquée' || demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' "
+                                    *ngIf="demande.statut === 'Risquée' || demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' || demande.statut === 'Complement-requis'"
                                     [routerLink]="['../consulter_demande']"
                                     class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Visualiser le dossier"></button>
