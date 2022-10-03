@@ -1036,11 +1036,6 @@
   ],
   "types_document": [
     {
-      "id": 1,
-      "nom": "Business Plan",
-      "type": "pdf"
-    },
-    {
       "id": 2,
       "nom": "Etat Financier",
       "type": "excel"
@@ -1096,11 +1091,6 @@
   ],
   "autres_document": [
     {
-      "id": 1,
-      "nom": "Business Plan",
-      "type": "pdf"
-    },
-    {
       "id": 2,
       "nom": "Etat Financier",
       "type": "excel"
@@ -1117,11 +1107,7 @@
     }
   ],
   "documents_complementaire": [
-    {
-      "id": 1,
-      "type_document": "Business Plan",
-      "file": ""
-    },
+  
     {
       "id": 2,
       "type_document": "Autre",
@@ -1131,11 +1117,6 @@
       "typeDocument": "Journal",
       "file": {},
       "id": 10
-    },
-    {
-      "typeDocument": "Business Plan",
-      "file": {},
-      "id": 11
     },
     {
       "typeDocument": "Journal",
