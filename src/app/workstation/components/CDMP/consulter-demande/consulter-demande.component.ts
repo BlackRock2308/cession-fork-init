@@ -7,6 +7,7 @@ import { DocumentService } from 'src/app/workstation/service/document/document.s
 import { Document, Documents } from 'src/app/workstation/model/document';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 @Component({
     selector: 'app-consulter-demande',
     templateUrl: './consulter-demande.component.html',
@@ -16,7 +17,7 @@ import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-d
 })
 export class ConsulterDemandeComponent implements OnInit {
 
-    demandeNantissementInfos: any;
+    demandeCession: any;
 
     productDialog: boolean;
 
@@ -45,7 +46,7 @@ export class ConsulterDemandeComponent implements OnInit {
     home: MenuItem;
 
 
-    constructor(public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
+    constructor(private demandeCessionService: DemandesCessionService,public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
 
     ngOnInit() {
 
@@ -62,10 +63,10 @@ export class ConsulterDemandeComponent implements OnInit {
             { field: 'inventoryStatus', header: 'Status' }
         ];
 
-        //récupérer les informations du nantissement en cours de modification
-        this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-        console.log(this.demandeNantissementInfos);
-
+        this.demandeCessionService.getDemandeObs().subscribe(data => {
+            this.demandeCession = data
+            console.log(this.demandeCession)
+          })
         this.items = [
             { label: 'Analyse du risque', url: '/#/workstation/cdmp/analyse_risque' },
             { label: 'Visualisation de la demande' }
