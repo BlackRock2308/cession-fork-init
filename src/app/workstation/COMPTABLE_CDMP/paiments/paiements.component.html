@@ -101,7 +101,7 @@
                                     *ngIf="paiement.statut === 'En-attente-de-paiement' || paiement.statut === 'PME-partiellement-payée'" (click)="visualiserPaiementListPME(paiement)"></button>
                                 <button pButton pRipple icon="pi pi-id-card"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton" pTooltip="Paiment de la CDMP"
-                                    *ngIf="paiement.statut === 'PME-totalement-payée' || paiement.statut === 'CDMP-partiellement-payée'" (click)="visualiserPaiementListCDMP(paiement)"></button>
+                                    *ngIf="paiement.statut === 'PME-totalement-payée' || paiement.statut === 'CDMP-partiellement-payée' || paiement.statut === 'PME-partiellement-payée'" (click)="visualiserPaiementListCDMP(paiement)"></button>
                             </div>
                         </td>
                     </tr>

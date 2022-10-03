@@ -58,8 +58,8 @@
                             {{demande.referenceBE}}
                         </td>
                         <td style="width:25%;">
-                            <span class="p-column-title">Date Soumission</span>
-                            {{demande.statut}}
+                            <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-', ' ')}}</span>
+
                         </td>
                         
                         <td>
