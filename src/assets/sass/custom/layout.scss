@@ -23,14 +23,14 @@
 
 .simpleButton{
     @extend %button;
-    background-color:$autre-clair;
-    border-color:$autre-clair;
+    background-color:$autre-fonce-clair;
+    border-color:$autre-fonce-clair;
 }
 
 .simpleButton:hover{
     @extend %button;
-    background-color:$autre-clair;
-    border-color: $autre-clair;
+    background-color:$autre-fonce;
+    border-color:$autre-fonce;
 }
 .simpleBoldButton{
     @extend %button;

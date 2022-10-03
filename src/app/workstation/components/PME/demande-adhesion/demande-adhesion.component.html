@@ -3,7 +3,7 @@
 <br>
 <div class="grid">
     <div class="col-12">
-        <div class="card">
+        <p-card>
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10   ">
                     <h3 class="title">Mes demandes de cession</h3>
@@ -87,7 +87,7 @@
                                     class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
-                                <button *ngIf="demande.statut=='Complement Requis'" pButton pRipple icon="pi pi-pencil"
+                                <button *ngIf="demande.statut=='Complement-requis'" pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded simpleButton" pTooltip="Completer le dossier"
                                     [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)"></button>
                             </div>
@@ -95,7 +95,7 @@
                     </tr>
                 </ng-template>
             </p-table>
-        </div>
+        </p-card>
 
         <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}" [modal]="true">
             <ng-template pTemplate="header">

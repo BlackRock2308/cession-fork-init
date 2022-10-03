@@ -14,7 +14,7 @@
             <br>
 
             <div class="grid p-fluid justify-content-center">
-                <div class="col-12 md:col-3">
+                <div class="col-12 md:col-4">
                     <span class="h5texte">NINEA</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -23,7 +23,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-12 md:col-3">
+                <div class="col-12 md:col-4">
                     <span class="h5texte">RCCM</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -32,7 +32,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-12 md:col-3">
+                <div class="col-12 md:col-4">
                     <span class="h5texte">Référence du BE</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -41,7 +41,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-12 md:col-3">
+                <div class="col-12 md:col-4">
                     <span class="h5texte">Nom du marché</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -50,17 +50,17 @@
                         </span>
                     </div>
                 </div>
-               
-                <div class="row justify-content-center">
-                    
-                    <span class="h5texte col-6 mt-2">Raison Sociale</span>
-                    <div class="p-inputgroup col-6">
+                <div class="col-12 md:col-4">
+                    <span class="h5texte">Raison Sociale</span>
+                    <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.raisonSocial}}</label>
+                            <label for="inputtext">{{demandeCession.raisonSocial}} </label>
                         </span>
                     </div>
                 </div>
+               
+                
             </div>
             
             
@@ -190,88 +190,88 @@
             <div class="col-10 mt-7" *ngIf="identifie" >
                 <p-card>
                     <div class="p-formgrid grid row container" [formGroup]="infosBEForm">
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Exercice</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" disabled
                                     value='{{demandeCession.dateDemande.split("-")[0]}}' />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Référence du BE validé</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" disabled value="{{demandeCession.referenceBE}}" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Nature prestation</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="naturePrestation" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Type de la dépense</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="typeDepense" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Imputation</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="imputation" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Objet de la dépense</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="objetDepense" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Mode de réglement</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="modeReglement" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Montant de la dépense</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="montantDepense" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Bénéficiaire</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="beneficiaire" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Date</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="date" formControlName="date" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Identification Comptable</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="identificationComptable" />
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-6">
-                            <label htmlFor="name3" class="col-12 lg:col-4"
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-4"
                                 style="font-weight: bold;color: #203359;">Destination</label>
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="destination" />
                             </div>
                         </div>
