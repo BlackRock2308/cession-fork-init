@@ -41,8 +41,8 @@
         class="p-button-raised p-button-info mx-1  my-auto ml-2"></button>
     <h3 style=" margin-left: 40%;"> Liste des créances cédées </h3>
 
-    <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="10"
-        [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" [rows]="10"
+    <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
+        [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" 
         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
         currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
 

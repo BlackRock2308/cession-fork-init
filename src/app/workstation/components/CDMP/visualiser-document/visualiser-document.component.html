@@ -80,14 +80,14 @@
         <button
             *ngIf="((profil === 'DG') && (statut === 'Convention-signée-par-la-PME')) || ((profil === 'pme') && (statut === 'Convention-générée'))"
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
-            class="p-button-raised p-button-danger mx-1  my-auto ml-2"></button>
+            class="p-button-raised dangerButton"></button>
         <button
             *ngIf="((profil === 'DG') && (statut === 'Convention-signée-par-la-PME'))  || ((profil === 'pme') && (statut === 'Convention-générée'))"
             type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
-            (click)="signerConvention()" class="p-button-raised p-button-success my-auto "></button>
+            (click)="signerConvention()" class="p-button-raised successButton"></button>
         <button
             *ngIf="!(((profil === 'DG') && (statut === 'Convention-signée-par-la-PME')) || ((profil === 'pme') && (statut === 'Convention-générée')))"
-            type="button" class="p-button-raised btn-outline-secondary my-auto" (click)="dismiss()" pButton pRipple
+            type="button" class="p-button-raised simpleButton" (click)="dismiss()" pButton pRipple
             label="Fermer"></button>
     </div>
 </div>

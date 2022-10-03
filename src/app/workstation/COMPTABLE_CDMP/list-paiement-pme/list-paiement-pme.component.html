@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="card">
-            <button id="valider" style=" float: right;" pButton pRipple label="Payer"
-            icon="pi pi-plus" class="boutton"
+            <button id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer"
+            icon="pi pi-plus" class="successButton"
             (click)="visualiserPaimentPME()"></button>
             <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"

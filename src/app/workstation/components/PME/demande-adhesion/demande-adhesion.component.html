@@ -11,8 +11,8 @@
             </div>
             <br>
 
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+                [globalFilterFields]="['name','country.name','representative.name','status']" 
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">

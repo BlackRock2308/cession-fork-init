@@ -11,8 +11,8 @@
                 </div>
             </div>
             <br>
-            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
+            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+                [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" 
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="header">
