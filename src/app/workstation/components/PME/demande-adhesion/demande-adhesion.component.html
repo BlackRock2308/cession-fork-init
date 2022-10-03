@@ -64,7 +64,7 @@
 
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Référence du BE</span>
-                            {{demande.referenceBE}}
+                            {{demande.refBE}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Nom du marché</span>
@@ -73,7 +73,7 @@
 
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{demande.dateDemande  | date:'dd/MM/yyyy'}}
+                            {{demande.date_soumission  | date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:20%;">
                             <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-', ' ')}}</span>
