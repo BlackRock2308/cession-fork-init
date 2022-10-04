@@ -62,7 +62,7 @@ export class TacheAnalyseComponent implements OnInit {
           })
       
         //this.productService.getProducts().then(data => this.products = data);
-        this.documentService.getDeocuments().subscribe(data => {
+        this.documentService.getDeocumentVRF().subscribe(data => {
             this.documents = data
         });
 

@@ -16,6 +16,14 @@ export class DocumentService {
     return this.http.get<Documents[]>(`${this.baseUrl}/documents`);
   }
 
+  getDeocumentVRF(): Observable<Documents[]> {
+    return this.http.get<Documents[]>(`${this.baseUrl}/documentsVRF`);
+  }
+
+  getDocumentsADH(): Observable<Documents[]> {
+    return this.http.get<Documents[]>(`${this.baseUrl}/documentADH`);
+  }
+
   getDocuments(): Observable<Document[]> {
     return this.http.get<Document[]>(`${this.baseUrl}/document`);
   }

@@ -1,15 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "id": 13,
-      "ninea": "4592005",
-      "rccm": "64856892",
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
-    },
-    {
       "id": 14,
       "ninea": "45892305",
       "rccm": "458320",
@@ -189,7 +180,17 @@
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "denomination": "",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "representantLegal": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": "",
+      "pmeActive": true,
+      "nineaValide": true
     },
     {
       "id": 14,
@@ -499,7 +500,7 @@
       "ninea": "561205467567",
       "rccm": "401568778",
       "statut": "Risquée",
-      "date_soumission": "30/10/2022",
+      "date_soumission": "10/10/2022",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
       "rccm_file": "",
@@ -525,7 +526,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "rejetée",
+      "statut": "rejeté",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
       "type_marche": "Travaux",
@@ -537,8 +538,22 @@
       "nomMarche": "Fournitures de lots de materiels",
       "ATD": "Aucun ATD",
       "denomination": "Modelsis SARL",
-      "nantissement": "Creance  nanti",
-      "interdiction": "Aucune interdiction bancaire"
+      "nantissement": true,
+      "interdiction": "Aucune interdiction bancaire",
+      "identificationBudgetaire": true,
+      "atd": true,
+      "interdictionBancaire": true,
+      "naturePrestation": "",
+      "natureDepense": "",
+      "imputation": "",
+      "modeReglement": "",
+      "beneficiaire": "",
+      "identificationComptable": "",
+      "typeDepense": "",
+      "objetDepense": "",
+      "montantDepense": "",
+      "date": "",
+      "destination": ""
     },
     {
       "id": 2,
@@ -613,7 +628,7 @@
       "interdiction": "Aucune interdiction bancaire"
     },
     {
-      "id": 5,
+      "id": 6,
       "ninea": "123567",
       "statut": "Signée-par-dg",
       "raisonSocial": "E.COM4",
@@ -632,17 +647,6 @@
     }
   ],
   "recevabilites": [
-    {
-      "id": 1,
-      "ninea": "567567",
-      "statut": "soumis",
-      "raisonSocial": "Modelsis SARL",
-      "referenceBE": "20-294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0001",
-      "rccm": "401568778",
-      "nomMarche": "Fournitures de lots de materiels"
-    },
     {
       "id": 2,
       "ninea": "567567",
@@ -682,7 +686,7 @@
       "statut": "soumis",
       "raisonSocial": "E.COM4",
       "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z1",
+      "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0005",
       "rccm": "001548015",
       "nomMarche": "Transport"
@@ -1053,7 +1057,69 @@
       "raisonSocial": "ENEDIS"
     }
   ],
+  "documentsVRF": [
+    {
+      "id": 1,
+      "nomDocument": "NINEA",
+      "dateSoumission": "01/02/2022",
+      "typeDocument": "NINEA",
+      "path": "/assets/doctest.pdf",
+      "refBE": "6543568778",
+      "ninea": "567865467567",
+      "refDemande": "2022-3454",
+      "raisonSocial": "CAMAIEU INTERNATIONAL"
+    },
+    {
+      "id": 2,
+      "nomDocument": "RCCM",
+      "dateSoumission": "01/02/2022",
+      "typeDocument": "RCCM",
+      "path": "/assets/doctest2.pdf",
+      "refBE": "9878543",
+      "ninea": "12345567",
+      "refDemande": "2022-3214",
+      "raisonSocial": "Modelsis SARL"
+    },
+    {
+      "id": 3,
+      "nomDocument": "Bon d'engagement",
+      "dateSoumission": "04/03/2022",
+      "typeDocument": "BE",
+      "ninea": "97685444",
+      "path": "/assets/doctest1.pdf",
+      "refBE": "99999866",
+      "refDemande": "2012-0000",
+      "raisonSocial": "SCI SENEGAL FIL"
+    }
+  ],
+  "documentADH": [
+    {
+      "id": 1,
+      "nomDocument": "NINEA",
+      "dateSoumission": "01/02/2022",
+      "typeDocument": "NINEA",
+      "path": "/assets/doctest.pdf",
+      "ninea": "567865467567",
+      "refDemande": "2022-3454",
+      "raisonSocial": "CAMAIEU INTERNATIONAL"
+    },
+    {
+      "id": 2,
+      "nomDocument": "RCCM",
+      "dateSoumission": "01/02/2022",
+      "typeDocument": "RCCM",
+      "path": "/assets/doctest2.pdf",
+      "ninea": "12345567",
+      "refDemande": "2022-3214",
+      "raisonSocial": "Modelsis SARL"
+    }
+  ],
   "types_document": [
+    {
+      "id": 1,
+      "nom": "Bon engagement",
+      "type": "pdf"
+    },
     {
       "id": 2,
       "nom": "Etat Financier",
@@ -1086,7 +1152,7 @@
     {
       "id": 3,
       "nom": "Business Plan",
-      "type": "Autre",
+      "type": "Business Plan",
       "date_soumission": "12/12/2020"
     },
     {
@@ -1098,17 +1164,22 @@
     {
       "id": 5,
       "nom": "Raport Fiscal",
-      "type": "Autres",
+      "type": "Raport Fiscal",
       "date_soumission": "03/03/2000"
     },
     {
       "id": 6,
       "nom": "Etat Financier",
-      "type": "Autres",
+      "type": "Etat Financier",
       "date_soumission": "11/10/2011"
     }
   ],
   "autres_document": [
+    {
+      "id": 1,
+      "nom": "Bon engagement",
+      "type": "pdf"
+    },
     {
       "id": 2,
       "nom": "Etat Financier",
