@@ -9,6 +9,8 @@ import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -49,7 +51,8 @@ export class TacheAnalyseComponent implements OnInit {
     items: MenuItem[];
     home: MenuItem;
 
-    constructor(    private demandeCessionService: DemandesCessionService,
+    constructor(      private router: Router,
+        private demandeCessionService: DemandesCessionService,
         private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
 
     ngOnInit() {
@@ -153,5 +156,61 @@ export class TacheAnalyseComponent implements OnInit {
     }
 
  
+    onSubmit() {
+       
+      
+    
+        Swal.fire({
+          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+          color:"#203359",
+          confirmButtonColor:"#99CC33",
+          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+          allowOutsideClick:false,
+          
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['workstation/cdmp/analyse_risque'])
+          }})
+    
+          
+    }
+
+    onSubmitRejet() {
+       
+      
+    
+        Swal.fire({
+          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+          color:"#203359",
+          confirmButtonColor:"#99CC33",
+          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+          allowOutsideClick:false,
+          
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['workstation/cdmp/analyse_risque'])
+          }})
+    
+          
+    }
+
+    onSubmitComplements() {
+       
+      
+    
+        Swal.fire({
+          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",
+          color:"#203359",
+          confirmButtonColor:"#99CC33",
+          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+          allowOutsideClick:false,
+          
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['workstation/cdmp/analyse_risque'])
+          }})
+    
+          
+    }
 
 }

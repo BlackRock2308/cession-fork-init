@@ -1,8 +1,10 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { fileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import Swal from 'sweetalert2';
 import { Document } from '../../model/document';
 
 @Component({
@@ -29,7 +31,7 @@ export class PaiementCDMPComponent implements OnInit {
   documents: Document[] = [];
   document: Document;
   documentForm: FormGroup;
-  constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+  constructor(private router : Router ,public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
 
   dropdownItems = [
     { name: 'Sélectionner', code: '' },
@@ -57,5 +59,24 @@ export class PaiementCDMPComponent implements OnInit {
     console.log(this.documents)
         
   }
+
+  onSubmitForm() {
+
+    this.ref.close();
+
+    Swal.fire({
+
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Le paiement a bien été effectué.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['workstation/comptable/list-paiements-cdmp'])
+      }})
+    }
+ 
  
 }

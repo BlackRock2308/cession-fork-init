@@ -325,7 +325,6 @@
       "rccm_file": "",
       "nineaValide": true,
       "dateDemande": "15/12/2006",
-
       "pmeActive": true,
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
@@ -335,7 +334,6 @@
       "montant_total": "10.000.000",
       "date_marche": "20/10/2005",
       "date_cession": "15/12/2006",
-
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
       "decode": "5%",
@@ -352,7 +350,6 @@
       "nineaFile": {},
       "rccmFile": {},
       "solde_sica": "2.000.000"
-    
     },
     {
       "id": 2,
@@ -1129,7 +1126,6 @@
     }
   ],
   "documents_complementaire": [
-  
     {
       "id": 2,
       "type": "Autre",
@@ -1139,6 +1135,11 @@
       "type": "Journal",
       "file": {},
       "id": 10
+    },
+    {
+      "typeDocument": "",
+      "file": {},
+      "id": 11
     }
   ],
   "paiements": [
