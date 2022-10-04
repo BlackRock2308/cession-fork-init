@@ -39,7 +39,7 @@
         style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;" pButton
         pRipple label="Exporter" icon="pi pi-download" (click)="exportexcel()"
         class="p-button-raised p-button-info mx-1  my-auto ml-2"></button>
-    <h3 style=" margin-left: 40%;"> Liste des créances cédées </h3>
+    <h3 style=" margin-left: 40%;"> Liste des créances</h3>
 
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" 
@@ -48,7 +48,7 @@
 
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon>
+                <th pSortableColumn="ninea" style="color: #203359;">Nom du marché <p-sortIcon field="ninea"></p-sortIcon>
                 </th>
                 <th pSortableColumn="datesoumission" style="color: #203359;">Raison sociale <p-sortIcon
                         field="datesoumission"></p-sortIcon>
@@ -59,14 +59,16 @@
                 </th>
                 <th pSortableColumn="rccm" style="color: #203359;">Date marché <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
-                <th *ngIf="profil === 'DG'" pSortableColumn="rccm" style="color: #203359;">Décode <p-sortIcon
+                <th pSortableColumn="rccm" style="color: #203359;">Statut <p-sortIcon field="rccm"></p-sortIcon>
+                </th>
+                <th *ngIf="profil === 'DG'" pSortableColumn="rccm" style="color: #203359;">Décote <p-sortIcon
                         field="rccm"></p-sortIcon>
                 </th>
                 <th style="color: #203359;">Actions</th>
             </tr>
             <tr>
                 <th>
-                    <p-columnFilter type="text" field="ninea"></p-columnFilter>
+                    <p-columnFilter type="text" field="nomMarche"></p-columnFilter>
                 </th>
                 <th>
                     <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
@@ -80,6 +82,9 @@
                 <th>
                     <p-columnFilter type="text" field="date_marche"></p-columnFilter>
                 </th>
+                <th>
+                    <p-columnFilter type="text" field="statut_dg"></p-columnFilter>
+                </th>
                 <th *ngIf="profil === 'DG'">
                     <p-columnFilter type="text" field="decode"></p-columnFilter>
                 </th>
@@ -88,8 +93,8 @@
         <ng-template pTemplate="body" let-demande>
             <tr>
                 <td >
-                    <span class="p-column-title">NINEA</span>
-                    {{demande.ninea}}
+                    <span class="p-column-title">Nom marche</span>
+                    {{demande.nomMarche}}
                 </td>
                 <td >
                     <span class="p-column-title">Raison sociale</span>
@@ -106,6 +111,10 @@
                 <td >
                     <span class="p-column-title">Date marché</span>
                     {{demande.date_marche}}
+                </td>
+                <td >
+                    <span [class]="'product-badge status-' + (demande.statut_dg ? demande.statut_dg.toLowerCase() : '')">{{demande.statut_dg.replaceAll('-', ' ')}}</span>
+
                 </td>
                 <td  *ngIf="profil === 'DG'">
                     <span class="p-column-title">Décote</span>

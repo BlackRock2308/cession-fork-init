@@ -176,8 +176,8 @@ EditerConvention(convention: Convention) {
       convention: convention
     },
     header: "",
-    width: '60%',
-    height: 'calc(98% - 250px)',
+    width: '55%',
+    height: 'calc(65% - 250px)',
     baseZIndex: 50
   });
 }

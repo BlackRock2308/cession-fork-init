@@ -353,6 +353,7 @@
       "id": 1,
       "ninea": "567567",
       "statut": "Completée",
+      "statut_dg" : "Acceptée",
       "rccm": "6543568778",
       "denomination": "Modelsis",
       "raisonSocial": "Modelsis SARL",
@@ -399,6 +400,8 @@
       "raisonSocial": "ENEDIS",
       "statut": "Recevable",
       "date_soumission": "12/12/2020",
+      "statut_dg" : "Acceptée",
+
       "ninea_file": "",
       "statut_convention": "Convention-générée",
       "nomMarche": "Reparation , entretien et installation",
@@ -440,6 +443,8 @@
       "statut_convention": "Convention-signée-par-la-PME",
       "rccm_file": "",
       "ATD": "Aucun ATD",
+      "statut_dg" : "Refusée",
+
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
       "nomMarche": "Service de decoration",
@@ -471,6 +476,8 @@
       "interdiction": "Aucune interdiction bancaire",
       "nomMarche": "Service divers",
       "numero_demande": "2022-0123",
+      "statut_dg" : "Refusée",
+
       "type_marche": "Travaux",
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
@@ -493,6 +500,8 @@
       "ninea_file": "",
       "statut_convention": "Convention-rejetée",
       "rccm_file": "",
+      "statut_dg" : "Acceptée",
+
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
@@ -516,6 +525,8 @@
       "date_soumission": "05/07/2018",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
+      "statut_dg" : "Refusée",
+
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
@@ -541,6 +552,8 @@
       "date_soumission": "10/10/2022",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
+      "statut_dg" : "Refusée",
+
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
@@ -1244,6 +1257,11 @@
       "type": "Journal",
       "file": {},
       "id": 10
+    },
+    {
+      "typeDocument": "",
+      "file": {},
+      "id": 11
     }
   ],
   "paiements": [

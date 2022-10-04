@@ -142,12 +142,12 @@
         </div>
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
             <button id="valider" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
-                class="p-button-raised dangerButton" routerLink="../"></button>
+                class="p-button-raised dangerButton" (click)="onSubmitRejet()" ></button>
             <button id="valider" pButton pRipple label="Demander Complements" icon="pi pi-pencil"
-                class="p-button-raised simpleButton " routerLink="../"></button>
+                class="p-button-raised simpleButton " (click)="onSubmitComplements()" ></button>
             <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
                 label="Valider" icon="pi pi-check" class="p-button-raised successButton"
-                routerLink="../"></button>
+                (click)="onSubmit()"></button>
         </div>
     </div>
 </div>

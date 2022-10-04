@@ -86,14 +86,7 @@
                         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                         currentPageReportTemplate=" {totalRecords} lignes "
                         [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
-                        <ng-template pTemplate="caption">
-                            <div
-                                class="flex flex-column md:flex-row md:justify-content-between md:align-items-center tab">
-                                <h4 class="m-2 title" style="color:  #203359; position: relative; right: -600px;">
-                                    Documents</h4>
-                              
-                            </div>
-                        </ng-template>
+                        
                         <ng-template pTemplate="header">
                             <tr>
 
