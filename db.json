@@ -1,17 +1,9 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 125485620,
-      "rccm": 124412888,
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z",
-      "id": 16
-    },
-    {
-      "ninea": 567876546,
-      "rccm": 876546756,
+      "ninea": 56787654698,
+      "rccm": "SN-DKR 2018 R 45678",
+      "statut": "Soumise",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
@@ -19,8 +11,9 @@
       "id": 17
     },
     {
-      "ninea": 121233122,
-      "rccm": 124354,
+      "ninea": 12123312267,
+      "rccm": "SN-DKR 2014 C 12348",
+      "statut": "Soumise",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
@@ -29,7 +22,8 @@
     },
     {
       "ninea": 89988988,
-      "rccm": 678789898,
+      "rccm": "SN-DKR 1018 T 45667",
+      "statut": "Rejetée",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
@@ -237,7 +231,8 @@
       "nineaFile": {},
       "rccmFile": {},
       "date_soumission": "2022-09-28T10:10:13.678Z",
-      "id": 16
+      "id": 16,
+      "nineaValide": false
     },
     {
       "ninea": 45488555,
@@ -353,7 +348,7 @@
       "id": 1,
       "ninea": "567567",
       "statut": "Completée",
-      "statut_dg" : "Acceptée",
+      "statut_dg": "Acceptée",
       "rccm": "6543568778",
       "denomination": "Modelsis",
       "raisonSocial": "Modelsis SARL",
@@ -400,8 +395,7 @@
       "raisonSocial": "ENEDIS",
       "statut": "Recevable",
       "date_soumission": "12/12/2020",
-      "statut_dg" : "Acceptée",
-
+      "statut_dg": "Acceptée",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
       "nomMarche": "Reparation , entretien et installation",
@@ -443,8 +437,7 @@
       "statut_convention": "Convention-signée-par-la-PME",
       "rccm_file": "",
       "ATD": "Aucun ATD",
-      "statut_dg" : "Refusée",
-
+      "statut_dg": "Refusée",
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
       "nomMarche": "Service de decoration",
@@ -476,8 +469,7 @@
       "interdiction": "Aucune interdiction bancaire",
       "nomMarche": "Service divers",
       "numero_demande": "2022-0123",
-      "statut_dg" : "Refusée",
-
+      "statut_dg": "Refusée",
       "type_marche": "Travaux",
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
@@ -500,8 +492,7 @@
       "ninea_file": "",
       "statut_convention": "Convention-rejetée",
       "rccm_file": "",
-      "statut_dg" : "Acceptée",
-
+      "statut_dg": "Acceptée",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
@@ -525,8 +516,7 @@
       "date_soumission": "05/07/2018",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
-      "statut_dg" : "Refusée",
-
+      "statut_dg": "Refusée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
@@ -552,8 +542,7 @@
       "date_soumission": "10/10/2022",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
-      "statut_dg" : "Refusée",
-
+      "statut_dg": "Refusée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
