@@ -36,7 +36,7 @@ export class ConventionSignerComponent implements OnInit {
   onSubmit() {
     this.ref.close();
     Swal.fire({
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre code a été enregistré.</p>",
+      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
       color: "#203359",
       confirmButtonColor: "#A6C733",
       confirmButtonText: '<i class="pi pi-check"></i>OK',

@@ -45,7 +45,7 @@ export class ConventionEnregistreeComponent implements OnInit {
   this.enregistrerConvention();
 
   Swal.fire({
-    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande d'adhésion a été pris en compte.</p><br><p style='font-size: large;font-weight: bold;'>Vous allez recevoir un message de la part du service de cession de créances dans les plus brefs délais.</p>",
+    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande d'adhésion a été prise en compte.</p><br><p style='font-size: large;font-weight: bold;'>Vous allez recevoir un message de la part du service de cession de créances dans les plus brefs délais.</p>",
     color:"#203359",
     confirmButtonColor:"#A6C733",
     confirmButtonText: '<i class="pi pi-check"></i>OK',

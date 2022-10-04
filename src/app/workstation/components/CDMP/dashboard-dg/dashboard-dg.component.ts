@@ -85,7 +85,7 @@ export class DashboardDGComponent implements OnInit {
             { field: 'inventoryStatus', header: 'Status' }
         ];
         this.items = [
-            {}
+            { label: 'Tableau de bord ' }
         ];
 
         this.dropdownYears = [

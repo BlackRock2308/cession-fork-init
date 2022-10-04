@@ -4,7 +4,7 @@
             <img class="form-img" src="../../../assets/layout/images/login.png " alt="form">
         </div>
         <form class="form-detail" action="#" method="post" id="myform">
-            <span class="cdmp"> Caisse Des Marchés Publics </span><br/>
+            <span class="cdmp"> Caisse Des Marchés Publics </span><br />
             <span class="soustitre"> Plateforme de cession de créances </span>
             <!-- <div>
                 <img class="img-person" src="../../../assets/layout/images/person.png ">
@@ -15,10 +15,10 @@
             <div class="form-row">
                 <span class="connexion"> Connexion </span>
             </div>
-            <br/>
+            <br />
             <div class="form-row form-group row">
-                <div class="col-sm-2" ><img class="img-person" src="../../../assets/layout/images/person.png "></div>
-                
+                <div class="col-sm-2"><img class="img-person" src="../../../assets/layout/images/person.png "></div>
+
                 <div class="col-sm-10">
                     <input name="username" type="email" class="form-control" [(ngModel)]="username" id="inputEmail3"
                         placeholder="Nom d’utilisateur">
@@ -28,27 +28,29 @@
                 <br>
             </div>
             <div class="form-row form-group row">
-                <div class="col-sm-2" ><img class="img-pwd" src="../../../assets/layout/images/images.png "></div>
+                <div class="col-sm-2"><a class="pi pi-lock cad"></a> </div>
                 <!-- <label for="inputEmail3" class="col-sm-4 col-form-label">Mot de passe</label> -->
                 <div class="col-sm-10">
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Mot de passe" [toggleMask]="true" styleClass="w-full mb-3" name="password"></p-password>
+                    <p-password id="password1" [(ngModel)]="password" placeholder="Mot de passe" [toggleMask]="true"
+                        styleClass="w-full mb-3" name="password"></p-password>
 
                 </div>
 
             </div>
-            <div class="form-row-last">
-                <input (click)="login(username, motdepasse)" type="submit" name="register" class=" register"
-                    value="Se connecter">
-            </div>
+            <br>
             <div class="form-row form-group row">
-                <h4 for="" class="col-form-label">Mot de passe oublié?<a class="recup-ici"
-                        [routerLink]="['recup_pwd']"> Récuperez-le ici</a></h4>
+                <div class="col-sm-6"><input (click)="login(username, motdepasse)" type="submit" name="register"
+                        class=" register  mr-2" value="Se connecter"></div>
+                <div class="col-sm-6"><input  [routerLink]="['../pme/adhesion']" type="submit" name="sigout"
+                        class=" sigout  mr-2" value="Créer un compte"></div>
+
             </div>
             <br>
             <div class="form-row form-group row">
-                <h3 for="" class="col-form-label"><a href="#" [routerLink]="['../pme/adhesion']"
-                        class="creer-compte">Créer un compte</a></h3>
+                <h4 for="" class="col-form-label"><a [routerLink]="['recup_pwd']" class="text"> Mot de passe oublié?</a></h4>
             </div>
+            <br>
+          
         </form>
     </div>
     <div>

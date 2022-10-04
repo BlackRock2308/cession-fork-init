@@ -53,7 +53,7 @@ export class ListPaiementsComponent implements OnInit {
       this.cols = [
         
         { field: 'datePaiement', header: 'Date Paiement' },
-        { field: 'payer', header: 'Payeur' },
+        { field: 'payer', header: 'Enregistré par' },
         { field: 'montant', header: 'Montant' },
         { field: 'modePaiement', header: 'Mode Paiement' },
       ];
