@@ -19,7 +19,7 @@
                     <br>
                 </div>
                 <ul class="list-unstyled components mb-5 menu">
-                    <div *ngIf="profil === 'DG' || profil === 'cdmp' || profil === 'comptable'">
+                    <div *ngIf="profil === 'DG' || profil === 'cgr' || profil === 'comptable'">
                         <div class="tableau_bord" *ngIf="appMain.sidebarActive">
                             <li>
                                 <a class="pi pi-chart-line" [routerLink]="['cdmp/dashboard']">Tableau de bord</a>
@@ -42,14 +42,14 @@
                     <li *ngIf="profil === 'pme'">
                         <a class="pi pi-money-bill" [routerLink]="['pme/paiements']">Suivi des paiements</a>
                     </li>
-                    <li *ngIf="profil === 'cdmp'">
+                    <li *ngIf="profil === 'cgr'">
                         <a class="pi pi-folder-open" disabled [routerLink]="['cdmp/demandes_en_cours']">Demandes
                             Adhésion</a>
                     </li>
-                    <li *ngIf="profil === 'cdmp'">
+                    <li *ngIf="profil === 'cgr'">
                         <a class="pi pi-directions" disabled [routerLink]="['cdmp/recevabilite']">Recevabilite</a>
                     </li>
-                    <li *ngIf="profil === 'cdmp'">
+                    <li *ngIf="profil === 'cgr'">
                         <a class="pi pi-exclamation-circle" disabled [routerLink]="['cdmp/analyse_risque']">Analyse du
                             risque</a>
                     </li>
