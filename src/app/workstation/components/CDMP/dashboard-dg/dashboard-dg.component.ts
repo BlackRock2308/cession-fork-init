@@ -363,7 +363,7 @@ export class DashboardDGComponent implements OnInit {
             data: {
                 demande: demande
             },
-            header: "Détails Tableau",
+            header: "Détails du marché",
             width: '40%',
             height: 'calc(74% - 100px)',
             baseZIndex: 10000

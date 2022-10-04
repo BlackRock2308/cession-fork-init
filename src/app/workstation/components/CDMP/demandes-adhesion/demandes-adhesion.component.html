@@ -39,6 +39,9 @@
                         <th pSortableColumn="date_soumission" style="color: #203359;">Date demande<p-sortIcon field="date_soumission">
                             </p-sortIcon>
                         </th>
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
+                            </p-sortIcon>
+                        </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                     
@@ -57,11 +60,14 @@
                             <span class="p-column-title">Date Soumission</span>
                             {{demande.date_soumission | date:'dd/MM/yyyy'}}
                         </td>
+                        <td style="width:30%;">
+                           <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut}}</span>
+                        </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-eye"
                                  class="p-button-rounded  simpleButton"  pInputText  pTooltip="Visualiser la demande" (click)="visualiserDemande(demande)"></button>
-                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemande(demande)" class="p-button-rounded simpleButton"  pInputText  pTooltip="Analyser le dossier" ></button>
+                                <button *ngIf="demande.statut === 'Soumise'" pButton pRipple icon="pi pi-pencil" (click)="verifierDemande(demande)" class="p-button-rounded simpleButton"  pInputText  pTooltip="Analyser le dossier" ></button>
                                 
                             </div>
                           

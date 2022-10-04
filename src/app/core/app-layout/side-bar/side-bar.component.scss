@@ -1,16 +1,17 @@
-h1{
+h1 {
     color: white;
-    
+
     font-weight: bold;
 }
 
-.tableau_bord{
+.tableau_bord {
     border-top: 1px solid rgba(123, 224, 120, 0.579);
-   ;
-    
+    ;
+
     border-bottom: 1px solid rgba(123, 224, 120, 0.632);
-   
+
 }
+
 * {
     color: #fff;
 }
@@ -49,61 +50,66 @@ h1{
 }
 
 
-#navbar{
+#navbar {
     position: relative;
     top: 1px;
 }
 
-.abdou{
+.abdou {
     color: rgb(60, 60, 60);
-   font-weight: bold;
-   text-align: center;
+    font-weight: bold;
+    text-align: center;
 }
 
-.logo-menu{
+.logo-menu {
     height: 30px;
     position: relative;
     right: -30px;
     top: -15px;
 }
 
-.dropdown-item{
+.dropdown-item {
     color: black;
 }
 
-#navbar{
-    bottom:35px;
+#navbar {
+    bottom: 35px;
 }
-.mymenu{
-left: 30px;
-position: relative;
+
+.mymenu {
+    left: 30px;
+    position: relative;
 }
-#pi{
+
+#pi {
     color: white;
 }
 
-p{
+p {
     color: white;
     font-size: large;
-    
+
 }
 
-h3{
+h3 {
     color: white;
     text-align: center;
 }
-a{
+
+a {
     color: white;
 }
-#sidebar{
-    background-color:#203359;
+
+#sidebar {
+    background-color: #203359;
 }
-#navbar{
-    background-color:#203359;
-    
-    }
 
+#navbar {
+    background-color: #203359;
 
+}
 
-
-    
+.mn{
+    color: aliceblue;
+    font-family: Helvetica;
+}
