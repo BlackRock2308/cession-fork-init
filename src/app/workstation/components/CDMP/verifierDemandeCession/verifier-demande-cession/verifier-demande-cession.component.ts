@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
@@ -62,17 +62,17 @@ export class VerifierDemandeCessionComponent implements OnInit {
     ];
 
     this.infosBEForm = this.formBuilder.group({
-      naturePrestation: [''],
-      natureDepense: [''],
-      imputation: [''],
-      modeReglement: [''],
-      beneficiaire: [''],
-      identificationComptable: [''],
-      typeDepense: [''],
-      objetDepense: [''],
-      montantDepense: [''],
-      date: [''],
-      destination: ['']
+      naturePrestation: ['',Validators.required],
+      //natureDepense: ['',Validators.required],
+      imputation: ['',Validators.required],
+      modeReglement: ['',Validators.required],
+      beneficiaire: ['',Validators.required],
+      identificationComptable: ['',Validators.required],
+      typeDepense: ['',Validators.required],
+      objetDepense: ['',Validators.required],
+      montantDepense: ['',Validators.required],
+      date: ['',Validators.required],
+      destination: ['',Validators.required]
 
     });
     this.items = [

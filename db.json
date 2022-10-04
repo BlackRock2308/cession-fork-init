@@ -538,7 +538,7 @@
       "ninea": "561205467567",
       "rccm": "401568778",
       "statut": "Risquée",
-      "date_soumission": "30/10/2022",
+      "date_soumission": "10/10/2022",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
       "rccm_file": "",
@@ -564,7 +564,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Enregistrée",
+      "statut": "rejeté",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
       "type_marche": "Travaux",
@@ -666,7 +666,7 @@
       "interdiction": "Aucune interdiction bancaire"
     },
     {
-      "id": 5,
+      "id": 6,
       "ninea": "123567",
       "statut": "Signée-par-dg",
       "raisonSocial": "E.COM4",
@@ -685,17 +685,6 @@
     }
   ],
   "recevabilites": [
-    {
-      "id": 1,
-      "ninea": "567567",
-      "statut": "soumis",
-      "raisonSocial": "Modelsis SARL",
-      "referenceBE": "20-294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0001",
-      "rccm": "401568778",
-      "nomMarche": "Fournitures de lots de materiels"
-    },
     {
       "id": 2,
       "ninea": "567567",
@@ -735,7 +724,7 @@
       "statut": "soumis",
       "raisonSocial": "E.COM4",
       "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z1",
+      "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0005",
       "rccm": "001548015",
       "nomMarche": "Transport"
