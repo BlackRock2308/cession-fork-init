@@ -14,7 +14,7 @@ import { Document } from '../../model/document';
 })
 export class PaiementPMEComponent implements OnInit {
   
-  selectedFiles: File[]=[];
+  selectedFiles: File[] = [];
   selectedFile?:File;
   images: any;
   docLoading: boolean;
@@ -50,14 +50,10 @@ export class PaiementPMEComponent implements OnInit {
     document.getElementById('upload-file').click();
   }
 
+  //sélectionner le fichier 
   selectFile(files: any): void {
-    
-    this.document=this.documentForm.value;
-    this.document.file=files.target.files[0];
-    this.documents.push(this.document);
-    files.target.files=null;
-    console.log(this.documents)
-        
+    this.selectedFiles = files.target.files[0];
+    console.log(this.selectedFiles);
   }
 
   onSubmitForm() {

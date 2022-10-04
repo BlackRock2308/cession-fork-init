@@ -24,15 +24,21 @@
                 <div class="field grid">
                     <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
                     <div class="field inputContainer col-12 md:col-8">
-                        <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
-                            placeholder="Choisissez un ficher">
+                        <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
+                        pInputText pTooltip="Charger la convention " placeholder="Pas de fichier">
                         
-                        <button type="button" pButton pRipple
-                        icon="pi pi-upload" class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
-                        (click)="handleClick()"></button>
-                    </div>
-                    <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
-                        ngf-max-size="2MB" (change)="selectFile($event)">
+                    <ng-template #elseBlock id="file" type="text" pInputText
+                        pTooltip="Charger document">
+                        <input id="file" type="text" style="width: 492px;"
+                        pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
+                    </ng-template>
+                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
+                        
+    
+                    <button type="button" pButton pRipple icon="pi pi-upload"
+                                class="mr-20 mb-2  upload p-button-rounded p-button-text" id="upload-file"
+                                (click)="handleClick()"></button>
                     
                 </div>
             </div>
