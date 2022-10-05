@@ -1,15 +1,9 @@
-<form [formGroup]="form">
+<form [formGroup]="form">       
+            <div class="col-6">
 
-
-    <div class="field grid">
-       
-        <div class="col-12 md:col-4 mb-2">
-            <div class="col-12">
-                <div class="formgroup-inline">
-                    <div class="field col-12 md:col-12 mb-1 justify-content-center">
-                        <div class=" inputContainer justify-content-center">
+                        <div class=" inputContainer">
                             <input *ngIf="selectedCONVENTIONFiles==null;else elseCONVENTIONBlock" id="CONVENTIONfile" type="text"
-                                pInputText pTooltip="Charger le document de référence du CONVENTION" placeholder="CONVENTION" class="justify-content-center">
+                                pInputText pTooltip="Charger le document de référence du CONVENTION" placeholder="CONVENTION" class="inpute">
                                 
                             <ng-template #elseCONVENTIONBlock id="CONVENTIONfile" type="text" pInputText
                                 pTooltip="Charger document">
@@ -24,7 +18,8 @@
                                 class="upload p-button-rounded p-button-text" id="upload-CONVENTIONfile"
                                 (click)="handleCONVENTIONClick()"></button>
                 
-    </div>
+                        </div>
+            </div>
 <br>
 <div class="col-12  pr-0 d-flex  flex-row-reverse">
     <button    style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton"  (click)="dismiss()" ></button>
