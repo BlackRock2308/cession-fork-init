@@ -365,7 +365,7 @@ export class DashboardDGComponent implements OnInit {
             },
             header: "Détails du marché",
             width: '40%',
-            height: 'calc(74% - 100px)',
+            height: 'calc(86% - 100px)',
             baseZIndex: 10000
         });
 
