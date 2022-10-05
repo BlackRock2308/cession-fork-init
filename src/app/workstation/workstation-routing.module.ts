@@ -16,6 +16,7 @@ import { DetailsConventionComponent } from './components/Ordonnateur/convention_
 import { ListeConventionsComponent } from './components/Ordonnateur/convention_de_cession/liste-conventions/liste-conventions/liste-conventions.component';
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
+import { ConventionCessionPMEComponent } from './components/PME/convention-cession/convention-cession.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
@@ -75,6 +76,9 @@ const routes: Routes = [
   {path:'pme/list-paiements',component:ListPaiementsComponent},
 
   {path:'profil',component:ProfilComponent},
+
+  //convention cession
+  {path:'pme/convention_cession',component:ConventionCessionPMEComponent},
 
   //ordonnateur
 

@@ -1,0 +1,135 @@
+<p-breadcrumb class="dark-blue-bg" [model]="items" [home]="home"></p-breadcrumb>
+<p-toast></p-toast>
+<br>
+<div class="grid">
+    <div class="col-12">
+        <div class="d-flex justify-content-center col-12">
+            <div class="col-12 md:col-10 modalTitle  ">
+                <h3 class="title">Convention de cession : Liste des demandes</h3>
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true"
+                dataKey="id">
+                
+                <ng-template pTemplate="header">
+                    <tr>
+                        
+                        <th>
+                            <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="numeroDemande" placeholder="Référence demande"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter  type="text" field="nomMarche" placeholder="Nom du marché"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="dateDemande" placeholder="Date de la demande"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
+                        </th>
+                       
+                        
+                        <th>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                        </th>
+                    </tr>
+                    <tr>
+                        
+                        <th pSortableColumn="referenceBE" style="color: #203359;">Référence du BE<p-sortIcon field="referenceBE">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="numeroDemande" style="color: #203359;">Référence demande<p-sortIcon field="numeroDemande">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom du marché<p-sortIcon field="nomMarche">
+                        </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="dateDemande" style="color: #203359;">Date de la demande <p-sortIcon
+                            field="dateDemande"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut"></p-sortIcon>
+                        </th>
+                        <th style="color: #203359;">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-document>
+                    <tr>
+                       
+                        <td style="width:18%;">
+                            <span class="p-column-title">Reference du BE</span>
+                            {{document.referenceBE}}
+                        </td>
+                        <td style="width:18%;">
+                            <span class="p-column-title">Reference Demande</span>
+                            {{document.numeroDemande}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Nom du marché</span>
+                            {{document.nomMarche}}
+                        </td>
+                        <td style="width:18%; min-width:8rem;">
+                            <span class="p-column-title">Date demande</span>
+                            {{document.dateDemande}}
+                        </td>
+                        <td style="width:25%;" >
+                            <span [class]="'product-badge status-' + (document.statut ? document.statut.toLowerCase() : '')">{{document.statut.replaceAll('-', ' ')}}</span>
+
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-search"
+                                    class="p-button-rounded simpleButton"
+                                    pTooltip="Consulter la convention"
+                                    *ngIf="document.statut === 'Convention-enregistrée' || (document.statut === 'Convention-signée-par-la-PME' && profil === 'pme') || document.statut === 'Convention-signée-par-la-DG' || document.statut === 'Convention-rejetée' "
+                                    (click)="visualiserDocument(document)"></button>
+                                    <button pButton pRipple icon="pi pi-key"
+                                    class="p-button-rounded successButton"
+                                    pTooltip="Signer la convention"
+                                    *ngIf="(document.statut === 'Convention-générée' && profil=== 'pme')  || (document.statut === 'Convention-signée-par-la-PME' && profil ==='DG')" 
+                                    (click)="visualiserDocument(document)"></button>
+                                <button pButton pRipple icon="pi pi-upload"
+                                    class="p-button-rounded simpleButton" pTooltip="Charger un document"
+                                    *ngIf="((document.statut === 'Convention-signée-par-la-DG') && (profil === 'comptable')) "
+                                    (click)="ChargerConvention(convention)"></button>
+                                <button pButton pRipple icon="pi pi-file-excel"
+                                    class="p-button-rounded simpleButton" pTooltip="Editer la convention"
+                                    *ngIf="((document.statut === 'Convention-rejetée') && (profil === 'comptable')) "
+                                    (click)="EditerConvention(convention)"></button>
+                                <button pButton pRipple icon="pi pi-file"
+                                    class="p-button-rounded simpleButton" pTooltip="Générer la convention"
+                                    *ngIf="document.statut === 'Non-Risquee' "
+                                    (click)="EditConvention(convention)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+
+    </div>
+
+</div>
+
+<p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header" class="row justify-content-center">
+        <div class="col-8 mx-auto px-auto" style="background-color:white ;">
+            <div id="steps">
+                <p-toast></p-toast>
+                <p-steps style=" border-bottom:4px  #003399 solid ; border-radius:0 ; " [model]="items"
+                    [readonly]="true" styleClass="steps-custom"></p-steps>
+            </div>
+        </div>
+    </ng-template>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</p-dialog>
