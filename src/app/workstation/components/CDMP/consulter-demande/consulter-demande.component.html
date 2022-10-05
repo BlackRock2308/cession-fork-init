@@ -88,28 +88,21 @@
             </div>
             <br>
             <br>
-
-
-
-
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="{totalRecords} lignes " [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
-
-
-
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="type"></p-columnFilter>
+                            <p-columnFilter type="text" field="type" placeholder="Type de document"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="nom"></p-columnFilter>
+                            <p-columnFilter type="text" field="nom" placeholder="Nom du document"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+                            <p-columnFilter type="text" field="date_soumission" placeholder="Date de soumission"></p-columnFilter>
                         </th>
 
                         <th>
@@ -138,16 +131,16 @@
                     <tr>
 
                         <td style="width:30%; min-width:10rem;">
-                            <span class="p-column-title">Type</span>
+                            <span class="p-column-title">Type de Document</span>
                             {{document.type}}
                         </td>
 
                         <td style="width:30%; min-width:8rem;">
-                            <span class="p-column-title">Nom</span>
+                            <span class="p-column-title">Nom du document</span>
                             {{document.nom}}
                         </td>
                         <td style="width:30%;">
-                            <span class="p-column-title">Date Soumission</span>
+                            <span class="p-column-title">Date de Soumission</span>
                             {{document.date_soumission}}
                         </td>
 

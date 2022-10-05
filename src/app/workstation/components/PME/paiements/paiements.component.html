@@ -26,7 +26,7 @@
                             <p-columnFilter type="text" field="soldePME" placeholder="Solde PME"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="decode" placeholder="Decode"></p-columnFilter>
+                            <p-columnFilter type="text" field="decote" placeholder="Décote"></p-columnFilter>
                         </th>
                         <th>
                             <p-columnFilter type="text" field="montantRecu" placeholder="Montant reçu"></p-columnFilter>
@@ -35,7 +35,7 @@
                             <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
                         <th>
-                            <button pButton pRipple icon="pi pi-search" style="background-color:#203359 ;" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(referenceBE,totalMarche,soldePME,decode,montantRecu,statut)"></button>
+                            <button pButton pRipple icon="pi pi-search" style="background-color:#203359 ;" class="p-button-rounded mr-2 button" label="Rechercher" (click)="dt.filter(referenceBE,totalMarche,soldePME,decote,montantRecu,statut)"></button>
                         </th>
                     </tr>
                     <tr>
@@ -49,7 +49,7 @@
                         <th pSortableColumn="soldePME" style="color: #203359;">Solde PME<p-sortIcon field="soldePME">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="soldePME" style="color: #203359;">Decode<p-sortIcon field="decode">
+                        <th pSortableColumn="soldePME" style="color: #203359;">Décote<p-sortIcon field="decote">
                         </p-sortIcon>
                     </th>
                         <th pSortableColumn="montantRecu" style="color: #203359;">Montant Recu<p-sortIcon
@@ -79,8 +79,8 @@
                             {{paiement.soldePME}}
                         </td>
                         <td style="width:16%;">
-                            <span class="p-column-title">Decode</span>
-                            {{paiement.decode}}
+                            <span class="p-column-title">Décote</span>
+                            {{paiement.decote}}
                         </td>
                         <td style="width:15%;">
                             <span class="p-column-title">Montant Reçu</span>

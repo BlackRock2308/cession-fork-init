@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
-import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { MenuItem, PrimeNGConfig } from 'primeng/api';
+import { MenuItem,} from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
-import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { Documents } from 'src/app/workstation/model/document';
 import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visualiser-document.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
+import {MessageService} from 'primeng/api';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -96,15 +93,11 @@ export class NouvelleDemandeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private adhesionService: AdhesionService,
-    public renderer: Renderer2, private menuService: MenuService,
-    private primengConfig: PrimeNGConfig,
+    public renderer: Renderer2,
     public app: AppComponent,
     private pmeService: PmeService,
     public dialogService: DialogService,
-    private documentService: DocumentService
+    public messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -162,6 +155,7 @@ export class NouvelleDemandeComponent implements OnInit {
 
 
     }
+    
 
 
   }
@@ -169,6 +163,7 @@ export class NouvelleDemandeComponent implements OnInit {
 
   //enregistrement du pme avec l'appel du service d'enregistrement
   private enregistrerDocuments(document: Document) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
     //fonction à continuer 
     console.log(this.documents);
     /*this.adhesionService.postPME(this.pme)
@@ -211,6 +206,9 @@ export class NouvelleDemandeComponent implements OnInit {
     });
 
   }
+  onReject() {
+    this.messageService.clear('c');
+}
 }
 
 interface Document {

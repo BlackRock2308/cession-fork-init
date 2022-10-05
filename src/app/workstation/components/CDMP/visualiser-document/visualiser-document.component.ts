@@ -32,7 +32,7 @@ export class VisualiserDocumentComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
   ngOnInit() {
-    this.srcFile = './assets/doctest.pdf';
+    this.srcFile = this.config.data.document.path;
     this.dowloadFile(this.config.data.document.path);
     this.convention = this.config.data.document;
 

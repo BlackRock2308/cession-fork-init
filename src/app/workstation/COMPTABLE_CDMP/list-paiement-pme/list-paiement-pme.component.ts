@@ -83,7 +83,7 @@ export class ListPaiementPMEComponent implements OnInit {
 
   visualiserPaimentPME() {
     const ref = this.dialogService.open(PaiementPMEComponent, {
-      header: "Preuve de Paiement PME",
+      header: "Paiement de la PME",
       width: '50%',
       height: 'calc(90% - 200px)',
       baseZIndex: 10000
@@ -97,7 +97,7 @@ export class ListPaiementPMEComponent implements OnInit {
         document: document,
         paiement: paiement
       },
-      header: "Paiement PME",
+      header: "Preuve de Paiement PME",
       width: '50%',
       height: 'calc(100% - 200px)',
       baseZIndex: 10000
