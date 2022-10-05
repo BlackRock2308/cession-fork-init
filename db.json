@@ -1341,23 +1341,7 @@
   "types_document": [
     {
       "id": 1,
-      "nom": "Bon engagement",
-      "type": "pdf"
-    },
-    {
-      "id": 2,
-      "nom": "Etat Financier",
-      "type": "excel"
-    },
-    {
-      "id": 4,
-      "nom": "Rapport ou Compte rendu",
-      "type": "word"
-    },
-    {
-      "id": 5,
-      "nom": "Relevé fiscal",
-      "type": "pdf"
+      "nom": "Document du marché"
     }
   ],
   "document": [
