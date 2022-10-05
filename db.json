@@ -244,28 +244,24 @@
       "nineaValide": false
     },
     {
-      "ninea": 12548754,
-      "rccm": 21558221,
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {
-        "lastModified": 1664185083277,
-        "lastModifiedDate": "Mon Sep 26 2022 09:38:03 GMT+0000 (heure d’été des Açores)",
-        "name": "NewCharteGraphiqueCDMP.pdf",
-        "size": 654168,
-        "type": "application/pdf",
-        "webkitRelativePath": ""
-      },
-      "rccmFile": {
-        "lastModified": 1664185083277,
-        "lastModifiedDate": "Mon Sep 26 2022 09:38:03 GMT+0000 (heure d’été des Açores)",
-        "name": "NewCharteGraphiqueCDMP.pdf",
-        "size": 654168,
-        "type": "application/pdf",
-        "webkitRelativePath": ""
-      },
-      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "ninea": 12123312267,
+      "rccm": "SN-DKR 2014 C 12348",
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-03T12:30:08.323Z",
       "id": 18,
-      "nineaValide": false
+      "nineaValide": true,
+      "denomination": "",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "representantLegal": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": "",
+      "statut": "Soumise",
+      "pmeActive": true
     },
     {
       "ninea": 7854201,
@@ -353,7 +349,7 @@
       "raisonSocial": "Modelsis SARL",
       "nomMarche": "Service de gardiennage",
       "refBE": "294067",
-      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "date_soumission": "28/09/2022",
       "ninea_file": "",
       "statut_convention": "Convention-enregistrée",
       "rccm_file": "",

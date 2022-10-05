@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-verification',
@@ -51,9 +52,26 @@ export class VerificationComponent implements OnInit {
        //fermer la boite de dialogue
       this.demandeAdhesionService.setDialog(false)
 
-      //
-      this.router.navigate(['workstation/cdmp/demandes_en_cours/']);
-
+      Swal.fire({
+        position: 'top-end',
+        title: 'Etes-vous sur de vouloir rejeter la demande?',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['workstation/cdmp/recevabilite'])
+        Swal.fire(
+            'Rejetée!',
+            'La demande a bien ete rejetée.',
+            'success'
+          )
+      }})
 
     }
   

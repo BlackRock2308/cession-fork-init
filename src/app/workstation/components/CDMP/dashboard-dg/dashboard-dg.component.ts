@@ -10,7 +10,10 @@ import { Subscription } from 'rxjs';
 import { AppConfig } from 'src/app/workstation/model/appconfig';
 import { AppConfigService } from 'src/app/workstation/service/appconfigservice';
 import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
+import 'jspdf-autotable';
 @Component({
     selector: 'app-dashboard-dg',
     templateUrl: './dashboard-dg.component.html',
@@ -31,6 +34,9 @@ export class DashboardDGComponent implements OnInit {
 
     cols: any[];
 
+    cities: any[];
+
+
     statuses: any[];
 
     rowsPerPageOptions = [5, 10, 20];
@@ -50,6 +56,7 @@ export class DashboardDGComponent implements OnInit {
     multiAxisOptions: any;
 
     stackedData: any;
+    selectedCity1: any;
 
     stackedData1: any;
 
@@ -67,7 +74,14 @@ export class DashboardDGComponent implements OnInit {
 
     selectedYear: any;
 
-    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, public dialogService: DialogService, private messageService: MessageService, private router: Router,) { }
+    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
+        ) { 
+
+
+    
+        }
+        exportColumns: any[];
+
 
     ngOnInit() {
 
@@ -78,11 +92,15 @@ export class DashboardDGComponent implements OnInit {
         });
 
         this.cols = [
-            { field: 'ninea', header: 'NINEA' },
-            { field: 'rccm', header: 'RCCM' },
-            { field: 'datesoumission', header: 'Date Soumission' },
-            { field: 'rating', header: 'Reviews' },
-            { field: 'inventoryStatus', header: 'Status' }
+            { field: 'nomMarche', header: 'Nom du marché' },
+            { field: 'raisonSocial', header: 'Raison Sociale' },
+            { field: 'date_soumission', header: 'Date de demande' },
+            { field: 'montant_total', header: 'Montant Total' },
+            { field: 'date_marche', header: 'Date du marché' },
+            { field: 'statut_dg', header: 'Statut' },
+            { field: 'decode', header: 'Decote' },
+            { field: 'date_cession', header: 'Date cession' },
+            { field: 'solde_PME', header: 'Solde de la PME' }
         ];
         this.items = [
             { label: 'Tableau de bord ' }
@@ -338,9 +356,23 @@ export class DashboardDGComponent implements OnInit {
             this.updateChartOptions();
         });
 
+        this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+
     }
 
 
+    exportPdf() {
+       
+        import("jspdf").then(jsPDF => {
+            import("jspdf-autotable").then(x => {
+                const doc = new jsPDF.default('p','pt');
+                doc["autoTable"](this.exportColumns, this.demandes);
+                doc.save('Liste_des_creances.pdf');
+            })
+        }) 
+           
+    }
+    
 
     exportexcel(): void {
         /* pass here the table id */
@@ -348,6 +380,7 @@ export class DashboardDGComponent implements OnInit {
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
         /* generate workbook and add the worksheet */
+
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
@@ -365,7 +398,7 @@ export class DashboardDGComponent implements OnInit {
             },
             header: "Détails du marché",
             width: '40%',
-            height: 'calc(74% - 100px)',
+            height: 'calc(86% - 100px)',
             baseZIndex: 10000
         });
 
