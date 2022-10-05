@@ -26,14 +26,9 @@ h1{
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-enregistrée {
+    &.status-non-risquée {
         background: #C8E6C9;
         color: #256029;
-    }
-   
-    &.status-rejetée {
-        background: #FFCDD2;
-        color: #C63737;
     }
 
     &.status-risquée {
@@ -41,22 +36,19 @@ h1{
         color: #C63737;
     }
 
-    &.status-signée-par-pme {
-        background: #FEEDAF;
-        color: #8A5340;
-    }
-    &.status-signée-par-dg {
-        background: #FEEDAF;
-        color: #8A5340;
-    }
-    &.status-non-risquée {
-        background: #c9ddfa;
-        color: #354d8f;
-    }
     &.status-complement-requis {
+        background: #fed6af;
+        color: #8a4640;
+    }
+    &.status-completée {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-recevable {
         background: #c9ddfa;
         color: #354d8f;
     }
+    
 }
 
 //cacher les bouton de filtre

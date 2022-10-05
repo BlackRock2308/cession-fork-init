@@ -10,62 +10,61 @@
         </div>
         <br>
         <div>
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+                [globalFilterFields]="['name','country.name','representative.name','status']"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
 
                 <ng-template pTemplate="header">
                     <tr>
+                       
                         <th>
-                            <p-columnFilter type="text" field="ninea"></p-columnFilter>
+                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
+                            <p-columnFilter type="text" field="nomMarche" placeholder="Nom du marché"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="nomMarche"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
 
                         <th>
-                            <p-columnFilter type="text" field="refBE"></p-columnFilter>
+                            <p-columnFilter type="text" field="referenceBE" placeholder="Reference du BE"></p-columnFilter>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="dateDemande" placeholder="Date de la demande"></p-columnFilter>
                         </th>
                         <th>
                             <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button"
                                 style="background-color: #203359;" label="Rechercher"
                                 (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
                         </th>
+                        
                     </tr>
                     <tr>
-                        <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
+                        
+                        <th pSortableColumn="raisonSocial" style="color: #203359;">Raison Sociale <p-sortIcon field="raisonSocial">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="rccm" style="color: #203359;">Raison Sociale <p-sortIcon field="rccm">
+                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom du marché <p-sortIcon field="nomMarche">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="rccm" style="color: #203359;">Nom du marché <p-sortIcon field="rccm">
+                        <th pSortableColumn="statut" style="color: #203359;">Statut <p-sortIcon field="statut"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="referenceBE" style="color: #203359;">Référence BE <p-sortIcon field="referenceBE">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="datesoumission" style="color: #203359;">Statut <p-sortIcon
-                                field="datesoumission"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="ninea" style="color: #203359;">Référence BE <p-sortIcon field="ninea">
-                            </p-sortIcon>
-                        </th>
+                        <th pSortableColumn="dateDemande" style="color: #203359;">Date demande <p-sortIcon field="dateDemande">
+                        </p-sortIcon>
+                    </th>
                         <th style="color: #203359;">Action</th>
                     </tr>
 
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">NINEA</span>
-                            {{demande.ninea}}
-                        </td>
+                       
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Raison sociale</span>
                             {{demande.raisonSocial}}
@@ -82,15 +81,19 @@
                             <span class="p-column-title">Référence BE</span>
                             {{demande.referenceBE}}
                         </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Date demande</span>
+                            {{demande.dateDemande|date:'dd/MM/yyyy' }}
+                        </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    *ngIf="demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' || demande.statut === 'Signée-par-pme' || demande.statut === 'Signée-par-dg'"
+                                    *ngIf="demande.statut === 'Completée' || demande.statut === 'Recevable'"
                                      (click)="pmeInfo(demande)"
                                     class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Analyser le dossier"></button>
                                 <button pButton pRipple icon="pi pi-eye"
-                                    *ngIf="demande.statut === 'Risquée' || demande.statut === 'Non-Risquée' || demande.statut === 'Enregistrée' || demande.statut === 'Complement-requis' || demande.statut === 'rejetée'"
+                                    *ngIf="demande.statut === 'Risquée' || demande.statut === 'Non-Risquée' || demande.statut === 'Complement-requis'"
                                     [routerLink]="['../consulter_demande']"
                                     class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Visualiser le dossier"></button>

@@ -9,7 +9,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../../visualiser-document/visualiser-document.component';
 import { DemandeCession } from 'src/app/workstation/model/demande';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { take, takeUntil, takeWhile } from 'rxjs/operators';
+import { HttpHeaderResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-verifier-demande-cession',
@@ -34,7 +35,8 @@ export class VerifierDemandeCessionComponent implements OnInit {
   infosBEDialog: boolean = false;
   observation: any;
   items: MenuItem[];
-  home: MenuItem
+  home: MenuItem;
+  notifier=new HttpHeaderResponse();
 
   constructor(
     private demandeCessionService: DemandesCessionService,
@@ -63,7 +65,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
     this.infosBEForm = this.formBuilder.group({
       naturePrestation: ['',Validators.required],
-      //natureDepense: ['',Validators.required],
+      referenceBE: [this.demandeCession.referenceBE,Validators.required],
       imputation: ['',Validators.required],
       modeReglement: ['',Validators.required],
       beneficiaire: ['',Validators.required],
@@ -86,14 +88,13 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
   onSubmit() {
 
-    this.recevabiliteDemande = {
+    this.recevabiliteDemande = {...this.demandeCession,
       ...{identificationBudgetaire: this.identifie,
-        atd: this.atd,
-        nantissement: this.nantissement,
-        interdictionBancaire: this.interdiction,
+        atd:this.atd ? "Existance ATD":"Aucun ATD",
+        nantissement: this.nantissement ? "Créance nanti":"Créance pas nanti",
+        interdictionBancaire:this.interdiction ? "Existance d'une interdiction bancaire":"Aucune interdiction bancaire",
         observation: this.observation,
-        referenceBE: this.demandeCession.referenceBE,
-        statut:"Enregistrée"},
+        statut:"Recevable"},
         ...this.infosBEForm.value
 
     }
@@ -114,31 +115,44 @@ export class VerifierDemandeCessionComponent implements OnInit {
       observation: this.observation,
       statut:"rejeté"
     }
-    console.log("0");
-    this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(1)).subscribe(data => {
-      console.log("1:",data);
+    this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(5)).subscribe(data => {
+      console.log(data);
       //cette ligne est à supprimer lorsque l'on fera la connexion avec le back
-      this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).pipe(take(1)).subscribe(data=>{
-        console.log("done:",data);
-        this.router.navigate(['workstation/cdmp/recevabilite/'])
-        console.log("done");
+      if(data.type==4){
+        this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).subscribe(data=>{
+          console.log("done:",data);
+          this.router.navigate(['workstation/cdmp/recevabilite/'])
+          console.log("done");
+        }
+          )
       }
-        )
+      
     })
   }
   enregistrerTraitementRecevabilite(demande: any) {
-   this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(1)).subscribe(data=>{
+    console.log(demande);
+   this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(5)).subscribe(data=>{
+    console.log(data);
+    if(data.type==4){
       //ces deux appels suivantes sont à supprimer lorsque l'on fera la connexion avec le back
-      this.recevabiliteService.postAnalyseRisque(demande).pipe(take(1)).subscribe(data => {
-        this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).pipe(take(1)).subscribe(()=>{
-          this.router.navigate(['workstation/cdmp/recevabilite/'])
-          console.log("done");
-
+      this.recevabiliteService.postAnalyseRisque(demande).subscribe(data => {
+        console.log(data);
+        if(data.type==4){
+          this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).subscribe(data=>{
+            console.log(data);
+            if(data.type==4){
+              this.router.navigate(['workstation/cdmp/recevabilite/'])
+              console.log("done");
+            }
+            
+  
+          }
+          )
         }
-        )
+       
         
     })
-      
+  }
    })
   }
 
