@@ -25,7 +25,7 @@
             <div class="col-6 md:col-4 dropdown anne" >
                 <p-dropdown [options]="dropdownYears" [(ngModel)]="selectedYear"></p-dropdown>
             </div>
-            <span style="font-weight: bold;">PME bénéficiare /PME rejeté</span>
+            <span style="font-weight: bold;">PME bénéficiares /PME rejetés</span>
             <p-chart type="line" [data]="basicData" [options]="basicOptions">
             </p-chart>
         </div>
@@ -85,9 +85,8 @@
                 </th>
                 <th>
 <<<<<<< HEAD
-                    <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+                    <p-columnFilter type="text" field="date_soumission" placeholder="Date de demande"></p-columnFilter>
 =======
-                    <p-columnFilter type="text" field="type_marche" placeholder="Type de marché"></p-columnFilter>
 >>>>>>> f2178bf913c77dc2871dfaa60c78633ac13e9150
                 </th>
                 <th>
@@ -115,7 +114,7 @@
                     {{demande.raisonSocial}}
                 </td>
                 <td >
-                    <span class="p-column-title">Type de marché</span>
+                    <span class="p-column-title">Date demande</span>
                     {{demande.date_soumission}}
                 </td>
                 <td >
