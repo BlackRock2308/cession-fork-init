@@ -6,11 +6,42 @@
         <div class="">
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 tabTitle  ">
-                    <h3 class="titleTab">Convention de cession</h3>
+                    <h3 class="titleTab">Convention de cession du marché : {{demandeCession.nomMarche}} </h3>
                 </div>
             </div>
             <br>
-
+            <br>
+            <div class="grid p-fluid justify-content-center">
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">NINEA</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.ninea}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Raison Sociale</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.raisonSocial}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Reference du BE</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [disabled]="true" />
+                            <label for="inputtext">{{demandeCession.referenceBE}}</label>
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+            <br>
             <label class="form-label" for="textAreaExample">Observations</label>
             <div class="d-flex flex-start w-100">
                 

@@ -1,3 +1,24 @@
+
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+
+    &.status-acceptée {
+        background: #C8E6C9;
+        color: #256029;
+    }
+   
+    &.status-refusée {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+
+}
+
 .modalTitle{
     background-color: #F2F2F2;
     justify-content: center;

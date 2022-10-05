@@ -6,29 +6,30 @@
     font-size: 26px;
     color: aliceblue;
     text-align: center;
-    font-family: MESSINA 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Helvetica;
 }
 
 .connexion{
     font-size: 26px;
     margin-left: 35%;
     color: aliceblue;
+    font-stretch: condensed;
     text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    font-family: Helvetica;
 }
 
 .soustitre{
     font-size: 18px;
     color: aliceblue;
     text-align: center;
-    font-family: MESSINA REGULAR, monospace;
+    font-family: Helvetica;
 }
 
 .changepwd{
     font-size: 14px;
     color: aliceblue;
     text-align: center;
-    font-family: MESSINA REGULAR, monospace;
+    font-family: Helvetica
 }
 
 h4{
@@ -40,4 +41,15 @@ h4{
 h3{
 	color: white;
 	text-align: left;
+}
+
+.cad{
+    font-size: 30px;
+	color:#fff;
+	display: block;
+    margin-left: 30%;
+}
+
+.text{
+	color: #fff;
 }

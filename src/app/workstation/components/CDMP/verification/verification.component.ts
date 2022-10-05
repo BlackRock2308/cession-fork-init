@@ -25,6 +25,7 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
    this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
     this.demande=data
+    console.log('ttttttt'+ JSON.stringify(this.demande))
     this.id=data.id})
     }
 

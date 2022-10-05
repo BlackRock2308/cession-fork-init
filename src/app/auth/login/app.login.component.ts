@@ -21,9 +21,9 @@ export class AppLoginComponent {
   constructor(public router: Router){}
 
   login(username, motdepasse){
-    if(username === 'cdmp'){
+    if(username === 'cgr'){
       this.router.navigate(['workstation/cdmp/dashboard']);
-      localStorage.setItem('profil', 'cdmp'); 
+      localStorage.setItem('profil', 'cgr'); 
     }
     if(username === 'pme'){
       this.router.navigate(['workstation/pme/demandes_en_cours']);

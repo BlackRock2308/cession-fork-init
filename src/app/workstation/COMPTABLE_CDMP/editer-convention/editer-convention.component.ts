@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editer-convention',
@@ -21,7 +23,9 @@ export class EditerConventionComponent implements OnInit {
   selectedTypeDocument: string;
   cols: any[];
 
-  constructor(public ref: DynamicDialogRef, private formBuilder: FormBuilder, private pmeService: PmeService) { }
+  constructor(
+    private router : Router,
+    public ref: DynamicDialogRef, private formBuilder: FormBuilder, private pmeService: PmeService) { }
 
   ngOnInit(): void {
     this.pmeService.getTypesDocument().subscribe(data => {
@@ -40,16 +44,13 @@ export class EditerConventionComponent implements OnInit {
     ];
   }
 
-  //ajouter le fichier sélectionné au répertoire de fichier
-  selectFile(files: any): void {
+ //sélectionner le fichier 
+ selectFile(files: any): void {
+  this.selectedFiles = files.target.files[0];
+  console.log(this.selectedFiles);
+}
 
-    this.document = this.documentForm.value;
-    this.document.file = files.target.files[0];
-    this.documents.push(this.document);
-    files.target.files = null;
-    console.log(this.documents)
-
-  }
+ 
 
   //ouvrir la boite de dialogue du répertoire
   handleClick() {
@@ -58,6 +59,22 @@ export class EditerConventionComponent implements OnInit {
 
   //envoie du formulaire
   onSubmit() {
+
+    this.ref.close();
+
+    Swal.fire({
+
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['workstation/comptable/convention_cession'])
+      }})
+
 
     // arrêter si le formulaire est invalide
     if (this.documentForm.invalid) {

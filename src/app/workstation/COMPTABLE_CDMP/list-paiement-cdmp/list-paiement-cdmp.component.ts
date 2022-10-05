@@ -61,7 +61,7 @@ export class ListPaiementCdmpComponent implements OnInit {
     this.cols = [
       { field: 'referencePaiement', header: 'Référence Paiement' },
       { field: 'datePaiement', header: 'Date Paiement' },
-      { field: 'payer', header: 'Payeur' },
+      { field: 'payer', header: 'Enregistré par' },
       { field: 'montant', header: 'Montant' },
     ];
     this.items = [
@@ -83,9 +83,9 @@ export class ListPaiementCdmpComponent implements OnInit {
   visualiserPaimentCDMP() {
     const ref = this.dialogService.open(PaiementCDMPComponent, {
 
-      header: "Paiement CDMP",
+      header: " Preuve de Paiement CDMP",
       width: '50%',
-      height: 'calc(90% - 200px)',
+      height: 'calc(80% - 200px)',
       baseZIndex: 10000
     });
   }
@@ -97,7 +97,7 @@ export class ListPaiementCdmpComponent implements OnInit {
         document: document,
         paiement: paiement
       },
-      header: "Paiement PME",
+      header: "Preuve de Paiement PME",
       width: '60%',
       height: 'calc(100% - 200px)',
       baseZIndex: 10000

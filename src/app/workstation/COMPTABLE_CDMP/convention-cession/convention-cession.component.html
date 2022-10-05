@@ -84,7 +84,12 @@
                                 <button pButton pRipple icon="pi pi-search"
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
-                                    *ngIf="document.statut === 'Convention-générée' || document.statut === 'Convention-enregistrée' || document.statut === 'Convention-signée-par-la-PME' || document.statut === 'Convention-signée-par-la-DG' || document.statut === 'Convention-rejetée' "
+                                    *ngIf="document.statut === 'Convention-enregistrée' || (document.statut === 'Convention-signée-par-la-PME' && profil === 'pme') || document.statut === 'Convention-signée-par-la-DG' || document.statut === 'Convention-rejetée' "
+                                    (click)="visualiserDocument(document)"></button>
+                                    <button pButton pRipple icon="pi pi-key"
+                                    class="p-button-rounded successButton"
+                                    pTooltip="Signer la convention"
+                                    *ngIf="(document.statut === 'Convention-générée' && profil=== 'pme')  || (document.statut === 'Convention-signée-par-la-PME' && profil ==='DG')" 
                                     (click)="visualiserDocument(document)"></button>
                                 <button pButton pRipple icon="pi pi-upload"
                                     class="p-button-rounded simpleButton" pTooltip="Charger un document"

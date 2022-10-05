@@ -6,71 +6,42 @@
             </div>
         </div>
         <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
-            <div class="p-fluid my-4 mx-6 px-0">
-                <div class="p-formgrid grid">
+            <div class="field grid">
+                <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-1 text">Document</label>
+                
+                <div class="col-12 md:col-4 mb-2">
+                    <div class="col-12">
+                        <div class="formgroup-inline">
+                            <div class="field col-12 md:col-12 mb-1">
+                                <div class=" inputContainer">
+                                    <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
+                                        pInputText pTooltip="Charger la convention " placeholder="Pas de fichier">
+                                        
+                                    <ng-template #elseBlock id="file" type="text" pInputText
+                                        pTooltip="Charger document">
+                                        <input id="file" type="text" style="width: 265px;"
+                                        pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
+                                    </ng-template>
+                                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
+                                        
+    
+                                    <button type="button" pButton pRipple icon="pi pi-upload"
+                                                class="mr-20 mb-2  upload p-button-rounded p-button-text" id="upload-file"
+                                                (click)="handleClick()"></button>
+                                </div>
+                            </div>
+                            <!--div class="field col-12 md:col-4 mb-1">
 
-                    <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres'">
-                        <div class="col-12 md:col-12  d-flex justify-content-center ">
-                            <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
+                                <button type="button" pButton pRipple icon="pi pi-upload"
+                                    class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-file"
+                                    (click)="handleClick()"></button>
+                            </div-->
                         </div>
-                        <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
-                            pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
                     </div>
-                    <div class="field col-6 ">
-                        <div class="col-12 md:col-12  d-flex justify-content-center ">
-                            <h5 style="font-weight: bold;color: #203359;">Document</h5>
-                        </div>
-                        <div class="field inputContainer">
-
-                            <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
-                                placeholder="Choisissez un ficher">
-                            <button  type="button" pButton pRipple icon="pi pi-upload"
-                                class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile" (click)="handleClick()"></button>
-                        </div>
-                        <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
-                            ngf-max-size="2MB" (change)="selectFile($event)">
-                    </div>
-                    
                 </div>
             </div>
-            <div class="card">
-                <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                    [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                    currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts"
-                    selectionMode="multiple" [rowHover]="true" dataKey="id">
-                    <ng-template pTemplate="header">
-                        <tr>
-
-                            <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
-                                    field="ninea"></p-sortIcon>
-                            </th>
-                            <th pSortableColumn="nomDocument" style="color: #203359;">Nom document<p-sortIcon
-                                    field="rccm"></p-sortIcon>
-                            </th>
-                            <th style="color: #203359;">Action</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-document>
-                        <tr>
-                            <td style="width:30%; min-width:10rem;">
-                                <span class="p-column-title">Type document</span>
-                                {{document.typeDocument}}
-                            </td>
-                            <td style="width:30%; min-width:8rem;">
-                                <span class="p-column-title">Nom du document</span>
-                                {{document.file.name}}
-                            </td>
-                            <td>
-                                <div class="flex">
-                                    <button pButton pRipple icon="pi pi-trash"
-                                        class="p-button-rounded p-button-text mr-2  p-button-danger"
-                                        (click)="delete(document)"></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
+          
         </form>
         <div><br></div>
         <div class="col-12  pr-0 d-flex  flex-row-reverse">
@@ -78,7 +49,7 @@
                 class="p-button-raised dangerButton" (click)="dismiss()"></button>
 
             <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
-                icon="pi pi-check" class="p-button-raised successButton pull-right "></button>
+                icon="pi pi-check" class="p-button-raised successButton pull-right" (click)="onSubmit()"></button>
 
                     </div>
     </div>

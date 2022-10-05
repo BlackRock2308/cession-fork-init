@@ -1,40 +1,34 @@
 {
   "adhesion_demandes": [
     {
-      "id": 14,
-      "ninea": "45892305",
-      "rccm": "458320",
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
-    },
-    {
-      "id": 15,
-      "ninea": "45860021",
-      "rccm": "12578201",
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z"
-    },
-    {
-      "ninea": 125485620,
-      "rccm": 124412888,
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z",
-      "id": 16
-    },
-    {
-      "ninea": 567876546,
-      "rccm": 876546756,
+      "ninea": 56787654698,
+      "rccm": "SN-DKR 2018 R 45678",
+      "statut": "Soumise",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
       "date_soumission": "2022-09-30T15:17:25.483Z",
       "id": 17
+    },
+    {
+      "ninea": 12123312267,
+      "rccm": "SN-DKR 2014 C 12348",
+      "statut": "Soumise",
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-03T12:30:08.323Z",
+      "id": 18
+    },
+    {
+      "ninea": 89988988,
+      "rccm": "SN-DKR 1018 T 45667",
+      "statut": "Rejetée",
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-04T09:45:07.174Z",
+      "id": 19
     }
   ],
   "pmes": [
@@ -199,7 +193,17 @@
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-03-08T10:10:13.678Z"
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "denomination": "Modelsis",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "representantLegal": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": "",
+      "pmeActive": false,
+      "nineaValide": true
     },
     {
       "id": 15,
@@ -208,7 +212,17 @@
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-04-20T10:10:13.678Z"
+      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "pmeActive": true,
+      "nineaValide": true,
+      "denomination": "",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "representantLegal": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": ""
     },
     {
       "ninea": 125485620,
@@ -217,7 +231,8 @@
       "nineaFile": {},
       "rccmFile": {},
       "date_soumission": "2022-09-28T10:10:13.678Z",
-      "id": 16
+      "id": 16,
+      "nineaValide": false
     },
     {
       "ninea": 45488555,
@@ -308,6 +323,24 @@
       "rccmFile": {},
       "date_soumission": "2022-09-30T15:17:25.483Z",
       "id": 24
+    },
+    {
+      "ninea": 121233122,
+      "rccm": 124354,
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-03T12:30:08.323Z",
+      "id": 25
+    },
+    {
+      "ninea": 89988988,
+      "rccm": 678789898,
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-04T09:45:07.174Z",
+      "id": 26
     }
   ],
   "demandes_adhesion": [
@@ -315,6 +348,7 @@
       "id": 1,
       "ninea": "567567",
       "statut": "Completée",
+      "statut_dg": "Acceptée",
       "rccm": "6543568778",
       "denomination": "Modelsis",
       "raisonSocial": "Modelsis SARL",
@@ -361,6 +395,7 @@
       "raisonSocial": "ENEDIS",
       "statut": "Recevable",
       "date_soumission": "12/12/2020",
+      "statut_dg": "Acceptée",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
       "nomMarche": "Reparation , entretien et installation",
@@ -402,6 +437,7 @@
       "statut_convention": "Convention-signée-par-la-PME",
       "rccm_file": "",
       "ATD": "Aucun ATD",
+      "statut_dg": "Refusée",
       "nantissement": "Creance  nanti",
       "interdiction": "Interdiction bancaire",
       "nomMarche": "Service de decoration",
@@ -433,6 +469,7 @@
       "interdiction": "Aucune interdiction bancaire",
       "nomMarche": "Service divers",
       "numero_demande": "2022-0123",
+      "statut_dg": "Refusée",
       "type_marche": "Travaux",
       "montant_total": "4.000.000",
       "date_marche": "07/05/2017",
@@ -455,6 +492,7 @@
       "ninea_file": "",
       "statut_convention": "Convention-rejetée",
       "rccm_file": "",
+      "statut_dg": "Acceptée",
       "ATD": "Aucun ATD",
       "nantissement": "Creance non nanti",
       "interdiction": "Aucune interdiction bancaire",
@@ -478,6 +516,7 @@
       "date_soumission": "05/07/2018",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
+      "statut_dg": "Refusée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
@@ -503,6 +542,7 @@
       "date_soumission": "10/10/2022",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
+      "statut_dg": "Refusée",
       "rccm_file": "",
       "ATD": "ATD",
       "nantissement": "Creance non nanti",
@@ -526,7 +566,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "rejeté",
+      "statut": "Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
       "type_marche": "Travaux",
@@ -1390,6 +1430,11 @@
       "type": "Journal",
       "file": {},
       "id": 10
+    },
+    {
+      "typeDocument": "",
+      "file": {},
+      "id": 11
     }
   ],
   "paiements": [
@@ -1489,7 +1534,8 @@
       "numeroDemande": "2022-0001",
       "rccm": "401568778",
       "denomination": "Modelsis",
-      "observation": ""
+      "observation": "",
+      "nomMarche" : "Fournitures de lots de materiels"
     },
     {
       "id": 2,
@@ -1499,7 +1545,9 @@
       "referenceBE": "21-294066",
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0002",
-      "observation": "Décode élevée"
+      "observation": "Décote élevée",
+      "nomMarche" : "Fournitures de lots de materiels"
+
     },
     {
       "id": 3,
@@ -1534,7 +1582,7 @@
     {
       "id": 6,
       "ninea": "567567",
-      "statut": "Convention-enregistrée",
+      "statut": "Convention-acceptée",
       "raisonSocial": "SCI SENEGAL",
       "referenceBE": "20-294070",
       "dateDemande": "21/03/2021",

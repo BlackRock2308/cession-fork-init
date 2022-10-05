@@ -61,7 +61,7 @@ export class ListPaiementPMEComponent implements OnInit {
     this.cols = [
 
       { field: 'datePaiement', header: 'Date Paiement' },
-      { field: 'payer', header: 'Payeur' },
+      { field: 'payer', header: 'Enregistré par' },
       { field: 'montant', header: 'Montant' },
       { field: 'modePaiement', header: 'Mode Paiement' },
     ];
@@ -83,7 +83,7 @@ export class ListPaiementPMEComponent implements OnInit {
 
   visualiserPaimentPME() {
     const ref = this.dialogService.open(PaiementPMEComponent, {
-      header: "Paiement PME",
+      header: "Preuve de Paiement PME",
       width: '50%',
       height: 'calc(90% - 200px)',
       baseZIndex: 10000
