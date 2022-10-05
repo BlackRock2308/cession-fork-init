@@ -33,7 +33,7 @@ export class DetailsConventionComponent implements OnInit {
 
     })
 
-    this.documentService.getDeocuments().subscribe(data => {
+    this.documentService.getDocumentsOrd().subscribe(data => {
       this.documents = data
     })
 

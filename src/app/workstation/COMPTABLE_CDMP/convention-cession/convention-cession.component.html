@@ -89,7 +89,7 @@
                                     <button pButton pRipple icon="pi pi-key"
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
-                                    *ngIf="(document.statut === 'Convention-générée' && profil=== 'pme')  || (document.statut === 'Convention-signée-par-la-PME' && profil ==='DG')" 
+                                    *ngIf="((document.statut === 'Convention-générée') &&( profil=== 'pme')) || ((document.statut === 'Convention-signée-par-la-PME') && (profil ==='DG'))" 
                                     (click)="visualiserDocument(document)"></button>
                                 <button pButton pRipple icon="pi pi-upload"
                                     class="p-button-rounded simpleButton" pTooltip="Charger un document"

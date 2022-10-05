@@ -15,6 +15,9 @@ export class DocumentService {
   getDeocuments(): Observable<Documents[]> {
     return this.http.get<Documents[]>(`${this.baseUrl}/documents`);
   }
+  getDocumentsOrd(): Observable<Documents[]> {
+    return this.http.get<Documents[]>(`${this.baseUrl}/documentsORD`);
+  }
 
   getDeocumentVRF(): Observable<Documents[]> {
     return this.http.get<Documents[]>(`${this.baseUrl}/documentsVRF`);
