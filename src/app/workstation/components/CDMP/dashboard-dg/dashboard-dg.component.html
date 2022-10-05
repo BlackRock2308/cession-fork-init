@@ -6,7 +6,7 @@
             <div class="col-6 md:col-4 dropdown anne" >
                 <p-dropdown [options]="dropdownYears" [(ngModel)]="selectedYear"></p-dropdown>
             </div>
-            <span style="font-weight: bold;">Remboursement du Trésor</span>
+            <span style="font-weight: bold;">Remboursements du Trésor</span>
             <p-chart type="bar" [data]="stackedData1" [options]="stackedOptions"></p-chart>
         </div>
     </div>
@@ -25,7 +25,7 @@
             <div class="col-6 md:col-4 dropdown anne" >
                 <p-dropdown [options]="dropdownYears" [(ngModel)]="selectedYear"></p-dropdown>
             </div>
-            <span style="font-weight: bold;">PME bénéficiares /PME rejetés</span>
+            <span style="font-weight: bold;">PME bénéficiares /PME rejetées</span>
             <p-chart type="line" [data]="basicData" [options]="basicOptions">
             </p-chart>
         </div>
@@ -84,7 +84,10 @@
                     <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                 </th>
                 <th>
+                     <p-columnFilter type="text" field="type_marche" placeholder="Type de marché"></p-columnFilter>
+
                     <p-columnFilter type="text" field="date_soumission" placeholder="Date de demande"></p-columnFilter>
+
                 </th>
                 <th>
                     <p-columnFilter type="text" field="montant_total" placeholder="Montant total"></p-columnFilter>
