@@ -3,15 +3,35 @@
     position: relative;
     top: 0px;
     left: 0px;
+    display: block;
+
+    .inpute {
+        position: absolute;
+        right: 0px;
+        width:100%;
+
+      
+  }
 
     .upload {
+        position: absolute;
+        top: 7px;
+        right: 2px;
+        font-size: 108px;
+        font-weight:1000;
+        color:$autre-fonce;
+     
+      }
+  }
+
+  .input {
         position: absolute;
         top: 2px;
         right: 0px;
         font-size: 108px;
         font-weight:1000;
         color:$autre-fonce;
-      }
+      
   }
 
 %button{

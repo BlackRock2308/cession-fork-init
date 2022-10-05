@@ -6,40 +6,27 @@
             </div>
         </div>
         <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
-            <div class="field grid">
-                <label htmlFor="name3" class="col-12 mb-2 md:col-1 md:mb-1 text">Document</label>
-                
-                <div class="col-12 md:col-4 mb-2">
-                    <div class="col-12">
-                        <div class="formgroup-inline">
-                            <div class="field col-12 md:col-12 mb-1">
-                                <div class=" inputContainer">
+            <div class="field grid">                
+                <div class="col-6 mb-2">
+                   
+                                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)" >
+                                        
+                                 <div class=" inputContainer">
                                     <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
-                                        pInputText pTooltip="Charger la convention " placeholder="Pas de fichier">
+                                        pInputText pTooltip="Charger la convention " placeholder="Nouvelle Convention" class="inpute">
                                         
                                     <ng-template #elseBlock id="file" type="text" pInputText
                                         pTooltip="Charger document">
                                         <input id="file" type="text" style="width: 265px;"
-                                        pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
+                                        pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}" class="inpute">
                                     </ng-template>
-                                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
-                                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
-                                        
-    
                                     <button type="button" pButton pRipple icon="pi pi-upload"
                                                 class="mr-20 mb-2  upload p-button-rounded p-button-text" id="upload-file"
                                                 (click)="handleClick()"></button>
                                 </div>
-                            </div>
-                            <!--div class="field col-12 md:col-4 mb-1">
-
-                                <button type="button" pButton pRipple icon="pi pi-upload"
-                                    class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-file"
-                                    (click)="handleClick()"></button>
-                            </div-->
-                        </div>
-                    </div>
                 </div>
+                            
             </div>
           
         </form>

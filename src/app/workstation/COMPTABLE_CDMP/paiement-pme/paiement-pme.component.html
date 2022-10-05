@@ -1,61 +1,65 @@
 <div class="container-fluid text-right">
     <div class="modal-body">
-        <div class="card p-fluid">
-            <div class="field grid">
-                <label htmlFor="modePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Mode Paiement</label>
+        <p-card>
+            <div class="field grid row">
+                <label htmlFor="modePaiement" class="col-12 md:col-4">Mode Paiement</label>
                 <div class="col-12 md:col-8">
                     <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiment"></p-dropdown>
                 </div>
             </div>
-            <div class="field grid">
-                <label htmlFor="referencePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Référence de
+            <div class="field grid row">
+                <label htmlFor="referencePaiement" class="col-12 md:col-4">Référence de
                     Paiement</label>
                 <div class="col-12 md:col-8">
                     <input pInputText id="referencePaiement" type="text" pTooltip="Référence de paiement"
                         placeholder="Référence de paiement" />
                 </div>
             </div>
-            <div class="field grid">
-                <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Montant</label>
+            <div class="field grid row">
+                <label htmlFor="montant" class="col-12 md:col-4">Montant</label>
                 <div class="col-12 md:col-8">
                     <input pInputText id="montant" type="text" pTooltip="Montant" placeholder="Montant" />
                 </div>
             </div>
-            <div class="field grid">
-                <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Enregistré par :</label>
+            <div class="field grid row">
+                <label htmlFor="payer" class="col-12 md:col-4">Enregistré par :</label>
                 <div class="col-12 md:col-8">
                     <input pInputText id="payer" type="text" pTooltip="Payeur" placeholder="Abdou Diop"
                         [disabled]="true" />
                 </div>
             </div>
-            <div class="field grid">
-                <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
-                <div class="field inputContainer col-12 md:col-8">
-                    <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
-                    pInputText pTooltip="Charger la convention " placeholder="Pas de fichier">
+            <div class="field grid row">
+                <label htmlFor="preuvePaiement" class="col-12 md:col-4">Preuve de paiement</label>
+                <div class="field col-12 md:col-8">
+                    <div class="inputContainer">
+                        <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
+                        pInputText pTooltip="Charger la convention " placeholder="Pas de fichier">
                     
-                <ng-template #elseBlock id="file" type="text" pInputText
-                    pTooltip="Charger document">
-                    <input id="file" type="text" style="width: 492px;"
-                    pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
-                </ng-template>
-                <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
-                    name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
+                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
                     
 
-                <button type="button" pButton pRipple icon="pi pi-upload"
-                            class="mr-20 mb-2  upload p-button-rounded p-button-text" id="upload-file"
+                        <button type="button" pButton pRipple icon="pi pi-upload"
+                            class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-file"
                             (click)="handleClick()"></button>
+                    </div>
+                    
+                    <ng-template #elseBlock id="file" type="text" pInputText
+                        pTooltip="Charger document">
+                        <input id="file" type="text"
+                            pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
+                    </ng-template>
+                </div>
+                
                 
             </div>
-        </div>
-        <div class="col-12  pr-0 d-flex  flex-row-reverse">
-            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
-                class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
-            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
-                icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised boutton my-auto "></button>
-        </div>
-    </div>
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                    <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised dangerButton" (click)="dismiss()"></button>
+                <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised successButton"></button>
+            </div>
+        </p-card>
     <div class="modal-footer">
         
     </div>

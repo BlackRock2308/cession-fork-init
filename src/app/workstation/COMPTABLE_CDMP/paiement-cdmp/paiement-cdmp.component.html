@@ -29,7 +29,7 @@
                         
                     <ng-template #elseBlock id="file" type="text" pInputText
                         pTooltip="Charger document">
-                        <input id="file" type="text" style="width: 492px;"
+                        <input id="file" type="text"
                         pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
                     </ng-template>
                     <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
@@ -37,16 +37,16 @@
                         
     
                     <button type="button" pButton pRipple icon="pi pi-upload"
-                                class="mr-20 mb-2  upload p-button-rounded p-button-text" id="upload-file"
+                                class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
                                 (click)="handleClick()"></button>
                     
                 </div>
             </div>
             <div class="col-12  pr-0 d-flex  flex-row-reverse">
                 <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
-                    class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
+                    class="p-button-raised dangerButton" (click)="dismiss()"></button>
                 <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
-                    icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised boutton my-auto "></button>
+                    icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised successButton"></button>
             </div>
         </div>
     </div>

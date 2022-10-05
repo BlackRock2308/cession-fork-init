@@ -1,41 +1,27 @@
 <form [formGroup]="form">
 
 
-    <div class="field grid">
-       
-        <div class="col-12 md:col-4 mb-2">
-            <div class="col-12">
-                <div class="formgroup-inline">
-                    <div class="field col-12 md:col-12 mb-1 justify-content-center">
-                        <div class=" inputContainer justify-content-center">
+    <div class="field col-6 inputContainer">
+             
                             <input *ngIf="selectedCONVENTIONFiles==null;else elseCONVENTIONBlock" id="CONVENTIONfile" type="text"
-                                pInputText pTooltip="Charger le document de référence du CONVENTION" placeholder="CONVENTION" class="justify-content-center">
+                                pInputText pTooltip="Charger le document de référence du CONVENTION" placeholder="CONVENTION" class="inpute">
                                 
+                           
                             <ng-template #elseCONVENTIONBlock id="CONVENTIONfile" type="text" pInputText
                                 pTooltip="Charger document">
                                 <input id="CONVENTIONfile" type="text"
-                                pInputText pTooltip="Charger le document de référence du CONVENTION" placeholder="{{selectedCONVENTIONFiles.name}}">
+                                pInputText pTooltip="Charger le document de référence de la CONVENTION" placeholder="{{selectedCONVENTIONFiles.name}}" class="inpute">
                             </ng-template>
                             <input formControlName="nineaFile" class="hidden" type="file" id="upload-CONVENTIONfile"
                                 name="upload-CONVENTIONfile" ngf-max-size="2MB" (change)="selectCONVENTIONFile($event)">
                                 
 
-                            <button type="button" pButton pRipple icon="pi pi-upload"
-                                        class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-CONVENTIONfile"
-                                        (click)="handleCONVENTIONClick()"></button>
-                        </div>
-                    </div>
-                    <!--div class="field col-12 md:col-4 mb-1">
-
-                        <button type="button" pButton pRipple icon="pi pi-upload"
-                            class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-CONVENTIONfile"
-                            (click)="handleCONVENTIONClick()"></button>
-                    </div-->
-                </div>
-            </div>
-        </div>
+                                <button type="button" pButton pRipple icon="pi pi-upload"
+                                class="upload p-button-rounded p-button-text" id="upload-CONVENTIONfile"
+                                (click)="handleCONVENTIONClick()"></button>
+                
     </div>
-
+<br>
 <div class="col-12  pr-0 d-flex  flex-row-reverse">
     <button    style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton"  (click)="dismiss()" ></button>
     <button    type="button" id="valider"style="width: min-content;" pButton pRipple label="Charger" icon="pi pi-check" class="p-button-raised successButton" (click)="onSubmit()" ></button>
