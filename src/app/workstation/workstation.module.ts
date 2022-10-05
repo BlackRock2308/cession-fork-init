@@ -83,10 +83,6 @@ import { CodeComponent } from './components/profil/code/code.component';
     ListPaiementsDetailsComponent,
     ProfilComponent,
     ConventionCessionPMEComponent,
-<<<<<<< HEAD
-=======
-    CodeComponent
->>>>>>> f2178bf913c77dc2871dfaa60c78633ac13e9150
     
   ],
   imports: [

@@ -38,7 +38,6 @@
                         "scripts": [
                             "node_modules/prismjs/prism.js",
                             "node_modules/prismjs/components/prism-typescript.js",
-                            "node_modules/jspdf/dist/jspdf.min.js",
                             "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
                         ],
                         "allowedCommonJsDependencies": ["@fullcalendar/daygrid","@fullcalendar/timegrid","@fullcalendar/interaction","chart.js"]
