@@ -43,7 +43,7 @@ import { ChartModule } from 'primeng/chart';
 import { ListPaiementsDetailsComponent } from './components/PME/list-paiements-details/list-paiements-details.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {ConventionCessionPMEComponent} from './components/PME/convention-cession/convention-cession.component';
-
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -106,7 +106,8 @@ import {ConventionCessionPMEComponent} from './components/PME/convention-cession
 ],
 providers: [
   NgbActiveModal,
-  AppConfigService
+  AppConfigService,
+  MessageService
 ]
 })
 export class WorkstationModule { }
