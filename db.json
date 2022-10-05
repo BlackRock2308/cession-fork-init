@@ -1594,7 +1594,9 @@
       "rccm": "401568778",
       "denomination": "Modelsis",
       "observation": "",
-      "nomMarche": "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
     },
     {
       "id": 2,
@@ -1605,7 +1607,9 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0002",
       "observation": "Décote élevée",
-      "nomMarche": "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
     },
     {
       "id": 3,
@@ -1616,7 +1620,9 @@
       "dateDemande": "15/07/2021",
       "numeroDemande": "2022-0003",
       "observation": "Contrat non conforme",
-      "nomMarche": "Reparation , entretien et installation"
+      "nomMarche": "Reparation , entretien et installation",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
 
     },
     {
@@ -1628,7 +1634,9 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0004",
       "observation": "",
-      "nomMarche": "Service de decoration"
+      "nomMarche": "Service de decoration",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
 
     },
     {
@@ -1640,7 +1648,9 @@
       "dateDemande": "05/09/2021",
       "numeroDemande": "2022-0005",
       "observation": "Document manquant",
-      "nomMarche": "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
 
     },
     {
@@ -1652,7 +1662,9 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0006",
       "observation": "",
-      "nomMarche": "Service de gardiennage"
+      "nomMarche": "Service de gardiennage",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
 
     },
     {
@@ -1664,7 +1676,9 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0007",
       "observation": "",
-      "nomMarche": "Service divers"
+      "nomMarche": "Service divers",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
 
     },
     {
@@ -1676,7 +1690,9 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0008",
       "observation": "Document manquant",
-      "nomMarche": "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
 
     }
   ]

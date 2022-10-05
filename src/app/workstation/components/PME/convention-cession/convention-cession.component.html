@@ -87,25 +87,13 @@
                                 <button pButton pRipple icon="pi pi-search"
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
-                                    *ngIf="document.statut === 'Convention-enregistrée' || (document.statut === 'Convention-signée-par-la-PME' && profil === 'pme') || document.statut === 'Convention-signée-par-la-DG' || document.statut === 'Convention-rejetée' "
+                                    *ngIf="!(document.statut === 'Convention-enregistrée') "
                                     (click)="visualiserDocument(document)"></button>
                                     <button pButton pRipple icon="pi pi-key"
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
-                                    *ngIf="(document.statut === 'Convention-générée' && profil=== 'pme')  || (document.statut === 'Convention-signée-par-la-PME' && profil ==='DG')" 
+                                    *ngIf="document.statut === 'Convention-enregistrée'"
                                     (click)="visualiserDocument(document)"></button>
-                                <button pButton pRipple icon="pi pi-upload"
-                                    class="p-button-rounded simpleButton" pTooltip="Charger un document"
-                                    *ngIf="((document.statut === 'Convention-signée-par-la-DG') && (profil === 'comptable')) "
-                                    (click)="ChargerConvention(convention)"></button>
-                                <button pButton pRipple icon="pi pi-file-excel"
-                                    class="p-button-rounded simpleButton" pTooltip="Editer la convention"
-                                    *ngIf="((document.statut === 'Convention-rejetée') && (profil === 'comptable')) "
-                                    (click)="EditerConvention(convention)"></button>
-                                <button pButton pRipple icon="pi pi-file"
-                                    class="p-button-rounded simpleButton" pTooltip="Générer la convention"
-                                    *ngIf="document.statut === 'Non-Risquee' "
-                                    (click)="EditConvention(convention)"></button>
                             </div>
                         </td>
                     </tr>
