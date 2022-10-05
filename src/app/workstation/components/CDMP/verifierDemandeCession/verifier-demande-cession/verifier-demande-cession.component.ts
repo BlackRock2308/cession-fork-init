@@ -198,7 +198,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
         this.router.navigate(['workstation/cdmp/recevabilite'])
         Swal.fire(
             'Rejetée!',
-            'La demande a bien ete rejetée.',
+            'La demande a bien été rejetée.',
             'success'
           )
       }})

@@ -220,7 +220,7 @@ export class TacheAnalyseComponent implements OnInit {
             this.router.navigate(['workstation/cdmp/analyse_risque'])
             Swal.fire(
                 'Rejetée!',
-                'La demande a bien ete rejetée.',
+                'La demande a bien été rejetée.',
                 'success'
               )
           }})
