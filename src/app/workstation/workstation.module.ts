@@ -43,7 +43,8 @@ import { ChartModule } from 'primeng/chart';
 import { ListPaiementsDetailsComponent } from './components/PME/list-paiements-details/list-paiements-details.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {ConventionCessionPMEComponent} from './components/PME/convention-cession/convention-cession.component';
-
+import { MessageService } from 'primeng/api';
+import { CodeComponent } from './components/profil/code/code.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,10 @@ import {ConventionCessionPMEComponent} from './components/PME/convention-cession
     ListPaiementsDetailsComponent,
     ProfilComponent,
     ConventionCessionPMEComponent,
+<<<<<<< HEAD
+=======
+    CodeComponent
+>>>>>>> f2178bf913c77dc2871dfaa60c78633ac13e9150
     
   ],
   imports: [
@@ -101,12 +106,14 @@ import {ConventionCessionPMEComponent} from './components/PME/convention-cession
     VisualiserDocumentComponent,
     PaiementPMEComponent,
     PaiementCDMPComponent,
-    ConventionSignerComponent
+    ConventionSignerComponent,
+    CodeComponent
      
 ],
 providers: [
   NgbActiveModal,
-  AppConfigService
+  AppConfigService,
+  MessageService
 ]
 })
 export class WorkstationModule { }

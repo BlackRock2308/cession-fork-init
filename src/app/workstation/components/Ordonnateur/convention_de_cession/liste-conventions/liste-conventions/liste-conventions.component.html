@@ -11,40 +11,55 @@
                 </div>
             </div>
             <br>
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id" >
-               
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id">
+
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter  type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
+                            <p-columnFilter type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
+                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale">
+                            </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE"></p-columnFilter>
+                            <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE">
+                            </p-columnFilter>
                         </th>
-                       
+
                         <th>
                             <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
-                       
-                        
+
+
                         <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button"
+                                style="background-color: #203359;" label="Rechercher"
+                                (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
                         </th>
                     </tr>
                     <tr>
-                        <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea"></p-sortIcon></th>
-                        <th pSortableColumn="raisonSociale" style="color: #203359;">Raison Sociale <p-sortIcon field="raisonSociale"></p-sortIcon></th>
-                        <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon field="referenceBE"></p-sortIcon></th>
-                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut"></p-sortIcon></th>
+                        <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
+                            </p-sortIcon>
+                        </th>
+                        <th pSortableColumn="raisonSociale" style="color: #203359;">Raison Sociale <p-sortIcon
+                                field="raisonSociale"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon
+                                field="referenceBE"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
+                            </p-sortIcon>
+                        </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
-                       
+
                         <td style="width:25%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
                             {{demande.ninea}}
@@ -58,13 +73,16 @@
                             {{demande.referenceBE}}
                         </td>
                         <td style="width:25%;">
-                            <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-', ' ')}}</span>
+                            <span
+                                [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-',
+                                ' ')}}</span>
 
                         </td>
-                        
+
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-search"  class="p-button-rounded simpleButton" (click)="editerDemandeCession(demande)" ></button>
+                                <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
+                                    (click)="editerDemandeCession(demande)"></button>
                             </div>
                         </td>
                     </tr>
@@ -74,16 +92,5 @@
 
 
     </div>
-   
+
 </div>
-
-
-
-  
- 
-
-
-
-
-
-

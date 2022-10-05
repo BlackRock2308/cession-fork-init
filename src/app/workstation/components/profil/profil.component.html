@@ -33,12 +33,22 @@
                             [disabled]="true" />
                     </div>
                 </div>
+                <div class="field grid">
+                    <label htmlFor="profile" class="col-12 mb-2 md:col-4 md:mb-0">Code de signature:</label>
+                    <div class="col-12 md:col-6">
+                        <input pInputText id="profil" type="text" pTooltip="Profil" placeholder="6876"
+                            [disabled]="true" />
+                    </div>
+                    <div>
+                    <button type="button" pButton pRipple
+                                icon="pi pi-pencil" class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
+                                pTooltip="Modifier votre code" (click)="modifierCode()"></button>
+                            </div>
+                </div>
             </div></div>
             <div class="col-12  pr-0 d-flex  flex-row-reverse">
                 
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
     </div>
 </div>

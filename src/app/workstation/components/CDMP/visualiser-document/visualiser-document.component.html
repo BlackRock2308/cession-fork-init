@@ -58,15 +58,23 @@
         </div>
     </div>
     <div *ngIf="!(paiement === 'true')">
-        <div *ngIf="(statut === 'Convention-rejetée') || (statut === 'Convention-générée')">
+        <div *ngIf="(statut === 'Convention-rejetée') || (statut === 'Convention-enregistrée') || statut === 'Substitution-effectuée'">
             <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
                 <p-toast></p-toast>
                 <div class="grid p-fluid">
-                    <div class="col-12 md:col-12">
+                    <div  *ngIf="(statut === 'Convention-rejetée') "class="col-12 md:col-12">
                         <span class="h5texte">Observation</span>
                         <div class="p-inputgroup">
                             <span class="p-float-label">
-                                <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+                                <textarea style="color: black; background-color: lightgray;" disabled [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize">{{observation}}</textarea>
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="(statut === 'Convention-enregistrée') ||(statut == 'Substitution-effectuée') " class="col-12 md:col-12">
+                        <span class="h5texte">Observation</span>
+                        <div class="p-inputgroup">
+                            <span class="p-float-label">
+                                <textarea  [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
                             </span>
                         </div>
                     </div>
@@ -78,15 +86,15 @@
 <div class="modal-footer">
     <div class="col-12  pr-0 d-flex  flex-row-reverse">
         <button
-            *ngIf="((profil === 'DG') && (statut === 'Convention-signée-par-la-PME')) || ((profil === 'pme') && (statut === 'Convention-enregistrée'))"
+            *ngIf="((profil === 'DG') && (statut === 'Convention-signée-par-la-PME')) || ((profil === 'pme') && ((statut === 'Convention-enregistrée') || (statut === 'Substitution-effectuée') ))"
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
             class="p-button-raised dangerButton"></button>
         <button
-            *ngIf="((profil === 'DG') && (statut === 'Convention-signée-par-la-PME'))  || ((profil === 'pme') && (statut === 'Convention-enregistrée'))"
+            *ngIf="((profil === 'DG') && (statut === 'Convention-signée-par-la-PME'))  || ((profil === 'pme') && ((statut === 'Convention-enregistrée') || (statut === 'Substitution-effectuée') ))"
             type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
             (click)="signerConvention()" class="p-button-raised successButton"></button>
         <button
-            *ngIf="!(((profil === 'DG') && (statut === 'Convention-signée-par-la-PME')) || ((profil === 'pme') && (statut === 'Convention-enregistrée')))"
+            *ngIf="!(((profil === 'DG') && (statut === 'Convention-signée-par-la-PME')) || ((profil === 'pme') && ((statut === 'Convention-enregistrée') || (statut === 'Substitution-effectuée') )))"
             type="button" class="p-button-raised simpleButton" (click)="dismiss()" pButton pRipple
             label="Fermer"></button>
     </div>

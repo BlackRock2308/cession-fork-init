@@ -1,7 +1,7 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
 <br>
-<p-card >
+<p-card>
     <div class="col-12">
         <div class="">
             <div class="d-flex justify-content-center col-12">
@@ -39,47 +39,58 @@
                         </span>
                     </div>
                 </div>
-                
+
             </div>
             <br>
             <label class="form-label" for="textAreaExample">Observations</label>
             <div class="d-flex flex-start w-100">
-                
+
                 <div class="form-outline w-100">
-                    <textarea *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else elseBlock" class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
-                    style="background: #fff;"></textarea>
+                    <textarea
+                        *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else elseBlock"
+                        class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
+                        style="background: #fff;"></textarea>
 
                     <ng-template #elseBlock>
-                        <textarea  class="form-control" id="textAreaExample" rows="4" disabled
-                    style="background: #fff;">{{demandeCession.observation}}</textarea>
-                    </ng-template>              
+                        <textarea class="form-control" id="textAreaExample" rows="4" disabled
+                            style="background: #fff;">{{demandeCession.observation}}</textarea>
+                    </ng-template>
                 </div>
             </div>
             <br>
-            <br>
-            <br>
-            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true" dataKey="id">
-                
-                
+
+            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true"
+                [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [rowHover]="true"
+                dataKey="id">
+
+
 
                 <ng-template pTemplate="header">
                     <tr>
-                        
-                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon field="typeDocument"></p-sortIcon></th>
-                        <th pSortableColumn="nomDocument" style="color: #203359;">Nom du document <p-sortIcon field="nomDocument"></p-sortIcon></th>
-                        <th pSortableColumn="dateSoumission" style="color: #203359;">Date création <p-sortIcon field="dateSoumission"></p-sortIcon></th>
+
+                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
+                                field="typeDocument"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="nomDocument" style="color: #203359;">Nom du document <p-sortIcon
+                                field="nomDocument"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="dateSoumission" style="color: #203359;">Date création <p-sortIcon
+                                field="dateSoumission"></p-sortIcon>
+                        </th>
 
                         <th style="color: #203359;">Action</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-document>
                     <tr>
-                       
+
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">Type</span>
                             {{document.typeDocument}}
                         </td>
-                        
+
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Nom</span>
                             {{document.nomDocument}}
@@ -88,10 +99,11 @@
                             <span class="p-column-title">Date Soumission</span>
                             {{document.dateSoumission}}
                         </td>
-                        
+
                         <td>
                             <div class="flex">
-                                <button icon="pi pi-search" class="p-button-rounded simpleButton" pRipple pButton (click)="visualiserDocument(document)" ></button>
+                                <button icon="pi pi-search" class="p-button-rounded simpleButton" pRipple pButton
+                                    (click)="visualiserDocument(document)"></button>
                             </div>
                         </td>
                     </tr>
@@ -99,29 +111,22 @@
             </p-table>
         </div>
         <br>
-        <br>
-        <br>
-        <br>
-        
-    </div>
-    
-<div class="float-end" *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else fermerBoutton">
-    <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter" (click)="onSubmit('Convention-acceptée')" routerLink="../"></button>
-    <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter" (click)="onSubmit('Convention-rejetée')" routerLink="../"></button>
-</div>
 
-<ng-template #fermerBoutton  class="float-end ">
-    <div class="float-end ">
-        <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Fermer" routerLink="../"></button>
     </div>
-</ng-template>
-<br>
+
+    <div class="float-end"
+        *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else fermerBoutton">
+        <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter"
+            (click)="onSubmit('Convention-acceptée')" routerLink="../"></button>
+        <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter"
+            (click)="onSubmit('Convention-rejetée')" routerLink="../"></button>
+    </div>
+
+    <ng-template #fermerBoutton class="float-end ">
+        <div class="float-end ">
+            <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Fermer"
+                routerLink="../"></button>
+        </div>
+    </ng-template>
+    <br>
 </p-card>
-
- 
-
-
-
-
-
-

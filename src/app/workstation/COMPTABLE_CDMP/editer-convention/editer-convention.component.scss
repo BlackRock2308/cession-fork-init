@@ -1,98 +1,14 @@
 @import "../../../../assets/sass/custom/variables.scss";
 @import "../../../../assets/sass/custom/layout.scss";
 
-
-.soumettre{
-    background-color: #981639;
-}
-.confirm{
-    background-color: #99CC33;
-}
-.card-w-title{
-    background-color:#203359;
-    border-radius:0px;
-}
+.hidden{
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+  }
 
 
 .text{
     color: #203359;
     font-weight: bold;
-}
-
-.tab{
-    background-color: #203359;
-}
-
-/*::ng-deep div.p-datatable-header.ng-star-inserted{
-    background-color: #203359;
-
-}*/
-
-.button{
-    background-color: #203359;
-
-}
-
-::ng-deep span.p-paginator-current.ng-star-inserted{
-    color: #203359;
-
-}
-
-::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
-    background-color: #203359;
-
-}
-
-::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight{
-    background-color: #203359;
-
-}
-
-.title{
-    color:white;
-}
-
-::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
-    color: #203359;
-
-}
-
-::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt{
-    color: #203359;
-
-}
-
-::ng-deep div.p-dialog-header.ng-tns-c94-0.ng-star-inserted{
-    //border: none;
-    display: none;
-
-}
-
-.modalTitle{
-    background-color: #F2F2F2;
-    justify-content: center;
-    height: 40px;
-    border-radius: 2%;
-    
-}
-
-.label{
-    color: #A5A5A5;
-                    font-weight: bolder;
-}
-
-::ng-deep li.p-element.p-steps-item.p-highlight.p-steps-current.ng-star-inserted{
-    display:none;
-}
-
-::ng-deep li.p-element.p-steps-item.ng-star-inserted::before{
-    display:none;
-}
-
-::ng-deep span.p-steps-number{
-    display:none;
-}
-
-::ng-deep .form-check-input{
-    background-color: green;
 }
