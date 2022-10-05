@@ -27,6 +27,7 @@ export class VisualiserDocumentComponent implements OnInit {
   statut: string;
   convention: any;
   paiement: string;
+  observation: void;
 
   constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
@@ -41,6 +42,7 @@ export class VisualiserDocumentComponent implements OnInit {
     if (this.config.data.paiement === 'true') {
       this.paiement = 'true';
     }
+    this.observation=this.config.data.document.observation;
 
 
     console.log(this.paiement);

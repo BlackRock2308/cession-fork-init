@@ -843,7 +843,7 @@
     {
       "id": 18,
       "ninea": "678567",
-      "statut": "soumis",
+      "statut": "rejeté",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "294067",
       "dateDemande": "2022-09-28T10:10:13.678Z",
@@ -885,17 +885,6 @@
       "numeroDemande": "2022-0002",
       "rccm": "401548015",
       "nomMarche": "Reparation , entretien et installation"
-    },
-    {
-      "id": 18,
-      "ninea": "678567",
-      "statut": "soumis",
-      "raisonSocial": "CAMAIEU INTERNATIONAL",
-      "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0003",
-      "rccm": "401548780",
-      "nomMarche": "Service de decoration"
     },
     {
       "id": 19,
@@ -1320,23 +1309,7 @@
   "types_document": [
     {
       "id": 1,
-      "nom": "Bon engagement",
-      "type": "pdf"
-    },
-    {
-      "id": 2,
-      "nom": "Etat Financier",
-      "type": "excel"
-    },
-    {
-      "id": 4,
-      "nom": "Rapport ou Compte rendu",
-      "type": "word"
-    },
-    {
-      "id": 5,
-      "nom": "Relevé fiscal",
-      "type": "pdf"
+      "nom": "Document du marché"
     }
   ],
   "document": [
@@ -1536,7 +1509,7 @@
     {
       "id": 1,
       "ninea": "567567",
-      "statut": "Convention-acceptée",
+      "statut": "Convention-enregistrée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294065",
       "dateDemande": "21/03/2021",
@@ -1560,7 +1533,7 @@
     {
       "id": 3,
       "ninea": "678567",
-      "statut": "Convention-rejetée",
+      "statut": "Convention-enregistrée",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "15-294067",
       "dateDemande": "15/07/2021",
@@ -1570,7 +1543,7 @@
     {
       "id": 4,
       "ninea": "567567",
-      "statut": "Convention-acceptée",
+      "statut": "Convention-enregistrée",
       "raisonSocial": "INT Marketing",
       "referenceBE": "45-294068",
       "dateDemande": "21/03/2021",
@@ -1616,6 +1589,120 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0008",
       "observation": "Document manquant"
+    }
+  ],
+  "conventionsPME": [
+    {
+      "id": 1,
+      "ninea": "567567",
+      "statut": "Convention-enregistrée",
+      "raisonSocial": "Modelsis SARL",
+      "referenceBE": "20-294065",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0001",
+      "rccm": "401568778",
+      "denomination": "Modelsis",
+      "observation": "",
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+    },
+    {
+      "id": 2,
+      "ninea": "567567",
+      "statut": "Convention-rejetée",
+      "raisonSocial": "ENEDIS",
+      "referenceBE": "21-294066",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0002",
+      "observation": "Décote élevée",
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+    },
+    {
+      "id": 3,
+      "ninea": "678567",
+      "statut": "Convention-enregistrée",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "referenceBE": "15-294067",
+      "dateDemande": "15/07/2021",
+      "numeroDemande": "2022-0003",
+      "observation": "Contrat non conforme",
+      "nomMarche": "Reparation , entretien et installation",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+
+    },
+    {
+      "id": 4,
+      "ninea": "567567",
+      "statut": "Substitution-effectuée",
+      "raisonSocial": "INT Marketing",
+      "referenceBE": "45-294068",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0004",
+      "observation": "",
+      "nomMarche": "Service de decoration",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+
+    },
+    {
+      "id": 5,
+      "ninea": "123567",
+      "statut": "Convention-signée-par-la-DG",
+      "raisonSocial": "E.COM4",
+      "referenceBE": "20-294069",
+      "dateDemande": "05/09/2021",
+      "numeroDemande": "2022-0005",
+      "observation": "Document manquant",
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+
+    },
+    {
+      "id": 6,
+      "ninea": "567567",
+      "statut": "Convention-signée-par-la-PME",
+      "raisonSocial": "SCI SENEGAL",
+      "referenceBE": "20-294070",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0006",
+      "observation": "",
+      "nomMarche": "Service de gardiennage",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+
+    },
+    {
+      "id": 7,
+      "ninea": "567567",
+      "statut": "Convention-acceptée",
+      "raisonSocial": "IMME",
+      "referenceBE": "20-294071",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0007",
+      "observation": "",
+      "nomMarche": "Service divers",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+
+    },
+    {
+      "id": 8,
+      "ninea": "567567",
+      "statut": "Substitution-effectuée",
+      "raisonSocial": "IMME",
+      "referenceBE": "20-294072",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0008",
+      "observation": "Document manquant",
+      "nomMarche": "Fournitures de lots de materiels",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+
     }
   ]
 }

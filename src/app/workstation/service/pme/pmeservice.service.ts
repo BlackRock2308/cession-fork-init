@@ -34,4 +34,9 @@ export class PmeService {
   patchStatutDemande(id:number,statut:any):Observable<DemandeAdhesion>{
     return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,statut)
   }
+
+  getConventions():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/conventionsPME`);
+  }
+
 }

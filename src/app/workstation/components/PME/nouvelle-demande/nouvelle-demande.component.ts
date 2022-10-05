@@ -110,7 +110,9 @@ export class NouvelleDemandeComponent implements OnInit {
   ngOnInit(): void {
     this.pmeService.getTypesDocument().subscribe(data => {
       this.typesDocument = data;
+      
       this.typesDocument.push({ nom: "Autres..." })
+
       console.log(this.typesDocument)
     })
     // this.documentService.getDeocuments().subscribe(data => {
