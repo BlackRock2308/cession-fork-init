@@ -162,7 +162,7 @@ a{
             color: #C63737;
         }
         
-        &.status-non-risquee {
+        &.status-convention-acceptée{
             background: #C8E6C9;
             color: #256029;
         }
@@ -173,18 +173,18 @@ a{
         }
     
         &.status-convention-signée-par-la-pme {
-            background: #C8E6C9;
-            color: #256029;
+            background: #FEEDAF;
+            color: #8A5340;
         }
         &.status-convention-signée-par-la-dg {
             background: #FEEDAF;
             color: #8A5340;
         }
-        &.status-convention-générée {
+        &.status-convention-enregistrée {
             background: #c9ddfa;
             color: #354d8f;
         }
-        &.status-convention-enregistrée {
+        &.status-substitution-effectuée {
             background: #c9ddfa;
             color: #354d8f;
         }
