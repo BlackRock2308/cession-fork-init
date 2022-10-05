@@ -56,10 +56,9 @@ export class ConventionCessionComponent implements OnInit {
     this.profil = localStorage.getItem('profil');
    
     this.documentService.getDeocuments().subscribe(data => {
-      this.documents = data
+      this.documents = data;
     });
     
-
       this.cols = [
         { field: 'nomDocument', header: 'Nom de Document' },
         { field: 'typeDocument', header: 'Type de Document' },
@@ -70,9 +69,7 @@ export class ConventionCessionComponent implements OnInit {
         { label: 'Convention de cession' },
       ];
   
-      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-  
-     
+      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };     
   }
 
 hideDialog() {
