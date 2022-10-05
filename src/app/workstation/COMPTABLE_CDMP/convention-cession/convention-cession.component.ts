@@ -163,9 +163,9 @@ ChargerConvention(convention: Convention) {
     data: {
       convention: convention
     },
-    header: "Charger la convention enregistree",
+    header: "Charger la convention enregistrée",
     width: '40%',
-    height: 'calc(40% - 100px)',
+    height: 'calc(50% - 100px)',
     baseZIndex: 50
   });
 }
@@ -175,9 +175,9 @@ EditerConvention(convention: Convention) {
     data: {
       convention: convention
     },
-    header: "",
-    width: '55%',
-    height: 'calc(65% - 250px)',
+    header: "Editer la convention",
+    width: '40%',
+    height: 'calc(50% - 100px)',
     baseZIndex: 50
   });
 }
@@ -186,9 +186,9 @@ EditConvention(convention: Convention) {
     data: {
       convention: convention
     },
-    header: "",
-    width: '60%',
-    height: 'calc(98% - 250px)',
+    header: "Editer la convention",
+    width: '40%',
+    height: 'calc(50% - 100px)',
     baseZIndex: 50
   });
 }

@@ -1,16 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 56787654698,
-      "rccm": "SN-DKR 2018 R 45678",
-      "statut": "Soumise",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-30T15:17:25.483Z",
-      "id": 17
-    },
-    {
       "ninea": 12123312267,
       "rccm": "SN-DKR 2014 C 12348",
       "statut": "Soumise",
@@ -371,7 +361,7 @@
       "date_cession": "15/12/2006",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
-      "decode": "5%",
+      "decote": "5%",
       "montant_debourse": "5.000.000",
       "Solde SICA": "3.000.000",
       "formuleJuridique": "SARL",
@@ -410,7 +400,7 @@
       "date_cession": "09/08/2003",
       "montant_rembourse": "1.000.000",
       "solde_PME": "14.000.000",
-      "decode": "15%",
+      "decote": "15%",
       "montant_debourse": "10.000.000",
       "Solde SICA": "7.000.000",
       "nineaValide": true,
@@ -448,7 +438,7 @@
       "date_cession": "20/12/2022",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
-      "decode": "20%",
+      "decote": "20%",
       "montant_debourse": "5.000.000",
       "solde_sica": "3.000.000"
     },
@@ -476,7 +466,7 @@
       "date_cession": "04/04/2018",
       "montant_rembourse": "2.000.000",
       "solde_PME": "2.000.000",
-      "decode": "5%",
+      "decote": "5%",
       "montant_debourse": "3.000.000",
       "solde_sica": "2.000.000"
     },
@@ -504,7 +494,7 @@
       "nomMarche": "Fournitures de lots de materiels",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
-      "decode": "5%",
+      "decote": "5%",
       "montant_debourse": "5.000.000",
       "solde_sica": "3.000.000"
     },
@@ -512,7 +502,7 @@
       "id": 6,
       "ninea": "567865467567",
       "rccm": "6543568778",
-      "statut": "Complément-Requis",
+      "statut": "Completee",
       "date_soumission": "05/07/2018",
       "ninea_file": "",
       "statut_convention": "Convention-générée",
@@ -530,7 +520,7 @@
       "date_cession": "03/02/2022",
       "montant_rembourse": "12.000.000",
       "solde_PME": "7.000.000",
-      "decode": "5%",
+      "decote": "5%",
       "montant_debourse": "8.000.000",
       "solde_sica": "4.000.000"
     },
@@ -556,7 +546,7 @@
       "date_cession": "15/12/2006",
       "montant_rembourse": "2.000.000",
       "solde_PME": "8.000.000",
-      "decode": "5%",
+      "decote": "5%",
       "montant_debourse": "5.000.000",
       "solde_sica": "3.000.000",
       "nineaValide": false
@@ -831,7 +821,7 @@
     {
       "id": 16,
       "ninea": "567567",
-      "statut": "soumis",
+      "statut": "rejeté",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
       "dateDemande": "2022-09-28T10:10:13.678Z",
@@ -885,17 +875,6 @@
     }
   ],
   "recevabilites": [
-    {
-      "id": 16,
-      "ninea": "567567",
-      "statut": "soumis",
-      "raisonSocial": "Modelsis SARL",
-      "referenceBE": "20-294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0001",
-      "rccm": "401568778",
-      "nomMarche": "Fournitures de lots de materiels"
-    },
     {
       "id": 17,
       "ninea": "567567",
@@ -1435,6 +1414,36 @@
       "typeDocument": "",
       "file": {},
       "id": 11
+    },
+    {
+      "id": 1,
+      "nom": "Modelsis SARL",
+      "type": "RCCM",
+      "date_soumission": "12/11/2017"
+    },
+    {
+      "id": 3,
+      "nom": "Business Plan",
+      "type": "Business Plan",
+      "date_soumission": "12/12/2020"
+    },
+    {
+      "id": 4,
+      "nom": "CAMAIEU INTERNATIONAL",
+      "type": "Bon engagement",
+      "date_soumission": "15/11/2013"
+    },
+    {
+      "id": 5,
+      "nom": "Raport Fiscal",
+      "type": "Raport Fiscal",
+      "date_soumission": "03/03/2000"
+    },
+    {
+      "id": 6,
+      "nom": "Etat Financier",
+      "type": "Etat Financier",
+      "date_soumission": "11/10/2011"
     }
   ],
   "paiements": [
@@ -1452,7 +1461,7 @@
       "payer": "Demba Gueye",
       "montant": "1 000 000",
       "modePaiement": "Virement",
-      "decode": "10%",
+      "decote": "10%",
       "document": {
         "id": 1,
         "nomDocument": "NINEA",
@@ -1480,7 +1489,7 @@
       "payer": "Doudou Diallo",
       "montant": "1 000 000",
       "modePaiement": "Virement",
-      "decode": "10%",
+      "decote": "10%",
       "document": {
         "id": 1,
         "nomDocument": "NINEA",
@@ -1508,7 +1517,7 @@
       "payer": "Fatou Touré",
       "montant": "2 000 000",
       "modePaiement": "Espèce",
-      "decode": "10%",
+      "decote": "10%",
       "document": {
         "id": 1,
         "nomDocument": "NINEA",
@@ -1535,7 +1544,7 @@
       "rccm": "401568778",
       "denomination": "Modelsis",
       "observation": "",
-      "nomMarche" : "Fournitures de lots de materiels"
+      "nomMarche": "Fournitures de lots de materiels"
     },
     {
       "id": 2,
@@ -1546,8 +1555,7 @@
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0002",
       "observation": "Décote élevée",
-      "nomMarche" : "Fournitures de lots de materiels"
-
+      "nomMarche": "Fournitures de lots de materiels"
     },
     {
       "id": 3,

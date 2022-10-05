@@ -31,31 +31,32 @@
             <div class="field grid">
                 <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
                 <div class="field inputContainer col-12 md:col-8">
-                    <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
-                    pInputText pTooltip="Charger la convention " placeholder="Pas de fichier">
-                    
-                <ng-template #elseBlock id="file" type="text" pInputText
-                    pTooltip="Charger document">
-                    <input id="file" type="text" style="width: 492px;"
-                    pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
-                </ng-template>
-                <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
-                    name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
-                    
+                    <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text" pInputText
+                        pTooltip="Charger la convention " placeholder="Pas de fichier">
 
-                <button type="button" pButton pRipple icon="pi pi-upload"
-                            class="mr-20 mb-2  upload p-button-rounded p-button-text" id="upload-file"
-                            (click)="handleClick()"></button>
-                
+                    <ng-template #elseBlock id="file" type="text" pInputText pTooltip="Charger document">
+                        <input id="file" type="text" style="width: 492px;" pInputText pTooltip="Charger la convention"
+                            placeholder="{{selectedFiles.name}}">
+                    </ng-template>
+                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file" name="upload-file"
+                        ngf-max-size="2MB" (change)="selectFile($event)">
+
+
+                    <button type="button" pButton pRipple icon="pi pi-upload"
+                        class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
+                        (click)="handleClick()"></button>
+
+                </div>
+            </div>
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                    class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
+                <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                    icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised successButton my-auto "></button>
             </div>
         </div>
-        <div class="col-12  pr-0 d-flex  flex-row-reverse">
-            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
-                class="p-button-raised p-button-danger mx-1  my-auto ml-2" (click)="dismiss()"></button>
-            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
-                icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised boutton my-auto "></button>
+        <div class="modal-footer">
+
         </div>
     </div>
-    <div class="modal-footer">
-        
-    </div>
+</div>

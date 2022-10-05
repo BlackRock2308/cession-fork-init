@@ -42,7 +42,7 @@
     <h3 style=" margin-left: 40%;"> Liste des créances</h3>
 
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
-        [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decode']" 
+        [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decote']" 
         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
         currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
 
@@ -68,25 +68,25 @@
             </tr>
             <tr>
                 <th>
-                    <p-columnFilter type="text" field="nomMarche"></p-columnFilter>
+                    <p-columnFilter type="text" field="nomMarche" placeholder="Nom du marché"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="raisonSocial"></p-columnFilter>
+                    <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="type_marche"></p-columnFilter>
+                    <p-columnFilter type="text" field="type_marche" placeholder="Type de marché"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="montant_total"></p-columnFilter>
+                    <p-columnFilter type="text" field="montant_total" placeholder="Montant total"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="date_marche"></p-columnFilter>
+                    <p-columnFilter type="text" field="date_marche" placeholder="Date de marché"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="statut_dg"></p-columnFilter>
+                    <p-columnFilter type="text" field="statut_dg" placeholder="Statut"></p-columnFilter>
                 </th>
                 <th *ngIf="profil === 'DG'">
-                    <p-columnFilter type="text" field="decode"></p-columnFilter>
+                    <p-columnFilter type="text" field="decote" placeholder="Décote"></p-columnFilter>
                 </th>
             </tr>
         </ng-template>
@@ -118,7 +118,7 @@
                 </td>
                 <td  *ngIf="profil === 'DG'">
                     <span class="p-column-title">Décote</span>
-                    {{demande.decode}}
+                    {{demande.decote}}
                 </td>
                 <td>
                     <div class="flex">

@@ -19,23 +19,23 @@
                 <ng-template pTemplate="header">
                         <tr>
                         <th>
-                            <p-columnFilter  type="text" field="raisonSocial"></p-columnFilter>
+                            <p-columnFilter  type="text" field="raisonSocial" placeholder="Raison sociale"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="refBE"></p-columnFilter>
+                            <p-columnFilter type="text" field="refBE" placeholder="Référence BE"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="total_marche"></p-columnFilter>
+                            <p-columnFilter type="text" field="total_marche" placeholder="Total Marché"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="soldePME"></p-columnFilter>
+                            <p-columnFilter type="text" field="soldePME" placeholder="Solde PME"></p-columnFilter>
                         </th>
                        
                         <th>
-                            <p-columnFilter type="text" field="montantRecu"></p-columnFilter>
+                            <p-columnFilter type="text" field="montantRecu" placeholder="Montant Reçu"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="statut"></p-columnFilter>
+                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
                         </th>
                         <th>
                             <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
@@ -54,7 +54,7 @@
                         <th pSortableColumn="soldePME" style="color: #203359;">Solde PME<p-sortIcon field="soldePME">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="montantRecu" style="color: #203359;">Montant Recu<p-sortIcon
+                        <th pSortableColumn="montantRecu" style="color: #203359;">Montant Reçu<p-sortIcon
                                 field="montantRecu"></p-sortIcon>
                         </th>
                         <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
