@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/workstation/model/product';
 import { Document, Documents } from 'src/app/workstation/model/document';
-import { MenuItem, MessageService } from 'primeng/api';
+import { Message,MenuItem, MessageService } from 'primeng/api';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { PME } from 'src/app/workstation/model/pme';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
     styleUrls: ['./tache-analyse.component.scss'],
-    providers: [DialogService]
+    providers: [DialogService,MessageService]
 })
 export class TacheAnalyseComponent implements OnInit {
 
@@ -50,12 +50,22 @@ export class TacheAnalyseComponent implements OnInit {
 
     items: MenuItem[];
     home: MenuItem;
+    msgs1: Message[];
 
-    constructor(      private router: Router,
+    constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
         private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
 
     ngOnInit() {
+
+        this.msgs1 = [
+            {severity:'success', summary:'Success', detail:'Message Content'},
+            {severity:'info', summary:'Info', detail:'Message Content'},
+            {severity:'warn', summary:'Warning', detail:'Message Content'},
+            {severity:'error', summary:'Error', detail:'Message Content'},
+            {severity:'custom', summary:'Custom', detail:'Message Content', icon: 'pi-file'}
+        ];
+    
         this.demandeCessionService.getDemandeObs().subscribe(data => {
             this.demandeCession = data
             console.log(this.demandeCession)
@@ -80,6 +90,16 @@ export class TacheAnalyseComponent implements OnInit {
         ];
 
         this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+    }
+    showViaService() {
+
+        this.router.navigate(['/workstation/cdmp/analyse_risque']);
+        this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+          
+        
+       
+          
+
     }
 
     hideDialog() {
@@ -161,16 +181,21 @@ export class TacheAnalyseComponent implements OnInit {
       
     
         Swal.fire({
+        position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
           html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
           color:"#203359",
           confirmButtonColor:"#99CC33",
           confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
           allowOutsideClick:false,
           
-        }).then((result) => {
-          if (result.isConfirmed) {
+        }).then(() => {
+         
             this.router.navigate(['workstation/cdmp/analyse_risque'])
-          }})
+        })
+    
     
           
     }
@@ -180,7 +205,11 @@ export class TacheAnalyseComponent implements OnInit {
       
     
         Swal.fire({
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            position: 'top-end',
+            title: 'Etes-vous sur de vouloir rejeter la demande?',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
           color:"#203359",
           confirmButtonColor:"#99CC33",
           confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
@@ -189,6 +218,11 @@ export class TacheAnalyseComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['workstation/cdmp/analyse_risque'])
+            Swal.fire(
+                'Rejetée!',
+                'La demande a bien ete rejetée.',
+                'success'
+              )
           }})
     
           

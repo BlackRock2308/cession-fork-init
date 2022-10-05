@@ -81,7 +81,7 @@ import {ConventionCessionPMEComponent} from './components/PME/convention-cession
     DetailsConventionComponent,
     ListPaiementsDetailsComponent,
     ProfilComponent,
-    ConventionCessionPMEComponent
+    ConventionCessionPMEComponent,
     
   ],
   imports: [

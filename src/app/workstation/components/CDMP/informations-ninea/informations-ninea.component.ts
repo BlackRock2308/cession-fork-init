@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-informations-ninea',
@@ -56,9 +57,6 @@ onSubmit(){
   //fermer la boite de dialogue
   this.demandeAdhesionService.setDialog(false)
 
-  //
-  this.router.navigate(['workstation/cdmp/demandes_en_cours/']);
-
 
 }
   enregistrerInfos() {
@@ -72,6 +70,27 @@ onSubmit(){
     });
     //à enlever après connexion avec le backend
     this.adhesionService.delateAdhesionDemande(this.demande.id).subscribe()
+
+
+    Swal.fire({
+      position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+        color:"#203359",
+        confirmButtonColor:"#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+        allowOutsideClick:false,
+        
+      }).then(() => {
+       
+          this.router.navigate(['workstation/cdmp/recevabilite'])
+      })
+    
   }
+
+   
+ 
 
 }

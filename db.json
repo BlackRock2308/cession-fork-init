@@ -1,26 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 56787654698,
-      "rccm": "SN-DKR 2018 R 45678",
-      "statut": "Soumise",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-09-30T15:17:25.483Z",
-      "id": 17
-    },
-    {
-      "ninea": 12123312267,
-      "rccm": "SN-DKR 2014 C 12348",
-      "statut": "Soumise",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-10-03T12:30:08.323Z",
-      "id": 18
-    },
-    {
       "ninea": 89988988,
       "rccm": "SN-DKR 1018 T 45667",
       "statut": "Rejetée",
@@ -245,28 +225,24 @@
       "nineaValide": false
     },
     {
-      "ninea": 12548754,
-      "rccm": 21558221,
-      "email": "ndiayeoumarsahaba@ept.sn",
-      "nineaFile": {
-        "lastModified": 1664185083277,
-        "lastModifiedDate": "Mon Sep 26 2022 09:38:03 GMT+0000 (heure d’été des Açores)",
-        "name": "NewCharteGraphiqueCDMP.pdf",
-        "size": 654168,
-        "type": "application/pdf",
-        "webkitRelativePath": ""
-      },
-      "rccmFile": {
-        "lastModified": 1664185083277,
-        "lastModifiedDate": "Mon Sep 26 2022 09:38:03 GMT+0000 (heure d’été des Açores)",
-        "name": "NewCharteGraphiqueCDMP.pdf",
-        "size": 654168,
-        "type": "application/pdf",
-        "webkitRelativePath": ""
-      },
-      "date_soumission": "2022-09-28T10:10:13.678Z",
+      "ninea": 12123312267,
+      "rccm": "SN-DKR 2014 C 12348",
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-03T12:30:08.323Z",
       "id": 18,
-      "nineaValide": false
+      "nineaValide": true,
+      "denomination": "",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "representantLegal": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": "",
+      "statut": "Soumise",
+      "pmeActive": true
     },
     {
       "ninea": 7854201,
@@ -1623,7 +1599,6 @@
       "nomMarche": "Reparation , entretien et installation",
       "nomDocument": "convention",
       "path": "/assets/doctest.pdf"
-
     },
     {
       "id": 4,
@@ -1637,7 +1612,6 @@
       "nomMarche": "Service de decoration",
       "nomDocument": "convention",
       "path": "/assets/doctest.pdf"
-
     },
     {
       "id": 5,
@@ -1651,7 +1625,6 @@
       "nomMarche": "Fournitures de lots de materiels",
       "nomDocument": "convention",
       "path": "/assets/doctest.pdf"
-
     },
     {
       "id": 6,
@@ -1665,7 +1638,6 @@
       "nomMarche": "Service de gardiennage",
       "nomDocument": "convention",
       "path": "/assets/doctest.pdf"
-
     },
     {
       "id": 7,
@@ -1679,7 +1651,6 @@
       "nomMarche": "Service divers",
       "nomDocument": "convention",
       "path": "/assets/doctest.pdf"
-
     },
     {
       "id": 8,
@@ -1693,7 +1664,6 @@
       "nomMarche": "Fournitures de lots de materiels",
       "nomDocument": "convention",
       "path": "/assets/doctest.pdf"
-
     }
   ]
 }

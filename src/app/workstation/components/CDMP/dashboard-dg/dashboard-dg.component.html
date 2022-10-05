@@ -34,11 +34,21 @@
 
 <br>
 <div class="card">
+    <div class="dropdown">
+        <button *ngIf="profil === 'DG'" id="valider" class="btn btn-secondary dropdown-toggle" style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;"  icon="pi pi-download" pButton pRipple label = "Exporter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="exportexcel()">Excel</a>
+          <a class="dropdown-item" (click)="exportPdf()">PDF</a>
+        </div>
+      </div>
+    
 
-    <button *ngIf="profil === 'DG'" id="valider"
+    <!-- <button *ngIf="profil === 'DG'" id="valider"
         style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;" pButton
         pRipple label="Exporter" icon="pi pi-download" (click)="exportexcel()"
-        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button>
+        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button> -->
     <h3 style=" margin-left: 40%;"> Liste des créances</h3>
 
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
