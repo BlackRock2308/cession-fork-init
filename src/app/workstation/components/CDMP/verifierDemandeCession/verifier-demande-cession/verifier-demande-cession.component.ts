@@ -11,6 +11,7 @@ import { DemandeCession } from 'src/app/workstation/model/demande';
 import { Router } from '@angular/router';
 import { take, takeUntil, takeWhile } from 'rxjs/operators';
 import { HttpHeaderResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-verifier-demande-cession',
@@ -176,4 +177,53 @@ export class VerifierDemandeCessionComponent implements OnInit {
       baseZIndex: 10000
     });
   }
+
+  onSubmitRejet() {
+       
+      
+    
+    Swal.fire({
+        position: 'top-end',
+        title: 'Etes-vous sur de vouloir rejeter la demande?',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['workstation/cdmp/recevabilite'])
+        Swal.fire(
+            'Rejetée!',
+            'La demande a bien ete rejetée.',
+            'success'
+          )
+      }})
+    }
+  onSubmitA() {
+       
+      
+    
+    Swal.fire({
+    position: 'top-end',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then(() => {
+     
+        this.router.navigate(['workstation/cdmp/recevabilite'])
+    })
+
+
+      
+}
 }

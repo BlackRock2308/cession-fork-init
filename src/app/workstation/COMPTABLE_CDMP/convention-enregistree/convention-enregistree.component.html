@@ -7,14 +7,15 @@
                                 
                             <ng-template #elseCONVENTIONBlock id="CONVENTIONfile" type="text" pInputText
                                 pTooltip="Charger document">
-                                <input id="CONVENTIONfile" type="text"
-                                pInputText pTooltip="Charger le document de référence de la CONVENTION" placeholder="{{selectedCONVENTIONFiles.name}}" class="inpute">
+                                <input id="CONVENTIONfile" type="text" pInputText
+                                    pTooltip="Charger le document de référence de la CONVENTION"
+                                    placeholder="{{selectedCONVENTIONFiles.name}}" class="inpute">
                             </ng-template>
                             <input formControlName="nineaFile" class="hidden" type="file" id="upload-CONVENTIONfile"
                                 name="upload-CONVENTIONfile" ngf-max-size="2MB" (change)="selectCONVENTIONFile($event)">
-                                
 
-                                <button type="button" pButton pRipple icon="pi pi-upload"
+
+                            <button type="button" pButton pRipple icon="pi pi-upload"
                                 class="upload p-button-rounded p-button-text" id="upload-CONVENTIONfile"
                                 (click)="handleCONVENTIONClick()"></button>
                 

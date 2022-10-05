@@ -34,11 +34,21 @@
 
 <br>
 <div class="card">
+    <div class="dropdown">
+        <button *ngIf="profil === 'DG'" id="valider" class="btn btn-secondary dropdown-toggle" style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;"  icon="pi pi-download" pButton pRipple label = "Exporter" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="exportexcel()">Excel</a>
+          <a class="dropdown-item" (click)="exportPdf()">PDF</a>
+        </div>
+      </div>
+    
 
-    <button *ngIf="profil === 'DG'" id="valider"
+    <!-- <button *ngIf="profil === 'DG'" id="valider"
         style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;" pButton
         pRipple label="Exporter" icon="pi pi-download" (click)="exportexcel()"
-        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button>
+        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button> -->
     <h3 style=" margin-left: 40%;"> Liste des créances</h3>
 
     <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
@@ -53,7 +63,7 @@
                 <th pSortableColumn="datesoumission" style="color: #203359;">Raison sociale <p-sortIcon
                         field="datesoumission"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Type de marché <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="rccm" style="color: #203359;">Date de demande <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
                 <th pSortableColumn="rccm" style="color: #203359;">Montant total <p-sortIcon field="rccm"></p-sortIcon>
                 </th>
@@ -74,7 +84,11 @@
                     <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                 </th>
                 <th>
+<<<<<<< HEAD
+                    <p-columnFilter type="text" field="date_soumission"></p-columnFilter>
+=======
                     <p-columnFilter type="text" field="type_marche" placeholder="Type de marché"></p-columnFilter>
+>>>>>>> f2178bf913c77dc2871dfaa60c78633ac13e9150
                 </th>
                 <th>
                     <p-columnFilter type="text" field="montant_total" placeholder="Montant total"></p-columnFilter>
@@ -102,7 +116,7 @@
                 </td>
                 <td >
                     <span class="p-column-title">Type de marché</span>
-                    {{demande.type_marche}}
+                    {{demande.date_soumission}}
                 </td>
                 <td >
                     <span class="p-column-title">Montant total</span>
