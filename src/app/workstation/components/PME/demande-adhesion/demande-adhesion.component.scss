@@ -10,7 +10,7 @@
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-completée {
+    &.status-non-risquée {
         background: #C8E6C9;
         color: #256029;
     }
@@ -24,7 +24,7 @@
         color: #C63737;
     }
 
-    &.status-recevable {
+    &.status-completée {
         background: #FEEDAF;
         color: #8A5340;
     }
@@ -32,7 +32,7 @@
         background: #FEEDAF;
         color: #8A5340;
     }
-    &.status-non-risquée {
+    &.status-recevable {
         background: #c9ddfa;
         color: #354d8f;
     }

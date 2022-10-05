@@ -42,6 +42,7 @@ import { DetailsConventionComponent } from './components/Ordonnateur/convention_
 import { ChartModule } from 'primeng/chart';
 import { ListPaiementsDetailsComponent } from './components/PME/list-paiements-details/list-paiements-details.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import {ConventionCessionPMEComponent} from './components/PME/convention-cession/convention-cession.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { ProfilComponent } from './components/profil/profil.component';
     ListeConventionsComponent,
     DetailsConventionComponent,
     ListPaiementsDetailsComponent,
-    ProfilComponent
+    ProfilComponent,
+    ConventionCessionPMEComponent
     
   ],
   imports: [
