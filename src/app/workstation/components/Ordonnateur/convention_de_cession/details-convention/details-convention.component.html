@@ -1,6 +1,5 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
-<br>
 <p-card>
     <div class="col-12">
         <div class="">
@@ -9,7 +8,6 @@
                     <h3 class="titleTab">Convention de cession du marché : {{demandeCession.nomMarche}} </h3>
                 </div>
             </div>
-            <br>
             <br>
             <div class="grid p-fluid justify-content-center">
                 <div class="col-12 md:col-3">
@@ -42,23 +40,79 @@
 
             </div>
             <br>
-            <label class="form-label" for="textAreaExample">Observations</label>
-            <div class="d-flex flex-start w-100">
+            <p-card>
+                <div class="container-fluid text-right">
 
-                <div class="form-outline w-100">
-                    <textarea
-                        *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else elseBlock"
-                        class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
-                        style="background: #fff;"></textarea>
-
-                    <ng-template #elseBlock>
-                        <textarea class="form-control" id="textAreaExample" rows="4" disabled
-                            style="background: #fff;">{{demandeCession.observation}}</textarea>
-                    </ng-template>
+                    <button [disabled]="pageVariable==1"
+                        class="mr-2 btn-icon btn-icon-only btn btn-outline-info icones-action"
+                        ngbTooltip="Page précédente" (click)="previousPage()"><i class="pi pi-chevron-left">
+                        </i>
+                    </button>
+                    &nbsp;
+                    <button style="border: none; background-color: white;" class="mr-2 icones-action">
+                        <span
+                            style="font-size: 120%; margin-top: 0%;text-align: center;">{{pageVariable}}/{{totalPages}}</span>
+                    </button>
+                    &nbsp;
+                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-info icones-action"
+                        ngbTooltip="Page suivante" (click)="nextPage()"><i class="pi pi-chevron-right">
+                        </i>
+                    </button>
+                    &nbsp;
+                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-secondary icones-action"
+                        ngbTooltip="Zoom + " (click)="plusZoom()"><i class="pi pi-plus-circle">
+                        </i>
+                    </button>
+                    &nbsp;
+                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-secondary icones-action"
+                        ngbTooltip="Zoom - " (click)="minusZoom()"><i class="pi pi-minus-circle">
+                        </i>
+                    </button>
+                    &nbsp;
+                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-warning icones-action"
+                        ngbTooltip="Rotation " (click)="rotate()"><i class="pi pi-refresh">
+                        </i>
+                    </button>
+                    &nbsp;
+                    <button class="mr-2 btn btn-outline-success " ngbTooltip="Télécharger" (click)="download(true)"><i
+                            class="pi pi-download">
+                        </i>
+                    </button>
+                    &nbsp;
+                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-success icones-action"
+                        ngbTooltip="Imprimer" (click)="print()"><i class="pi pi-print">
+                        </i>
+                    </button>
+                    &nbsp;
                 </div>
-            </div>
-            <br>
+                &nbsp;
+                <div style="display: block;">
+                    <span class="h5texte" style="margin-left: 30%;">Convention de cession</span>
+                    <div class="modal-body">
+                        <div *ngIf="srcFile" class="container-fluid">
+                            <br />
+                            <div *ngIf="ext=='PDF' || ext=='pdf'">
+                                <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
+                                    [render-text]="true" [zoom]="zoom" [rotation]="angle" [original-size]="false"
+                                    (after-load-complete)="afterLoadComplete($event)"
+                                    (page-rendered)="pageRendered($event)" [fit-to-page]="true"
+                                    (text-layer-rendered)="textLayerRendered($event)" class="pdf-container">
+                                </pdf-viewer>
+                            </div>
+                            <div *ngIf="ext=='jpeg' || ext=='png' || ext=='jpg'" class="pdf-container">
+                                <img [src]="srcFile" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
 
+                </div>
+
+
+            </p-card>
+
+            <br>
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['typeDocument','nomDocument']" [rows]="10" [paginator]="true"
                 [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
@@ -109,6 +163,23 @@
                     </tr>
                 </ng-template>
             </p-table>
+
+            <br>
+            <label class="form-label" for="textAreaExample">Observations</label>
+            <div class="d-flex flex-start w-100">
+
+                <div class="form-outline w-100">
+                    <textarea
+                        *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Substitution-effectuée';else elseBlock"
+                        class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
+                        style="background: #fff;"></textarea>
+
+                    <ng-template #elseBlock>
+                        <textarea class="form-control" id="textAreaExample" rows="4" disabled
+                            style="background: #fff;">{{demandeCession.observation}}</textarea>
+                    </ng-template>
+                </div>
+            </div>
         </div>
         <br>
 

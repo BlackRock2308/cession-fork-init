@@ -7,9 +7,7 @@
     height: 40px;
     border-radius: 0.5rem;
     display: flex;
-    
-
-    
+      
 }
 
 .label{
@@ -37,8 +35,6 @@
 
 }
 
-
-
 ::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt{
     color: #203359;
 
@@ -52,4 +48,7 @@
 .observation{
     font-size: 500;
     background-color: #A5A5A5;
+}
+.pdf-container{
+    height: 80vh;
 }
