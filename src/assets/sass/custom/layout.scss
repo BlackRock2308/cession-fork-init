@@ -15,8 +15,8 @@
 
     .upload {
         position: absolute;
-        top: 7px;
-        right: 2px;
+        top: 4px;
+        right: 0px;
         font-size: 108px;
         font-weight:1000;
         color:$autre-fonce;
@@ -24,16 +24,7 @@
       }
   }
 
-  .input {
-        position: absolute;
-        top: 2px;
-        right: 0px;
-        font-size: 108px;
-        font-weight:1000;
-        color:$autre-fonce;
-      
-  }
-
+  
 %button{
     margin: 2px;
     display: inline-block;
