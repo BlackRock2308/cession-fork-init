@@ -6,8 +6,8 @@ export interface Documents {
     path:string;
     ninea ?: number;
     raisonSocial ?: string;
-    refBE ?: number;
-    refDemande ?: number;
+    refBE ?: string;
+    refDemande ?: string;
     statut ?: string
     
 }

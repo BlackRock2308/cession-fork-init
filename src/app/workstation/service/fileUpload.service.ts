@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class fileUploadService extends GenericService {
+export class FileUploadService extends GenericService {
   private uploadFileUrl = ApiSettings.API_CDMP;
   private documentFileUrl = ApiSettings.API_CDMP + '/documents?path'
 
