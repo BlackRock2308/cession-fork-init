@@ -1,14 +1,20 @@
-<form >
-<div class="formgroup-inline">
-    <div class="field grid">
-        <label class="text" htmlFor="codePIN" >Code : </label>
-        <div >
-            <input class="marge " pInputText id="code" type="text" pTooltip="Code" placeholder="1234"/>
+<form>
+    <div class="card p-fluid " >
+        <div class="row">
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-4 md:mb-0" htmlFor="codePIN">Code : </label>
+                <div class="col-12 md:col-6">
+                    <p-password id="code" [(ngModel)]="code" [toggleMask]="true" styleClass="w-full mb-3" name="code">
+                    </p-password>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 pr-0 d-flex flex-row-reverse">
+            <button id="fermer" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised dangerButton mx-1  my-auto ml-2" (click)="dismiss()"></button>
+            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Valider"
+                icon="pi pi-check" class="p-button-raised successButton my-auto " (click)=" onSubmit()"></button>
         </div>
     </div>
-    <div class="col-12 pr-0 d-flex flex-row-reverse">
-        <button id="fermer" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton mx-1  my-auto ml-2"  (click)="dismiss()" ></button>
-        <button type="button" id="valider"style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-raised successButton my-auto " (click)=" onSubmit()"></button>
-    </div>
-</div>
 </form>
