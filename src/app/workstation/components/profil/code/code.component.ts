@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class CodeComponent implements OnInit {
 
   form!: FormGroup;
-  code: string;
+  code: string = "9065";
   constructor(
     private formBuilder: FormBuilder,
     public ref: DynamicDialogRef

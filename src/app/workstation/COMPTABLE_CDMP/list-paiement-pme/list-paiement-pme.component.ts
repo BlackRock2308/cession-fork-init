@@ -54,7 +54,7 @@ export class ListPaiementPMEComponent implements OnInit {
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data => {
+    this.paiementsService.getPaiementsPME().subscribe(data => {
       this.paiements = data
     });
 
