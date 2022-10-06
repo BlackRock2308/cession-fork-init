@@ -1,16 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 987565665,
-      "rccm": "SN-DKR 2018 E 09864",
-      "statut": "Soumise",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-10-04T09:45:07.174Z",
-      "id": 19
-    },
-    {
       "ninea": 89988988,
       "rccm": "SN-DKR 1018 T 45667",
       "statut": "Rejetée",
@@ -271,7 +261,7 @@
       "rccmFile": {},
       "date_soumission": "2022-02-19T09:45:07.174Z",
       "id": 19,
-      "nineaValide": true,
+      "nineaValide": false,
       "denomination": "",
       "formuleJuridique": "",
       "centreFiscal": "",
@@ -1595,7 +1585,6 @@
       }
     }
   ],
-
   "listpaiementspme": [
     {
       "id": 1,
