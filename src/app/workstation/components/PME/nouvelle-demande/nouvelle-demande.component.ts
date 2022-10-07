@@ -11,6 +11,7 @@ import { Documents } from 'src/app/workstation/model/document';
 import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visualiser-document.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import {MessageService} from 'primeng/api';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -97,8 +98,18 @@ export class NouvelleDemandeComponent implements OnInit {
     public app: AppComponent,
     private pmeService: PmeService,
     public dialogService: DialogService,
-    public messageService: MessageService
-  ) { }
+    public messageService: MessageService,
+    private breadcrumbService: BreadcrumbService
+  ) {   this.breadcrumbService.setItems([
+    { label: 'Demandes' },
+    { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
+]); 
+   
+   this.breadcrumbService.setHome({ icon: 'pi pi-home', url: 'pme/demandes_en_cours' })
+
+}
+
+
 
   ngOnInit(): void {
     this.pmeService.getTypesDocument().subscribe(data => {

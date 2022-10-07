@@ -1,6 +1,6 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { PrimeNGConfig } from 'primeng/api';
+import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import {AppComponent} from '../../../app.component';
 import { MenuService } from '../side-menu/app.menu.service';
 
@@ -55,12 +55,15 @@ export class AppMainComponent implements OnInit{
 
     configActive: boolean;
     isAuthenticated: boolean;
+    home: MenuItem;
 
     constructor(public renderer: Renderer2, private menuService: MenuService,
                 private primengConfig: PrimeNGConfig, public app: AppComponent) {}
 
     ngOnInit(): void {
         this.isAuthenticated = false;
+        this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+
     }
 
     onTopbarItemClick(event, item) {

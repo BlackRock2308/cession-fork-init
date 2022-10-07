@@ -118,10 +118,12 @@ export class DemandeAdhesionComponent implements OnInit {
 
     ) {
         this.breadcrumbService.setItems([
-            { label: 'Pages' },
-            { label: 'Crud', routerLink: ['/pages/crud'] }
+            { label: 'Demandes' },
+            { label: 'Mes demandes de cession', routerLink: ['pme/demandes_en_cours'] }
 
         ]);
+        this.breadcrumbService.setHome({ icon: 'pi pi-home', url: 'pme/demandes_en_cours' });
+
         this.cities = [
             { name: 'RCCM', code: 'NY' },
             { name: 'NINEA', code: 'RM' },
