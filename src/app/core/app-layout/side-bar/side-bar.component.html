@@ -12,7 +12,7 @@
     </div>
     <div class="layout-menu-container" (click)="onMenuClick()">
         <ul class="layout-menu">
-            <div class="p-4 pt-5">
+            <div class="pt-5">
                 <h3>Wootoo</h3>
                 <div>
                     <br>
@@ -26,24 +26,34 @@
                         </div>
                     </div>
                     <li class="active" *ngIf="profil === 'pme'">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle pi pi-folder-open"> <span class="mn"> Demandes </span></a>
+                        <a [attr.tabindex]="0"  href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                             <span class="menuitem-text"> Demandes </span> 
+                            <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+                            <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i></a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
-                                <a class="pi pi-plus-circle" [routerLink]="['pme/new_demande']"><span class="mn"> Nouvelle demande</span></a>
+                                <a [attr.tabindex]="0"  [routerLink]="['pme/new_demande']"><span class="menuitem-text"> Nouvelle demande</span>
+                                    <i class="pi pi-fw pi-plus-circle layout-menuitem-icon"></i>
+                                </a>
                             </li>
                             <li>
-                                <a class="pi pi-folder-open" [routerLink]="['pme/demandes_en_cours']"><span class="mn"> Liste des
-                                    demandes</span></a>
+                                <a [attr.tabindex]="0"  [routerLink]="['pme/demandes_en_cours']"><span class="menuitem-text"> Liste des
+                                    demandes</span>
+                                    <i  class="pi pi-fw pi-folder-open layout-menuitem-icon"></i>
+                                </a>
                             </li>
                         </ul>
                     </li>
                     <li *ngIf="profil === 'pme'">
-                        <a class="pi pi-money-bill" [routerLink]="['pme/paiements']"><span class="mn"> Suivi des paiements</span></a>
+                        <a [attr.tabindex]="0"  [routerLink]="['pme/paiements']"><span class="mn"> Suivi des paiements</span>
+                            <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
+                        </a>
                     </li>
                     <li *ngIf="profil === 'pme'">
-                        <a class="pi pi-file" disabled [routerLink]="['pme/convention_cession']"><span class="mn"> Convention de
-                            cession</span></a>
+                        <a [attr.tabindex]="0"   disabled [routerLink]="['pme/convention_cession']"><span class="mn"> Convention de
+                            cession</span>
+                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                        </a>
                     </li>
                     <li *ngIf="profil === 'cgr'">
                         <a class="pi pi-folder-open" disabled [routerLink]="['cdmp/demandes_en_cours']"><span class="mn"> Demandes

@@ -6,10 +6,17 @@ import { MenuItem } from 'primeng/api';
 export class BreadcrumbService {
 
     private itemsSource = new Subject<MenuItem[]>();
+    private homeSource= new Subject<MenuItem>();
 
     itemsHandler = this.itemsSource.asObservable();
+    itemsHandler2 = this.homeSource.asObservable();
+
 
     setItems(items: MenuItem[]) {
         this.itemsSource.next(items);
+    };
+
+    setHome(home: MenuItem){
+this.homeSource.next(home);
     }
 }
