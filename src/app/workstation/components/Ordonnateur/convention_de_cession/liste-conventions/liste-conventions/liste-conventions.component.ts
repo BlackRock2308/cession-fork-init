@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
 import { Convention } from 'src/app/workstation/model/convention';
 import { DemandeCession } from 'src/app/workstation/model/demande';
@@ -21,19 +22,19 @@ export class ListeConventionsComponent implements OnInit {
 
   constructor(
     private demandesCessionService:DemandesCessionService,
-    private router:Router
-  ) { }
+    private router:Router,
+    private breadcrumbService: BreadcrumbService
+
+  ) { this.breadcrumbService.setItems([
+    { label: 'Liste des demandes de cession' }
+]);
+this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] });}
 
   ngOnInit(): void {
 
     this.demandesCessionService.getConventions().subscribe(data=>{
       this.demandes=data
     })
-    this.items = [
-      { label: 'Liste des demandes de cession' },
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
 
     this.cols=[
       {field: 'ninea', header: 'NINEA'},

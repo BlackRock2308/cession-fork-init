@@ -11,6 +11,7 @@ import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-d
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -54,7 +55,16 @@ export class TacheAnalyseComponent implements OnInit {
 
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
-        private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService, private documentService: DocumentService, private messageService: MessageService, private demandeAdhesionService: DemandesAdhesionService) { }
+        private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService,
+         private documentService: DocumentService, private messageService: MessageService, 
+         private demandeAdhesionService: DemandesAdhesionService,
+         private breadcrumbService: BreadcrumbService) {
+            this.breadcrumbService.setItems([
+                { label: 'Liste de demandes à analyser'},
+                { label: 'Analyse du risque',  routerLink: ['/cdmp/analyse_risque']  }
+            ]);
+            this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
+          }
 
     ngOnInit() {
 
@@ -83,13 +93,6 @@ export class TacheAnalyseComponent implements OnInit {
             { field: 'rating', header: 'Reviews' },
             { field: 'inventoryStatus', header: 'Status' }
         ];
-
-        this.items = [
-            { label: 'Liste de demandes à analyser', url: '/#/workstation/cdmp/analyse_risque' },
-            { label: 'Analyse du risque' }
-        ];
-
-        this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
     }
     showViaService() {
 

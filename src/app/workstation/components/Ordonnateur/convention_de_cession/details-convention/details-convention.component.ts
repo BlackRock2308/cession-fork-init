@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeCession } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
@@ -38,8 +39,13 @@ export class DetailsConventionComponent implements OnInit {
     private demandeCessionService: DemandesCessionService,
     private documentService: DocumentService,
     private dialogService: DialogService,
-    private uploadFileService: FileUploadService
-  ) { }
+    private uploadFileService: FileUploadService,
+    private breadcrumbService: BreadcrumbService
+  ) { this.breadcrumbService.setItems([
+    { label: 'Liste des conventions', routerLink: 'ordonnateur/conventions' },
+    { label: 'Détail de la convention' }
+]);
+this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur/conventions'] });}
 
   ngOnInit(): void {
     this.document = [{
@@ -72,14 +78,7 @@ export class DetailsConventionComponent implements OnInit {
       { field: 'nomDocument', header: 'Nom Document' },
       { field: 'dateSoumission', header: 'Date Soumission' }
     ];
-    this.items = [
-      { label: 'Liste des conventions', url: '/#/workstation/ordonnateur/conventions' },
-      { label: 'Détail de la convention' }
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/ordonnateur/conventions' };
-
-  }
+     }
 
 
   onSubmit(statut: string) {

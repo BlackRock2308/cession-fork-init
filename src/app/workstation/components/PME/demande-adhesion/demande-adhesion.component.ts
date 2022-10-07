@@ -122,7 +122,7 @@ export class DemandeAdhesionComponent implements OnInit {
             { label: 'Mes demandes de cession', routerLink: ['pme/demandes_en_cours'] }
 
         ]);
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', url: 'pme/demandes_en_cours' });
+        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] });
 
         this.cities = [
             { name: 'RCCM', code: 'NY' },
@@ -154,12 +154,6 @@ export class DemandeAdhesionComponent implements OnInit {
 
 
         ];
-        this.items = [
-            { label: 'Mes demandes de cession' }
-        ];
-
-        this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
     }
     onSubmit() {
         // arrêter si le formulaire est invalide
