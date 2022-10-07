@@ -142,29 +142,6 @@ export class DashboardDGComponent implements OnInit {
 
         };
 
-        this.multiAxisData = {
-            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-            datasets: [{
-                label: 'Rembourse',
-                backgroundColor: [
-                    '#EC407A',
-                    '#AB47BC',
-                    '#42A5F5',
-                    '#7E57C2',
-                    '#66BB6A',
-                    '#FFCA28',
-                    '#26A69A'
-                ],
-                yAxisID: 'Rembourse',
-                data: [1000000, 3000000, 50000000, 8000000, 5000000, 5500000, 10000000, 3000000, 4000090, 2000000, 1000000, 7000000]
-            }, {
-                label: 'Debourse',
-                backgroundColor: '#78909C',
-                yAxisID: 'Debourse',
-                data: [1000000, 2500000, 45000000, 7500000, 4500000, 5000000, 9000000, 2000000, 3500090, 1000000, 500000, 6500000]
-            }]
-        };
-
         this.multiAxisOptions = {
             plugins: {
                 legend: {
@@ -223,54 +200,54 @@ export class DashboardDGComponent implements OnInit {
                 label: 'Remboursé',
                 backgroundColor: ' #99CC33',
                 data: [
-                    1000000,
-                    900000,
-                    700000,
-                    900000,
-                    800000,
-                    1100000,
-                    1200000,
-                    700000,
-                    900000,
-                    800000,
-                    1100000,
-                    1200000
+                    10,
+                    9,
+                    7,
+                    9,
+                    8,
+                    11,
+                    12,
+                    7,
+                    9,
+                    8,
+                    11,
+                    12
                 ]
             }, {
                 type: 'bar',
                 label: 'Solde',
                 backgroundColor: ' #981639',
                 data: [
-                    100000,
-                    300000,
-                    200000,
-                    300000,
-                    200000,
-                    100000,
-                    300000,
-                    200000,
-                    300000,
-                    200000,
-                    100000,
-                    300000
+                    1,
+                    3,
+                    2,
+                    3,
+                    2,
+                    1,
+                    3,
+                    2,
+                    3,
+                    2,
+                    1,
+                    3
                 ]
             }, {
                 type: 'bar',
                 label: 'Décote',
                 backgroundColor: ' #333366',
                 data: [
-                    100000,
-                    200000,
-                    200000,
-                    100000,
-                    200000,
-                    100000,
-                    150000,
-                    150000,
-                    100000,
-                    200000,
-                    100000,
-                    200000
+                    1,
+                    2,
+                    2,
+                    1,
+                    2,
+                    1,
+                    1,5,
+                    1,5,
+                    1,
+                    2,
+                    1,
+                    2
                 ]
             }
             ]
@@ -282,52 +259,52 @@ export class DashboardDGComponent implements OnInit {
                 label: 'Déboursé',
                 backgroundColor: ' #99CC33',
                 data: [
-                    1000000,
-                    900000,
-                    700000,
-                    900000,
-                    800000,
-                    1100000,
-                    1200000,
-                    700000,
-                    900000,
-                    800000,
-                    1100000,
-                    1200000
+                    10,
+                    9,
+                    7,
+                    9,
+                    8,
+                    11,
+                    12,
+                    7,
+                    9,
+                    8,
+                    11,
+                    12
                 ]
             }, {
                 label: 'Engagé',
                 backgroundColor: ' #333366',
                 data: [
-                    1100000,
-                    1000000,
-                    900000,
-                    1100000,
-                    1000000,
-                    1200000,
-                    1500000,
-                    900000,
-                    1100000,
-                    1000000,
-                    1200000,
-                    1500000
+                    11,
+                    10,
+                    9,
+                    11,
+                    10,
+                    12,
+                    15,
+                    9,
+                    11,
+                    10,
+                    12,
+                    15
                 ]
             }, {
                 label: 'Solde',
                 backgroundColor: ' #981639',
                 data: [
-                    100000,
-                    300000,
-                    200000,
-                    300000,
-                    200000,
-                    100000,
-                    300000,
-                    200000,
-                    300000,
-                    200000,
-                    100000,
-                    300000
+                    1,
+                    3,
+                    2,
+                    3,
+                    2,
+                    1,
+                    3,
+                    2,
+                    3,
+                    2,
+                    1,
+                    3
                 ]
             }
             ]
@@ -360,12 +337,12 @@ export class DashboardDGComponent implements OnInit {
 
     }
 
-
     exportPdf() {
        
         import("jspdf").then(jsPDF => {
             import("jspdf-autotable").then(x => {
-                const doc = new jsPDF.default('p','pt');
+                const doc = new jsPDF.default('landscape','pt');
+                //const pdf = new jsPDF('landscape', 'px', 'a4');
                 doc["autoTable"](this.exportColumns, this.demandes);
                 doc.save('Liste_des_creances.pdf');
             })

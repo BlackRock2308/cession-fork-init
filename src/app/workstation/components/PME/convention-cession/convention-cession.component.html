@@ -87,12 +87,12 @@
                                 <button pButton pRipple icon="pi pi-search"
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
-                                    *ngIf="!(document.statut === 'Convention-enregistrée' || document.statut === 'Substitution-effectuée') "
+                                    *ngIf="!(document.statut === 'Convention-générée') "
                                     (click)="visualiserDocument(document)"></button>
                                     <button pButton pRipple icon="pi pi-key"
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
-                                    *ngIf="document.statut === 'Convention-enregistrée'||document.statut === 'Substitution-effectuée'"
+                                    *ngIf="document.statut === 'Convention-générée'"
                                     (click)="visualiserDocument(document)"></button>
                             </div>
                         </td>

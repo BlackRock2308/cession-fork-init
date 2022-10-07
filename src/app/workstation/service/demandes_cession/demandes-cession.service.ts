@@ -17,6 +17,7 @@ export class DemandesCessionService {
     referenceBE: "294067",
     dateDemande: "21/03/2021",
     numeroDemande: "2022-0001",
+    nomMarche: "Contruction d'immeuble",
     ATD :"Aucun ATD",
     denomination : "Modelsis SARL",
     nantissement :"Creance  nanti",
