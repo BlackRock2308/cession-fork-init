@@ -1,26 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 987565665,
-      "rccm": "SN-DKR 2018 E 09864",
-      "statut": "Soumise",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-10-04T09:45:07.174Z",
-      "id": 19
-    },
-    {
-      "ninea": 89988988,
-      "rccm": "SN-DKR 1018 T 45667",
-      "statut": "Rejetée",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2021-12-07T09:45:07.174Z",
-      "id": 19
-    },
-    {
       "ninea": 33,
       "rccm": "e",
       "email": "ds@ept.sn",
@@ -271,7 +251,7 @@
       "rccmFile": {},
       "date_soumission": "2022-02-19T09:45:07.174Z",
       "id": 19,
-      "nineaValide": true,
+      "nineaValide": false,
       "denomination": "",
       "formuleJuridique": "",
       "centreFiscal": "",
@@ -1203,6 +1183,7 @@
     {
       "id": 1,
       "nomDocument": "NINEA",
+      "nomMarche": "Reparation , entretien et installation",
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
       "path": "/assets/NINEA.pdf",
@@ -1215,6 +1196,7 @@
     {
       "id": 2,
       "nomDocument": "RCCM",
+      "nomMarche": "Entretien d'outils ",
       "dateSoumission": "01/02/2022",
       "typeDocument": "RCCM",
       "path": "/assets/rccm.pdf",
@@ -1227,6 +1209,7 @@
     {
       "id": 3,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Mise en place d'un reservoir",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "ninea": "97685444",
@@ -1240,6 +1223,7 @@
       "id": 4,
       "nomDocument": "Bon d'engagement",
       "dateSoumission": "04/03/2022",
+      "nomMarche": "Reparation , entretien et installation",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
       "statut": "Convention-signée-par-le-DG",
@@ -1251,6 +1235,7 @@
     {
       "id": 5,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Reparation , entretien et installation",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
@@ -1263,6 +1248,7 @@
     {
       "id": 6,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Instation de logiciels ",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
@@ -1583,7 +1569,6 @@
       }
     }
   ],
-
   "listpaiementspme": [
     {
       "id": 1,
