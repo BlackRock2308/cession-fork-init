@@ -5,7 +5,6 @@ import { VisualiserDocumentComponent } from '../../../components/CDMP/visualiser
 import { Convention } from '../../../model/convention';
 import { DemandeAdhesion } from '../../../model/demande';
 import { Documents } from '../../../model/document';
-import { DocumentService } from '../../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../../../COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from '../../../COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
@@ -51,7 +50,6 @@ export class ConventionCessionPMEComponent implements OnInit {
   home: MenuItem;
   
   constructor(
-    private documentService: DocumentService, 
     public dialogService: DialogService, 
     public messageService: MessageService,
     private pmeService:PmeService,
