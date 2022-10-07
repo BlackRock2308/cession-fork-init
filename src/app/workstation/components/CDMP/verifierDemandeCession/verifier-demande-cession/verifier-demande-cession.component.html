@@ -152,10 +152,10 @@
                     </div>
                 </div>
                 <div class="field col-12 ml-2 d-flex  etape mb-0 mt-0">
-                    <div class="col-9 d-flex justify-content-start">
+                    <div class="col-10 d-flex justify-content-start">
                         <span class="h5texte">Le marché est-il identifié au niveau de la Direction Générale du Budget?</span>
                     </div>
-                    <div class="col-3   d-flex switch">
+                    <div class="col-2   d-flex switch">
                         <div class="col-8 d-flex ">
                             <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="identifie"
                                 id="active">
@@ -165,11 +165,11 @@
                 </div>
                 <div class="col-12 mt-0" *ngIf="identifie" >
                     <div class="field col-12 d-flex etape">
-                        <div class="col-9 mt-2  d-flex justify-content-start">
+                        <div class="col-10 mt-2  d-flex justify-content-start">
                             <span class="h5texte">Y a-t-il un Avis à Tiers Détenteur sur cette PME?
                             </span>
                         </div>
-                        <div class="col-3   d-flex switch">
+                        <div class="col-2   d-flex switch">
                             <div class="col-8 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="atd" >
                                 </p-inputSwitch>
@@ -178,10 +178,10 @@
                         </div>
                     </div>
                     <div class="field col-12 d-flex etape">
-                        <div class="col-9 mt-2 d-flex justify-content-start">
+                        <div class="col-10 mt-2 d-flex justify-content-start">
                             <span class="h5texte">La PME a-t-elle nanti cette créance auprès d'une institution financière?</span>
                         </div>
-                        <div class="col-3   d-flex switch ">
+                        <div class="col-2   d-flex switch ">
                             <div class="col-8 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="nantissement" >
                                 </p-inputSwitch>
@@ -190,10 +190,10 @@
                         
                     </div>
                     <div class="field col-12 d-flex etape">
-                        <div class="col-9 mt-2 d-flex justify-content-start">
+                        <div class="col-10 mt-2 d-flex justify-content-start">
                             <span class="h5texte">La PME est-elle sur le coup d'une interdiction bancaire?</span>
                         </div>
-                        <div class="col-3   d-flex switch ">
+                        <div class="col-2   d-flex switch ">
                             <div class="col-8 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="interdiction" >
                                 </p-inputSwitch>
@@ -300,18 +300,25 @@
                                     <input pInputText id="name3" type="text" formControlName="destination" />
                                 </div>
                             </div>
-                            <div class="field grid col-12 md:col-6 sm:col-6">
+                            <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
                                     style="font-weight: bold;color: #203359;">Destination/Action</label>
                                 <div class="col-12 xl:col-6">
                                     <input pInputText id="name3" type="text" formControlName="destination" />
                                 </div>
                             </div>
-                            <div class="field grid col-12 md:col-6 sm:col-6">
+                            <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
                                     style="font-weight: bold;color: #203359;">Destination/Activité</label>
                                 <div class="col-12 xl:col-6">
                                     <input pInputText id="name3" type="text" formControlName="beneficiaire" />
+                                </div>
+                            </div>
+                            <div class="field grid col-12 md:col-4 sm:col-6">
+                                <label htmlFor="name3" class="col-12 xl:col-5"
+                                    style="font-weight: bold;color: #203359;">Date soumission du service depensier</label>
+                                <div class="col-12 xl:col-6">
+                                    <input pInputText id="name3" type="date" formControlName="date" style=" width: 110%;" />
                                 </div>
                             </div>
                            

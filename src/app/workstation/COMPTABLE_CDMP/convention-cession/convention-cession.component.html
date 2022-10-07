@@ -19,7 +19,7 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter  type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
+                            <p-columnFilter  type="text" field="nomMarche" placeholder="Nom Marché"></p-columnFilter>
                         </th>
                         <th>
                             <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
@@ -40,7 +40,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
+                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon field="nomMarche">
                             </p-sortIcon>
                         </th>
                         <th pSortableColumn="datesoumission" style="color: #203359;">Raison sociale <p-sortIcon
@@ -60,15 +60,15 @@
                 <ng-template pTemplate="body" let-document>
                     <tr *ngIf="!((profil === 'DG') && ((document.statut === 'Non-Risquee') || (document.statut === 'Convention-générée'))) && !((profil === 'pme') && (document.statut === 'Non-Risquee'))">
                         <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">NINEA</span>
-                            {{document.ninea}}
+                            <span class="p-column-title">Nom Marché</span>
+                            {{document.nomMarche}}
                         </td>
                         <td style="width:18%; min-width:8rem;">
-                            <span class="p-column-title">RCCM</span>
+                            <span class="p-column-title">raison Sociale</span>
                             {{document.raisonSocial}}
                         </td>
                         <td style="width:18%;">
-                            <span class="p-column-title">Date Soumission</span>
+                            <span class="p-column-title">Référence BE</span>
                             {{document.refBE}}
                         </td>
                         <td style="width:18%;">

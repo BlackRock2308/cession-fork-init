@@ -3,18 +3,19 @@ import { PME } from "./pme";
 
 export interface DemandeAdhesion {
 
-    id?:number,
-    ninea?:string,
-    rccm?:string,
+    id?:number;
+    ninea?:string;
+    rccm?:string;
     statut?:String;
-    date_soumission?:Date,
-    denomination ?:String,
-    interdiction ?: String,
-    numero_demande ?: number,
-    ATD?: String,
-    nantissement ?: String,
-    nineaFile?:File,
-    rccmFile?:File 
+    date_soumission?:Date;
+    nomMarche: string;
+    denomination ?:String;
+    interdiction ?: String;
+    numero_demande ?: number;
+    ATD?: String;
+    nantissement ?: String;
+    nineaFile?:File;
+    rccmFile?:File;
 }
 export interface DemandeCession {
 

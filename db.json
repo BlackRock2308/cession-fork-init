@@ -1,16 +1,6 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 987565665,
-      "rccm": "SN-DKR 2018 E 09864",
-      "statut": "Soumise",
-      "email": "fmdiagne@modelsis.sn",
-      "nineaFile": {},
-      "rccmFile": {},
-      "date_soumission": "2022-10-04T09:45:07.174Z",
-      "id": 19
-    },
-    {
       "ninea": 89988988,
       "rccm": "SN-DKR 1018 T 45667",
       "statut": "Rejetée",
@@ -271,7 +261,7 @@
       "rccmFile": {},
       "date_soumission": "2022-02-19T09:45:07.174Z",
       "id": 19,
-      "nineaValide": true,
+      "nineaValide": false,
       "denomination": "",
       "formuleJuridique": "",
       "centreFiscal": "",
@@ -368,7 +358,6 @@
       "raisonSocial": "Modelsis SARL",
       "nomMarche": "Service de gardiennage",
       "refBE": "294067",
-      "date_soumission": "28/09/2022",
       "ninea_file": "",
       "statut_convention": "Convention-enregistrée",
       "rccm_file": "",
@@ -395,6 +384,8 @@
       "cniRepresentant": "1619199901436",
       "dateImmatriculation": "10-12-2022",
       "telephone": "333158568",
+      "date_soumission": "11/09/2016",
+
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
@@ -1203,6 +1194,7 @@
     {
       "id": 1,
       "nomDocument": "NINEA",
+      "nomMarche": "Reparation , entretien et installation",
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
       "path": "/assets/NINEA.pdf",
@@ -1215,6 +1207,7 @@
     {
       "id": 2,
       "nomDocument": "RCCM",
+      "nomMarche": "Entretien d'outils ",
       "dateSoumission": "01/02/2022",
       "typeDocument": "RCCM",
       "path": "/assets/rccm.pdf",
@@ -1227,6 +1220,7 @@
     {
       "id": 3,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Mise en place d'un reservoir",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "ninea": "97685444",
@@ -1240,6 +1234,7 @@
       "id": 4,
       "nomDocument": "Bon d'engagement",
       "dateSoumission": "04/03/2022",
+      "nomMarche": "Reparation , entretien et installation",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
       "statut": "Convention-signée-par-le-DG",
@@ -1251,6 +1246,7 @@
     {
       "id": 5,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Reparation , entretien et installation",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
@@ -1263,6 +1259,7 @@
     {
       "id": 6,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Instation de logiciels ",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
@@ -1321,18 +1318,6 @@
       "ninea": "657358975",
       "refDemande": "2012-1230",
       "raisonSocial": "E.COM 4"
-    },
-    {
-      "id": 5,
-      "nomDocument": "Convention",
-      "dateSoumission": "04/03/2022",
-      "typeDocument": "Convention",
-      "path": "/assets/doctest.pdf",
-      "statut": "Convention-rejetée",
-      "refBE": "8650433",
-      "ninea": "4976855858",
-      "refDemande": "2016-2345",
-      "raisonSocial": "INT MARKETING OF TRADING"
     }
   ],
   "documentsVRF": [
@@ -1595,7 +1580,6 @@
       }
     }
   ],
-
   "listpaiementspme": [
     {
       "id": 1,
