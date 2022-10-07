@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Paiements } from 'src/app/workstation/model/paiements';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 import { ListPaiementsDetailsComponent } from '../list-paiements-details/list-paiements-details.component';
@@ -43,7 +44,13 @@ export class ListPaiementsComponent implements OnInit {
   pageVariable = 1;
   home: MenuItem;
   
-  constructor(private paiementsService: PaiementsService, public dialogService: DialogService) { }
+  constructor(private paiementsService: PaiementsService, public dialogService: DialogService,
+    private breadcrumbService: BreadcrumbService) {
+      this.breadcrumbService.setItems([
+        { label: 'Liste des paiements' },
+    ]);
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['pme/demandes_en_cours'] })
+     }
 
   ngOnInit(): void {
 
@@ -56,14 +63,7 @@ export class ListPaiementsComponent implements OnInit {
         { field: 'payer', header: 'Enregistré par' },
         { field: 'montant', header: 'Montant' },
         { field: 'modePaiement', header: 'Mode Paiement' },
-      ];
-      this.items = [
-        { label: 'Paiements',url: '/#/workstation/pme/paiements' },
-        { label: 'Détails Paiements'}
-      ];
-  
-      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-  
+      ];  
   }
 
   visualiserDetails(paiement: Paiements) {

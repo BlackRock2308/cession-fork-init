@@ -61,7 +61,7 @@ export class ConventionCessionPMEComponent implements OnInit {
         { label: 'Convention de cession' },
         //{ label: 'Icons', routerLink: ['/utilities/icons'] }
     ]);
-      this.breadcrumbService.setHome({ icon: 'pi pi-home', url: 'pme/demandes_en_cours' })
+      this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
 
     }
 
@@ -79,13 +79,7 @@ export class ConventionCessionPMEComponent implements OnInit {
         { field: 'typeDocument', header: 'Type de Document' },
         { field: 'dateSoumission', header: 'Date de Soumission' },
       ];
-
-      this.items = [
-        { label: 'Convention de cession' },
-      ];
-  
-      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-  
+ 
      
   }
 

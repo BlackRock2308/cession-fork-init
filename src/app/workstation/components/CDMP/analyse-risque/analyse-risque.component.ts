@@ -98,7 +98,12 @@ export class AnalyseRisqueComponent implements OnInit {
   constructor(
     private router: Router,
     private demandeCessionService :DemandesCessionService,private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private menuService: MenuService,
-    private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, private primengConfig: PrimeNGConfig, public app: AppComponent) {
+    private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, 
+    private primengConfig: PrimeNGConfig, public app: AppComponent) {
+      this.breadcrumbService.setItems([
+        { label: 'Analyse du risque' }
+    ]);
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
   }
 
   ngOnInit() {
@@ -121,12 +126,6 @@ export class AnalyseRisqueComponent implements OnInit {
       { label: 'LOWSTOCK', value: 'lowstock' },
       { label: 'OUTOFSTOCK', value: 'outofstock' }
     ];
-    this.items = [
-      { label: 'Analyse du risque' }
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
   }
 
   openNew() {

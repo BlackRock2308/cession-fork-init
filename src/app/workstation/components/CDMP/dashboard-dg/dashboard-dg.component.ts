@@ -14,6 +14,7 @@ import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 
 import 'jspdf-autotable';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 @Component({
     selector: 'app-dashboard-dg',
     templateUrl: './dashboard-dg.component.html',
@@ -74,8 +75,14 @@ export class DashboardDGComponent implements OnInit {
 
     selectedYear: any;
 
-    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
+    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, 
+        public dialogService: DialogService, 
+        private messageService: MessageService, private router: Router,private breadcrumbService: BreadcrumbService
         ) { 
+            this.breadcrumbService.setItems([
+                { label: 'Tableau de bord' },
+            ]);
+            this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
 
 
     
@@ -102,10 +109,6 @@ export class DashboardDGComponent implements OnInit {
             { field: 'date_cession', header: 'Date cession' },
             { field: 'solde_PME', header: 'Solde de la PME' }
         ];
-        this.items = [
-            { label: 'Tableau de bord ' }
-        ];
-
         this.dropdownYears = [
             {label: '2021', value: 2021},
             {label: '2020', value: 2020},
@@ -116,8 +119,6 @@ export class DashboardDGComponent implements OnInit {
             {label: '2015', value: 2015},
             {label: '2014', value: 2014}
         ];
-
-        this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
 
         this.basicData = {
             labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],

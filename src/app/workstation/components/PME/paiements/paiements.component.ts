@@ -53,7 +53,6 @@ export class PaiementsComponent implements OnInit {
     private messageService:MessageService, private router: Router, private breadcrumbService: BreadcrumbService) {
     this.breadcrumbService.setItems([
       { label: 'Paiements' },
-      //{ label: 'Icons', routerLink: ['/utilities/icons'] }
   ]);
   this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['pme/demandes_en_cours'] })
    }
@@ -74,11 +73,6 @@ export class PaiementsComponent implements OnInit {
         { field: 'statut', header: 'Statut' },
         { field: 'decote', header: 'Décote' },
       ];
-      // this.items = [
-      //   { label: 'Paiements' }
-      // ];
-  
-      // this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
   
   }
 

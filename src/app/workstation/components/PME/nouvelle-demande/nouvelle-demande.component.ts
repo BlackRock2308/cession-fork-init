@@ -105,7 +105,7 @@ export class NouvelleDemandeComponent implements OnInit {
     { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
 ]); 
    
-   this.breadcrumbService.setHome({ icon: 'pi pi-home', url: 'pme/demandes_en_cours' })
+   this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] })
 
 }
 
@@ -127,13 +127,6 @@ export class NouvelleDemandeComponent implements OnInit {
       typeDocument: [''],
       file: [''],
     });
-    this.items = [
-      { label: 'Nouvelle demande' }
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
-
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier

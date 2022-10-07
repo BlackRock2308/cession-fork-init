@@ -17,65 +17,80 @@
                 <div>
                     <br>
                 </div>
-                <ul class="list-unstyled components mb-5 menu" >
-                    <div *ngIf="profil === 'DG' || profil === 'cgr' || profil === 'comptable'">
-                        <div class="tableau_bord" *ngIf="appMain.sidebarActive">
-                            <li class="mn">
-                                <a class="pi pi-chart-line" [routerLink]="['cdmp/dashboard']"><span class="mn"> Tableau de bord</span></a>
-                            </li>
-                        </div>
-                    </div>
+                <ul class="list-unstyled components mb-5 menu">
+                    <li *ngIf="profil === 'DG' || profil === 'cgr' || profil === 'comptable'" class="tableau_bord">
+                                <a [attr.tabindex]="0" [routerLink]="['cdmp/dashboard']">
+                                    <span class="mn"> Tableau de bord</span>
+                                    <i class="pi pi-fw pi-chart-line layout-menuitem-icon"></i>
+                                </a>
+                    </li>
                     <li class="active" *ngIf="profil === 'pme'">
-                        <a [attr.tabindex]="0"  href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                             <span class="menuitem-text"> Demandes </span> 
+                        <a [attr.tabindex]="0" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <span class="menuitem-text"> Demandes </span>
                             <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
                             <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i></a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
-                                <a [attr.tabindex]="0"  [routerLink]="['pme/new_demande']"><span class="menuitem-text"> Nouvelle demande</span>
+                                <a [attr.tabindex]="0" [routerLink]="['pme/new_demande']">
+                                    <span class="menuitem-text">Nouvelle demande</span>
                                     <i class="pi pi-fw pi-plus-circle layout-menuitem-icon"></i>
                                 </a>
                             </li>
                             <li>
-                                <a [attr.tabindex]="0"  [routerLink]="['pme/demandes_en_cours']"><span class="menuitem-text"> Liste des
-                                    demandes</span>
-                                    <i  class="pi pi-fw pi-folder-open layout-menuitem-icon"></i>
+                                <a [attr.tabindex]="0" [routerLink]="['pme/demandes_en_cours']">
+                                    <span class="menuitem-text"> Liste des demandes</span>
+                                    <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li *ngIf="profil === 'pme'">
-                        <a [attr.tabindex]="0"  [routerLink]="['pme/paiements']"><span class="mn"> Suivi des paiements</span>
+                        <a [attr.tabindex]="0" [routerLink]="['pme/paiements']">
+                            <span class="mn"> Suivi des paiements</span>
                             <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'pme'">
-                        <a [attr.tabindex]="0"   disabled [routerLink]="['pme/convention_cession']"><span class="mn"> Convention de
-                            cession</span>
+                        <a [attr.tabindex]="0" disabled [routerLink]="['pme/convention_cession']">
+                            <span class="mn">Convention de cession</span>
                             <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'cgr'">
-                        <a class="pi pi-folder-open" disabled [routerLink]="['cdmp/demandes_en_cours']"><span class="mn"> Demandes
-                            Adhésion</span></a>
+                        <a [attr.tabindex]="0" disabled [routerLink]="['cdmp/demandes_en_cours']">
+                            <span class="mn"> Demandes Adhésion</span>
+                            <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i>
+                        </a>
                     </li>
                     <li *ngIf="profil === 'cgr'">
-                        <a class="pi pi-directions" disabled [routerLink]="['cdmp/recevabilite']"><span class="mn"> Recevabilite</span></a>
+                        <a [attr.tabindex]="0" disabled [routerLink]="['cdmp/recevabilite']">
+                            <span class="mn"> Recevabilite</span>
+                            <i class="pi pi-fw pi-directions layout-menuitem-icon"></i>
+                        </a>
                     </li>
                     <li *ngIf="profil === 'cgr'">
-                        <a class="pi pi-exclamation-circle" disabled [routerLink]="['cdmp/analyse_risque']"><span class="mn"> Analyse du
-                            risque</span></a>
+                        <a [attr.tabindex]="0" disabled [routerLink]="['cdmp/analyse_risque']">
+                            <span class="mn"> Analyse du risque</span>
+                            <i class="pi pi-fw pi-exclamation-circle layout-menuitem-icon"></i>
+                        </a>
                     </li>
                     <li *ngIf="profil === 'comptable' || profil === 'DG'">
-                        <a class="pi pi-file" disabled [routerLink]="['comptable/convention_cession']"><span class="mn"> Convention de
-                            cession</span></a>
+                        <a [attr.tabindex]="0" disabled [routerLink]="['comptable/convention_cession']">
+                            <span class="mn">Convention de cession</span>
+                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                        </a>
                     </li>
                     <li *ngIf="profil === 'comptable'">
-                        <a class="pi pi-money-bill" disabled [routerLink]="['comptable/paiements']"><span class="mn"> 
-                            Paiements/Recouvrement</span></a>
+                        <a [attr.tabindex]="0" disabled [routerLink]="['comptable/paiements']">
+                            <span class="mn">Paiements/Recouvrement</span>
+                                <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
+                            </a>
                     </li>
                     <li *ngIf="profil === 'ordonnateur'">
-                        <a class="pi pi-file" [routerLink]="['ordonnateur/conventions']"><span class="mn"> Convention de cession</span></a>
+                        <a [attr.tabindex]="0" [routerLink]="['ordonnateur/conventions']">
+                            <span class="mn"> Convention de cession</span>
+                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                        </a>
                     </li>
                 </ul>
                 <div class="footer">

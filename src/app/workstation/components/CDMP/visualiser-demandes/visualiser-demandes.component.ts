@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
@@ -38,7 +39,12 @@ export class VisualiserDemandesComponent implements OnInit {
     public dialogService: DialogService, 
     public messageService: MessageService ,
     private route:ActivatedRoute,
-    private demandeAdhesionService:DemandesAdhesionService) { }
+    private demandeAdhesionService:DemandesAdhesionService,
+    private breadcrumbService: BreadcrumbService) { this.breadcrumbService.setItems([
+      { label: 'Liste des demandes' , routerLink:'cdmp/demandes_en_cours/steps/verification'},
+      { label: 'Visualisation de la demande' }
+  ]);
+  this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
 
   ngOnInit(): void {
     this.documentService.getDocumentsADH().subscribe(data => {
@@ -55,13 +61,6 @@ export class VisualiserDemandesComponent implements OnInit {
       { field: 'typeDocument', header: 'Type de Document' },
       { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
-    this.items1 = [
-      { label: 'Liste des demandes' , url:'/#/workstation/cdmp/demandes_en_cours/steps/verification'},
-      { label: 'Visualisation de la demande' }
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
 
     //récupérer les informations du nantissement en cours de modification
     this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
