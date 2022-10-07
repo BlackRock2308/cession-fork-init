@@ -47,6 +47,7 @@ export class ListPaiementsComponent implements OnInit {
   constructor(private paiementsService: PaiementsService, public dialogService: DialogService,
     private breadcrumbService: BreadcrumbService) {
       this.breadcrumbService.setItems([
+        { label: 'Paiements' , routerLink: ['pme/paiements']},
         { label: 'Liste des paiements' },
     ]);
     this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['pme/demandes_en_cours'] })
