@@ -12,6 +12,8 @@ import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visu
 import { DialogService } from 'primeng/dynamicdialog';
 import {MessageService} from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -93,6 +95,7 @@ export class NouvelleDemandeComponent implements OnInit {
   pme: PME;
 
   constructor(
+    private router : Router,
     private formBuilder: FormBuilder,
     public renderer: Renderer2,
     public app: AppComponent,
@@ -162,6 +165,24 @@ export class NouvelleDemandeComponent implements OnInit {
     
 
 
+  }
+
+  onSubmitA(){
+  Swal.fire({
+    position: 'top-end',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then(() => {
+     
+        this.router.navigate(['workstation/pme/demandes_en_cours'])
+    })
   }
 
 
