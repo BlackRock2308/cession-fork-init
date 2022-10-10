@@ -119,7 +119,7 @@ export class DemandeAdhesionComponent implements OnInit {
     ) {
         this.breadcrumbService.setItems([
             { label: 'Demandes' },
-            { label: 'Mes demandes de cession', routerLink: ['pme/demandes_en_cours'] }
+            { label: 'Liste des demandes', routerLink: ['pme/demandes_en_cours'] }
 
         ]);
         this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] });

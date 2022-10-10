@@ -33,18 +33,31 @@ export class VisualiserDemandesComponent implements OnInit {
   demande: any;
   detail: any;
   page: any;
+  profile: string;
 
-  constructor( 
-    private documentService: DocumentService, 
-    public dialogService: DialogService, 
-    public messageService: MessageService ,
-    private route:ActivatedRoute,
-    private demandeAdhesionService:DemandesAdhesionService,
-    private breadcrumbService: BreadcrumbService) { this.breadcrumbService.setItems([
-      { label: 'Liste des demandes' , routerLink:'cdmp/demandes_en_cours/steps/verification'},
-      { label: 'Visualisation de la demande' }
-  ]);
-  this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
+  constructor(
+    private documentService: DocumentService,
+    public dialogService: DialogService,
+    public messageService: MessageService,
+    private route: ActivatedRoute,
+    private demandeAdhesionService: DemandesAdhesionService,
+    private breadcrumbService: BreadcrumbService) {
+    this.profile = localStorage.getItem('profil');
+    if (this.profile === 'pme') {
+      this.breadcrumbService.setItems([
+        { label: 'Demandes' },
+        { label: 'Liste des demandes', routerLink: 'pme/demandes_en_cours' },
+        { label: 'Visualisation de la demande' }
+      ]);
+    }
+    else if (this.profile === 'cgr') {
+      this.breadcrumbService.setItems([
+        { label: 'Liste des demandes', routerLink: 'cdmp/demandes_en_cours/steps/verification' },
+        { label: 'Visualisation de la demande' }
+      ]);
+    }
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+  }
 
   ngOnInit(): void {
     this.documentService.getDocumentsADH().subscribe(data => {
@@ -52,8 +65,8 @@ export class VisualiserDemandesComponent implements OnInit {
     });
 
     //récupérer les infos de la page précédente
-    this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
-      this.demande=data;
+    this.demandeAdhesionService.getDemandeObs().subscribe(data => {
+      this.demande = data;
     })
 
     this.cols = [
@@ -63,7 +76,7 @@ export class VisualiserDemandesComponent implements OnInit {
     ];
 
     //récupérer les informations du nantissement en cours de modification
-    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
+    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
     console.log(this.demandeNantissementInfos)
 
     //détail à visualiser( page préceédente)
@@ -72,7 +85,7 @@ export class VisualiserDemandesComponent implements OnInit {
         this.page = params['page'];
       }
     )
-  
+
   }
 
   /**
