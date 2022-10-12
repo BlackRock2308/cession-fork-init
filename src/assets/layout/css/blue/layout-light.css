@@ -7624,7 +7624,8 @@ a {
   }
 }
 .layout-breadcrumb {
-  background-color: #d8dee9;
+  background-color: #203359;
+  color: #FFF;
   padding: 10px 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7640,11 +7641,13 @@ a {
   justify-content: space-around;
   align-items: center;
   padding: 0;
+  padding-top: 10px;
+
 }
 .layout-breadcrumb .breadcrumb .route-bar-breadcrumb li {
   padding: 0 5px;
   font-size: 13px;
-  color: #9199a9;
+  color: #FFF;
 }
 .layout-breadcrumb .breadcrumb .route-bar-breadcrumb li:first-child {
   padding-left: 0;
@@ -7652,6 +7655,14 @@ a {
 .layout-breadcrumb .breadcrumb .route-bar-breadcrumb li i {
   font-weight: bold;
   font-size: 10px;
+  color: #FFF;
+
+}
+
+.layout-breadcrumb .breadcrumb .route-bar-breadcrumb li a {
+  font-size: 13px;
+  color: #FFF;
+
 }
 
 @media (max-width: 991px) {
@@ -7670,6 +7681,7 @@ a {
     justify-content: center;
     padding: 0 30px;
     padding-bottom: 10px;
+    
   }
   .layout-breadcrumb .notification {
     padding: 0 30px;

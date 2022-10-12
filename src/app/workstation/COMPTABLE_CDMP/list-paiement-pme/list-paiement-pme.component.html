@@ -1,4 +1,3 @@
-<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
 <br>
 <div class="grid">
@@ -10,9 +9,8 @@
             </div>
         </div>
         <div class="card">
-            <button id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer"
-            icon="pi pi-plus" class="successButton"
-            (click)="visualiserPaimentPME()"></button>
+            <button id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
+                class="successButton" (click)="visualiserPaimentPME()"></button>
             <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
@@ -39,7 +37,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-paiement>
-                    <tr>
+                    <tr *ngIf="!(paiement.statut ==='En-attente-de-paiement')">
                         <td style="width:16%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
                             {{paiement.datePaiement}}
@@ -56,27 +54,21 @@
                             <span class="p-column-title">Référence paiement</span>
                             {{paiement.referencePaiement}}
                         </td>
-                        <td style="width:10%;" >
+                        <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
-                            <span class="pull-right" >{{paiement.montant}}</span>
+                            <span class="pull-right">{{paiement.montant}}</span>
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-file"
-                                    class="p-button-rounded p-button-text mr-2 button simpleButton" pTooltip="Visualiser la preuve de paiement"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    pTooltip="Visualiser la preuve de paiement"
                                     (click)="detailPaimentPME(paiement.document)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="summary">
-                    <span class="textLeft">
-                        SOLDE : 5 000 000 F CFA
-                    </span>
-                    <span class="textRight">
-                        Montant total : 7 000 000 F CFA
-                    </span>
-                </ng-template>
+                
             </p-table>
         </div>
     </div>

@@ -1,5 +1,3 @@
-<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
-
 <br>
 
 <div class="grid">
@@ -11,8 +9,8 @@
                 </div>
             </div>
             <br>
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id">
 

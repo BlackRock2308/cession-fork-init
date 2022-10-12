@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Convention } from '../../model/convention';
 import { DemandeAdhesion } from '../../model/demande';
@@ -49,8 +50,14 @@ export class ConventionCessionComponent implements OnInit {
   home: MenuItem;
   
   constructor(
-    private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService
-    ) { }
+    private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService,
+    private breadcrumbService: BreadcrumbService
+    ) { 
+      this.breadcrumbService.setItems([
+        { label: 'Convention de cession' },
+    ]);
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
+    }
 
   ngOnInit() {
     this.profil = localStorage.getItem('profil');
@@ -65,11 +72,11 @@ export class ConventionCessionComponent implements OnInit {
         { field: 'dateSoumission', header: 'Date de Soumission' },
       ];
 
-      this.items = [
-        { label: 'Convention de cession' },
-      ];
+      // this.items = [
+      //   { label: 'Convention de cession' },
+      // ];
   
-      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };     
+      // this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };     
   }
 
 hideDialog() {
@@ -160,7 +167,7 @@ ChargerConvention(convention: Convention) {
     data: {
       convention: convention
     },
-    header: "Charger la convention enregistrée",
+    header: "Charger le document de reference",
     width: '40%',
     height: 'calc(50% - 100px)',
     baseZIndex: 50

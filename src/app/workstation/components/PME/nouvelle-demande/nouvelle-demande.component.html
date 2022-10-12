@@ -1,5 +1,3 @@
-<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
-
 <br>
 
     <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
@@ -114,7 +112,6 @@
 
                                 <td>
                                     <div class="flex">
-                                        <i class="pi pi-eye mx-3" (click)="visualiserDocument(document)"></i>
                                         
                                         <i class="pi pi-trash" (click)="delete(document)"></i>
 
@@ -128,7 +125,7 @@
                 <button id="valider" pButton pRipple label="Annuler" icon="pi pi-times"
                     class="float-right dangerButton" routerLink="../demandes_en_cours"></button>
                 <button type="submit" id="valider"  pButton pRipple label="Soumettre"
-                    icon="pi pi-check" class="float-right successButton" (click)="onSubmit()" routerLink="../demandes_en_cours"></button>
+                    icon="pi pi-check" class="float-right successButton" (click)="onSubmitA()"></button>
                 
                 </div>
         </p-card>

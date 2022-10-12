@@ -11,6 +11,9 @@ import { Documents } from 'src/app/workstation/model/document';
 import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visualiser-document.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import {MessageService} from 'primeng/api';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -92,13 +95,24 @@ export class NouvelleDemandeComponent implements OnInit {
   pme: PME;
 
   constructor(
+    private router : Router,
     private formBuilder: FormBuilder,
     public renderer: Renderer2,
     public app: AppComponent,
     private pmeService: PmeService,
     public dialogService: DialogService,
-    public messageService: MessageService
-  ) { }
+    public messageService: MessageService,
+    private breadcrumbService: BreadcrumbService
+  ) {   this.breadcrumbService.setItems([
+    { label: 'Demandes' },
+    { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
+]); 
+   
+   this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] })
+
+}
+
+
 
   ngOnInit(): void {
     this.pmeService.getTypesDocument().subscribe(data => {
@@ -116,13 +130,6 @@ export class NouvelleDemandeComponent implements OnInit {
       typeDocument: [''],
       file: [''],
     });
-    this.items = [
-      { label: 'Nouvelle demande' }
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
-
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier
@@ -158,6 +165,24 @@ export class NouvelleDemandeComponent implements OnInit {
     
 
 
+  }
+
+  onSubmitA(){
+  Swal.fire({
+    position: 'top-end',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color:"#203359",
+      confirmButtonColor:"#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      
+    }).then(() => {
+     
+        this.router.navigate(['workstation/pme/demandes_en_cours'])
+    })
   }
 
 

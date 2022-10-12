@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-demandes-adhesion',
@@ -40,9 +41,15 @@ export class DemandesAdhesionComponent implements OnInit {
   matchModeOptions: SelectItem[];
 
   constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private router: Router,
-    private adhesionDemandesService:AdhesionService,
-    private filterService:FilterService
-  ) { }
+    private adhesionDemandesService:AdhesionService, private breadcrumbService: BreadcrumbService,    private filterService:FilterService
+
+  ) { 
+    this.breadcrumbService.setItems([
+      { label: 'Liste des demandes' }
+
+  ]);
+  this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
+  }
 
   ngOnInit() {
     this.calenderFilter()
@@ -67,11 +74,10 @@ export class DemandesAdhesionComponent implements OnInit {
       {label: 'Rejetée', value: 'Rejetée'}
   ]
     console.log(this.nineas)
-    this.items1 = [
-      { label: 'Liste des demandes' }
-    ];
+    // this.items1 = [
+    //   { label: 'Liste des demandes' }
+    // ];
 
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
 
     this.items = [
       {

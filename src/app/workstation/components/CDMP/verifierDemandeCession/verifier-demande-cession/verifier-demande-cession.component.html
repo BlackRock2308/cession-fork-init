@@ -1,4 +1,3 @@
-<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 <p-toast></p-toast>
 <br>
 
@@ -152,11 +151,11 @@
                     </div>
                 </div>
                 <div class="field col-12 ml-2 d-flex  etape mb-0 mt-0">
-                    <div class="col-9 d-flex justify-content-start">
+                    <div class="col-10 d-flex justify-content-start">
                         <span class="h5texte">Le marché est-il identifié au niveau de la Direction Générale du Budget?</span>
                     </div>
-                    <div class="col-3   d-flex justify-content-center">
-                        <div class="col-8 d-flex justify-content-center">
+                    <div class="col-2   d-flex switch">
+                        <div class="col-8 d-flex ">
                             <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="identifie"
                                 id="active">
                             </p-inputSwitch>
@@ -165,12 +164,12 @@
                 </div>
                 <div class="col-12 mt-0" *ngIf="identifie" >
                     <div class="field col-12 d-flex etape">
-                        <div class="col-9 mt-2  d-flex justify-content-start">
+                        <div class="col-10 mt-2  d-flex justify-content-start">
                             <span class="h5texte">Y a-t-il un Avis à Tiers Détenteur sur cette PME?
                             </span>
                         </div>
-                        <div class="col-3   d-flex justify-content-center">
-                            <div class="col-8 d-flex justify-content-center">
+                        <div class="col-2   d-flex switch">
+                            <div class="col-8 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="atd" >
                                 </p-inputSwitch>
                             </div>
@@ -178,11 +177,11 @@
                         </div>
                     </div>
                     <div class="field col-12 d-flex etape">
-                        <div class="col-9 mt-2 d-flex justify-content-start">
+                        <div class="col-10 mt-2 d-flex justify-content-start">
                             <span class="h5texte">La PME a-t-elle nanti cette créance auprès d'une institution financière?</span>
                         </div>
-                        <div class="col-3   d-flex justify-content-center">
-                            <div class="col-8 d-flex justify-content-center">
+                        <div class="col-2   d-flex switch ">
+                            <div class="col-8 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="nantissement" >
                                 </p-inputSwitch>
                             </div>
@@ -190,15 +189,15 @@
                         
                     </div>
                     <div class="field col-12 d-flex etape">
-                        <div class="col-9 mt-2 d-flex justify-content-start">
+                        <div class="col-10 mt-2 d-flex justify-content-start">
                             <span class="h5texte">La PME est-elle sur le coup d'une interdiction bancaire?</span>
                         </div>
-                        <div class="col-3   d-flex justify-content-center">
-                            <div class="col-8 d-flex justify-content-center">
+                        <div class="col-2   d-flex switch ">
+                            <div class="col-8 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="interdiction" >
                                 </p-inputSwitch>
                             </div>
-                        </div>
+                          </div>
                         
                     </div>
                 </div>
@@ -222,14 +221,21 @@
                             </div>
                             <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
-                                    style="font-weight: bold;color: #203359;">Référence du BE validé</label>
+                                    style="font-weight: bold;color: #203359;">Numéro du BE validé</label>
                                 <div class="col-12 xl:col-6">
                                     <input pInputText id="name3" type="text"  formControlName="referenceBE" value="{{demandeCession.referenceBE}}"/>
                                 </div>
                             </div>
                             <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
-                                    style="font-weight: bold;color: #203359;">Nature prestation</label>
+                                    style="font-weight: bold;color: #203359;">Objet de la dépense</label>
+                                <div class="col-12 xl:col-6">
+                                    <input pInputText id="name3" type="text" formControlName="naturePrestation" />
+                                </div>
+                            </div>
+                            <div class="field grid col-12 md:col-4 sm:col-6">
+                                <label htmlFor="name3" class="col-12 xl:col-5"
+                                    style="font-weight: bold;color: #203359;">Nature de la dépense</label>
                                 <div class="col-12 xl:col-6">
                                     <input pInputText id="name3" type="text" formControlName="naturePrestation" />
                                 </div>
@@ -243,18 +249,19 @@
                             </div>
                             <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
-                                    style="font-weight: bold;color: #203359;">Imputation</label>
+                                    style="font-weight: bold;color: #203359;">Imputation budgetaire</label>
                                 <div class="col-12 xl:col-6">
                                     <input pInputText id="name3" type="text" formControlName="imputation" />
                                 </div>
                             </div>
                             <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
-                                    style="font-weight: bold;color: #203359;">Objet de la dépense</label>
+                                    style="font-weight: bold;color: #203359;">Designation du bénéficiaire</label>
                                 <div class="col-12 xl:col-6">
                                     <input pInputText id="name3" type="text" formControlName="objetDepense" />
                                 </div>
                             </div>
+                            
                             <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
                                     style="font-weight: bold;color: #203359;">Mode de réglement</label>
@@ -269,13 +276,8 @@
                                     <input pInputText id="name3" type="text" formControlName="montantDepense" />
                                 </div>
                             </div>
-                            <div class="field grid col-12 md:col-4 sm:col-6">
-                                <label htmlFor="name3" class="col-12 xl:col-5"
-                                    style="font-weight: bold;color: #203359;">Bénéficiaire</label>
-                                <div class="col-12 xl:col-6">
-                                    <input pInputText id="name3" type="text" formControlName="beneficiaire" />
-                                </div>
-                            </div>
+                            
+                            
                             <div class="field grid col-12 md:col-4 sm:col-6">
                                 <label htmlFor="name3" class="col-12 xl:col-5"
                                     style="font-weight: bold;color: #203359;">Date</label>
@@ -297,6 +299,28 @@
                                     <input pInputText id="name3" type="text" formControlName="destination" />
                                 </div>
                             </div>
+                            <div class="field grid col-12 md:col-4 sm:col-6">
+                                <label htmlFor="name3" class="col-12 xl:col-5"
+                                    style="font-weight: bold;color: #203359;">Destination/Action</label>
+                                <div class="col-12 xl:col-6">
+                                    <input pInputText id="name3" type="text" formControlName="destination" />
+                                </div>
+                            </div>
+                            <div class="field grid col-12 md:col-4 sm:col-6">
+                                <label htmlFor="name3" class="col-12 xl:col-5"
+                                    style="font-weight: bold;color: #203359;">Destination/Activité</label>
+                                <div class="col-12 xl:col-6">
+                                    <input pInputText id="name3" type="text" formControlName="beneficiaire" />
+                                </div>
+                            </div>
+                            <div class="field grid col-12 md:col-4 sm:col-6">
+                                <label htmlFor="name3" class="col-12 xl:col-5"
+                                    style="font-weight: bold;color: #203359;">Date soumission du service depensier</label>
+                                <div class="col-12 xl:col-6">
+                                    <input pInputText id="name3" type="date" formControlName="date" style=" width: 110%;" />
+                                </div>
+                            </div>
+                           
                         </div>
                     </p-card>
             </div>

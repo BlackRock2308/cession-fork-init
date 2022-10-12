@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { fileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import Swal from 'sweetalert2';
 import { Document } from '../../model/document';
 
@@ -31,7 +31,7 @@ export class PaiementPMEComponent implements OnInit {
   documents: Document[] = [];
   document: Document;
   documentForm: FormGroup;
-  constructor(private router : Router ,public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+  constructor(private router : Router ,public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
 
   dropdownItems = [
     { name: 'Sélectionner', code: '' },

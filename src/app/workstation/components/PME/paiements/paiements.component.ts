@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { Convention } from 'src/app/workstation/model/demande';
@@ -48,7 +49,13 @@ export class PaiementsComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
-  constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,private messageService:MessageService, private router: Router) { }
+  constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,
+    private messageService:MessageService, private router: Router, private breadcrumbService: BreadcrumbService) {
+    this.breadcrumbService.setItems([
+      { label: 'Paiements' },
+  ]);
+  this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['pme/demandes_en_cours'] })
+   }
 
   ngOnInit(): void {
     this.documentService.getDeocuments().subscribe(data => {
@@ -66,11 +73,6 @@ export class PaiementsComponent implements OnInit {
         { field: 'statut', header: 'Statut' },
         { field: 'decote', header: 'Décote' },
       ];
-      this.items = [
-        { label: 'Paiements' }
-      ];
-  
-      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
   
   }
 

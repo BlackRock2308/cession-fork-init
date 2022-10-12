@@ -44,7 +44,7 @@
   "pmes": [
     {
       "id": 1,
-      "ninea": "56786067",
+      "ninea": "567860674",
       "rccm": "43568778",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -54,7 +54,7 @@
     },
     {
       "id": 2,
-      "ninea": "45822015",
+      "ninea": "945822015",
       "rccm": "021588656",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -64,7 +64,7 @@
     },
     {
       "id": 3,
-      "ninea": "00567567",
+      "ninea": "300567567",
       "rccm": "45785552",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -74,7 +74,7 @@
     },
     {
       "id": 4,
-      "ninea": "45892205",
+      "ninea": "045892205",
       "rccm": "45822058",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -83,7 +83,7 @@
     },
     {
       "id": 5,
-      "ninea": "45922805",
+      "ninea": "945922805",
       "rccm": "1289500",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -93,7 +93,7 @@
     },
     {
       "id": 6,
-      "ninea": "54615155",
+      "ninea": "454615155",
       "rccm": "45588205",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -101,7 +101,7 @@
     },
     {
       "id": 7,
-      "ninea": "12589200",
+      "ninea": "212589200",
       "rccm": "45820028",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -120,7 +120,7 @@
     },
     {
       "id": 8,
-      "ninea": "12589332",
+      "ninea": "712589332",
       "rccm": "01258520",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -130,7 +130,7 @@
     },
     {
       "id": 9,
-      "ninea": "00120245",
+      "ninea": "200120245",
       "rccm": "45890012",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -140,7 +140,7 @@
     },
     {
       "id": 10,
-      "ninea": "45800124",
+      "ninea": "945800124",
       "rccm": "458730015",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -150,7 +150,7 @@
     },
     {
       "id": 11,
-      "ninea": "45892100",
+      "ninea": "945892100",
       "rccm": "45895200",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -169,7 +169,7 @@
     },
     {
       "id": 12,
-      "ninea": "12805459",
+      "ninea": "012805459",
       "rccm": "48923584",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -179,7 +179,7 @@
     },
     {
       "id": 13,
-      "ninea": "4592005",
+      "ninea": "894592005",
       "rccm": "64856892",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -198,7 +198,7 @@
     },
     {
       "id": 14,
-      "ninea": "45892305",
+      "ninea": "545892305",
       "rccm": "458320",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -217,7 +217,7 @@
     },
     {
       "id": 15,
-      "ninea": "45860021",
+      "ninea": "345860021",
       "rccm": "12578201",
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -245,7 +245,7 @@
       "nineaValide": false
     },
     {
-      "ninea": 45488555,
+      "ninea": 745488555,
       "rccm": 2547520,
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -255,7 +255,7 @@
       "nineaValide": false
     },
     {
-      "ninea": 12123312267,
+      "ninea": 123312267,
       "rccm": "SN-DKR 2014 C 12348",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
@@ -275,14 +275,14 @@
       "pmeActive": true
     },
     {
-      "ninea": 12456788,
+      "ninea": 912456788,
       "rccm": "SN-DKR 1012 L 66582",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
       "date_soumission": "2022-02-19T09:45:07.174Z",
       "id": 19,
-      "nineaValide": true,
+      "nineaValide": false,
       "denomination": "",
       "formuleJuridique": "",
       "centreFiscal": "",
@@ -295,7 +295,7 @@
       "pmeActive": true
     },
     {
-      "ninea": 12252225,
+      "ninea": 412252225,
       "rccm": 4545212,
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -304,7 +304,7 @@
       "id": 20
     },
     {
-      "ninea": 12500022,
+      "ninea": 312500022,
       "rccm": 21305525,
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -314,7 +314,7 @@
       "nineaValide": false
     },
     {
-      "ninea": 12558555,
+      "ninea": 912558555,
       "rccm": 25458825,
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
@@ -362,7 +362,7 @@
   "demandes_adhesion": [
     {
       "id": 1,
-      "ninea": "567567",
+      "ninea": "097567567",
       "statut": "Completée",
       "statut_dg": "Acceptée",
       "rccm": "6543568778",
@@ -370,7 +370,6 @@
       "raisonSocial": "Modelsis SARL",
       "nomMarche": "Service de gardiennage",
       "refBE": "294067",
-      "date_soumission": "28/09/2022",
       "ninea_file": "",
       "statut_convention": "Convention-enregistrée",
       "rccm_file": "",
@@ -393,10 +392,12 @@
       "formuleJuridique": "SARL",
       "centreFiscal": "Dakar",
       "adresse": "Mermoz",
-      "representantLegal": "Sahaba",
+      "representantLegal": "Sahaba",                                                                                                                        
       "cniRepresentant": "1619199901436",
       "dateImmatriculation": "10-12-2022",
       "telephone": "333158568",
+      "date_soumission": "11/09/2016",
+
       "email": "ndiayeoumarsahaba@ept.sn",
       "nineaFile": {},
       "rccmFile": {},
@@ -404,7 +405,7 @@
     },
     {
       "id": 2,
-      "ninea": "567865467567",
+      "ninea": "865467567",
       "rccm": "6543568778",
       "denomination": "Modelsis",
       "refBE": "120965",
@@ -442,7 +443,7 @@
     },
     {
       "id": 3,
-      "ninea": "567865467567",
+      "ninea": "567865467",
       "statut": "Completée",
       "rccm": "6543568778",
       "denomination": "ABCD",
@@ -470,7 +471,7 @@
     },
     {
       "id": 4,
-      "ninea": "567865467567",
+      "ninea": "567865467",
       "rccm": "6543568778",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "denomination": "XXX",
@@ -498,7 +499,7 @@
     },
     {
       "id": 5,
-      "ninea": "567865467567",
+      "ninea": "567865678",
       "rccm": "6543568778",
       "statut": "Completée",
       "date_soumission": "12/02/2017",
@@ -526,7 +527,7 @@
     },
     {
       "id": 6,
-      "ninea": "567865467567",
+      "ninea": "234667567",
       "rccm": "6543568778",
       "statut": "Completee",
       "date_soumission": "05/07/2018",
@@ -552,7 +553,7 @@
     },
     {
       "id": 7,
-      "ninea": "561205467567",
+      "ninea": "156120546",
       "rccm": "401568778",
       "statut": "Risquée",
       "date_soumission": "10/10/2022",
@@ -581,7 +582,7 @@
   "demandes_cession": [
     {
       "id": 1,
-      "ninea": "567567",
+      "ninea": "123567567",
       "statut": "Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
@@ -613,7 +614,7 @@
     },
     {
       "id": 2,
-      "ninea": "567567",
+      "ninea": "123567987",
       "statut": "Recevable",
       "raisonSocial": "ENEDIS",
       "referenceBE": "a",
@@ -643,7 +644,7 @@
     },
     {
       "id": 3,
-      "ninea": "678567",
+      "ninea": "678567345",
       "statut": "Recevable",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "a",
@@ -673,7 +674,7 @@
     },
     {
       "id": 4,
-      "ninea": "567567",
+      "ninea": "235567678",
       "statut": "Recevable",
       "raisonSocial": "INT Marketing",
       "referenceBE": "a",
@@ -702,7 +703,7 @@
     },
     {
       "id": 5,
-      "ninea": "123567",
+      "ninea": "901235675",
       "statut": "Recevable",
       "raisonSocial": "E.COM4",
       "referenceBE": "a",
@@ -732,7 +733,7 @@
     },
     {
       "id": 6,
-      "ninea": "123567",
+      "ninea": "780123567",
       "statut": "Recevable",
       "raisonSocial": "E.COM4",
       "referenceBE": "a",
@@ -762,7 +763,7 @@
     },
     {
       "id": 10,
-      "ninea": "123567",
+      "ninea": "451235673",
       "statut": "Recevable",
       "raisonSocial": "E.COM4",
       "referenceBE": "a",
@@ -784,7 +785,7 @@
     },
     {
       "id": 11,
-      "ninea": "567567",
+      "ninea": "095675675",
       "statut": "soumis",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
@@ -809,7 +810,7 @@
     },
     {
       "id": 12,
-      "ninea": "567567",
+      "ninea": "235675678",
       "statut": "Recevable",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
@@ -834,7 +835,7 @@
     },
     {
       "id": 14,
-      "ninea": "567567",
+      "ninea": "455675672",
       "statut": "rejeté",
       "raisonSocial": "INT Marketing",
       "referenceBE": "294067",
@@ -846,7 +847,7 @@
     },
     {
       "id": 16,
-      "ninea": "567567",
+      "ninea": "985675670",
       "statut": "rejeté",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
@@ -857,7 +858,7 @@
     },
     {
       "id": 17,
-      "ninea": "567567",
+      "ninea": "355675670",
       "statut": "soumis",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
@@ -868,7 +869,7 @@
     },
     {
       "id": 18,
-      "ninea": "678567",
+      "ninea": "236785679",
       "statut": "rejeté",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "294067",
@@ -879,7 +880,7 @@
     },
     {
       "id": 19,
-      "ninea": "567567",
+      "ninea": "567785671",
       "statut": "soumis",
       "raisonSocial": "INT Marketing",
       "referenceBE": "294067",
@@ -887,23 +888,12 @@
       "numeroDemande": "2022-0004",
       "rccm": "001548015",
       "nomMarche": "Service de gardiennage"
-    },
-    {
-      "id": 20,
-      "ninea": "123567",
-      "statut": "soumis",
-      "raisonSocial": "E.COM4",
-      "referenceBE": "294067",
-      "dateDemande": "2022-09-28T10:10:13.678Z",
-      "numeroDemande": "2022-0005",
-      "rccm": "001548015",
-      "nomMarche": "Transport"
     }
   ],
   "recevabilites": [
     {
       "id": 17,
-      "ninea": "567567",
+      "ninea": "235675679",
       "statut": "soumis",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
@@ -914,7 +904,7 @@
     },
     {
       "id": 19,
-      "ninea": "567567",
+      "ninea": "235675670",
       "statut": "soumis",
       "raisonSocial": "INT Marketing",
       "referenceBE": "294067",
@@ -925,7 +915,7 @@
     },
     {
       "id": 20,
-      "ninea": "123567",
+      "ninea": "341235670",
       "statut": "soumis",
       "raisonSocial": "E.COM4",
       "referenceBE": "294067",
@@ -938,7 +928,7 @@
   "analyse_risque": [
     {
       "id": 1,
-      "ninea": "567567",
+      "ninea": "356756723",
       "statut": "Non-Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
@@ -956,7 +946,7 @@
     },
     {
       "id": 2,
-      "ninea": "567567",
+      "ninea": "285675670",
       "statut": "Recevable",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
@@ -974,7 +964,7 @@
     },
     {
       "id": 3,
-      "ninea": "678567",
+      "ninea": "167856756",
       "statut": "Risquée",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "294067",
@@ -992,7 +982,7 @@
     },
     {
       "id": 4,
-      "ninea": "567567",
+      "ninea": "345567567",
       "statut": "Recevable",
       "raisonSocial": "INT Marketing",
       "referenceBE": "294067",
@@ -1010,7 +1000,7 @@
     },
     {
       "id": 5,
-      "ninea": "123567",
+      "ninea": "121235679",
       "statut": "Complement-requis",
       "raisonSocial": "E.COM4",
       "referenceBE": "294067",
@@ -1028,7 +1018,7 @@
     },
     {
       "id": 6,
-      "ninea": "567567",
+      "ninea": "956756790",
       "statut": "Non-Risquée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294067",
@@ -1046,7 +1036,7 @@
     },
     {
       "id": 7,
-      "ninea": "567567",
+      "ninea": "125675679",
       "statut": "Recevable",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
@@ -1064,7 +1054,7 @@
     },
     {
       "id": 8,
-      "ninea": "678567",
+      "ninea": "876785674",
       "statut": "Complement-requis",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "294067",
@@ -1082,7 +1072,7 @@
     },
     {
       "id": 9,
-      "ninea": "567567",
+      "ninea": "455675670",
       "statut": "Recevable",
       "raisonSocial": "INT Marketing",
       "referenceBE": "294067",
@@ -1100,7 +1090,7 @@
     },
     {
       "id": 10,
-      "ninea": "123567",
+      "ninea": "771235670",
       "statut": "Completée",
       "raisonSocial": "E.COM4",
       "referenceBE": "294067",
@@ -1134,7 +1124,7 @@
       "date": "2022-10-05",
       "destination": "Modelsis",
       "id": 11,
-      "ninea": "567567",
+      "ninea": "356756764",
       "raisonSocial": "Modelsis SARL",
       "dateDemande": "2022-09-28T10:10:13.678Z",
       "numeroDemande": "2022-0001",
@@ -1143,7 +1133,7 @@
     },
     {
       "id": 12,
-      "ninea": "567567",
+      "ninea": "675675677",
       "statut": "Recevable",
       "raisonSocial": "ENEDIS",
       "referenceBE": "294067",
@@ -1205,33 +1195,36 @@
     {
       "id": 1,
       "nomDocument": "NINEA",
+      "nomMarche": "Reparation , entretien et installation",
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
       "path": "/assets/NINEA.pdf",
       "statut": "Convention-générée",
       "refBE": "6543568778",
-      "ninea": "567865467567",
+      "ninea": "567865467",
       "refDemande": "2022-3454",
       "raisonSocial": "CAMAIEU INTERNATIONAL"
     },
     {
       "id": 2,
       "nomDocument": "RCCM",
+      "nomMarche": "Entretien d'outils ",
       "dateSoumission": "01/02/2022",
       "typeDocument": "RCCM",
       "path": "/assets/rccm.pdf",
       "statut": "Convention-enregistrée",
       "refBE": "9878543",
-      "ninea": "12345567",
+      "ninea": "123455679",
       "refDemande": "2022-3214",
       "raisonSocial": "Modelsis SARL"
     },
     {
       "id": 3,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Mise en place d'un reservoir",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
-      "ninea": "97685444",
+      "ninea": "976854443",
       "path": "/assets/refBE.pdf",
       "statut": "Convention-signée-par-la-PME",
       "refBE": "99999866",
@@ -1242,34 +1235,37 @@
       "id": 4,
       "nomDocument": "Bon d'engagement",
       "dateSoumission": "04/03/2022",
+      "nomMarche": "Reparation , entretien et installation",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
       "statut": "Convention-signée-par-le-DG",
       "refBE": "99999866",
-      "ninea": "657358975",
+      "ninea": "6573589752",
       "refDemande": "2012-1230",
       "raisonSocial": "E.COM 4"
     },
     {
       "id": 5,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Reparation , entretien et installation",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
       "statut": "Convention-rejetée",
       "refBE": "8650433",
-      "ninea": "4976855858",
+      "ninea": "497685585",
       "refDemande": "2016-2345",
       "raisonSocial": "INT MARKETING OF TRADING"
     },
     {
       "id": 6,
       "nomDocument": "Bon d'engagement",
+      "nomMarche": "Instation de logiciels ",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
       "path": "/assets/refBE.pdf",
       "statut": "Non-Risquee",
-      "ninea": "567865467567",
+      "ninea": "567865467",
       "refBE": "3446459",
       "refDemande": "2021-6788",
       "raisonSocial": "ENEDIS"
@@ -1284,7 +1280,7 @@
       "path": "/assets/NINEA.pdf",
       "statut": "Convention-générée",
       "refBE": "6543568778",
-      "ninea": "567865467567",
+      "ninea": "567865467",
       "refDemande": "2022-3454",
       "raisonSocial": "CAMAIEU INTERNATIONAL"
     },
@@ -1296,7 +1292,7 @@
       "path": "/assets/rccm.pdf",
       "statut": "Convention-enregistrée",
       "refBE": "9878543",
-      "ninea": "12345567",
+      "ninea": "612345567",
       "refDemande": "2022-3214",
       "raisonSocial": "Modelsis SARL"
     },
@@ -1323,18 +1319,6 @@
       "ninea": "657358975",
       "refDemande": "2012-1230",
       "raisonSocial": "E.COM 4"
-    },
-    {
-      "id": 5,
-      "nomDocument": "Convention",
-      "dateSoumission": "04/03/2022",
-      "typeDocument": "Convention",
-      "path": "/assets/doctest.pdf",
-      "statut": "Convention-rejetée",
-      "refBE": "8650433",
-      "ninea": "4976855858",
-      "refDemande": "2016-2345",
-      "raisonSocial": "INT MARKETING OF TRADING"
     }
   ],
   "documentsVRF": [
@@ -1345,7 +1329,7 @@
       "typeDocument": "NINEA",
       "path": "/assets/NINEA.pdf",
       "refBE": "6543568778",
-      "ninea": "567865467567",
+      "ninea": "865467567",
       "refDemande": "2022-3454",
       "raisonSocial": "CAMAIEU INTERNATIONAL"
     },
@@ -1356,7 +1340,7 @@
       "typeDocument": "RCCM",
       "path": "/assets/rccm.pdf",
       "refBE": "9878543",
-      "ninea": "12345567",
+      "ninea": "123455674",
       "refDemande": "2022-3214",
       "raisonSocial": "Modelsis SARL"
     },
@@ -1365,7 +1349,7 @@
       "nomDocument": "Bon d'engagement",
       "dateSoumission": "04/03/2022",
       "typeDocument": "BE",
-      "ninea": "97685444",
+      "ninea": "976854441",
       "path": "/assets/refBE.pdf",
       "refBE": "99999866",
       "refDemande": "2012-0000",
@@ -1379,7 +1363,7 @@
       "dateSoumission": "01/02/2022",
       "typeDocument": "NINEA",
       "path": "/assets/NINEA.pdf",
-      "ninea": "567865467567",
+      "ninea": "567865467",
       "refDemande": "2022-3454",
       "raisonSocial": "CAMAIEU INTERNATIONAL"
     },
@@ -1389,7 +1373,7 @@
       "dateSoumission": "01/02/2022",
       "typeDocument": "RCCM",
       "path": "/assets/rccm.pdf",
-      "ninea": "12345567",
+      "ninea": "123455670",
       "refDemande": "2022-3214",
       "raisonSocial": "Modelsis SARL"
     }
@@ -1398,6 +1382,10 @@
     {
       "id": 1,
       "nom": "Document du marché"
+    },
+    {
+      "id": 2,
+      "nom": "Bon engagement"
     }
   ],
   "document": [
@@ -1412,12 +1400,6 @@
       "nom": "ENEDIS",
       "type": "NINEA",
       "date_soumission": "11/11/2011      "
-    },
-    {
-      "id": 3,
-      "nom": "Business Plan",
-      "type": "Business Plan",
-      "date_soumission": "12/12/2020"
     },
     {
       "id": 4,
@@ -1511,8 +1493,9 @@
     {
       "id": 1,
       "referenceBE": "50-78954",
+      "nomMarche": "Aménagement de la zone B",
       "raisonSocial": "SERVITECH",
-      "ninea": "123405467567",
+      "ninea": "405467567",
       "totalMarche": "7 000 000",
       "statut": "En-attente-de-paiement",
       "soldePME": "0",
@@ -1539,8 +1522,9 @@
     {
       "id": 2,
       "referenceBE": "20-900510",
+      "nomMarche": "Achat de nouvelles voitures",
       "raisonSocial": "CAMAIEU",
-      "ninea": "123405467567",
+      "ninea": "123405467",
       "totalMarche": "5 000 000",
       "statut": "PME-totalement-payée",
       "soldePME": "0",
@@ -1559,7 +1543,7 @@
         "path": "/assets/NINEA.pdf",
         "statut": "Convention-générée",
         "refBE": "6543568778",
-        "ninea": "567865467567",
+        "ninea": "567865467",
         "refDemande": "2022-3454",
         "raisonSocial": "CAMAIEU INTERNATIONAL"
       }
@@ -1567,8 +1551,9 @@
     {
       "id": 3,
       "referenceBE": "20-247510",
+      "nomMarche": "Fournitures de lots de materiels",
       "raisonSocial": "ENEDIS",
-      "ninea": "875305467567",
+      "ninea": "753054674",
       "totalMarche": "10 000 000",
       "statut": "PME-partiellement-payée",
       "soldePME": "5 800 000",
@@ -1587,7 +1572,83 @@
         "path": "/assets/NINEA.pdf",
         "statut": "Convention-générée",
         "refBE": "6543568778",
-        "ninea": "567865467567",
+        "ninea": "865467567",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
+      }
+    }
+  ],
+  "listpaiementspme": [
+    {
+      "id": 1,
+      "totalMarche": "7 000 000",
+      "statut": "En-attente-de-paiement",
+      "soldePME": "0",
+      "montantRecu": "5 000 000",
+      "referencePaiement": "2022-0002",
+      "datePaiement": "12/06/2022",
+      "payer": "Demba Gueye",
+      "montant": "1 000 000",
+      "modePaiement": "Virement",
+      "document": {
+        "id": 1,
+        "nomDocument": "NINEA",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/NINEA.pdf",
+        "statut": "Convention-générée",
+        "refBE": "6543568778",
+        "ninea": "567865467",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
+      }
+    },
+    {
+      "id": 2,
+      "totalMarche": "5 000 000",
+      "soldePME": "0",
+      "montantRecu": "5 000 000",
+      "statut": "En-attente-de-paiement",
+      "referencePaiement": "2022-0002",
+      "datePaiement": "12/06/2022",
+      "payer": "Doudou Diallo",
+      "montant": "1 000 000",
+      "modePaiement": "Virement",
+      "decote": "10%",
+      "document": {
+        "id": 1,
+        "nomDocument": "NINEA",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/NINEA.pdf",
+        "statut": "Convention-générée",
+        "refBE": "6543568778",
+        "ninea": "567865467",
+        "refDemande": "2022-3454",
+        "raisonSocial": "CAMAIEU INTERNATIONAL"
+      }
+    },
+    {
+      "id": 3,
+      "totalMarche": "10 000 000",
+      "soldePME": "5 800 000",
+      "montantRecu": 0,
+      "statut": "En-attente-de-paiement",
+      "referencePaiement": "2022-0003",
+      "datePaiement": "02/01/2022",
+      "payer": "Fatou Touré",
+      "montant": "2 000 000",
+      "modePaiement": "Espèce",
+      "decote": "10%",
+      "document": {
+        "id": 1,
+        "nomDocument": "NINEA",
+        "dateSoumission": "01/02/2022",
+        "typeDocument": "NINEA",
+        "path": "/assets/NINEA.pdf",
+        "statut": "Convention-générée",
+        "refBE": "6543568778",
+        "ninea": "865467567",
         "refDemande": "2022-3454",
         "raisonSocial": "CAMAIEU INTERNATIONAL"
       }
@@ -1596,7 +1657,7 @@
   "conventions": [
     {
       "id": 1,
-      "ninea": "567567",
+      "ninea": "439876535",
       "statut": "Convention-acceptée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294065",
@@ -1609,7 +1670,7 @@
     },
     {
       "id": 2,
-      "ninea": "567567",
+      "ninea": "987654326",
       "statut": "Convention-rejetée",
       "raisonSocial": "ENEDIS",
       "referenceBE": "21-294066",
@@ -1620,69 +1681,31 @@
     },
     {
       "id": 3,
-      "ninea": "678567",
+      "ninea": "098678567",
       "statut": "Convention-enregistrée",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "15-294067",
       "dateDemande": "15/07/2021",
       "numeroDemande": "2022-0003",
-      "observation": "Contrat non conforme"
-    },
-    {
-      "id": 4,
-      "ninea": "567567",
-      "statut": "Convention-enregistrée",
-      "raisonSocial": "INT Marketing",
-      "referenceBE": "45-294068",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0004",
-      "observation": ""
-    },
-    {
-      "id": 5,
-      "ninea": "123567",
-      "statut": "Convention-acceptée",
-      "raisonSocial": "E.COM4",
-      "referenceBE": "20-294069",
-      "dateDemande": "05/09/2021",
-      "numeroDemande": "2022-0005",
-      "observation": "Document manquant"
-    },
-    {
-      "id": 6,
-      "ninea": "567567",
-      "statut": "Convention-acceptée",
-      "raisonSocial": "SCI SENEGAL",
-      "referenceBE": "20-294070",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0006",
-      "observation": ""
-    },
-    {
-      "id": 7,
-      "ninea": "567567",
-      "statut": "Convention-acceptée",
-      "raisonSocial": "IMME",
-      "referenceBE": "20-294071",
-      "dateDemande": "21/03/2021",
-      "numeroDemande": "2022-0007",
-      "observation": ""
+      "observation": "Contrat non conforme",
+      "nomMarche": "Fournitures de lots de materiels"
     },
     {
       "id": 8,
-      "ninea": "567567",
+      "ninea": "987567567",
       "statut": "Substitution-effectuée",
       "raisonSocial": "IMME",
       "referenceBE": "20-294072",
       "dateDemande": "21/03/2021",
       "numeroDemande": "2022-0008",
-      "observation": "Document manquant"
+      "observation": "Document manquant",
+      "nomMarche": "Fournitures de lots de materiels"
     }
   ],
   "conventionsPME": [
     {
       "id": 1,
-      "ninea": "567567",
+      "ninea": "123567567",
       "statut": "Convention-enregistrée",
       "raisonSocial": "Modelsis SARL",
       "referenceBE": "20-294065",
@@ -1697,7 +1720,7 @@
     },
     {
       "id": 2,
-      "ninea": "567567",
+      "ninea": "167567567",
       "statut": "Convention-rejetée",
       "raisonSocial": "ENEDIS",
       "referenceBE": "21-294066",
@@ -1710,7 +1733,7 @@
     },
     {
       "id": 3,
-      "ninea": "678567",
+      "ninea": "678567098",
       "statut": "Convention-acceptée",
       "raisonSocial": "CAMAIEU INTERNATIONAL",
       "referenceBE": "15-294067",
@@ -1723,7 +1746,7 @@
     },
     {
       "id": 4,
-      "ninea": "567567",
+      "ninea": "985567567",
       "statut": "Convention-signée-par-la-PME",
       "raisonSocial": "INT Marketing",
       "referenceBE": "45-294068",
@@ -1736,7 +1759,7 @@
     },
     {
       "id": 5,
-      "ninea": "123567",
+      "ninea": "123567456",
       "statut": "Convention-signée-par-le-DG",
       "raisonSocial": "E.COM4",
       "referenceBE": "20-294069",
@@ -1749,7 +1772,7 @@
     },
     {
       "id": 6,
-      "ninea": "567567",
+      "ninea": "567567278",
       "statut": "Convention-signée-par-la-PME",
       "raisonSocial": "SCI SENEGAL",
       "referenceBE": "20-294070",
@@ -1762,11 +1785,24 @@
     },
     {
       "id": 7,
-      "ninea": "567567",
+      "ninea": "567567875",
       "statut": "Convention-acceptée",
       "raisonSocial": "IMME",
       "referenceBE": "20-294071",
       "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0007",
+      "observation": "",
+      "nomMarche": "Service divers",
+      "nomDocument": "convention",
+      "path": "/assets/doctest.pdf"
+    },
+    {
+      "id": 8,
+      "ninea": "876543904",
+      "statut": "Convention-générée",
+      "raisonSocial": "Modilab",
+      "referenceBE": "20-565432",
+      "dateDemande": "12/08/2022",
       "numeroDemande": "2022-0007",
       "observation": "",
       "nomMarche": "Service divers",

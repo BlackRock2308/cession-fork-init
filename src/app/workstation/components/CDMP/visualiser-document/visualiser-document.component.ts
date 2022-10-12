@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
-import { fileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -29,7 +29,7 @@ export class VisualiserDocumentComponent implements OnInit {
   paiement: string;
   observation: void;
 
-  constructor(public activeModal: NgbActiveModal, private uploadFileService: fileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
+  constructor(public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
   ngOnInit() {
     this.srcFile = this.config.data.document.path;

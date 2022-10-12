@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Documents } from '../../model/document';
 import { Paiements } from '../../model/paiements';
 import { DocumentService } from '../../service/document/document.service';
@@ -46,8 +47,17 @@ export class PaimentsComponent implements OnInit {
 
   home: MenuItem;
 
-  constructor(private documentService: DocumentService, private paiementsService: PaiementsService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
-  ) { }
+  constructor(private documentService: DocumentService,
+     private paiementsService: PaiementsService,
+      public dialogService: DialogService,
+       private messageService: MessageService,
+        private router: Router,
+        private breadcrumbService: BreadcrumbService
+
+  ) {this.breadcrumbService.setItems([
+    { label: 'Paiements/Recouvrements' }
+]);
+this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] }); }
 
   ngOnInit(): void {
 
@@ -66,11 +76,6 @@ export class PaimentsComponent implements OnInit {
       { field: 'montantReçu', header: 'Montant Reçu' },
       { field: 'statut', header: 'Statut' },
     ];
-    this.items = [
-      { label: 'Paiements/Recouvrements' },
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
   }
 
   visualiserPaiementListCDMP(paiement: Paiements) {

@@ -43,6 +43,9 @@ export class PaiementsService {
   getPaiements(): Observable<Paiements[]> {
     return this.http.get<Paiements[]>(`${this.baseUrl}/paiements`);
   }
+  getPaiementsPME(): Observable<Paiements[]> {
+    return this.http.get<Paiements[]>(`${this.baseUrl}/listpaiementspme`);
+  }
   getPaiementsById(): Observable<Paiements[]> {
     return this.http.get<Paiements[]>(`${this.baseUrl}/paiements?id=1`);
   }

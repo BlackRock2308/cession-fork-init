@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { take, takeUntil, takeWhile } from 'rxjs/operators';
 import { HttpHeaderResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-verifier-demande-cession',
@@ -45,8 +46,13 @@ export class VerifierDemandeCessionComponent implements OnInit {
     private recevabiliteService: RecevabiliteService,
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
-    private router:Router
-  ) { }
+    private router:Router,
+    private breadcrumbService: BreadcrumbService
+  ) { this.breadcrumbService.setItems([
+    { label: 'Liste des demandes de cession', url: '/#/workstation/cdmp/recevabilite' },
+      { label: 'Recevabilité' }
+]);
+this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
 
   ngOnInit(): void {
     this.demandeCessionService.getDemandeObs().subscribe(data => {
@@ -78,13 +84,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
       destination: ['',Validators.required]
 
     });
-    this.items = [
-      { label: 'Liste des demandes de cession', url: '/#/workstation/cdmp/recevabilite' },
-      { label: 'Recevabilité' }
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
   }
 
   onSubmit() {

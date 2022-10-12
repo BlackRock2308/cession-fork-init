@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Documents } from '../../model/document';
 import { Paiements } from '../../model/paiements';
@@ -46,15 +47,26 @@ export class ListPaiementPMEComponent implements OnInit {
   ref: DynamicDialogRef;
   home: MenuItem;
 
-  constructor(private documentService: DocumentService, private paiementsService: PaiementsService, public dialogService: DialogService, private messageService: MessageService, private router: Router,
-  ) { }
+  constructor(private documentService: DocumentService,
+     private paiementsService: PaiementsService, 
+     public dialogService: DialogService, 
+     private messageService: MessageService, private router: Router,
+     private breadcrumbService: BreadcrumbService
+
+  ) { 
+    this.breadcrumbService.setItems([
+      { label: 'Paiements' , routerLink: ['comptable/paiements']},
+      { label: 'Paiment PME' },
+  ]);
+  this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] });
+  }
 
   ngOnInit(): void {
 
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data => {
+    this.paiementsService.getPaiementsPME().subscribe(data => {
       this.paiements = data
     });
 
@@ -65,15 +77,7 @@ export class ListPaiementPMEComponent implements OnInit {
       { field: 'montant', header: 'Montant' },
       { field: 'modePaiement', header: 'Mode Paiement' },
     ];
-    this.items = [
-      { label: 'Paiements' , url: '/#/workstation/comptable/paiements'},
-      { label: 'Paiment PME' },
-    ];
-
-    this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-
   }
-
   verifierDemande(paiement: Paiements) {
     this.paiement = { ...paiement };
     this.paiementDialog = true;

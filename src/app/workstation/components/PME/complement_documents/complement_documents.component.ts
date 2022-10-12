@@ -6,6 +6,7 @@ import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { MenuItem } from 'primeng/api';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-complement-documents',
@@ -31,7 +32,15 @@ export class ComplementDocumentsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private pmeService:PmeService,
     private demandeAdhesionService:DemandesAdhesionService,
-    private documentService:DocumentService) { }
+    private documentService:DocumentService,
+    private breadcrumbService: BreadcrumbService
+    ) { 
+      this.breadcrumbService.setItems([
+        { label: 'Liste de Demandes ', routerLink: ['pme/demandes_en_cours '] },
+        { label: 'Compléter les documents' }
+    ]);
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] });
+    }
 
   ngOnInit(): void {
 

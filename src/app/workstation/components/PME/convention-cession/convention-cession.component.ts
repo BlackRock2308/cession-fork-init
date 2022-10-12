@@ -5,10 +5,10 @@ import { VisualiserDocumentComponent } from '../../../components/CDMP/visualiser
 import { Convention } from '../../../model/convention';
 import { DemandeAdhesion } from '../../../model/demande';
 import { Documents } from '../../../model/document';
-import { DocumentService } from '../../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../../../COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from '../../../COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'app-convention-cession',
@@ -50,11 +50,18 @@ export class ConventionCessionPMEComponent implements OnInit {
   home: MenuItem;
   
   constructor(
-    private documentService: DocumentService, 
     public dialogService: DialogService, 
     public messageService: MessageService,
-    private pmeService:PmeService
-    ) { }
+    private pmeService:PmeService,
+    private breadcrumbService: BreadcrumbService
+    ) { 
+      this.breadcrumbService.setItems([
+        { label: 'Convention de cession' },
+        //{ label: 'Icons', routerLink: ['/utilities/icons'] }
+    ]);
+      this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+
+    }
 
   ngOnInit() {
     this.profil = localStorage.getItem('profil');
@@ -70,13 +77,7 @@ export class ConventionCessionPMEComponent implements OnInit {
         { field: 'typeDocument', header: 'Type de Document' },
         { field: 'dateSoumission', header: 'Date de Soumission' },
       ];
-
-      this.items = [
-        { label: 'Convention de cession' },
-      ];
-  
-      this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
-  
+ 
      
   }
 
