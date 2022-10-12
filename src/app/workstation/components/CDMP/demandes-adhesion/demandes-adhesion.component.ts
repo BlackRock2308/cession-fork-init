@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, FilterMatchMode, FilterService, SelectItem } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
@@ -26,7 +26,7 @@ export class DemandesAdhesionComponent implements OnInit {
 
   cols: any[];
 
-  statuses: any[];
+  statuts: any[];
 
   rowsPerPageOptions = [5, 10, 20];
 
@@ -37,9 +37,12 @@ export class DemandesAdhesionComponent implements OnInit {
   activeItem: MenuItem;
   home: MenuItem;
   nineas:any;
+  rangeDates:any[];
+  matchModeOptions: SelectItem[];
 
   constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private router: Router,
-    private adhesionDemandesService:AdhesionService, private breadcrumbService: BreadcrumbService
+    private adhesionDemandesService:AdhesionService, private breadcrumbService: BreadcrumbService,    private filterService:FilterService
+
   ) { 
     this.breadcrumbService.setItems([
       { label: 'Liste des demandes' }
@@ -49,11 +52,15 @@ export class DemandesAdhesionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.calenderFilter()
+    console.log(this.rangeDates)
     //this.productDialog = this.communicationService.getDialogObs();
     //this.productService.getProducts().then(data => this.products = data);
     this.adhesionDemandesService.getAdhesionDemandes().subscribe(data => {
       this.demandes = data
-      console.log(this.demandes[0].date_soumission.toString().split("T")[0])
+      console.log(this.demandes[0].date_soumission)
+      this.demandes.forEach(element =>element.date_soumission=new Date(element.date_soumission))
+      console.log(this.demandes[0].date_soumission)
     });
 
     this.cols = [
@@ -62,6 +69,10 @@ export class DemandesAdhesionComponent implements OnInit {
       { field: 'date_soumission', header: 'Date Soumission' },
       { field: 'statut', header: 'Statut' }
     ];
+    this.statuts = [
+      {label: 'Soumise', value: 'Soumise'},
+      {label: 'Rejetée', value: 'Rejetée'}
+  ]
     console.log(this.nineas)
     // this.items1 = [
     //   { label: 'Liste des demandes' }
@@ -78,6 +89,13 @@ export class DemandesAdhesionComponent implements OnInit {
         routerLink: 'steps/informations_ninea',
       }
     ];
+
+    this.matchModeOptions = [
+      { label: 'Intervalle de date', value: 'rangeDate' },
+      { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+      { label: 'Contient', value: FilterMatchMode.CONTAINS },
+  ];
+  
     this.activeItem = this.items[0];
     this.demandesAdhesionService.getDialog().subscribe(data => this.demandeDialog = data)
 
@@ -113,6 +131,49 @@ export class DemandesAdhesionComponent implements OnInit {
     const btn = document.getElementById("oui");
     targetDiv.style.display = "flex";
 
+  }
+
+  //filtre par intervalle de date
+  public calenderFilter() {
+    
+     this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
+      //Afficher toute les lignes du tableau au démarrage
+      if(this.rangeDates== undefined){
+        return true;
+      }
+      value=new Date(value).toDateString()
+      this.rangeDates[0]=new Date(this.rangeDates[0]).toDateString()
+     
+
+      if( this.rangeDates[1] !== null ){
+        this.rangeDates[1]=new Date(this.rangeDates[1]).toDateString()
+      }
+      console.log("-1")
+      if (this.rangeDates[0] === value && this.rangeDates[1] === null) {
+        console.log(value)
+        console.log(1)
+        return true;
+    }
+
+    if (this.rangeDates[0] === value || this.rangeDates[1] === value) {
+      console.log(2)
+        return true;
+    }
+
+    if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+      this.filterService.filters.before(value,this.rangeDates[1]) && this.filterService.filters.after(value,this.rangeDates[0])) {
+        console.log(3)
+        return true;
+    }
+
+    console.log(5)
+    return false;
+})
+  }
+
+  clearRange(table){
+    this.rangeDates=undefined;
+    table.filter()
   }
 
 }
