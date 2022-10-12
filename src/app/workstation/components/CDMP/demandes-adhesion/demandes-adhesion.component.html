@@ -10,24 +10,40 @@
                     <h3 class="titleTab">Demandes d'adhésion</h3>
                 </div>
             </div>
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [rows]="10"
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="ninea" placeholder="NINEA"></p-columnFilter>
+                            <p-columnFilter type="text" field="ninea" placeholder="NINEA" [matchModeOptions]="matchModeOptions" [matchMode]="'contains'" ></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="rccm" placeholder="RCCM"></p-columnFilter>
+                            <p-columnFilter type="text" field="rccm" placeholder="RCCM" [matchModeOptions]="matchModeOptions" [matchMode]="'contains'"  ></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="date_soumission" placeholder="Date demande"></p-columnFilter>
+                            <p-columnFilter type="date" field="date_soumission" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" placeholder="Date demande" selectionMode="range" style="display: none;"></p-columnFilter>
+                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date demande"></p-calendar>
                         </th>
                         <th>
-                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
+                            <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                        <ng-template let-option pTemplate="item">
+                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th>
+                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter()" ></button>
+                        </th>
+                        <th *ngIf="rangeDates!=undefined">
+                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
                         </th>
                     </tr>
+                    
                     
                     <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
@@ -36,7 +52,7 @@
                         <th pSortableColumn="rccm" style="color: #203359;">RCCM <p-sortIcon
                                 field="rccm"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="date_soumission" style="color: #203359;">Date demande<p-sortIcon field="date_soumission">
+                        <th pSortableColumn="date_soumission"  style="color: #203359;">Date demande<p-sortIcon field="date_soumission">
                             </p-sortIcon>
                         </th>
                         <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
@@ -44,6 +60,7 @@
                         </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
+                    
                     
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
