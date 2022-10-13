@@ -68,7 +68,7 @@ export class ConventionCessionPMEComponent implements OnInit {
    
     this.pmeService.getConventions().subscribe(data => {
       this.documents = data
-      console.log(data)
+      console.log( JSON.stringify(data))
     });
     
 
