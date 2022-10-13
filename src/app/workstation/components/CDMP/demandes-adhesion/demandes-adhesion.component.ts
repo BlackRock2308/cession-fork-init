@@ -58,7 +58,7 @@ export class DemandesAdhesionComponent implements OnInit {
     //this.productService.getProducts().then(data => this.products = data);
     this.adhesionDemandesService.getAdhesionDemandes().subscribe(data => {
       this.demandes = data
-      console.log(this.demandes[0].date_soumission)
+      console.log(this.demandes)
       this.demandes.forEach(element =>element.date_soumission=new Date(element.date_soumission))
       console.log(this.demandes[0].date_soumission)
     });
@@ -141,35 +141,36 @@ export class DemandesAdhesionComponent implements OnInit {
       if(this.rangeDates== undefined){
         return true;
       }
-      value=new Date(value).toDateString()
-      this.rangeDates[0]=new Date(this.rangeDates[0]).toDateString()
-     
 
+    //redéfinir les dates pour comparer sans prendre en compte l'heure
+     //on donne toutes les date l'heure 00:00:00
+      value=new Date((new Date(value)).toDateString())
+      this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
       if( this.rangeDates[1] !== null ){
-        this.rangeDates[1]=new Date(this.rangeDates[1]).toDateString()
+        this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
       }
-      console.log("-1")
-      if (this.rangeDates[0] === value && this.rangeDates[1] === null) {
+
+      if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
         console.log(value)
         console.log(1)
         return true;
     }
-
-    if (this.rangeDates[0] === value || this.rangeDates[1] === value) {
+   
+    if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
       console.log(2)
         return true;
     }
-
+   
     if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
-      this.filterService.filters.before(value,this.rangeDates[1]) && this.filterService.filters.after(value,this.rangeDates[0])) {
+      this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
         console.log(3)
         return true;
     }
-
-    console.log(5)
+   
+    console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
     return false;
-})
-  }
+   })
+   }
 
   clearRange(table){
     this.rangeDates=undefined;

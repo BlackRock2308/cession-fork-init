@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { FilterMatchMode, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
@@ -49,6 +49,9 @@ export class PaiementsComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
+
+  matchModeOptions: SelectItem[];
+  statuts:any[];
   constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,
     private messageService:MessageService, private router: Router, private breadcrumbService: BreadcrumbService) {
     this.breadcrumbService.setItems([
@@ -73,6 +76,17 @@ export class PaiementsComponent implements OnInit {
         { field: 'statut', header: 'Statut' },
         { field: 'decote', header: 'Décote' },
       ];
+
+      this.matchModeOptions = [
+        { label: 'Intervalle de date', value: 'rangeDate' },
+        { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+        { label: 'Contient', value: FilterMatchMode.CONTAINS },
+    ];
+    this.statuts = [
+        {label: 'En attente de paiement', value: 'en-attente-de-paiement'},
+        {label: 'PME partiellement payée', value: 'pme-partiellement-payée'},
+        {label: 'PME totalement payée', value: 'pme-totalement-payée'}
+    ]
   
   }
 

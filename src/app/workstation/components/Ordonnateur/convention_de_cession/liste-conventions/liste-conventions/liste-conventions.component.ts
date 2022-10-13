@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { FilterMatchMode, MenuItem, SelectItem } from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
 import { Convention } from 'src/app/workstation/model/convention';
@@ -20,6 +20,9 @@ export class ListeConventionsComponent implements OnInit {
   cols: any[];
   demande: { id?: number; pme?: PME; referenceBE?: string; raisonSocial?: string; ninea?: string; convention?: Convention; statut?: string; dateDemande?: Date; BE?:BonEngagement; numeroDemande?: number; };
 
+  
+  matchModeOptions: SelectItem[];
+  statuts:any[];
   constructor(
     private demandesCessionService:DemandesCessionService,
     private router:Router,
@@ -42,6 +45,18 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       {field: 'raisonSociale', header: 'Raison Sociale'},
       {field: 'refBE', header: 'Reférence du BE'}
   ];
+
+  this.matchModeOptions = [
+    { label: 'Intervalle de date', value: 'rangeDate' },
+    { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+    { label: 'Contient', value: FilterMatchMode.CONTAINS },
+];
+this.statuts = [
+    {label: 'Convention Enregistrée', value: 'convention-enregistrée'},
+    {label: 'Convention Rejetée', value: 'convention-rejetée'},
+    {label: 'Substitution Effectuée', value: 'substitution-effectuée'},
+    {label: 'Convention Acceptée', value: 'convention-acceptée'}
+]
   }
 
   editerDemandeCession(demande: DemandeCession) {

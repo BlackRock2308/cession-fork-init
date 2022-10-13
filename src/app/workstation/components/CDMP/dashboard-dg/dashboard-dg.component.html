@@ -111,14 +111,30 @@
                     <p-columnFilter type="text" field="montant_total" placeholder="Montant total"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="date_marche" placeholder="Date de marché"></p-columnFilter>
+                    <p-columnFilter type="date"  field="date_marche" placeholder="Date de marché" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
+                    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de marché"></p-calendar>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="statut_dg" placeholder="Statut"></p-columnFilter>
+                    <p-columnFilter field="statut_dg" matchMode="equals" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                <ng-template let-option pTemplate="item">
+                                    <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
                 </th>
                 <th *ngIf="profil === 'DG'">
                     <p-columnFilter type="text" field="decote" placeholder="Décote"></p-columnFilter>
                 </th>
+                <th>
+                    <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter()" ></button>
+                </th>
+                <th *ngIf="rangeDates!=undefined">
+                    <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
+                </th>
+               
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-demande>

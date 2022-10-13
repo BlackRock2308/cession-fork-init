@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, MessageService } from 'primeng/api';
+import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
@@ -49,9 +49,13 @@ export class ConventionCessionComponent implements OnInit {
   profil : string;
   home: MenuItem;
   
+  matchModeOptions: SelectItem[];
+  statuts:any[];
   constructor(
     private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private filterService:FilterService
+
     ) { 
       this.breadcrumbService.setItems([
         { label: 'Convention de cession' },
@@ -77,7 +81,20 @@ export class ConventionCessionComponent implements OnInit {
       // ];
   
       // this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };     
-  }
+ 
+      this.matchModeOptions = [
+        { label: 'Intervalle de date', value: 'rangeDate' },
+        { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+        { label: 'Contient', value: FilterMatchMode.CONTAINS },
+    ];
+    this.statuts = [
+        {label: 'Convention Enregistrée', value: 'convention-enregistrée'},
+        {label: 'Convention Rejetée', value: 'convention-rejetée'},
+        {label: 'Convention Signée par le PME', value: 'convention-signée-par-la-pme'},
+        {label: 'Convention Signée par le DG', value: 'convention-signée-par-le-dg'},
+        {label: 'Convention Générée', value: 'convention-générée'}
+    ]
+    }
 
 hideDialog() {
     this.demandeDialog = false;
@@ -196,4 +213,6 @@ EditConvention(convention: Convention) {
     baseZIndex: 50
   });
 }
+
+
 }
