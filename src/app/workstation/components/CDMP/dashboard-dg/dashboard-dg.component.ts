@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService, SelectItem } from 'primeng/api';
+import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
@@ -74,9 +74,14 @@ export class DashboardDGComponent implements OnInit {
 
     selectedYear: any;
 
+    rangeDates:any[];
+    matchModeOptions: SelectItem[];
+    statuts:any[];
+
     constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, 
         public dialogService: DialogService, 
-        private messageService: MessageService, private router: Router,private breadcrumbService: BreadcrumbService
+        private messageService: MessageService, private router: Router,private breadcrumbService: BreadcrumbService,    
+        private filterService:FilterService
         ) { 
             this.breadcrumbService.setItems([
                 { label: 'Tableau de bord' },
@@ -95,6 +100,7 @@ export class DashboardDGComponent implements OnInit {
 
         this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
             this.demandes = data
+            console.log(this.demandes)
         });
 
         this.cols = [
@@ -108,6 +114,20 @@ export class DashboardDGComponent implements OnInit {
             { field: 'date_cession', header: 'Date cession' },
             { field: 'solde_PME', header: 'Solde de la PME' }
         ];
+
+        //filtre par range date
+        this.calenderFilter()
+
+
+        this.matchModeOptions = [
+            { label: 'Intervalle de date', value: 'rangeDate' },
+            { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+            { label: 'Contient', value: FilterMatchMode.CONTAINS },
+        ];
+        this.statuts = [
+            {label: 'Acceptée', value: 'Acceptée'},
+            {label: 'Refusée', value: 'Refusée'}
+        ]
         this.dropdownYears = [
             {label: '2021', value: 2021},
             {label: '2020', value: 2020},
@@ -677,4 +697,50 @@ export class DashboardDGComponent implements OnInit {
             }
         };
     }
+
+
+      //filtre par intervalle de date
+  public calenderFilter() {
+    
+    this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
+     //Afficher toute les lignes du tableau au démarrage
+     if(this.rangeDates== undefined){
+       return true;
+     }
+     //redéfinir les dates pour comparer sans prendre en compte l'heure
+     //on donne toutes les date l'heure 00:00:00
+     const d=value.split("/")
+     value=new Date((new Date(d[2],d[1]-1,d[0])).toDateString())
+     this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
+     if( this.rangeDates[1] !== null ){
+       this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
+     }
+
+     if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
+        console.log(value)
+        console.log(1)
+        return true;
+    }
+   
+    if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
+      console.log(2)
+        return true;
+    }
+   
+    if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+      this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
+        console.log(3)
+        return true;
+    }
+   
+    console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
+    return false;
+   })
+   }
+
+ //effacer le filtre par date
+ clearRange(table){
+   this.rangeDates=undefined;
+   table.filter()
+ }
 }

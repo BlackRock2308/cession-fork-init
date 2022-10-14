@@ -29,15 +29,27 @@
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="date_soumission" placeholder="Date de demande"></p-columnFilter>
+                            <p-columnFilter type="date"  field="date_soumission" placeholder="Date de demande" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
+                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="statut" placeholder="Statut"></p-columnFilter>
+                            <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                        <ng-template let-option pTemplate="item">
+                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
                         </th>
                         <th>
                             <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
                                 style="background-color:#203359;" label="Rechercher"
                                 (click)="dt.filter(refBE,datesoumission,statut)"></button>
+                        </th>
+                        <th *ngIf="rangeDates!=undefined">
+                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
                         </th>
                     </tr>
                     <tr>
@@ -86,7 +98,7 @@
                                     class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
-                                <button *ngIf="demande.statut=='Complément-Requis'" pButton pRipple icon="pi pi-pencil"
+                                <button *ngIf="demande.statut=='Complément-requis'" pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded simpleButton" pTooltip="Completer le dossier"
                                     [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)"></button>
                             </div>

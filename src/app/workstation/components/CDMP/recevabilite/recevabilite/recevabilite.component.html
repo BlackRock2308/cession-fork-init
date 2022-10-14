@@ -24,10 +24,14 @@
                             <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="dateDemande" placeholder="Date demande"></p-columnFilter>
+                            <p-columnFilter type="date"  field="dateDemande" placeholder="Date de demande" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
+                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
                         </th>
                         <th>
-                            <button pTooltip="Rechercher"  pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton" label="Rechercher" (click)="dt.filter(ninea,rccm,datesoumission)"></button>
+                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter()" ></button>
+                        </th>
+                        <th *ngIf="rangeDates!=undefined">
+                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
                         </th>
                     </tr>
                     <tr>

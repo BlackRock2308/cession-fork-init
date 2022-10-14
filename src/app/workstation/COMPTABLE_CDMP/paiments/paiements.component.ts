@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { FilterMatchMode, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Documents } from '../../model/document';
@@ -47,6 +47,11 @@ export class PaimentsComponent implements OnInit {
 
   home: MenuItem;
 
+  ;
+
+  matchModeOptions: SelectItem[];
+  statuts:any[];
+
   constructor(private documentService: DocumentService,
      private paiementsService: PaiementsService,
       public dialogService: DialogService,
@@ -76,6 +81,17 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       { field: 'montantReçu', header: 'Montant Reçu' },
       { field: 'statut', header: 'Statut' },
     ];
+
+    this.matchModeOptions = [
+      { label: 'Intervalle de date', value: 'rangeDate' },
+      { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+      { label: 'Contient', value: FilterMatchMode.CONTAINS },
+  ];
+  this.statuts = [
+      {label: 'En attente de paiement', value: 'en-attente-de-paiement'},
+      {label: 'PME partiellement payée', value: 'pme-partiellement-payée'},
+      {label: 'PME totalement payée', value: 'pme-totalement-payée'}
+  ]
   }
 
   visualiserPaiementListCDMP(paiement: Paiements) {
