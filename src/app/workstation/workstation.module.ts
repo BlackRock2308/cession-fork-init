@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { WorkstationRoutingModule } from './workstation-routing.module';
-import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
 import { AdhesionComponent } from './components/PME/adhesion/adhesion.component';
@@ -48,7 +47,6 @@ import { CodeComponent } from './components/profil/code/code.component';
 
 @NgModule({
   declarations: [
-    MenuCdmpComponent,
     NouvelleDemandeComponent,
     DemandesAdhesionComponent,
     DemandeAdhesionComponent,

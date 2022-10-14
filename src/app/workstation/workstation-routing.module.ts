@@ -7,7 +7,6 @@ import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-d
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { InformationsNineaComponent } from './components/CDMP/informations-ninea/informations-ninea.component';
-import { MenuCdmpComponent } from './components/CDMP/menu-cdmp/menu-cdmp.component';
 import { RecevabiliteComponent } from './components/CDMP/recevabilite/recevabilite/recevabilite.component';
 import { TacheAnalyseComponent } from './components/CDMP/tache-analyse/tache-analyse.component';
 import { VerifierDemandeCessionComponent } from './components/CDMP/verifierDemandeCession/verifier-demande-cession/verifier-demande-cession.component';
@@ -27,18 +26,13 @@ import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/l
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
 
-
 const routes: Routes = [
-
- 
 
   //CDMP
   {path: 'cdmp/analyse_risque', component: AnalyseRisqueComponent},
   //Liste des demandes de toutes les PME
   {path: 'cdmp/demandes_en_cours', loadChildren: () => import('./components/CDMP/demandes-adhesion/demandes-adhesion.module').then(m => m.DemandesAdhesionModule)},
   //{path: 'cdmp/demandes_en_cours', component: DemandesAdhesionComponent},
-   //Page d'accueil de la CDMP
-  {path: 'cdmp/accueil', component: MenuCdmpComponent},
 
   {path:'cdmp/analyser' , component:TacheAnalyseComponent},
   {path: 'cdmp/visualiser-demandes', component: VisualiserDemandesComponent},
