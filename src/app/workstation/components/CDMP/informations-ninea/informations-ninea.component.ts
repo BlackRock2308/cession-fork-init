@@ -90,12 +90,14 @@ onSubmit(){
         color:"#203359",
         confirmButtonColor:"#99CC33",
         confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-        allowOutsideClick:false,
+        allowOutsideClick:false
         
-      }).then(() => {
-       
-          this.router.navigate(['workstation/cdmp/recevabilite'])
+        
       })
+    
+      setTimeout(() => {
+        location.reload()
+      },1500);
     
   }
 

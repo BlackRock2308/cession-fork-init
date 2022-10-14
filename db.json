@@ -1,8 +1,18 @@
 {
   "adhesion_demandes": [
     {
-      "ninea": 589986549,
-      "rccm": "SN-DKR 1018 T 47456",
+      "ninea": 567878787,
+      "rccm": "SN DKR 748 Y 87347",
+      "statut": "Soumise",
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-14T10:40:13.922Z",
+      "id": 1
+    },
+    {
+      "ninea": 129884670,
+      "rccm": "SN-DKR 3018 T 45667",
       "statut": "Soumise",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
@@ -11,23 +21,34 @@
       "id": 2
     },
     {
-      "ninea": 129884670,
-      "rccm": "SN-DKR 3018 T 45667",
-      "statut": "Rejetée",
+      "ninea": 567878787,
+      "rccm": "SN DKR 748 Y 87347",
+      "statut": "Soumise",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2021-12-07T09:45:07.174Z",
+      "date_soumission": "2022-10-14T10:40:13.922Z",
       "id": 3
     },
     {
       "ninea": 567878787,
       "rccm": "SN DKR 748 Y 87347",
+      "statut": "Rejetée",
       "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
       "date_soumission": "2022-10-14T10:40:13.922Z",
       "id": 4
+    },
+    {
+      "ninea": 567878787,
+      "rccm": "SN DKR 748 Y 87347",
+      "statut": "Soumise",
+      "email": "fmdiagne@modelsis.sn",
+      "nineaFile": {},
+      "rccmFile": {},
+      "date_soumission": "2022-10-14T10:40:13.922Z",
+      "id": 5
     }
   ],
   "pmes": [
@@ -62,13 +83,32 @@
     },
     {
       "id": 2,
-      "ninea": "945822015",
-      "rccm": "021588656",
-      "email": "ndiayeoumarsahaba@ept.sn",
+      "ninea": 589986549,
+      "rccm": "SN-DKR 1018 T 47456",
+      "email": "fmdiagne@modelsis.sn",
       "nineaFile": {},
       "rccmFile": {},
-      "date_soumission": "2022-09-28T10:10:13.678Z",
-      "nineaValide": false
+      "date_soumission": "2021-12-07T09:45:07.174Z",
+      "nineaValide": true,
+      "denomination": "",
+      "formuleJuridique": "",
+      "centreFiscal": "",
+      "adresse": "",
+      "enseigne": "",
+      "localite": "",
+      "controle": "",
+      "activite_principal": "",
+      "registre": "",
+      "representantLegal": "",
+      "date_creation": "",
+      "effectif": "",
+      "etablissements": "",
+      "chiffre": "",
+      "cniRepresentant": "",
+      "dateImmatriculation": "",
+      "telephone": "",
+      "statut": "Soumise",
+      "pmeActive": false
     },
     {
       "id": 3,
@@ -1672,6 +1712,50 @@
   ],
   "conventions": [
     {
+      "id": 4,
+      "ninea": "098678567",
+      "statut": "Convention-enregistrée",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "referenceBE": "15-294067",
+      "dateDemande": "15/07/2021",
+      "numeroDemande": "2022-0003",
+      "observation": "Contrat non conforme",
+      "nomMarche": "Fournitures de lots de materiels"
+    },
+    {
+      "id": 5,
+      "ninea": "987567567",
+      "statut": "Convention-corrigée",
+      "raisonSocial": "IMME",
+      "referenceBE": "20-294072",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0008",
+      "observation": "Document manquant",
+      "nomMarche": "Fournitures de lots de materiels"
+    },
+    {
+      "id": 6,
+      "ninea": "098678567",
+      "statut": "Convention-enregistrée",
+      "raisonSocial": "CAMAIEU INTERNATIONAL",
+      "referenceBE": "15-294067",
+      "dateDemande": "15/07/2021",
+      "numeroDemande": "2022-0003",
+      "observation": "Contrat non conforme",
+      "nomMarche": "Fournitures de lots de materiels"
+    },
+    {
+      "id": 7,
+      "ninea": "987567567",
+      "statut": "Convention-corrigée",
+      "raisonSocial": "IMME",
+      "referenceBE": "20-294072",
+      "dateDemande": "21/03/2021",
+      "numeroDemande": "2022-0008",
+      "observation": "Document manquant",
+      "nomMarche": "Fournitures de lots de materiels"
+    },
+    {
       "id": 1,
       "ninea": "439876535",
       "statut": "Convention-acceptée",
@@ -1709,7 +1793,7 @@
     {
       "id": 8,
       "ninea": "987567567",
-      "statut": "Substitution-effectuée",
+      "statut": "Convention-corrigée",
       "raisonSocial": "IMME",
       "referenceBE": "20-294072",
       "dateDemande": "21/03/2021",

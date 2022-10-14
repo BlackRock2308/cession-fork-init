@@ -47,8 +47,7 @@ export class VerificationComponent implements OnInit {
         nineaValide:this.demande.nineaValide,
         //pmeActive:this.demande.pmeActive
       }
-      this.verifierDemandeAdhesion(body);
-
+      
        //fermer la boite de dialogue
       this.demandeAdhesionService.setDialog(false)
 
@@ -65,12 +64,20 @@ export class VerificationComponent implements OnInit {
       
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['workstation/cdmp/recevabilite'])
-        Swal.fire(
-            'Rejetée!',
-            'La demande a bien été rejetée.',
-            'success'
-          )
+        this.verifierDemandeAdhesion(body);
+        Swal.fire({
+          title:'Rejetée!',
+          text:'La demande a bien été rejetée.',
+          icon:'success',
+          showConfirmButton: false,
+          timer: 1500
+      })
+        setTimeout(() => {
+          location.reload()
+        },1500);
+       
+          
+    
       }})
 
     }
