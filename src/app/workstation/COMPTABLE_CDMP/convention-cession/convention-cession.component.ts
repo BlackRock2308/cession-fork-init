@@ -184,7 +184,7 @@ ChargerConvention(convention: Convention) {
     data: {
       convention: convention
     },
-    header: "Charger le document de reference",
+    header: "Chargement de la convention enregistrée",
     width: '40%',
     height: 'calc(50% - 100px)',
     baseZIndex: 50
