@@ -29,7 +29,7 @@
                                             <span class="p-float-label">
                                                 <input *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text"
                                                     pInputText pTooltip="Charger le document de référence du NINEA">
-                                                <label for="NINEAfile">Charger le document du NINEA</label>
+                                                <label for="NINEAfile"></label>
                                             </span>
 
                                             <ng-template #elseNINEABlock id="NINEAfile" type="text" pInputText
@@ -71,7 +71,7 @@
                                         <span class="p-float-label">
                                             <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile" type="text"
                                             pInputText pTooltip="Charger le document de référence du RCCM">
-                                            <label for="RCCMfile">Charger le document du RCCM</label>
+                                            <label for="RCCMfile"></label>
                                         </span>
                                         
                                         <ng-template #elseRCCMBlock id="RCCMfile" type="text" pInputText pTooltip="Upload file">
