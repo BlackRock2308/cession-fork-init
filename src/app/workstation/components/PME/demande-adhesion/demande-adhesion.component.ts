@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AppComponent } from 'src/app/app.component';
-import { ConfirmationService, MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, FilterMatchMode, FilterService, MenuItem, MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -106,6 +106,10 @@ export class DemandeAdhesionComponent implements OnInit {
     //basic info as reference BE ninea and date
     basicInfo: DemandeNantissemantInfo;
 
+    rangeDates:any[];
+    matchModeOptions: SelectItem[];
+    statuts:any[];
+
     constructor(
         private messageService: MessageService,
         private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,
@@ -115,6 +119,8 @@ export class DemandeAdhesionComponent implements OnInit {
         public renderer: Renderer2, private menuService: MenuService,
         private primengConfig: PrimeNGConfig,
         public app: AppComponent,
+        private filterService:FilterService
+
 
     ) {
         this.breadcrumbService.setItems([
@@ -131,6 +137,23 @@ export class DemandeAdhesionComponent implements OnInit {
             { name: 'Autres', code: 'IST' }
 
         ];
+
+        //filtre par range date
+        this.calenderFilter()
+
+
+        this.matchModeOptions = [
+            { label: 'Intervalle de date', value: 'rangeDate' },
+            { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+            { label: 'Contient', value: FilterMatchMode.CONTAINS },
+        ];
+        this.statuts = [
+            {label: 'Recevable', value: 'recevable'},
+            {label: 'Complétée', value: 'completée'},
+            {label: 'Risquée', value: 'risquée'},
+            {label: 'Non Risquée', value: 'non-risquée'},
+            {label: 'Complément Requis', value: 'complément-requis'}
+        ]
 
     }
     ngOnInit(): void {
@@ -426,5 +449,50 @@ export class DemandeAdhesionComponent implements OnInit {
         this.demandesAdhesionService.setDemandenantissementObs(demande);
         console.log(this.demandesAdhesionService.getDemandenantissementObs())
     }
+
+          //filtre par intervalle de date
+  public calenderFilter() {
+    
+    this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
+     //Afficher toute les lignes du tableau au démarrage
+     if(this.rangeDates== undefined){
+       return true;
+     }
+     //redéfinir les dates pour comparer sans prendre en compte l'heure
+     //on donne toutes les date l'heure 00:00:00
+     const d=value.split("/")
+     value=new Date((new Date(d[2],d[1]-1,d[0])).toDateString())
+     this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
+     if( this.rangeDates[1] !== null ){
+       this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
+     }
+
+     if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
+        console.log(value)
+        console.log(1)
+        return true;
+    }
+   
+    if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
+      console.log(2)
+        return true;
+    }
+   
+    if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+      this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
+        console.log(3)
+        return true;
+    }
+   
+    console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
+    return false;
+   })
+   }
+
+ //effacer le filtre par date
+ clearRange(table){
+   this.rangeDates=undefined;
+   table.filter()
+ }
 }
 
