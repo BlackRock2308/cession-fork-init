@@ -92,9 +92,6 @@ onSubmit(){
         confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
         allowOutsideClick:false,
         
-      }).then(() => {
-       
-          this.router.navigate(['workstation/cdmp/recevabilite'])
       })
     
   }
