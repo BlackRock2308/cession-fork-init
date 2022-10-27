@@ -182,7 +182,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       
     
     Swal.fire({
-        position: 'top-end',
+        position: 'center',
         title: 'Etes-vous sur de vouloir rejeter la demande?',
         icon: 'warning',
         showCancelButton: true,
@@ -207,11 +207,11 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       
     
     Swal.fire({
-    position: 'top-end',
+    position: 'center',
       icon: 'success',
       showConfirmButton: false,
       timer: 1500,
-      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande de cession est recevable.</p><br><p style='font-size: large;font-weight: bold;'></p>",
       color:"#203359",
       confirmButtonColor:"#99CC33",
       confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',

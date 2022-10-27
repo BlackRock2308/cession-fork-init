@@ -2,6 +2,12 @@
     <div style="display: block;">
         <div class="modal-body">
             <div class="card p-fluid">
+                <div class="field grid row">
+                    <label htmlFor="modePaiement" class="col-12 md:col-4">Mode Paiement</label>
+                    <div class="col-12 md:col-8">
+                        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiment"></p-dropdown>
+                    </div>
+                </div>
                 <div class="field grid">
                     <label htmlFor="referencePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Référence de
                         Paiement</label>
