@@ -169,7 +169,7 @@ export class NouvelleDemandeComponent implements OnInit {
 
   onSubmitA(){
   Swal.fire({
-    position: 'top-end',
+    position: 'center',
       icon: 'success',
       showConfirmButton: false,
       timer: 1500,

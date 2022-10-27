@@ -52,7 +52,7 @@ export class VerificationComponent implements OnInit {
       this.demandeAdhesionService.setDialog(false)
 
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         title: 'Etes-vous sur de vouloir rejeter la demande?',
         icon: 'warning',
         showCancelButton: true,

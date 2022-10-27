@@ -184,7 +184,7 @@ export class TacheAnalyseComponent implements OnInit {
       
     
         Swal.fire({
-        position: 'top-end',
+        position: 'center',
           icon: 'success',
           showConfirmButton: false,
           timer: 1500,
@@ -208,7 +208,7 @@ export class TacheAnalyseComponent implements OnInit {
       
     
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             title: 'Etes-vous sur de vouloir rejeter la demande?',
             icon: 'warning',
             showCancelButton: true,
