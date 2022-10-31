@@ -336,10 +336,11 @@
         </div>
         <br>
         <div class="float-end">
-            <button  [disabled]="!infosBEForm.valid" *ngIf="identifie" pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Valider"
-                (click)="onSubmitA()" ></button>
             <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter la demande"
                 (click)="onSubmitRejet()"></button>
+            <button  [disabled]="!infosBEForm.valid" *ngIf="identifie" pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Valider"
+                (click)="onSubmitA()" ></button>
+            
         </div>
 
     </div>
