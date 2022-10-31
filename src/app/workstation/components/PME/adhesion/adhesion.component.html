@@ -100,13 +100,14 @@
                     </div>
                 </div>
                 <div class="col-12 justify-content-end pr-0 d-flex">
-                    <div class="col-3">
-                        <button type="submit" [disabled]="!form.valid" pButton pRipple
-                            label="Soumettre" class=" successButton" ></button>
-                    </div>
+                    
                     <div class="col-3">
                         <button pButton pRipple
                             label="Annuler" class="dangerButton" routerLink="../../login" ></button>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" [disabled]="!form.valid" pButton pRipple
+                            label="Soumettre" class=" successButton" ></button>
                     </div>
                 </div>
             </form>

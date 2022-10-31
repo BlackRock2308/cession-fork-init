@@ -149,11 +149,12 @@
         </div>
 
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
+            <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
+            label="Soumettre" icon="pi pi-check" class="p-button-raised successButton " routerLink="../"
+            (click)="onSubmit()"></button>
             <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
                 class="p-button-raised dangerButton" routerLink="../"></button>
-            <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
-                label="Soumettre" icon="pi pi-check" class="p-button-raised successButton " routerLink="../"
-                (click)="onSubmit()"></button>
+           
 
         </div>
     </form>

@@ -3,17 +3,21 @@
 
 
 .cdmp{
-    font-size: 26px;
+    font-size: 40px;
     color: aliceblue;
-    text-align: center;
+    text-align: left;
+    position: relative;
+    left: 110px;
+    top: -30px;
+
     font-family: Helvetica;
+
 }
 
 .connexion{
-    font-size: 26px;
+    font-size: 24px;
     margin-left: 35%;
     color: aliceblue;
-    font-stretch: condensed;
     text-align: center;
     font-family: Helvetica;
 }
@@ -23,6 +27,8 @@
     color: aliceblue;
     text-align: center;
     font-family: Helvetica;
+    top: -28px;
+    position: relative;
     margin-left: 8%;
 }
 
