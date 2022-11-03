@@ -5,6 +5,7 @@ import { AppMainComponent } from '../main/app.main.component';
 import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProfilComponent } from '../../../workstation/components/profil/profil.component';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -60,13 +61,15 @@ export class NavbarComponent implements OnInit {
   profil: string;
 
   constructor(public renderer: Renderer2, public dialogService: DialogService,
-    public appMain: AppMainComponent, public router: Router) { }
+    public appMain: AppMainComponent, public router: Router,
+    private tokenStorage:TokenStorageService) { }
   ngOnInit() {
     this.profil = localStorage.getItem('profil')
 
   }
 
   loggout() {
+    this.tokenStorage.signOut()
     this.router.navigate(['/login']);
     localStorage.removeItem('profil');
   }

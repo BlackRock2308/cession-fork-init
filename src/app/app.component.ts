@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PrimeNGConfig} from 'primeng/api';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { TokenStorageService } from './auth/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -25,10 +27,24 @@ export class AppComponent implements OnInit{
 
     inputStyle = 'outlined';
     pmes: any[] = [];
+    isAuthenticated:boolean=false;
 
-    constructor(private primengConfig: PrimeNGConfig) {}
+
+    constructor(private primengConfig: PrimeNGConfig,
+        private tokenStorage:TokenStorageService,
+        private router:Router) {}
 
     ngOnInit() {
         this.primengConfig.ripple = true;
+
+        this.isAuthenticated=!!this.tokenStorage.getAuthenticate();
+
+        console.log(!this.isAuthenticated)
+
+        if(!this.isAuthenticated){
+            console.log("nan")
+
+            this.router.navigate(['login'])
+        }
     }
 }
