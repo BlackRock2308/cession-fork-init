@@ -12,85 +12,86 @@ import Swal from 'sweetalert2';
 })
 export class VerificationComponent implements OnInit {
 
-  existant:boolean=false;
+  existant: boolean = false;
 
-
-  active:boolean=false;
+  active: boolean = false;
 
   demande: any;
   id: any;
 
-  constructor(private router: Router,private demandeAdhesionService:DemandesAdhesionService,
-    private adhesionDemandeService:AdhesionService) { }
+  constructor(private router: Router, private demandeAdhesionService: DemandesAdhesionService,
+    private adhesionDemandeService: AdhesionService, private pmeService: PmeService) { }
 
   ngOnInit(): void {
-   this.demandeAdhesionService.getDemandeObs().subscribe(data=>{
-    this.demande=data
-    console.log('ttttttt'+ JSON.stringify(this.demande))
-    this.id=data.id})
+    this.demandeAdhesionService.getDemandeObs().subscribe(data => {
+      this.demande = data
+      console.log('ttttttt' + JSON.stringify(this.demande))
+      this.id = data.id
+    })
+  }
+
+  nextPage() {
+    this.demande.pmeActive = this.active
+    this.demande.nineaValide = this.existant
+    console.log(this.demande)
+    this.demandeAdhesionService.setDemandeObs(this.demande)
+    this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/informations_ninea']);
+  }
+
+
+  onSubmit() {
+    this.demande.nineaValide = this.existant
+    //this.demande.pmeActive=this.active
+
+    let body = {
+      nineaValide: this.demande.nineaValide,
+      //pmeActive:this.demande.pmeActive
     }
 
-    nextPage() {
-      this.demande.pmeActive=this.active
-      this.demande.nineaValide=this.existant
-      console.log(this.demande)
-      this.demandeAdhesionService.setDemandeObs(this.demande)
-      this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/informations_ninea']);
-      }
-  
-      
-  onSubmit(){
-      this.demande.nineaValide=this.existant
-      //this.demande.pmeActive=this.active
+    //fermer la boite de dialogue
+    this.demandeAdhesionService.setDialog(false)
 
-      let body={
-        nineaValide:this.demande.nineaValide,
-        //pmeActive:this.demande.pmeActive
-      }
-      
-       //fermer la boite de dialogue
-      this.demandeAdhesionService.setDialog(false)
-
-      Swal.fire({
-        position: 'center',
-        title: 'Etes-vous sur de vouloir rejeter la demande?',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonColor: '#d33',
-      color:"#203359",
-      confirmButtonColor:"#99CC33",
+    Swal.fire({
+      position: 'center',
+      title: 'Etes-vous sur de vouloir rejeter la demande?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      color: "#203359",
+      confirmButtonColor: "#99CC33",
       confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick:false,
-      
+      allowOutsideClick: false,
+
     }).then((result) => {
       if (result.isConfirmed) {
         this.verifierDemandeAdhesion(body);
         Swal.fire({
-          title:'Rejetée!',
-          text:'La demande a bien été rejetée.',
-          icon:'success',
+          title: 'Rejetée!',
+          text: 'La demande a bien été rejetée.',
+          icon: 'success',
           showConfirmButton: false,
           timer: 1500
-      })
+        })
         setTimeout(() => {
           location.reload()
-        },1500);
-       
-          
-    
-      }})
+        }, 1500);
 
-    }
-  
-  
-  verifierDemandeAdhesion(body:any) {
-    
+
+
+      }
+    })
+
+  }
+
+
+  verifierDemandeAdhesion(body: any) {
+
     /*this.demandeAdhesionService.patchBasicInformation(this.id,body).subscribe(data=>{
       console.log(this.demande,data)
     })*/
     this.adhesionDemandeService.delateAdhesionDemande(this.demande.id).subscribe();
 
-    this.adhesionDemandeService.patchPME(this.demande.id,body).subscribe();
+    this.pmeService.patchPME(this.demande.id, body).subscribe();
 
 
   }

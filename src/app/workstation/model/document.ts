@@ -14,9 +14,9 @@ export interface Documents {
 export interface Document {
 
     id?:number,
-    nom?:String,
-    type?:String,
+    nom?:string,
+    type?:string,
     dateSoumission?: string,
-    file ?:File
+    file ?:any
     
 }

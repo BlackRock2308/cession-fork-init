@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
+import { GenericService } from '../../generic/generic.service';
 import { DemandeAdhesion, DemandeCession, DemandeNantissemantInfo } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DemandesAdhesionService {
-  private baseUrl = 'http://localhost:3000';
+export class DemandesAdhesionService extends GenericService {
+  private demandesADHUrl =ApiSettings.API_CDMP + '/demandeadhesion'; 
 
   private demandeObs: BehaviorSubject<any> = new BehaviorSubject({
     id: 6,
@@ -36,7 +38,8 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   solde_sica : "3.000.000"  
 });
 
-  constructor(private http: HttpClient) { 
+  constructor(public http: HttpClient) { 
+    super(http)
     //garder les infos demandes de cession en variable de session au cas où l'on fait un refresh
     try{
       let storedDemande=localStorage.getItem('storedPaiementCession');
@@ -51,13 +54,13 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 
   
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion`);
+    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion`);
   }
 
   //get l'ensemble des demandes de cession
 
   getDemandesCession(): Observable<DemandeCession[]> {
-    return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
+    return this.http.get<DemandeCession[]>(`${this.demandesADHUrl}/demandes_cession`);
   }
 
   /*//get l'ensemble des demandes d'analyse de risque
@@ -68,12 +71,12 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 
 
   getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
+    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion?id=1`);
   }
 
   //renseigner l'existance du ninea
   patchBasicInformation(id:number,nineaValide:any):Observable<DemandeAdhesion>{
-    return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,nineaValide)
+    return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/demandes_adhesion/${id}`,nineaValide)
   }
   //recupérer(garder) les informations par rapport à une demande
   setDemandenantissementObs(demande: DemandeNantissemantInfo) {
@@ -97,7 +100,14 @@ getDemandeObs(): Observable<any> {
 
 //mettre à jour les informations de la pme
 patchDemande(id:number,demande:any):Observable<DemandeAdhesion>{
-  return this.http.patch<DemandeAdhesion>(`${this.baseUrl}/demandes_adhesion/${id}`,demande)
+  return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/demandes_adhesion/${id}`,demande)
+}
+
+//Ajout d'une demande d'adhésion
+createDemandeADH(data) {
+
+  let body = JSON.stringify(data);
+  return this.add(this.demandesADHUrl, body);
 }
 
 
