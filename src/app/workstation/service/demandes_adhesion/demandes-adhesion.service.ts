@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { GenericService } from '../../generic/generic.service';
 import { DemandeAdhesion, DemandeCession, DemandeNantissemantInfo } from '../../model/demande';
-import { ApiSettings } from '../../generic/const/apiSettings.const';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +53,7 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
 
   // Retourne la liste des demandes d'adhesion
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion`);
+    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}`);
   }
 
  

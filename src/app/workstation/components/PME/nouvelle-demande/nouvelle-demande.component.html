@@ -37,11 +37,11 @@
                     </div>
                     <p-dropdown [options]="typesDocument" formControlName="typeDocument"
                          optionLabel="nom" optionValue="type" [filter]="true"
-                        filterBy="name" [showClear]="true" pTooltip="Sélectionner un type de fichier"
+                        filterBy="name" [showClear]="true" 
                         placeholder="Sélectionnez un type de document">
                         <ng-template pTemplate="selectedItem">
-                            <div class="country-item country-item-value" *ngIf="typeDocument">
-                                <div>{{nom}</div>
+                            <div class="country-item country-item-value" *ngIf="documentForm.value['typeDocument']">
+                                <div>{{documentForm.value['typeDocument']}}</div>
                             </div>
                         </ng-template>
                         <ng-template let-typeDocument>
@@ -51,13 +51,7 @@
                         </ng-template>
                     </p-dropdown>
                 </div>
-                <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres...'">
-                    <div class="col-12 md:col-12  d-flex justify-content-center ">
-                        <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
-                    </div>
-                    <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
-                        pTooltip="Spécifiez le nom du type de fichier" placeholder="Choisissez un ficher">
-                </div>
+    
                 <div class="field col-3">
                     <div class="col-12 md:col-12  d-flex justify-content-center ">
                         <h4 style="font-weight: bold;color: #203359;">Document</h4>
@@ -67,7 +61,7 @@
                             placeholder="Choisissez un ficher">
 
                         <button type="button" pButton pRipple icon="pi pi-upload"
-                            class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
+                            class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile" [disabled]="!documentForm.value['typeDocument']"
                             (click)="handleClick()"></button>
                     </div>
                     <input formControlName="file" class="hidden" type="file" id="upload-file" name="upload-file"
@@ -77,7 +71,7 @@
             </div>
         </div>
         <div class="card" *ngIf="documents.length !== 0">
-            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+            <p-table #dt [value]="documentPresentation" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [(selection)]="selectedProducts"
@@ -100,7 +94,7 @@
 
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">Type document</span>
-                            {{document.typeDocument}}
+                            {{document.type}}
                         </td>
 
                         <td style="width:30%; min-width:8rem;">
