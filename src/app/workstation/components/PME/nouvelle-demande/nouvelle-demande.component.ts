@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 import { Renderer2 } from '@angular/core';
@@ -14,6 +14,13 @@ import {MessageService} from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { DemandeAdhesion, DemandeCession  } from 'src/app/workstation/model/demande';
+import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
+import { DocumentService } from 'src/app/workstation/service/document/document.service';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -33,9 +40,10 @@ import { Router } from '@angular/router';
 })
 export class NouvelleDemandeComponent implements OnInit {
 
-  value1: any;
-  valueIconLeft: any;
-
+  refBE: any;
+  nomMarche: any;
+  demandeCession :DemandeCession;
+  bonEngagement : BonEngagement;
   selectedFiles: File[] = [];
   selectedFile?: File;
   documentForm: FormGroup;
@@ -100,6 +108,9 @@ export class NouvelleDemandeComponent implements OnInit {
     public renderer: Renderer2,
     public app: AppComponent,
     private pmeService: PmeService,
+    private demandeCessionService : DemandesCessionService,
+    private bonEngagementService : BonEngagementService,
+    private documentService : DocumentService,
     public dialogService: DialogService,
     public messageService: MessageService,
     private breadcrumbService: BreadcrumbService
@@ -114,14 +125,28 @@ export class NouvelleDemandeComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    this.pmeService.getTypesDocument().subscribe(data => {
-      this.typesDocument = data;
-      
-      this.typesDocument.push({ nom: "Autres..." })
 
-      console.log(this.typesDocument)
-    })
+
+  ngOnInit(): void {
+    this.typesDocument=[
+      {
+        "type": "Autre",
+        "nom": "Document du marché"
+      },
+      {
+        "type": "BE",
+        "nom": "Bon engagement"
+      }
+    ]
+
+    
+    // this.pmeService.getTypesDocument().subscribe(data => {
+    //   this.typesDocument = data;
+      
+    //   this.typesDocument.push({ nom: "Autres..." })
+
+    //   console.log(this.typesDocument)
+    // })
     // this.documentService.getDeocuments().subscribe(data => {
     //   this.documentes = data
     // });
@@ -158,7 +183,7 @@ export class NouvelleDemandeComponent implements OnInit {
     }
 
     for (var i = 0; i < this.documents.length; i++) {
-      this.enregistrerDocuments(this.documents[i]);
+      //this.enregistrerDocuments(this.documents[i]);
 
 
     }
@@ -183,19 +208,71 @@ export class NouvelleDemandeComponent implements OnInit {
      
         this.router.navigate(['workstation/pme/demandes_en_cours'])
     })
+
+    console.log(this.bonEngagement);
+    var body={
+    reference:this.refBE,
+    nomMarche:this.nomMarche
+    };
+    this.bonEngagementService.addBE(body).subscribe(
+      (response :any)=>{
+        console.log(response);
+        console.log(this.documentForm.value);
+
+        this.documentService.addDocument(this.documentForm.value).subscribe(
+          (response :any)=>{
+            console.log(response);
+            this.demandeCessionService.addDemandeCession({bonEngagement:{bonEngagementId:response.idBonEngagement}}).subscribe(
+              (response:DemandeCession)=>{
+          
+                console.log(response);
+        
+           },
+           (error:HttpErrorResponse)=>{
+            alert(error.message);
+            }
+          
+        )
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+        }
+    )
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+        }
+  )
+
   }
 
 
   //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerDocuments(document: Document) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-    //fonction à continuer 
-    console.log(this.documents);
-    /*this.adhesionService.postPME(this.pme)
-        .subscribe(() => {
-           })*/
+  // private enregistrerDocuments(document: Document) {
+  //   this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+ 
+  //   this.documentService.addDocument(document);
+  //   console.log(this.documents);
+ 
+
+  // }
+
+  // private enregistrerBE(be: BonEngagement) {
+  //   this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+  //   this.bonEngagementService.addBE(be);
+    
+
+  // }
+
+  
+
+  saveDemandeCession(form:NgForm , BE : Number){
+   // this.bonEngagementService.addBE(form.value).subscribe
+    //  
 
   }
+  
+
   filtertypeDocument(event) {
     const filtered: any[] = [];
     const query = event.query;

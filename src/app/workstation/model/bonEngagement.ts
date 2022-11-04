@@ -1,7 +1,7 @@
 export interface BonEngagement {
     idBonEngagement?:number;
     montantCreance?:number;
-    reference?:number;
+    reference :number;
     naturePrestation?:String;
     natureDepense?:String;
     objetDepense?:String;
@@ -9,4 +9,5 @@ export interface BonEngagement {
     dateBonEngagement?:Date;
     imputation ?: String;
     identificationComptable ?: String;
+    nomMarche?: String;
 }

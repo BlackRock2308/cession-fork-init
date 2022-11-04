@@ -1,13 +1,14 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { DemandeCession } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DemandesCessionService {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = ApiSettings.API_CDMP;
 
   private cessionObs: BehaviorSubject<any> = new BehaviorSubject({
     id: 1,
@@ -40,6 +41,14 @@ export class DemandesCessionService {
   getDemandesCession(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
   }
+
+   //Ajouter une nouvelle demande de cession
+public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
+  
+  return this.http.post<DemandeCession>(`${this.baseUrl}/demandecession`, demandeCession);
+}
+
+
   getDemandesCessionById(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession?id=1`);
   }

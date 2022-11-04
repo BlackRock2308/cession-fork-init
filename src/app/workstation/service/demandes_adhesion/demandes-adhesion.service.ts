@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DemandeAdhesion, DemandeCession, DemandeNantissemantInfo } from '../../model/demande';
-
+import { ApiSettings } from '../../generic/const/apiSettings.const';
 @Injectable({
   providedIn: 'root'
 })
 export class DemandesAdhesionService {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = ApiSettings.API_CDMP;
 
   private demandeObs: BehaviorSubject<any> = new BehaviorSubject({
     id: 6,
@@ -49,9 +49,9 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     }
   }
 
-  
+  // Retourne la liste des demandes d'adhesion
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion`);
+    return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandeadhesion`);
   }
 
   //get l'ensemble des demandes de cession
