@@ -21,11 +21,11 @@
                 <div class="col-sm-2"><img class="img-person" src="../../../assets/layout/images/mail.png "></div>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" id="inputEmail3"
-                        placeholder="                  ......@......sn    ">
+                        placeholder="......@......sn" [(ngModel)]="email">
                 </div>
             </div>
             <div class="form-row-last">
-                <input type="submit" name="register" class="register" [routerLink]="['code_checking']" value="Envoyer">
+                <input type="submit" name="register" class="register" (click)="recupMDP()" value="Envoyer">
             </div>
         </form>
     </div>

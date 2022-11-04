@@ -1,5 +1,6 @@
 import { BonEngagement } from "./bonEngagement";
 import { PME } from "./pme";
+import { Document } from './document';
 
 export interface DemandeAdhesion {
 
@@ -7,15 +8,10 @@ export interface DemandeAdhesion {
     ninea?:string;
     rccm?:string;
     statut?:String;
-    date_soumission?:Date;
-    nomMarche: string;
-    denomination ?:String;
-    interdiction ?: String;
+    dateDemandeAdhesion?:Date;
     numero_demande ?: number;
-    ATD?: String;
-    nantissement ?: String;
-    nineaFile?:File;
-    rccmFile?:File;
+    documents?: Document[];
+    pmeId?: number;
 }
 export interface DemandeCession {
 

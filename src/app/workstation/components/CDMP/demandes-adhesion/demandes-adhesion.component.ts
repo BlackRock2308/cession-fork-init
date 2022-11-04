@@ -59,9 +59,8 @@ export class DemandesAdhesionComponent implements OnInit {
     this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
       this.demandes = data
       console.log(this.demandes)
-      console.log(data)
-    //  this.demandes.forEach(element =>element.date_soumission=new Date(element.date_soumission))
-      //console.log(this.demandes[0].date_soumission)
+      this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
+      console.log(this.demandes[0].dateDemandeAdhesion)
     });
 
     this.cols = [

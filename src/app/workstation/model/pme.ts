@@ -1,7 +1,7 @@
 import { EmailValidator } from "@angular/forms";
 
 export interface PME {
-    id?:number;
+    pmeId?:number;
     ninea?:string;
     rccm?:string;
     email?:string;
@@ -12,7 +12,7 @@ export interface PME {
     formuleJuridique?:string;
     cniRepresentant?:string;
     centrefiscal?:string;
-    dateImmatriculation:Date;
+    dateImmatriculation?:Date;
     adresse?:string;
     telephone?:string;
     nineaValide?:boolean;
