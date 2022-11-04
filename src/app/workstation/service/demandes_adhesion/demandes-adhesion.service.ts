@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { GenericService } from '../../generic/generic.service';
 import { DemandeAdhesion, DemandeCession, DemandeNantissemantInfo } from '../../model/demande';
-
+import { ApiSettings } from '../../generic/const/apiSettings.const';
 @Injectable({
   providedIn: 'root'
 })
@@ -52,10 +52,14 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     }
   }
 
-  
+  // Retourne la liste des demandes d'adhesion
   getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion`);
   }
+
+ 
+
+
 
   //get l'ensemble des demandes de cession
 
@@ -73,6 +77,7 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion?id=1`);
   }
+
 
   //renseigner l'existance du ninea
   patchBasicInformation(id:number,nineaValide:any):Observable<DemandeAdhesion>{
@@ -97,6 +102,9 @@ setDemandeObs(demande: any) {
 getDemandeObs(): Observable<any> {
   return this.demandeObs.asObservable();
 }
+
+
+
 
 //mettre à jour les informations de la pme
 patchDemande(id:number,demande:any):Observable<DemandeAdhesion>{

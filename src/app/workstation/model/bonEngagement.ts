@@ -2,7 +2,7 @@ export interface BonEngagement {
     idBonEngagement?:number;
     nomMarche?: string;
     montantCreance?:number;
-    reference?:number;
+    reference :number;
     naturePrestation?:String;
     natureDepense?:String;
     objetDepense?:String;
