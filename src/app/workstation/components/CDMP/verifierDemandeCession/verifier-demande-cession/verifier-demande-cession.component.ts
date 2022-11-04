@@ -21,7 +21,7 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
   providers: [DialogService]
 })
 export class VerifierDemandeCessionComponent implements OnInit {
-  demandeCession: any;
+  demandeCession: DemandeCession;
   documents: Documents[];
   cols: any[];
   pas_identifie: boolean;
@@ -72,7 +72,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
 
     this.infosBEForm = this.formBuilder.group({
       naturePrestation: ['',Validators.required],
-      referenceBE: [this.demandeCession.referenceBE,Validators.required],
+      referenceBE: [this.demandeCession.bonEngagement.reference,Validators.required],
       imputation: ['',Validators.required],
       modeReglement: ['',Validators.required],
       beneficiaire: ['',Validators.required],
@@ -115,11 +115,11 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       observation: this.observation,
       statut:"rejeté"
     }
-    this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(5)).subscribe(data => {
+    this.demandeCessionService.patchDemandeCession(this.demandeCession.idDemande,demande).pipe(take(5)).subscribe(data => {
       console.log(data);
       //cette ligne est à supprimer lorsque l'on fera la connexion avec le back
       if(data.type==4){
-        this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).subscribe(data=>{
+        this.recevabiliteService.deleteRecevabilite(this.demandeCession.idDemande).subscribe(data=>{
           console.log("done:",data);
           this.router.navigate(['workstation/cdmp/recevabilite/'])
           console.log("done");
@@ -131,14 +131,14 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
   enregistrerTraitementRecevabilite(demande: any) {
     console.log(demande);
-   this.demandeCessionService.patchDemandeCession(this.demandeCession.id,demande).pipe(take(5)).subscribe(data=>{
+   this.demandeCessionService.patchDemandeCession(this.demandeCession.idDemande,demande).pipe(take(5)).subscribe(data=>{
     console.log(data);
     if(data.type==4){
       //ces deux appels suivantes sont à supprimer lorsque l'on fera la connexion avec le back
       this.recevabiliteService.postAnalyseRisque(demande).subscribe(data => {
         console.log(data);
         if(data.type==4){
-          this.recevabiliteService.deleteRecevabilite(this.demandeCession.id).subscribe(data=>{
+          this.recevabiliteService.deleteRecevabilite(this.demandeCession.idDemande).subscribe(data=>{
             console.log(data);
             if(data.type==4){
               this.router.navigate(['workstation/cdmp/recevabilite/'])

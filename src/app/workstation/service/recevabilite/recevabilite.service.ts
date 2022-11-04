@@ -1,26 +1,30 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {throwError as observableThrowError, Observable } from 'rxjs';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
+import { PaginatedResults } from '../../model/paginatedResults';
+import { map, catchError } from 'rxjs/operators';
+import { DemandeCession } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecevabiliteService {
-  private baseUrl = 'http://localhost:3000';
+  private demandesCessionUrl =ApiSettings.API_CDMP + '/demandecession'; 
   
   constructor(private http: HttpClient) {}
 
   //afficher les demandes de cession à l'étape de la recevabilité
-  getRecevabilites(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession/recevabilites`);
-  }
+  // getRecevabilites(): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.demandesCessionUrl}/demandes_cession/recevabilites`);
+  // }
   getRecevabiliteById(id:number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/demandes_cession?id=${id}`);
+    return this.http.get<any[]>(`${this.demandesCessionUrl}/demandes_cession?id=${id}`);
   }
 
   //
   postAnalyseRisque(demandeRecevabilite:any): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('POST', `${this.baseUrl}/demandes_cession/analyse_risque`,demandeRecevabilite, {
+    const req = new HttpRequest('POST', `${this.demandesCessionUrl}/demandes_cession/analyse_risque`,demandeRecevabilite, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -29,11 +33,35 @@ export class RecevabiliteService {
 
   //fonction à supprimer lorsque la connexion avec le back sera établie
   deleteRecevabilite(demandeId:number): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('DELETE', `${this.baseUrl}/recevabilites/${demandeId}`, {
+    const req = new HttpRequest('DELETE', `${this.demandesCessionUrl}/recevabilites/${demandeId}`, {
       reportProgress: true,
       responseType: 'json'
     });
     return this.http.request(req);
     
   }
+
+  getRecevabilites(args: any = {}): Observable<PaginatedResults> {
+    let params = new HttpParams();
+
+    if (args.page) {
+        params = params.set('page', args.page);
+    }
+    if (args.perPage) {
+        params = params.set('perPage', args.perPage);
+    }
+    return this.http.get<PaginatedResults>(this.demandesCessionUrl+'?', { params }).pipe(
+        map((response) => {
+            response.content.map((app) => new DemandeCession(app));
+            return new PaginatedResults(response);
+
+        }),
+        catchError(this.handleError),
+    );
+}
+
+private handleError(error: any) {
+  console.error('An error occurred', error);
+  return observableThrowError(error);
+}
 }

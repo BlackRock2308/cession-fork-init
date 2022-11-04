@@ -60,7 +60,7 @@ this.statuts = [
   }
 
   editerDemandeCession(demande: DemandeCession) {
-    this.demande = {...demande};
+   // this.demande = {...demande};
     console.log(demande)
     this.demandesCessionService.setDemandeObs(demande);
 
