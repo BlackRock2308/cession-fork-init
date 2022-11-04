@@ -1,5 +1,5 @@
 export interface BonEngagement {
-    idBonEngagement?:number;
+    id?:number;
     montantCreance?:number;
     reference :number;
     naturePrestation?:String;

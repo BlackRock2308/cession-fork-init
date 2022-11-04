@@ -21,6 +21,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
+import { concatMap } from 'rxjs/operators';
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -40,8 +41,8 @@ import { DocumentService } from 'src/app/workstation/service/document/document.s
 })
 export class NouvelleDemandeComponent implements OnInit {
 
-  refBE: any;
-  nomMarche: any;
+  refBE: number;
+  nomMarche: String;
   demandeCession :DemandeCession;
   bonEngagement : BonEngagement;
   selectedFiles: File[] = [];
@@ -102,6 +103,8 @@ export class NouvelleDemandeComponent implements OnInit {
   submitted = false;
   pme: PME;
 
+idBE:number;
+
   constructor(
     private router : Router,
     private formBuilder: FormBuilder,
@@ -154,7 +157,8 @@ export class NouvelleDemandeComponent implements OnInit {
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
       file: [''],
-    });
+      refBE : [''],
+      nomMarche  : ['']  });
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier
@@ -173,7 +177,7 @@ export class NouvelleDemandeComponent implements OnInit {
   }
 
   //envoie du formulaire
-  onSubmit() {
+  onSubmitt() {
 
 
 
@@ -192,59 +196,116 @@ export class NouvelleDemandeComponent implements OnInit {
 
   }
 
-  onSubmitA(){
-  Swal.fire({
-    position: 'center',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color:"#203359",
-      confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick:false,
-      
-    }).then(() => {
-     
-        this.router.navigate(['workstation/pme/demandes_en_cours'])
-    })
+  onSubmit(){
+  
 
     console.log(this.bonEngagement);
-    var body={
-    reference:this.refBE,
-    nomMarche:this.nomMarche
+    let body={
+    reference:this.documentForm.value['refBE'],
+    nomMarche:this.documentForm.value['nomMarche']
     };
-    this.bonEngagementService.addBE(body).subscribe(
-      (response :any)=>{
-        console.log(response);
-        console.log(this.documentForm.value);
+    console.log(body);
+    // this.bonEngagementService.addBE(body).subscribe(
+  //     (response :any)=>{
+  //       console.log(response.type);
+  //       console.log(this.documentForm.value);
 
-        this.documentService.addDocument(this.documentForm.value).subscribe(
-          (response :any)=>{
-            console.log(response);
-            this.demandeCessionService.addDemandeCession({bonEngagement:{bonEngagementId:response.idBonEngagement}}).subscribe(
-              (response:DemandeCession)=>{
-          
-                console.log(response);
+  //       this.demandeCessionService.addDemandeCession({bonEngagement:{bonEngagementId:response.idBonEngagement}}).subscribe(
+  //         (response:DemandeCession)=>{
+  //           this.documentService.addDocument(this.documentForm.value).subscribe(
+  //             (response :any)=>{
+  //               console.log(response);
+              
+              
+            
+  //         },
+  //         (error:HttpErrorResponse)=>{
+  //           alert(error.message);
+  //           })
+      
+  //           console.log(response);
+    
+  //      },
+  //      (error:HttpErrorResponse)=>{
+  //       alert(error.message);
+  //       }
         
-           },
-           (error:HttpErrorResponse)=>{
-            alert(error.message);
-            }
-          
-        )
-      },
-      (error:HttpErrorResponse)=>{
-        alert(error.message);
-        }
-    )
-      },
-      (error:HttpErrorResponse)=>{
-        alert(error.message);
-        }
-  )
+  //   )
+  //     },
+  //     (error:HttpErrorResponse)=>{
+  //       alert(error.message);
+  //       }
+  // )
+
+  // this.bonEngagementService.addBE(body).pipe(
+  //   concatMap(response1 =>this.demandeCessionService.addDemandeCession({bonEngagement:{bonEngagementId:response1.idBonEngagement}})
+      
+  //   )).subscribe(
+  //                 (response :any)=>{
+  //                   console.log(response);
+                  
+                  
+                
+  //             },
+  //             (error:HttpErrorResponse)=>{
+  //               alert(error.message);
+  //               })
+
+  //this.postBE();
+ this.postDemandeCession();
+
+ Swal.fire({
+  position: 'center',
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1500,
+    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+    color:"#203359",
+    confirmButtonColor:"#99CC33",
+    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+    allowOutsideClick:false,
+    
+  }).then(() => {
+   
+      //this.router.navigate(['workstation/pme/demandes_en_cours'])
+  })
+
 
   }
+  
+  
+  async postBE(){
+    let body={
+      reference:this.documentForm.value['refBE'],
+      nomMarche:this.documentForm.value['nomMarche']
+      };
+    var response=await this.bonEngagementService.addBE(body).toPromise()
+    this.idBE=response.id
+        
+    }
+  
+
+  async postDemandeCession(){
+    
+    await this.postBE().then(()=>{
+      console.log(this.idBE)
+      this.demandeCessionService.addDemandeCession({
+        "bonEngagement": {
+            "id":this.idBE
+        }
+    }).subscribe((result)=>{
+        console.log(result)
+        })
+
+        console.log("finish")
+    })
+    
+      
+    
+    
+  }
+  
+ 
 
 
   //enregistrement du pme avec l'appel du service d'enregistrement
@@ -311,6 +372,8 @@ export class NouvelleDemandeComponent implements OnInit {
   onReject() {
     this.messageService.clear('c');
 }
+
+ 
 }
 
 interface Document {

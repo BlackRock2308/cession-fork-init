@@ -54,6 +54,10 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandeadhesion`);
   }
 
+ 
+
+
+
   //get l'ensemble des demandes de cession
 
   getDemandesCession(): Observable<DemandeCession[]> {
@@ -70,6 +74,7 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
     return this.http.get<DemandeAdhesion[]>(`${this.baseUrl}/demandes_adhesion?id=1`);
   }
+
 
   //renseigner l'existance du ninea
   patchBasicInformation(id:number,nineaValide:any):Observable<DemandeAdhesion>{
@@ -94,6 +99,9 @@ setDemandeObs(demande: any) {
 getDemandeObs(): Observable<any> {
   return this.demandeObs.asObservable();
 }
+
+
+
 
 //mettre à jour les informations de la pme
 patchDemande(id:number,demande:any):Observable<DemandeAdhesion>{
