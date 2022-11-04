@@ -1,49 +1,38 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
+import { GenericService } from '../../generic/generic.service';
 import { DemandeAdhesion } from '../../model/demande';
 import { PME } from '../../model/pme';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdhesionService {
-  private baseUrl = 'http://localhost:3000';
-  constructor(private http: HttpClient) { }
+export class AdhesionService extends GenericService {
+  private demandesADHUrl =ApiSettings.API_CDMP + '/demandeadhesion'; 
+ 
+  constructor(public http: HttpClient) {
+    super(http)
+   }
 
+  //Ajout d'une demande d'adhésion
+  postAdhesionDemande(data) {
 
-  //enregistrer les informations d'un pme demandant l'adhesion
-  postPME(demande: any): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('POST', `${this.baseUrl}/pmes`, demande, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-    return this.http.request(req);
-  }
-  //cette service est à supprimer lorsqu'on connecte au backend postpme suffira
-  postAdhesionDemande(demande: any): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('POST', `${this.baseUrl}/adhesion_demandes`, demande, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-    return this.http.request(req);
-  }
+  let body = JSON.stringify(data);
+  return this.add(this.demandesADHUrl, body);
+}
 
   //retourner les demandes d'adhesion qui n'ont pas encore été taité
   getAdhesionDemandes(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/adhesion_demandes`);
+    return this.http.get(`${this.demandesADHUrl}/`);
   }
 
-  //patcher les informations de la pme
-  patchPME(id:number,pme: PME): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/pmes/${id}`, pme);
-
-  }
 
   //cette service est à supprimer lorsqu'on connecte au backend 
   //partout où l'on l'aurait appelé on le remplacera par un patch et changer le statut d'attente de vérification
   delateAdhesionDemande(demandeId:number): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('DELETE', `${this.baseUrl}/adhesion_demandes/${demandeId}`, {
+    const req = new HttpRequest('DELETE', `${this.demandesADHUrl}/${demandeId}`, {
       reportProgress: true,
       responseType: 'json'
     });

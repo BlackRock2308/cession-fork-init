@@ -1,4 +1,4 @@
 export class ApiSettings{
-    public static API_CDMP = 'http://localhost:3000';
+    public static API_CDMP = 'http://localhost:8081/api';
   
 }
