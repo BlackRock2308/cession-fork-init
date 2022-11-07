@@ -89,9 +89,7 @@ export class VerificationComponent implements OnInit {
     /*this.demandeAdhesionService.patchBasicInformation(this.id,body).subscribe(data=>{
       console.log(this.demande,data)
     })*/
-    this.adhesionDemandeService.delateAdhesionDemande(this.demande.id).subscribe();
-
-    this.pmeService.patchPME(this.demande.id, body).subscribe();
+    this.demandeAdhesionService.rejeterDemande(this.demande.idDemande).subscribe()
 
 
   }
