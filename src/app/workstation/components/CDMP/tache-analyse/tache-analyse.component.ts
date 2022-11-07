@@ -82,16 +82,29 @@ export class TacheAnalyseComponent implements OnInit {
             console.log(this.demandeCession)
           })
       
-        //this.productService.getProducts().then(data => this.products = data);
+        //get all documents from the demand
         this.demandeCession.bonEngagement.documents.forEach(document => {
             this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-                this.documents.push(data);
+                this.documents=this.documents.concat(data);
                 console.log(this.documents)
             });
         });
-        this.documentService.dowloadFile(this.demandeCession.bonEngagement.documents.urlFile).subscribe(data => {
-            this.documents = data
+
+        this.demandeCession.pme.documents.forEach(document => {
+            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+                this.documents=this.documents.concat(data);
+                console.log(this.documents)
+            });
         });
+
+        this.demandeCession.documents.forEach(document => {
+            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+                this.documents=this.documents.concat(data);
+                console.log(this.documents)
+            });
+        });
+
+        
 
         this.cols = [
             { field: 'ninea', header: 'NINEA' },
