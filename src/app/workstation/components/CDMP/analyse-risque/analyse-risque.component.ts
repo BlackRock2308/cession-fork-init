@@ -29,7 +29,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class AnalyseRisqueComponent implements OnInit {
 
-  demandes:DemandeCession[];
+  demandes:DemandeCession[]=[];
 
   demande:DemandeCession;
 
@@ -113,8 +113,27 @@ export class AnalyseRisqueComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.demandeCessionService.getAnalyseRisque().subscribe(data => {
-      this.demandes = data
+    this.demandeCessionService.getDemandeCessionByStatut("RECEVABLE").subscribe(data => {
+      this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("COMPLETEE").subscribe(data => {
+      this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("COMPLEMENT_REQUIS").subscribe(data => {
+      this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("RISQUEE").subscribe(data => {
+      this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
+      this.demandes.concat(data.content)
       console.log(this.demandes)
     });
 

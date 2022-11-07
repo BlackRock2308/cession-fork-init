@@ -52,8 +52,8 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   }
 
   // Retourne la liste des demandes d'adhesion
-  getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion`);
+  getDemandesAdhesion(): Observable<any> {
+    return this.http.get<any>(`${this.demandesADHUrl}`);
   }
 
  

@@ -65,15 +65,15 @@
                     <tr>
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
-                            {{demande.ninea}}
+                            {{demande.pme.ninea}}
                         </td>
                         <td style="width:30%; min-width:10rem;">
                             <span class="p-column-title">RCCM</span>
-                            {{demande.rccm}}
+                            {{demande.pme.rccm}}
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.date_soumission | date:'dd/MM/yyyy'}}
+                            {{demande.dateDemandeAdhesion| date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:30%;">
                            <span [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut}}</span>

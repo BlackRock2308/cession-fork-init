@@ -22,6 +22,8 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { concatMap } from 'rxjs/operators';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -48,8 +50,8 @@ export class NouvelleDemandeComponent implements OnInit {
   selectedFiles: File[] = [];
   selectedFile?: File;
   documentForm: FormGroup;
-  documents: Document[] = [];
-  document: Document;
+  documents: File[] = [];
+  document : Document={};
   cols: any[];
   selectedProducts: Document[];
   typesDocument: any[];
@@ -57,7 +59,7 @@ export class NouvelleDemandeComponent implements OnInit {
   selectedTypeDocument: string;
   items: MenuItem[];
   home: MenuItem;
-  documentes: any[];
+  documentPresentation: Document[]=[];
 
   rightPanelClick: boolean;
 
@@ -111,6 +113,7 @@ idBE:number;
     public renderer: Renderer2,
     public app: AppComponent,
     private pmeService: PmeService,
+    private uploadfileservice : FileUploadService,
     private demandeCessionService : DemandesCessionService,
     private bonEngagementService : BonEngagementService,
     private documentService : DocumentService,
@@ -143,31 +146,28 @@ idBE:number;
     ]
 
     
-    // this.pmeService.getTypesDocument().subscribe(data => {
-    //   this.typesDocument = data;
-      
-    //   this.typesDocument.push({ nom: "Autres..." })
-
-    //   console.log(this.typesDocument)
-    // })
-    // this.documentService.getDeocuments().subscribe(data => {
-    //   this.documentes = data
-    // });
-
+  
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
       file: [''],
-      refBE : [''],
-      nomMarche  : ['']  });
+      refBE : ['',[Validators.required]],
+      nomMarche  : ['',[Validators.required]]  });
   }
 
+  get f(){
+    return this.documentForm.controls;
+  }
   //ajouter le fichier sélectionné au répertoire de fichier
   selectFile(files: any): void {
 
-    this.document = this.documentForm.value;
+    this.document={}
+    this.document.type = this.documentForm.value['typeDocument'];
     this.document.file = files.target.files[0];
-    this.documents.push(this.document)
-    //console.log(this.documents)
+    this.documents.push(files.target.files[0]);
+    this.documentPresentation.push(this.document);
+    console.log(this.documentPresentation)
+    console.log(this.documents)
+
 
   }
 
@@ -176,25 +176,7 @@ idBE:number;
     document.getElementById('upload-file').click();
   }
 
-  //envoie du formulaire
-  onSubmitt() {
-
-
-
-    // arrêter si le formulaire est invalide
-    if (this.documentForm.invalid) {
-      return;
-    }
-
-    for (var i = 0; i < this.documents.length; i++) {
-      //this.enregistrerDocuments(this.documents[i]);
-
-
-    }
-    
-
-
-  }
+ 
 
   onSubmit(){
   
@@ -205,53 +187,8 @@ idBE:number;
     nomMarche:this.documentForm.value['nomMarche']
     };
     console.log(body);
-    // this.bonEngagementService.addBE(body).subscribe(
-  //     (response :any)=>{
-  //       console.log(response.type);
-  //       console.log(this.documentForm.value);
-
-  //       this.demandeCessionService.addDemandeCession({bonEngagement:{bonEngagementId:response.idBonEngagement}}).subscribe(
-  //         (response:DemandeCession)=>{
-  //           this.documentService.addDocument(this.documentForm.value).subscribe(
-  //             (response :any)=>{
-  //               console.log(response);
-              
-              
-            
-  //         },
-  //         (error:HttpErrorResponse)=>{
-  //           alert(error.message);
-  //           })
-      
-  //           console.log(response);
-    
-  //      },
-  //      (error:HttpErrorResponse)=>{
-  //       alert(error.message);
-  //       }
-        
-  //   )
-  //     },
-  //     (error:HttpErrorResponse)=>{
-  //       alert(error.message);
-  //       }
-  // )
-
-  // this.bonEngagementService.addBE(body).pipe(
-  //   concatMap(response1 =>this.demandeCessionService.addDemandeCession({bonEngagement:{bonEngagementId:response1.idBonEngagement}})
-      
-  //   )).subscribe(
-  //                 (response :any)=>{
-  //                   console.log(response);
-                  
-                  
-                
-  //             },
-  //             (error:HttpErrorResponse)=>{
-  //               alert(error.message);
-  //               })
-
-  //this.postBE();
+         
+   
  this.postDemandeCession();
 
  Swal.fire({
@@ -267,7 +204,7 @@ idBE:number;
     
   }).then(() => {
    
-      //this.router.navigate(['workstation/pme/demandes_en_cours'])
+      this.router.navigate(['workstation/pme/demandes_en_cours'])
   })
 
 
@@ -296,7 +233,10 @@ idBE:number;
     }).subscribe((result)=>{
         console.log(result)
         })
-
+        for (var i = 0; i < this.documents.length; i++) {
+        this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(
+          )
+        }
         console.log("finish")
     })
     
@@ -308,30 +248,8 @@ idBE:number;
  
 
 
-  //enregistrement du pme avec l'appel du service d'enregistrement
-  // private enregistrerDocuments(document: Document) {
-  //   this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
- 
-  //   this.documentService.addDocument(document);
-  //   console.log(this.documents);
  
 
-  // }
-
-  // private enregistrerBE(be: BonEngagement) {
-  //   this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-  //   this.bonEngagementService.addBE(be);
-    
-
-  // }
-
-  
-
-  saveDemandeCession(form:NgForm , BE : Number){
-   // this.bonEngagementService.addBE(form.value).subscribe
-    //  
-
-  }
   
 
   filtertypeDocument(event) {
@@ -349,10 +267,14 @@ idBE:number;
 
   
   delete(document:Document){
-    var myIndex = this.documents.indexOf(document);
+    var myIndex = this.documents.indexOf(document.file);
+    var myIndex2 = this.documentPresentation.indexOf(document.file);
     if (myIndex !== -1) {
       this.documents.splice(myIndex, 1);
   }
+  if (myIndex !== -1) {
+    this.documentPresentation.splice(myIndex2,1)
+}
   console.log(this.documents)
   }
 
