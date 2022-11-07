@@ -16,11 +16,27 @@
                     <label for="inputtext">Référence BE valide</label>
                 </span>
             </div>
+            
+           
+            
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext-left" pInputText formControlName="nomMarche">
                     <label for="inputtext-left">Nom du Marché</label>
                 </span>
+                
+            </div>
+        </div>
+        <div class="p-fluid grid justify-content-center">
+            <div class="field col-12 md:col-4 alert alert-danger" *ngIf="f.refBE.touched && f.refBE.invalid">
+                <div *ngIf="f.refBE.errors.required">La référence du BE valide est obligatoire.</div>
+            </div>
+            
+            
+            
+            <div class="field col-12 md:col-4 alert alert-danger" *ngIf="f.nomMarche.touched && f.nomMarche.invalid">
+                <div *ngIf="f.nomMarche.errors.required">Le nom du marché est obligatoire.</div>
+
             </div>
         </div>
         <div></div>
@@ -105,7 +121,10 @@
                         <td>
                             <div class="flex">
 
-                                <i class="pi pi-trash" (click)="delete(document)"></i>
+                                <button pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded dangerButton"
+                                    (click)="delete(document)" pInputText
+                                    pTooltip="Supprimer le document"></button>
 
                             </div>
                         </td>
@@ -115,7 +134,7 @@
         </div>
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
             <button type="submit" id="valider" pButton pRipple label="Soumettre" icon="pi pi-check"
-            class="float-right successButton" type="submit"></button>
+            class="float-right successButton" type="submit" [disabled]="!documentForm.valid"></button>
             <button id="valider" pButton pRipple label="Annuler" icon="pi pi-times" class="float-right dangerButton"
                 routerLink="../demandes_en_cours"></button>
           

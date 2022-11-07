@@ -150,10 +150,13 @@ idBE:number;
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
       file: [''],
-      refBE : [''],
-      nomMarche  : ['']  });
+      refBE : ['',[Validators.required]],
+      nomMarche  : ['',[Validators.required]]  });
   }
 
+  get f(){
+    return this.documentForm.controls;
+  }
   //ajouter le fichier sélectionné au répertoire de fichier
   selectFile(files: any): void {
 
