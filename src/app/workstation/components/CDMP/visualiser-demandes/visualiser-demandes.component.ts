@@ -72,6 +72,7 @@ export class VisualiserDemandesComponent implements OnInit {
     //récupérer les infos de la page précédente
      this.demandeAdhesionService.getDemandeObs().subscribe(data => {
        this.demande = data;
+       this.documents=this.demande.documents;
        console.log(data)
      })
 
@@ -87,8 +88,8 @@ export class VisualiserDemandesComponent implements OnInit {
     ];
 
     //récupérer les informations du nantissement en cours de modification
-    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-    console.log(this.demandeNantissementInfos)
+    // this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
+    // console.log(this.demandeNantissementInfos)
 
     //détail à visualiser( page préceédente)
     this.route.queryParams.subscribe(

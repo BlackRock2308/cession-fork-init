@@ -117,16 +117,16 @@
                             <tr>
                                 <td style="width:30%; min-width:10rem;">
                                     <span class="p-column-title">Type de Document</span>
-                                    {{demande.documents.typeDocument}}
+                                    {{document.typeDocument}}
                                 </td>
 
                                 <td style="width:30%; min-width:8rem;">
                                     <span class="p-column-title">Nom de Document</span>
-                                    {{demande.documents.nom}}
+                                    {{document.nom}}
                                 </td>
                                 <td style="width:30%;">
                                     <span class="p-column-title">Date de Soumission</span>
-                                    {{demande.documents.dateSauvegarde}}
+                                    {{document.dateSauvegarde| date:'dd/MM/yyyy'}}
                                 </td>
                                 <td>
                                     <div class="flex">
