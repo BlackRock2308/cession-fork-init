@@ -4,6 +4,7 @@ export interface PME {
     pmeId?:number;
     ninea?:string;
     rccm?:string;
+    raisonSocial?:string;
     email?:string;
     nineaFile?:any;
     rccmFile?:any;
@@ -17,4 +18,8 @@ export interface PME {
     telephone?:string;
     nineaValide?:boolean;
     pmeActive?:boolean;
+    atd?:boolean;
+    nantissement?:boolean;
+    interdictionBancaire?:boolean;
+    identificationBudgetaire?:boolean;
 }
