@@ -74,8 +74,7 @@ export class InformationsNineaComponent implements OnInit {
     this.pmeService.patchPME(this.demande.id, this.demande).subscribe((data) => {
       console.log(data)
     });
-    //à enlever après connexion avec le backend
-    this.adhesionService.delateAdhesionDemande(this.demande.id).subscribe()
+ 
 
     Swal.fire({
       position: 'center',

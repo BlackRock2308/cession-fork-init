@@ -73,14 +73,14 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   }*/
 
 
-  getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion?id=1`);
+  getDemandesAdhesionById(id : number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.demandesADHUrl}/${id}`);
   }
 
 
   //renseigner l'existance du ninea
   patchBasicInformation(id:number,nineaValide:any):Observable<DemandeAdhesion>{
-    return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/demandes_adhesion/${id}`,nineaValide)
+    return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/${id}`,nineaValide)
   }
   //recupérer(garder) les informations par rapport à une demande
   setDemandenantissementObs(demande: DemandeNantissemantInfo) {
