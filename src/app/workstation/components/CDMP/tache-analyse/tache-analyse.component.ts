@@ -201,6 +201,9 @@ export class TacheAnalyseComponent implements OnInit {
  
     onSubmit() {
        
+        this.demandeCessionService.validateAnalyseRisque(this.demandeCession.id).subscribe(
+
+        )
       
     
         Swal.fire({
@@ -225,7 +228,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     onSubmitRejet() {
        
-      
+      this.demandeCessionService.rejeterAnalyseRisque(this.demandeCession.id).subscribe()
     
         Swal.fire({
             position: 'center',
@@ -253,7 +256,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     onSubmitComplements() {
        
-      
+      this.demandeCessionService.demanderComplement(this.demandeCession.id).subscribe()
     
         Swal.fire({
           html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",

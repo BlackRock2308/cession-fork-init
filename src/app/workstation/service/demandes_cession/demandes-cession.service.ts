@@ -8,6 +8,7 @@ import { DemandeCession } from '../../model/demande';
   providedIn: 'root'
 })
 export class DemandesCessionService {
+    
   private baseUrl = ApiSettings.API_CDMP;
 
   private cessionObs: BehaviorSubject<any> = new BehaviorSubject({
@@ -99,5 +100,29 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
 
     return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
   }
+
+  validateAnalyseRisque(id: any) {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/validateAnalyse`,id, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+}
+
+rejeterAnalyseRisque(id: any) {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/rejectedAnalyse`,id, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
+demanderComplement(id: any) {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/complementAnalyse`,id, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
 }
 
