@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
@@ -21,6 +22,7 @@ export class VisualiserDemandesComponent implements OnInit {
   textLayerRenderedCb = 0;
   selectedDocuments: Documents[];
   value1: any;
+  id : number;
   totalPages: number;
   afterpageLoadedCb = 0;
   pageVariable = 1;
@@ -30,7 +32,10 @@ export class VisualiserDemandesComponent implements OnInit {
   home: MenuItem
   ref: DynamicDialogRef;
   demandeNantissementInfos: any;
-  demande: any;
+  demande: DemandeAdhesion;
+  
+  demandes: DemandeAdhesion[];
+
   detail: any;
   page: any;
   profile: string;
@@ -60,17 +65,23 @@ export class VisualiserDemandesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.documentService.getDocumentsADH().subscribe(data => {
-      this.documents = data
-    });
+    // this.documentService.getDocumentsADH().subscribe(data => {
+    //   this.documents = data
+    // });
 
     //récupérer les infos de la page précédente
-    this.demandeAdhesionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-    })
+     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
+       this.demande = data;
+       console.log(data)
+     })
+
+    // //recuperer les infos d'une demande d'adhesion
+    // this.demandeAdhesionService.getDemandesAdhesionById(this.id).subscribe(data => {
+    //   this.demandes = data
+    // })
 
     this.cols = [
-      { field: 'nomDocument', header: 'Nom de Document' },
+      { field: 'nom', header: 'Nom de Document' },
       { field: 'typeDocument', header: 'Type de Document' },
       { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
