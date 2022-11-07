@@ -280,7 +280,7 @@ idBE:number;
       nomMarche:this.documentForm.value['nomMarche']
       };
     var response=await this.bonEngagementService.addBE(body).toPromise()
-    this.idBE=response.id
+    this.idBE=response.idBonEngagement
         
     }
   

@@ -31,6 +31,22 @@ export class RecevabiliteService {
     return this.http.request(req);
   }
 
+  validerRecevabilite(id: number, demandeRecevabilite:any): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.demandesCessionUrl}/${id}/validerRecevabilite`,demandeRecevabilite, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
+  rejeterRecevabilite(id: number, demandeRecevabilite:any): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.demandesCessionUrl}/${id}/rejeterRecevabilite`,demandeRecevabilite, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
   //fonction à supprimer lorsque la connexion avec le back sera établie
   deleteRecevabilite(demandeId:number): Observable<HttpEvent<any>> {
     const req = new HttpRequest('DELETE', `${this.demandesCessionUrl}/recevabilites/${demandeId}`, {

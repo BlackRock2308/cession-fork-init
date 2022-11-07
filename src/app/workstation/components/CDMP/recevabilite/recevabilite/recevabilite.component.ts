@@ -104,9 +104,9 @@ export class RecevabiliteComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    this.subscribe.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscribe.unsubscribe();
+  // }
 
   //filtre par intervalle de date
   public calenderFilter() {
