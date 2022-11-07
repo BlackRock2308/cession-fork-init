@@ -57,7 +57,7 @@ export class DemandesAdhesionComponent implements OnInit {
     //this.productDialog = this.communicationService.getDialogObs();
     //this.productService.getProducts().then(data => this.products = data);
     this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
-      this.demandes = data
+      this.demandes = data.content
       console.log(this.demandes)
       //this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
       console.log(this.demandes[0].dateDemandeAdhesion)

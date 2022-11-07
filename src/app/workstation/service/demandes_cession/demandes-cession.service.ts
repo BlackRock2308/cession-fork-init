@@ -91,5 +91,10 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
   getAnalyseRisque(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession/analyse_risque`);
   }
+
+  //get demandeCession par statut
+  getDemandeCessionByStatut(statut:string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut?${statut}`);
+  }
 }
 

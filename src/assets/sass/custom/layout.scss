@@ -34,14 +34,15 @@
 
 .simpleButton{
     @extend %button;
-    background-color:$autre-fonce-clair;
-    border-color:$autre-fonce-clair;
+    background-color:$autre-fonce;
+    border-color:$autre-fonce;
 }
 
 .simpleButton:hover{
     @extend %button;
-    background-color:$autre-fonce;
+    color:$autre-fonce;
     border-color:$autre-fonce;
+    background-color:white;
 }
 .simpleBoldButton{
     @extend %button;
@@ -51,8 +52,9 @@
 
 .simpleBoldButton:hover{
     @extend %button;
-    background-color:$autre-fonce;
-    border-color: $autre-fonce;
+    color:$autre-fonce;
+    border-color:$autre-fonce;
+    background-color:white;
 }
 
 .dangerButton{
@@ -63,8 +65,9 @@
 
 .dangerButton:hover{
     @extend %button;
-    background: $danger;
+    background: white;
     border-color: $danger;
+    color:$danger;
 }
 
 .successButton{
@@ -75,8 +78,9 @@
 
 .successButton:hover{
     @extend %button;
-    background: $success;
+    background: white;
     border-color: $success;
+    color: $success;
 }
 
 //Page title

@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
-                        <div *ngIf="f.password.errors.required">Password is required.</div>
+                        <div *ngIf="f.password.errors.required">Le mot de passe est requis.</div>
                     </div>
           
                     <div>
@@ -49,8 +49,8 @@
                     </div>
                     
                     <div *ngIf="f.confirm_password.touched && f.confirm_password.invalid" class="alert alert-danger">
-                        <div *ngIf="f.confirm_password.errors.required">Password is required.</div>
-                        <div *ngIf="f.confirm_password.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+                        <div *ngIf="f.confirm_password.errors.required">Le mot de passe est requis.</div>
+                        <div *ngIf="f.confirm_password.errors.confirmedValidator">La confirmation du mot de passe ne concordent pas</div>
                     </div>
                 
                 <div>
