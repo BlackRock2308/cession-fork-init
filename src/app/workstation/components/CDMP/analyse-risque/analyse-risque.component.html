@@ -85,34 +85,34 @@
 
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Raison sociale</span>
-                            {{demande.raisonSocial}}
+                            {{demande.pme.raisonSocial}}
                         </td>
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Nom marché</span>
-                            {{demande.nomMarche}}
+                            {{demande.bonEngagement.nomMarche}}
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Référence BE</span>
-                            {{demande.referenceBE}}
+                            {{demande.bonEngagement.reference}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{demande.dateDemande|date:'dd/MM/yyyy' }}
+                            {{demande.dateDemandeCession|date:'dd/MM/yyyy' }}
                         </td>
                         <td style="width:20%;">
                             <span
-                                [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-',
+                                [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('-',
                                 ' ')}}</span>
 
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    *ngIf="demande.statut === 'Completée' || demande.statut === 'Recevable'"
+                                    *ngIf="demande.statut.libelle === 'COMPLETEE' || demande.statut.libelle === 'RECEVABLE'"
                                     (click)="pmeInfo(demande)" class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Analyser le dossier"></button>
                                 <button pButton pRipple icon="pi pi-eye"
-                                    *ngIf="demande.statut === 'Risquée' || demande.statut === 'Non-Risquée' || demande.statut === 'Complement-requis'"
+                                    *ngIf="demande.statut.libelle === 'RISQUEE' || demande.statut.libelle === 'NON-RISQUEE' || demande.statut.libelle === 'COMPLEMENT-REQUIS'"
                                     [routerLink]="['../consulter_demande']" class="p-button-rounded  mr-2 button"
                                     pInputText pTooltip="Visualiser le dossier"></button>
 

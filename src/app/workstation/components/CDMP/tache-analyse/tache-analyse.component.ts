@@ -12,6 +12,7 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -32,7 +33,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     demande: DemandeAdhesion;
     products: Product[];
-    documents: Documents[];
+    documents: any[]=[];
 
     document: Document;
     product: Product;
@@ -56,7 +57,7 @@ export class TacheAnalyseComponent implements OnInit {
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
         private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService,
-         private documentService: DocumentService, private messageService: MessageService, 
+         private documentService: FileUploadService, private messageService: MessageService, 
          private demandeAdhesionService: DemandesAdhesionService,
          private breadcrumbService: BreadcrumbService) {
             this.breadcrumbService.setItems([
@@ -82,7 +83,13 @@ export class TacheAnalyseComponent implements OnInit {
           })
       
         //this.productService.getProducts().then(data => this.products = data);
-        this.documentService.getDeocumentVRF().subscribe(data => {
+        this.demandeCession.bonEngagement.documents.forEach(document => {
+            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+                this.documents.push(data);
+                console.log(this.documents)
+            });
+        });
+        this.documentService.dowloadFile(this.demandeCession.bonEngagement.documents.urlFile).subscribe(data => {
             this.documents = data
         });
 
@@ -163,9 +170,9 @@ export class TacheAnalyseComponent implements OnInit {
 
     }
 
-    visualiserDocument(document: Documents) {
-        let nom = document.nomDocument;
-        console.log('nom: ' + document.nomDocument + 'path ' +document.path )
+    visualiserDocument(document: any) {
+        let nom = document.nom;
+        console.log('nom: ' + document.nom + 'path ' +document.urlFile )
         const ref = this.dialogService.open(VisualiserDocumentComponent, {
             data: {
                 document: document

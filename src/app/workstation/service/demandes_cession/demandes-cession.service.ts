@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
@@ -94,7 +94,10 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
 
   //get demandeCession par statut
   getDemandeCessionByStatut(statut:string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut?${statut}`);
+      const params = new HttpParams()
+      .set('statut',statut)
+
+    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
   }
 }
 
