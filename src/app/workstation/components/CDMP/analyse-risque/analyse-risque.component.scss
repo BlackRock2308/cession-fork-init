@@ -26,12 +26,12 @@ h1{
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-non-risquée {
+    &.status-non-risquee {
         background: #C8E6C9;
         color: #256029;
     }
 
-    &.status-risquée {
+    &.status-risquee {
         background: #FFCDD2;
         color: #C63737;
     }
@@ -40,7 +40,7 @@ h1{
         background: #fed6af;
         color: #8a4640;
     }
-    &.status-completée {
+    &.status-completee {
         background: #FEEDAF;
         color: #8A5340;
     }

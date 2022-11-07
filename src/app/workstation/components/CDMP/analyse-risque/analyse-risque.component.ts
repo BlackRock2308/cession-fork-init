@@ -114,26 +114,26 @@ export class AnalyseRisqueComponent implements OnInit {
 
   ngOnInit() {
     this.demandeCessionService.getDemandeCessionByStatut("RECEVABLE").subscribe(data => {
-      this.demandes.concat(data.content)
-      console.log(this.demandes)
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes,data.content)
     });
     this.demandeCessionService.getDemandeCessionByStatut("COMPLETEE").subscribe(data => {
-      this.demandes.concat(data.content)
+      this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
 
     this.demandeCessionService.getDemandeCessionByStatut("COMPLEMENT_REQUIS").subscribe(data => {
-      this.demandes.concat(data.content)
+      this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
 
     this.demandeCessionService.getDemandeCessionByStatut("RISQUEE").subscribe(data => {
-      this.demandes.concat(data.content)
+      this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
 
     this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
-      this.demandes.concat(data.content)
+      this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
 
