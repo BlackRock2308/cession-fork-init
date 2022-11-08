@@ -15,7 +15,7 @@ export interface Paiements {
 
   montantCreance?: number;
 
-  statutDto?: Statut;
+  statut?: Statut;
 
   demandecessionid?:number;
 }

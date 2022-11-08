@@ -27,7 +27,7 @@ import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-detail-paiement-cdmp/list-detail-paiement-cdmp.component';
 import { AddDetailsPaiementPMEComponent } from './COMPTABLE_CDMP/add-detail-paiement-pme/add-detail-paiement-pme.component';
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-detail-paiement-pme/list-detail-paiement-pme.component';
-import { AddDetailPaiementCDMPComponent } from './COMPTABLE_CDMP/add-detail-paiement-cdmp/paiement-cdmp.component';
+import { AddDetailPaiementCDMPComponent } from './COMPTABLE_CDMP/add-detail-paiement-cdmp/add-detail-paiement-cdmp.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';

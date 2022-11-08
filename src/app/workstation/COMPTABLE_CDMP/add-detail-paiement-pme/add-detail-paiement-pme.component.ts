@@ -2,16 +2,20 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import Swal from 'sweetalert2';
 import { DetailsPaiement } from '../../model/detailsPaiements';
 import { Document } from '../../model/document';
+import { Utilisateur } from '../../model/utilisateur';
+import { DetailsPaiementsService } from '../../service/paiements/details-paiements.services';
 
 @Component({
   selector: 'app-paiement-pme',
   templateUrl: './add-detail-paiement-pme.component.html',
-  styleUrls: ['./add-detail-paiement-pme.component.scss']
+  styleUrls: ['./add-detail-paiement-pme.component.scss'],
+  providers: [MessageService]
 })
 export class AddDetailsPaiementPMEComponent implements OnInit {
   
@@ -33,7 +37,13 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   document: Document;
   documentForm: FormGroup;
   detailPaiement:DetailsPaiement = {};
-  constructor(private router : Router ,public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+  user:Utilisateur={};
+  constructor(private router : Router ,public activeModal: NgbActiveModal,
+     private uploadFileService: FileUploadService, public ref: DynamicDialogRef,
+      public config: DynamicDialogConfig,private servicemsg: MessageService,
+      private detailsPaiementsService :DetailsPaiementsService) { 
+        this.user =  JSON.parse(sessionStorage.getItem('auth-user'));
+      }
 
   dropdownItems = [
     { name: 'Sélectionner', code: '' },
@@ -42,7 +52,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     { name: 'Virement', code: 'VIREMENT' }
 ];
   ngOnInit() {
-
+    this.detailPaiement.comptable = this.user.prenom+" "+this.user.nom;
   }
   dismiss() {
     this.ref.close();
@@ -54,27 +64,22 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
 
   //sélectionner le fichier 
   selectFile(files: any): void {
-    this.selectedFiles = files.target.files[0];
-    console.log(this.selectedFiles);
+    for(let file of files.target.files){
+      // let document: Document;
+      // document.file = file.target.file;
+      // document.nom = file.
+    }
   }
 
   onSubmitForm() {
-
-    this.ref.close();
-
-    Swal.fire({
-
-      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Le paiement a bien été effectué.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color:"#203359",
-      confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick:false,
-      
-    }).then((result) => {
-      if (result.isConfirmed) {
-        //this.router.navigate(['workstation/comptable/list-paiements-pme'])
+    this.detailsPaiementsService.addDetailPaiementPME(this.detailPaiement)
+    .subscribe((res:DetailsPaiement) =>{
+        this.servicemsg.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'PME payé avec succès' });
         this.dismiss();
-      }})
+    }),
+    error => {
+      this.servicemsg.add({ key: 'tst', severity: 'danger', summary: 'Erreur', detail: 'Erreur, PME non payé' });
     }
+  }
  
 }

@@ -16,7 +16,7 @@ export interface DetailsPaiement {
 
   typepaiement?: string;
 
-  paiementDto?: Paiements;
+  paiement?: Paiements;
 
   documents?: Documents[];
 }

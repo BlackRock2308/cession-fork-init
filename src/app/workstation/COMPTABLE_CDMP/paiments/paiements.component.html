@@ -100,21 +100,20 @@
                             </td>
                             <td style="width:20%;">
                                 <span class="p-column-title">Statut</span>
-                                <span
-                                    [class]="'product-badge status-' + (paiement.statut ? paiement.statut.toLowerCase() : '')">{{paiement.statut.replaceAll('-',
-                                    ' ')}}</span>
+                                <!-- <span
+                                    [class]="'product-badge status-' + (paiement.statut.code ? paiement.statut.code.toLowerCase() : '')">{{paiement.statut.libelle}}</span> -->
                             </td>
                             <td>
                                 <div class="flex">
                                     <button pButton pRipple icon="pi pi-money-bill"
                                         class="p-button-rounded p-button-text mr-2 button simpleButton"
                                         pTooltip="Paiment de la PME"
-                                        *ngIf="paiement.statutDto.code === 'En-attente-de-paiement' || paiement.statut === 'PME-partiellement-payée'"
+                                        *ngIf="paiement.statut.code === 'PME_EN_ATTENTE_DE_PAIEMENT' || paiement.statut.code=== 'PME_PARTIELLEMENT_PAYEE'"
                                         (click)="visualiserPaiementListPME(paiement)"></button>
                                     <button pButton pRipple icon="pi pi-id-card"
                                         class="p-button-rounded p-button-text mr-2 button simpleButton"
                                         pTooltip="Paiment de la CDMP"
-                                        *ngIf="paiement.statutDto.code === 'PME-totalement-payée' || paiement.statut === 'CDMP-partiellement-payée' || paiement.statut === 'PME-partiellement-payée'"
+                                        *ngIf="paiement.statut.code === 'PME_TOTALEMENT_PAYEE' || paiement.statut.code=== 'CDMP_PARTIELLEMENT_PAYEE' || paiement.statut.code=== 'PME_PARTIELLEMENT_PAYEE'"
                                         (click)="visualiserPaiementListCDMP(paiement)"></button>
                                 </div>
                             </td>

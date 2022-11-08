@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddDetailPaiementCDMPComponent } from './paiement-cdmp.component';
+import { AddDetailPaiementCDMPComponent } from './add-detail-paiement-cdmp.component';
 
 describe('PaiementCDMPComponent', () => {
   let component: AddDetailPaiementCDMPComponent;

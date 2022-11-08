@@ -16,12 +16,12 @@ export class DetailsPaiementsService extends GenericService{
 
   addDetailPaiementPME(data){
     let body = JSON.stringify(data);
-   return this.add(this.detailsPaiementUrl+"/pme", body);
+   return this.add(this.detailsPaiementUrl+"/cdmp-pme", body);
   }
 
   addDetailPaiementCDMP(data){
     let body = JSON.stringify(data);
-   return this.add(this.detailsPaiementUrl+"/cdmp", body);
+   return this.add(this.detailsPaiementUrl+"/sica-cdmp", body);
   }
 
   getDetailPaiementPMEByPaiement(id){

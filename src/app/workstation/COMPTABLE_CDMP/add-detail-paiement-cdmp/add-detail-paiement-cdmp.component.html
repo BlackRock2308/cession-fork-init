@@ -1,3 +1,4 @@
+<p-toast key="tst" [baseZIndex]="99999" [hideTransitionOptions]="'4ms'"></p-toast>
 <div class="container-fluid text-right">
     <div style="display: block;">
         <div class="modal-body">
@@ -5,7 +6,7 @@
                 <div class="field grid row">
                     <label htmlFor="modePaiement" class="col-12 md:col-4">Mode Paiement</label>
                     <div class="col-12 md:col-8">
-                        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiment"></p-dropdown>
+                        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="detailPaiement.typepaiement"></p-dropdown>
                     </div>
                 </div>
                 <div class="field grid">
@@ -13,19 +14,20 @@
                         Paiement</label>
                     <div class="col-12 md:col-8">
                         <input pInputText id="referencePaiement" type="text" pTooltip="Référence de paiement"
-                            placeholder="Référence de paiement" />
+                           montant[(ngModel)]="detailPaiement.reference" placeholder="Référence de paiement" />
                     </div>
                 </div>
                 <div class="field grid">
                     <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Montant</label>
                     <div class="col-12 md:col-8">
-                        <input pInputText id="montant" type="text" pTooltip="Montant" placeholder="Montant" />
+                        <input pInputText id="montant" type="text" pTooltip="Montant" 
+                        [(ngModel)]="detailPaiement.montant" placeholder="Montant" />
                     </div>
                 </div>
                 <div class="field grid">
                     <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Enregistré par</label>
                     <div class="col-12 md:col-8">
-                        <input pInputText id="payer" type="text" pTooltip="Enregistré par" placeholder="Abdou Diop"
+                        <input pInputText id="payer" type="text" pTooltip="Enregistré par" [(ngModel)]="detailPaiement.comptable"
                             [disabled]="true" />
                     </div>
                 </div>

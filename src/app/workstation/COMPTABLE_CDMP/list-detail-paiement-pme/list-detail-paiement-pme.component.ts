@@ -73,7 +73,7 @@ export class ListPaiementPMEComponent implements OnInit {
     this.documentService.getDeocuments().subscribe((data) => {
       this.documents = data;
     });
-    this.getAllPaiements();
+    this.getAllDetailPaiements();
 
     this.cols = [
       { field: "datePaiement", header: "Date Paiement" },
@@ -83,8 +83,9 @@ export class ListPaiementPMEComponent implements OnInit {
     ];
   }
 
-  getAllPaiements() {
-    this.detailsPaiementsService.getDetailPaiementPMEByPaiement(this.idPaiement)
+  getAllDetailPaiements() {
+    //this.detailsPaiementsService.getDetailPaiementPMEByPaiement(this.idPaiement)
+    this.detailsPaiementsService.getAllDetailsPaiements()
     .subscribe((res:DetailsPaiement[]) =>{
       this.detailsPaiements = res;
     })

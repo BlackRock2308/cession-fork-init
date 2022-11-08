@@ -10,7 +10,7 @@ import { Paiements } from "../../model/paiements";
 import { DocumentService } from "../../service/document/document.service";
 import { DetailsPaiementsService } from "../../service/paiements/details-paiements.services";
 import { PaiementsService } from "../../service/paiements/paiements.service";
-import { AddDetailPaiementCDMPComponent } from "../add-detail-paiement-cdmp/paiement-cdmp.component";
+import { AddDetailPaiementCDMPComponent } from "../add-detail-paiement-cdmp/add-detail-paiement-cdmp.component";
 
 @Component({
   selector: "app-list-paiement-cdmp",
@@ -79,7 +79,7 @@ export class ListPaiementCdmpComponent implements OnInit {
       { field: "payer", header: "Enregistré par" },
       { field: "montant", header: "Montant" },
     ];
-    this.getAllPaiements();
+    this.getAllDetailsPaiements();
   }
 
   verifierDemande(paiement: Paiements) {
@@ -87,8 +87,9 @@ export class ListPaiementCdmpComponent implements OnInit {
     this.paiementDialog = true;
     //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
   }
-  getAllPaiements() {
-    this.detailsPaiementsService.getDetailPaiementCDMPByPaiement(this.idPaiement)
+  getAllDetailsPaiements() {
+    //this.detailsPaiementsService.getDetailPaiementCDMPByPaiement(this.idPaiement)
+    this.detailsPaiementsService.getAllDetailsPaiements()
     .subscribe((res:DetailsPaiement[]) =>{
       this.detailsPaiements = res;
     })
