@@ -8,6 +8,8 @@ import { DemandeCession } from '../../model/demande';
   providedIn: 'root'
 })
 export class DemandesCessionService {
+  
+    
     
   private baseUrl = ApiSettings.API_CDMP;
 
@@ -124,5 +126,19 @@ demanderComplement(id: any) {
   });
   return this.http.request(req);
 }
+
+getDemandesCessionByPme(idPME: any):Observable<any>  {
+  
+  return this.http.get<any>(`${this.baseUrl}/demandecession/pme/${idPME}`)
+}
+
+completeDemande(idDemande: number): Observable<any>{
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/pme/${idDemande}/complete-demande/`,idDemande, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
 }
 
