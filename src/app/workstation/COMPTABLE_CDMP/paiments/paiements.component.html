@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="col-12">
@@ -8,114 +7,120 @@
                 </div>
             </div>
             <br>
-        <div class="card">
-            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
-                [globalFilterFields]="['raisonSocial','referenceBE','totalMarche','statut']" [rows]="10"
-                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
-                
-                <ng-template pTemplate="header">
+            <div class="card">
+                <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                    [globalFilterFields]="['raisonSocial','referenceBE','totalMarche','statut']" [rows]="10"
+                    [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                    currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
+                    <ng-template pTemplate="header">
                         <tr>
-                        <th>
-                            <p-columnFilter  type="text" field="raisonSocial" placeholder="Raison sociale"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter type="text" field="nomMarche" placeholder="Nom Marché"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter type="text" field="total_marche" placeholder="Total Marché"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter type="text" field="soldePME" placeholder="Solde PME"></p-columnFilter>
-                        </th>
-                       
-                        <th>
-                            <p-columnFilter type="text" field="montantRecu" placeholder="Montant Reçu"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
-                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
-                                        <ng-template let-option pTemplate="item">
-                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
-                                        </ng-template>
-                                    </p-dropdown>
-                                </ng-template>
-                            </p-columnFilter>
-                        </th>
-                        <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button" style="background-color: #203359;" label="Rechercher" (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th pSortableColumn="raisonSocial" style="color: #203359;">Raison sociale<p-sortIcon
-                                field="raisonSocial"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon
-                                field="nomMarche"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="totalMarche" style="color: #203359;">Total Marché<p-sortIcon
-                                field="totalMarche"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="soldePME" style="color: #203359;">Solde PME<p-sortIcon field="soldePME">
-                            </p-sortIcon>
-                        </th>
-                        <th pSortableColumn="montantRecu" style="color: #203359;">Montant Reçu<p-sortIcon
-                                field="montantRecu"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
-                            </p-sortIcon>
-                        </th>
-                        <th style="color: #203359;">Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-paiement>
-                    <tr>
+                            <th>
+                                <p-columnFilter type="text" field="raisonSocial" placeholder="Raison sociale">
+                                </p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="nomMarche" placeholder="Nom Marché"></p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="total_marche" placeholder="Total Marché">
+                                </p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="soldePME" placeholder="Solde PME"></p-columnFilter>
+                            </th>
 
-                        <td style="width:15%; min-width:10rem;">
-                            <span class="p-column-title">Raison Sociale</span>
-                            {{paiement.raisonSocial}}
-                        </td>
+                            <th>
+                                <p-columnFilter type="text" field="montantRecu" placeholder="Montant Reçu">
+                                </p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
+                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                        <p-dropdown [ngModel]="value" [options]="statuts"
+                                            (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                            <ng-template let-option pTemplate="item">
+                                                <span
+                                                    [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                            </ng-template>
+                                        </p-dropdown>
+                                    </ng-template>
+                                </p-columnFilter>
+                            </th>
+                            <th>
+                                <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button"
+                                    style="background-color: #203359;" label="Rechercher"
+                                    (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th pSortableColumn="raisonSocial" style="color: #203359;">Raison sociale<p-sortIcon
+                                    field="raisonSocial"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon
+                                    field="nomMarche"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="totalMarche" style="color: #203359;">Total Marché<p-sortIcon
+                                    field="totalMarche"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="soldePME" style="color: #203359;">Solde PME<p-sortIcon
+                                    field="soldePME">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="montantRecu" style="color: #203359;">Montant Reçu<p-sortIcon
+                                    field="montantRecu"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
+                                </p-sortIcon>
+                            </th>
+                            <th style="color: #203359;">Actions</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-paiement>
+                        <tr>
+                            <td style="width:15%; min-width:10rem;">
+                                <span class="p-column-title">Raison Sociale</span>
+                                {{paiement.raisonSocial}}
+                            </td>
 
-                        <td style="width:20%; min-width:8rem;">
-                            <span class="p-column-title">Nom Marché</span>
-                            {{paiement.nomMarche}}
-                        </td>
-                        <td style="width:14%;">
-                            <span class="p-column-title">Total Marché</span>
-                            {{paiement.totalMarche}}
-                        </td>
-                        <td style="width:13%;">
-                            <span class="p-column-title">Solde PME</span>
-                            {{paiement.soldePME}}
-                        </td>
-                        <td style="width:13%;">
-                            <span class="p-column-title">Montant Reçu</span>
-                            {{paiement.montantRecu}}
-                        </td>
-                        <td style="width:20%;">
-                            <span class="p-column-title">Statut</span>
-                            <span [class]="'product-badge status-' + (paiement.statut ? paiement.statut.toLowerCase() : '')">{{paiement.statut.replaceAll('-', ' ')}}</span>
-                        </td>
-                        <td>
-                            <div class="flex">
-                                <!-- <button pButton pRipple icon="pi pi-search"
-                                    class="p-button-rounded p-button-text mr-2 button" pTooltip="Consulter les détails"
-                                    (click)="visualiserPaiement(paiement)"></button> -->
-                                <button pButton pRipple icon="pi pi-money-bill"
-                                    class="p-button-rounded p-button-text mr-2 button simpleButton" pTooltip="Paiment de la PME"
-                                    *ngIf="paiement.statut === 'En-attente-de-paiement' || paiement.statut === 'PME-partiellement-payée'" (click)="visualiserPaiementListPME(paiement)"></button>
-                                <button pButton pRipple icon="pi pi-id-card"
-                                    class="p-button-rounded p-button-text mr-2 button simpleButton" pTooltip="Paiment de la CDMP"
-                                    *ngIf="paiement.statut === 'PME-totalement-payée' || paiement.statut === 'CDMP-partiellement-payée' || paiement.statut === 'PME-partiellement-payée'" (click)="visualiserPaiementListCDMP(paiement)"></button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
+                            <td style="width:20%; min-width:8rem;">
+                                <span class="p-column-title">Nom Marché</span>
+                                {{paiement.nomMarche}}
+                            </td>
+                            <td style="width:14%;">
+                                <span class="p-column-title">Total Marché</span>
+                                {{paiement.montantCreance}}
+                            </td>
+                            <td style="width:13%;">
+                                <span class="p-column-title">Solde PME</span>
+                                {{paiement.soldePME}}
+                            </td>
+                            <td style="width:13%;">
+                                <span class="p-column-title">Montant Reçu</span>
+                                {{paiement.montantRecuCDMP}}
+                            </td>
+                            <td style="width:20%;">
+                                <span class="p-column-title">Statut</span>
+                                <span
+                                    [class]="'product-badge status-' + (paiement.statut ? paiement.statut.toLowerCase() : '')">{{paiement.statut.replaceAll('-',
+                                    ' ')}}</span>
+                            </td>
+                            <td>
+                                <div class="flex">
+                                    <button pButton pRipple icon="pi pi-money-bill"
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        pTooltip="Paiment de la PME"
+                                        *ngIf="paiement.statutDto.code === 'En-attente-de-paiement' || paiement.statut === 'PME-partiellement-payée'"
+                                        (click)="visualiserPaiementListPME(paiement)"></button>
+                                    <button pButton pRipple icon="pi pi-id-card"
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        pTooltip="Paiment de la CDMP"
+                                        *ngIf="paiement.statutDto.code === 'PME-totalement-payée' || paiement.statut === 'CDMP-partiellement-payée' || paiement.statut === 'PME-partiellement-payée'"
+                                        (click)="visualiserPaiementListCDMP(paiement)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
         </div>
-
-
     </div>
-
-</div>

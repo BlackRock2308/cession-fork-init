@@ -69,10 +69,6 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data => {
-      this.paiements = data
-    });
-
     this.cols = [
       { field: 'raisonSocial', header: 'Raison Social' },
       { field: 'referenceBE', header: 'Référence BE ' },
@@ -92,18 +88,26 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       {label: 'PME partiellement payée', value: 'pme-partiellement-payée'},
       {label: 'PME totalement payée', value: 'pme-totalement-payée'}
   ]
+  
+  this.getAllPaiement();
+  }
+
+  getAllPaiement(){
+    this.paiementsService.getAllPaiements().subscribe((data:Paiements[]) => {
+      this.paiements = data
+    });
   }
 
   visualiserPaiementListCDMP(paiement: Paiements) {
     this.paiement = { ...paiement };
     this.paiementDialog = true;
-    this.router.navigate(['workstation/comptable/list-paiements-cdmp']);
+    this.router.navigate(['workstation/comptable/list-paiements-cdmp',this.paiement.idPaiement]);
 
   }
   visualiserPaiementListPME(paiement: Paiements) {
     this.paiement = { ...paiement };
     this.paiementDialog = true;
-    this.router.navigate(['workstation/comptable/list-paiements-pme']);
+    this.router.navigate(['workstation/comptable/list-paiements-pme',this.paiement.idPaiement]);
 
   }
 

@@ -12,7 +12,7 @@ import { Document } from '../../model/document';
   templateUrl: './paiement-cdmp.component.html',
   styleUrls: ['./paiement-cdmp.component.scss']
 })
-export class PaiementCDMPComponent implements OnInit {
+export class AddDetailPaiementCDMPComponent implements OnInit {
   
   selectedFiles: File[]=[];
   selectedFile?:File;

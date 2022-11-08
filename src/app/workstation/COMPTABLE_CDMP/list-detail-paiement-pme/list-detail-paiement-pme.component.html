@@ -9,8 +9,8 @@
         </div>
         <div class="card">
             <button id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
-                class="successButton" (click)="visualiserPaimentPME()"></button>
-            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                class="successButton" (click)="ajouterPaimentPME()"></button>
+            <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
@@ -43,7 +43,7 @@
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Enregistré par</span>
-                            {{paiement.payer}}
+                            {{paiement.comptable}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Mode paiement</span>
@@ -51,7 +51,7 @@
                         </td>
                         <td style="width:16%; min-width:10rem;">
                             <span class="p-column-title">Référence paiement</span>
-                            {{paiement.referencePaiement}}
+                            {{paiement.reference}}
                         </td>
                         <td style="width:10%;">
                             <span class="p-column-title">Montant</span>

@@ -5,14 +5,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import Swal from 'sweetalert2';
+import { DetailsPaiement } from '../../model/detailsPaiements';
 import { Document } from '../../model/document';
 
 @Component({
   selector: 'app-paiement-pme',
-  templateUrl: './paiement-pme.component.html',
-  styleUrls: ['./paiement-pme.component.scss']
+  templateUrl: './add-detail-paiement-pme.component.html',
+  styleUrls: ['./add-detail-paiement-pme.component.scss']
 })
-export class PaiementPMEComponent implements OnInit {
+export class AddDetailsPaiementPMEComponent implements OnInit {
   
   selectedFiles: File[] = [];
   selectedFile?:File;
@@ -31,6 +32,7 @@ export class PaiementPMEComponent implements OnInit {
   documents: Document[] = [];
   document: Document;
   documentForm: FormGroup;
+  detailPaiement:DetailsPaiement = {};
   constructor(private router : Router ,public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
 
   dropdownItems = [
@@ -70,7 +72,8 @@ export class PaiementPMEComponent implements OnInit {
       
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['workstation/comptable/list-paiements-pme'])
+        //this.router.navigate(['workstation/comptable/list-paiements-pme'])
+        this.dismiss();
       }})
     }
  

@@ -24,10 +24,10 @@ import { ConventionEnregistreeComponent } from './COMPTABLE_CDMP/convention-enre
 import { EditerConventionComponent } from './COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { DemandesCessionComponent } from './components/CDMP/demandes-cession/demandes-cession.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
-import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-paiement-cdmp/list-paiement-cdmp.component';
-import { PaiementPMEComponent } from './COMPTABLE_CDMP/paiement-pme/paiement-pme.component';
-import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-paiement-pme/list-paiement-pme.component';
-import { PaiementCDMPComponent } from './COMPTABLE_CDMP/paiement-cdmp/paiement-cdmp.component';
+import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-detail-paiement-cdmp/list-detail-paiement-cdmp.component';
+import { AddDetailsPaiementPMEComponent } from './COMPTABLE_CDMP/add-detail-paiement-pme/add-detail-paiement-pme.component';
+import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-detail-paiement-pme/list-detail-paiement-pme.component';
+import { AddDetailPaiementCDMPComponent } from './COMPTABLE_CDMP/add-detail-paiement-cdmp/paiement-cdmp.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
 import { DetailsTableauComponent } from './components/CDMP/dashboard-dg/details-tableau/details-tableau.component';
@@ -65,9 +65,9 @@ import { CodeComponent } from './components/profil/code/code.component';
     DemandesCessionComponent,
     PaimentsComponent,
     ListPaiementCdmpComponent,
-    PaiementPMEComponent,
+    AddDetailPaiementCDMPComponent,
     ListPaiementPMEComponent,
-    PaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
     PaiementsComponent,
     PaiementsComponent,
     DashboardDGComponent,
@@ -99,8 +99,8 @@ import { CodeComponent } from './components/profil/code/code.component';
   ],
   entryComponents: [
     VisualiserDocumentComponent,
-    PaiementPMEComponent,
-    PaiementCDMPComponent,
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
     ConventionSignerComponent,
     CodeComponent
      

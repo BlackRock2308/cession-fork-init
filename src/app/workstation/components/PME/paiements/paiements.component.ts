@@ -64,8 +64,6 @@ export class PaiementsComponent implements OnInit {
     this.documentService.getDeocuments().subscribe(data => {
       this.documents = data
     });
-    this.paiementsService.getPaiements().subscribe(data=>{
-      this.paiements=data});
 
       this.cols = [
         { field: 'raisonSocial', header: 'Raison Social' },
@@ -87,9 +85,14 @@ export class PaiementsComponent implements OnInit {
         {label: 'PME partiellement payée', value: 'pme-partiellement-payée'},
         {label: 'PME totalement payée', value: 'pme-totalement-payée'}
     ]
+    this.getAllPaiements();
   
   }
 
+  getAllPaiements(){
+    this.paiementsService.getAllPaiements().subscribe((data:Paiements[])=>{
+      this.paiements=data});
+  }
   visualiserListPaiement(paiement: Paiements) {
     this.paiement = {...paiement};
     this.paiementDialog = true;

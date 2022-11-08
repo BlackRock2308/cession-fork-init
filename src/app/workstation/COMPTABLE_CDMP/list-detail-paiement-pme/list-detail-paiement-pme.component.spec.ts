@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListPaiementCdmpComponent } from './list-paiement-cdmp.component';
+import { ListPaiementPMEComponent } from './list-detail-paiement-pme.component';
 
-describe('ListPaiementCdmpComponent', () => {
-  let component: ListPaiementCdmpComponent;
-  let fixture: ComponentFixture<ListPaiementCdmpComponent>;
+describe('ListPaiementPMEComponent', () => {
+  let component: ListPaiementPMEComponent;
+  let fixture: ComponentFixture<ListPaiementPMEComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListPaiementCdmpComponent ]
+      declarations: [ ListPaiementPMEComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListPaiementCdmpComponent);
+    fixture = TestBed.createComponent(ListPaiementPMEComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
