@@ -58,6 +58,12 @@ export class AppLoginComponent implements OnInit{
             localStorage.setItem('profil', 'cgr'); 
           }
           if(this.roles.find(elem => elem.libelle == 'PME')!=null){
+            this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
+              data =>{
+                this.tokenStorage.savePME(data)
+              } 
+            )
+            
             this.router.navigate(['workstation/pme/demandes_en_cours']);
             localStorage.setItem('profil', 'pme'); 
           }

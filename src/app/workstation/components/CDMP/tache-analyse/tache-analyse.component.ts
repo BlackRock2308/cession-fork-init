@@ -83,26 +83,30 @@ export class TacheAnalyseComponent implements OnInit {
           })
       
         //get all documents from the demand
-        this.demandeCession.bonEngagement.documents.forEach(document => {
-            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-                this.documents=this.documents.concat(data);
-                console.log(this.documents)
-            });
-        });
+        this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents);
+        this.documents=this.documents.concat(this.demandeCession.pme.documents);
+        this.documents=this.documents.concat(this.demandeCession.documents);
 
-        this.demandeCession.pme.documents.forEach(document => {
-            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-                this.documents=this.documents.concat(data);
-                console.log(this.documents)
-            });
-        });
+        // this.demandeCession.bonEngagement.documents.forEach(document => {
+        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+        //         this.documents=this.documents.concat(data);
+        //         console.log(this.documents)
+        //     });
+        // });
 
-        this.demandeCession.documents.forEach(document => {
-            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-                this.documents=this.documents.concat(data);
-                console.log(this.documents)
-            });
-        });
+        // this.demandeCession.pme.documents.forEach(document => {
+        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+        //         this.documents=this.documents.concat(data);
+        //         console.log(this.documents)
+        //     });
+        // });
+
+        // this.demandeCession.documents.forEach(document => {
+        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+        //         this.documents=this.documents.concat(data);
+        //         console.log(this.documents)
+        //     });
+        // });
 
         
 

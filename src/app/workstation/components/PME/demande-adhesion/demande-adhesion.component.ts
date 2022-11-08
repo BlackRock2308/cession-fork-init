@@ -12,6 +12,8 @@ import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
     selector: 'app-demande-adhesion',
@@ -39,9 +41,9 @@ export class DemandeAdhesionComponent implements OnInit {
     deleteProductsDialog: boolean = false;
 
     products: Product[];
-    demandes: DemandeAdhesion[];
+    demandes: any[];
 
-    demande: DemandeAdhesion;
+    demande: any;
     product: Product;
 
     selectedProducts: Product[];
@@ -115,11 +117,13 @@ export class DemandeAdhesionComponent implements OnInit {
         private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private demandesAdhesionService: DemandesAdhesionService,
+        private demandesCessionService: DemandesCessionService,
+        private demandesAdhesionService:DemandesAdhesionService,
         public renderer: Renderer2, private menuService: MenuService,
         private primengConfig: PrimeNGConfig,
         public app: AppComponent,
-        private filterService:FilterService
+        private filterService:FilterService,
+        private tokenStorage:TokenStorageService
 
 
     ) {
@@ -148,11 +152,11 @@ export class DemandeAdhesionComponent implements OnInit {
             { label: 'Contient', value: FilterMatchMode.CONTAINS },
         ];
         this.statuts = [
-            {label: 'Recevable', value: 'recevable'},
-            {label: 'Complétée', value: 'completée'},
-            {label: 'Risquée', value: 'risquée'},
-            {label: 'Non Risquée', value: 'non-risquée'},
-            {label: 'Complément Requis', value: 'complément-requis'}
+            {label: 'Recevable', value: 'RECEVABLE'},
+            {label: 'Complétée', value: 'COMPLETEE'},
+            {label: 'Risquée', value: 'RISQUEE'},
+            {label: 'Non Risquée', value: 'NON_RISQUEE'},
+            {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'}
         ]
 
     }
@@ -163,9 +167,9 @@ export class DemandeAdhesionComponent implements OnInit {
 
         });
 
-        this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+        this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
             this.demandes = data
-            console.log(this.demandes)
+            console.log(this.demandes,data)
         });
 
         this.primengConfig.ripple = true;
@@ -222,7 +226,7 @@ export class DemandeAdhesionComponent implements OnInit {
         this.deleteProductsDialog = true;
     }
 
-    consulterDemande(demande: DemandeAdhesion) {
+    consulterDemande(demande) {
         this.demande = { ...demande };
         //this.demandeDialog = true;
         console.log(demande)

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const PME_KEY = 'pme-user';
 const IS_AUTHENTICATED='is-auth';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,16 @@ export class TokenStorageService {
   public saveUser(user) {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  public savePME(pme) {
+    console.log(pme)
+    window.sessionStorage.removeItem(PME_KEY);
+    window.sessionStorage.setItem(PME_KEY, JSON.stringify(pme));
+  }
+
+  public getPME() {
+    return JSON.parse(sessionStorage.getItem(PME_KEY));
   }
 
   public authenticate(state) {

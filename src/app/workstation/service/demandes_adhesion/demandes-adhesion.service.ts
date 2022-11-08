@@ -83,11 +83,11 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/${id}`,nineaValide)
   }
   //recupérer(garder) les informations par rapport à une demande
-  setDemandenantissementObs(demande: DemandeNantissemantInfo) {
+  setDemandenantissementObs(demande) {
     localStorage.setItem('storedNantissement',JSON.stringify(demande));
     this.demandenantissementObs.next(demande);
 }
-getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
+getDemandenantissementObs(): Observable<any> {
   return this.demandenantissementObs.asObservable();
 }
 

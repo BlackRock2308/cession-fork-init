@@ -121,6 +121,7 @@ export class AdhesionComponent implements OnInit {
     this.pmeService.postPME(body)
       .subscribe((response: PME) => {
         let data = JSON.parse(JSON.stringify(response))
+        console.log(data)
         let body2 = {
           ninea: this.pme.ninea,
           rccm: this.pme.rccm,
