@@ -1,20 +1,33 @@
 import { EmailValidator } from "@angular/forms";
 
 export interface PME {
-    pmeId?:number;
+    idPME?:number;
     ninea?:string;
     rccm?:string;
     email?:string;
     nineaFile?:any;
     rccmFile?:any;
     denommination?:string;
-    representantLegal?:string;
     formuleJuridique?:string;
-    cniRepresentant?:string;
     centrefiscal?:string;
     dateImmatriculation?:Date;
     adresse?:string;
-    telephone?:string;
-    nineaValide?:boolean;
-    pmeActive?:boolean;
+    hasninea?:boolean;
+    isactive?:boolean;
+    denomination?: string ,
+    formejuridique?: string,
+    enseigne?: string,
+    localite?: string,
+    controle?: number,
+    activiteprincipale ?: string,
+    registre ?: string,
+    representantLegal ?:string,
+    date_creation ?: Date,
+    effectif?: number,
+    etablissements ?: number,
+    chiffre?: number,
+    cniRepresentant ?: number ,
+    dateimmatriculation ?: Date,
+    telephone ?: number,
+    capitalsocial ?: string
 }

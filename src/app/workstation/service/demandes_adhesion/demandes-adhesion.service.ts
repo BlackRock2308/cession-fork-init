@@ -1,4 +1,4 @@
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
@@ -58,6 +58,14 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   }
 
  
+  //patch demande adhesion
+ validerAdhesion(id:any): Observable<any> {
+  const req = new HttpRequest('PATCH', `${this.demandesADHUrl}/${id}/acceptadhesion`, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
 
   rejeterDemande(id: any):Observable<any> {
     const req = new HttpRequest('PATCH', `${this.demandesADHUrl}/${id}/rejectadhesion`, {
@@ -111,6 +119,7 @@ getDemandeObs(): Observable<any> {
   return this.demandeObs.asObservable();
 }
 
+ 
 
 
 
