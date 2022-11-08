@@ -50,9 +50,14 @@ export class PmeService extends GenericService{
 
   
   //patcher les informations de la pme
-  patchPME(id:number,pme: PME): Observable<any> {
-    return this.http.patch(`${this.pmeUrl}/${id}`, pme);
-
+  patchPme(id:number,pme:any): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PUT', `${this.pmeUrl}/${id}`,pme, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
   }
+
+  
 
 }

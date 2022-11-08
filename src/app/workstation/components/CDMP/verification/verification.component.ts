@@ -31,8 +31,8 @@ export class VerificationComponent implements OnInit {
   }
 
   nextPage() {
-    this.demande.pmeActive = this.active
-    this.demande.nineaValide = this.existant
+    this.demande.isactive = this.active
+    this.demande.hasninea = this.existant
     console.log(this.demande)
     this.demandeAdhesionService.setDemandeObs(this.demande)
     this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/informations_ninea']);
@@ -40,11 +40,11 @@ export class VerificationComponent implements OnInit {
 
 
   onSubmit() {
-    this.demande.nineaValide = this.existant
+    this.demande.hasninea = this.existant
     //this.demande.pmeActive=this.active
 
     let body = {
-      nineaValide: this.demande.nineaValide,
+      hasninea : this.demande.hasninea,
       //pmeActive:this.demande.pmeActive
     }
 
@@ -73,7 +73,7 @@ export class VerificationComponent implements OnInit {
           timer: 1500
         })
         setTimeout(() => {
-          location.reload()
+         location.reload()
         }, 1500);
 
 
@@ -82,6 +82,7 @@ export class VerificationComponent implements OnInit {
     })
 
   }
+
 
 
   verifierDemandeAdhesion(body: any) {
