@@ -12,6 +12,7 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -32,7 +33,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     demande: DemandeAdhesion;
     products: Product[];
-    documents: Documents[];
+    documents: any[]=[];
 
     document: Document;
     product: Product;
@@ -56,7 +57,7 @@ export class TacheAnalyseComponent implements OnInit {
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
         private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService,
-         private documentService: DocumentService, private messageService: MessageService, 
+         private documentService: FileUploadService, private messageService: MessageService, 
          private demandeAdhesionService: DemandesAdhesionService,
          private breadcrumbService: BreadcrumbService) {
             this.breadcrumbService.setItems([
@@ -81,10 +82,29 @@ export class TacheAnalyseComponent implements OnInit {
             console.log(this.demandeCession)
           })
       
-        //this.productService.getProducts().then(data => this.products = data);
-        this.documentService.getDeocumentVRF().subscribe(data => {
-            this.documents = data
+        //get all documents from the demand
+        this.demandeCession.bonEngagement.documents.forEach(document => {
+            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+                this.documents=this.documents.concat(data);
+                console.log(this.documents)
+            });
         });
+
+        this.demandeCession.pme.documents.forEach(document => {
+            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+                this.documents=this.documents.concat(data);
+                console.log(this.documents)
+            });
+        });
+
+        this.demandeCession.documents.forEach(document => {
+            this.documentService.dowloadFile(document.urlFile).subscribe(data => {
+                this.documents=this.documents.concat(data);
+                console.log(this.documents)
+            });
+        });
+
+        
 
         this.cols = [
             { field: 'ninea', header: 'NINEA' },
@@ -163,9 +183,9 @@ export class TacheAnalyseComponent implements OnInit {
 
     }
 
-    visualiserDocument(document: Documents) {
-        let nom = document.nomDocument;
-        console.log('nom: ' + document.nomDocument + 'path ' +document.path )
+    visualiserDocument(document: any) {
+        let nom = document.nom;
+        console.log('nom: ' + document.nom + 'path ' +document.urlFile )
         const ref = this.dialogService.open(VisualiserDocumentComponent, {
             data: {
                 document: document
@@ -181,6 +201,9 @@ export class TacheAnalyseComponent implements OnInit {
  
     onSubmit() {
        
+        this.demandeCessionService.validateAnalyseRisque(this.demandeCession.id).subscribe(
+
+        )
       
     
         Swal.fire({
@@ -205,7 +228,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     onSubmitRejet() {
        
-      
+      this.demandeCessionService.rejeterAnalyseRisque(this.demandeCession.id).subscribe()
     
         Swal.fire({
             position: 'center',
@@ -233,7 +256,7 @@ export class TacheAnalyseComponent implements OnInit {
 
     onSubmitComplements() {
        
-      
+      this.demandeCessionService.demanderComplement(this.demandeCession.id).subscribe()
     
         Swal.fire({
           html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",

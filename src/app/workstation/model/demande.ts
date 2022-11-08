@@ -1,6 +1,7 @@
 import { BonEngagement } from "./bonEngagement";
 import { PME } from "./pme";
 import { Document } from './document';
+import { Observation } from "./observation";
 
 export interface DemandeAdhesion {
 
@@ -13,22 +14,24 @@ export interface DemandeAdhesion {
     documents?: Document[];
     pmeId?: number;
 }
-export interface DemandeCession {
-
-    id?:number,
-    pme?:PME,
-    referenceBE?:string;
-    raisonSocial?:string;
-    ninea?:string;
-    convention?:Convention,
+export class DemandeCession {
+    
+    idDemande?:number;
+    pme?:PME;
+    bonEngagement?:BonEngagement;
+    observations?: Observation[];
     statut?:string;
-    dateDemande?: Date,
-    BE ?:BonEngagement,
-    document ?: Document,
-    numeroDemande ?: number,
-    nantissement ?: string,
-    nomMarche ?: string
-   
+    dateDemandeCession?: Date;
+    numeroDemande ?: string;
+    constructor(obj: any = {}) {
+        this.idDemande= obj.idDemande;
+        this.pme= obj.pme;
+        this.bonEngagement= obj.bonEngagement;
+        this.observations= obj.observations;
+        this.statut= obj.statut;
+        this.dateDemandeCession= obj.dateDemandeCession;
+        this.numeroDemande= obj.numeroDemande;
+    }    
 }
 
 export interface Convention {

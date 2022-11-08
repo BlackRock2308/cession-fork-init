@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
@@ -8,6 +8,7 @@ import { DemandeCession } from '../../model/demande';
   providedIn: 'root'
 })
 export class DemandesCessionService {
+    
   private baseUrl = ApiSettings.API_CDMP;
 
   private cessionObs: BehaviorSubject<any> = new BehaviorSubject({
@@ -94,7 +95,34 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
 
   //get demandeCession par statut
   getDemandeCessionByStatut(statut:string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut?${statut}`);
+      const params = new HttpParams()
+      .set('statut',statut)
+
+    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
   }
+
+  validateAnalyseRisque(id: any) {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/validateAnalyse`,id, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+}
+
+rejeterAnalyseRisque(id: any) {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/rejectedAnalyse`,id, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
+demanderComplement(id: any) {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/complementAnalyse`,id, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
 }
 

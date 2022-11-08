@@ -1,71 +1,93 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="">
-            
+
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 modalTitle  ">
                     <h3 class="title">Recevabilité des demandes de cession</h3>
                 </div>
             </div>
             <br>
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id" >
-                
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id"
+                lazy="true" (onLazyLoad)="getDemndes($event)" [totalRecords]="totalRecords">
+
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
                             <p-columnFilter type="text" field="nomMarche" placeholder="Nom Marché"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
+                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale">
+                            </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE"></p-columnFilter>
+                            <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE">
+                            </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="date"  field="dateDemande" placeholder="Date de demande" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
-                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
+                            <p-columnFilter type="date" field="dateDemande" placeholder="Date de demande"
+                                [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range"
+                                style="display: none;"></p-columnFilter>
+                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                                inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
                         </th>
                         <th>
-                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter()" ></button>
+                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
+                                class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher"
+                                (click)="dt.filter()"></button>
                         </th>
                         <th *ngIf="rangeDates!=undefined">
-                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
+                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
+                                label="Annuler" (click)="clearRange(dt)"
+                                style="background: white; color:#203359"></button>
                         </th>
                     </tr>
                     <tr>
-                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon field="nomMarche"></p-sortIcon></th>
-                        <th pSortableColumn="raisonSocial" style="color: #203359;">Raison Sociale <p-sortIcon field="raisonSocial"></p-sortIcon></th>
-                        <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon field="referenceBE"></p-sortIcon></th>
-                        <th pSortableColumn="dateDemande" style="color: #203359;">Date soumission <p-sortIcon field="dateDemande"></p-sortIcon></th>
+                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon
+                                field="nomMarche"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="raisonSocial" style="color: #203359;">Raison Sociale <p-sortIcon
+                                field="raisonSocial"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon
+                                field="referenceBE"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="dateDemande" style="color: #203359;">Date soumission <p-sortIcon
+                                field="dateDemande"></p-sortIcon>
+                        </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
-                       
+
                         <td style="width:25%; min-width:10rem;">
                             <span class="p-column-title">Nom Marché</span>
-                            {{demande.nomMarche}}
+                            {{demande.bonEngagement.nomMarche}}
                         </td>
-                        
+
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Raison Sociale</span>
-                            {{demande.raisonSocial}}
+                            {{demande.pme.raisonSocial}}
                         </td>
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Reférence du BE</span>
-                            {{demande.referenceBE}}
+                            {{demande.bonEngagement.reference}}
                         </td>
                         <td style="width:20%;">
-                            <span class="p-column-title">Date Soumission</span>
-                            {{demande.dateDemande | date:'dd/MM/yyyy' }}
+                            <span class="p-column-title">Date Demande</span>
+                            {{demande.dateDemandeCession | date:'dd/MM/yyyy' }}
                         </td>
-                        
+
                         <td>
-                            
+
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemandeCession(demande)" class="p-button-rounded simpleButton"  pInputText  pTooltip="Verifier la demande" ></button>
+                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemandeCession(demande)"
+                                    class="p-button-rounded simpleButton" pInputText
+                                    pTooltip="Verifier la demande"></button>
 
                             </div>
                         </td>
@@ -76,16 +98,5 @@
 
 
     </div>
-   
+
 </div>
-
-
-
-  
- 
-
-
-
-
-
-

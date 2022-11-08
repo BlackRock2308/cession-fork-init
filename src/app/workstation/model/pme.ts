@@ -4,6 +4,7 @@ export interface PME {
     idPME?:number;
     ninea?:string;
     rccm?:string;
+    raisonSocial?:string;
     email?:string;
     nineaFile?:any;
     rccmFile?:any;

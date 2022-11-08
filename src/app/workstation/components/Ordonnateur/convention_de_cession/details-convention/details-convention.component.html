@@ -3,7 +3,7 @@
         <div class="">
             <div class="d-flex justify-content-center col-12">
                 <div class="col-12 md:col-10 tabTitle  ">
-                    <h3 class="titleTab">Convention de cession du marché : {{demandeCession.nomMarche}} </h3>
+                    <h3 class="titleTab">Convention de cession du marché : {{demandeCession.bonEngagement.nomMarche}} </h3>
                 </div>
             </div>
             <br>
@@ -13,7 +13,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.ninea}}</label>
+                            <label for="inputtext">{{demandeCession.pme.ninea}}</label>
                         </span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.raisonSocial}}</label>
+                            <label for="inputtext">{{demandeCession.pme.raisonSocial}}</label>
                         </span>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.referenceBE}}</label>
+                            <label for="inputtext">{{demandeCession.bonEngagement.reference}}</label>
                         </span>
                     </div>
                 </div>
