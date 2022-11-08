@@ -29,5 +29,12 @@ export interface PME {
     cniRepresentant ?: number ,
     dateimmatriculation ?: Date,
     telephone ?: number,
-    capitalsocial ?: string
+    capitalsocial ?: string,
+    nineaValide?:boolean;
+    pmeActive?:boolean;
+    atd?:boolean;
+    nantissement?:boolean;
+    interdictionBancaire?:boolean;
+    identificationBudgetaire?:boolean;
+
 }
