@@ -104,7 +104,7 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
   }
 
   validateAnalyseRisque(id: any) {
-    const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/validateAnalyse`,id, {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/validateAnalyse`,id, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -112,7 +112,7 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
 }
 
 rejeterAnalyseRisque(id: any) {
-  const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/rejectedAnalyse`,id, {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/rejectedAnalyse`,id, {
     reportProgress: true,
     responseType: 'json'
   });
@@ -120,7 +120,7 @@ rejeterAnalyseRisque(id: any) {
 }
 
 demanderComplement(id: any) {
-  const req = new HttpRequest('PATCH', `${this.baseUrl}/${id}/complementAnalyse`,id, {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/complementAnalyse`,id, {
     reportProgress: true,
     responseType: 'json'
   });

@@ -134,7 +134,7 @@
 
                                 <td>
                                     <div class="flex">
-                                        <button pButton pRipple icon="pi pi-trash"
+                                        <button pButton pRipple icon="pi pi-trash" [disabled]="!(newDocuments.indexOf(document) != -1)"
                                             class="p-button-rounded p-button-text mr-2  dangerButton"
                                             (click)="delete(document)"></button>
                                     </div>

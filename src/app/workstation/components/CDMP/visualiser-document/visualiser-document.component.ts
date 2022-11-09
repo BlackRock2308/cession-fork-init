@@ -33,6 +33,7 @@ export class VisualiserDocumentComponent implements OnInit {
 
   ngOnInit() {
     this.srcFile = this.config.data.document.urlFile;
+    console.log(this.srcFile)
     this.dowloadFile(this.config.data.document.urlFile);
     this.convention = this.config.data.document;
 

@@ -54,7 +54,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.ninea}}</label>
+                            <label for="inputtext">{{demande.pme.ninea}}</label>
                         </span>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.nomMarche}}</label>
+                            <label for="inputtext">{{demande.bonEngagement.nomMarche}}</label>
                         </span>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.referenceBE}}</label>
+                            <label for="inputtext">{{demande.bonEngagement.reference}}</label>
                         </span>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.dateDemande  | date:'dd/MM/yyyy'}}</label>
+                            <label for="inputtext">{{demande.dateDemandeCession  | date:'dd/MM/yyyy'}}</label>
                         </span>
                     </div>
                 </div>

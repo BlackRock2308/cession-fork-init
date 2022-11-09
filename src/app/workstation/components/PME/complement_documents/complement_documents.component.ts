@@ -9,6 +9,7 @@ import { DocumentService } from 'src/app/workstation/service/document/document.s
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-complement-documents',
@@ -39,7 +40,8 @@ export class ComplementDocumentsComponent implements OnInit {
     private documentService:DocumentService,
     private breadcrumbService: BreadcrumbService,
     private demandeCessionService:DemandesCessionService,
-    private documenService:FileUploadService
+    private documenService:FileUploadService,
+    private router:Router
     ) { 
       this.breadcrumbService.setItems([
         { label: 'Liste de Demandes ', routerLink: ['pme/demandes_en_cours '] },
@@ -145,7 +147,9 @@ this.typesDocument=[
 
       this.completerDemande(this.demandeNantissementInfos.idDemande)
 
-      location.reload()
+      
+      //location.reload()
+      this.router.navigate(['workstation/pme/demandes_en_cours'])
     
       
   }
