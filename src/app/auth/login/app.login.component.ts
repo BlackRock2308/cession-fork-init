@@ -35,9 +35,9 @@ export class AppLoginComponent implements OnInit{
 
     this.credentials={username,motdepasse},
 
-    console.log(JSON.stringify({"email":username,"password":motdepasse}))
+    console.log(JSON.stringify({email:username,password:motdepasse}))
 
-    this.authService.login(JSON.stringify({"email":username,"password":motdepasse})).subscribe(
+    this.authService.login(JSON.stringify({email:username,password:motdepasse})).subscribe(
       data => {
         console.log(data)
         this.tokenStorage.saveToken(data.token);
@@ -58,6 +58,12 @@ export class AppLoginComponent implements OnInit{
             localStorage.setItem('profil', 'cgr'); 
           }
           if(this.roles.find(elem => elem.libelle == 'PME')!=null){
+            this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
+              data =>{
+                this.tokenStorage.savePME(data)
+              } 
+            )
+            
             this.router.navigate(['workstation/pme/demandes_en_cours']);
             localStorage.setItem('profil', 'pme'); 
           }

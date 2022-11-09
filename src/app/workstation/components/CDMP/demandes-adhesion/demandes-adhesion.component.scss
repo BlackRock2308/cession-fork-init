@@ -153,14 +153,19 @@ p-steps p-steps-item {
     font-size: 12px;
     letter-spacing: .3px;
     
-    &.status-soumise {
+    &.status-adhesion_acceptee {
         background: #C8E6C9;
         color: #256029;
     }
 
-    &.status-rejetée {
+    &.status-adhesion_rejetee {
         background: #FFCDD2;
         color: #C63737;
     }
+    &.status-adhesion_soumise {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    
 
 }

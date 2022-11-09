@@ -7,6 +7,9 @@ import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_ad
 import { MenuItem } from 'primeng/api';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-complement-documents',
@@ -17,8 +20,10 @@ export class ComplementDocumentsComponent implements OnInit {
   selectedFiles: File[]=[];
   selectedFile?:File;
   documentForm: FormGroup;
-  documents:Document[]=[];
-  document:Document;
+  documents:any[]=[];
+  newDocuments:any[]=[];
+  document:any;
+  documentPresentation:Document;
   cols: any[];
   selectedProducts: Document[];
   typesDocument:any[];
@@ -33,7 +38,10 @@ export class ComplementDocumentsComponent implements OnInit {
     private pmeService:PmeService,
     private demandeAdhesionService:DemandesAdhesionService,
     private documentService:DocumentService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private demandeCessionService:DemandesCessionService,
+    private documenService:FileUploadService,
+    private router:Router
     ) { 
       this.breadcrumbService.setItems([
         { label: 'Liste de Demandes ', routerLink: ['pme/demandes_en_cours '] },
@@ -44,14 +52,20 @@ export class ComplementDocumentsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.pmeService.getTypesDocument().subscribe(data=>{
-      this.typesDocument=data;
-      this.typesDocument.push({nom:"Autres"})
-      //console.log(this.typesDocument)
-    })
+    
+//récupérer les informations du nantissement en cours de modification
+  this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>{
+    this.demandeNantissementInfos=data
+    this.documents=this.documents.concat(data.bonEngagement.documents)
+    this.documents=this.documents.concat(data.pme.documents)
+    this.documents=this.documents.concat(data.documents)
+    console.log(this.demandeNantissementInfos)
+
+
+  })
 
     this.documentForm= this.formBuilder.group({
-      type: [''],
+      typeDocument: [''],
       file: ['']
   });
   this.cols = [
@@ -66,15 +80,35 @@ this.items = [
 
 this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
 
+this.typesDocument=[
+  {
+    "type": "Autre",
+    "nom": "Autre"
+  },
+  {
+    "type": "CNI",
+    "nom": "Carte National d'identité"
+  },
+  {
+    "type": "BUSSINESS_PLAN",
+    "nom": "BUSSINESS PLAN"
+  },
+  {
+    "type": "FACTURE",
+    "nom": "FACTURE"
+  },
+  {
+    "type": "ETAT_FINANCIER",
+    "nom": "ETAT FINANCIER"
+  },
+  {
+    "type": " DECHARGE",
+    "nom": " DECHARGE"
+  }
 
-//récupérer les informations du nantissement en cours de modification
-  this.demandeAdhesionService.getDemandenantissementObs().subscribe(data=>this.demandeNantissementInfos=data);
-  console.log(this.demandeNantissementInfos)
+]
 
-  this.documentService.getDocuments().subscribe(data => {
-    this.documents = data
-    console.log(this.documents)
-});
+
   }
 
   //ajouter le fichier sélectionné au répertoire de fichier
@@ -82,10 +116,11 @@ this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
     
     this.document=this.documentForm.value;
     this.document.file=files.target.files[0];
-    this.document.nom=files.target.files[0].name;
+    this.document.nom=this.document.file.name;
     this.documents.push(this.document);
+    this.newDocuments.push(this.document);
     files.target.files=null;
-    console.log(this.documents)
+    console.log(this.newDocuments)
         
   }
 
@@ -104,43 +139,62 @@ this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
           return;
       }
 
-      for(var i=0;i<this.documents.length;i++){
-        this.enregistrerDocument(this.documents[i]);
+      for(var i=0;i<this.newDocuments.length;i++){
+        this.enregistrerDocument(this.newDocuments[i]);
 
 
       }
 
-      this.patchDemandeStatut(this.demandeNantissementInfos.id,{"statut":"Completee"})
+      this.completerDemande(this.demandeNantissementInfos.idDemande)
+
+      
+      //location.reload()
+      this.router.navigate(['workstation/pme/demandes_en_cours'])
     
       
   }
-  patchDemandeStatut(id:number, statut: any) {
-    this.pmeService.patchStatutDemande(id,statut).subscribe()
+  async completerDemande(id:number):Promise<any> {
+    
+    try{
+      let demande=await this.demandeCessionService.completeDemande(id).subscribe()
+      console.log(demande)
+    }
+    catch(error){
+      console.log(error)
+    }
+    
   }
   
   
   //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerDocument(document:Document) {
+  private async enregistrerDocument(document:Document):Promise<any>{
     //fonction à continuer 
-    console.log(this.documents);
-    this.pmeService.postDocument(document)
-        .subscribe(() => {
-           })
+    try{
+      let file=await this.documenService.uploadFile('/pme/',this.demandeNantissementInfos.pme.idPME,document.file,document.typeDocument).subscribe()
+      console.log(file)
+    }
+    catch(error){
+      console.log(error)
+    }
         
   }
 
   delete(document:Document){
     var myIndex = this.documents.indexOf(document);
+    var myIndex0 = this.newDocuments.indexOf(document);
     if (myIndex !== -1) {
       this.documents.splice(myIndex, 1);
   }
+  if (myIndex0 !== -1) {
+    this.newDocuments.splice(myIndex0, 1);
+}
   console.log(this.documents)
   }
   
 }
 interface Document{
     
-  type?:String;
+  typeDocument?:string;
   file?:File;
   nom?:String;
 }

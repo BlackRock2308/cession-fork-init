@@ -15,7 +15,7 @@
                         <div class="p-inputgroup">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                                <label for="inputtext">{{demandeNantissementInfos.ninea}}</label>
+                                <label for="inputtext">{{demandeNantissementInfos.pme.ninea}}</label>
                             </span>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                         <div class="p-inputgroup">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                                <label for="inputtext">{{demandeNantissementInfos.refBE}}</label>
+                                <label for="inputtext">{{demandeNantissementInfos.bonEngagement.reference}}</label>
                             </span>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <div class="p-inputgroup">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                                <label for="inputtext">{{demandeNantissementInfos.date_cession}}</label>
+                                <label for="inputtext">{{demandeNantissementInfos.dateDemandeCession}}</label>
                             </span>
                         </div>
                     </div>
@@ -49,8 +49,8 @@
                             <div class="col-12 md:col-12  d-flex justify-content-center">
                                 <h4 style="color: #203359;"> Pièces jointes </h4>
                             </div>
-                            <p-dropdown [options]="typesDocument" formControlName="type"
-                                [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="nom" [filter]="true"
+                            <p-dropdown [options]="typesDocument" formControlName="typeDocument"
+                                [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="type" [filter]="true"
                                 filterBy="name" [showClear]="true" pTooltip="Sélectionner un type de fichier"
                                 placeholder="Sélectionnez un type de document">
                                 <ng-template pTemplate="selectedItem">
@@ -73,7 +73,7 @@
                             <div class="col-12 md:col-12  d-flex justify-content-center ">
                                 <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
                             </div>
-                            <input formControlName="type" id="NINEAfile" type="text" pInputText
+                            <input formControlName="typeDocument" id="NINEAfile" type="text" pInputText
                                  placeholder="Choisissez un ficher">
                         </div>
                         <div class="field col-3 ">
@@ -83,7 +83,7 @@
                             <div class="field inputContainer">
                                 <input id="NINEAfile" type="text" pInputText pTooltip="Charger un fichier"
                                     placeholder="Choisissez un ficher">
-                                <button [disabled]="!documentForm.value.type"
+                                <button [disabled]="!documentForm.value.typeDocument"
                                     type="button" pButton pRipple icon="pi pi-upload"
                                     class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile" (click)="handleClick()">
                                 </button>
@@ -124,7 +124,7 @@
 
                                 <td style="width:30%; min-width:10rem;">
                                     <span class="p-column-title">Type document</span>
-                                    {{document.type}}
+                                    {{document.typeDocument}}
                                 </td>
 
                                 <td style="width:30%; min-width:8rem;">
@@ -134,7 +134,7 @@
 
                                 <td>
                                     <div class="flex">
-                                        <button pButton pRipple icon="pi pi-trash"
+                                        <button pButton pRipple icon="pi pi-trash" [disabled]="!(newDocuments.indexOf(document) != -1)"
                                             class="p-button-rounded p-button-text mr-2  dangerButton"
                                             (click)="delete(document)"></button>
                                     </div>

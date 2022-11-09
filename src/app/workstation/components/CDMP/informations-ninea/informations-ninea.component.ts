@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
+import { PME } from 'src/app/workstation/model/pme';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import { UtilisateurService } from 'src/app/workstation/service/utilisateur/utilisateur.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,25 +15,29 @@ import Swal from 'sweetalert2';
 export class InformationsNineaComponent implements OnInit {
   informationsForm: any;
   demande: any;
+  pme : PME;
+  idPme:number;
+
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
-    private adhesionService: AdhesionService, 
-    private pmeService: PmeService
+    private pmeService: PmeService,
+    private utilisateurService : UtilisateurService
+  
   ) { }
 
   ngOnInit(): void {
 
     this.informationsForm = this.formBuilder.group({
-      denomination: [''],
-      formuleJuridique: [''],
+      raisonSocial: [''],
+      formeJuridique: [''],
       centreFiscal: [''],
       adresse: [''],
       enseigne: [''],
       localite: [''],
       controle: [''],
-      activite_principal: [''],
+      activitePrincipale: [''],
       registre: [''],
       representantLegal: [''],
       date_creation: [''],
@@ -41,11 +46,13 @@ export class InformationsNineaComponent implements OnInit {
       chiffre: [''],
       cniRepresentant: [''],
       dateImmatriculation: [''],
-      telephone: ['']
+      telephonePME: [''],
+      capitalsocial : ['']
     });
 
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
+      this.pme=this.demande.pme
 
     })
   }
@@ -57,7 +64,7 @@ export class InformationsNineaComponent implements OnInit {
 
   onSubmit() {
 
-    //arreter si li formulaire n'est pas valide
+   
 
     this.enregistrerInfos()
 
@@ -65,17 +72,43 @@ export class InformationsNineaComponent implements OnInit {
     this.demandeAdhesionService.setDialog(false)
 
   }
-  enregistrerInfos() {
-    //this.demandeAdhesionService.patchDemande(this.demande.id,this.demande).subscribe(data=>console.log(data))
-    //this.demandeAdhesionService.patchDemande(this.demande.id,this.informationsForm.value).subscribe(data=>console.log(data))
-    this.pmeService.patchPME(this.demande.id, this.informationsForm.value).subscribe((data) => {
-      console.log(data)
-    });
-    this.pmeService.patchPME(this.demande.id, this.demande).subscribe((data) => {
-      console.log(data)
-    });
-    //à enlever après connexion avec le backend
-    this.adhesionService.delateAdhesionDemande(this.demande.id).subscribe()
+
+  async patchPme (){
+    let body2 = {
+      hasninea : this.demande.hasninea,
+      isactive : this.demande.isactive
+    }
+    let body={
+      ...this.informationsForm.value , ...body2
+     }
+
+     console.log(JSON.stringify(body))
+    
+     this.pmeService.patchPme(this.pme.idPME,body).subscribe((result)=>{
+      console.log(result)
+      })
+   
+      
+    }
+
+
+    //A integrer apres le deploiement du microservice de notification
+  //  async createCompte(){
+  //     let infoEmail = {
+  //       email : this.pme.email
+  //     }
+  //     console.log(infoEmail)
+  //     this.utilisateurService.createCompte(infoEmail).subscribe((result)=>{
+  //       console.log(result)
+  //       })
+  //   }
+  
+ 
+
+   enregistrerInfos() {
+   
+   this.validerDemandeAdhesion();
+
 
     Swal.fire({
       position: 'center',
@@ -91,9 +124,26 @@ export class InformationsNineaComponent implements OnInit {
     })
 
     setTimeout(() => {
-      location.reload()
+   //   location.reload()
     }, 1500);
 
+    console.log(this.pme)
   }
+
+  
+  async validerDemandeAdhesion() {
+
+  
+    await this.patchPme()
+      console.log(this.pme.idPME)
+     this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
+       (result)=>{
+         console.log(result)
+        }
+     )
+  //  await this.createCompte()
+  }
+
+  
 
 }

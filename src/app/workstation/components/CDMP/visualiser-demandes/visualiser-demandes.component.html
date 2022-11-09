@@ -16,7 +16,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.ninea}}</label>
+                            <label for="inputtext">{{demande.pme.ninea}}</label>
                         </span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.rccm}}</label>
+                            <label for="inputtext">{{demande.pme.rccm}}</label>
                         </span>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.date_soumission  | date:'dd/MM/yyyy'}}</label>
+                            <label for="inputtext">{{demande.dateDemandeAdhesion | date:'dd/MM/yyyy'}}</label>
                         </span>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.ninea}}</label>
+                            <label for="inputtext">{{demande.pme.ninea}}</label>
                         </span>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.nomMarche}}</label>
+                            <label for="inputtext">{{demande.bonEngagement.nomMarche}}</label>
                         </span>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.referenceBE}}</label>
+                            <label for="inputtext">{{demande.bonEngagement.reference}}</label>
                         </span>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
-                            <label for="inputtext">{{demande.dateDemande  | date:'dd/MM/yyyy'}}</label>
+                            <label for="inputtext">{{demande.dateDemandeCession  | date:'dd/MM/yyyy'}}</label>
                         </span>
                     </div>
                 </div>
@@ -117,16 +117,16 @@
                             <tr>
                                 <td style="width:30%; min-width:10rem;">
                                     <span class="p-column-title">Type de Document</span>
-                                    {{document.nomDocument}}
+                                    {{document.typeDocument}}
                                 </td>
 
                                 <td style="width:30%; min-width:8rem;">
                                     <span class="p-column-title">Nom de Document</span>
-                                    {{document.nomDocument}}
+                                    {{document.nom}}
                                 </td>
                                 <td style="width:30%;">
                                     <span class="p-column-title">Date de Soumission</span>
-                                    {{document.dateSoumission}}
+                                    {{document.dateSauvegarde| date:'dd/MM/yyyy'}}
                                 </td>
                                 <td>
                                     <div class="flex">

@@ -215,7 +215,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
   }
 
   mettreAJourStatutConvention(body: any) {
-    this.demandeCessionService.patchConvention(this.demandeCession.id, body).subscribe()
+    this.demandeCessionService.patchConvention(this.demandeCession.idDemande, body).subscribe()
   }
 
 }

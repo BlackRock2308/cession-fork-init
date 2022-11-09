@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { GenericService } from '../../generic/generic.service';
 import { DemandeAdhesion, DemandeCession, DemandeNantissemantInfo } from '../../model/demande';
-
 @Injectable({
   providedIn: 'root'
 })
 export class DemandesAdhesionService extends GenericService {
+  
   private demandesADHUrl =ApiSettings.API_CDMP + '/demandeadhesion'; 
 
   private demandeObs: BehaviorSubject<any> = new BehaviorSubject({
@@ -52,10 +52,27 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
     }
   }
 
-  
-  getDemandesAdhesion(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion`);
+  // Retourne la liste des demandes d'adhesion
+  getDemandesAdhesion(): Observable<any> {
+    return this.http.get<any>(`${this.demandesADHUrl}`);
   }
+
+ 
+  //patch demande adhesion
+ validerAdhesion(id:any): Observable<any> {
+  const req = new HttpRequest('PATCH', `${this.demandesADHUrl}/${id}/acceptadhesion`, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
+  rejeterDemande(id: any):Observable<any> {
+    const req = new HttpRequest('PATCH', `${this.demandesADHUrl}/${id}/rejectadhesion`, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);  }
 
   //get l'ensemble des demandes de cession
 
@@ -70,20 +87,24 @@ private demandenantissementObs: BehaviorSubject<DemandeNantissemantInfo> = new B
   }*/
 
 
-  getDemandesAdhesionById(): Observable<DemandeAdhesion[]> {
-    return this.http.get<DemandeAdhesion[]>(`${this.demandesADHUrl}/demandes_adhesion?id=1`);
+  getDemandesAdhesionById(id : number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.demandesADHUrl}/${id}`);
   }
+
 
   //renseigner l'existance du ninea
   patchBasicInformation(id:number,nineaValide:any):Observable<DemandeAdhesion>{
-    return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/demandes_adhesion/${id}`,nineaValide)
+    return this.http.patch<DemandeAdhesion>(`${this.demandesADHUrl}/${id}`,nineaValide)
   }
+
+  //rjeter l'adhesion
+  
   //recupérer(garder) les informations par rapport à une demande
-  setDemandenantissementObs(demande: DemandeNantissemantInfo) {
+  setDemandenantissementObs(demande) {
     localStorage.setItem('storedNantissement',JSON.stringify(demande));
     this.demandenantissementObs.next(demande);
 }
-getDemandenantissementObs(): Observable<DemandeNantissemantInfo> {
+getDemandenantissementObs(): Observable<any> {
   return this.demandenantissementObs.asObservable();
 }
 
@@ -97,6 +118,10 @@ setDemandeObs(demande: any) {
 getDemandeObs(): Observable<any> {
   return this.demandeObs.asObservable();
 }
+
+ 
+
+
 
 //mettre à jour les informations de la pme
 patchDemande(id:number,demande:any):Observable<DemandeAdhesion>{

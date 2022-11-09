@@ -29,7 +29,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class AnalyseRisqueComponent implements OnInit {
 
-  demandes:DemandeCession[];
+  demandes:DemandeCession[]=[];
 
   demande:DemandeCession;
 
@@ -113,8 +113,27 @@ export class AnalyseRisqueComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.demandeCessionService.getAnalyseRisque().subscribe(data => {
-      this.demandes = data
+    this.demandeCessionService.getDemandeCessionByStatut("RECEVABLE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes,data.content)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("COMPLETEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("COMPLEMENT_REQUIS").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("RISQUEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
 
@@ -136,11 +155,11 @@ export class AnalyseRisqueComponent implements OnInit {
         { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
     this.statuts = [
-        {label: 'Recevable', value: 'Recevable'},
-        {label: 'Risquée', value: 'Risquée'},
-        {label: 'Complément Requis', value: 'Complement-requis'},
-        {label: 'Non Risquée', value: 'Non-Risquée'},
-        {label: 'Complétée', value: 'Completée'}
+        {label: 'Recevable', value: 'RECEVABLE'},
+        {label: 'Risquée', value: 'RISQUEE'},
+        {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'},
+        {label: 'Non Risquée', value: 'NON_RISQUEE'},
+        {label: 'Complétée', value: 'COMPLETEE'}
     ]
   }
 

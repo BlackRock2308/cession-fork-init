@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
@@ -21,16 +22,20 @@ export class VisualiserDemandesComponent implements OnInit {
   textLayerRenderedCb = 0;
   selectedDocuments: Documents[];
   value1: any;
+  id : number;
   totalPages: number;
   afterpageLoadedCb = 0;
   pageVariable = 1;
-  documents: any[];
+  documents: any[]=[];
   cols: any[];
   items1: MenuItem[];
   home: MenuItem
   ref: DynamicDialogRef;
   demandeNantissementInfos: any;
   demande: any;
+  
+  demandes: any[]=[];
+
   detail: any;
   page: any;
   profile: string;
@@ -60,24 +65,33 @@ export class VisualiserDemandesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.documentService.getDocumentsADH().subscribe(data => {
-      this.documents = data
-    });
+    // this.documentService.getDocumentsADH().subscribe(data => {
+    //   this.documents = data
+    // });
 
     //récupérer les infos de la page précédente
-    this.demandeAdhesionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-    })
+     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
+       this.demande = data;
+       this.documents=this.documents.concat(this.demande.documents)
+       this.documents=this.documents.concat(this.demande.pme.documents)
+       this.documents=this.documents.concat(this.demande.bonEngagement.documents)
+       console.log(data,this.documents)
+     })
+
+    // //recuperer les infos d'une demande d'adhesion
+    // this.demandeAdhesionService.getDemandesAdhesionById(this.id).subscribe(data => {
+    //   this.demandes = data
+    // })
 
     this.cols = [
-      { field: 'nomDocument', header: 'Nom de Document' },
+      { field: 'nom', header: 'Nom de Document' },
       { field: 'typeDocument', header: 'Type de Document' },
       { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
 
     //récupérer les informations du nantissement en cours de modification
-    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-    console.log(this.demandeNantissementInfos)
+    // this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
+    // console.log(this.demandeNantissementInfos)
 
     //détail à visualiser( page préceédente)
     this.route.queryParams.subscribe(
@@ -145,8 +159,8 @@ export class VisualiserDemandesComponent implements OnInit {
     this.zoom = this.zoom + 0.10;
   }
 
-  visualiserDocument(document: Documents) {
-    let nom = document.nomDocument;
+  visualiserDocument(document:any) {
+    let nom = document.typeDocument;
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
         document: document

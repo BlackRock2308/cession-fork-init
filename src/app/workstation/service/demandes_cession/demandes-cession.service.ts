@@ -1,13 +1,17 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { DemandeCession } from '../../model/demande';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DemandesCessionService {
-  private baseUrl = 'http://localhost:3000';
+  
+    
+    
+  private baseUrl = ApiSettings.API_CDMP;
 
   private cessionObs: BehaviorSubject<any> = new BehaviorSubject({
     id: 1,
@@ -40,6 +44,14 @@ export class DemandesCessionService {
   getDemandesCession(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
   }
+
+   //Ajouter une nouvelle demande de cession
+public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
+  
+  return this.http.post<DemandeCession>(`${this.baseUrl}/demandecession`, demandeCession);
+}
+
+
   getDemandesCessionById(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession?id=1`);
   }
@@ -82,5 +94,51 @@ export class DemandesCessionService {
   getAnalyseRisque(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession/analyse_risque`);
   }
+
+  //get demandeCession par statut
+  getDemandeCessionByStatut(statut:string): Observable<any> {
+      const params = new HttpParams()
+      .set('statut',statut)
+
+    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
+  }
+
+  validateAnalyseRisque(id: any) {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/validateAnalyse`,id, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+}
+
+rejeterAnalyseRisque(id: any) {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/rejectedAnalyse`,id, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
+demanderComplement(id: any) {
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/complementAnalyse`,id, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
+getDemandesCessionByPme(idPME: any):Observable<any>  {
+  
+  return this.http.get<any>(`${this.baseUrl}/demandecession/pme/${idPME}`)
+}
+
+completeDemande(idDemande: number): Observable<any>{
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/pme/${idDemande}/complete-demande/`,idDemande, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
 }
 

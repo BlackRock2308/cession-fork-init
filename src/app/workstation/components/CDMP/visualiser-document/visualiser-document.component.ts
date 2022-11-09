@@ -32,8 +32,9 @@ export class VisualiserDocumentComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
   ngOnInit() {
-    this.srcFile = this.config.data.document.path;
-    this.dowloadFile(this.config.data.document.path);
+    this.srcFile = this.config.data.document.urlFile;
+    console.log(this.srcFile)
+    this.dowloadFile(this.config.data.document.urlFile);
     this.convention = this.config.data.document;
 
     this.profil = localStorage.getItem('profil');
@@ -54,11 +55,13 @@ export class VisualiserDocumentComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data) {
+            console.log(data)
             this.src = data[0];
-            this.ext = this.src.path.split('.').pop();
+            console.log(this.src)
+            this.ext = this.src.urlFile.split('.').pop();
             if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
               this.images = [{
-                name: this.config.data.document.nomDocument,
+                name: this.config.data.document.nom,
                 url: this.src
               }];
             }
@@ -101,8 +104,8 @@ export class VisualiserDocumentComponent implements OnInit {
  * Permet de télécharger le document
  */
   download(blob?) {
-    const url = this.src.path;
-    const filename = this.config.data.document.nomDocument;
+    const url = this.src.urlFile;
+    const filename = this.config.data.document.nom;
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         var a = document.createElement("a");
@@ -120,7 +123,7 @@ export class VisualiserDocumentComponent implements OnInit {
    */
   print() {
     var dataView = this.src;
-    const url = this.src.path;
+    const url = this.src.urlFile;
     console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {

@@ -29,4 +29,8 @@ export class AuthService {
   recupMDP(email):Observable<any>{
     return this.http.post(AUTH_API+"/forget-password",email, httpOptions);
   }
+
+  getPmebyUser(id):Observable<any>{
+    return this.http.get(`http://localhost:8081/api/pme/byutilisateur/${id}`, httpOptions);
+  }
 }

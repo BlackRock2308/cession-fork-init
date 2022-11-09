@@ -41,7 +41,7 @@ export class DemandesAdhesionComponent implements OnInit {
   matchModeOptions: SelectItem[];
 
   constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private router: Router,
-    private adhesionDemandesService:AdhesionService, private breadcrumbService: BreadcrumbService,    private filterService:FilterService
+    private breadcrumbService: BreadcrumbService,    private filterService:FilterService
 
   ) { 
     this.breadcrumbService.setItems([
@@ -56,10 +56,10 @@ export class DemandesAdhesionComponent implements OnInit {
     console.log(this.rangeDates)
     //this.productDialog = this.communicationService.getDialogObs();
     //this.productService.getProducts().then(data => this.products = data);
-    this.adhesionDemandesService.getAdhesionDemandes().subscribe(data => {
-      this.demandes = data
+    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+      this.demandes = data.content
       console.log(this.demandes)
-      this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
+      //this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
       console.log(this.demandes[0].dateDemandeAdhesion)
     });
 

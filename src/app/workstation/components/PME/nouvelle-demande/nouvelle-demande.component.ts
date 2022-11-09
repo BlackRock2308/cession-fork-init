@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 import { Renderer2 } from '@angular/core';
@@ -14,6 +14,17 @@ import {MessageService} from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { DemandeAdhesion, DemandeCession  } from 'src/app/workstation/model/demande';
+import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
+import { DocumentService } from 'src/app/workstation/service/document/document.service';
+import { concatMap } from 'rxjs/operators';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+
 @Component({
   selector: 'app-nouvelle-demande',
   templateUrl: './nouvelle-demande.component.html',
@@ -33,14 +44,15 @@ import { Router } from '@angular/router';
 })
 export class NouvelleDemandeComponent implements OnInit {
 
-  value1: any;
-  valueIconLeft: any;
-
+  refBE: number;
+  nomMarche: String;
+  demandeCession :DemandeCession;
+  bonEngagement : BonEngagement;
   selectedFiles: File[] = [];
   selectedFile?: File;
   documentForm: FormGroup;
-  documents: Document[] = [];
-  document: Document;
+  documents: File[] = [];
+  document : Document={};
   cols: any[];
   selectedProducts: Document[];
   typesDocument: any[];
@@ -48,7 +60,7 @@ export class NouvelleDemandeComponent implements OnInit {
   selectedTypeDocument: string;
   items: MenuItem[];
   home: MenuItem;
-  documentes: any[];
+  documentPresentation: Document[]=[];
 
   rightPanelClick: boolean;
 
@@ -94,15 +106,22 @@ export class NouvelleDemandeComponent implements OnInit {
   submitted = false;
   pme: PME;
 
+idBE:number;
+
   constructor(
     private router : Router,
     private formBuilder: FormBuilder,
     public renderer: Renderer2,
     public app: AppComponent,
     private pmeService: PmeService,
+    private uploadfileservice : FileUploadService,
+    private demandeCessionService : DemandesCessionService,
+    private bonEngagementService : BonEngagementService,
+    private documentService : DocumentService,
     public dialogService: DialogService,
     public messageService: MessageService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private tokenStorage:TokenStorageService
   ) {   this.breadcrumbService.setItems([
     { label: 'Demandes' },
     { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
@@ -114,31 +133,43 @@ export class NouvelleDemandeComponent implements OnInit {
 
 
 
+
+
   ngOnInit(): void {
-    this.pmeService.getTypesDocument().subscribe(data => {
-      this.typesDocument = data;
-      
-      this.typesDocument.push({ nom: "Autres..." })
+    this.typesDocument=[
+      {
+        "type": "AUTRE",
+        "nom": "Document du marché"
+      },
+      {
+        "type": "BE",
+        "nom": "Bon engagement"
+      }
+    ]
 
-      console.log(this.typesDocument)
-    })
-    // this.documentService.getDeocuments().subscribe(data => {
-    //   this.documentes = data
-    // });
-
+    
+  
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
       file: [''],
-    });
+      refBE : ['',[Validators.required]],
+      nomMarche  : ['',[Validators.required]]  });
   }
 
+  get f(){
+    return this.documentForm.controls;
+  }
   //ajouter le fichier sélectionné au répertoire de fichier
   selectFile(files: any): void {
 
-    this.document = this.documentForm.value;
+    this.document={}
+    this.document.type = this.documentForm.value['typeDocument'];
     this.document.file = files.target.files[0];
-    this.documents.push(this.document)
-    //console.log(this.documents)
+    this.documents.push(files.target.files[0]);
+    this.documentPresentation.push(this.document);
+    console.log(this.documentPresentation)
+    console.log(this.documents)
+
 
   }
 
@@ -147,55 +178,82 @@ export class NouvelleDemandeComponent implements OnInit {
     document.getElementById('upload-file').click();
   }
 
-  //envoie du formulaire
-  onSubmit() {
+ 
 
+  onSubmit(){
+  
 
+    console.log(this.bonEngagement);
+    let body={
+    reference:this.documentForm.value['refBE'],
+    nomMarche:this.documentForm.value['nomMarche']
+    };
+    console.log(body);
+         
+   
+ this.postDemandeCession();
 
-    // arrêter si le formulaire est invalide
-    if (this.documentForm.invalid) {
-      return;
-    }
-
-    for (var i = 0; i < this.documents.length; i++) {
-      this.enregistrerDocuments(this.documents[i]);
-
-
-    }
+ Swal.fire({
+  position: 'center',
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1500,
+    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+    color:"#203359",
+    confirmButtonColor:"#99CC33",
+    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+    allowOutsideClick:false,
     
+  }).then(() => {
+   
+      this.router.navigate(['workstation/pme/demandes_en_cours'])
+  })
 
 
   }
+  
 
-  onSubmitA(){
-  Swal.fire({
-    position: 'center',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color:"#203359",
-      confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick:false,
+  
+
+  async postDemandeCession(){
+    
+    let body ={
+      pme:{
+        idPME:this.tokenStorage.getPME().idPME
+    },
+    bonEngagement:{
+      nomMarche:this.documentForm.value['nomMarche'],
+      reference:this.documentForm.value['refBE']
+    }
+  }
+
+  console.log(JSON.stringify(body))
+    
+    await this.demandeCessionService.addDemandeCession(body).subscribe((result)=>{
+        this.idBE=result.bonEngagement.idBonEngagement
+        console.log(result)
+        for (var i = 0; i < this.documents.length; i++) {
+          console.log(this.idBE)
+         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(
+          )
+        }
+        })
+        
+        console.log("finish")
+    
+    
       
-    }).then(() => {
-     
-        this.router.navigate(['workstation/pme/demandes_en_cours'])
-    })
+    
+    
   }
+  
+ 
 
 
-  //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerDocuments(document: Document) {
-    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-    //fonction à continuer 
-    console.log(this.documents);
-    /*this.adhesionService.postPME(this.pme)
-        .subscribe(() => {
-           })*/
+ 
 
-  }
+  
+
   filtertypeDocument(event) {
     const filtered: any[] = [];
     const query = event.query;
@@ -211,10 +269,14 @@ export class NouvelleDemandeComponent implements OnInit {
 
   
   delete(document:Document){
-    var myIndex = this.documents.indexOf(document);
+    var myIndex = this.documents.indexOf(document.file);
+    var myIndex2 = this.documentPresentation.indexOf(document.file);
     if (myIndex !== -1) {
       this.documents.splice(myIndex, 1);
   }
+  if (myIndex !== -1) {
+    this.documentPresentation.splice(myIndex2,1)
+}
   console.log(this.documents)
   }
 
@@ -234,6 +296,8 @@ export class NouvelleDemandeComponent implements OnInit {
   onReject() {
     this.messageService.clear('c');
 }
+
+ 
 }
 
 interface Document {
