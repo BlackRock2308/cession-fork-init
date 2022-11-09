@@ -15,7 +15,8 @@ export interface Paiements {
 
   montantCreance?: number;
 
-  statut?: Statut;
+  statutPme?: Statut;
+  statutCDMP?:Statut;
 
   demandecessionid?:number;
 }

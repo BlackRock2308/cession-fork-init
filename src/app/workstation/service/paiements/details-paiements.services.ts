@@ -1,14 +1,13 @@
 import { HttpClient ,HttpEvent,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { GenericService } from '../../generic/generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetailsPaiementsService extends GenericService{
-  private baseUrl = 'http://localhost:3000';
-  private detailsPaiementUrl= environment.API_CDMP+"detailsPaiements"
+  private detailsPaiementUrl= ApiSettings.API_CDMP+"/detailsPaiements"
 
   constructor(public http: HttpClient) {
     super(http);
