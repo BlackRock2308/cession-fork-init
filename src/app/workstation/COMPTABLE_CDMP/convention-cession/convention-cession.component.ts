@@ -4,8 +4,9 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Convention } from '../../model/convention';
-import { DemandeAdhesion } from '../../model/demande';
+import { DemandeAdhesion, DemandeCession } from '../../model/demande';
 import { Documents } from '../../model/document';
+import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
@@ -20,9 +21,9 @@ export class ConventionCessionComponent implements OnInit {
 
   demandeDialog: boolean;
 
-  demandes:DemandeAdhesion[];
+  demandes:DemandeCession[] = [] ;
 
-  demande:DemandeAdhesion;
+  demande:DemandeCession;
 
   submitted: boolean;
 
@@ -54,7 +55,8 @@ export class ConventionCessionComponent implements OnInit {
   constructor(
     private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService,
     private breadcrumbService: BreadcrumbService,
-    private filterService:FilterService
+    private filterService:FilterService,
+    private demandeCessionService : DemandesCessionService
 
     ) { 
       this.breadcrumbService.setItems([
@@ -64,11 +66,41 @@ export class ConventionCessionComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes,data.content)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REFUSEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
     this.profil = localStorage.getItem('profil');
    
-    this.documentService.getDeocuments().subscribe(data => {
-      this.documents = data;
-    });
+   
+
     
       this.cols = [
         { field: 'nomDocument', header: 'Nom de Document' },
@@ -88,11 +120,13 @@ export class ConventionCessionComponent implements OnInit {
         { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
     this.statuts = [
-        {label: 'Convention Enregistrée', value: 'convention-enregistrée'},
-        {label: 'Convention Rejetée', value: 'convention-rejetée'},
-        {label: 'Convention Signée par le PME', value: 'convention-signée-par-la-pme'},
-        {label: 'Convention Signée par le DG', value: 'convention-signée-par-le-dg'},
-        {label: 'Convention Générée', value: 'convention-générée'}
+        {label: 'Convention Enregistrée', value: 'CONVENTION_GENEREE'},
+        {label: 'Convention Rejetée', value: 'CONVENTION_CORRIGEE'},
+        {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
+        {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
+        {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
+        {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
+        {label: 'Convention Générée', value: 'NON_RISQUEE'}
     ]
     }
 
