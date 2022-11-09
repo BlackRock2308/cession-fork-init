@@ -85,9 +85,14 @@
                         <td>
 
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" (click)="verifierDemandeCession(demande)"
-                                    class="p-button-rounded simpleButton" pInputText
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                    *ngIf="demande.statut.libelle === 'SOUMISE'"
+                                    (click)="verifierDemandeCession(demande)" class="p-button-rounded  simpleBoldButton" pInputText
                                     pTooltip="Verifier la demande"></button>
+                                <button pButton pRipple icon="pi pi-eye"
+                                    *ngIf="demande.statut.libelle != 'SOUMISE'"
+                                    (click)="consulterDemande(demande)" class="p-button-rounded  simpleBoldButton"
+                                    pInputText pTooltip="Visualiser le dossier"></button>
 
                             </div>
                         </td>

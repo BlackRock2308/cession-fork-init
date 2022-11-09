@@ -152,4 +152,11 @@ export class RecevabiliteComponent implements OnInit {
     table.filter()
   }
 
+  consulterDemande(demande) {
+    this.demande = { ...demande };
+    //this.demandeDialog = true;
+    console.log(demande)
+    this.demandeCessionService.setDemandeObs(demande);
+    this.router.navigate(['workstation/cdmp/consulter_demande'], {  queryParams: {  page: 'demande cession' } });
+  }
 }
