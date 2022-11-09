@@ -28,7 +28,7 @@ import { MY_DATE_FORMATS } from 'src/app/workstation/model/my-date-format';
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: DemandeCession;
   bonEngagement: BonEngagement;
-  documents: Document[];
+  documents: any[];
   cols: any[];
   pas_identifie: boolean;
   identifie: boolean;

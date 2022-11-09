@@ -79,7 +79,7 @@
 
 
                 <ng-template pTemplate="header">
-                    <tr>
+                    <!--tr>
                         <th>
                             <p-columnFilter type="text" field="typeDocument" placeholder="Type de document">
                             </p-columnFilter>
@@ -97,7 +97,7 @@
                                 style="background-color: #203359;" label="Rechercher"
                                 (click)="dt.filter(ninea,raisonSocial,nomMarche,statut,refBE)"></button>
                         </th>
-                    </tr>
+                    </tr-->
                     <tr>
 
                         <th pSortableColumn="typeDocument" style="color: #203359;"> Pièces jointes <p-sortIcon
@@ -123,11 +123,11 @@
 
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Nom</span>
-                            {{document.nomDocument}}
+                            {{document.nom}}
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{document.dateSoumission}}
+                            {{document.dateSauvegarde | date:'dd/MM/yyyy'}}
                         </td>
 
                         <td>

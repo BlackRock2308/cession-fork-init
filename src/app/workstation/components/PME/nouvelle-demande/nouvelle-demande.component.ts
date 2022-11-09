@@ -234,7 +234,7 @@ idBE:number;
         console.log(result)
         for (var i = 0; i < this.documents.length; i++) {
           console.log(this.idBE)
-         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(
+         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data=>console.log(data)
           )
         }
         })
