@@ -93,6 +93,10 @@ export class ConventionCessionComponent implements OnInit {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
     this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
@@ -125,6 +129,7 @@ export class ConventionCessionComponent implements OnInit {
         {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
         {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
         {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
+        {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
         {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
         {label: 'Convention Générée', value: 'NON_RISQUEE'}
     ]
