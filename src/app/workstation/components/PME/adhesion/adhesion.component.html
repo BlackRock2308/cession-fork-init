@@ -37,7 +37,8 @@
                                                 <input id="NINEAfile" type="text"
                                                 pInputText pTooltip="Charger le document de référence du NINEA" placeholder="{{selectedNINEAFiles.name}}">
                                             </ng-template>
-                                            <input formControlName="nineaFile" class="hidden" type="file" id="upload-NINEAfile"
+                                            <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                                            PDF" id="upload-NINEAfile"
                                                 name="upload-NINEAfile" ngf-max-size="2MB" (change)="selectNINEAFile($event)">
                                                 
             
@@ -79,7 +80,8 @@
                                         </ng-template>
                                         
                                         
-                                        <input formControlName="rccmFile" class="hidden" type="file" id="upload-RCCMfile" 
+                                        <input formControlName="rccmFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                                        PDF" id="upload-RCCMfile" 
                                             name="upload-RCCMfile" ngf-max-size="2MB" (change)="selectRCCMFile($event)">
     
                                             <button type="button" pButton pRipple icon="pi pi-upload"
