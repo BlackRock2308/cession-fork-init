@@ -23,6 +23,7 @@ import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { concatMap } from 'rxjs/operators';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-nouvelle-demande',
@@ -119,7 +120,8 @@ idBE:number;
     private documentService : DocumentService,
     public dialogService: DialogService,
     public messageService: MessageService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private tokenStorage:TokenStorageService
   ) {   this.breadcrumbService.setItems([
     { label: 'Demandes' },
     { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
@@ -136,7 +138,7 @@ idBE:number;
   ngOnInit(): void {
     this.typesDocument=[
       {
-        "type": "Autre",
+        "type": "AUTRE",
         "nom": "Document du marché"
       },
       {
@@ -210,35 +212,35 @@ idBE:number;
 
   }
   
-  
-  async postBE(){
-    let body={
-      reference:this.documentForm.value['refBE'],
-      nomMarche:this.documentForm.value['nomMarche']
-      };
-    var response=await this.bonEngagementService.addBE(body).toPromise()
-    this.idBE=response.idBonEngagement
-        
-    }
+
   
 
   async postDemandeCession(){
     
-    await this.postBE().then(()=>{
-      console.log(this.idBE)
-      this.demandeCessionService.addDemandeCession({
-        "bonEngagement": {
-            "id":this.idBE
-        }
-    }).subscribe((result)=>{
+    let body ={
+      pme:{
+        idPME:this.tokenStorage.getPME().idPME
+    },
+    bonEngagement:{
+      nomMarche:this.documentForm.value['nomMarche'],
+      reference:this.documentForm.value['refBE']
+    }
+  }
+
+  console.log(JSON.stringify(body))
+    
+    await this.demandeCessionService.addDemandeCession(body).subscribe((result)=>{
+        this.idBE=result.bonEngagement.idBonEngagement
         console.log(result)
-        })
         for (var i = 0; i < this.documents.length; i++) {
-        this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(
+          console.log(this.idBE)
+         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(
           )
         }
+        })
+        
         console.log("finish")
-    })
+    
     
       
     
