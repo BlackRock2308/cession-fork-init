@@ -40,7 +40,8 @@
                         <input id="file" type="text"
                         pInputText pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}">
                     </ng-template>
-                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                    <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                    PDF" id="upload-file"
                         name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
                         
     

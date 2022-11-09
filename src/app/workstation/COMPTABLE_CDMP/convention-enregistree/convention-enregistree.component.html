@@ -11,7 +11,8 @@
                                     pTooltip="Charger le document de référence de la CONVENTION"
                                     placeholder="{{selectedCONVENTIONFiles.name}}" class="inpute">
                             </ng-template>
-                            <input formControlName="nineaFile" class="hidden" type="file" id="upload-CONVENTIONfile"
+                            <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                            PDF" id="upload-CONVENTIONfile"
                                 name="upload-CONVENTIONfile" ngf-max-size="2MB" (change)="selectCONVENTIONFile($event)">
 
 
