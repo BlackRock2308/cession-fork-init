@@ -81,7 +81,7 @@
                         </td>
                         <td style="width:18%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{demande.dateDemandeCession}}
+                            {{demande.dateDemandeCession | date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:25%;">
                             <span
@@ -112,7 +112,7 @@
                                     (click)="EditerConvention(convention)"></button>
                                 <button pButton pRipple icon="pi pi-file" class="p-button-rounded simpleButton successButton"
                                     pTooltip="Générer la convention" *ngIf="demande.statut.libelle === 'NON_RISQUEE' "
-                                    (click)="EditConvention(convention)"></button>
+                                    (click)="EditConvention(convention,demande)"></button>
                             </div>
                         </td>
                     </tr>

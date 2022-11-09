@@ -231,6 +231,8 @@ ChargerConvention(convention: Convention) {
 }
 
 EditerConvention(convention: Convention) {
+ // this.demandeCessionService.setDemandeObs(demande)
+
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention
@@ -241,7 +243,8 @@ EditerConvention(convention: Convention) {
     baseZIndex: 50
   });
 }
-EditConvention(convention: Convention) {
+EditConvention(convention: Convention,demande:any) {
+  this.demandeCessionService.setDemandeObs(demande)
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention
