@@ -111,7 +111,7 @@ export class ListPaiementPMEComponent implements OnInit {
       },
       header: "Paiement de la PME",
       width: "50%",
-      height: "calc(90% - 200px)",
+      //height: "calc(90% - 200px)",
       baseZIndex: 10000,
     });
   }
@@ -125,7 +125,7 @@ export class ListPaiementPMEComponent implements OnInit {
       },
       header: "Preuve de Paiement PME",
       width: "50%",
-      height: "calc(100% - 200px)",
+      //height: "calc(100% - 200px)",
       baseZIndex: 10000,
     });
   }

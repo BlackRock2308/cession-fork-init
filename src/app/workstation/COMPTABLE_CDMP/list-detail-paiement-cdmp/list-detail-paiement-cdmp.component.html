@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
@@ -8,8 +7,8 @@
             </div>
         </div>
         <div class="card">
-            <button style="margin-left: 80%;" id="valider" pButton pRipple label="Enregistrer paiement" icon="pi pi-plus" class="successButton"
-                (click)="visualiserPaimentCDMP()"></button>
+            <button style="margin-left: 80%;" id="valider" pButton pRipple label="Enregistrer paiement"
+                icon="pi pi-plus" class="successButton" (click)="ajouterPaimentCDMP()"></button>
             <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
@@ -31,42 +30,45 @@
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-paiement>
+                <ng-template pTemplate="body" let-detailsPaiement>
                     <tr>
 
                         <td style="width:25%; min-width:10rem;">
                             <span class="p-column-title">Référence paiement</span>
-                            {{paiement.reference}}
+                            {{detailsPaiement.reference}}
                         </td>
 
                         <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
-                            {{paiement.datePaiement}}
+                            {{detailsPaiement.datePaiement}}
                         </td>
                         <td style="width:25%;">
                             <span class="p-column-title">Enregistré par</span>
-                            {{paiement.comptable}}
+                            {{detailsPaiement.comptable}}
                         </td>
                         <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
-                            <span class="pull-right">{{paiement.montant}}</span>
+                            <span class="pull-right">{{detailsPaiement.montant | currency:'CFA' :
+                                'symbol' : '1.0-0'}}</span>
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-file"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser le paiement"
-                                    (click)="detailPaimentCDMP(paiement.document)"></button>
+                                    (click)="detailPaimentCDMP(detailsPaiement.document)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
                     <span class="textLeft">
-                        SOLDE : 5 000 000 F CFA
+                        SOLDE :{{detailsPaiement.paiement.montantRecuCDMP | currency:'CFA' :
+                        'symbol' : '1.0-0'}}
                     </span>
                     <span class="textRight">
-                        Montant total : 7 000 000 F CFA
+                        Montant total : {{detailsPaiement.paiement.soldePME | currency:'CFA' :
+                        'symbol' : '1.0-0'}}
                     </span>
                 </ng-template>
             </p-table>

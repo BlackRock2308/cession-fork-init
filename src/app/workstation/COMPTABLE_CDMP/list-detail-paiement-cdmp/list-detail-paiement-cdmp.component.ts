@@ -95,11 +95,11 @@ export class ListPaiementCdmpComponent implements OnInit {
     })
   }
 
-  visualiserPaimentCDMP() {
+  ajouterPaimentCDMP() {
     const ref = this.dialogService.open(AddDetailPaiementCDMPComponent, {
       header: "Paiement de la CDMP par SICA",
       width: "50%",
-      height: "calc(80% - 150px)",
+      //height: "calc(80% - 150px)",
       baseZIndex: 10000,
     });
   }
@@ -113,7 +113,7 @@ export class ListPaiementCdmpComponent implements OnInit {
       },
       header: "Preuve de Paiement CDMP",
       width: "60%",
-      height: "calc(100% - 200px)",
+      //height: "calc(100% - 200px)",
       baseZIndex: 10000,
     });
   }

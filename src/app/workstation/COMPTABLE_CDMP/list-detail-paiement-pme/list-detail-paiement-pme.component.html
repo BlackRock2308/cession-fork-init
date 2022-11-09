@@ -35,34 +35,35 @@
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-paiement>
-                    <tr *ngIf="!(paiement.statut ==='En-attente-de-paiement')">
+                <ng-template pTemplate="body" let-detailsPaiement>
+                    <tr *ngIf="!(detailsPaiement.statut ==='En-attente-de-paiement')">
                         <td style="width:16%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
-                            {{paiement.datePaiement}}
+                            {{detailsPaiement.datePaiement}}
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Enregistré par</span>
-                            {{paiement.comptable}}
+                            {{detailsPaiement.comptable}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Mode paiement</span>
-                            {{paiement.modePaiement}}
+                            {{detailsPaiement.modePaiement}}
                         </td>
                         <td style="width:16%; min-width:10rem;">
                             <span class="p-column-title">Référence paiement</span>
-                            {{paiement.reference}}
+                            {{detailsPaiement.reference}}
                         </td>
                         <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
-                            <span class="pull-right">{{paiement.montant}}</span>
+                            <span class="pull-right">{{detailsPaiement.montant | currency:'CFA' :
+                                'symbol' : '1.0-0'}}</span>
                         </td>
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-file"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser la preuve de paiement"
-                                    (click)="detailPaimentPME(paiement.document)"></button>
+                                    (click)="detailPaimentPME(detailsPaiement.document)"></button>
                             </div>
                         </td>
                     </tr>
