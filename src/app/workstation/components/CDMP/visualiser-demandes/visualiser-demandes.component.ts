@@ -26,15 +26,15 @@ export class VisualiserDemandesComponent implements OnInit {
   totalPages: number;
   afterpageLoadedCb = 0;
   pageVariable = 1;
-  documents: any[];
+  documents: any[]=[];
   cols: any[];
   items1: MenuItem[];
   home: MenuItem
   ref: DynamicDialogRef;
   demandeNantissementInfos: any;
-  demande: DemandeAdhesion;
+  demande: any;
   
-  demandes: DemandeAdhesion[];
+  demandes: any[]=[];
 
   detail: any;
   page: any;
@@ -72,7 +72,10 @@ export class VisualiserDemandesComponent implements OnInit {
     //récupérer les infos de la page précédente
      this.demandeAdhesionService.getDemandeObs().subscribe(data => {
        this.demande = data;
-       console.log(data)
+       this.documents=this.documents.concat(this.demande.documents)
+       this.documents=this.documents.concat(this.demande.pme.documents)
+       this.documents=this.documents.concat(this.demande.bonEngagement.documents)
+       console.log(data,this.documents)
      })
 
     // //recuperer les infos d'une demande d'adhesion
@@ -87,8 +90,8 @@ export class VisualiserDemandesComponent implements OnInit {
     ];
 
     //récupérer les informations du nantissement en cours de modification
-    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-    console.log(this.demandeNantissementInfos)
+    // this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
+    // console.log(this.demandeNantissementInfos)
 
     //détail à visualiser( page préceédente)
     this.route.queryParams.subscribe(
@@ -156,8 +159,8 @@ export class VisualiserDemandesComponent implements OnInit {
     this.zoom = this.zoom + 0.10;
   }
 
-  visualiserDocument(document: Documents) {
-    let nom = document.nomDocument;
+  visualiserDocument(document:any) {
+    let nom = document.typeDocument;
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
         document: document

@@ -155,11 +155,11 @@ export class AnalyseRisqueComponent implements OnInit {
         { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
     this.statuts = [
-        {label: 'Recevable', value: 'Recevable'},
-        {label: 'Risquée', value: 'Risquée'},
-        {label: 'Complément Requis', value: 'Complement-requis'},
-        {label: 'Non Risquée', value: 'Non-Risquée'},
-        {label: 'Complétée', value: 'Completée'}
+        {label: 'Recevable', value: 'RECEVABLE'},
+        {label: 'Risquée', value: 'RISQUEE'},
+        {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'},
+        {label: 'Non Risquée', value: 'NON_RISQUEE'},
+        {label: 'Complétée', value: 'COMPLETEE'}
     ]
   }
 
