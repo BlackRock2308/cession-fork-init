@@ -67,7 +67,7 @@ export class VerificationComponent implements OnInit {
         this.verifierDemandeAdhesion(body);
         Swal.fire({
           title: 'Rejetée!',
-          text: 'La demande a bien été rejetée.',
+          text: 'La demande d\'adhesion bien été rejetée.',
           icon: 'success',
           showConfirmButton: false,
           timer: 1500
