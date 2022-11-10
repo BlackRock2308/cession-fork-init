@@ -8,7 +8,7 @@
         </div>
         <br>
         <div class="card">
-            <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true"
@@ -69,27 +69,27 @@
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-document>
+                <ng-template pTemplate="body" let-demande>
                     <tr>
                        
                         <td style="width:18%;">
                             <span class="p-column-title">Reference du BE</span>
-                            {{document.referenceBE}}
+                            {{demande.bonEngagement.reference}}
                         </td>
                         <td style="width:18%;">
                             <span class="p-column-title">Reference Demande</span>
-                            {{document.numeroDemande}}
+                            {{demande.bonEngagement.numeroDemande}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Nom du marché</span>
-                            {{document.nomMarche}}
+                            {{demande.bonEngagement.nomMarche}}
                         </td>
                         <td style="width:18%; min-width:8rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{document.dateDemande}}
+                            {{demande.dateDemandeCession | date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:25%;" >
-                            <span [class]="'product-badge status-' + (document.statut ? document.statut.toLowerCase() : '')">{{document.statut.replaceAll('-', ' ')}}</span>
+                            <span [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_', ' ')}}</span>
 
                         </td>
                         <td>
@@ -97,13 +97,13 @@
                                 <button pButton pRipple icon="pi pi-search"
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
-                                    *ngIf="!(document.statut === 'Convention-générée') "
+                                    *ngIf="!(demande.statut.libelle === 'CONVENTION_GENEREE') "
                                     (click)="visualiserDocument(document)"></button>
                                     <button pButton pRipple icon="pi pi-key"
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
-                                    *ngIf="document.statut === 'Convention-générée'"
-                                    (click)="visualiserDocument(document)"></button>
+                                    *ngIf="(demande.statut.libelle === 'CONVENTION_GENEREE')"
+                                    (click)="signerConvention(demande)"></button>
                             </div>
                         </td>
                     </tr>

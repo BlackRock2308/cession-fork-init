@@ -48,14 +48,14 @@ export class VisualiserDemandesComponent implements OnInit {
     private demandeAdhesionService: DemandesAdhesionService,
     private breadcrumbService: BreadcrumbService) {
     this.profile = localStorage.getItem('profil');
-    if (this.profile === 'pme') {
+    if (this.profile === 'PME') {
       this.breadcrumbService.setItems([
         { label: 'Demandes' },
         { label: 'Liste des demandes', routerLink: 'pme/demandes_en_cours' },
         { label: 'Visualisation de la demande' }
       ]);
     }
-    else if (this.profile === 'cgr') {
+    else if (this.profile === 'DSEAR') {
       this.breadcrumbService.setItems([
         { label: 'Liste des demandes', routerLink: 'cdmp/demandes_en_cours/steps/verification' },
         { label: 'Visualisation de la demande' }

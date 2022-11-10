@@ -124,7 +124,7 @@ export class InformationsNineaComponent implements OnInit {
     })
 
     setTimeout(() => {
-      location.reload()
+     location.reload()
     }, 1500);
 
     console.log(this.pme)

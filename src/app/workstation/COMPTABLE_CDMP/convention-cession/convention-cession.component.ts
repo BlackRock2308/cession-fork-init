@@ -9,6 +9,7 @@ import { Documents } from '../../model/document';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
+import { ConventionSignerComponent } from '../convention-signer/convention-signer.component';
 import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
 
 @Component({
@@ -24,6 +25,8 @@ export class ConventionCessionComponent implements OnInit {
   demandes:DemandeCession[] = [] ;
 
   demande:DemandeCession;
+
+  convention: any;
 
   submitted: boolean;
 
@@ -254,6 +257,26 @@ EditConvention(convention: Convention,demande:any) {
     height: 'calc(50% - 100px)',
     baseZIndex: 50
   });
+}
+
+dismiss() {
+  this.ref.close();
+}
+
+signerConvention(demande : any) {
+  this.demandeCessionService.setDemandeObs(demande)
+  console.log(demande)
+
+  const ref = this.dialogService.open(ConventionSignerComponent, {
+    data: {
+      convention: this.convention
+    },
+    header: "Signer la convention",
+    width: '50%',
+    height: 'calc(50% - 100px)',
+    baseZIndex: 50
+  });
+  this.dismiss();
 }
 
 

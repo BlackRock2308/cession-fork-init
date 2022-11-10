@@ -1,37 +1,45 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Convention } from 'src/app/workstation/model/demande';
+import { PME } from 'src/app/workstation/model/pme';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import Swal from 'sweetalert2';
-import { Convention } from '../../model/convention';
-import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 
 @Component({
-  selector: 'app-convention-signer',
-  templateUrl: './convention-signer.component.html',
-  styleUrls: ['./convention-signer.component.scss']
+  selector: 'app-signerconvention-pme',
+  templateUrl: './signerconvention-pme.component.html',
+  styleUrls: ['./signerconvention-pme.component.scss']
 })
-export class ConventionSignerComponent implements OnInit {
+export class SignerconventionPMEComponent implements OnInit {
 
-  selectedCONVENTIONFiles: File | null = null;
   form!: FormGroup;
-  demande : any;
   convention: Convention;
   codePIN: string;
+  demande: any;
+  pme : PME;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     public ref: DynamicDialogRef,
     private demandeCessionService : DemandesCessionService,
     private tokenStorage : TokenStorageService
+
   ) { }
 
   ngOnInit(): void {
+
+  //   this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
+  //     this.demandes = data
+  //     console.log(this.demandes,data)
+  // });
     this.form = this.formBuilder.group({
       convention: ['', Validators.required],
       codePIN : ['' , Validators.required]
-
     });
 
     this.demandeCessionService.getDemandeObs().subscribe(data => {
@@ -43,17 +51,17 @@ export class ConventionSignerComponent implements OnInit {
     })
   }
 
-
-
+  get f(){
+    return this.form.controls;
+  }
   dismiss() {
     this.ref.close();
   }
 
-  //envoie du formulaire
   onSubmit() {
     this.ref.close();
 
-    this.signerConventionDG();
+    this.signerConventionPME();
     Swal.fire({
       html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
       color: "#203359",
@@ -72,14 +80,13 @@ export class ConventionSignerComponent implements OnInit {
  
   }
 
- 
-  private signerConventionDG() {
+  private signerConventionPME() {
 
  
     var  idDemande = this.demande.idDemande
     this.codePIN=this.form.value['codePIN']
 
-    this.demandeCessionService.signerConventionDG(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
+    this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
       console.log(response)
 

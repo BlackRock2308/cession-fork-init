@@ -46,16 +46,23 @@ export class AppLoginComponent implements OnInit{
 
         this.roles=this.tokenStorage.getUser().roles;
         this.changePassword=this.tokenStorage.getUser().updatePassword;
-        console.log(this.roles.find(elem => elem.libelle == 'CGR')!=null)
 
         
         if(this.changePassword){
           this.router.navigate(['login/maj_pwd']);
         }
         else{
-          if(this.roles.find(elem => elem.libelle == 'CGR')!=null){
+          if(this.roles.find(elem => elem.libelle == 'DRC')!=null){
             this.router.navigate(['workstation/cdmp/dashboard']);
-            localStorage.setItem('profil', 'cgr'); 
+            localStorage.setItem('profil', 'DRC'); 
+          }
+          if(this.roles.find(elem => elem.libelle == 'DSEAR')!=null){
+            this.router.navigate(['workstation/cdmp/dashboard']);
+            localStorage.setItem('profil', 'DSEAR'); 
+          }
+          if(this.roles.find(elem => elem.libelle == 'JURISTE')!=null){
+            this.router.navigate(['workstation/cdmp/dashboard']);
+            localStorage.setItem('profil', 'JURISTE'); 
           }
           if(this.roles.find(elem => elem.libelle == 'PME')!=null){
             this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
@@ -65,11 +72,11 @@ export class AppLoginComponent implements OnInit{
             )
             
             this.router.navigate(['workstation/pme/demandes_en_cours']);
-            localStorage.setItem('profil', 'pme'); 
+            localStorage.setItem('profil', 'PME'); 
           }
-          if(this.roles.find(elem => elem.libelle == 'COMPTABLE')!=null){
+          if(this.roles.find(elem => elem.libelle == 'DAF')!=null){
             this.router.navigate(['workstation/cdmp/dashboard']);
-            localStorage.setItem('profil', 'comptable'); 
+            localStorage.setItem('profil', 'DAF'); 
           }
           if(this.roles.find(elem => elem.libelle == 'DG')!=null){
             this.router.navigate(['workstation/cdmp/dashboard']);
@@ -77,7 +84,7 @@ export class AppLoginComponent implements OnInit{
           }
           if(this.roles.find(elem => elem.libelle == 'ORDONNATEUR')!=null){
             this.router.navigate(['workstation/ordonnateur/conventions']);
-            localStorage.setItem('profil', 'ordonnateur'); 
+            localStorage.setItem('profil', 'ORDONNATEUR'); 
           }
         }
         

@@ -14,17 +14,19 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
   styleUrls: ['./liste-conventions.component.scss']
 })
 export class ListeConventionsComponent implements OnInit {
-  demandes:DemandeCession[];
+
+  demandes:DemandeCession[] = [] ;
+
+  demande:DemandeCession;
   items: MenuItem[];
   home:MenuItem;
   cols: any[];
-  demande: { id?: number; pme?: PME; referenceBE?: string; raisonSocial?: string; ninea?: string; convention?: Convention; statut?: string; dateDemande?: Date; BE?:BonEngagement; numeroDemande?: number; };
 
   
   matchModeOptions: SelectItem[];
   statuts:any[];
   constructor(
-    private demandesCessionService:DemandesCessionService,
+    private demandeCessionService:DemandesCessionService,
     private router:Router,
     private breadcrumbService: BreadcrumbService
 
@@ -33,11 +35,44 @@ export class ListeConventionsComponent implements OnInit {
 ]);
 this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] });}
 
-  ngOnInit(): void {
+  ngOnInit() {
 
-    this.demandesCessionService.getConventions().subscribe(data=>{
-      this.demandes=data
-    })
+   
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes,data.content)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REFUSEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
+    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
 
     this.cols=[
       {field: 'ninea', header: 'NINEA'},
@@ -51,18 +86,23 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
     { label: 'Contient', value: FilterMatchMode.CONTAINS },
 ];
+
 this.statuts = [
-    {label: 'Convention Enregistrée', value: 'convention-enregistrée'},
-    {label: 'Convention Rejetée', value: 'convention-rejetée'},
-    {label: 'Substitution Effectuée', value: 'substitution-effectuée'},
-    {label: 'Convention Acceptée', value: 'convention-acceptée'}
+  {label: 'Convention Enregistrée', value: 'CONVENTION_GENEREE'},
+  {label: 'Convention Rejetée', value: 'CONVENTION_CORRIGEE'},
+  {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
+  {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
+  {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
+  {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
+  {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
+  {label: 'Convention Générée', value: 'NON_RISQUEE'}
 ]
   }
 
   editerDemandeCession(demande: DemandeCession) {
    // this.demande = {...demande};
     console.log(demande)
-    this.demandesCessionService.setDemandeObs(demande);
+    this.demandeCessionService.setDemandeObs(demande);
 
     this.router.navigate(['workstation/ordonnateur/conventions/details_convention']);
 
