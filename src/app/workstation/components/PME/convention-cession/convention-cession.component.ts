@@ -3,7 +3,7 @@ import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Convention } from '../../../model/convention';
-import { DemandeAdhesion } from '../../../model/demande';
+import { DemandeAdhesion, DemandeCession } from '../../../model/demande';
 import { Documents } from '../../../model/document';
 import { ConventionEnregistreeComponent } from '../../../COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from '../../../COMPTABLE_CDMP/editer-convention/editer-convention.component';
@@ -12,6 +12,7 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
+import { SignerconventionPMEComponent } from '../signer-convention/signerconvention-pme/signerconvention-pme.component';
 
 @Component({
   selector: 'app-convention-cession',
@@ -23,9 +24,9 @@ export class ConventionCessionPMEComponent implements OnInit {
 
   demandeDialog: boolean;
 
-  demandes: any[];
+  demandes:DemandeCession[] = [] ;
 
-    demande: any;
+  demande:DemandeCession;
 
   submitted: boolean;
 
@@ -65,6 +66,7 @@ export class ConventionCessionPMEComponent implements OnInit {
     private breadcrumbService: BreadcrumbService,
     private filterService:FilterService,
     private demandesCessionService : DemandesCessionService,
+
 
     ) { 
       this.breadcrumbService.setItems([
@@ -143,8 +145,11 @@ visualiserDocument(document: Documents) {
   });
 }
 
-signerConvention() {
-  const ref = this.dialogService.open(ConventionSignerComponent, {
+signerConvention(demande : any) {
+  this.demandesCessionService.setDemandeObs(demande)
+  console.log(demande)
+
+  const ref = this.dialogService.open(SignerconventionPMEComponent, {
     data: {
       convention: this.convention
     },

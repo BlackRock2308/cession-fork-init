@@ -103,7 +103,7 @@
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
                                     *ngIf="(demande.statut.libelle === 'CONVENTION_GENEREE')"
-                                    (click)="signerConvention()"></button>
+                                    (click)="signerConvention(demande)"></button>
                             </div>
                         </td>
                     </tr>

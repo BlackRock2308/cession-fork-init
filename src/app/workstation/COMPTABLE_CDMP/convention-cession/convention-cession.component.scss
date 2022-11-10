@@ -176,7 +176,11 @@ a{
             background: #C8E6C9;
             color: #256029;
         }
-        &.status-convention-signée-par-le-dg {
+        &.status-convention_signee_par_dg {
+            background: #FEEDAF;
+            color: #8A5340;
+        }
+        &.status-convention_signee_par_pme {
             background: #FEEDAF;
             color: #8A5340;
         }

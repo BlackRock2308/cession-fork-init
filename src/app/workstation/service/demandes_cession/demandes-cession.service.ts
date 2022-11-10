@@ -111,6 +111,25 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
     return this.http.request(req);
 }
 
+signerConventionPME(codePin : string , idUtilisateur : any , idDemande : any){
+  const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-pme/${idUtilisateur}`,codePin,{
+    reportProgress: true,
+    responseType: 'json'
+  });
+  console.log(codePin)
+
+  return this.http.request(req);
+}
+
+signerConventionDG(codePin : string , idUtilisateur : any , idDemande : any){
+  const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-dg/${idUtilisateur}`,codePin,{
+    reportProgress: true,
+    responseType: 'json'
+  });
+  console.log(codePin)
+
+  return this.http.request(req);
+}
 rejeterAnalyseRisque(id: any) {
   const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/rejectedAnalyse`,id, {
     reportProgress: true,

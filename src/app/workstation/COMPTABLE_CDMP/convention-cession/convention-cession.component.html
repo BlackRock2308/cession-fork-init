@@ -66,7 +66,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr
-                        *ngIf="!((profil === 'DG') && ((document.statut === 'Non-Risquee') || (document.statut === 'Convention-générée'))) && !((profil === 'PME') && (document.statut === 'Non-Risquee'))">
+                        *ngIf="!((profil === 'DG') && ((demande.statut.libelle === 'Non-Risquee') || (demande.statut.libelle === 'Convention-générée'))) && !((profil === 'pme') && (demande.statut.libelle === 'Non-Risquee'))">
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Nom Marché</span>
                             {{demande.bonEngagement.nomMarche}}
@@ -96,8 +96,8 @@
                                     (click)="visualiserDocument(document)"></button>
                                 <button pButton pRipple icon="pi pi-key" class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
-                                    *ngIf="((demande.statut.libelle === 'CONVENTION_GENEREE') &&( profil=== 'PME')) || ((demande.statut.libelle=== 'CONVENTION_SIGNEE_PAR_PME') && (profil ==='DG'))"
-                                    (click)="visualiserDocument(document)"></button>
+                                    *ngIf="((demande.statut.libelle === 'CONVENTION_GENEREE') &&( profil=== 'pme')) || ((demande.statut.libelle=== 'CONVENTION_SIGNEE_PAR_PME') && (profil ==='DG'))"
+                                    (click)="signerConvention(demande)"></button>
                                 <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "

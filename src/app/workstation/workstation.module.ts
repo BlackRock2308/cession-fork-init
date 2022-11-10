@@ -44,6 +44,7 @@ import { ProfilComponent } from './components/profil/profil.component';
 import {ConventionCessionPMEComponent} from './components/PME/convention-cession/convention-cession.component';
 import { MessageService } from 'primeng/api';
 import { CodeComponent } from './components/profil/code/code.component';
+import { SignerconventionPMEComponent } from './components/PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { CodeComponent } from './components/profil/code/code.component';
     ListPaiementsDetailsComponent,
     ProfilComponent,
     ConventionCessionPMEComponent,
-    CodeComponent
+    CodeComponent,
+    SignerconventionPMEComponent
     
   ],
   imports: [
