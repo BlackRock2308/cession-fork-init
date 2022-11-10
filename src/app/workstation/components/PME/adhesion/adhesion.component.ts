@@ -67,6 +67,7 @@ export class AdhesionComponent implements OnInit {
 
   //sélectionner le fichier du rccm
   selectRCCMFile(files: any): void {
+    //files.target.files.reset()
     this.selectedRCCMFiles = files.target.files[0];
     
 
