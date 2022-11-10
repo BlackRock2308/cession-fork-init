@@ -67,19 +67,19 @@
 
                         <td style="width:25%; min-width:10rem;">
                             <span class="p-column-title">NINEA</span>
-                            {{demande.ninea}}
+                            {{demande.pme.ninea}}
                         </td>
                         <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Raison Sociale</span>
-                            {{demande.raisonSocial}}
+                            {{demande.bonEngagement.denomination}}
                         </td>
                         <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Reférence du BE</span>
-                            {{demande.referenceBE}}
+                            {{demande.bonEngagement.reference}}
                         </td>
                         <td style="width:25%;">
                             <span
-                                [class]="'product-badge status-' + (demande.statut ? demande.statut.toLowerCase() : '')">{{demande.statut.replaceAll('-',
+                                [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
                                 ' ')}}</span>
 
                         </td>

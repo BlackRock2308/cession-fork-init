@@ -101,6 +101,11 @@ export class EditerConventionComponent implements OnInit {
         this.router.navigate(['workstation/comptable/convention_cession'])
       }})
 
+      setTimeout(() => {
+        location.reload()
+       }, 1500);
+   
+
 
     // arrêter si le formulaire est invalide
     if (this.documentForm.invalid) {
