@@ -64,7 +64,7 @@ export class GenericService {
   }
 
   getFile<T>(url: string, path: any) {
-    return this.http.get(url + "=" + path, httpOptions)
+    return this.http.get(url + "=" + path, {responseType: 'text'})
       .pipe(
         catchError(this.handleError('getFile', path))
       );

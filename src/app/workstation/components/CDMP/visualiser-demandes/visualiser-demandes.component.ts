@@ -72,9 +72,16 @@ export class VisualiserDemandesComponent implements OnInit {
     //récupérer les infos de la page précédente
      this.demandeAdhesionService.getDemandeObs().subscribe(data => {
        this.demande = data;
-       this.documents=this.documents.concat(this.demande.documents)
+       
+       if(this.demande.documents.length > 0){
+        this.documents=this.documents.concat(this.demande.documents)
+       }
+       if(this.demande.pme.documents.length > 0){
        this.documents=this.documents.concat(this.demande.pme.documents)
-       this.documents=this.documents.concat(this.demande.bonEngagement.documents)
+       }
+       if(this.demande?.bonEngagement?.documents.length > 0){
+        this.documents=this.documents.concat(this.demande?.bonEngagement?.documents)
+       }
        console.log(data,this.documents)
      })
 

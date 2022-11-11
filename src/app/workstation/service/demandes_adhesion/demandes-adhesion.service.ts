@@ -11,14 +11,7 @@ export class DemandesAdhesionService extends GenericService {
   
   private demandesADHUrl =ApiSettings.API_CDMP + '/demandeadhesion'; 
 
-  private demandeObs: BehaviorSubject<any> = new BehaviorSubject({
-    id: 6,
-    ninea: "567865467567",
-    rccm: "6543568778",
-    date_soumission: "12/02/2021",
-    ninea_existant:"true",
-    pme_active:"false"
-  });
+  private demandeObs: BehaviorSubject<any> = new BehaviorSubject({});
 
   //dialogue
   private dialogObs: BehaviorSubject<any> = new BehaviorSubject(false);

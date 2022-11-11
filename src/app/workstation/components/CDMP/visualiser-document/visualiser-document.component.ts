@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
+import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 
 @Component({
@@ -28,51 +29,51 @@ export class VisualiserDocumentComponent implements OnInit {
   convention: any;
   paiement: string;
   observation: void;
+  private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
+
 
   constructor(public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
   ngOnInit() {
     this.srcFile = this.config.data.document.urlFile;
     console.log(this.srcFile)
-    this.dowloadFile(this.config.data.document.urlFile);
+    this.dowloadFile(this.srcFile);
     this.convention = this.config.data.document;
-
     this.profil = localStorage.getItem('profil');
 
     this.statut = this.config.data.document.statut;
     if (this.config.data.paiement === 'true') {
       this.paiement = 'true';
     }
-    this.observation=this.config.data.document.observation;
-
-
-    console.log(this.paiement);
+    this.observation = this.config.data.document.observation;
 
   }
   dowloadFile(path: string) {
 
-    this.uploadFileService.dowloadFile(path)
-      .subscribe(
-        (data: any) => {
-          if (data) {
-            console.log(data)
-            this.src = data[0];
-            console.log(this.src)
-            this.ext = this.src.urlFile.split('.').pop();
-            if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
-              this.images = [{
-                name: this.config.data.document.nom,
-                url: this.src
-              }];
-            }
-            console.log("SRC", this.ext);
-          }
-        }
-        ,
-        (error) => {
-          console.log("erreur de récupération du document", error);
-        }
-      )
+    this.src=this.documentFileUrl+path;
+
+    // this.uploadFileService.dowloadFile(path)
+    //   .subscribe(
+    //     (data: any) => {
+    //       if (data) {
+    //         console.log('merci de d'+ data)
+    //         this.src = data;
+    //         console.log('merci de afficher ' +JSON.stringify( this.src))
+    //        // this.ext = this.src.url.split('.').pop();
+    //         if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
+    //           this.images = [{
+    //             name: this.config.data.document.nom,
+    //             url: this.src
+    //           }];
+    //         }
+    //         console.log("SRC", this.ext);
+    //       }
+    //     }
+    //     ,
+    //     (error) => {
+    //       console.log("erreur de récupération du document", error);
+    //     }
+    //   )
   }
   dismiss() {
     this.ref.close();
@@ -104,7 +105,7 @@ export class VisualiserDocumentComponent implements OnInit {
  * Permet de télécharger le document
  */
   download(blob?) {
-    const url = this.src.urlFile;
+    const url = this.src;
     const filename = this.config.data.document.nom;
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
@@ -123,7 +124,7 @@ export class VisualiserDocumentComponent implements OnInit {
    */
   print() {
     var dataView = this.src;
-    const url = this.src.urlFile;
+    const url = this.src;
     console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {

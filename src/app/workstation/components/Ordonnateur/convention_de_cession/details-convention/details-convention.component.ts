@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { DemandeCession } from 'src/app/workstation/model/demande';
-import { Documents } from 'src/app/workstation/model/document';
+import { Convention, DemandeCession } from 'src/app/workstation/model/demande';
+import { Document, Documents } from 'src/app/workstation/model/document';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
@@ -28,7 +28,8 @@ export class DetailsConventionComponent implements OnInit {
   zoom = 0.8;
   angle = 0;
   src: any;
-  document: Documents [];
+  docConventions: Document [];
+  conventions: Convention[]
   srcFile: string;
   ext: string;
   images: any;
@@ -48,26 +49,19 @@ export class DetailsConventionComponent implements OnInit {
 this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur/conventions'] });}
 
   ngOnInit(): void {
-    this.document = [{
-      "id": 1,
-      "nomDocument": "NINEA",
-      "dateSoumission": new Date("01/02/2022"),
-      "typeDocument": "NINEA",
-      "path": "/assets/NINEA.pdf",
-      "statut": "Convention-générée",
-      "refBE": "6543568778",
-      "ninea": 567865467567,
-      "refDemande": "2022-3454",
-      "raisonSocial": "CAMAIEU INTERNATIONAL"
-    }]
+    
 
     this.srcFile = "./assets/NINEA.pdf";
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
       console.log(this.demandeCession)
+      this.conventions = this.demandeCession.convention;
+
+      this.conventions.forEach(el => this.docConventions = el.document )
 
     });
-    this.dowloadFile(this.document[0].path);
+
+    this.dowloadFile(this.docConventions[0].url);
 
     this.documentService.getDocumentsOrd().subscribe(data => {
       this.documents = data
@@ -103,7 +97,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
             this.ext = this.src.path.split('.').pop();
             if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
               this.images = [{
-                name: this.document[0].nomDocument,
+                name: this.docConventions[0].nom,
                 url: this.src
               }];
             }
@@ -124,7 +118,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
   download(blob?) {
     const url = this.src.path;
-    const filename = this.document[0].nomDocument;
+    const filename = this.docConventions[0].nom;
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         var a = document.createElement("a");

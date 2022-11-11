@@ -3,7 +3,7 @@ export interface Documents {
     nomDocument?:string;
     dateSoumission?:Date;
     typeDocument?:string;
-    path:string;
+    path?:string;
     ninea ?: number;
     raisonSocial ?: string;
     refBE ?: string;
@@ -17,6 +17,7 @@ export interface Document {
     nom?:string,
     type?:string,
     dateSoumission?: string,
-    file ?:any
+    file ?:any;
+    url?:string;
     
 }
