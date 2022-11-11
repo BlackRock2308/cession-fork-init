@@ -11,6 +11,7 @@ import { StatutEnum } from '../../model/statut-enum';
 export class DemandesCessionService {
   
   
+  
     
     
   private baseUrl = ApiSettings.API_CDMP;
@@ -104,6 +105,13 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
 
     return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
   }
+
+  getDemandesCessionByPmeAndStatut(idPME: any, statut: string): Observable<any>  {
+    const params = new HttpParams()
+    .set('statut',statut)
+    .set('pme',idPME)
+
+  return this.http.get<any>(`${this.baseUrl}/demandecession/byStatutAndPme`,{params});  }
 
   validateAnalyseRisque(id: any) {
     const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/validateAnalyse`,id, {
