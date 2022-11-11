@@ -18,7 +18,7 @@ export class DetailsConventionComponent implements OnInit {
   items: ({ label: string; url: string; } | { label: string; url?: undefined; })[];
   home: { icon: string; url: string; };
   cols: { field: string; header: string; }[];
-  demandeCession: DemandeCession;
+  demandeCession: any;
   documents: Documents[];
   observation: string;
   pageVariable = 1;
