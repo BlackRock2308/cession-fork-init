@@ -101,7 +101,7 @@
                                 <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "
-                                    (click)="ChargerConvention(convention)"></button>
+                                    (click)="ChargerConvention(convention,demande)"></button>
                                     <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger le bordereau"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_TRANSMISE') && (profil === 'JURISTE')) "
