@@ -361,7 +361,7 @@
             <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter la demande"
                 (click)="onSubmitRejet(bonEngagement)"></button>
             <button [disabled]="!infosBEForm.valid" *ngIf="identifie" pButton pRipple icon="pi pi-check"
-                class="p-button-raised successButton" label="Valider" (click)="onSubmitA(bonEngagement)"></button>
+                class="p-button-raised successButton" label="Valider" (click)="onSubmitAccept(bonEngagement)"></button>
 
         </div>
 
