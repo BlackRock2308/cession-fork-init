@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { DemandeCession } from '../../model/demande';
+import { StatutEnum } from '../../model/statut-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -153,6 +154,17 @@ getDemandesCessionByPme(idPME: any):Observable<any>  {
 
 completeDemande(idDemande: number): Observable<any>{
   const req = new HttpRequest('PATCH', `${this.baseUrl}/pme/${idDemande}/complete-demande/`,idDemande, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+  return this.http.request(req);
+}
+
+updateStatut(idDemande: any,statut:StatutEnum) {
+
+  const params = new HttpParams()
+      .set('statut',statut)
+  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${idDemande}/statut`, {params},{
     reportProgress: true,
     responseType: 'json'
   });
