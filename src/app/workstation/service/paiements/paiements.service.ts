@@ -1,13 +1,15 @@
 import { HttpClient ,HttpEvent,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiSettings } from '../../generic/const/apiSettings.const';
+import { GenericService } from '../../generic/generic.service';
 import { Paiements } from '../../model/paiements';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaiementsService {
-  private baseUrl = 'http://localhost:3000';
+export class PaiementsService extends GenericService{
+  private paiementUrl = ApiSettings.API_CDMP + '/paiements';
 
   private paiementObs: BehaviorSubject<any> = new BehaviorSubject({
       id: 1,
@@ -26,7 +28,8 @@ export class PaiementsService {
   });
 
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
+    super(http)
      //garder les infos demandes de cession en variable de session au cas où l'on fait un refresh
      try{
       let storedPaiementCession=localStorage.getItem('storedPaiementCession');
@@ -41,13 +44,13 @@ export class PaiementsService {
    
 
   getPaiements(): Observable<Paiements[]> {
-    return this.http.get<Paiements[]>(`${this.baseUrl}/paiements`);
+    return this.http.get<Paiements[]>(`${this.paiementUrl}/paiements`);
   }
   getPaiementsPME(): Observable<Paiements[]> {
-    return this.http.get<Paiements[]>(`${this.baseUrl}/listpaiementspme`);
+    return this.http.get<Paiements[]>(`${this.paiementUrl}/listpaiementspme`);
   }
   getPaiementsById(): Observable<Paiements[]> {
-    return this.http.get<Paiements[]>(`${this.baseUrl}/paiements?id=1`);
+    return this.http.get<Paiements[]>(`${this.paiementUrl}/paiements?id=1`);
   }
 
    //renseigner les informations de paiement  sélectionné
@@ -59,6 +62,12 @@ export class PaiementsService {
   getPaiementObs(): Observable<any> {
     return this.paiementObs.asObservable();
   }
+
+  postPaiement(data) {
+    let body = JSON.stringify(data);
+    return this.add(this.paiementUrl, body);
+  }
+
 
 
 }

@@ -24,9 +24,9 @@ export class ConventionCessionPMEComponent implements OnInit {
 
   demandeDialog: boolean;
 
-  demandes:DemandeCession[] = [] ;
+  demandes:any[] = [] ;
 
-  demande:DemandeCession;
+  demande:any;
 
   submitted: boolean;
 
@@ -85,10 +85,9 @@ export class ConventionCessionPMEComponent implements OnInit {
     //   console.log( JSON.stringify(data))
     // });
 
-    this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
-      this.demandes = data
-      console.log(this.demandes,data)
-  });
+    
+        this.getDemandes()
+  
     
 
       this.cols = [
@@ -116,6 +115,48 @@ export class ConventionCessionPMEComponent implements OnInit {
        ]
  
      
+  }
+
+  getDemandes(){
+
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"NON_RISQUE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_ACCEPTEE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+    });
+
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_CORRIGEE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+      });
+
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_TRANSMISE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+        });
+        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE_PAR_PME").subscribe(data => {
+          this.demandes = this.demandes.concat(data.content)
+          console.log(this.demandes,data)
+        });
+        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE_PAR_DG").subscribe(data => {
+          this.demandes = this.demandes.concat(data.content)
+          console.log(this.demandes,data)
+        });
   }
 
   dismiss() {

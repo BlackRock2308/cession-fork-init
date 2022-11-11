@@ -187,9 +187,9 @@
         *ngIf="demandeCession.statut.libelle ==='CONVENTION_TRANSMISE'||demandeCession.statut.libelle ==='CONVENTION_CORRIGEE';else fermerBoutton">
        
         <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter"
-            (click)="onSubmit('CONVENTION_REJETEE')" routerLink="../"></button>
+            (click)="onSubmitRejet()" routerLink="../"></button>
             <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter"
-            (click)="onSubmit('CONVENTION_ACCEPTEE')" routerLink="../"></button>
+            (click)="onSubmitAccept()" routerLink="../"></button>
     </div>
 
     <ng-template #fermerBoutton class="float-end ">
