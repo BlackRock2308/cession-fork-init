@@ -39,11 +39,8 @@ export class AppComponent implements OnInit{
 
         this.isAuthenticated=!!this.tokenStorage.getAuthenticate();
 
-        console.log(!this.isAuthenticated)
 
         if(!this.isAuthenticated){
-            console.log("nan")
-
             this.router.navigate(['login'])
         }
     }

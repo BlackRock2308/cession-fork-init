@@ -10,6 +10,7 @@ import { StatutEnum } from '../../model/statut-enum';
 })
 export class DemandesCessionService {
   
+  
     
     
   private baseUrl = ApiSettings.API_CDMP;
@@ -169,6 +170,14 @@ updateStatut(idDemande: any,statut:StatutEnum):Observable<any>  {
       
     return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/statut`,{},{params});
 }
+
+accepterRecevabilite(idDemande: any):Observable<any> {
+  return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/validerRecevabilite`,idDemande);
+}
+rejeterRecevabilite(idDemande: any):Observable<any> {
+  return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/rejeterRecevabilite`,idDemande);
+}
+
 
 }
 
