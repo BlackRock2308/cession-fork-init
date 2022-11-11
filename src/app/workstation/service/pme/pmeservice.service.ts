@@ -10,6 +10,7 @@ import { PME } from '../../model/pme';
   providedIn: 'root'
 })
 export class PmeService extends GenericService{
+  
   private pmeUrl =ApiSettings.API_CDMP + '/pme'; 
 
   constructor(public http:HttpClient) { 
@@ -58,6 +59,8 @@ export class PmeService extends GenericService{
     return this.http.request(req);
   }
 
-  
+  updatePme(pme: any) :Observable<any>{
+    return this.http.put<any>(`${this.pmeUrl}/${pme.idPME}`,pme)
+  }
 
 }

@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BonEngagementService {
+  
 
   private baseUrl = ApiSettings.API_CDMP;
 
@@ -17,6 +18,10 @@ export class BonEngagementService {
     //Ajouter un nouveau bon engagement
 public addBE(bonEngagement : BonEngagement) : Observable<BonEngagement>{
   return this.http.post<BonEngagement>(`${this.baseUrl}/bonEngagement`, bonEngagement);
+}
+
+updateBonEngagement(idBonEngagement: any, bonEngagement: any):Observable<any>{
+  return this.http.put<any>(`${this.baseUrl}/bonEngagement/${idBonEngagement}`, bonEngagement);
 }
 
 
