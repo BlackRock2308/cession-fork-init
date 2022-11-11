@@ -61,7 +61,7 @@ export class AppLoginComponent implements OnInit{
             localStorage.setItem('profil', 'DSEAR'); 
           }
           if(this.roles.find(elem => elem.libelle == 'JURISTE')!=null){
-            this.router.navigate(['workstation/cdmp/dashboard']);
+            this.router.navigate(['workstation/comptable/convention_cession']);
             localStorage.setItem('profil', 'JURISTE'); 
           }
           if(this.roles.find(elem => elem.libelle == 'PME')!=null){

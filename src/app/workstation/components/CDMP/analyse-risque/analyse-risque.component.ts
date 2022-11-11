@@ -148,7 +148,6 @@ export class AnalyseRisqueComponent implements OnInit {
     //filtre par range date
     this.calenderFilter()
 
-
     this.matchModeOptions = [
         { label: 'Intervalle de date', value: 'rangeDate' },
         { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
@@ -172,8 +171,6 @@ export class AnalyseRisqueComponent implements OnInit {
   deleteSelectedProducts() {
     this.deleteProductsDialog = true;
   }
-
- 
 
   deleteProduct(product: Product) {
     this.deleteProductDialog = true;

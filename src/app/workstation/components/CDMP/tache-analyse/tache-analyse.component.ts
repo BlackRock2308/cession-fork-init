@@ -122,10 +122,6 @@ export class TacheAnalyseComponent implements OnInit {
 
         this.router.navigate(['/workstation/cdmp/analyse_risque']);
         this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
-          
-        
-       
-          
 
     }
 

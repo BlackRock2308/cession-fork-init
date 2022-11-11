@@ -15,6 +15,8 @@ import * as FileSaver from 'file-saver';
 import 'jspdf-autotable';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Creance } from 'src/app/workstation/model/creance';
+import { DemandesCessionService } from '../../../service/demandes_cession/demandes-cession.service';
+import { StatistiquePME } from '../../../model/creance';
 @Component({
     selector: 'app-dashboard-dg',
     templateUrl: './dashboard-dg.component.html',
@@ -72,6 +74,7 @@ export class DashboardDGComponent implements OnInit {
     profil: string;
 
     dropdownYears: SelectItem[];
+    statistiquePmes: StatistiquePME [];
 
     selectedYear: any;
 
@@ -80,7 +83,7 @@ export class DashboardDGComponent implements OnInit {
     statuts: any[];
 
     constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService,
-        public dialogService: DialogService,
+        public dialogService: DialogService, private demandesCessionService: DemandesCessionService,
         private messageService: MessageService, private router: Router, private breadcrumbService: BreadcrumbService,
         private filterService: FilterService
     ) {
@@ -100,6 +103,10 @@ export class DashboardDGComponent implements OnInit {
         this.demandesAdhesionService.getCreances().subscribe(data => {
             this.creances = data
             console.log(this.creances)
+        });
+
+        this.demandesCessionService.getPMEBenRejByAnne(this.selectedYear).subscribe(data => {
+            this.statistiquePmes = data
         });
 
         this.cols = [

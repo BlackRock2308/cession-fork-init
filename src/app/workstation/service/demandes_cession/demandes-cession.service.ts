@@ -9,8 +9,6 @@ import { StatutEnum } from '../../model/statut-enum';
   providedIn: 'root'
 })
 export class DemandesCessionService {
-  
-  
     
     
   private baseUrl = ApiSettings.API_CDMP;
@@ -151,6 +149,11 @@ demanderComplement(id: any) {
 getDemandesCessionByPme(idPME: any):Observable<any>  {
   
   return this.http.get<any>(`${this.baseUrl}/demandecession/pme/${idPME}`)
+}
+
+getPMEBenRejByAnne(anne: any):Observable<any>  {
+  
+  return this.http.get<any>(`${this.baseUrl}/demandecession/statistiqueDemandeCession/${anne}`)
 }
 
 completeDemande(idDemande: number): Observable<any>{
