@@ -221,7 +221,9 @@ minusZoom() {
   }
 }
 
-ChargerConvention(convention: Convention) {
+ChargerConvention(convention: Convention , demande : any) {
+  this.demandeCessionService.setDemandeObs(demande)
+
   const ref = this.dialogService.open(ConventionEnregistreeComponent, {
     data: {
       convention: convention

@@ -1,6 +1,6 @@
 export interface Convention {
 
-    id?:number,
+    idConvention?:number,
     nom?:string,
     statut?:String,
     date_soumission?: string,

@@ -30,4 +30,17 @@ export class ConventionService extends GenericService {
     return this.add(this.conventionUrl, body);
   }
 
+  updateConvention(data) {
+
+    let body = JSON.stringify(data);
+    return this.update(this.conventionUrl, body);
+  }
+  // updateConvention(convention:any): Observable<HttpEvent<any>> {
+  //   const req = new HttpRequest('PUT', `${this.conventionUrl}`,convention, {
+  //     reportProgress: true,
+  //     responseType: 'json'
+  //   });
+  //   return this.http.request(req);
+  // }
+
 }

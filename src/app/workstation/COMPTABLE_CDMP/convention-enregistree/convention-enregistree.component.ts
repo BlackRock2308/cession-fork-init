@@ -4,6 +4,12 @@ import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import Swal from 'sweetalert2';
 import { Convention } from '../../model/convention';
+import { PME  } from '../../model/pme';
+import { StatutEnum  } from '../../model/statut-enum';
+import { ConventionService } from '../../service/convention/convention.service';
+import { DemandesCessionService  } from '../../service/demandes_cession/demandes-cession.service';
+import { FileUploadService } from '../../service/fileUpload.service';
+
 
 @Component({
   selector: 'app-convention-enregistree',
@@ -14,17 +20,41 @@ export class ConventionEnregistreeComponent implements OnInit {
 
   selectedCONVENTIONFiles: File | null = null;
   form!: FormGroup;
-  convention: Convention;
+  conventions:Convention[] = [] ;
+
+  convention:Convention; 
+  pme: PME;
+  statutEnum : StatutEnum;
+  demande: any;
   constructor(
     public ref: DynamicDialogRef,
     private formBuilder: FormBuilder,
     private router: Router,
+    private demandeCessionService : DemandesCessionService,
+    private conventionService : ConventionService,
+    private uploadFileService: FileUploadService,
+
+
   ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       convention: ['', Validators.required]
     });
+
+
+    this.demandeCessionService.getDemandeObs().subscribe(data => {
+      this.demande = data;
+      this.pme=this.demande.pme
+      this.convention=this.demande.conventions[0]
+      console.log(this.pme,this.demande , this.convention.idConvention)
+
+    })
+
+    this.form = this.formBuilder.group({
+      
+       nineaFile: ['']
+     });
   }
 
   handleCONVENTIONClick() {
@@ -45,6 +75,9 @@ export class ConventionEnregistreeComponent implements OnInit {
 
     this.ref.close();
 
+
+    this.conventionTransmise();
+
     Swal.fire({
 
       html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -58,25 +91,53 @@ export class ConventionEnregistreeComponent implements OnInit {
         this.router.navigate(['workstation/comptable/convention_cession'])
       }
     })
+
+    setTimeout(() => {
+      location.reload()
+     }, 1500);
     // arrêter si le formulaire est invalide
     if (this.form.invalid) {
       return;
     }
 
 
-    this.enregistrerConvention();
+    
 
   }
+
+  
 
   //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerConvention() {
-    this.convention = this.form.value;
-    this.convention.conv_file = this.selectedCONVENTIONFiles;
-    //fonction à continuer 
-    console.log(this.convention);
-    /*this.adhesionService.postPME(this.pme)
-        .subscribe(() => {
-           })*/
-
+  private conventionTransmise() {
+   
+    let body = {
+      
+      file: this.selectedCONVENTIONFiles,
+      idConvention:this.convention.idConvention
+      
   }
+  console.log(body)
+
+    
+
+    
+
+
+      
+        this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
+          data=>{console.log(data)},
+          ()=>{},
+          ()=>{
+            this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionTransmise)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.ConventionTransmise)
+          })
+          }
+
+         )
+        
+      
+
+}
 }

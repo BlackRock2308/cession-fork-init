@@ -160,15 +160,14 @@ completeDemande(idDemande: number): Observable<any>{
   return this.http.request(req);
 }
 
-updateStatut(idDemande: any,statut:StatutEnum) {
+updateStatut(idDemande: any,statut:StatutEnum):Observable<any>  {
 
   const params = new HttpParams()
       .set('statut',statut.toString())
-  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${idDemande}/statut`, {params},{
-    reportProgress: true,
-    responseType: 'json'
-  });
-  return this.http.request(req);
+
+      console.log(params);
+      
+    return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/statut`,{},{params});
 }
 
 }
