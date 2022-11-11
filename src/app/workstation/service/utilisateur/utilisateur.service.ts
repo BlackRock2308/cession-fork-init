@@ -25,4 +25,8 @@ export class UtilisateurService extends GenericService {
     return this.http.post<Utilisateur>(`${this.utilisateurUrl}/pme/createCompte`, utilisateur);
 
   }
+
+  updateUtilisateur(data) {
+    return this.update(this.utilisateurUrl, data);
+  }
 }

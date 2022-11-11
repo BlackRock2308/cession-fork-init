@@ -1,6 +1,6 @@
 <div class="modal-header" style="background-color: blue;"></div>
 
-<div *ngIf="srcFile" class="container-fluid text-right">
+<div *ngIf="src" class="container-fluid text-right">
 
     <button [disabled]="pageVariable==1" class="mr-2 btn-icon btn-icon-only btn btn-outline-info icones-action"
         ngbTooltip="Page précédente" (click)="previousPage()"><i class="pi pi-chevron-left">
@@ -45,13 +45,14 @@
 &nbsp;
 <div style="display: block;">
     <div class="modal-body">
-        <div *ngIf="srcFile" class="container-fluid">
+        <div *ngIf="src" class="container-fluid">
             <br />
-            <div *ngIf="ext=='PDF' || ext=='pdf'">
-                <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
+            <!-- <div *ngIf="ext=='PDF' || ext=='pdf'"> -->
+                <div>
+                <pdf-viewer *ngIf="src" [src]="src" [show-all]="false" [(page)]="pageVariable"
                     [render-text]="true" [zoom]="zoom" [rotation]="angle" [original-size]="false"
                     (after-load-complete)="afterLoadComplete($event)" (page-rendered)="pageRendered($event)"
-                    [fit-to-page]="true" (text-layer-rendered)="textLayerRendered($event)" class="pdf-container">
+                    [fit-to-page]="true" (text-layer-rendered)="textLayerRendered($event)" class="pdf-container" useBrowserLocale="true">
                 </pdf-viewer>
             </div>
             <div *ngIf="ext=='jpeg' || ext=='png' || ext=='jpg'" class="pdf-container">

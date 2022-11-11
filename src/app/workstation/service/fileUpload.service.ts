@@ -16,7 +16,7 @@ const httpOptions = {
 
 export class FileUploadService extends GenericService {
   private uploadFileUrl = ApiSettings.API_CDMP;
-  private documentFileUrl = ApiSettings.API_CDMP + '/documents?path'
+  private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path'
 
   constructor(public http: HttpClient) {
     super(http);
@@ -29,7 +29,7 @@ export class FileUploadService extends GenericService {
     return this.upload(this.uploadFileUrl + url + id + "/upload", formParams)
   }
   public dowloadFile(path: string) {
-    return this.getFile(this.documentFileUrl, path);
+    return this.getFile(this.documentFileUrl, path );
 
   }
 }
