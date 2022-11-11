@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Creance } from 'src/app/workstation/model/creance';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 
 @Component({
@@ -10,13 +11,13 @@ import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_ad
 export class DetailsTableauComponent implements OnInit {
 
   demandeNantissementInfos: any;
+  detailsCreances: Creance;
 
-  constructor(public ref: DynamicDialogRef, private demandeAdhesionService: DemandesAdhesionService) { }
+  constructor(public ref: DynamicDialogRef, private demandeAdhesionService: DemandesAdhesionService, public config: DynamicDialogConfig) { }
 
   ngOnInit() : void {
-    //récupérer les informations du nantissement en cours de modification
-    this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-    console.log(this.demandeNantissementInfos)
+    this.detailsCreances = this.config.data.demande;
+
   }
 
   dismiss() {

@@ -14,6 +14,7 @@ import * as FileSaver from 'file-saver';
 
 import 'jspdf-autotable';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { Creance } from 'src/app/workstation/model/creance';
 @Component({
     selector: 'app-dashboard-dg',
     templateUrl: './dashboard-dg.component.html',
@@ -26,7 +27,7 @@ export class DashboardDGComponent implements OnInit {
     demandeDialog: boolean;
 
     fileName = 'MarchesCDMP.xlsx';
-    demandes: DemandeAdhesion[];
+    creances: Creance[];
 
     demande: DemandeAdhesion;
 
@@ -74,33 +75,31 @@ export class DashboardDGComponent implements OnInit {
 
     selectedYear: any;
 
-    rangeDates:any[];
+    rangeDates: any[];
     matchModeOptions: SelectItem[];
-    statuts:any[];
+    statuts: any[];
 
-    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService, 
-        public dialogService: DialogService, 
-        private messageService: MessageService, private router: Router,private breadcrumbService: BreadcrumbService,    
-        private filterService:FilterService
-        ) { 
-            this.breadcrumbService.setItems([
-                { label: 'Tableau de bord' },
-            ]);
-            this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
+    constructor(private configService: AppConfigService, private demandesAdhesionService: DemandesAdhesionService,
+        public dialogService: DialogService,
+        private messageService: MessageService, private router: Router, private breadcrumbService: BreadcrumbService,
+        private filterService: FilterService
+    ) {
+        this.breadcrumbService.setItems([
+            { label: 'Tableau de bord' },
+        ]);
+        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
 
-
-    
-        }
-        exportColumns: any[];
+    }
+    exportColumns: any[];
 
 
     ngOnInit() {
 
         this.profil = localStorage.getItem('profil');
 
-        this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
-            this.demandes = data
-            console.log(this.demandes)
+        this.demandesAdhesionService.getCreances().subscribe(data => {
+            this.creances = data
+            console.log(this.creances)
         });
 
         this.cols = [
@@ -125,18 +124,18 @@ export class DashboardDGComponent implements OnInit {
             { label: 'Contient', value: FilterMatchMode.CONTAINS },
         ];
         this.statuts = [
-            {label: 'Acceptée', value: 'Acceptée'},
-            {label: 'Refusée', value: 'Refusée'}
+            { label: 'Acceptée', value: 'Acceptée' },
+            { label: 'Refusée', value: 'Refusée' }
         ]
         this.dropdownYears = [
-            {label: '2021', value: 2021},
-            {label: '2020', value: 2020},
-            {label: '2019', value: 2019},
-            {label: '2018', value: 2018},
-            {label: '2017', value: 2017},
-            {label: '2016', value: 2016},
-            {label: '2015', value: 2015},
-            {label: '2014', value: 2014}
+            { label: '2021', value: 2021 },
+            { label: '2020', value: 2020 },
+            { label: '2019', value: 2019 },
+            { label: '2018', value: 2018 },
+            { label: '2017', value: 2017 },
+            { label: '2016', value: 2016 },
+            { label: '2015', value: 2015 },
+            { label: '2014', value: 2014 }
         ];
 
         this.basicData = {
@@ -262,8 +261,8 @@ export class DashboardDGComponent implements OnInit {
                     1,
                     2,
                     1,
-                    1,5,
-                    1,5,
+                    1, 5,
+                    1, 5,
                     1,
                     2,
                     1,
@@ -353,27 +352,27 @@ export class DashboardDGComponent implements OnInit {
             this.updateChartOptions();
         });
 
-        this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+        this.exportColumns = this.cols.map(col => ({ title: col.header, dataKey: col.field }));
 
     }
 
     exportPdf() {
-       
+
         import("jspdf").then(jsPDF => {
             import("jspdf-autotable").then(x => {
-                const doc = new jsPDF.default('landscape','pt');
+                const doc = new jsPDF.default('landscape', 'pt');
                 //const pdf = new jsPDF('landscape', 'px', 'a4');
-                doc["autoTable"](this.exportColumns, this.demandes);
+                doc["autoTable"](this.exportColumns, this.creances);
                 doc.save('Liste_des_creances.pdf');
             })
-        }) 
-           
+        })
+
     }
-    
+
 
     exportexcel(): void {
         import("xlsx").then(xlsx => {
-            const worksheet = xlsx.utils.json_to_sheet(this.demandes);
+            const worksheet = xlsx.utils.json_to_sheet(this.creances);
             const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
             const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
             this.saveAsExcelFile(excelBuffer, "liste_creance");
@@ -390,7 +389,7 @@ export class DashboardDGComponent implements OnInit {
         FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     }
     visualiserDetails(demande: DemandeAdhesion) {
-        this.demande = {...demande};
+        this.demande = { ...demande };
         //console.log(demande)
         this.demandesAdhesionService.setDemandenantissementObs(demande);
         const ref = this.dialogService.open(DetailsTableauComponent, {
@@ -699,48 +698,48 @@ export class DashboardDGComponent implements OnInit {
     }
 
 
-      //filtre par intervalle de date
-  public calenderFilter() {
-    
-    this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
-     //Afficher toute les lignes du tableau au démarrage
-     if(this.rangeDates== undefined){
-       return true;
-     }
-     //redéfinir les dates pour comparer sans prendre en compte l'heure
-     //on donne toutes les date l'heure 00:00:00
-     const d=value.split("/")
-     value=new Date((new Date(d[2],d[1]-1,d[0])).toDateString())
-     this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
-     if( this.rangeDates[1] !== null ){
-       this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
-     }
+    //filtre par intervalle de date
+    public calenderFilter() {
 
-     if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
-        console.log(value)
-        console.log(1)
-        return true;
-    }
-   
-    if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
-      console.log(2)
-        return true;
-    }
-   
-    if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
-      this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
-        console.log(3)
-        return true;
-    }
-   
-    console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
-    return false;
-   })
-   }
+        this.filterService.register('rangeDate', (value: any, filter: any): boolean => {
+            //Afficher toute les lignes du tableau au démarrage
+            if (this.rangeDates == undefined) {
+                return true;
+            }
+            //redéfinir les dates pour comparer sans prendre en compte l'heure
+            //on donne toutes les date l'heure 00:00:00
+            const d = value.split("/")
+            value = new Date((new Date(d[2], d[1] - 1, d[0])).toDateString())
+            this.rangeDates[0] = new Date((new Date(this.rangeDates[0])).toDateString())
+            if (this.rangeDates[1] !== null) {
+                this.rangeDates[1] = new Date((new Date(this.rangeDates[1])).toDateString())
+            }
 
- //effacer le filtre par date
- clearRange(table){
-   this.rangeDates=undefined;
-   table.filter()
- }
+            if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
+                console.log(value)
+                console.log(1)
+                return true;
+            }
+
+            if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
+                console.log(2)
+                return true;
+            }
+
+            if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+                this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
+                console.log(3)
+                return true;
+            }
+
+            console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
+            return false;
+        })
+    }
+
+    //effacer le filtre par date
+    clearRange(table) {
+        this.rangeDates = undefined;
+        table.filter()
+    }
 }

@@ -68,30 +68,30 @@
         class="p-button-raised p-button-info mx-1  my-auto ml-2"></button> -->
     <h3 style=" margin-left: 40%;"> Liste des créances</h3>
 
-    <p-table #dt [value]="demandes" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
+    <p-table #dt [value]="creances" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decote']"
         [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
         currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
 
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="ninea" style="color: #203359;">Nom du marché <p-sortIcon field="ninea">
+                <th pSortableColumn="nomMarche" style="color: #203359;">Nom du marché <p-sortIcon field="nomMarche">
                     </p-sortIcon>
                 </th>
-                <th pSortableColumn="datesoumission" style="color: #203359;">Raison sociale <p-sortIcon
-                        field="datesoumission"></p-sortIcon>
+                <th pSortableColumn="raisonSocial" style="color: #203359;">Raison sociale <p-sortIcon
+                        field="raisonSocial"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Date de demande <p-sortIcon field="rccm">
+                <th pSortableColumn="dateDemandeCession" style="color: #203359;">Date de demande <p-sortIcon field="dateDemandeCession">
                     </p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Montant total <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="montantCreance" style="color: #203359;">Montant total <p-sortIcon field="montantCreance"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Date marché <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="dateMarche" style="color: #203359;">Date marché <p-sortIcon field="dateMarche"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rccm" style="color: #203359;">Statut <p-sortIcon field="rccm"></p-sortIcon>
+                <th pSortableColumn="statut" style="color: #203359;">Statut <p-sortIcon field="statut"></p-sortIcon>
                 </th>
-                <th *ngIf="profil === 'DG'" pSortableColumn="rccm" style="color: #203359;">Décote <p-sortIcon
-                        field="rccm"></p-sortIcon>
+                <th *ngIf="profil === 'DG'" pSortableColumn="decote" style="color: #203359;">Décote <p-sortIcon
+                        field="decote"></p-sortIcon>
                 </th>
                 <th style="color: #203359;">Actions</th>
             </tr>
@@ -104,14 +104,14 @@
                 </th>
                 <th>
 
-                    <p-columnFilter type="text" field="date_soumission" placeholder="Date de demande"></p-columnFilter>
+                    <p-columnFilter type="text" field="dateDemandeCession" placeholder="Date de demande"></p-columnFilter>
 
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="montant_total" placeholder="Montant total"></p-columnFilter>
+                    <p-columnFilter type="text" field="montantCreance" placeholder="Montant total"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="date"  field="date_marche" placeholder="Date de marché" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
+                    <p-columnFilter type="date"  field="dateMarche" placeholder="Date de marché" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
                     <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de marché"></p-calendar>
                 </th>
                 <th>
@@ -149,15 +149,15 @@
                 </td>
                 <td>
                     <span class="p-column-title">Date demande</span>
-                    {{demande.date_soumission}}
+                    {{demande.dateDemandeCession}}
                 </td>
                 <td>
                     <span class="p-column-title">Montant total</span>
-                    {{demande.montant_total}}
+                    {{demande.montantCreance}}
                 </td>
                 <td>
                     <span class="p-column-title">Date marché</span>
-                    {{demande.date_marche}}
+                    {{demande.dateMarche}}
                 </td>
                 <td>
                     <span
