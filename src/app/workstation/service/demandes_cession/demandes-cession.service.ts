@@ -163,7 +163,7 @@ completeDemande(idDemande: number): Observable<any>{
 updateStatut(idDemande: any,statut:StatutEnum) {
 
   const params = new HttpParams()
-      .set('statut',statut)
+      .set('statut',statut.toString())
   const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${idDemande}/statut`, {params},{
     reportProgress: true,
     responseType: 'json'
