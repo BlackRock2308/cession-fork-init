@@ -7,7 +7,10 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { VisualiserDocumentComponent } from '../../../CDMP/visualiser-document/visualiser-document.component';
-
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 @Component({
   selector: 'app-details-convention',
   templateUrl: './details-convention.component.html',
@@ -37,9 +40,12 @@ export class DetailsConventionComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private demandeCessionService: DemandesCessionService,
     private documentService: DocumentService,
+    private paiementService : PaiementsService,
     private dialogService: DialogService,
+    public ref: DynamicDialogRef,
     private uploadFileService: FileUploadService,
     private breadcrumbService: BreadcrumbService
   ) { this.breadcrumbService.setItems([
@@ -57,15 +63,15 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
       console.log(this.demandeCession)
       this.conventions = this.demandeCession.convention;
 
-      this.conventions.forEach(el => this.docConventions = el.document )
+      //this.conventions.forEach(el => this.docConventions = el.document )
 
     });
 
-    this.dowloadFile(this.docConventions[0].url);
+  //  this.dowloadFile(this.docConventions[0].url);
 
-    this.documentService.getDocumentsOrd().subscribe(data => {
-      this.documents = data
-    })
+    // this.documentService.getDocumentsOrd().subscribe(data => {
+    //   this.documents = data
+    // })
 
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
@@ -75,17 +81,89 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
      }
 
 
-  onSubmit(statut: string) {
-    let body = {
-      observation: this.observation,
-      statut: statut
-    }
+  onSubmitRejet() {
 
-    this.mettreAJourStatutConvention(body)
+   
 
+
+    Swal.fire({
+      position: 'center',
+      title: 'Etes-vous sur de vouloir rejeter la convention?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+    color:"#203359",
+    confirmButtonColor:"#99CC33",
+    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+    allowOutsideClick:false,
+    
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.conventionRejetee();
+      this.router.navigate(['workstation/ordonnateur/conventions'])
+      Swal.fire(
+          'Rejetée!',
+          'La convention a bien été rejetée.',
+          'success'
+        )
+    }})
 
   }
 
+  onSubmitAccept() {
+
+
+
+    this.conventionAcceptee();
+
+    Swal.fire({
+      position: 'center',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été acceptée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+        color:"#203359",
+        confirmButtonColor:"#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+        allowOutsideClick:false,
+        
+      }).then(() => {
+       
+          this.router.navigate(['workstation/ordonnateur/conventions'])
+      })
+  
+  }
+
+  private conventionRejetee(){
+
+
+    this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.ConventionRejetee)
+          })
+  }
+
+  private conventionAcceptee(){
+
+    let body = {
+      
+      idDemande:this.demandeCession.idDemande,
+  }
+
+  console.log(body)
+
+    this.paiementService.postPaiement(body).subscribe(
+      data=>{console.log(data)},
+      ()=>{},
+      ()=>{
+    this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionAcceptee)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.ConventionAcceptee)
+          })
+  })
+  }
   dowloadFile(path: string) {
 
     console.log('Affiche mon path ' + path)

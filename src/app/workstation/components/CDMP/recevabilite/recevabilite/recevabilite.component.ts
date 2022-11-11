@@ -19,9 +19,9 @@ import { RowSizes } from 'src/app/core/generic-component/cdmp-table/row-sizes.mo
 })
 export class RecevabiliteComponent implements OnInit {
 
-  demandes: DemandeCession[];
+  demandes: any[];
 
-  demande: DemandeCession;
+  demande: any;
 
   submitted: boolean;
 
@@ -63,6 +63,7 @@ export class RecevabiliteComponent implements OnInit {
     this.recevabiliteService.getRecevabilites(args).subscribe(data => {
       this.demandes = data.content;
       this.totalRecords = data.totalElements;
+      
 
     });
 
