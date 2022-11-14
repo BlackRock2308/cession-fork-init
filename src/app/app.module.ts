@@ -94,12 +94,12 @@ export function HttpLoaderFactory(http: HttpClient) {
             provide: HTTP_INTERCEPTORS,
             useClass: ErrorInterceptorService,
             multi: true
-          },
+          }/*,
           {
             provide: HTTP_INTERCEPTORS,
             useClass: HttpRetryInterceptorService,
             multi: true
-          }
+          }*/
 
     ],
     bootstrap: [AppComponent],

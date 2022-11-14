@@ -4,9 +4,9 @@ import { mergeMap, finalize, delay } from 'rxjs/operators';
 
 export const genericRetryPolicy =
   ({
-    maxRetryAttempts = 3,
-    scalingDuration = 2000,
-    excludedStatusCodes = [],
+    maxRetryAttempts = 1,
+    scalingDuration = 1000,
+    excludedStatusCodes = [400, 401, 403, 404, 500],
   }) =>
     (attempts: Observable<any>) => {
       return attempts.pipe(

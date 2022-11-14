@@ -8,12 +8,18 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ErrorInterceptorService  implements HttpInterceptor {
+  constructor(
+    private router:Router
+  ){}
   intercept(
       request: HttpRequest<any>,
       next: HttpHandler
@@ -29,11 +35,25 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                       console.log('erreur client')
                   } else {
                       // erreur serveur
-                      console.log('erreur serveur')
+                      console.log('erreur serveur',error.name,error.type,error.statusText,error.url,)
                       errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
+                      if(error.status==400){
+                        Swal.fire({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: 'Une erreur est survenue!',
+                        })
+                      }
+                      if(error.status==403){
+                        Swal.fire({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: 'Vous n\'êtes pas authorisée à faire cette requête!',
+                        })
+                      }
                   }
                   console.log(errorMessage);
-                  return throwError(errorMessage);
+                  return throwError(error);
               })
           )
   }
