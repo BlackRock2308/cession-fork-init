@@ -88,7 +88,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           }
           for (let file of this.selectedFiles) {
             this.uploadFileService
-              .uploadFile("/detailsPaiements", res.id, file, typeDocument)
+              .uploadFile('/detailsPaiements/', res.id, file, typeDocument)
               .subscribe((resFil: any) => {
                 console.log(resFil);
               });
