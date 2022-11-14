@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
@@ -9,8 +8,8 @@
         </div>
         <div class="card">
             <button id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
-                class="successButton" (click)="visualiserPaimentPME()"></button>
-            <p-table #dt [value]="paiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                class="successButton" (click)="ajouterPaimentPME()"></button>
+            <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes" [rowHover]="true" dataKey="id">
@@ -35,39 +34,43 @@
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-paiement>
-                    <tr *ngIf="!(paiement.statut ==='En-attente-de-paiement')">
+                <ng-template pTemplate="body" let-detailsPaiement>
+                    <tr *ngIf="!(detailsPaiement.statut ==='En-attente-de-paiement')">
                         <td style="width:16%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
-                            {{paiement.datePaiement}}
+                            {{detailsPaiement.datePaiement | date: 'dd/MM/yyyy'}}
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Enregistré par</span>
-                            {{paiement.payer}}
+                            {{detailsPaiement.comptable}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Mode paiement</span>
-                            {{paiement.modePaiement}}
+                            {{detailsPaiement.modePaiement}}
                         </td>
                         <td style="width:16%; min-width:10rem;">
                             <span class="p-column-title">Référence paiement</span>
-                            {{paiement.referencePaiement}}
+                            {{detailsPaiement.reference}}
                         </td>
                         <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
-                            <span class="pull-right">{{paiement.montant}}</span>
+                            <span class="pull-right">{{detailsPaiement.montant | currency:'CFA' :
+                                'symbol' : '1.0-0':'fr'}}</span>
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-file"
+                                <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser la preuve de paiement"
-                                    (click)="detailPaimentPME(paiement.document)"></button>
+                                    (click)="detailPaimentPME(detailsPaiement.documents)"></button>
+                                <button pButton pRipple icon="pi pi-file" *ngIf="!detailsPaiement.documents"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    (click)="detailPaimentPME(detailsPaiement.documents)" [disabled]="true"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
-                
+
             </p-table>
         </div>
     </div>

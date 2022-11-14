@@ -18,10 +18,10 @@ export class ListPaiementsDetailsComponent implements OnInit {
   constructor(public ref: DynamicDialogRef,private paiementsService: PaiementsService) { }
 
   ngOnInit(): void {
-    this.paiementsService.getPaiementObs().subscribe(data=>{
-      this.paiementCession=data
-      console.log(this.paiementCession)
-    })
+    // this.paiementsService.getPaiementObs().subscribe(data=>{
+    //   this.paiementCession=data
+    //   console.log(this.paiementCession)
+    // })
 
   }
 

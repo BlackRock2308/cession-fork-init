@@ -1,19 +1,24 @@
-import { Documents } from "./document";
+import { DetailsPaiement } from "./detailsPaiements";
+import { Statut } from "./statut";
 
 export interface Paiements {
+  idPaiement?: number;
+  cdmp?:number;
+  montantRecuCDMP?: number;
 
-    id?:number;
-    referenceBE?:string;
-    raisonSocial?:string;
-    ninea?:string;
-    totalMarche?:number;
-    statut?:string;
-    soldePME?: number;
-    montantRecu ?:number;
-    referencePaiement ?: string;
-    modePaiement ?: string;
-    datePaiement?: Date;
-    montant?: number;
-    payer?: string;
-    document: Documents;
+  soldePME?: number;
+
+  demandeId?: number;
+
+  raisonSocial?: string;
+
+  nomMarche?: string;
+
+  montantCreance?: number;
+
+  statutPme?: Statut;
+  statutCDMP?:Statut;
+
+  demandecessionid?:number;
+  details?: DetailsPaiement[];
 }

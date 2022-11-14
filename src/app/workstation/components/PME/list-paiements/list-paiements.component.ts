@@ -55,9 +55,6 @@ export class ListPaiementsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.paiementsService.getPaiements().subscribe(data=>{
-      this.paiements=data});
-
       this.cols = [
         
         { field: 'datePaiement', header: 'Date Paiement' },
@@ -65,12 +62,16 @@ export class ListPaiementsComponent implements OnInit {
         { field: 'montant', header: 'Montant' },
         { field: 'modePaiement', header: 'Mode Paiement' },
       ];  
+      this.getAllPaiements();
   }
-
+  getAllPaiements(){
+    this.paiementsService.getAllPaiements().subscribe((data:Paiements[])=>{
+      this.paiements=data});
+  }
   visualiserDetails(paiement: Paiements) {
     this.paiement = {...paiement};
     //console.log(demande)
-    this.paiementsService.setPaiementObs(paiement);
+   // this.paiementsService.setPaiementObs(paiement);
     const ref = this.dialogService.open(ListPaiementsDetailsComponent, {
         data: {
             paiement: paiement
