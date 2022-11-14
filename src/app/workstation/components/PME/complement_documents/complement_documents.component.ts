@@ -120,8 +120,7 @@ this.typesDocument=[
     this.documents.push(this.document);
     this.newDocuments.push(this.document);
     files.target.files=null;
-    console.log(this.newDocuments)
-        
+    console.log(this.newDocuments)        
   }
 
   //ouvrir la boite de dialogue du répertoire

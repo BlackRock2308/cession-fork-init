@@ -29,9 +29,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class AnalyseRisqueComponent implements OnInit {
 
-  demandes:DemandeCession[]=[];
+  demandes:any[]=[];
 
-  demande:DemandeCession;
+  demande:any;
 
 
 
@@ -148,7 +148,6 @@ export class AnalyseRisqueComponent implements OnInit {
     //filtre par range date
     this.calenderFilter()
 
-
     this.matchModeOptions = [
         { label: 'Intervalle de date', value: 'rangeDate' },
         { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
@@ -172,8 +171,6 @@ export class AnalyseRisqueComponent implements OnInit {
   deleteSelectedProducts() {
     this.deleteProductsDialog = true;
   }
-
- 
 
   deleteProduct(product: Product) {
     this.deleteProductDialog = true;
@@ -386,9 +383,9 @@ export class AnalyseRisqueComponent implements OnInit {
     return this.app.horizontalMenu === true;
   }
 
-  pmeInfo(demande: DemandeCession) {
-    this.demande = {...demande};
-    //console.log(demande)
+  pmeInfo(demande: any) {
+    //this.demande = {...demande};
+    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
 
     this.router.navigate(['workstation/cdmp/analyser']);
@@ -440,6 +437,14 @@ public calenderFilter() {
 clearRange(table){
  this.rangeDates=undefined;
  table.filter()
+}
+
+consulterDemande(demande) {
+  this.demande = { ...demande };
+  //this.demandeDialog = true;
+  console.log(demande)
+  this.demandeCessionService.setDemandeObs(demande);
+  this.router.navigate(['workstation/cdmp/consulter_demande'], {  queryParams: {  page: 'demande cession' } });
 }
 }
 

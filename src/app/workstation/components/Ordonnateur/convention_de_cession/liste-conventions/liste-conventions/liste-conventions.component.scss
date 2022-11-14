@@ -18,7 +18,7 @@
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-convention-acceptée {
+    &.status-convention_transmise {
         background: #C8E6C9;
         color: #256029;
     }
@@ -37,11 +37,11 @@
         background: #FEEDAF;
         color: #8A5340;
     }
-    &.status-convention-corrigée {
+    &.status-convention_signee_par_dg {
         background: #FEEDAF;
         color: #8A5340;
     }
-    &.status-non-risquée {
+    &.status-convention_generee {
         background: #c9ddfa;
         color: #354d8f;
     }

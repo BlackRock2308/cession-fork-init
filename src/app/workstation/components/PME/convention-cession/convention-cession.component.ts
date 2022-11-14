@@ -3,12 +3,16 @@ import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Convention } from '../../../model/convention';
-import { DemandeAdhesion } from '../../../model/demande';
+import { DemandeAdhesion, DemandeCession } from '../../../model/demande';
 import { Documents } from '../../../model/document';
 import { ConventionEnregistreeComponent } from '../../../COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from '../../../COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
+import { SignerconventionPMEComponent } from '../signer-convention/signerconvention-pme/signerconvention-pme.component';
 
 @Component({
   selector: 'app-convention-cession',
@@ -20,9 +24,9 @@ export class ConventionCessionPMEComponent implements OnInit {
 
   demandeDialog: boolean;
 
-  demandes:DemandeAdhesion[];
+  demandes:any[] = [] ;
 
-  demande:DemandeAdhesion;
+  demande:any;
 
   submitted: boolean;
 
@@ -36,7 +40,8 @@ export class ConventionCessionPMEComponent implements OnInit {
    
   activeIndex: number = 1;
   documents: any[];
-  
+  convention: any;
+
   angle = 0;
   zoom = 0.8;
   textLayerRenderedCb = 0;
@@ -57,8 +62,11 @@ export class ConventionCessionPMEComponent implements OnInit {
     public dialogService: DialogService, 
     public messageService: MessageService,
     private pmeService:PmeService,
+    private tokenStorage : TokenStorageService,
     private breadcrumbService: BreadcrumbService,
-    private filterService:FilterService
+    private filterService:FilterService,
+    private demandesCessionService : DemandesCessionService,
+
 
     ) { 
       this.breadcrumbService.setItems([
@@ -72,10 +80,14 @@ export class ConventionCessionPMEComponent implements OnInit {
   ngOnInit() {
     this.profil = localStorage.getItem('profil');
    
-    this.pmeService.getConventions().subscribe(data => {
-      this.documents = data
-      console.log( JSON.stringify(data))
-    });
+    // this.pmeService.getConventions().subscribe(data => {
+    //   this.documents = data
+    //   console.log( JSON.stringify(data))
+    // });
+
+    
+        this.getDemandes()
+  
     
 
       this.cols = [
@@ -94,15 +106,65 @@ export class ConventionCessionPMEComponent implements OnInit {
            { label: 'Contient', value: FilterMatchMode.CONTAINS },
        ];
        this.statuts = [
-           {label: 'Convention Enregistrée', value: 'convention-enregistrée'},
-           {label: 'Convention Rejetée', value: 'convention-rejetée'},
-           {label: 'Convention Signée par le PME', value: 'convention-signée-par-la-pme'},
-           {label: 'Convention Signée par le DG', value: 'convention-signée-par-le-dg'},
-           {label: 'Convention Acceptée', value: 'convention-acceptée'},
-           {label: 'Convention Générée', value: 'convention-générée'}
+           {label: 'Convention Soumise', value: 'CONVENTION_SOUMISE'},
+           {label: 'Convention Rejetée', value: 'CONVENTION_REJETEE'},
+           {label: 'Convention Signée par la PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
+           {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
+           {label: 'Convention Acceptée', value: 'CONVENTION_ACCEPTEE'},
+           {label: 'Convention Générée', value: 'CONVENTION_GENEREE'}
        ]
  
      
+  }
+
+  getDemandes(){
+
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"NON_RISQUE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_ACCEPTEE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+  });
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+    });
+
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_CORRIGEE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+      });
+
+  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_TRANSMISE").subscribe(data => {
+    this.demandes = this.demandes.concat(data.content)
+    console.log(this.demandes,data)
+        });
+        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE_PAR_PME").subscribe(data => {
+          this.demandes = this.demandes.concat(data.content)
+          console.log(this.demandes,data)
+        });
+        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE_PAR_DG").subscribe(data => {
+          this.demandes = this.demandes.concat(data.content)
+          console.log(this.demandes,data)
+        });
+        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_GENEREE").subscribe(data => {
+          this.demandes = this.demandes.concat(data.content)
+          console.log(this.demandes,data)
+        });
+  }
+
+  dismiss() {
+    this.ref.close();
   }
 
 hideDialog() {
@@ -126,6 +188,22 @@ visualiserDocument(document: Documents) {
     height: 'calc(100% - 100px)',
     baseZIndex: 10000
   });
+}
+
+signerConvention(demande : any) {
+  this.demandesCessionService.setDemandeObs(demande)
+  console.log(demande)
+
+  const ref = this.dialogService.open(SignerconventionPMEComponent, {
+    data: {
+      convention: this.convention
+    },
+    header: "Signer la convention",
+    width: '50%',
+    height: 'calc(50% - 100px)',
+    baseZIndex: 50
+  });
+  this.dismiss();
 }
 
 afterLoadComplete(pdf: any) {

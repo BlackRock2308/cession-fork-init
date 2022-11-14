@@ -184,12 +184,12 @@
     </div>
 
     <div class="float-end"
-        *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Convention-corrigée';else fermerBoutton">
+        *ngIf="demandeCession.statut.libelle ==='CONVENTION_TRANSMISE'||demandeCession.statut.libelle ==='CONVENTION_CORRIGEE';else fermerBoutton">
        
         <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter"
-            (click)="onSubmit('Convention-rejetée')" routerLink="../"></button>
+            (click)="onSubmitRejet()" routerLink="../"></button>
             <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter"
-            (click)="onSubmit('Convention-acceptée')" routerLink="../"></button>
+            (click)="onSubmitAccept()" routerLink="../"></button>
     </div>
 
     <ng-template #fermerBoutton class="float-end ">

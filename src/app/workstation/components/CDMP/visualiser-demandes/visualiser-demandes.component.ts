@@ -48,14 +48,14 @@ export class VisualiserDemandesComponent implements OnInit {
     private demandeAdhesionService: DemandesAdhesionService,
     private breadcrumbService: BreadcrumbService) {
     this.profile = localStorage.getItem('profil');
-    if (this.profile === 'pme') {
+    if (this.profile === 'PME') {
       this.breadcrumbService.setItems([
         { label: 'Demandes' },
         { label: 'Liste des demandes', routerLink: 'pme/demandes_en_cours' },
         { label: 'Visualisation de la demande' }
       ]);
     }
-    else if (this.profile === 'cgr') {
+    else if (this.profile === 'DSEAR') {
       this.breadcrumbService.setItems([
         { label: 'Liste des demandes', routerLink: 'cdmp/demandes_en_cours/steps/verification' },
         { label: 'Visualisation de la demande' }
@@ -72,9 +72,16 @@ export class VisualiserDemandesComponent implements OnInit {
     //récupérer les infos de la page précédente
      this.demandeAdhesionService.getDemandeObs().subscribe(data => {
        this.demande = data;
-       this.documents=this.documents.concat(this.demande.documents)
+       
+       if(this.demande.documents.length > 0){
+        this.documents=this.documents.concat(this.demande.documents)
+       }
+       if(this.demande.pme.documents.length > 0){
        this.documents=this.documents.concat(this.demande.pme.documents)
-       this.documents=this.documents.concat(this.demande.bonEngagement.documents)
+       }
+       if(this.demande?.bonEngagement?.documents.length > 0){
+        this.documents=this.documents.concat(this.demande?.bonEngagement?.documents)
+       }
        console.log(data,this.documents)
      })
 

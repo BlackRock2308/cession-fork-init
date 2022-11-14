@@ -67,6 +67,7 @@ export class AdhesionComponent implements OnInit {
 
   //sélectionner le fichier du rccm
   selectRCCMFile(files: any): void {
+    //files.target.files.reset()
     this.selectedRCCMFiles = files.target.files[0];
     
 
@@ -135,9 +136,9 @@ export class AdhesionComponent implements OnInit {
           (response: any) => {
             let data = JSON.parse(JSON.stringify(response));
             if (data && data.idDemande != null) {
-              this.uploadFileService.uploadFile('/demandeadhesion/', data.idDemande, this.selectedRCCMFiles, 'RCCM').subscribe(
+              this.uploadFileService.uploadFile('/pme/', data.pme.idPME, this.selectedRCCMFiles, 'RCCM').subscribe(
                 )
-                this.uploadFileService.uploadFile('/demandeadhesion/', data.idDemande, this.selectedNINEAFiles, 'NINEA').subscribe(
+                this.uploadFileService.uploadFile('/pme/', data.pme.idPME, this.selectedNINEAFiles, 'NINEA').subscribe(
                   )
              
               // this.myFiles.push(this.selectedRCCMFiles)

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import Swal from 'sweetalert2';
+import { UtilisateurService } from '../../../service/utilisateur/utilisateur.service';
+import { Utilisateur } from '../../../model/utilisateur';
 
 @Component({
   selector: 'app-code',
@@ -12,16 +14,21 @@ import Swal from 'sweetalert2';
 export class CodeComponent implements OnInit {
 
   form!: FormGroup;
+  user: Utilisateur;
   code: string = "9065";
   constructor(
     private formBuilder: FormBuilder,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private utilisateurService: UtilisateurService
   ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       code: ['', Validators.required]
     });
+
+    this.user = JSON.parse(localStorage.getItem('user'))
+
   }
 
   dismiss() {
@@ -30,6 +37,7 @@ export class CodeComponent implements OnInit {
 
   //envoie du formulaire
   onSubmit() {
+    this.valider();
     this.ref.close();
     Swal.fire({
       html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre code a été modifié avec succès.</p>",
@@ -45,6 +53,7 @@ export class CodeComponent implements OnInit {
   //enregistrement du pme avec l'appel du service d'enregistrement
   private valider() {
     this.code = this.form.value;
+    this.utilisateurService.updateUtilisateur(this.user)
 
   }
 }

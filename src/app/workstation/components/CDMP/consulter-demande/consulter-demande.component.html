@@ -13,7 +13,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.ninea}}</label>
+                            <label for="inputtext">{{demandeCession.pme.ninea}}</label>
                         </span>
                     </div>
                 </div>
@@ -31,7 +31,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.ATD}}</label>
+                            <label for="inputtext"*ngIf="demandeCession.pme.ATD">Existance d'un avis à tiers detenteur</label>
+                            <label for="inputtext"*ngIf="!demandeCession.pme.ATD">Aucun avis à tiers detenteur</label>
                         </span>
                     </div>
                 </div>
@@ -40,7 +41,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.denomination}}</label>
+                            <label for="inputtext">{{demandeCession.pme.denomination}}</label>
                         </span>
                     </div>
                 </div>
@@ -51,7 +52,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.nantissement}}</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.nantissement">Dèjà nanti</label>
+                            <label for="inputtext"*ngIf="!demandeCession.pme.nantissement">Pas encore nanti</label>
                         </span>
                     </div>
                 </div>
@@ -60,7 +62,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.interdiction}}</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.interdiction">Existance d'une interdiction Bancaire</label>
+                            <label for="inputtext" *ngIf="!demandeCession.pme.interdiction">Aucune interdiction Bancaire</label>
                         </span>
                     </div>
                 </div>
@@ -69,7 +72,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.rccm}}</label>
+                            <label for="inputtext">{{demandeCession.pme.rccm}}</label>
                         </span>
                     </div>
                 </div>
@@ -78,7 +81,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.referenceBE}}</label>
+                            <label for="inputtext">{{demandeCession.bonEngagement.reference}}</label>
                         </span>
                     </div>
                 </div>
@@ -92,23 +95,7 @@
                 currentPageReportTemplate="{totalRecords} lignes " [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="header">
-                    <tr>
-                        <th>
-                            <p-columnFilter type="text" field="type" placeholder="Type de document"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter type="text" field="nom" placeholder="Nom du document"></p-columnFilter>
-                        </th>
-                        <th>
-                            <p-columnFilter type="text" field="date_soumission" placeholder="Date de soumission"></p-columnFilter>
-                        </th>
-
-                        <th>
-                            <button pButton pRipple icon="pi pi-search" class="p-button-rounded mr-2 button"
-                                style="background-color: #203359;" label="Rechercher"
-                                (click)="dt.filter(type,nom,date_soumission)"></button>
-                        </th>
-                    </tr>
+                   
                     <tr>
 
                         <th pSortableColumn="type" style="color: #203359;"> Pièces jointes  <p-sortIcon field="type">

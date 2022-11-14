@@ -1,6 +1,6 @@
 import { BonEngagement } from "./bonEngagement";
 import { PME } from "./pme";
-import { Document } from './document';
+import { Document, Documents } from './document';
 import { Observation } from "./observation";
 
 export interface DemandeAdhesion {
@@ -20,6 +20,7 @@ export class DemandeCession {
     pme?:PME;
     bonEngagement?:BonEngagement;
     observations?: Observation[];
+    conventions?: Convention[];
     statut?:string;
     dateDemandeCession?: Date;
     numeroDemande ?: string;
@@ -40,6 +41,7 @@ export interface Convention {
     dateConvention?:Date,
     decote?:string,
     modePaiement?:String;
+    documents?: Document[];
 }
 
 export interface DemandeNantissemantInfo{

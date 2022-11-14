@@ -16,6 +16,8 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { BonEngagement } from '../../../../model/bonEngagement';
 import { DatePipe } from '@angular/common';
 import { MY_DATE_FORMATS } from 'src/app/workstation/model/my-date-format';
+import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
+import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
 
 @Component({
   selector: 'app-verifier-demande-cession',
@@ -26,9 +28,9 @@ import { MY_DATE_FORMATS } from 'src/app/workstation/model/my-date-format';
   
 })
 export class VerifierDemandeCessionComponent implements OnInit {
-  demandeCession: DemandeCession;
+  demandeCession: any;
   bonEngagement: BonEngagement;
-  documents: Document[];
+  documents: any[]=[];
   cols: any[];
   pas_identifie: boolean;
   identifie: boolean;
@@ -49,12 +51,13 @@ export class VerifierDemandeCessionComponent implements OnInit {
   constructor(
     private demandeCessionService: DemandesCessionService,
     private datepipe: DatePipe,
-    private documentService: DocumentService,
+    private bonEngagementService: BonEngagementService,
     private recevabiliteService: RecevabiliteService,
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
     private router:Router,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private pmeService:PmeService
   ) { this.breadcrumbService.setItems([
     { label: 'Liste des demandes de cession', url: '/#/workstation/cdmp/recevabilite' },
       { label: 'Recevabilité' }
@@ -68,7 +71,11 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       this.bonEngagement = this.demandeCession.bonEngagement;
     })
 
-      this.documents = this.demandeCession.bonEngagement.documents
+      this.documents = this.documents.concat(this.demandeCession.bonEngagement.documents)
+      this.documents = this.documents.concat(this.demandeCession.pme.documents)
+      this.documents = this.documents.concat(this.demandeCession.documents)
+
+
    
 
     this.cols = [
@@ -96,77 +103,38 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     });
   }
 
-  onSubmit() {
+  async updatePME() {
+    this.demandeCession.pme.identificationBudgetaire= this.identifie
+    this.demandeCession.pme.atd=this.atd 
+    this.demandeCession.pme.interdictionBancaire=this.interdiction
 
-    this.recevabiliteDemande = {...this.demandeCession,
-      ...{identificationBudgetaire: this.identifie,
-        atd:this.atd ? "Existance ATD":"Aucun ATD",
-        nantissement: this.nantissement ? "Créance nanti":"Créance pas nanti",
-        interdictionBancaire:this.interdiction ? "Existance d'une interdiction bancaire":"Aucune interdiction bancaire",
-        observation: this.observation,
-        statut:"Recevable"},
-        ...this.infosBEForm.value
-
-    }
-
-    console.log(this.recevabiliteDemande)
-
-    //this.enregistrerTraitementRecevabilite(this.recevabiliteDemande)
-
-    this.closeDialog()
-
+    await this.pmeService.updatePme(this.demandeCession.pme).subscribe()
 
   }
   
-  rejeterDemande(){
-    let demande = {
-      observation: this.observation,
-      statut:"rejeté"
-    }
-    this.demandeCessionService.patchDemandeCession(this.demandeCession.idDemande,demande).pipe(take(5)).subscribe(data => {
-      console.log(data);
-      //cette ligne est à supprimer lorsque l'on fera la connexion avec le back
-      if(data.type==4){
-        this.recevabiliteService.deleteRecevabilite(this.demandeCession.idDemande).subscribe(data=>{
-          console.log("done:",data);
-          this.router.navigate(['workstation/cdmp/recevabilite/'])
-          console.log("done");
-        }
-          )
+  async rejeterDemande(bonEngagement){
+    this.updatePME()
+    await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
+      ()=>{},
+      ()=>{},
+      ()=>{
+        this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande).subscribe()
       }
-      
-    })
-  }
-  enregistrerTraitementRecevabilite(demande: any) {
-    console.log(demande);
-   this.demandeCessionService.patchDemandeCession(this.demandeCession.idDemande,demande).pipe(take(5)).subscribe(data=>{
-    console.log(data);
-    if(data.type==4){
-      //ces deux appels suivantes sont à supprimer lorsque l'on fera la connexion avec le back
-      this.recevabiliteService.postAnalyseRisque(demande).subscribe(data => {
-        console.log(data);
-        if(data.type==4){
-          this.recevabiliteService.deleteRecevabilite(this.demandeCession.idDemande).subscribe(data=>{
-            console.log(data);
-            if(data.type==4){
-              this.router.navigate(['workstation/cdmp/recevabilite/'])
-              console.log("done");
-            }
-            }
-          )
-        }  
-        
-    })
-  }
-   })
-  }
 
-  renseignerInfosBE() {
-    this.infosBEDialog = true;
-  }
+    )
 
-  closeDialog() {
-    this.infosBEDialog = false;
+     
+  }
+  async accepterDemande(bonEngagement) {
+    this.updatePME()
+    await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
+      ()=>{},
+      ()=>{},
+      ()=>{
+        this.demandeCessionService.accepterRecevabilite(this.demandeCession.idDemande).subscribe()
+      }
+
+    )
   }
 
   visualiserDocument(document: Documents) {
@@ -183,11 +151,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
 
   onSubmitRejet(bonEngagement) {
-       
-    this.demandeCession.bonEngagement= bonEngagement;
-    this.recevabiliteService.rejeterRecevabilite(this.demandeCession.idDemande, this.demandeCession).pipe(take(5)).subscribe(data=>{
-    })
-    
+           
     Swal.fire({
         position: 'center',
         title: 'Etes-vous sur de vouloir rejeter la demande?',
@@ -201,6 +165,9 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       
     }).then((result) => {
       if (result.isConfirmed) {
+        bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
+        bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
+        this.rejeterDemande(bonEngagement)
         this.router.navigate(['workstation/cdmp/recevabilite'])
         Swal.fire(
             'Rejetée!',
@@ -208,13 +175,14 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
             'success'
           )
       }})
+
     }
-  onSubmitA(bonEngagement) {
-    this.demandeCession.bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
-    this.demandeCession.bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
-       this.demandeCession.bonEngagement= bonEngagement;
-    this.recevabiliteService.validerRecevabilite(this.demandeCession.idDemande, this.demandeCession).pipe(take(5)).subscribe(data=>{
-    })
+  onSubmitAccept(bonEngagement) {
+    bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
+    bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
+    this.accepterDemande(bonEngagement)
+
+       
     
     Swal.fire({
     position: 'center',

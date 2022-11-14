@@ -1,5 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 
@@ -37,6 +37,9 @@ import { MessageService } from 'primeng/api';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuService } from './core/app-layout/side-menu/app.menu.service';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { ErrorInterceptorService } from './workstation/service/gestionErreurCentralise/error-interceptor.service';
+import { HttpRetryInterceptorService } from './workstation/service/gestionErreurCentralise/http-retry-interceptor.service';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -84,7 +87,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         , BreadcrumbService, MessageService, MenuService,
         {provide: LOCALE_ID,
-   useValue: 'fr'}
+   useValue: 'fr'},
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true
+          },
 
     ],
     bootstrap: [AppComponent],

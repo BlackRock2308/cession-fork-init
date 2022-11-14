@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { DemandeCession } from '../../model/demande';
+import { StatutEnum } from '../../model/statut-enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DemandesCessionService {
-  
     
     
   private baseUrl = ApiSettings.API_CDMP;
@@ -103,6 +103,13 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
     return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
   }
 
+  getDemandesCessionByPmeAndStatut(idPME: any, statut: string): Observable<any>  {
+    const params = new HttpParams()
+    .set('statut',statut)
+    .set('pme',idPME)
+
+  return this.http.get<any>(`${this.baseUrl}/demandecession/byStatutAndPme`,{params});  }
+
   validateAnalyseRisque(id: any) {
     const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/validateAnalyse`,id, {
       reportProgress: true,
@@ -111,6 +118,25 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
     return this.http.request(req);
 }
 
+signerConventionPME(codePin : string , idUtilisateur : any , idDemande : any){
+  const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-pme/${idUtilisateur}`,codePin,{
+    reportProgress: true,
+    responseType: 'json'
+  });
+  console.log(codePin)
+
+  return this.http.request(req);
+}
+
+signerConventionDG(codePin : string , idUtilisateur : any , idDemande : any){
+  const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-dg/${idUtilisateur}`,codePin,{
+    reportProgress: true,
+    responseType: 'json'
+  });
+  console.log(codePin)
+
+  return this.http.request(req);
+}
 rejeterAnalyseRisque(id: any) {
   const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/rejectedAnalyse`,id, {
     reportProgress: true,
@@ -132,6 +158,11 @@ getDemandesCessionByPme(idPME: any):Observable<any>  {
   return this.http.get<any>(`${this.baseUrl}/demandecession/pme/${idPME}`)
 }
 
+getPMEBenRejByAnne(anne: any):Observable<any>  {
+  
+  return this.http.get<any>(`${this.baseUrl}/demandecession/statistiqueDemandeCession/${anne}`)
+}
+
 completeDemande(idDemande: number): Observable<any>{
   const req = new HttpRequest('PATCH', `${this.baseUrl}/pme/${idDemande}/complete-demande/`,idDemande, {
     reportProgress: true,
@@ -139,6 +170,24 @@ completeDemande(idDemande: number): Observable<any>{
   });
   return this.http.request(req);
 }
+
+updateStatut(idDemande: any,statut:StatutEnum):Observable<any>  {
+
+  const params = new HttpParams()
+      .set('statut',statut.toString())
+
+      console.log(params);
+      
+    return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/statut`,{},{params});
+}
+
+accepterRecevabilite(idDemande: any):Observable<any> {
+  return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/validerRecevabilite`,idDemande);
+}
+rejeterRecevabilite(idDemande: any):Observable<any> {
+  return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/rejeterRecevabilite`,idDemande);
+}
+
 
 }
 

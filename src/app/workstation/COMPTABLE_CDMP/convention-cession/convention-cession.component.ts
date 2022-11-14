@@ -5,10 +5,11 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Convention } from '../../model/convention';
 import { DemandeAdhesion, DemandeCession } from '../../model/demande';
-import { Documents } from '../../model/document';
+import { Document, Documents } from '../../model/document';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
+import { ConventionSignerComponent } from '../convention-signer/convention-signer.component';
 import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
 
 @Component({
@@ -24,6 +25,9 @@ export class ConventionCessionComponent implements OnInit {
   demandes:DemandeCession[] = [] ;
 
   demande:DemandeCession;
+  documentConvention: Document;
+
+  convention: any;
 
   submitted: boolean;
 
@@ -69,6 +73,8 @@ export class ConventionCessionComponent implements OnInit {
     this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes,data.content)
+      this.documentConvention = this.demandes[0]?.conventions[0]?.documents[0];
+   console.log('affiche' + JSON.stringify(this.documentConvention))
     });
     this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
       this.demandes=this.demandes.concat(data.content)
@@ -93,14 +99,17 @@ export class ConventionCessionComponent implements OnInit {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
+    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
+      this.demandes=this.demandes.concat(data.content)
+      console.log(this.demandes)
+    });
     this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
     this.profil = localStorage.getItem('profil');
-   
-   
 
+  
     
       this.cols = [
         { field: 'nomDocument', header: 'Nom de Document' },
@@ -125,6 +134,7 @@ export class ConventionCessionComponent implements OnInit {
         {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
         {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
         {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
+        {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
         {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
         {label: 'Convention Générée', value: 'NON_RISQUEE'}
     ]
@@ -213,7 +223,9 @@ minusZoom() {
   }
 }
 
-ChargerConvention(convention: Convention) {
+ChargerConvention(convention: Convention , demande : any) {
+  this.demandeCessionService.setDemandeObs(demande)
+
   const ref = this.dialogService.open(ConventionEnregistreeComponent, {
     data: {
       convention: convention
@@ -226,6 +238,8 @@ ChargerConvention(convention: Convention) {
 }
 
 EditerConvention(convention: Convention) {
+ // this.demandeCessionService.setDemandeObs(demande)
+
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention
@@ -236,7 +250,8 @@ EditerConvention(convention: Convention) {
     baseZIndex: 50
   });
 }
-EditConvention(convention: Convention) {
+EditConvention(convention: Convention,demande:any) {
+  this.demandeCessionService.setDemandeObs(demande)
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention
@@ -246,6 +261,26 @@ EditConvention(convention: Convention) {
     height: 'calc(50% - 100px)',
     baseZIndex: 50
   });
+}
+
+dismiss() {
+  this.ref.close();
+}
+
+signerConvention(demande : any) {
+  this.demandeCessionService.setDemandeObs(demande)
+  console.log(demande)
+
+  const ref = this.dialogService.open(ConventionSignerComponent, {
+    data: {
+      convention: this.convention
+    },
+    header: "Signer la convention",
+    width: '50%',
+    height: 'calc(50% - 100px)',
+    baseZIndex: 50
+  });
+  this.dismiss();
 }
 
 

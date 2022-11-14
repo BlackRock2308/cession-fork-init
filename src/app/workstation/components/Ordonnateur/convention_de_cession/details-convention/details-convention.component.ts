@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { DemandeCession } from 'src/app/workstation/model/demande';
-import { Documents } from 'src/app/workstation/model/document';
+import { Convention, DemandeCession } from 'src/app/workstation/model/demande';
+import { Document, Documents } from 'src/app/workstation/model/document';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { VisualiserDocumentComponent } from '../../../CDMP/visualiser-document/visualiser-document.component';
-
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 @Component({
   selector: 'app-details-convention',
   templateUrl: './details-convention.component.html',
@@ -18,7 +21,7 @@ export class DetailsConventionComponent implements OnInit {
   items: ({ label: string; url: string; } | { label: string; url?: undefined; })[];
   home: { icon: string; url: string; };
   cols: { field: string; header: string; }[];
-  demandeCession: DemandeCession;
+  demandeCession: any;
   documents: Documents[];
   observation: string;
   pageVariable = 1;
@@ -28,7 +31,8 @@ export class DetailsConventionComponent implements OnInit {
   zoom = 0.8;
   angle = 0;
   src: any;
-  document: Documents [];
+  docConventions: Document [];
+  conventions: Convention[]
   srcFile: string;
   ext: string;
   images: any;
@@ -36,9 +40,12 @@ export class DetailsConventionComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private demandeCessionService: DemandesCessionService,
     private documentService: DocumentService,
+    private paiementService : PaiementsService,
     private dialogService: DialogService,
+    public ref: DynamicDialogRef,
     private uploadFileService: FileUploadService,
     private breadcrumbService: BreadcrumbService
   ) { this.breadcrumbService.setItems([
@@ -48,30 +55,23 @@ export class DetailsConventionComponent implements OnInit {
 this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur/conventions'] });}
 
   ngOnInit(): void {
-    this.document = [{
-      "id": 1,
-      "nomDocument": "NINEA",
-      "dateSoumission": new Date("01/02/2022"),
-      "typeDocument": "NINEA",
-      "path": "/assets/NINEA.pdf",
-      "statut": "Convention-générée",
-      "refBE": "6543568778",
-      "ninea": 567865467567,
-      "refDemande": "2022-3454",
-      "raisonSocial": "CAMAIEU INTERNATIONAL"
-    }]
+    
 
     this.srcFile = "./assets/NINEA.pdf";
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
       console.log(this.demandeCession)
+      this.conventions = this.demandeCession.convention;
+
+      //this.conventions.forEach(el => this.docConventions = el.document )
 
     });
-    this.dowloadFile(this.document[0].path);
 
-    this.documentService.getDocumentsOrd().subscribe(data => {
-      this.documents = data
-    })
+  //  this.dowloadFile(this.docConventions[0].url);
+
+    // this.documentService.getDocumentsOrd().subscribe(data => {
+    //   this.documents = data
+    // })
 
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
@@ -81,17 +81,89 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
      }
 
 
-  onSubmit(statut: string) {
-    let body = {
-      observation: this.observation,
-      statut: statut
-    }
+  onSubmitRejet() {
 
-    this.mettreAJourStatutConvention(body)
+   
 
+
+    Swal.fire({
+      position: 'center',
+      title: 'Etes-vous sur de vouloir rejeter la convention?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+    color:"#203359",
+    confirmButtonColor:"#99CC33",
+    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+    allowOutsideClick:false,
+    
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.conventionRejetee();
+      this.router.navigate(['workstation/ordonnateur/conventions'])
+      Swal.fire(
+          'Rejetée!',
+          'La convention a bien été rejetée.',
+          'success'
+        )
+    }})
 
   }
 
+  onSubmitAccept() {
+
+
+
+    this.conventionAcceptee();
+
+    Swal.fire({
+      position: 'center',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été acceptée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+        color:"#203359",
+        confirmButtonColor:"#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+        allowOutsideClick:false,
+        
+      }).then(() => {
+       
+          this.router.navigate(['workstation/ordonnateur/conventions'])
+      })
+  
+  }
+
+  private conventionRejetee(){
+
+
+    this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.ConventionRejetee)
+          })
+  }
+
+  private conventionAcceptee(){
+
+    let body = {
+      
+      idDemande:this.demandeCession.idDemande,
+  }
+
+  console.log(body)
+
+    this.paiementService.postPaiement(body).subscribe(
+      data=>{console.log(data)},
+      ()=>{},
+      ()=>{
+    this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionAcceptee)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.ConventionAcceptee)
+          })
+  })
+  }
   dowloadFile(path: string) {
 
     console.log('Affiche mon path ' + path)
@@ -103,7 +175,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
             this.ext = this.src.path.split('.').pop();
             if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
               this.images = [{
-                name: this.document[0].nomDocument,
+                name: this.docConventions[0].nom,
                 url: this.src
               }];
             }
@@ -124,7 +196,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
   download(blob?) {
     const url = this.src.path;
-    const filename = this.document[0].nomDocument;
+    const filename = this.docConventions[0].nom;
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         var a = document.createElement("a");

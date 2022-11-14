@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
+import { PME } from '../../model/pme';
+import { ConventionService } from '../../service/convention/convention.service';
+import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
+import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
+import { FileUploadService } from '../../service/fileUpload.service';
 
 @Component({
   selector: 'app-editer-convention',
@@ -16,27 +22,44 @@ export class EditerConventionComponent implements OnInit {
   selectedProducts: Document[];
   documents: Document[] = [];
   document: Document;
-  selectedFiles: File[] = [];
+  selectedFiles: File | null = null;
   selectedFile?: File;
   typesDocument: any[];
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
   cols: any[];
+  pme: PME;
+  demande: any;
 
   constructor(
     private router : Router,
-    public ref: DynamicDialogRef, private formBuilder: FormBuilder, private pmeService: PmeService) { }
+    public ref: DynamicDialogRef, private formBuilder: FormBuilder, private pmeService: PmeService
+    ,private conventionService : ConventionService,
+    private uploadFileService: FileUploadService,
+    private demandeAdhesionService: DemandesAdhesionService,
+    private demandeCessionService : DemandesCessionService,
+
+    private tokenStorage:TokenStorageService
+
+    ) { }
 
   ngOnInit(): void {
-    this.pmeService.getTypesDocument().subscribe(data => {
-      this.typesDocument = data;
-      this.typesDocument.push({ nom: "Autres" })
-      //console.log(this.typesDocument)
-    })
+    // this.pmeService.getTypesDocument().subscribe(data => {
+    //   this.typesDocument = data;
+    //   this.typesDocument.push({ nom: "Autres" })
+    //   //console.log(this.typesDocument)
+    // })
     this.documentForm = this.formBuilder.group({
-      typeDocument: [''],
+     // typeDocument: [''],
       file: ['']
     });
+
+    this.demandeCessionService.getDemandeObs().subscribe(data => {
+      this.demande = data;
+      this.pme=this.demande.pme
+      console.log(this.pme,this.demande)
+
+    })
     this.cols = [
       { field: 'typeDocument', header: 'Type Document' },
       { field: 'nomDocument', header: 'Nom Document' },
@@ -62,6 +85,9 @@ export class EditerConventionComponent implements OnInit {
 
     this.ref.close();
 
+
+    this.enregistrerConvention();
+
     Swal.fire({
 
       html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -75,27 +101,55 @@ export class EditerConventionComponent implements OnInit {
         this.router.navigate(['workstation/comptable/convention_cession'])
       }})
 
+      setTimeout(() => {
+        location.reload()
+       }, 1500);
+   
+
 
     // arrêter si le formulaire est invalide
     if (this.documentForm.invalid) {
       return;
     }
 
-    for (var i = 0; i < this.documents.length; i++) {
-      this.enregistrerDocument(this.documents[i]);
-    }
+    // for (var i = 0; i < this.documents.length; i++) {
+    //   this.enregistrerDocument(this.documents[i]);
+    // }
   }
   patchDemandeStatut(id: number, statut: any) {
     this.pmeService.patchStatutDemande(id, statut).subscribe()
   }
 
-  //enregistrement du pme avec l'appel du service d'enregistrement
-  private enregistrerDocument(document: Document) {
-    //fonction à continuer 
-    console.log(this.documents);
-    this.pmeService.postDocument(document)
-      .subscribe(() => {
-      })
+  //enregistrement du document avec l'appel du service d'enregistrement
+  private enregistrerConvention() {
+
+    let body = {
+      
+      file: this.selectedFiles,
+      idDemande:this.demande.idDemande,
+      dateConvention: new Date(),
+      pme:{
+        idPME:this.pme.idPME
+    }
+    
+
+
+    }
+    console.log(body)
+    
+   
+    this.conventionService.postConvention(body)
+      .subscribe((response: any) => {
+      let data = JSON.parse(JSON.stringify(response));
+        if (data && data.idConvention != null) {
+          this.uploadFileService.uploadFile('/conventions/', response.idConvention, this.selectedFiles, 'AUTRE').subscribe(data=>console.log(data)
+           )
+          
+          }
+      
+      }
+      )
+      
 
   }
 
