@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +13,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 // Application Components
 import { AppComponent } from './app.component';
 import { AppLoginComponent } from './auth/login/app.login.component';
-
+import {ToastModule} from 'primeng/toast';
 // Demo pages
 
 //modal dynamique avec primeng
@@ -68,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ButtonModule,
         DynamicDialogModule,
         OverlayModule,
-        BreadcrumbModule
+        BreadcrumbModule,
+        ToastModule
 
     ],
     declarations: [
@@ -85,21 +86,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         , BreadcrumbService, MessageService, MenuService,
+        {provide: LOCALE_ID,
+   useValue: 'fr'},
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptorService,
             multi: true
           },
-          {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptorService,
-            multi: true
-          }/*,
-          {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpRetryInterceptorService,
-            multi: true
-          }*/
 
     ],
     bootstrap: [AppComponent],

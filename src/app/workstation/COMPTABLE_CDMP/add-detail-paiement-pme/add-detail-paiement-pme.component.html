@@ -1,0 +1,57 @@
+<p-toast key="tst" [baseZIndex]="99999" [hideTransitionOptions]="'4ms'"></p-toast>
+<p-toast></p-toast>
+<div class="container-fluid text-right">
+    <div class="modal-body">
+        <div class="card p-fluid">
+            <div class="field grid row">
+                <label htmlFor="modePaiement" class="col-12 md:col-4">Mode Paiement</label>
+                <div class="col-12 md:col-8">
+                    <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiement">
+                    </p-dropdown>
+                </div>
+            </div>
+            <div class="field grid row">
+                <label htmlFor="referencePaiement" class="col-12 md:col-4">Référence de
+                    Paiement</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText  type="text" [(ngModel)]="detailPaiement.reference" />
+                </div>
+            </div>
+            <div class="field grid row">
+                <label htmlFor="montant" class="col-12 md:col-4">Montant</label>
+                <div class="col-12 md:col-8">
+                    <p-inputNumber  [(ngModel)]="detailPaiement.montant" mode="currency" currency="CFA">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="field grid row">
+                <label htmlFor="payer" class="col-12 md:col-4">Enregistré par :</label>
+                <div class="col-12 md:col-8">
+                    <input pInputText type="text" [(ngModel)]="detailPaiement.comptable" [disabled]="true" />
+                </div>
+            </div>
+            <div class="field grid row">
+                <label htmlFor="preuvePaiement" class="col-12 md:col-4">Preuve de paiement</label>
+                <div class="field col-12 md:col-8">
+                    <div class="inputContainer">
+                        <input *ngIf="selectedFiles==null;else elseBlock"  type="text" pInputText>
+                        <input formControlName="nineaFile" class="hidden" type="file"
+                            name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
+                        <button type="button" pButton pRipple icon="pi pi-upload"
+                            class="mr-2 mb-2 upload p-button-rounded p-button-text" 
+                            (click)="handleClick()"></button>
+                    </div>
+                    <ng-template #elseBlock type="text" pInputText>
+                        <input type="text" pInputText placeholder="{{selectedFiles.name}}">
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button  style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                    class="p-button-raised dangerButton" (click)="dismiss()"></button>
+                <button type="button"  style="width: min-content;" pButton pRipple label="Sauvegarder"
+                    icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised successButton"></button>
+            </div>
+        </div>

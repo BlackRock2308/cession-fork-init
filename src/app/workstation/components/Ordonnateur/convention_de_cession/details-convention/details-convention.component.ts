@@ -153,7 +153,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
   console.log(body)
 
-    this.paiementService.postPaiement(body).subscribe(
+    this.paiementService.getAllPaiements().subscribe(
       data=>{console.log(data)},
       ()=>{},
       ()=>{

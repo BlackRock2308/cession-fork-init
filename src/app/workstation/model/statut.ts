@@ -1,5 +1,5 @@
 export interface Statut {
-    id?:number;
+    idStatut?:number;
     code?:String;
     libelle?:String;
 }
