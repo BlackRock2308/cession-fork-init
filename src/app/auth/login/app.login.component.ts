@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -23,6 +24,7 @@ export class AppLoginComponent implements OnInit{
   checked: boolean;
   roles: any=[];
 
+  notAuthorized:boolean;
   changePassword:boolean;
   constructor(public router: Router,private authService:AuthService,private tokenStorage:TokenStorageService){}
   ngOnInit(): void {
@@ -35,10 +37,12 @@ export class AppLoginComponent implements OnInit{
 
     this.credentials={username,motdepasse},
 
+    this.tokenStorage.signOut();
+
     console.log(JSON.stringify({email:username,password:motdepasse}))
 
     this.authService.login(JSON.stringify({email:username,password:motdepasse})).subscribe(
-      data => {
+      (data) => {
         console.log(data)
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.utilisateur);
@@ -89,7 +93,12 @@ export class AppLoginComponent implements OnInit{
         }
         
 
-      }    
+      } ,  
+      (error:HttpErrorResponse) => {
+        if(error.status==401){
+          this.notAuthorized=true
+        }
+      } 
       )
       //window.location.reload();
 

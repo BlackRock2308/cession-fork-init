@@ -7,20 +7,21 @@ import { genericRetryPolicy } from '../utils.service';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpRetryInterceptorService implements HttpInterceptor{
+export class HttpRetryInterceptorService {
 
   constructor() { }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  /*intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     return next.handle(request)
       .pipe(
         retryWhen(genericRetryPolicy({
-          excludedStatusCodes: [400, 401, 403, 404, 500]
+          //excludedStatusCodes: [400, 401, 403, 404, 500]
         })),
         catchError((error: HttpErrorResponse) => {
           return throwError(() => 'Une erreur est survenue');
         })
       );
     }
+    */
 }
