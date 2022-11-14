@@ -7,7 +7,7 @@ import { GenericService } from '../../generic/generic.service';
   providedIn: 'root'
 })
 export class PaiementsService extends GenericService{
-  private paiementUrl= ApiSettings.API_CDMP+"/paiements"
+  private paiementUrl= ApiSettings.API_CDMP+'/paiements'
 
   constructor(public http: HttpClient) {
     super(http);
