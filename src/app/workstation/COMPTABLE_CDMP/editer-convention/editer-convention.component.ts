@@ -5,11 +5,14 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
+import { Observation } from '../../model/observation';
 import { PME } from '../../model/pme';
+import { StatutEnum } from '../../model/statut-enum';
 import { ConventionService } from '../../service/convention/convention.service';
 import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 import { FileUploadService } from '../../service/fileUpload.service';
+import { ObservationService } from '../../service/observation/observation.service';
 
 @Component({
   selector: 'app-editer-convention',
@@ -30,6 +33,7 @@ export class EditerConventionComponent implements OnInit {
   cols: any[];
   pme: PME;
   demande: any;
+  observation:Observation
 
   constructor(
     private router : Router,
@@ -39,7 +43,8 @@ export class EditerConventionComponent implements OnInit {
     private demandeAdhesionService: DemandesAdhesionService,
     private demandeCessionService : DemandesCessionService,
 
-    private tokenStorage:TokenStorageService
+    private tokenStorage:TokenStorageService,
+    private observationService:ObservationService
 
     ) { }
 
@@ -88,24 +93,7 @@ export class EditerConventionComponent implements OnInit {
 
     this.enregistrerConvention();
 
-    Swal.fire({
-
-      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color:"#203359",
-      confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick:false,
-      
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['workstation/comptable/convention_cession'])
-      }})
-
-      setTimeout(() => {
-        location.reload()
-       }, 1500);
-   
-
+    
 
     // arrêter si le formulaire est invalide
     if (this.documentForm.invalid) {
@@ -121,7 +109,7 @@ export class EditerConventionComponent implements OnInit {
   }
 
   //enregistrement du document avec l'appel du service d'enregistrement
-  private enregistrerConvention() {
+  private async enregistrerConvention() {
 
     let body = {
       
@@ -147,6 +135,40 @@ export class EditerConventionComponent implements OnInit {
           
           }
       
+      },
+      (error) => {},
+      () => {
+        let body={
+          utilisateur:{
+            idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+          },
+          demande:{
+            idDemande:this.demande.idDemande
+          },
+          statut:{
+            libelle:StatutEnum.conventionGeneree
+          },
+        }
+        this.observationService.postObservation(body).subscribe(data => console.log(data))
+
+      Swal.fire({
+
+        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+        color:"#203359",
+        confirmButtonColor:"#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+        allowOutsideClick:false,
+        
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['workstation/comptable/convention_cession'])
+        }})
+  
+        setTimeout(() => {
+          location.reload()
+         }, 1500);
+     
+  
       }
       )
       

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { UtilisateurService } from 'src/app/workstation/service/utilisateur/utilisateur.service';
 import Swal from 'sweetalert2';
@@ -17,13 +21,16 @@ export class InformationsNineaComponent implements OnInit {
   demande: any;
   pme : PME;
   idPme:number;
+  observation:Observation;
 
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
     private pmeService: PmeService,
-    private utilisateurService : UtilisateurService
+    private utilisateurService : UtilisateurService,
+    private observationService:ObservationService,
+    private tokenStorage:TokenStorageService
   
   ) { }
 
@@ -84,7 +91,7 @@ export class InformationsNineaComponent implements OnInit {
 
      console.log(JSON.stringify(body))
     
-     this.pmeService.patchPme(this.pme.idPME,body).subscribe((result)=>{
+     await this.pmeService.patchPme(this.pme.idPME,body).subscribe((result)=>{
       console.log(result)
       })
    
@@ -110,22 +117,7 @@ export class InformationsNineaComponent implements OnInit {
    this.validerDemandeAdhesion();
 
 
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color: "#203359",
-      confirmButtonColor: "#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick: false
-
-    })
-
-    setTimeout(() => {
-     location.reload()
-    }, 1500);
+    
 
     console.log(this.pme)
   }
@@ -134,12 +126,45 @@ export class InformationsNineaComponent implements OnInit {
   async validerDemandeAdhesion() {
 
   
-    await this.patchPme()
+      await this.patchPme()
       console.log(this.pme.idPME)
-     this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
+      await this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
        (result)=>{
          console.log(result)
-        }
+        },
+        (error)=>{},
+         ()=>{
+          let body={
+            utilisateur:{
+              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+            },
+            demande:{
+              idDemande:this.demande.idDemande
+            },
+            statut:{
+              libelle:StatutEnum.adhesionAcceptee
+            },
+          }
+          this.observationService.postObservation(body).subscribe(data => console.log(data))
+
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée et validée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            color: "#203359",
+            confirmButtonColor: "#99CC33",
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+            allowOutsideClick: false
+      
+          })
+      
+          setTimeout(() => {
+           location.reload()
+          }, 1500);
+         }
+        
      )
   //  await this.createCompte()
   }

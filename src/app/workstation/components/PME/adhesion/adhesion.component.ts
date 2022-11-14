@@ -10,6 +10,10 @@ import { Document } from 'src/app/workstation/model/document';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { DemandeAdhesion } from '../../../model/demande';
+import { Observation } from 'src/app/workstation/model/observation';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 
 @Component({
   selector: 'app-adhesion',
@@ -29,6 +33,7 @@ export class AdhesionComponent implements OnInit {
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
+  observation: Observation;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +41,9 @@ export class AdhesionComponent implements OnInit {
     private router: Router,
     private adhesionService: AdhesionService,
     private pmeService: PmeService,
-    private uploadFileService: FileUploadService
+    private uploadFileService: FileUploadService,
+    private tokenStorage:TokenStorageService,
+    private observationService:ObservationService
 
   ) {
   }
@@ -151,7 +158,19 @@ export class AdhesionComponent implements OnInit {
                 
               // }
             }
-          },
+            let body={
+              utilisateur:{
+                idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+              },
+              demande:{
+                idDemande:response.idDemande
+              },
+              statut:{
+                libelle:StatutEnum.adhesionSoumise
+              },
+            }
+            this.observationService.postObservation(body).subscribe(data => console.log(data))
+          }
          )
         });
   }
