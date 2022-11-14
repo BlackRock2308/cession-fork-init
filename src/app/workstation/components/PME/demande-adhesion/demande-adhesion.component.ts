@@ -14,6 +14,8 @@ import { PME } from 'src/app/workstation/model/pme';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { Observation } from 'src/app/workstation/model/observation';
 
 @Component({
     selector: 'app-demande-adhesion',
@@ -112,6 +114,8 @@ export class DemandeAdhesionComponent implements OnInit {
     matchModeOptions: SelectItem[];
     statuts:any[];
 
+    observation:Observation;
+
     constructor(
         private messageService: MessageService,
         private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,
@@ -123,7 +127,8 @@ export class DemandeAdhesionComponent implements OnInit {
         private primengConfig: PrimeNGConfig,
         public app: AppComponent,
         private filterService:FilterService,
-        private tokenStorage:TokenStorageService
+        private tokenStorage:TokenStorageService,
+        private observationService:ObservationService
 
 
     ) {

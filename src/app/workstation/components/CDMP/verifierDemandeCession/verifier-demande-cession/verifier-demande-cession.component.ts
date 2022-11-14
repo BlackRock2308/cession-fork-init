@@ -18,6 +18,10 @@ import { DatePipe } from '@angular/common';
 import { MY_DATE_FORMATS } from 'src/app/workstation/model/my-date-format';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
+import { Observation } from 'src/app/workstation/model/observation';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 
 @Component({
   selector: 'app-verifier-demande-cession',
@@ -43,7 +47,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   nantissement: boolean;
   infosBEForm: any;
   infosBEDialog: boolean = false;
-  observation: any;
+  observation:Observation;
   items: MenuItem[];
   home: MenuItem;
   notifier=new HttpHeaderResponse();
@@ -57,7 +61,9 @@ export class VerifierDemandeCessionComponent implements OnInit {
     private dialogService: DialogService,
     private router:Router,
     private breadcrumbService: BreadcrumbService,
-    private pmeService:PmeService
+    private pmeService:PmeService,
+    private observationService:ObservationService,
+    private tokenStorage:TokenStorageService
   ) { this.breadcrumbService.setItems([
     { label: 'Liste des demandes de cession', url: '/#/workstation/cdmp/recevabilite' },
       { label: 'Recevabilité' }
@@ -118,7 +124,23 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       ()=>{},
       ()=>{},
       ()=>{
-        this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande).subscribe()
+        let body={
+          utilisateur:{
+            idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+          },
+          demande:{
+            idDemande:this.demandeCession.idDemande
+          },
+          statut:{
+            libelle:StatutEnum.rejetee
+          },
+        }
+        this.observationService.postObservation(body).subscribe(data => console.log(data))
+          Swal.fire(
+            'Rejetée!',
+            'La demande a bien été rejetée.',
+            'success'
+          )
       }
 
     )
@@ -131,7 +153,42 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       ()=>{},
       ()=>{},
       ()=>{
-        this.demandeCessionService.accepterRecevabilite(this.demandeCession.idDemande).subscribe()
+        this.demandeCessionService.accepterRecevabilite(this.demandeCession.idDemande).subscribe(
+          (response)=>{},
+          (error)=>{},
+          ()=>{
+            let body={
+              utilisateur:{
+                idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+              },
+              demande:{
+                idDemande:this.demandeCession.idDemande
+              },
+              statut:{
+                libelle:StatutEnum.recevable
+              },
+            }
+            this.observationService.postObservation(body).subscribe(data => console.log(data))
+
+          Swal.fire({
+            position: 'center',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500,
+              html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande de cession est recevable à priori.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+              color:"#203359",
+              confirmButtonColor:"#99CC33",
+              confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+              allowOutsideClick:false,
+              
+            }).then(() => {
+             
+                this.router.navigate(['workstation/cdmp/recevabilite'])
+            })
+          }
+        
+        )
+        
       }
 
     )
@@ -169,11 +226,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
         this.rejeterDemande(bonEngagement)
         this.router.navigate(['workstation/cdmp/recevabilite'])
-        Swal.fire(
-            'Rejetée!',
-            'La demande a bien été rejetée.',
-            'success'
-          )
+        
       }})
 
     }
@@ -181,26 +234,5 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
     bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
     this.accepterDemande(bonEngagement)
-
-       
-    
-    Swal.fire({
-    position: 'center',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande de cession est recevable.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color:"#203359",
-      confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick:false,
-      
-    }).then(() => {
-     
-        this.router.navigate(['workstation/cdmp/recevabilite'])
-    })
-
-
-      
 }
 }

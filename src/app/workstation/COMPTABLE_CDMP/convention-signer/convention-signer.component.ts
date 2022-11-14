@@ -5,7 +5,10 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import Swal from 'sweetalert2';
 import { Convention } from '../../model/convention';
+import { Observation } from '../../model/observation';
+import { StatutEnum } from '../../model/statut-enum';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
+import { ObservationService } from '../../service/observation/observation.service';
 
 @Component({
   selector: 'app-convention-signer',
@@ -19,12 +22,14 @@ export class ConventionSignerComponent implements OnInit {
   demande : any;
   convention: Convention;
   codePIN: string;
+  observation:Observation;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     public ref: DynamicDialogRef,
     private demandeCessionService : DemandesCessionService,
-    private tokenStorage : TokenStorageService
+    private tokenStorage : TokenStorageService,
+    private observationService:ObservationService
   ) { }
 
   ngOnInit(): void {
@@ -54,35 +59,54 @@ export class ConventionSignerComponent implements OnInit {
     this.ref.close();
 
     this.signerConventionDG();
-    Swal.fire({
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
-      color: "#203359",
-      confirmButtonColor: "#A6C733",
-      confirmButtonText: '<i class="pi pi-check"></i>OK',
-      allowOutsideClick: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['workstation/comptable/convention_cession'])
-      }
-    })
-
-    setTimeout(() => {
-      location.reload()
-     }, 1500);
+    
  
   }
 
  
-  private signerConventionDG() {
+  private async signerConventionDG() {
 
  
     var  idDemande = this.demande.idDemande
     this.codePIN=this.form.value['codePIN']
 
-    this.demandeCessionService.signerConventionDG(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
+    await this.demandeCessionService.signerConventionDG(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
       console.log(response)
 
-    })
+    },
+    (error) => {},
+    () => {
+      let body={
+        utilisateur:{
+          idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+        },
+        demande:{
+          idDemande:this.demande.idDemande
+        },
+        statut:{
+          libelle:StatutEnum.conventionSigneeParDG
+        },
+      }
+      this.observationService.postObservation(body).subscribe(data => console.log(data))
+
+      Swal.fire({
+        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
+        color: "#203359",
+        confirmButtonColor: "#A6C733",
+        confirmButtonText: '<i class="pi pi-check"></i>OK',
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['workstation/comptable/convention_cession'])
+        }
+      })
+  
+      setTimeout(() => {
+        location.reload()
+       }, 1500);
+    }
+    )
+    
 }
 }

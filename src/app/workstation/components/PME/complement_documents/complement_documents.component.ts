@@ -10,6 +10,10 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { Router } from '@angular/router';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Observation } from 'src/app/workstation/model/observation';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 
 @Component({
   selector: 'app-complement-documents',
@@ -32,6 +36,7 @@ export class ComplementDocumentsComponent implements OnInit {
   demandeNantissementInfos:any;
   items: MenuItem[];
   home: MenuItem;
+  observation:Observation
 
   constructor(    
     private formBuilder: FormBuilder,
@@ -41,7 +46,9 @@ export class ComplementDocumentsComponent implements OnInit {
     private breadcrumbService: BreadcrumbService,
     private demandeCessionService:DemandesCessionService,
     private documenService:FileUploadService,
-    private router:Router
+    private router:Router,
+    private observationService:ObservationService,
+    private tokenStorage:TokenStorageService
     ) { 
       this.breadcrumbService.setItems([
         { label: 'Liste de Demandes ', routerLink: ['pme/demandes_en_cours '] },
@@ -155,8 +162,21 @@ this.typesDocument=[
   async completerDemande(id:number):Promise<any> {
     
     try{
-      let demande=await this.demandeCessionService.completeDemande(id).subscribe()
-      console.log(demande)
+      await this.demandeCessionService.completeDemande(id).subscribe(response=>{
+        let body={
+          utilisateur:{
+            idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+          },
+          demande:{
+            idDemande:response.idDemande
+          },
+          statut:{
+            libelle:StatutEnum.completee
+          },
+        }
+        this.observationService.postObservation(body).subscribe(data => console.log(data))
+      })
+      
     }
     catch(error){
       console.log(error)

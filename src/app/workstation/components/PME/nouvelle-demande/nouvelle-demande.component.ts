@@ -23,6 +23,7 @@ import { FileUploadService } from 'src/app/workstation/service/fileUpload.servic
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { ObservationService } from '../../../service/observation/observation.service';
 import { Observation } from 'src/app/workstation/model/observation';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 
 @Component({
   selector: 'app-nouvelle-demande',
@@ -103,7 +104,7 @@ export class NouvelleDemandeComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   pme: PME;
-  observation: Observation;
+  observation: any={};
   idBE: number;
 
   constructor(
@@ -220,10 +221,18 @@ export class NouvelleDemandeComponent implements OnInit {
         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
         )
       }
-      this.observation.idAgent = this.tokenStorage.getUser().idUtilisateur;
-      this.observation.idDemande =  result.idDemande;
-      this.observation.libelle = 'nouvelle demande de cession';
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+      let body={
+        utilisateur:{
+          idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+        },
+        demande:{
+          idDemande:result.idDemande
+        },
+        statut:{
+          libelle:StatutEnum.soumise
+        },
+      }
+      this.observationService.postObservation(body).subscribe(data => console.log(data))
 
     })
 
