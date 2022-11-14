@@ -20,7 +20,7 @@ export class DemandeCession {
     pme?:PME;
     bonEngagement?:BonEngagement;
     observations?: Observation[];
-    convention?: Convention[];
+    conventions?: Convention[];
     statut?:string;
     dateDemandeCession?: Date;
     numeroDemande ?: string;
@@ -41,7 +41,7 @@ export interface Convention {
     dateConvention?:Date,
     decote?:string,
     modePaiement?:String;
-    document?: Document[];
+    documents?: Document[];
 }
 
 export interface DemandeNantissemantInfo{

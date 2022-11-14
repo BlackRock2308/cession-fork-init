@@ -74,9 +74,13 @@ export class DashboardDGComponent implements OnInit {
     profil: string;
 
     dropdownYears: SelectItem[];
-    statistiquePmes: StatistiquePME [];
+    statistiquePmes: StatistiquePME[];
+    nombreDemandeRejete: any[];
+    nombreDemandeAccepte: any[];
 
-    selectedYear: any;
+    mois: any[];
+
+    selectedYear: any = 2022;
 
     rangeDates: any[];
     matchModeOptions: SelectItem[];
@@ -106,7 +110,12 @@ export class DashboardDGComponent implements OnInit {
         });
 
         this.demandesCessionService.getPMEBenRejByAnne(this.selectedYear).subscribe(data => {
-            this.statistiquePmes = data
+            this.statistiquePmes = data;
+            this.statistiquePmes.forEach(el => {
+                this.nombreDemandeAccepte.push(el.nombreDemandeAccepte)
+                this.nombreDemandeRejete.push(el.nombreDemandeRejete)
+                this.mois.push(el.mois)
+            })
         });
 
         this.cols = [
@@ -146,19 +155,20 @@ export class DashboardDGComponent implements OnInit {
         ];
 
         this.basicData = {
-            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            // labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            labels: this.mois,
             datasets:
                 [
                     {
                         label: 'PME bénéficiare',
-                        data: [65, 59, 80, 81, 56, 55, 40, 34, 12, 67, 90, 100],
+                        data: this.nombreDemandeAccepte,
                         fill: false,
                         borderColor: '#99CC33',
                         tension: .4
                     },
                     {
                         label: 'PME rejeté',
-                        data: [5, 9, 8, 12, 6, 2, 4, 20, 3, 7, 0, 10],
+                        data: this.nombreDemandeRejete,
                         fill: false,
                         borderColor: '#981639',
                         tension: .4

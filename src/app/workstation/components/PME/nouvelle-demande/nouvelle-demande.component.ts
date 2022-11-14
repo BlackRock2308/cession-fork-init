@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 import { Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { MenuItem,} from 'primeng/api';
+import { MenuItem, } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { Documents } from 'src/app/workstation/model/document';
 import { VisualiserDocumentComponent } from '../../CDMP/visualiser-document/visualiser-document.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { DemandeAdhesion, DemandeCession  } from 'src/app/workstation/model/demande';
+import { DemandeCession } from 'src/app/workstation/model/demande';
 import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
-import { HttpErrorResponse } from '@angular/common/http';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
-import { concatMap } from 'rxjs/operators';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { ObservationService } from '../../../service/observation/observation.service';
+import { Observation } from 'src/app/workstation/model/observation';
 
 @Component({
   selector: 'app-nouvelle-demande',
@@ -46,13 +45,13 @@ export class NouvelleDemandeComponent implements OnInit {
 
   refBE: number;
   nomMarche: String;
-  demandeCession :DemandeCession;
-  bonEngagement : BonEngagement;
+  demandeCession: DemandeCession;
+  bonEngagement: BonEngagement;
   selectedFiles: File[] = [];
   selectedFile?: File;
   documentForm: FormGroup;
   documents: File[] = [];
-  document : Document={};
+  document: Document = {};
   cols: any[];
   selectedProducts: Document[];
   typesDocument: any[];
@@ -60,7 +59,7 @@ export class NouvelleDemandeComponent implements OnInit {
   selectedTypeDocument: string;
   items: MenuItem[];
   home: MenuItem;
-  documentPresentation: Document[]=[];
+  documentPresentation: Document[] = [];
 
   rightPanelClick: boolean;
 
@@ -96,7 +95,6 @@ export class NouvelleDemandeComponent implements OnInit {
 
   configActive: boolean;
 
-
   selectedBONFiles: File | null = null;
   currentFile?: File;
   progress = 0;
@@ -105,38 +103,33 @@ export class NouvelleDemandeComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   pme: PME;
-
-idBE:number;
+  observation: Observation;
+  idBE: number;
 
   constructor(
-    private router : Router,
+    private router: Router,
     private formBuilder: FormBuilder,
     public renderer: Renderer2,
     public app: AppComponent,
-    private pmeService: PmeService,
-    private uploadfileservice : FileUploadService,
-    private demandeCessionService : DemandesCessionService,
-    private bonEngagementService : BonEngagementService,
-    private documentService : DocumentService,
+    private uploadfileservice: FileUploadService,
+    private demandeCessionService: DemandesCessionService,
     public dialogService: DialogService,
     public messageService: MessageService,
     private breadcrumbService: BreadcrumbService,
-    private tokenStorage:TokenStorageService
-  ) {   this.breadcrumbService.setItems([
-    { label: 'Demandes' },
-    { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
-]); 
-   
-   this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] })
+    private tokenStorage: TokenStorageService,
+    private observationService: ObservationService
+  ) {
+    this.breadcrumbService.setItems([
+      { label: 'Demandes' },
+      { label: 'Nouvelle demande', routerLink: ['pme/new_demande'] }
+    ]);
 
-}
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] })
 
-
-
-
+  }
 
   ngOnInit(): void {
-    this.typesDocument=[
+    this.typesDocument = [
       {
         "type": "AUTRE",
         "nom": "Document du marché"
@@ -147,29 +140,27 @@ idBE:number;
       }
     ]
 
-    
-  
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
       file: [''],
-      refBE : ['',[Validators.required]],
-      nomMarche  : ['',[Validators.required]]  });
+      refBE: ['', [Validators.required]],
+      nomMarche: ['', [Validators.required]]
+    });
   }
 
-  get f(){
+  get f() {
     return this.documentForm.controls;
   }
   //ajouter le fichier sélectionné au répertoire de fichier
   selectFile(files: any): void {
 
-    this.document={}
+    this.document = {}
     this.document.type = this.documentForm.value['typeDocument'];
     this.document.file = files.target.files[0];
     this.documents.push(files.target.files[0]);
     this.documentPresentation.push(this.document);
     console.log(this.documentPresentation)
     console.log(this.documents)
-
 
   }
 
@@ -178,81 +169,67 @@ idBE:number;
     document.getElementById('upload-file').click();
   }
 
- 
-
-  onSubmit(){
-  
+  onSubmit() {
 
     console.log(this.bonEngagement);
-    let body={
-    reference:this.documentForm.value['refBE'],
-    nomMarche:this.documentForm.value['nomMarche']
+    let body = {
+      reference: this.documentForm.value['refBE'],
+      nomMarche: this.documentForm.value['nomMarche']
     };
     console.log(body);
-         
-   
- this.postDemandeCession();
 
- Swal.fire({
-  position: 'center',
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 1500,
-    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-    color:"#203359",
-    confirmButtonColor:"#99CC33",
-    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-    allowOutsideClick:false,
-    
-  }).then(() => {
-   
+    this.postDemandeCession();
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color: "#203359",
+      confirmButtonColor: "#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick: false,
+
+    }).then(() => {
+
       this.router.navigate(['workstation/pme/demandes_en_cours'])
-  })
-
+    })
 
   }
-  
 
-  
+  async postDemandeCession() {
 
-  async postDemandeCession(){
-    
-    let body ={
-      pme:{
-        idPME:this.tokenStorage.getPME().idPME
-    },
-    bonEngagement:{
-      nomMarche:this.documentForm.value['nomMarche'],
-      reference:this.documentForm.value['refBE']
+    let body = {
+      pme: {
+        idPME: this.tokenStorage.getPME().idPME
+      },
+      bonEngagement: {
+        nomMarche: this.documentForm.value['nomMarche'],
+        reference: this.documentForm.value['refBE']
+      }
     }
+
+    console.log(JSON.stringify(body))
+
+    await this.demandeCessionService.addDemandeCession(body).subscribe((result) => {
+      this.idBE = result.bonEngagement.idBonEngagement
+      console.log(result)
+      for (var i = 0; i < this.documents.length; i++) {
+        console.log(this.idBE)
+        this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
+        )
+      }
+      this.observation.idAgent = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.idDemande =  result.idDemande;
+      this.observation.libelle = 'nouvelle demande de cession';
+      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+
+    })
+
+    console.log("finish")
+
   }
-
-  console.log(JSON.stringify(body))
-    
-    await this.demandeCessionService.addDemandeCession(body).subscribe((result)=>{
-        this.idBE=result.bonEngagement.idBonEngagement
-        console.log(result)
-        for (var i = 0; i < this.documents.length; i++) {
-          console.log(this.idBE)
-         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data=>console.log(data)
-          )
-        }
-        })
-        
-        console.log("finish")
-    
-    
-      
-    
-    
-  }
-  
- 
-
-
- 
-
-  
 
   filtertypeDocument(event) {
     const filtered: any[] = [];
@@ -267,17 +244,16 @@ idBE:number;
     this.filteredtypeDocument = filtered;
   }
 
-  
-  delete(document:Document){
+  delete(document: Document) {
     var myIndex = this.documents.indexOf(document.file);
     var myIndex2 = this.documentPresentation.indexOf(document.file);
     if (myIndex !== -1) {
       this.documents.splice(myIndex, 1);
-  }
-  if (myIndex !== -1) {
-    this.documentPresentation.splice(myIndex2,1)
-}
-  console.log(this.documents)
+    }
+    if (myIndex !== -1) {
+      this.documentPresentation.splice(myIndex2, 1)
+    }
+    console.log(this.documents)
   }
 
   visualiserDocument(document: Documents) {
@@ -295,9 +271,8 @@ idBE:number;
   }
   onReject() {
     this.messageService.clear('c');
-}
+  }
 
- 
 }
 
 interface Document {
@@ -305,8 +280,3 @@ interface Document {
   type?: String;
   file?: File;
 }
-
-interface typeDocument {
-  nom?: String;
-}
-

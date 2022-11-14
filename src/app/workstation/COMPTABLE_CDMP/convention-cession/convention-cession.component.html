@@ -93,7 +93,7 @@
                                 <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
                                     *ngIf="demande.statut.libelle === 'CONVENTION_ENREGISTREE' || (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME' && (profil === 'PME'|| profil === 'JURISTE') ) || demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG' || demande.statut.libelle === 'CONVENTION_REJETEE' || (demande.statut.libelle === 'CONVENTION_GENEREE' && profil=== 'JURISTE') "
-                                    (click)="visualiserDocument(document)"></button>
+                                    (click)="visualiserDocument(documentConvention)"></button>
                                 <button pButton pRipple icon="pi pi-key" class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_GENEREE') &&( profil=== 'pme')) || ((demande.statut.libelle=== 'CONVENTION_SIGNEE_PAR_PME') && (profil ==='DG'))"

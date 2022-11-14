@@ -5,7 +5,7 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
 import { Convention } from '../../model/convention';
 import { DemandeAdhesion, DemandeCession } from '../../model/demande';
-import { Documents } from '../../model/document';
+import { Document, Documents } from '../../model/document';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
@@ -25,6 +25,7 @@ export class ConventionCessionComponent implements OnInit {
   demandes:DemandeCession[] = [] ;
 
   demande:DemandeCession;
+  documentConvention: Document;
 
   convention: any;
 
@@ -72,6 +73,8 @@ export class ConventionCessionComponent implements OnInit {
     this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes,data.content)
+      this.documentConvention = this.demandes[0]?.conventions[0]?.documents[0];
+   console.log('affiche' + JSON.stringify(this.documentConvention))
     });
     this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
       this.demandes=this.demandes.concat(data.content)
@@ -105,9 +108,8 @@ export class ConventionCessionComponent implements OnInit {
       console.log(this.demandes)
     });
     this.profil = localStorage.getItem('profil');
-   
-   
 
+  
     
       this.cols = [
         { field: 'nomDocument', header: 'Nom de Document' },
