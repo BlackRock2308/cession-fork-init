@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
@@ -39,7 +38,7 @@
                     <tr *ngIf="!(detailsPaiement.statut ==='En-attente-de-paiement')">
                         <td style="width:16%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
-                            {{detailsPaiement.datePaiement}}
+                            {{detailsPaiement.datePaiement | date: 'dd/MM/yyyy'}}
                         </td>
                         <td style="width:20%;">
                             <span class="p-column-title">Enregistré par</span>
@@ -56,19 +55,22 @@
                         <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
                             <span class="pull-right">{{detailsPaiement.montant | currency:'CFA' :
-                                'symbol' : '1.0-0'}}</span>
+                                'symbol' : '1.0-0':'fr'}}</span>
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-file"
+                                <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser la preuve de paiement"
-                                    (click)="detailPaimentPME(detailsPaiement.document)"></button>
+                                    (click)="detailPaimentPME(detailsPaiement.documents)"></button>
+                                <button pButton pRipple icon="pi pi-file" *ngIf="!detailsPaiement.documents"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    (click)="detailPaimentPME(detailsPaiement.documents)" [disabled]="true"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
-                
+
             </p-table>
         </div>
     </div>

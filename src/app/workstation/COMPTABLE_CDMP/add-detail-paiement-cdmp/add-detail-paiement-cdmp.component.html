@@ -7,7 +7,7 @@
                     <label htmlFor="modePaiement" class="col-12 md:col-4">Mode Paiement</label>
                     <div class="col-12 md:col-8">
                         <p-dropdown [options]="dropdownItems" optionLabel="name"
-                            [(ngModel)]="detailPaiement.typepaiement"></p-dropdown>
+                            [(ngModel)]="modePaiement"></p-dropdown>
                     </div>
                 </div>
                 <div class="field grid">
@@ -20,7 +20,8 @@
                 <div class="field grid">
                     <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Montant</label>
                     <div class="col-12 md:col-8">
-                        <input pInputText id="montant" type="text" [(ngModel)]="detailPaiement.montant" />
+                        <p-inputNumber  [(ngModel)]="detailPaiement.montant" mode="currency" currency="CFA">
+                        </p-inputNumber>
                     </div>
                 </div>
                 <div class="field grid">

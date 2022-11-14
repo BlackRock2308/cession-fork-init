@@ -7,7 +7,8 @@ import { GenericService } from '../../generic/generic.service';
   providedIn: 'root'
 })
 export class DetailsPaiementsService extends GenericService{
-  private detailsPaiementUrl= ApiSettings.API_CDMP+"/detailsPaiements"
+  private detailsPaiementUrl= ApiSettings.API_CDMP+"/detailsPaiements";
+  private paiementUrl= ApiSettings.API_CDMP+"/paiements"
 
   constructor(public http: HttpClient) {
     super(http);
@@ -24,11 +25,11 @@ export class DetailsPaiementsService extends GenericService{
   }
 
   getDetailPaiementPMEByPaiement(id){
-   return this.getById(this.detailsPaiementUrl+"/pme", id);
+   return this.getById(this.paiementUrl+"/cdmp-pme", id);
   }
 
   getDetailPaiementCDMPByPaiement(id){
-   return this.getById(this.detailsPaiementUrl+"/cdmp", id);
+   return this.getById(this.paiementUrl+"/sica-cdmp", id);
   }
 
   getAllDetailsPaiements(){

@@ -17,7 +17,7 @@ export class PaiementsService extends GenericService{
     return this.getAll(this.paiementUrl);
   }
   getPaiementsById(id){
-    return this.getById(this.paiementUrl+"/", id);
+    return this.getById(this.paiementUrl, id);
   }
 
  

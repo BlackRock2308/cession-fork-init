@@ -88,42 +88,37 @@
                             </td>
                             <td style="width:14%;">
                                 <span class="p-column-title">Total Marché</span>
-                                {{paiement.montantCreance}}
+                                {{paiement.montantCreance | currency:'CFA' : 'symbol' : '1.0-0'}}
                             </td>
                             <td style="width:13%;">
                                 <span class="p-column-title">Solde PME</span>
-                                {{paiement.soldePME}}
+                                {{paiement.soldePME | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
                             </td>
                             <td style="width:13%;">
                                 <span class="p-column-title">Montant Reçu</span>
-                                {{paiement.montantRecuCDMP}}
+                                {{paiement.montantRecuCDMP | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
                             </td>
                             <td style="width:20%;">
                                 <span class="p-column-title">Statut</span>
                                 <!-- <span>{{paiement.statutPme.libelle}}</span> -->
-                                <span
-                                    [class]="'product-badge status-' + (statutPme.statut.code '')">{{paiement.statutPme.libelle}}</span>
-                            </td>
+                                <span [class]="'product-badge status-' + (paiement.statutPme.libelle ? paiement.statutPme.libelle.toLowerCase() : '')">{{paiement.statutPme.libelle.replaceAll('_',
+                                    ' ')}}</span>
+                                </td>
                             <td>
                                 <div class="flex">
-                                    <!-- <button pButton pRipple icon="pi pi-money-bill"
-                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
-                                        pTooltip="Paiment de la PME"
-                                        *ngIf="paiement.statut.code === 'PME_EN_ATTENTE_DE_PAIEMENT' || paiement.statut.code=== 'PME_PARTIELLEMENT_PAYEE'"
-                                        (click)="visualiserPaiementListPME(paiement)"></button>
-                                    <button pButton pRipple icon="pi pi-id-card"
-                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
-                                        pTooltip="Paiment de la CDMP"
-                                        *ngIf="paiement.statut.code === 'PME_TOTALEMENT_PAYEE' || paiement.statut.code=== 'CDMP_PARTIELLEMENT_PAYEE' || paiement.statut.code=== 'PME_PARTIELLEMENT_PAYEE'"
-                                        (click)="visualiserPaiementListCDMP(paiement)"></button> -->
                                         <button pButton pRipple icon="pi pi-money-bill"
                                         class="p-button-rounded p-button-text mr-2 button simpleButton"
-                                        pTooltip="Paiment de la PME"
+                                        pTooltip="Paiment de la PME"  *ngIf="paiement.statutPme.code === 'PME_EN_ATTENTE_DE_PAIEMENT' || 
+                                        paiement.statutPme.code=== 'PME_PARTIELLEMENT_PAYEE'"
                                         (click)="visualiserPaiementListPME(paiement)"></button>
-                                    <button pButton pRipple icon="pi pi-id-card"
+                                    <!-- <button pButton pRipple icon="pi pi-id-card"
                                         class="p-button-rounded p-button-text mr-2 button simpleButton"
                                         pTooltip="Paiment de la CDMP"
-                                        (click)="visualiserPaiementListCDMP(paiement)"></button>
+                                        *ngIf="paiement.statutCDMP.code === 'CDMP_EN_ATTENTE_DE_PAIEMENT' || paiement.statutCDMP.code=== 'CDMP_PARTIELLEMENT_PAYEE'"
+                                        (click)="visualiserPaiementListCDMP(paiement)"></button> -->
+                                    <button pButton pRipple icon="pi pi-id-card"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    pTooltip="Paiment de la CDMP"  (click)="visualiserPaiementListCDMP(paiement)"></button>
                                 </div>
                             </td>
                         </tr>

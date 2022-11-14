@@ -19,7 +19,7 @@ import { DetailsPaiementsService } from "../../service/paiements/details-paiemen
 })
 export class AddDetailPaiementCDMPComponent implements OnInit {
   selectedFiles: File[] = [];
-  selectedFile?: File;
+  selectedFile?: File | null = null;
   images: any;
   docLoading: boolean;
   pdfPage: number;
@@ -35,8 +35,9 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
   documents: Document[] = [];
   document: Document;
   documentForm: FormGroup;
-  detailPaiement:DetailsPaiement = {};
-  user:Utilisateur={};
+  detailPaiement: DetailsPaiement = {};
+  user: Utilisateur = {};
+  modePaiement: ModePaiement = {};
   constructor(
     private router: Router,
     public activeModal: NgbActiveModal,
@@ -46,7 +47,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     private detailsPaiementsService: DetailsPaiementsService,
     public config: DynamicDialogConfig
   ) {
-    this.user =  JSON.parse(sessionStorage.getItem('auth-user'));
+    this.user = JSON.parse(sessionStorage.getItem("auth-user"));
   }
 
   dropdownItems = [
@@ -56,10 +57,14 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     { name: "Virement", code: "VIREMENT" },
   ];
   ngOnInit() {
-  this.detailPaiement.comptable = this.user.prenom+" "+this.user.nom;
+    this.detailPaiement.comptable = this.user.prenom + " " + this.user.nom;
   }
   dismiss() {
     this.ref.close();
+  }
+
+  close(detailsPaiement:DetailsPaiement){
+    this.ref.close(detailsPaiement);
   }
 
   handleClick() {
@@ -68,21 +73,37 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
 
   //sélectionner le fichier
   selectFile(files: any): void {
-    this.selectedFiles = files.target.files[0];
-    console.log(this.selectedFiles);
+    this.selectedFiles = files.target.files;
   }
 
   onSubmitForm() {
+    this.detailPaiement.modePaiement = this.modePaiement.code;
+    this.detailPaiement.paiementDto = this.config.data.paiement;
     this.detailsPaiementsService
       .addDetailPaiementCDMP(this.detailPaiement)
       .subscribe((res: DetailsPaiement) => {
+        if (res.id) {
+          let typeDocument = "";
+          if (res.modePaiement === "CHEQUE") {
+            typeDocument = "CHEQUE";
+          } else {
+            typeDocument = "PREUVE_VIREMENT";
+          }
+          for (let file of this.selectedFiles) {
+            this.uploadFileService
+              .uploadFile("/detailsPaiements", res.id, file, typeDocument)
+              .subscribe((resFil: any) => {
+                console.log(resFil);
+              });
+          }
+        }
         this.servicemsg.add({
           key: "tst",
           severity: "success",
           summary: "Success Message",
           detail: "CDMP payé avec succès",
         });
-        this.dismiss();
+        this.close(res);
       }),
       (error) => {
         this.servicemsg.add({
@@ -93,4 +114,9 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         });
       };
   }
+}
+
+interface ModePaiement {
+  name?: string;
+  code?: string;
 }

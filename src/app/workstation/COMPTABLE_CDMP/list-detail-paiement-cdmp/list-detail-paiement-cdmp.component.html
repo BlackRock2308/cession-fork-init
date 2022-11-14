@@ -40,7 +40,7 @@
 
                         <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
-                            {{detailsPaiement.datePaiement}}
+                            {{detailsPaiement.datePaiement | date: 'dd/MM/yyyy'}}
                         </td>
                         <td style="width:25%;">
                             <span class="p-column-title">Enregistré par</span>
@@ -49,27 +49,28 @@
                         <td style="width:10%;">
                             <span class="p-column-title">Montant</span>
                             <span class="pull-right">{{detailsPaiement.montant | currency:'CFA' :
-                                'symbol' : '1.0-0'}}</span>
+                                'symbol' : '1.0-0':'fr'}}</span>
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-file"
+                                <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser le paiement"
-                                    (click)="detailPaimentCDMP(detailsPaiement.document)"></button>
+                                    (click)="detailPaimentCDMP(detailsPaiement.documents)"></button>
+                                <button pButton pRipple icon="pi pi-file" *ngIf="!detailsPaiement.documents"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    (click)="detailPaimentCDMP(detailsPaiement.documents)" [disabled]="true"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
-                    <!-- <span class="textLeft">
-                        SOLDE :{{detailsPaiement.paiement.montantRecuCDMP | currency:'CFA' :
-                        'symbol' : '1.0-0'}}
+                    <span class="textLeft">
+                        <span>Solde :</span> {{paiement.montantRecuCDMP | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
                     </span>
                     <span class="textRight">
-                        Montant total : {{detailsPaiement.paiement.soldePME | currency:'CFA' :
-                        'symbol' : '1.0-0'}}
-                    </span> -->
+                        <span>Montant total :</span> {{paiement.soldePME | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                    </span>
                 </ng-template>
             </p-table>
         </div>

@@ -11,7 +11,9 @@ import { DocumentService } from "../../service/document/document.service";
 import { DetailsPaiementsService } from "../../service/paiements/details-paiements.services";
 import { PaiementsService } from "../../service/paiements/paiements.service";
 import { AddDetailsPaiementPMEComponent } from "../add-detail-paiement-pme/add-detail-paiement-pme.component";
-
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr')
 @Component({
   selector: "app-list-paiement-pme",
   templateUrl: "./list-detail-paiement-pme.component.html",
@@ -52,7 +54,7 @@ export class ListPaiementPMEComponent implements OnInit {
     private documentService: DocumentService,
     public dialogService: DialogService,
     private breadcrumbService: BreadcrumbService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private router: Router,
     private paiementService:PaiementsService,
     private detailsPaiementsService: DetailsPaiementsService
   ) {
@@ -74,6 +76,7 @@ export class ListPaiementPMEComponent implements OnInit {
       this.documents = data;
     });
     this.getAllDetailPaiements();
+    this.getPaiement();
 
     this.cols = [
       { field: "datePaiement", header: "Date Paiement" },
@@ -84,8 +87,7 @@ export class ListPaiementPMEComponent implements OnInit {
   }
 
   getAllDetailPaiements() {
-    //this.detailsPaiementsService.getDetailPaiementPMEByPaiement(this.idPaiement)
-    this.detailsPaiementsService.getAllDetailsPaiements()
+    this.detailsPaiementsService.getDetailPaiementPMEByPaiement(this.idPaiement)
     .subscribe((res:DetailsPaiement[]) =>{
       this.detailsPaiements = res;
     })
@@ -101,7 +103,7 @@ export class ListPaiementPMEComponent implements OnInit {
   verifierDemande(paiement: Paiements) {
     this.paiement = { ...paiement };
     this.paiementDialog = true;
-    //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
+    this.router.navigate(['workstation/cdmp/visualiser-demandes']);
   }
 
   ajouterPaimentPME() {
@@ -114,6 +116,11 @@ export class ListPaiementPMEComponent implements OnInit {
       //height: "calc(90% - 200px)",
       baseZIndex: 10000,
     });
+    ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
+      console.log(detailsPaiement);
+      this.detailsPaiements.unshift(detailsPaiement);
+    });
+    
   }
 
   detailPaimentPME(document: Documents) {

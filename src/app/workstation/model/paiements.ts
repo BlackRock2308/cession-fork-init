@@ -1,8 +1,9 @@
+import { DetailsPaiement } from "./detailsPaiements";
 import { Statut } from "./statut";
 
 export interface Paiements {
   idPaiement?: number;
-
+  cdmp?:number;
   montantRecuCDMP?: number;
 
   soldePME?: number;
@@ -19,4 +20,5 @@ export interface Paiements {
   statutCDMP?:Statut;
 
   demandecessionid?:number;
+  details?: DetailsPaiement[];
 }

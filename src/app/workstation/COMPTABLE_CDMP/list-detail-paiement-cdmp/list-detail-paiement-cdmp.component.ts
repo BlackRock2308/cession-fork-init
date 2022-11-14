@@ -11,7 +11,9 @@ import { DocumentService } from "../../service/document/document.service";
 import { DetailsPaiementsService } from "../../service/paiements/details-paiements.services";
 import { PaiementsService } from "../../service/paiements/paiements.service";
 import { AddDetailPaiementCDMPComponent } from "../add-detail-paiement-cdmp/add-detail-paiement-cdmp.component";
-
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr')
 @Component({
   selector: "app-list-paiement-cdmp",
   templateUrl: "./list-detail-paiement-cdmp.component.html",
@@ -21,9 +23,7 @@ import { AddDetailPaiementCDMPComponent } from "../add-detail-paiement-cdmp/add-
 export class ListPaiementCdmpComponent implements OnInit {
   paiementDialog: boolean;
 
-  detailsPaiements: DetailsPaiement[];
-
-  paiement: Paiements;
+  detailsPaiements: DetailsPaiement[]=[];
 
   submitted: boolean;
 
@@ -47,13 +47,13 @@ export class ListPaiementCdmpComponent implements OnInit {
   pageVariable = 1;
   ref: DynamicDialogRef;
   home: MenuItem;
-
+  paiement:Paiements ={};
   constructor(
     private documentService: DocumentService,
     private paiementsService: PaiementsService,
     public dialogService: DialogService,
     private breadcrumbService: BreadcrumbService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private router:Router,
     private detailsPaiementsService: DetailsPaiementsService
   ) {
     this.route.params.subscribe(
@@ -80,28 +80,45 @@ export class ListPaiementCdmpComponent implements OnInit {
       { field: "montant", header: "Montant" },
     ];
     this.getAllDetailsPaiements();
+    this.getPaiement();
   }
 
   verifierDemande(paiement: Paiements) {
     this.paiement = { ...paiement };
     this.paiementDialog = true;
-    //this.router.navigate(['workstation/cdmp/visualiser-demandes']);
+    this.router.navigate(['workstation/cdmp/visualiser-demandes']);
   }
   getAllDetailsPaiements() {
-    //this.detailsPaiementsService.getDetailPaiementCDMPByPaiement(this.idPaiement)
-    this.detailsPaiementsService.getAllDetailsPaiements()
+    this.detailsPaiementsService.getDetailPaiementCDMPByPaiement(this.idPaiement)
     .subscribe((res:DetailsPaiement[]) =>{
       this.detailsPaiements = res;
     })
   }
 
+  getPaiement(){
+    this.paiementsService.getPaiementsById(this.idPaiement)
+    .subscribe((res:Paiements) =>{
+      this.paiement = res;
+    });
+  }
+
   ajouterPaimentCDMP() {
     const ref = this.dialogService.open(AddDetailPaiementCDMPComponent, {
+      data: {
+        paiement: this.paiement,
+      },
       header: "Paiement de la CDMP par SICA",
       width: "50%",
-      //height: "calc(80% - 150px)",
       baseZIndex: 10000,
     });
+    ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
+      console.log(detailsPaiement);
+      this.detailsPaiements.unshift(detailsPaiement);
+      
+  });
+    // .close((result) => {
+    //   this.getAllDetailsPaiements();
+    // });
   }
 
   detailPaimentCDMP(document: Documents) {
