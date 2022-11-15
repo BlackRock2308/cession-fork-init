@@ -137,18 +137,11 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
               'success'
             )
           })
-          let body={
-            utilisateur:{
-              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-            },
-            demande:{
-              idDemande:this.demandeCession.idDemande
-            },
-            statut:{
-              libelle:StatutEnum.ConventionRejetee
-            },
-          }
-          this.observationService.postObservation(body).subscribe(data => console.log(data))
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          this.observation.statut={}    
+          this.observation.idDemande = this.demandeCession.idDemande;
+    this.observation.statut.libelle=StatutEnum.ConventionRejetee;
+    await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
 
   private async conventionAcceptee(){
@@ -160,8 +153,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
   console.log(body)
 
-    await this.paiementService.postPaiement(body).subscribe(
-      data=>{console.log(data)})
+    
 
     await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionAcceptee)
             .subscribe((response: any) => {
@@ -185,20 +177,15 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
                
                   this.router.navigate(['workstation/ordonnateur/conventions'])
               })
+              this.paiementService.postPaiement(body).subscribe(
+                data=>{console.log(data)})
           })
 
-          let body2={
-            utilisateur:{
-              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-            },
-            demande:{
-              idDemande:this.demandeCession.idDemande
-            },
-            statut:{
-              libelle:StatutEnum.ConventionAcceptee
-            },
-          }
-          await this.observationService.postObservation(body2).subscribe(data => console.log(data))
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          this.observation.statut={}  
+          this.observation.idDemande = this.demandeCession.idDemande;
+          this.observation.statut.libelle =StatutEnum.ConventionAcceptee;
+          await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 }
   
   dowloadFile(path: string) {

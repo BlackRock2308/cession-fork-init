@@ -168,13 +168,13 @@
 
                 <div class="form-outline w-100">
                     <textarea
-                        *ngIf="demandeCession.statut=='Convention-enregistrée'||demandeCession.statut=='Convention-corrigée';else elseBlock"
-                        class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation"
+                        *ngIf="demandeCession.statut.libelle=='CONNENTION_TRANSMISE'||demandeCession.statut.libelle=='CONVENTION_CORRIGEE';else elseBlock"
+                        class="form-control" id="textAreaExample" rows="4" [(ngModel)]="observation.libelle"
                         style="background: #fff;"></textarea>
 
                     <ng-template #elseBlock>
                         <textarea class="form-control" id="textAreaExample" rows="4" disabled
-                            style="background: #fff;">{{demandeCession.observation}}</textarea>
+                            style="background: #fff;"></textarea>
                     </ng-template>
                 </div>
             </div>

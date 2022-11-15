@@ -95,18 +95,11 @@ export class SignerconventionPMEComponent implements OnInit {
     this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
       console.log(response)
-      let body={
-        utilisateur:{
-          idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-        },
-        demande:{
-          idDemande:this.demande.idDemande
-        },
-        statut:{
-          libelle:StatutEnum.conventionSigneeParPME
-        },
-      }
-      this.observationService.postObservation(body).subscribe(data => console.log(data))
+      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.statut={}            
+      this.observation.idDemande =  response.idDemande;
+      this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
+      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
     },
     (error: any) =>{},
     () =>{

@@ -124,18 +124,12 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       ()=>{},
       ()=>{},
       ()=>{
-        let body={
-          utilisateur:{
-            idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-          },
-          demande:{
-            idDemande:this.demandeCession.idDemande
-          },
-          statut:{
-            libelle:StatutEnum.rejetee
-          },
-        }
-        this.observationService.postObservation(body).subscribe(data => console.log(data))
+        this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande).subscribe()
+        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+        this.observation.statut={}          
+        this.observation.idDemande = this.demandeCession.idDemande;
+          this.observation.statut.libelle =StatutEnum.rejetee;
+          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
           Swal.fire(
             'Rejetée!',
             'La demande a bien été rejetée.',
@@ -157,18 +151,11 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
           (response)=>{},
           (error)=>{},
           ()=>{
-            let body={
-              utilisateur:{
-                idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-              },
-              demande:{
-                idDemande:this.demandeCession.idDemande
-              },
-              statut:{
-                libelle:StatutEnum.recevable
-              },
-            }
-            this.observationService.postObservation(body).subscribe(data => console.log(data))
+            this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+            this.observation.statut={}          
+            this.observation.idDemande = this.demandeCession.idDemande;
+          this.observation.statut.libelle =StatutEnum.recevable;
+          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
           Swal.fire({
             position: 'center',

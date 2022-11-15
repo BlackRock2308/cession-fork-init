@@ -87,18 +87,11 @@ export class VerificationComponent implements OnInit {
       (response) => {},
       (error) => {},
       () => {
-        let body={
-          utilisateur:{
-            idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-          },
-          demande:{
-            idDemande:this.demande.idDemande
-          },
-          statut:{
-            libelle:StatutEnum.adhesionRejetee
-          },
-        }
-        this.observationService.postObservation(body).subscribe(data => console.log(data))
+        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+        this.observation.statut={}          
+        this.observation.idDemande = this.demande.idDemande;
+          this.observation.statut.libelle =StatutEnum.adhesionRejetee;
+          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
           Swal.fire({
             title: 'Rejetée!',

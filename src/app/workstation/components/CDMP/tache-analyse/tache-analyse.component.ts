@@ -213,18 +213,11 @@ export class TacheAnalyseComponent implements OnInit {
             (response) => {},
             (error) => {},
             () => {
-                let body={
-                    utilisateur:{
-                      idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-                    },
-                    demande:{
-                      idDemande:this.demandeCession.idDemande
-                    },
-                    statut:{
-                      libelle:StatutEnum.nonRisquee
-                    },
-                  }
-                  this.observationService.postObservation(body).subscribe(data => console.log(data))
+                this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+                this.observation.statut={}
+                this.observation.idDemande = this.demandeCession.idDemande;
+                this.observation.statut.libelle =StatutEnum.nonRisquee;
+                this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
                 Swal.fire({
                     position: 'center',
@@ -273,18 +266,11 @@ export class TacheAnalyseComponent implements OnInit {
                 (response) => {},
                     (error) => {},
                     () => {
-                        let body={
-                            utilisateur:{
-                              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-                            },
-                            demande:{
-                              idDemande:this.demandeCession.idDemande
-                            },
-                            statut:{
-                              libelle:StatutEnum.risquee
-                            },
-                          }
-                          this.observationService.postObservation(body).subscribe(data => console.log(data))
+                        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+                        this.observation.statut={}                        
+                        this.observation.idDemande = this.demandeCession.idDemande;
+                        this.observation.statut.libelle =StatutEnum.risquee;
+                        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
                         Swal.fire(
                             'Rejetée!',
@@ -305,18 +291,11 @@ export class TacheAnalyseComponent implements OnInit {
         (response) => {},
             (error) => {},
             () => {
-                let body={
-                    utilisateur:{
-                      idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-                    },
-                    demande:{
-                      idDemande:this.demandeCession.idDemande
-                    },
-                    statut:{
-                      libelle:StatutEnum.complementRequis
-                    },
-                  }
-                  this.observationService.postObservation(body).subscribe(data => console.log(data))
+                this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+                this.observation.statut={}                
+                this.observation.idDemande = this.demandeCession.idDemande;
+                this.observation.statut.libelle =StatutEnum.complementRequis;
+                this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
                 Swal.fire({
                     html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",

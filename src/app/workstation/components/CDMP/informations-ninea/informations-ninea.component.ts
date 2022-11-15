@@ -134,18 +134,11 @@ export class InformationsNineaComponent implements OnInit {
         },
         (error)=>{},
          ()=>{
-          let body={
-            utilisateur:{
-              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-            },
-            demande:{
-              idDemande:this.demande.idDemande
-            },
-            statut:{
-              libelle:StatutEnum.adhesionAcceptee
-            },
-          }
-          this.observationService.postObservation(body).subscribe(data => console.log(data))
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          this.observation.statut={}          
+          this.observation.idDemande = this.demande.idDemande;
+          this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
+          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
           Swal.fire({
             position: 'center',
