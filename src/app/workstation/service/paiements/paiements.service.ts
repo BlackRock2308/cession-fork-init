@@ -20,6 +20,10 @@ export class PaiementsService extends GenericService{
     return this.getById(this.paiementUrl, id);
   }
 
+  postPaiement(data){
+    let body = JSON.stringify(data);
+   return this.add(this.paiementUrl , body);
+  }
  
 }
 
