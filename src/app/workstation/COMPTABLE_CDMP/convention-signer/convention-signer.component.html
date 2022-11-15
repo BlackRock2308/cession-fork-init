@@ -1,9 +1,17 @@
 <form [formGroup]="form" >
 <div class="formgroup-inline">
     <div class="field grid">
-        <label class="text" htmlFor="codePIN" >Code PIN: </label>
+        <label class="text" htmlFor="codePIN" >Code PIN : </label>
         <div >
             <input class="marge " pInputText id="codePIN" type="text" pTooltip="Code PIN" formControlName="codePIN" placeholder="****"/>
+        </div>
+    </div>
+<br>
+<br>
+    <div class="field grid">
+        <label class="text" htmlFor="codePIN" >Modifier decote: </label>
+        <div >
+            <input class="marge " pInputText id="decote" type="text" pTooltip="Decote" formControlName="decote" placeholder="{{convention.valeurDecote}}"/>
         </div>
     </div>
     <div class="col-12 pr-0 d-flex flex-row-reverse">
