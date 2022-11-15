@@ -7,6 +7,9 @@ import { DemandeCession } from 'src/app/workstation/model/demande';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { SignerconventionPMEComponent } from '../../PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
+import Swal from 'sweetalert2';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -43,7 +46,9 @@ export class VisualiserDocumentComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal,
     private demandeCessionService:DemandesCessionService,
-    private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
+    private uploadFileService: FileUploadService, 
+    private router : Router,
+    public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
 
 
   ngOnInit() {
@@ -246,4 +251,86 @@ export class VisualiserDocumentComponent implements OnInit {
     });
     this.dismiss();
   }
+
+  rejetConventionPME() {
+    this.dismiss();
+    setTimeout(() => {
+      location.reload()
+     }, 1500);
+
+    let body = {
+      
+      idDemande:this.demande.idDemande
+  }
+  console.log(body)
+
+  this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParPME)
+            .subscribe((response: any) => {
+              console.log(response)
+
+              //console.log(StatutEnum.ConventionRejeteeParPME)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire({
+              position: 'center',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                color:"#203359",
+                confirmButtonColor:"#99CC33",
+                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                allowOutsideClick:false,
+                
+              })
+            
+
+          })
+
+  }
+
+
+  rejetConventionDG(){
+    setTimeout(() => {
+      location.reload()
+     }, 1500);
+    this.dismiss();
+
+    
+    let body = {
+      
+      idDemande:this.demande.idDemande
+  }
+  console.log(body)
+
+  this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParDG)
+            .subscribe((response: any) => {
+              console.log(response)
+             // this.dismiss();
+
+             // console.log(StatutEnum.ConventionRejeteeParDG)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire({
+              position: 'center',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                color:"#203359",
+                confirmButtonColor:"#99CC33",
+                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                allowOutsideClick:false,
+                
+              })
+              this.dismiss();
+
+          })
+
+
+
+  }
+
 }

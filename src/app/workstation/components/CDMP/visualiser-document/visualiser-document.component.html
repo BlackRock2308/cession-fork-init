@@ -104,8 +104,14 @@
             type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
             (click)="signerConventionPME()" class="p-button-raised successButton"></button>
         <button
-            *ngIf="((profil === 'DG') && (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME')) || ((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE') )"
+            *ngIf="((profil === 'DG') && (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME'))"
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
+            (click)="rejetConventionDG()"
+            class="p-button-raised dangerButton"></button>
+            <button
+            *ngIf="((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE') )"
+            id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
+            (click)="rejetConventionPME()"
             class="p-button-raised dangerButton"></button>
       
         <button
