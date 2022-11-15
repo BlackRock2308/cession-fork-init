@@ -6,7 +6,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "mirage": {
+        "wootoo-front": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -20,7 +20,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/mirage",
+                        "outputPath": "dist/wootoo-front",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -78,15 +78,15 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "mirage:build",
+                        "browserTarget": "wootoo-front:build",
                         "proxyConfig": "proxy.config.json"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "mirage:build:production"
+                            "browserTarget": "wootoo-front:build:production"
                         },
                         "development": {
-                            "browserTarget": "mirage:build:development"
+                            "browserTarget": "wootoo-front:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -94,7 +94,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "mirage:build"
+                        "browserTarget": "wootoo-front:build"
                     }
                 },
                 "test": {
@@ -131,5 +131,5 @@
             }
         }
     },
-    "defaultProject": "Wootoo"
+    "defaultProject": "wootoo-front"
 }
