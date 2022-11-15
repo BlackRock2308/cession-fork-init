@@ -1,16 +1,17 @@
 
 export interface Utilisateur {
+    updateCodePin?:boolean;
     id?:number;
     nom?:String;
     prenom?:String;
     adresse?:String;
-    codePin?:number;
-    urlImageSignature?:String;
+    codePin?:string;
+    urlimagesignature?:String;
     telephone?:number;
     email?:String;
-    urlImageProfil?:String;
+    urlmagerofil?:String;
     username ?: String;
-    motDePasse ?: String;
+    password ?: String;
     poste ?:String;
    
 }

@@ -45,6 +45,7 @@ import {ConventionCessionPMEComponent} from './components/PME/convention-cession
 import { MessageService } from 'primeng/api';
 import { CodeComponent } from './components/profil/code/code.component';
 import { SignerconventionPMEComponent } from './components/PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
+import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,9 @@ import { SignerconventionPMEComponent } from './components/PME/signer-convention
     ProfilComponent,
     ConventionCessionPMEComponent,
     CodeComponent,
-    SignerconventionPMEComponent
+    SignerconventionPMEComponent,
+    CorrigerConventionComponent
+    
     
   ],
   imports: [

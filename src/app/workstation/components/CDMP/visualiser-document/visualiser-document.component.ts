@@ -3,7 +3,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
+import { DemandeCession } from 'src/app/workstation/model/demande';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { SignerconventionPMEComponent } from '../../PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
+import Swal from 'sweetalert2';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { Router } from '@angular/router';
+import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
+import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -11,6 +19,12 @@ import { FileUploadService } from 'src/app/workstation/service/fileUpload.servic
   styleUrls: ['./visualiser-document.component.scss']
 })
 export class VisualiserDocumentComponent implements OnInit {
+
+  demandes:any[] = [] ;
+  statuts:any[];
+
+
+  demande:any;
   src: any;
   srcFile: string;
   images: any;
@@ -32,21 +46,44 @@ export class VisualiserDocumentComponent implements OnInit {
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
 
 
-  constructor(public activeModal: NgbActiveModal, private uploadFileService: FileUploadService, public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
+  constructor(public activeModal: NgbActiveModal,
+    private demandeCessionService:DemandesCessionService,
+    private uploadFileService: FileUploadService, 
+    private router : Router,
+    public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
+
 
   ngOnInit() {
+
+    this.demandeCessionService.getDemandeObs().subscribe(data => {
+      this.demande = data
+      console.log(this.demande , data)
+    })
     this.srcFile = this.config.data.document.urlFile;
     console.log(this.srcFile)
     this.dowloadFile(this.srcFile);
     this.convention = this.config.data.document;
     this.profil = localStorage.getItem('profil');
+    console.log(this.profil)
 
-    this.statut = this.config.data.document.statut;
+    this.statut = this.config.data.demande.statut;
     if (this.config.data.paiement === 'true') {
       this.paiement = 'true';
     }
     this.observation = this.config.data.document.observation;
 
+    
+   
+    this.statuts = [
+      {label: 'Convention Enregistrée', value: 'CONVENTION_GENEREE'},
+      {label: 'Convention Rejetée', value: 'CONVENTION_CORRIGEE'},
+      {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
+      {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
+      {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
+      {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
+      {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
+      {label: 'Convention Générée', value: 'NON_RISQUEE'}
+    ]
   }
   dowloadFile(path: string) {
 
@@ -191,7 +228,7 @@ export class VisualiserDocumentComponent implements OnInit {
 
   }
 
-  signerConvention() {
+  signerConventionDG() {
     const ref = this.dialogService.open(ConventionSignerComponent, {
       data: {
         convention: this.convention
@@ -203,4 +240,111 @@ export class VisualiserDocumentComponent implements OnInit {
     });
     this.dismiss();
   }
+
+  signerConventionPME() {
+    const ref = this.dialogService.open(SignerconventionPMEComponent, {
+      data: {
+        convention: this.convention
+      },
+      header: "Signer la convention",
+      width: '40%',
+      height: 'calc(40% - 100px)',
+      baseZIndex: 50
+    });
+    this.dismiss();
+  }
+
+  corrigerConvention() {
+    const ref = this.dialogService.open(CorrigerConventionComponent, {
+      data: {
+        convention: this.convention
+      },
+      header: "Corriger la convention",
+      width: '40%',
+      height: 'calc(60% - 100px)',
+      baseZIndex: 50
+    });
+    this.dismiss();
+  }
+  rejetConventionPME() {
+    this.dismiss();
+    setTimeout(() => {
+      location.reload()
+     }, 1500);
+
+    let body = {
+      
+      idDemande:this.demande.idDemande
+  }
+  console.log(body)
+
+  this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParPME)
+            .subscribe((response: any) => {
+              console.log(response)
+
+              //console.log(StatutEnum.ConventionRejeteeParPME)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire({
+              position: 'center',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                color:"#203359",
+                confirmButtonColor:"#99CC33",
+                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                allowOutsideClick:false,
+                
+              })
+            
+
+          })
+
+  }
+
+
+  rejetConventionDG(){
+    setTimeout(() => {
+      location.reload()
+     }, 1500);
+    this.dismiss();
+
+    
+    let body = {
+      
+      idDemande:this.demande.idDemande
+  }
+  console.log(body)
+
+  this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParDG)
+            .subscribe((response: any) => {
+              console.log(response)
+             // this.dismiss();
+
+             // console.log(StatutEnum.ConventionRejeteeParDG)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire({
+              position: 'center',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                color:"#203359",
+                confirmButtonColor:"#99CC33",
+                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                allowOutsideClick:false,
+                
+              })
+              this.dismiss();
+
+          })
+
+
+
+  }
+
 }

@@ -96,7 +96,6 @@ export class ConventionEnregistreeComponent implements OnInit {
 
   
 
-  //enregistrement du pme avec l'appel du service d'enregistrement
   private async conventionTransmise() {
    
     let body = {

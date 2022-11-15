@@ -14,6 +14,10 @@
         background: #C8E6C9;
         color: #256029;
     }
+    &.status-recevable {
+        background: #C8E6C9;
+        color: #256029;
+    }
 
     &.status-risquee {
         background: #FFCDD2;
@@ -23,7 +27,14 @@
         background: #FFCDD2;
         color: #C63737;
     }
-
+    &.status-convention_rejetee_par_pme {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_rejetee_par_dg {
+        background: #FFCDD2;
+        color: #C63737;
+    }
     &.status-soumise {
         background: #FEEDAF;
         color: #8A5340;

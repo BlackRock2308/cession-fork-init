@@ -3,23 +3,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { Convention } from 'src/app/workstation/model/convention';
+import { Observation } from 'src/app/workstation/model/observation';
+import { PME } from 'src/app/workstation/model/pme';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { ConventionService } from 'src/app/workstation/service/convention/convention.service';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
-import { Observation } from '../../model/observation';
-import { PME } from '../../model/pme';
-import { StatutEnum } from '../../model/statut-enum';
-import { ConventionService } from '../../service/convention/convention.service';
-import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
-import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
-import { FileUploadService } from '../../service/fileUpload.service';
-import { ObservationService } from '../../service/observation/observation.service';
 
 @Component({
-  selector: 'app-editer-convention',
-  templateUrl: './editer-convention.component.html',
-  styleUrls: ['./editer-convention.component.scss']
+  selector: 'app-corriger-convention',
+  templateUrl: './corriger-convention.component.html',
+  styleUrls: ['./corriger-convention.component.scss']
 })
-export class EditerConventionComponent implements OnInit {
+export class CorrigerConventionComponent implements OnInit {
 
   documentForm: FormGroup;
   selectedProducts: Document[];
@@ -34,6 +35,7 @@ export class EditerConventionComponent implements OnInit {
   pme: PME;
   demande: any;
   observation:Observation={}
+  convention : Convention
 
   constructor(
     private router : Router,
@@ -46,33 +48,36 @@ export class EditerConventionComponent implements OnInit {
     private tokenStorage:TokenStorageService,
     private observationService:ObservationService
 
-    ) { }
+  ) { }
 
   ngOnInit(): void {
+
     // this.pmeService.getTypesDocument().subscribe(data => {
     //   this.typesDocument = data;
     //   this.typesDocument.push({ nom: "Autres" })
     //   //console.log(this.typesDocument)
     // })
     this.documentForm = this.formBuilder.group({
-     // typeDocument: [''],
-      file: ['']
-    });
-
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-      this.pme=this.demande.pme
-      console.log(this.pme,this.demande)
-
-    })
-    this.cols = [
-      { field: 'typeDocument', header: 'Type Document' },
-      { field: 'nomDocument', header: 'Nom Document' },
-      { field: 'action', header: 'Action' },
-    ];
+      // typeDocument: [''],
+       file: ['']
+     });
+ 
+     this.demandeCessionService.getDemandeObs().subscribe(data => {
+       this.demande = data;
+       this.pme=this.demande.pme
+       this.convention=this.demande.conventions[0]
+       console.log(this.demande,this.convention)
+ 
+     })
+     this.cols = [
+       { field: 'typeDocument', header: 'Type Document' },
+       { field: 'nomDocument', header: 'Nom Document' },
+       { field: 'action', header: 'Action' },
+     ];
   }
 
- //sélectionner le fichier 
+
+  //sélectionner le fichier 
  selectFile(files: any): void {
   this.selectedFiles = files.target.files[0];
   console.log(this.selectedFiles);
@@ -91,7 +96,7 @@ export class EditerConventionComponent implements OnInit {
     this.ref.close();
 
 
-    this.enregistrerConvention();
+    this.corrigerConvention();
 
     
 
@@ -109,7 +114,7 @@ export class EditerConventionComponent implements OnInit {
   }
 
   //enregistrement du document avec l'appel du service d'enregistrement
-  private async enregistrerConvention() {
+  private async corrigerConvention() {
 
     let body = {
       
@@ -119,11 +124,37 @@ export class EditerConventionComponent implements OnInit {
       pme:{
         idPME:this.pme.idPME
     }
+
     }
-    console.log(body)
+
     
+
+    this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.conventionCorrigee)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.conventionCorrigee)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire({
+              position: 'center',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été corrigée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                color:"#203359",
+                confirmButtonColor:"#99CC33",
+                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                allowOutsideClick:false,
+                
+              }).then(() => {
+               
+                  this.router.navigate(['workstation/ordonnateur/conventions'])
+              })
+              
+          })
    
-    this.conventionService.postConvention(body)
+    this.conventionService.updateConvention(body , this.convention.idConvention)
       .subscribe((response: any) => {
       let data = JSON.parse(JSON.stringify(response));
         if (data && data.idConvention != null) {
@@ -138,25 +169,14 @@ export class EditerConventionComponent implements OnInit {
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
         this.observation.statut={}      
         this.observation.idDemande = this.demande.idDemande;
-      this.observation.statut.libelle =StatutEnum.conventionGeneree;
+      this.observation.statut.libelle =StatutEnum.conventionCorrigee;
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
-      Swal.fire({
-
-        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-        color:"#203359",
-        confirmButtonColor:"#99CC33",
-        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-        allowOutsideClick:false,
-        
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['workstation/comptable/convention_cession'])
-        }})
+    
   
-        setTimeout(() => {
-          location.reload()
-         }, 1500);
+         setTimeout(() => {
+           location.reload()
+          }, 1500);
      
   
       }
@@ -187,3 +207,4 @@ interface Document {
 interface typeDocument {
   nom?: String;
 }
+
