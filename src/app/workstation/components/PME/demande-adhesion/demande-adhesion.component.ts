@@ -114,7 +114,7 @@ export class DemandeAdhesionComponent implements OnInit {
     matchModeOptions: SelectItem[];
     statuts:any[];
 
-    observation:Observation;
+    observation:Observation={};
 
     constructor(
         private messageService: MessageService,

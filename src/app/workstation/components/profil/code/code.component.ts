@@ -67,8 +67,10 @@ export class CodeComponent implements OnInit {
           confirmButtonColor: "#A6C733",
           confirmButtonText: '<i class="pi pi-check"></i>OK',
           allowOutsideClick: false,
-          showConfirmButton:false
-        })
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
+                })
     
         setTimeout(() => {
           location.reload()

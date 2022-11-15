@@ -25,7 +25,7 @@ export class SignerconventionPMEComponent implements OnInit {
   demande: any;
   pme : PME;
 
-  observation:Observation;
+  observation:Observation={};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -97,7 +97,7 @@ export class SignerconventionPMEComponent implements OnInit {
       console.log(response)
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}            
-      this.observation.idDemande =  response.idDemande;
+      this.observation.demandeid =  response.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
     },

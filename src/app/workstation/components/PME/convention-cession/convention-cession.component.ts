@@ -60,7 +60,7 @@ export class ConventionCessionPMEComponent implements OnInit {
   matchModeOptions: SelectItem[];
   statuts:any[];
 
-  observation:Observation;
+  observation:Observation={};
 
   constructor(
     public dialogService: DialogService, 
