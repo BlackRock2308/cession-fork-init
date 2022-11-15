@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Profile } from 'src/app/workstation/model/profil';
 import { CodeComponent } from './code/code.component';
 
@@ -20,14 +21,16 @@ export class ProfilComponent implements OnInit {
   poste: string;
   code: string;
 
-  constructor(public dialogService: DialogService) { }
+  constructor(public dialogService: DialogService,
+    private tokenStorage:TokenStorageService) { }
 
   ngOnInit() {
-    this.nom = "DIAGNE";
-    this.prenom = "Abou";
+    this.tokenStorage.getUser()
+    this.nom = this.tokenStorage.getUser().nom;
+    this.prenom = this.tokenStorage.getUser().prenom;
     this.poste = localStorage.getItem('profil');
-    this.email = "abou@gmail.com";
-    this.code = "9065";
+    this.email = this.tokenStorage.getUser().email;
+    this.code = this.tokenStorage.getUser().codePin;
 
   }
   modifierCode(){

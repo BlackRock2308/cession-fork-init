@@ -41,7 +41,7 @@ export class VisualiserDocumentComponent implements OnInit {
     this.convention = this.config.data.document;
     this.profil = localStorage.getItem('profil');
 
-    this.statut = this.config.data.document.statut;
+    this.statut = this.config.data.statut.libelle;
     if (this.config.data.paiement === 'true') {
       this.paiement = 'true';
     }

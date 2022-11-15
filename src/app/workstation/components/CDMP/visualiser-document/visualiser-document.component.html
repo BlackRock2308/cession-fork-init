@@ -65,18 +65,18 @@
 
             <p-toast></p-toast>
             <div class="grid p-fluid">
-                <div *ngIf="(statut === 'Convention-rejetée') " class="col-12 md:col-12">
+                <div *ngIf="(statut === 'CONVENTION_REJETEE') " class="col-12 md:col-12">
                     <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
                         <span class="h5texte">Observation</span>
                         <div class="p-inputgroup">
                             <span class="p-float-label">
                                 <textarea style="color: black; background-color: lightgray;" disabled [rows]="5"
-                                    [cols]="30" pInputTextarea autoResize="autoResize">{{observation}}</textarea>
+                                    [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
                             </span>
                         </div>
                     </p-card>
                 </div>
-                <div *ngIf="(profil === 'DG' && statut === 'Convention-signée-par-la-PME') ||(profil=== 'PME' && statut == 'Convention-générée') "
+                <div *ngIf="(profil === 'DG' && statut === 'CONVENTION_SIGNEE_PAR_PME') ||(profil=== 'PME' && statut == 'CONVENTION_GENEREE') "
                     class="col-12 md:col-12">
                     <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
                         <span class="h5texte">Observation</span>

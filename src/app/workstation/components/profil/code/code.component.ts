@@ -5,6 +5,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import Swal from 'sweetalert2';
 import { UtilisateurService } from '../../../service/utilisateur/utilisateur.service';
 import { Utilisateur } from '../../../model/utilisateur';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-code',
@@ -15,11 +16,13 @@ export class CodeComponent implements OnInit {
 
   form!: FormGroup;
   user: Utilisateur;
-  code: string = "9065";
+  code:string;
+
   constructor(
     private formBuilder: FormBuilder,
     public ref: DynamicDialogRef,
-    private utilisateurService: UtilisateurService
+    private utilisateurService: UtilisateurService,
+    private tokenStorage:TokenStorageService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +30,7 @@ export class CodeComponent implements OnInit {
       code: ['', Validators.required]
     });
 
-    this.user = JSON.parse(localStorage.getItem('user'))
+    this.user = this.tokenStorage.getUser()
 
   }
 
@@ -39,21 +42,32 @@ export class CodeComponent implements OnInit {
   onSubmit() {
     this.valider();
     this.ref.close();
-    Swal.fire({
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre code a été modifié avec succès.</p>",
-      color: "#203359",
-      confirmButtonColor: "#A6C733",
-      confirmButtonText: '<i class="pi pi-check"></i>OK',
-      allowOutsideClick: false,
-    }).then((result) => {
-      
-    })
   }
 
   //enregistrement du pme avec l'appel du service d'enregistrement
   private valider() {
-    this.code = this.form.value;
-    this.utilisateurService.updateUtilisateur(this.user)
+    this.user.codePin=this.code
+    this.utilisateurService.updateUtilisateur(this.user).subscribe(
+      (response) => {},
+      (error) => {},
+      () => {
+        this.utilisateurService.getByIdemail(this.tokenStorage.getUser().email).subscribe(
+          
+          data => {
+            console.log(data,this.tokenStorage.getUser().email)
+            this.tokenStorage.saveUser(data)
+          }
+        )
+        
+        Swal.fire(
+          'Modifiée!',
+          'Vôtre code Pin a été modifié avec succès.',
+          'success'
+        )
+        setTimeout(() => {
+          location.reload()
+         }, 1500);      }
+    )
 
   }
 }
