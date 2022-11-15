@@ -183,7 +183,9 @@ nineaValide():any{
   targetDiv.style.display = "flex";
 
 }
-visualiserDocument(document: Documents) {
+visualiserDocument(document: Documents , demande : any) {
+  this.demandesCessionService.setDemandeObs(demande)
+
   const ref = this.dialogService.open(VisualiserDocumentComponent, {
     data: {
       document: document

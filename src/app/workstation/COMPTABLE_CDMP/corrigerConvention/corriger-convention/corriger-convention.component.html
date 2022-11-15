@@ -1,0 +1,38 @@
+<div class="grid">
+    <div class="col-12">
+        <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
+            <div class="field grid">                
+                <div class="col-8 mb-2">
+                   
+                                    <input formControlName="file" class="hidden" type="file" id="upload-file"
+                                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)" >
+                                        
+                                 <div class=" inputContainer">
+                                    <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text"
+                                        pInputText pTooltip="Charger la convention " placeholder="Nouvelle Convention" class="inpute">
+                                        
+                                    <ng-template #elseBlock id="file" type="text" pInputText
+                                        pTooltip="Charger document">
+                                        <input id="file" type="text" style="width: 265px;" pInputText
+                                            pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}" class="inpute">
+                                    </ng-template>
+                                    <button type="button" pButton pRipple icon="pi pi-upload"
+                                        class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-file"
+                                        (click)="handleClick()"></button>
+                                </div>
+                </div>
+                            
+            </div>
+
+        </form>
+        <div><br></div>
+        <div class="col-12  pr-0 d-flex  flex-row-reverse">
+            <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised dangerButton" (click)="dismiss()"></button>
+
+            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
+                icon="pi pi-check" class="p-button-raised successButton pull-right" (click)="onSubmit()"></button>
+
+        </div>
+    </div>
+</div>

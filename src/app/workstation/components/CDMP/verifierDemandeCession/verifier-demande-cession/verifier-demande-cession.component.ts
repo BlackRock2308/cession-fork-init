@@ -71,6 +71,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
 this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
 
   ngOnInit(): void {
+    this.observation.libelle=''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
       console.log(this.demandeCession)

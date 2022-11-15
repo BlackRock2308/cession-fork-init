@@ -1,5 +1,3 @@
-@import "../../../../assets/sass/custom/variables.scss";
-@import "../../../../assets/sass/custom/layout.scss";
 
 h1{
     color: white;
@@ -157,10 +155,6 @@ a{
         font-size: 12px;
         letter-spacing: .3px;
     
-        &.status-convention_corrigee {
-            background: #c9ddfa;
-            color: #354d8f;
-        }
         &.status-convention-rejetée {
             background: #FFCDD2;
             color: #C63737;
@@ -207,6 +201,11 @@ a{
             background: #c9ddfa;
             color: #354d8f;
         }
+        &.status-convention-corrigée {
+            background: #c9ddfa;
+            color: #354d8f;
+        }
+    
     
        
     }
