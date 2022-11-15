@@ -1,8 +1,13 @@
+import { DemandeCession } from "./demande";
+import { Statut } from "./statut";
+import { StatutEnum } from "./statut-enum";
+
 export interface Observation {
     id?:number;
     libelle?:String;
     dateObservation?:Date;
     adresse?:String;
-    idAgent?:number;
-    idDemande?:number;
+    utilisateurid?:number;
+    demande?:DemandeCession;
+    statut?:Statut;
 }

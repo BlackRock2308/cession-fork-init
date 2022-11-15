@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import Swal from 'sweetalert2';
 import { Convention } from '../../model/convention';
+import { Observation } from '../../model/observation';
 import { PME  } from '../../model/pme';
 import { StatutEnum  } from '../../model/statut-enum';
 import { ConventionService } from '../../service/convention/convention.service';
 import { DemandesCessionService  } from '../../service/demandes_cession/demandes-cession.service';
 import { FileUploadService } from '../../service/fileUpload.service';
+import { ObservationService } from '../../service/observation/observation.service';
 
 
 @Component({
@@ -26,6 +29,8 @@ export class ConventionEnregistreeComponent implements OnInit {
   pme: PME;
   statutEnum : StatutEnum;
   demande: any;
+
+  observation:Observation
   constructor(
     public ref: DynamicDialogRef,
     private formBuilder: FormBuilder,
@@ -33,6 +38,8 @@ export class ConventionEnregistreeComponent implements OnInit {
     private demandeCessionService : DemandesCessionService,
     private conventionService : ConventionService,
     private uploadFileService: FileUploadService,
+    private tokenStorage:TokenStorageService,
+    private observationService:ObservationService
 
 
   ) { }
@@ -77,24 +84,6 @@ export class ConventionEnregistreeComponent implements OnInit {
 
 
     this.conventionTransmise();
-
-    Swal.fire({
-
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color: "#203359",
-      confirmButtonColor: "#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick: false,
-
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['workstation/comptable/convention_cession'])
-      }
-    })
-
-    setTimeout(() => {
-      location.reload()
-     }, 1500);
     // arrêter si le formulaire est invalide
     if (this.form.invalid) {
       return;
@@ -108,7 +97,7 @@ export class ConventionEnregistreeComponent implements OnInit {
   
 
   //enregistrement du pme avec l'appel du service d'enregistrement
-  private conventionTransmise() {
+  private async conventionTransmise() {
    
     let body = {
       
@@ -124,7 +113,7 @@ export class ConventionEnregistreeComponent implements OnInit {
 
 
       
-        this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
+        await this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
           data=>{console.log(data)},
           ()=>{},
           ()=>{
@@ -132,7 +121,39 @@ export class ConventionEnregistreeComponent implements OnInit {
             .subscribe((response: any) => {
               console.log(response)
               console.log(StatutEnum.ConventionTransmise)
+          },
+          ()=>{},
+          ()=>{
+            Swal.fire({
+
+              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+              color: "#203359",
+              confirmButtonColor: "#99CC33",
+              confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+              allowOutsideClick: false,
+        
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['workstation/comptable/convention_cession'])
+              }
+            })
+        
+            setTimeout(() => {
+              location.reload()
+             }, 1500);
           })
+          let body={
+            utilisateur:{
+              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+            },
+            demande:{
+              idDemande:this.demande.idDemande
+            },
+            statut:{
+              libelle:StatutEnum.ConventionTransmise
+            },
+          }
+          this.observationService.postObservation(body).subscribe(data => console.log(data))
           }
 
          )

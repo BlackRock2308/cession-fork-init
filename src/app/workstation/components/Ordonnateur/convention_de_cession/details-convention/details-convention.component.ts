@@ -11,6 +11,9 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
+import { Observation } from 'src/app/workstation/model/observation';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 @Component({
   selector: 'app-details-convention',
   templateUrl: './details-convention.component.html',
@@ -23,7 +26,7 @@ export class DetailsConventionComponent implements OnInit {
   cols: { field: string; header: string; }[];
   demandeCession: any;
   documents: Documents[];
-  observation: string;
+  observation: Observation;
   pageVariable = 1;
   pageRenderCb = 0;
   totalPages: number;
@@ -47,7 +50,9 @@ export class DetailsConventionComponent implements OnInit {
     private dialogService: DialogService,
     public ref: DynamicDialogRef,
     private uploadFileService: FileUploadService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private observationService:ObservationService,
+    private tokenStorage:TokenStorageService
   ) { this.breadcrumbService.setItems([
     { label: 'Liste des conventions', routerLink: 'ordonnateur/conventions' },
     { label: 'Détail de la convention' }
@@ -101,11 +106,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
     if (result.isConfirmed) {
       this.conventionRejetee();
       this.router.navigate(['workstation/ordonnateur/conventions'])
-      Swal.fire(
-          'Rejetée!',
-          'La convention a bien été rejetée.',
-          'success'
-        )
+      
     }})
 
   }
@@ -116,35 +117,41 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
     this.conventionAcceptee();
 
-    Swal.fire({
-      position: 'center',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500,
-        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été acceptée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-        color:"#203359",
-        confirmButtonColor:"#99CC33",
-        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-        allowOutsideClick:false,
-        
-      }).then(() => {
-       
-          this.router.navigate(['workstation/ordonnateur/conventions'])
-      })
+    
   
   }
 
-  private conventionRejetee(){
+  private async conventionRejetee(){
 
 
-    this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
+    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
             .subscribe((response: any) => {
               console.log(response)
               console.log(StatutEnum.ConventionRejetee)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire(
+              'Rejetée!',
+              'La convention a bien été rejetée.',
+              'success'
+            )
           })
+          let body={
+            utilisateur:{
+              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+            },
+            demande:{
+              idDemande:this.demandeCession.idDemande
+            },
+            statut:{
+              libelle:StatutEnum.ConventionRejetee
+            },
+          }
+          this.observationService.postObservation(body).subscribe(data => console.log(data))
   }
 
-  private conventionAcceptee(){
+  private async conventionAcceptee(){
 
     let body = {
       
@@ -153,17 +160,47 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
   console.log(body)
 
-    this.paiementService.getAllPaiements().subscribe(
-      data=>{console.log(data)},
-      ()=>{},
-      ()=>{
-    this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionAcceptee)
+    await this.paiementService.postPaiement(body).subscribe(
+      data=>{console.log(data)})
+
+    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionAcceptee)
             .subscribe((response: any) => {
               console.log(response)
               console.log(StatutEnum.ConventionAcceptee)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire({
+              position: 'center',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été acceptée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                color:"#203359",
+                confirmButtonColor:"#99CC33",
+                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                allowOutsideClick:false,
+                
+              }).then(() => {
+               
+                  this.router.navigate(['workstation/ordonnateur/conventions'])
+              })
           })
-  })
-  }
+
+          let body2={
+            utilisateur:{
+              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+            },
+            demande:{
+              idDemande:this.demandeCession.idDemande
+            },
+            statut:{
+              libelle:StatutEnum.ConventionAcceptee
+            },
+          }
+          await this.observationService.postObservation(body2).subscribe(data => console.log(data))
+}
+  
   dowloadFile(path: string) {
 
     console.log('Affiche mon path ' + path)

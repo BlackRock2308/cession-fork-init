@@ -13,6 +13,10 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
+import { Observation } from 'src/app/workstation/model/observation';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -54,12 +58,16 @@ export class TacheAnalyseComponent implements OnInit {
     home: MenuItem;
     msgs1: Message[];
 
+    observation:Observation;
+
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
         private demandesAdhesionService: DemandesAdhesionService,public dialogService: DialogService,
          private documentService: FileUploadService, private messageService: MessageService, 
          private demandeAdhesionService: DemandesAdhesionService,
-         private breadcrumbService: BreadcrumbService) {
+         private breadcrumbService: BreadcrumbService,
+         private observationService:ObservationService,
+         private tokenStorage:TokenStorageService) {
             this.breadcrumbService.setItems([
                 { label: 'Liste de demandes à analyser'},
                 { label: 'Analyse du risque',  routerLink: ['/cdmp/analyse_risque']  }
@@ -202,25 +210,43 @@ export class TacheAnalyseComponent implements OnInit {
     onSubmit() {
        
         this.demandeCessionService.validateAnalyseRisque(this.demandeCession.idDemande).subscribe(
+            (response) => {},
+            (error) => {},
+            () => {
+                let body={
+                    utilisateur:{
+                      idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+                    },
+                    demande:{
+                      idDemande:this.demandeCession.idDemande
+                    },
+                    statut:{
+                      libelle:StatutEnum.nonRisquee
+                    },
+                  }
+                  this.observationService.postObservation(body).subscribe(data => console.log(data))
 
+                Swal.fire({
+                    position: 'center',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 1500,
+                      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                      color:"#203359",
+                      confirmButtonColor:"#99CC33",
+                      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                      allowOutsideClick:false,
+                      
+                    }).then(() => {
+                     
+                        this.router.navigate(['workstation/cdmp/analyse_risque'])
+                    })
+            }
+            
         )
       
     
-        Swal.fire({
-        position: 'center',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500,
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
-          
-        }).then(() => {
-         
-            this.router.navigate(['workstation/cdmp/analyse_risque'])
-        })
+        
     
     
           
@@ -228,7 +254,6 @@ export class TacheAnalyseComponent implements OnInit {
 
     onSubmitRejet() {
        
-      this.demandeCessionService.rejeterAnalyseRisque(this.demandeCession.idDemande).subscribe()
     
         Swal.fire({
             position: 'center',
@@ -244,11 +269,31 @@ export class TacheAnalyseComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             this.router.navigate(['workstation/cdmp/analyse_risque'])
-            Swal.fire(
-                'Rejetée!',
-                'La demande a bien été rejetée.',
-                'success'
+            this.demandeCessionService.rejeterAnalyseRisque(this.demandeCession.idDemande).subscribe(
+                (response) => {},
+                    (error) => {},
+                    () => {
+                        let body={
+                            utilisateur:{
+                              idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+                            },
+                            demande:{
+                              idDemande:this.demandeCession.idDemande
+                            },
+                            statut:{
+                              libelle:StatutEnum.risquee
+                            },
+                          }
+                          this.observationService.postObservation(body).subscribe(data => console.log(data))
+
+                        Swal.fire(
+                            'Rejetée!',
+                            'La demande a bien été rejetée.',
+                            'success'
+                          )
+                    }
               )
+            
           }})
     
           
@@ -256,19 +301,38 @@ export class TacheAnalyseComponent implements OnInit {
 
     onSubmitComplements() {
        
-      this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe()
+      this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe(
+        (response) => {},
+            (error) => {},
+            () => {
+                let body={
+                    utilisateur:{
+                      idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+                    },
+                    demande:{
+                      idDemande:this.demandeCession.idDemande
+                    },
+                    statut:{
+                      libelle:StatutEnum.complementRequis
+                    },
+                  }
+                  this.observationService.postObservation(body).subscribe(data => console.log(data))
+
+                Swal.fire({
+                    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",
+                    color:"#203359",
+                    confirmButtonColor:"#99CC33",
+                    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                    allowOutsideClick:false,
+                    
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      this.router.navigate(['workstation/cdmp/analyse_risque'])
+                    }})
+            }
+      )
     
-        Swal.fire({
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
-          
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['workstation/cdmp/analyse_risque'])
-          }})
+        
     
           
     }

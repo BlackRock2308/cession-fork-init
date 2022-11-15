@@ -13,6 +13,8 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { SignerconventionPMEComponent } from '../signer-convention/signerconvention-pme/signerconvention-pme.component';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { Observation } from 'src/app/workstation/model/observation';
 
 @Component({
   selector: 'app-convention-cession',
@@ -55,8 +57,10 @@ export class ConventionCessionPMEComponent implements OnInit {
   home: MenuItem;
   
   rangeDates:any[];
-    matchModeOptions: SelectItem[];
-    statuts:any[];
+  matchModeOptions: SelectItem[];
+  statuts:any[];
+
+  observation:Observation;
 
   constructor(
     public dialogService: DialogService, 
@@ -66,6 +70,7 @@ export class ConventionCessionPMEComponent implements OnInit {
     private breadcrumbService: BreadcrumbService,
     private filterService:FilterService,
     private demandesCessionService : DemandesCessionService,
+    private observationService:ObservationService
 
 
     ) { 

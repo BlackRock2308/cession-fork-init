@@ -5,8 +5,11 @@ import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Convention } from 'src/app/workstation/model/demande';
+import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,12 +25,15 @@ export class SignerconventionPMEComponent implements OnInit {
   demande: any;
   pme : PME;
 
+  observation:Observation;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     public ref: DynamicDialogRef,
     private demandeCessionService : DemandesCessionService,
-    private tokenStorage : TokenStorageService
+    private tokenStorage : TokenStorageService,
+    private observationService:ObservationService
 
   ) { }
 
@@ -89,7 +95,38 @@ export class SignerconventionPMEComponent implements OnInit {
     this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
       console.log(response)
-
-    })
+      let body={
+        utilisateur:{
+          idUtilisateur:this.tokenStorage.getUser().idUtilisateur
+        },
+        demande:{
+          idDemande:this.demande.idDemande
+        },
+        statut:{
+          libelle:StatutEnum.conventionSigneeParPME
+        },
+      }
+      this.observationService.postObservation(body).subscribe(data => console.log(data))
+    },
+    (error: any) =>{},
+    () =>{
+      Swal.fire({
+        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
+        color: "#203359",
+        confirmButtonColor: "#A6C733",
+        confirmButtonText: '<i class="pi pi-check"></i>OK',
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['workstation/comptable/convention_cession'])
+        }
+      })
+  
+      setTimeout(() => {
+        location.reload()
+       }, 1500);
+   
+    }
+    )
 }
 }
