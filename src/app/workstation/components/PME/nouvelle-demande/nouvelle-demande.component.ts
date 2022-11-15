@@ -104,7 +104,7 @@ export class NouvelleDemandeComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   pme: PME;
-  observation: any={};
+  observation: Observation={};
   idBE: number;
 
   constructor(
@@ -221,18 +221,13 @@ export class NouvelleDemandeComponent implements OnInit {
         this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
         )
       }
-      let body={
-        utilisateur:{
-          idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-        },
-        demande:{
-          idDemande:result.idDemande
-        },
-        statut:{
-          libelle:StatutEnum.soumise
-        },
-      }
-      this.observationService.postObservation(body).subscribe(data => console.log(data))
+      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.statut={}
+      this.observation.idDemande =  result.idDemande;
+      this.observation.statut.libelle =StatutEnum.soumise;
+      console.log(this.observation)
+
+      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
     })
 

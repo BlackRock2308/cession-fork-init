@@ -77,18 +77,11 @@ export class ConventionSignerComponent implements OnInit {
     },
     (error) => {},
     () => {
-      let body={
-        utilisateur:{
-          idUtilisateur:this.tokenStorage.getUser().idUtilisateur
-        },
-        demande:{
-          idDemande:this.demande.idDemande
-        },
-        statut:{
-          libelle:StatutEnum.conventionSigneeParDG
-        },
-      }
-      this.observationService.postObservation(body).subscribe(data => console.log(data))
+      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.statut={}      
+      this.observation.idDemande = idDemande;
+      this.observation.statut.libelle =StatutEnum.conventionSigneeParDG;
+      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
       Swal.fire({
         html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
