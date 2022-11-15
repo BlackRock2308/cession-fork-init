@@ -139,7 +139,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
           })
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}    
-          this.observation.idDemande = this.demandeCession.idDemande;
+          //this.observation.idDemande = this.demandeCession.idDemande;
     this.observation.statut.libelle=StatutEnum.ConventionRejetee;
     await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
