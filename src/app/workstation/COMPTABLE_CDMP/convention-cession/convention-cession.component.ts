@@ -293,9 +293,9 @@ signerConvention(demande : any) {
       convention: this.convention
     },
     header: "Signer la convention",
-    width: '50%',
-    height: 'calc(50% - 100px)',
-    baseZIndex: 50
+    width: '80%',
+    height: 'calc(100% - 300px)',
+    baseZIndex: 90
   });
   this.dismiss();
 }
