@@ -30,7 +30,7 @@ export class ConventionEnregistreeComponent implements OnInit {
   statutEnum : StatutEnum;
   demande: any;
 
-  observation:Observation
+  observation:Observation={}
   constructor(
     public ref: DynamicDialogRef,
     private formBuilder: FormBuilder,
@@ -143,7 +143,7 @@ export class ConventionEnregistreeComponent implements OnInit {
           })
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}            
-          this.observation.idDemande =  this.demande.idDemande;
+          this.observation.demandeid =  this.demande.idDemande;
             this.observation.statut.libelle =StatutEnum.ConventionTransmise;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
           }

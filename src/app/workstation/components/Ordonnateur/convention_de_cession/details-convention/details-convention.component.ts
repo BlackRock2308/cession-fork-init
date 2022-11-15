@@ -26,7 +26,7 @@ export class DetailsConventionComponent implements OnInit {
   cols: { field: string; header: string; }[];
   demandeCession: any;
   documents: Documents[];
-  observation: Observation;
+  observation: Observation={};
   pageVariable = 1;
   pageRenderCb = 0;
   totalPages: number;
@@ -139,7 +139,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
           })
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}    
-          this.observation.idDemande = this.demandeCession.idDemande;
+          this.observation.demandeid= this.demandeCession.idDemande;
     this.observation.statut.libelle=StatutEnum.ConventionRejetee;
     await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
@@ -183,7 +183,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}  
-          this.observation.idDemande = this.demandeCession.idDemande;
+          this.observation.demandeid = this.demandeCession.idDemande;
           this.observation.statut.libelle =StatutEnum.ConventionAcceptee;
           await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 }
