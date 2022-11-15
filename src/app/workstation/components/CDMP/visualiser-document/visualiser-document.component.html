@@ -95,12 +95,13 @@
 </div>
 <div class="modal-footer">
     <div class="col-12  pr-0 d-flex  flex-row-reverse">
+
         <button
             *ngIf="((profil === 'DG') && (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME'))"
             type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
             (click)="signerConventionDG()" class="p-button-raised successButton"></button>
             <button
-            *ngIf="((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE'))"
+            *ngIf="((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE')) || ((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_CORRIGEE'))"
             type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
             (click)="signerConventionPME()" class="p-button-raised successButton"></button>
         <button
@@ -113,11 +114,17 @@
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
             (click)="rejetConventionPME()"
             class="p-button-raised dangerButton"></button>
-      
+           
         <button
             *ngIf="!(((profil === 'DG') && (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME')) || ((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE')))"
             type="button" class="p-button-raised simpleButton" (click)="dismiss()" pButton pRipple
             label="Fermer"></button>
+
+            <button
+            *ngIf="((profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE_PAR_PME') || (profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE_PAR_DG') )"
+            id="rejeter" style="width: min-content;" pButton pRipple label="Corriger" icon="pi pi-check"
+            (click)="corrigerConvention()"
+            class="p-button-raised successButton"></button>
             
     </div>
 </div>

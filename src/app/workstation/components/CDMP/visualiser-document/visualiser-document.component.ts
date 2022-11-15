@@ -10,6 +10,8 @@ import { SignerconventionPMEComponent } from '../../PME/signer-convention/signer
 import Swal from 'sweetalert2';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { Router } from '@angular/router';
+import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
+import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -252,6 +254,18 @@ export class VisualiserDocumentComponent implements OnInit {
     this.dismiss();
   }
 
+  corrigerConvention() {
+    const ref = this.dialogService.open(CorrigerConventionComponent, {
+      data: {
+        convention: this.convention
+      },
+      header: "Corriger la convention",
+      width: '40%',
+      height: 'calc(60% - 100px)',
+      baseZIndex: 50
+    });
+    this.dismiss();
+  }
   rejetConventionPME() {
     this.dismiss();
     setTimeout(() => {
