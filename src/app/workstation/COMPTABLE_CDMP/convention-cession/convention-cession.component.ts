@@ -107,6 +107,7 @@ export class ConventionCessionComponent implements OnInit {
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
+
     this.profil = localStorage.getItem('profil');
 
   
@@ -151,17 +152,7 @@ nineaValide():any{
   targetDiv.style.display = "flex";
 
 }
-visualiserDocument(document: Documents) {
-  const ref = this.dialogService.open(VisualiserDocumentComponent, {
-    data: {
-      document: document
-    },
-    header: "Convention de Cession",
-    width: '70%',
-    height: 'calc(100% - 100px)',
-    baseZIndex: 10000
-  });
-}
+
 
 afterLoadComplete(pdf: any) {
   this.afterpageLoadedCb++;
@@ -234,6 +225,20 @@ ChargerConvention(convention: Convention , demande : any) {
     width: '40%',
     height: 'calc(50% - 100px)',
     baseZIndex: 50
+  });
+}
+
+visualiserDocument(document: Documents , demande : any) {
+  this.demandeCessionService.setDemandeObs(demande)
+
+  const ref = this.dialogService.open(VisualiserDocumentComponent, {
+    data: {
+      document: document
+    },
+    header: "Convention de Cession",
+    width: '70%',
+    height: 'calc(100% - 100px)',
+    baseZIndex: 10000
   });
 }
 

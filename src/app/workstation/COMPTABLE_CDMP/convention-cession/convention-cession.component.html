@@ -97,7 +97,7 @@
                                 <button pButton pRipple icon="pi pi-key" class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_GENEREE') &&( profil=== 'pme')) || ((demande.statut.libelle=== 'CONVENTION_SIGNEE_PAR_PME') && (profil ==='DG'))"
-                                    (click)="signerConvention(demande)"></button>
+                                    (click)="visualiserDocument(demande.conventions[0].documents[0],demande)"></button>
                                 <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "

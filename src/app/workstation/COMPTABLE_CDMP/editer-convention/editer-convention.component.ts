@@ -33,7 +33,7 @@ export class EditerConventionComponent implements OnInit {
   cols: any[];
   pme: PME;
   demande: any;
-  observation:Observation
+  observation:Observation={}
 
   constructor(
     private router : Router,
