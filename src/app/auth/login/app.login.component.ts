@@ -26,7 +26,7 @@ export class AppLoginComponent implements OnInit{
 
   notAuthorized:boolean;
   changePassword:boolean;
-  changeCodePin: boolean;
+  changeCodePin:boolean;
   constructor(public router: Router,private authService:AuthService,private tokenStorage:TokenStorageService){}
   ngOnInit(): void {
 
@@ -59,48 +59,83 @@ export class AppLoginComponent implements OnInit{
           this.router.navigate(['login/maj_pwd']);
         }
         else{
-          
-          if(this.changeCodePin){
-            this.router.navigate(['workstation/profil']);
+          if(this.roles.find(elem => elem.libelle == 'DRC')!=null){
+            localStorage.setItem('profil', 'DRC'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
 
           }
-          else{
-            if(this.roles.find(elem => elem.libelle == 'DRC')!=null){
+          if(this.roles.find(elem => elem.libelle == 'DSEAR')!=null){
+            localStorage.setItem('profil', 'DSEAR'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
               this.router.navigate(['workstation/cdmp/dashboard']);
-              localStorage.setItem('profil', 'DRC'); 
-            }
-            if(this.roles.find(elem => elem.libelle == 'DSEAR')!=null){
-              this.router.navigate(['workstation/cdmp/dashboard']);
-              localStorage.setItem('profil', 'DSEAR'); 
-            }
-            if(this.roles.find(elem => elem.libelle == 'JURISTE')!=null){
-              this.router.navigate(['workstation/comptable/convention_cession']);
-              localStorage.setItem('profil', 'JURISTE'); 
-            }
-            if(this.roles.find(elem => elem.libelle == 'PME')!=null){
-              this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
-                data =>{
-                  this.tokenStorage.savePME(data)
-                } 
-              )
-              
-              this.router.navigate(['workstation/pme/demandes_en_cours']);
-              localStorage.setItem('profil', 'PME'); 
-            }
-            if(this.roles.find(elem => elem.libelle == 'DAF')!=null){
-              this.router.navigate(['workstation/cdmp/dashboard']);
-              localStorage.setItem('profil', 'DAF'); 
-            }
-            if(this.roles.find(elem => elem.libelle == 'DG')!=null){
-              this.router.navigate(['workstation/cdmp/dashboard']);
-              localStorage.setItem('profil', 'DG'); 
-            }
-            if(this.roles.find(elem => elem.libelle == 'ORDONNATEUR')!=null){
-              this.router.navigate(['workstation/ordonnateur/conventions']);
-              localStorage.setItem('profil', 'ORDONNATEUR'); 
             }
           }
-          
+          if(this.roles.find(elem => elem.libelle == 'JURISTE')!=null){
+            localStorage.setItem('profil', 'JURISTE'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/comptable/convention_cession']);
+            }
+          }
+          if(this.roles.find(elem => elem.libelle == 'PME')!=null){
+            this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
+              data =>{
+                this.tokenStorage.savePME(data)
+              } 
+            )
+            
+            localStorage.setItem('profil', 'PME'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/pme/demandes_en_cours']);
+            }
+          }
+          if(this.roles.find(elem => elem.libelle == 'DAF')!=null){
+            localStorage.setItem('profil', 'DAF');
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
+          }
+          if(this.roles.find(elem => elem.libelle == 'DG')!=null){
+            localStorage.setItem('profil', 'DG'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
+          }
+          if(this.roles.find(elem => elem.libelle == 'ORDONNATEUR')!=null){
+            localStorage.setItem('profil', 'ORDONNATEUR'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/ordonnateur/conventions']);
+            }
+          }
         }
         
 

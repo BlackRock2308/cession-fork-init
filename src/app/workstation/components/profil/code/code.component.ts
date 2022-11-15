@@ -47,6 +47,8 @@ export class CodeComponent implements OnInit {
   //enregistrement du pme avec l'appel du service d'enregistrement
   private valider() {
     this.user.codePin=this.code
+    this.user.updateCodePin=false
+    console.log(this.user.updateCodePin)
     this.utilisateurService.updateUtilisateur(this.user).subscribe(
       (response) => {},
       (error) => {},
@@ -59,14 +61,20 @@ export class CodeComponent implements OnInit {
           }
         )
         
-        Swal.fire(
-          'Modifiée!',
-          'Vôtre code Pin a été modifié avec succès.',
-          'success'
-        )
+        Swal.fire({
+          html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Vôtre Code PIN a été modifiée avec succès.</p>",
+          color: "#203359",
+          confirmButtonColor: "#A6C733",
+          confirmButtonText: '<i class="pi pi-check"></i>OK',
+          allowOutsideClick: false,
+          showConfirmButton:false
+        })
+    
         setTimeout(() => {
           location.reload()
-         }, 1500);      }
+         }, 1500);
+        }
+     
     )
 
   }

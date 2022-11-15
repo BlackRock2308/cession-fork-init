@@ -1,5 +1,6 @@
 
 export interface Utilisateur {
+    updateCodePin?:boolean;
     id?:number;
     nom?:String;
     prenom?:String;
