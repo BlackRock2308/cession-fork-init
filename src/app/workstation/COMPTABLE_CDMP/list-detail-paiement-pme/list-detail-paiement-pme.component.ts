@@ -63,7 +63,7 @@ export class ListPaiementPMEComponent implements OnInit {
     );
     this.breadcrumbService.setItems([
       { label: "Paiements", routerLink: ["comptable/paiements"] },
-      { label: "Paiment PME" },
+      { label: "Paiement PME" },
     ]);
     this.breadcrumbService.setHome({
       icon: "pi pi-home",

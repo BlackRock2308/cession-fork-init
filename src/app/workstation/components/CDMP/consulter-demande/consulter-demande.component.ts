@@ -48,6 +48,7 @@ export class ConsulterDemandeComponent implements OnInit {
     items: MenuItem[];
     home: MenuItem;
     profile:string;
+    observationLibelle:string;
 
     constructor(private demandeCessionService: DemandesCessionService,
         public dialogService: DialogService,
@@ -94,6 +95,12 @@ export class ConsulterDemandeComponent implements OnInit {
                 this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
                }
             console.log(this.demandeCession)
+            this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+                data => {
+                    this.observationLibelle=data.libelle
+                    console.log(this.observationLibelle)
+                }
+            )
           })
 
           //this.observationService.getByDemandeAndStatut(this.demandeCession.idDemande,StatutEnum.)

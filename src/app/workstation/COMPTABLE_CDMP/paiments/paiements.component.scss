@@ -18,16 +18,16 @@
     font-size: 12px;
     letter-spacing: .3px;
 
-    &.status-pme-totalement-payee {
+    &.status-pme_totalement_payee {
         background: #C8E6C9;
         color: #256029;
     }
 
-    &.status-pme-partiellement-payee {
+    &.status-pme_partiellement_payee {
         background: #FEEDAF;
         color: #8A5340;
     }
-    &.status-pme-en-attente-de-paiement {
+    &.status-pme_en_attente_de_paiement {
         background: #b7b5b0;
         color: #373737;
     }

@@ -40,6 +40,7 @@ export class DetailsConventionComponent implements OnInit {
   ext: string;
   images: any;
   textLayerRenderedCb = 0;
+  observationLibelle: string;
 
 
   constructor(
@@ -69,6 +70,12 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
       this.conventions = this.demandeCession.convention;
 
       this.conventions.forEach(el => this.docConventions = el.documents )
+
+      this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+        data => {
+            this.observationLibelle=data.libelle
+            console.log(this.observationLibelle)
+        })
 
     });
 
@@ -150,7 +157,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
     let body = {
       
-      idDemande:this.demandeCession.idDemande,
+      demandeId:this.demandeCession.idDemande,
   }
 
   console.log(body)

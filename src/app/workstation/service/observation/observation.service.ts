@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { GenericService } from '../../generic/generic.service';
 
@@ -24,4 +25,11 @@ export class ObservationService extends GenericService {
     return this.update(this.observationUrl, body);
   }
 
+//get observation  par demande cession et statut
+getObservationByDemandeCessionANDStatut(id:number,statut:string): Observable<any> {
+  const params = new HttpParams()
+  .set('status',statut)
+
+return this.http.get<any>(`${this.observationUrl}/observation-by-demandeid-and-status/${id}`,{params});
+}
 }

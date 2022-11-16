@@ -61,7 +61,7 @@ export class ListPaiementCdmpComponent implements OnInit {
     );
     this.breadcrumbService.setItems([
       { label: "Paiements", routerLink: ["comptable/paiements"] },
-      { label: "Paiment CDMP" },
+      { label: "Paiement CDMP" },
     ]);
     this.breadcrumbService.setHome({
       icon: "pi pi-home",
