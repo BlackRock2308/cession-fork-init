@@ -17,8 +17,3 @@ export interface Creance {
     dateMarche?:Date; //DemandeCession
 }
 
-export interface StatistiquePME {
-    nombreDemandeAccepte?:number,
-    nombreDemandeRejete?:number,
-    mois?:Date
-}

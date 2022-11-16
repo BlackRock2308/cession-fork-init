@@ -119,9 +119,6 @@ export class EditerConventionComponent implements OnInit {
       pme:{
         idPME:this.pme.idPME
     }
-    
-
-
     }
     console.log(body)
     
