@@ -43,7 +43,6 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
   modePaiement: ModePaiement = {};
   observation: Observation={};
   constructor(
-    private router: Router,
     public activeModal: NgbActiveModal,
     private uploadFileService: FileUploadService,
     public ref: DynamicDialogRef,
@@ -66,7 +65,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     this.detailPaiement.comptable = this.user.prenom + " " + this.user.nom;
   }
   dismiss() {
-    this.ref.close();
+    this.close(null);
   }
 
   close(detailsPaiement:DetailsPaiement){
@@ -85,6 +84,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
   onSubmitForm() {
     this.detailPaiement.modePaiement = this.modePaiement.code;
     this.detailPaiement.paiementDto = this.config.data.paiement;
+    this.detailPaiement.datePaiement = new Date();
     this.detailsPaiementsService
       .addDetailPaiementCDMP(this.detailPaiement)
       .subscribe((res: DetailsPaiement) => {
@@ -103,13 +103,15 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
               });
           }
         }
-        this.servicemsg.add({
-          key: "tst",
-          severity: "success",
-          summary: "Success Message",
-          detail: "CDMP payé avec succès",
-        });
-        this.close(res);
+        this.close(this.detailPaiement);
+        Swal.fire({
+          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>CDMP payé avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+          color:"#203359",
+          confirmButtonColor:"#99CC33",
+          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+          allowOutsideClick:false,
+          
+        })
       }),
       (error) => {
         this.servicemsg.add({

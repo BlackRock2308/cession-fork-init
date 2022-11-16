@@ -30,20 +30,18 @@
                     <input pInputText type="text" [(ngModel)]="detailPaiement.comptable" [disabled]="true" />
                 </div>
             </div>
-            <div class="field grid row">
-                <label htmlFor="preuvePaiement" class="col-12 md:col-4">Preuve de paiement</label>
-                <div class="field col-12 md:col-8">
-                    <div class="inputContainer">
-                        <input *ngIf="selectedFiles==null;else elseBlock"  type="text" pInputText>
-                        <input formControlName="nineaFile" class="hidden" type="file"
-                            name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
-                        <button type="button" pButton pRipple icon="pi pi-upload"
-                            class="mr-2 mb-2 upload p-button-rounded p-button-text" 
-                            (click)="handleClick()"></button>
-                    </div>
-                    <ng-template #elseBlock type="text" pInputText>
-                        <input type="text" pInputText placeholder="{{selectedFiles.name}}">
+            <div class="field grid">
+                <label htmlFor="preuvePaiement" class="col-12 mb-2 md:col-4 md:mb-0">Preuve de paiement</label>
+                <div class="field inputContainer col-12 md:col-8">
+                    <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text" pInputText>
+                    <ng-template #elseBlock id="file" type="text" pInputText>
+                        <input id="file" type="text" pInputText placeholder="{{selectedFiles.name}}">
                     </ng-template>
+                    <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                        name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
+                    <button type="button" pButton pRipple icon="pi pi-upload"
+                        class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
+                        (click)="handleClick()"></button>
                 </div>
             </div>
         </div>
