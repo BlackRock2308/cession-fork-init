@@ -71,13 +71,7 @@ export class ConsulterDemandeComponent implements OnInit {
               }
         this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
 
-    ngOnInit() {
-
-        //this.productService.getProducts().then(data => this.products = data);
-        this.documentService.getDocuments().subscribe(data => {
-            this.documents = data
-        });
-
+    ngOnInit() {        
 
         this.cols = [
             { field: 'ninea', header: 'NINEA' },
@@ -89,7 +83,8 @@ export class ConsulterDemandeComponent implements OnInit {
 
         this.demandeCessionService.getDemandeObs().subscribe(data => {
             this.demandeCession = data
-            if(this.demandeCession.documents.length > 0){
+            this. documents=[]
+                if(this.demandeCession.documents.length > 0){
                 this.documents=this.documents.concat(this.demandeCession.documents)
                }
                if(this.demandeCession.pme.documents.length > 0){

@@ -219,6 +219,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         console.log(mergedObj,bonEngagement,this.bonEngagement)
         this.rejeterDemande(mergedObj)
         this.router.navigate(['workstation/cdmp/recevabilite'])
+        location.reload()
         
       }})
 
