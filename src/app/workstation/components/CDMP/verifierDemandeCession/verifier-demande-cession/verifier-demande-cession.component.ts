@@ -114,11 +114,13 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
 
   async updatePME() {
-    this.demandeCession.pme.identificationBudgetaire= this.identifie
-    this.demandeCession.pme.atd=this.atd 
-    this.demandeCession.pme.interdictionBancaire=this.interdiction
+    let pme=this.demandeCession.pme
+    pme.identificationBudgetaire= this.identifie
+    pme.atd=this.atd 
+    pme.interdictionBancaire=this.interdiction
 
-    await this.pmeService.updatePme(this.demandeCession.pme).subscribe()
+    console.log(pme)
+    await this.pmeService.updatePme(pme).subscribe()
 
   }
   
@@ -218,8 +220,8 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
         console.log(mergedObj,bonEngagement,this.bonEngagement)
         this.rejeterDemande(mergedObj)
+        //location.reload()
         this.router.navigate(['workstation/cdmp/recevabilite'])
-        location.reload()
         
       }})
 
