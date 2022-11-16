@@ -28,6 +28,7 @@ import {
   StatistiquePaiementCDMP,
   StatistiquePaiementPME,
 } from "src/app/workstation/model/dashboard";
+import { AuthService } from "src/app/auth/auth.service";
 @Component({
   selector: "app-dashboard-dg",
   templateUrl: "./dashboard-dg.component.html",
@@ -78,7 +79,7 @@ export class DashboardDGComponent implements OnInit {
   subscription: Subscription;
 
   config: AppConfig;
-
+  idPME: number;
   profil: string;
   user: any;
   dropdownYears: SelectItem[];
@@ -92,7 +93,7 @@ export class DashboardDGComponent implements OnInit {
   rangeDates: any[];
   matchModeOptions: SelectItem[];
   statuts: any[];
-
+  optionsBenRej:any; 
   constructor(
     private configService: AppConfigService,
     private demandesAdhesionService: DemandesAdhesionService,
@@ -117,9 +118,9 @@ export class DashboardDGComponent implements OnInit {
       this.creances = data;
     });
     if (this.profil != "PME") {
-        this.selectedYear = today;
-        this.selectedYearDeburse = today;
-        this.selectedYearRembourse = today;
+      this.selectedYear = today;
+      this.selectedYearDeburse = today;
+      this.selectedYearRembourse = today;
       this.getStatistiqueRembouseDuTresor(
         this.selectedYearRembourse.getFullYear()
       );
@@ -129,10 +130,18 @@ export class DashboardDGComponent implements OnInit {
       );
     } else {
       this.selectedYearPME = today;
-      this.getStatistiqueDebourseCDMPByPME(
-        this.selectedYearPME.getFullYear(),
-        this.user.idUtilisateur
-      );
+      this.dashboardServices
+      .getPMEByUser(this.user.idUtilisateur)
+      .subscribe((res: any) => {
+        if (res) {
+            this.idPME = res.idPME;
+            this.getStatistiqueDebourseCDMPByPME(
+                this.selectedYearPME.getFullYear(),
+                this.idPME
+              );
+        }
+      });
+      
     }
 
     this.cols = [
@@ -159,77 +168,6 @@ export class DashboardDGComponent implements OnInit {
       { label: "Acceptée", value: "Acceptée" },
       { label: "Refusée", value: "Refusée" },
     ];
-
-    this.multiAxisOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: "#495057",
-          },
-        },
-        tooltips: {
-          mode: "index",
-          intersect: true,
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: "#495057",
-          },
-          grid: {
-            color: "#ebedef",
-          },
-        },
-        y: {
-          type: "linear",
-          display: true,
-          position: "left",
-          ticks: {
-            min: 0,
-            max: 100,
-            color: "#495057",
-          },
-          grid: {
-            color: "#ebedef",
-          },
-        },
-        y1: {
-          type: "linear",
-          display: true,
-          position: "right",
-          grid: {
-            drawOnChartArea: false,
-            color: "#ebedef",
-          },
-          ticks: {
-            min: 0,
-            max: 100,
-            color: "#495057",
-          },
-        },
-      },
-    };
-
-    this.stackedOptions = {
-      tooltips: {
-        mode: "index",
-        intersect: false,
-      },
-      responsive: true,
-      scales: {
-        xAxes: [
-          {
-            stacked: true,
-          },
-        ],
-        yAxes: [
-          {
-            stacked: true,
-          },
-        ],
-      },
-    };
 
     this.config = this.configService.config;
     this.updateChartOptions();
@@ -260,10 +198,12 @@ export class DashboardDGComponent implements OnInit {
 
   onSelectYearPME(event) {
     this.getStatistiqueDebourseCDMPByPME(
-      this.selectedYearPME.getFullYear(),
-      this.user.idUtilisateur
-    );
+        this.selectedYearPME.getFullYear(),
+        this.idPME
+      );
   }
+
+
 
   getStatistiquePMEBeneficiereAndRejete(annee: number) {
     this.dashboardServices
@@ -278,6 +218,15 @@ export class DashboardDGComponent implements OnInit {
             nombreDemandeAccepte.push(el.nombreDemandeAccepte);
             nombreDemandeRejete.push(el.nombreDemandeRejete);
             mois.push(el.mois);
+          }
+          let maxNbr:number; let stepSiz:number = 1;
+          if(Math.max(...nombreDemandeAccepte) > Math.max(...nombreDemandeRejete)){
+            maxNbr = Math.max(...nombreDemandeAccepte) ;
+          }else{
+            maxNbr = Math.max(...nombreDemandeRejete);
+          }
+          if(maxNbr == 0){
+            stepSiz = 0;
           }
           this.basicData = {
             labels: [
@@ -299,6 +248,7 @@ export class DashboardDGComponent implements OnInit {
                 label: "PME bénéficiare",
                 data: nombreDemandeAccepte,
                 fill: false,
+                borderDash: [5, 5],
                 borderColor: "#99CC33",
                 tension: 0.4,
               },
@@ -311,6 +261,20 @@ export class DashboardDGComponent implements OnInit {
               },
             ],
           };
+          if(maxNbr >= 20){
+            stepSiz = 10;
+          }
+          this.optionsBenRej = {
+            scales: {
+                y: {
+                    max: maxNbr,
+                    min: 0,
+                    ticks: {
+                        stepSize:stepSiz
+                    }
+                }
+            }
+        };
         }
       });
   }
@@ -326,15 +290,15 @@ export class DashboardDGComponent implements OnInit {
           let cumulMontantCreance: number[] = [];
           for (var i = 0; i < 12; i++) {
             cumulSoldes.push(
-              this.statistiquePmesDebourses.cumulSoldes[i]?.montant
+                Math.floor(this.statistiquePmesDebourses.cumulSoldes[i]?.montant/1000000)
             );
             cumulDebourses.push(
-              this.statistiquePmesDebourses.cmulDebourses[i]?.montant
+                Math.floor(this.statistiquePmesDebourses.cmulDebourses[i]?.montant/1000000)
             );
             cumulMontantCreance.push(
-              this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant
+                Math.floor(this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant/1000000)
             );
-          }
+          };
           this.stackedData = {
             labels: [
               "Janvier",
@@ -384,18 +348,18 @@ export class DashboardDGComponent implements OnInit {
         if (res) {
           for (var i = 0; i < 12; i++) {
             cumulDecotes.push(
-              this.statistiquePmesRembourses.cumulDecotes[i]?.montant
+                Math.floor(this.statistiquePmesRembourses.cumulDecotes[i]?.montant/1000000)
             );
             cumulSoldes.push(
-              this.statistiquePmesRembourses.cumulSoldes[i]?.montant
+                Math.floor(this.statistiquePmesRembourses.cumulSoldes[i]?.montant/1000000)
             );
             cumulRembourse.push(
-              this.statistiquePmesRembourses.cmulRembourses[i]?.montant
+                Math.floor( this.statistiquePmesRembourses.cmulRembourses[i]?.montant/1000000)
             );
             cumulMontantCreance.push(
-              this.statistiquePmesRembourses.cumulMontantCreance[i]?.montant
+                Math.floor(this.statistiquePmesRembourses.cumulMontantCreance[i]?.montant/1000000)
             );
-          }
+          };
           this.stackedData1 = {
             labels: [
               "Janvier",
@@ -453,15 +417,15 @@ export class DashboardDGComponent implements OnInit {
           let cumulMontantCreance: number[] = [];
           for (var i = 0; i < 12; i++) {
             cumulSoldes.push(
-              this.statistiquePmesDebourses.cumulSoldes[i]?.montant
+                Math.floor(this.statistiquePmesDebourses.cumulSoldes[i]?.montant/1000000)
             );
             cumulDebourses.push(
-              this.statistiquePmesDebourses.cmulDebourses[i]?.montant
+                Math.floor(this.statistiquePmesDebourses.cmulDebourses[i]?.montant/1000000)
             );
             cumulMontantCreance.push(
-              this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant
+                Math.floor(this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant/1000000)
             );
-          }
+          };
           this.stackedDataPME = {
             labels: [
               "Janvier",
@@ -543,8 +507,8 @@ export class DashboardDGComponent implements OnInit {
       },
       header: "Détails du marché",
       width: "40%",
-      height: "calc(86% - 100px)",
-      baseZIndex: 10000,
+      height: "calc(86% - 1000000px)",
+      baseZIndex: 100000000,
     });
   }
 
@@ -640,7 +604,7 @@ export class DashboardDGComponent implements OnInit {
           position: "left",
           ticks: {
             min: 0,
-            max: 100,
+            max: 1000000,
             color: "#ebedef",
           },
           grid: {
@@ -657,7 +621,7 @@ export class DashboardDGComponent implements OnInit {
           },
           ticks: {
             min: 0,
-            max: 100,
+            max: 1000000,
             color: "#ebedef",
           },
         },
@@ -784,7 +748,7 @@ export class DashboardDGComponent implements OnInit {
           position: "left",
           ticks: {
             min: 0,
-            max: 100,
+            max: 1000000,
             color: "#495057",
           },
           grid: {
@@ -801,7 +765,7 @@ export class DashboardDGComponent implements OnInit {
           },
           ticks: {
             min: 0,
-            max: 100,
+            max: 1000000,
             color: "#495057",
           },
         },

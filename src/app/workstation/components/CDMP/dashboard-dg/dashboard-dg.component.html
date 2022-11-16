@@ -12,7 +12,7 @@
                      </div>
             </div>
             <span style="font-weight: bold;"> En Millions</span>
-            <p-chart type="bar" [data]="stackedData1" [options]="stackedOptions"></p-chart>
+            <p-chart type="bar" [data]="stackedData1" [options]="basicOptions"></p-chart>
         </div>
     </div>
     <div class="col-sm-6" *ngIf="profil === 'DG'">
@@ -42,7 +42,7 @@
                     [readonlyInput]="false" inputId="pickYear"> </p-calendar>
                 </div>
             </div>
-            <p-chart type="line" [data]="basicData" [options]="basicOptions">
+            <p-chart type="line" [data]="basicData" [options]="optionsBenRej">
             </p-chart>
         </div>
     </div>

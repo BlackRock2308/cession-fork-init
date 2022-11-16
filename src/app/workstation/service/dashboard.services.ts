@@ -37,5 +37,9 @@ const httpOptions = {
         return this.getAll(this.apiUrl+'/paiements/getStatistiquePaiementByPME/'+annee+'/'+idPME)
     }
 
+    getPMEByUser(id:number){
+        return this.getById(this.apiUrl+'/pme/byutilisateur',id)
+    }
+
 }
   

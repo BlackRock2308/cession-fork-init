@@ -35,7 +35,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-detailsPaiement>
-                    <tr *ngIf="!(detailsPaiement.statut ==='En-attente-de-paiement')">
+                    <tr >
                         <td style="width:16%; min-width:8rem;">
                             <span class="p-column-title">Date paiement</span>
                             {{detailsPaiement.datePaiement | date: 'dd/MM/yyyy'}}
