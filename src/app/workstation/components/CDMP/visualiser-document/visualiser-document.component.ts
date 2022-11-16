@@ -22,8 +22,6 @@ export class VisualiserDocumentComponent implements OnInit {
 
   demandes:any[] = [] ;
   statuts:any[];
-
-
   demande:any;
   src: any;
   srcFile: string;
@@ -60,13 +58,13 @@ export class VisualiserDocumentComponent implements OnInit {
       console.log(this.demande , data)
     })
     this.srcFile = this.config.data.document.urlFile;
-    console.log(this.srcFile)
+    console.log('test '+this.srcFile)
     this.dowloadFile(this.srcFile);
     this.convention = this.config.data.document;
     this.profil = localStorage.getItem('profil');
     console.log(this.profil)
 
-    this.statut = this.config.data.demande.statut;
+    this.statut = this.config.data.demande?.statut;
     if (this.config.data.paiement === 'true') {
       this.paiement = 'true';
     }
@@ -89,29 +87,29 @@ export class VisualiserDocumentComponent implements OnInit {
 
     this.src=this.documentFileUrl+path;
 
-    // this.uploadFileService.dowloadFile(path)
-    //   .subscribe(
-    //     (data: any) => {
-    //       if (data) {
-    //         console.log('merci de d'+ data)
-    //         this.src = data;
-    //         console.log('merci de afficher ' +JSON.stringify( this.src))
-    //        // this.ext = this.src.url.split('.').pop();
-    //         if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
-    //           this.images = [{
-    //             name: this.config.data.document.nom,
-    //             url: this.src
-    //           }];
-    //         }
-    //         console.log("SRC", this.ext);
-    //       }
-    //     }
-    //     ,
-    //     (error) => {
-    //       console.log("erreur de récupération du document", error);
-    //     }
-    //   )
-  }
+  //   this.uploadFileService.dowloadFile(path)
+  //     .subscribe(
+  //       (data: any) => {
+  //         if (data) {
+  //           console.log('merci de d'+ data)
+  //           this.src = data;
+  //           console.log('merci de afficher ' +JSON.stringify( this.src))
+  //          // this.ext = this.src.url.split('.').pop();
+  //           // if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
+  //           //   this.images = [{
+  //           //     name: this.config.data.document.nom,
+  //           //     url: this.src
+  //           //   }];
+  //           // }
+  //           // console.log("SRC", this.ext);
+  //         }
+  //       }
+  //       ,
+  //       (error) => {
+  //         console.log("erreur de récupération du document", error);
+  //       }
+  //     )
+   }
   dismiss() {
     this.ref.close();
   }
@@ -304,7 +302,6 @@ export class VisualiserDocumentComponent implements OnInit {
 
   }
 
-
   rejetConventionDG(){
     setTimeout(() => {
       location.reload()
@@ -342,9 +339,6 @@ export class VisualiserDocumentComponent implements OnInit {
               this.dismiss();
 
           })
-
-
-
   }
 
 }

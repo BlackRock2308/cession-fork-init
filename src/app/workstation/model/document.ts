@@ -19,5 +19,6 @@ export interface Document {
     dateSoumission?: string,
     file ?:any;
     url?:string;
+    urlFile?:string;
     
 }

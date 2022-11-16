@@ -3,9 +3,10 @@ export interface BonEngagement {
     nomMarche?: string;
     montantCreance?:number;
     reference :number;
-    naturePrestation?:String;
-    natureDepense?:String;
-    objetDepense?:String;
+    typeMarche:string;
+    naturePrestation?:string;
+    natureDepense?:string;
+    objetDepense?:string;
     bonEngagementFile?:File;
     dateBonEngagement?:Date;
     imputation ?: String;

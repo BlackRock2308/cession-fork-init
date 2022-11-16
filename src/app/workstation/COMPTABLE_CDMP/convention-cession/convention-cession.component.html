@@ -92,7 +92,7 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
-                                    *ngIf="demande.statut.libelle === 'CONVENTION_ENREGISTREE' ||demande.statut.libelle === 'CONVENTION_ACCEPTEE' || (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME' && (profil === 'PME'|| profil === 'JURISTE') ) || demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG' || demande.statut.libelle === 'CONVENTION_REJETEE' || (demande.statut.libelle === 'CONVENTION_GENEREE' && profil=== 'JURISTE') || (demande.statut.libelle === 'CONVENTION_CORRIGEE' && profil=== 'JURISTE') "
+                                    *ngIf="demande.statut.libelle === 'CONVENTION_ENREGISTREE' ||demande.statut.libelle === 'CONVENTION_ACCEPTEE' || (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME' && (profil === 'PME'|| profil === 'JURISTE') ) || demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG' || demande.statut.libelle === 'CONVENTION_REJETEE' || (demande.statut.libelle === 'CONVENTION_GENEREE' && profil=== 'JURISTE') || (demande.statut.libelle === 'CONVENTION_CORRIGEE' && profil=== 'JURISTE') || (demande.statut.libelle === 'CONVENTION_TRANSMISE') && (profil === 'JURISTE')"
                                     (click)="visualiserDocument(documentConvention)"></button>
                                 <button pButton pRipple icon="pi pi-key" class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
@@ -106,10 +106,10 @@
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "
                                     (click)="ChargerConvention(convention,demande)"></button>
-                                    <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
+                                    <!-- <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger le bordereau"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_TRANSMISE') && (profil === 'JURISTE')) "
-                                    (click)="ChargerConvention(convention)"></button>
+                                    (click)="ChargerConvention(convention)"></button> -->
                                 <button pButton pRipple icon="pi pi-file-excel" class="p-button-rounded simpleButton"
                                     pTooltip="Editer la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_REJETEE') && (profil === 'JURISTE')) "

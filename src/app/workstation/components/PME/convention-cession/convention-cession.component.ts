@@ -185,6 +185,7 @@ nineaValide():any{
 }
 visualiserDocument(document: Documents , demande : any) {
   this.demandesCessionService.setDemandeObs(demande)
+  console.log('ccccc '+ JSON.stringify(document))
 
   const ref = this.dialogService.open(VisualiserDocumentComponent, {
     data: {

@@ -56,6 +56,7 @@ export class NouvelleDemandeComponent implements OnInit {
   cols: any[];
   selectedProducts: Document[];
   typesDocument: any[];
+  typesMarche: any[];
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
   items: MenuItem[];
@@ -140,12 +141,31 @@ export class NouvelleDemandeComponent implements OnInit {
         "nom": "Bon engagement"
       }
     ]
+    this.typesMarche = [
+      {
+        "type": "SERVICES",
+        "nom": "Services"
+      },
+      {
+        "type": "FOURNITURES",
+        "nom": "Fournitures"
+      },
+      {
+        "type": "TRAVAUX",
+        "nom": "Travaux"
+      },
+      {
+        "type": "PRESTATIONS",
+        "nom": "Prestations"
+      }
+    ]
 
     this.documentForm = this.formBuilder.group({
       typeDocument: [''],
       file: [''],
       refBE: ['', [Validators.required]],
-      nomMarche: ['', [Validators.required]]
+      nomMarche: ['', [Validators.required]],
+      typeMarche: ['', [Validators.required]]
     });
   }
 
@@ -175,7 +195,8 @@ export class NouvelleDemandeComponent implements OnInit {
     console.log(this.bonEngagement);
     let body = {
       reference: this.documentForm.value['refBE'],
-      nomMarche: this.documentForm.value['nomMarche']
+      nomMarche: this.documentForm.value['nomMarche'],
+      typeMarche:this.documentForm.value['typeMarche']
     };
     console.log(body);
 
@@ -193,7 +214,8 @@ export class NouvelleDemandeComponent implements OnInit {
       },
       bonEngagement: {
         nomMarche: this.documentForm.value['nomMarche'],
-        reference: this.documentForm.value['refBE']
+        reference: this.documentForm.value['refBE'],
+        typeMarche:this.documentForm.value['typeMarche']
       }
     }
 

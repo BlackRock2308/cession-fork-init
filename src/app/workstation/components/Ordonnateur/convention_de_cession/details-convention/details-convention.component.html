@@ -87,10 +87,10 @@
                 <div style="display: block;">
                     <span class="h5texte" style="margin-left: 40%;">Convention de cession</span>
                     <div class="modal-body">
-                        <div *ngIf="srcFile" class="container-fluid">
+                        <div class="container-fluid">
                             <br />
-                            <div *ngIf="ext=='PDF' || ext=='pdf'">
-                                <pdf-viewer *ngIf="srcFile" [src]="srcFile" [show-all]="false" [(page)]="pageVariable"
+                            <div >
+                                <pdf-viewer *ngIf="src" [src]="src" [show-all]="false" [(page)]="pageVariable"
                                     [render-text]="true" [zoom]="zoom" [rotation]="angle" [original-size]="false"
                                     (after-load-complete)="afterLoadComplete($event)"
                                     (page-rendered)="pageRendered($event)" [fit-to-page]="true"

@@ -14,6 +14,7 @@ import { PaiementsService } from 'src/app/workstation/service/paiements/paiement
 import { Observation } from 'src/app/workstation/model/observation';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
 @Component({
   selector: 'app-details-convention',
   templateUrl: './details-convention.component.html',
@@ -25,8 +26,8 @@ export class DetailsConventionComponent implements OnInit {
   home: { icon: string; url: string; };
   cols: { field: string; header: string; }[];
   demandeCession: any;
-  documents: Documents[];
-  observation: Observation={};
+  documents: Document[];
+  observation: Observation = {};
   pageVariable = 1;
   pageRenderCb = 0;
   totalPages: number;
@@ -34,64 +35,54 @@ export class DetailsConventionComponent implements OnInit {
   zoom = 0.8;
   angle = 0;
   src: any;
-  docConventions: Document [];
+  docConventions: Document[];
   conventions: Convention[]
-  srcFile: string;
   ext: string;
   images: any;
   textLayerRenderedCb = 0;
-
+  private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
 
   constructor(
     private router: Router,
     private demandeCessionService: DemandesCessionService,
     private documentService: DocumentService,
-    private paiementService : PaiementsService,
+    private paiementService: PaiementsService,
     private dialogService: DialogService,
     public ref: DynamicDialogRef,
     private uploadFileService: FileUploadService,
     private breadcrumbService: BreadcrumbService,
-    private observationService:ObservationService,
-    private tokenStorage:TokenStorageService
-  ) { this.breadcrumbService.setItems([
-    { label: 'Liste des conventions', routerLink: 'ordonnateur/conventions' },
-    { label: 'Détail de la convention' }
-]);
-this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur/conventions'] });}
+    private observationService: ObservationService,
+    private tokenStorage: TokenStorageService
+  ) {
+    this.breadcrumbService.setItems([
+      { label: 'Liste des conventions', routerLink: 'ordonnateur/conventions' },
+      { label: 'Détail de la convention' }
+    ]);
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['/ordonnateur/conventions'] });
+  }
 
   ngOnInit(): void {
-    
-
-    
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
       console.log(this.demandeCession)
-      this.conventions = this.demandeCession.convention;
-
-      this.conventions.forEach(el => this.docConventions = el.documents )
-
+      this.conventions = this.demandeCession.conventions;
+      console.log('afficher1' +JSON.stringify( this.conventions))
+      this.conventions.forEach(el => this.docConventions = el.documents)
+      console.log('afficher' +JSON.stringify( this.docConventions))
+      this.documents = this.docConventions;
     });
 
-   this.dowloadFile(this.docConventions[0].url);
-   this.srcFile = this.docConventions[0].url;
-  console.log('afficher' + this.srcFile)
-
-    this.documentService.getDocumentsOrd().subscribe(data => {
-      this.documents = data
-    })
+    this.dowloadFile(this.docConventions[0].urlFile);
+    console.log('affiche2r' + this.docConventions[0].urlFile)
 
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
       { field: 'nomDocument', header: 'Nom Document' },
       { field: 'dateSoumission', header: 'Date Soumission' }
     ];
-     }
-
+  }
 
   onSubmitRejet() {
-
-   
-
 
     Swal.fire({
       position: 'center',
@@ -99,113 +90,94 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#d33',
-    color:"#203359",
-    confirmButtonColor:"#99CC33",
-    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-    allowOutsideClick:false,
-    
-  }).then((result) => {
-    if (result.isConfirmed) {
-      this.conventionRejetee();
-      this.router.navigate(['workstation/ordonnateur/conventions'])
-      
-    }})
+      color: "#203359",
+      confirmButtonColor: "#99CC33",
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick: false,
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.conventionRejetee();
+        this.router.navigate(['workstation/ordonnateur/conventions'])
+
+      }
+    })
 
   }
 
   onSubmitAccept() {
-
-
-
     this.conventionAcceptee();
-
-    
-  
   }
 
-  private async conventionRejetee(){
+  private async conventionRejetee() {
 
-
-    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
-            .subscribe((response: any) => {
-              console.log(response)
-              console.log(StatutEnum.ConventionRejetee)
-          },
-          (error)=>{},
-          ()=>{
-            Swal.fire(
-              'Rejetée!',
-              'La convention a bien été rejetée.',
-              'success'
-            )
-          })
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut={}    
-          this.observation.demandeid= this.demandeCession.idDemande;
-    this.observation.statut.libelle=StatutEnum.ConventionRejetee;
+    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande, StatutEnum.ConventionRejetee)
+      .subscribe((response: any) => {
+        console.log(response)
+        console.log(StatutEnum.ConventionRejetee)
+      },
+        (error) => { },
+        () => {
+          Swal.fire(
+            'Rejetée!',
+            'La convention a bien été rejetée.',
+            'success'
+          )
+        })
+    this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+    this.observation.statut = {}
+    this.observation.demandeid = this.demandeCession.idDemande;
+    this.observation.statut.libelle = StatutEnum.ConventionRejetee;
     await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
 
-  private async conventionAcceptee(){
+  private async conventionAcceptee() {
 
     let body = {
-      
-      idDemande:this.demandeCession.idDemande,
+
+      demandeId: this.demandeCession.idDemande,
+    }
+
+    console.log(body)
+
+
+
+    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande, StatutEnum.ConventionAcceptee)
+      .subscribe((response: any) => {
+        console.log(response)
+        console.log(StatutEnum.ConventionAcceptee)
+      },
+        (error) => { },
+        () => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été acceptée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            color: "#203359",
+            confirmButtonColor: "#99CC33",
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+            allowOutsideClick: false,
+
+          }).then(() => {
+
+            this.router.navigate(['workstation/ordonnateur/conventions'])
+          })
+          this.paiementService.postPaiement(body).subscribe(
+            data => { console.log(data) })
+        })
+
+    this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+    this.observation.statut = {}
+    this.observation.demandeid = this.demandeCession.idDemande;
+    this.observation.statut.libelle = StatutEnum.ConventionAcceptee;
+    await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
 
-  console.log(body)
-
-    
-
-    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionAcceptee)
-            .subscribe((response: any) => {
-              console.log(response)
-              console.log(StatutEnum.ConventionAcceptee)
-          },
-          (error)=>{},
-          ()=>{
-            Swal.fire({
-              position: 'center',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été acceptée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                color:"#203359",
-                confirmButtonColor:"#99CC33",
-                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                allowOutsideClick:false,
-                
-              }).then(() => {
-               
-                  this.router.navigate(['workstation/ordonnateur/conventions'])
-              })
-              this.paiementService.postPaiement(body).subscribe(
-                data=>{console.log(data)})
-          })
-
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut={}  
-          this.observation.demandeid = this.demandeCession.idDemande;
-          this.observation.statut.libelle =StatutEnum.ConventionAcceptee;
-          await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-}
-  
   dowloadFile(path: string) {
 
-    console.log('Affiche mon path ' + path)
-    this.uploadFileService.dowloadFile(path)
-      .subscribe(
-        (data: any) => {
-          if (data) {
-            this.src = data[0];
-           
-          }
-        }
-        ,
-        (error) => {
-          console.log("erreur de récupération du document", error);
-        }
-      )
+    this.src = this.documentFileUrl + path;
   }
 
   pageRendered(e: CustomEvent) {
@@ -214,7 +186,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
   }
 
   download(blob?) {
-    const url = this.src.path;
+    const url = this.src;
     const filename = this.docConventions[0].nom;
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
@@ -238,8 +210,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
   }
 
   print() {
-    var dataView = this.src;
-    const url = this.src.path;
+    const url = this.src;
     console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
@@ -276,7 +247,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
   }
 
   afterLoadComplete(pdf: any) {
-    this.afterpageLoadedCb ++;
+    this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
     console.log('after-load-complete', this.totalPages);
   }
