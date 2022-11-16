@@ -109,7 +109,7 @@ export class ConventionSignerComponent implements OnInit {
       })
   
       setTimeout(() => {
-        //location.reload()
+        location.reload()
        }, 1500);
       }
       else{
