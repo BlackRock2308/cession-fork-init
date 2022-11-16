@@ -69,10 +69,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       this.demandes=this.demandes.concat(data.content)
       console.log(this.demandes)
     });
-    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    
 
     this.cols=[
       {field: 'ninea', header: 'NINEA'},
