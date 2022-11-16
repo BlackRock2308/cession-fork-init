@@ -22,7 +22,7 @@ export class VerificationComponent implements OnInit {
 
   demande: any;
   id: any;
-  observation:Observation;
+  observation:Observation={};
 
   constructor(private router: Router, private demandeAdhesionService: DemandesAdhesionService,
     private adhesionDemandeService: AdhesionService, private pmeService: PmeService,

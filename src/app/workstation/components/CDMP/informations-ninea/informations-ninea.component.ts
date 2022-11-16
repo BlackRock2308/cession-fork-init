@@ -21,7 +21,7 @@ export class InformationsNineaComponent implements OnInit {
   demande: any;
   pme : PME;
   idPme:number;
-  observation:Observation;
+  observation:Observation={};
 
 
   constructor(private router: Router,

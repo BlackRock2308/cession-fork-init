@@ -58,7 +58,7 @@ export class TacheAnalyseComponent implements OnInit {
     home: MenuItem;
     msgs1: Message[];
 
-    observation:Observation;
+    observation:Observation={};
 
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,

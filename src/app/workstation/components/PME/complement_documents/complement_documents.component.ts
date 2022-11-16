@@ -36,7 +36,7 @@ export class ComplementDocumentsComponent implements OnInit {
   demandeNantissementInfos:any;
   items: MenuItem[];
   home: MenuItem;
-  observation:Observation
+  observation:Observation={}
 
   constructor(    
     private formBuilder: FormBuilder,

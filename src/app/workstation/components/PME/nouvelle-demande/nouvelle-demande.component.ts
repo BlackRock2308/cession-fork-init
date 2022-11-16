@@ -181,21 +181,7 @@ export class NouvelleDemandeComponent implements OnInit {
 
     this.postDemandeCession();
 
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-      color: "#203359",
-      confirmButtonColor: "#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-      allowOutsideClick: false,
-
-    }).then(() => {
-
-      this.router.navigate(['workstation/pme/demandes_en_cours'])
-    })
+    
 
   }
 
@@ -230,6 +216,24 @@ export class NouvelleDemandeComponent implements OnInit {
 
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
+    },
+    (error) =>{},
+    () =>{
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+        color: "#203359",
+        confirmButtonColor: "#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+        allowOutsideClick: false,
+  
+      }).then(() => {
+  
+        this.router.navigate(['workstation/pme/demandes_en_cours'])
+      })
     })
 
     console.log("finish")

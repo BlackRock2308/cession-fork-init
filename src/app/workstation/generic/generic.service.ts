@@ -49,6 +49,13 @@ export class GenericService {
       );
   }
 
+  patch<T>(url: string, body: T) {
+    return this.http.patch(url, body, httpOptions)
+      .pipe(
+        catchError(this.handleError('patch', body))
+      );
+  }
+
   delete<T>(url: string, identifiant: any) {
     return this.http.delete(url + "/" + identifiant, httpOptions)
       .pipe(

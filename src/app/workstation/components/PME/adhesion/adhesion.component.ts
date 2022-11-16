@@ -33,7 +33,7 @@ export class AdhesionComponent implements OnInit {
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
-  observation: Observation;
+  observation: Observation={};
 
   constructor(
     private formBuilder: FormBuilder,

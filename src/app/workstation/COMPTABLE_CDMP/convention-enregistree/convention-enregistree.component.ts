@@ -30,7 +30,7 @@ export class ConventionEnregistreeComponent implements OnInit {
   statutEnum : StatutEnum;
   demande: any;
 
-  observation:Observation
+  observation:Observation={}
   constructor(
     public ref: DynamicDialogRef,
     private formBuilder: FormBuilder,

@@ -25,8 +25,11 @@ export class UtilisateurService extends GenericService {
     return this.http.post<Utilisateur>(`${this.utilisateurUrl}/pme/createCompte`, utilisateur);
 
   }
+  getByIdemail<T>( id: any): Observable<any> {
+    return this.getById(this.utilisateurUrl,id)
+  }
 
-  updateUtilisateur(data) {
-    return this.update(this.utilisateurUrl, data);
+  updateUtilisateur(data):Observable<Utilisateur>{
+    return this.patch(`${this.utilisateurUrl}/update`, data);
   }
 }

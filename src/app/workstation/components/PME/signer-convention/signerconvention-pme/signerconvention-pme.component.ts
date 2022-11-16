@@ -25,7 +25,7 @@ export class SignerconventionPMEComponent implements OnInit {
   demande: any;
   pme : PME;
 
-  observation:Observation;
+  observation:Observation={};
 
   constructor(
     private formBuilder: FormBuilder,

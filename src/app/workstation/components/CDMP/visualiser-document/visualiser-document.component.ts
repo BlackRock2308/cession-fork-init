@@ -235,7 +235,7 @@ export class VisualiserDocumentComponent implements OnInit {
       },
       header: "Signer la convention",
       width: '40%',
-      height: 'calc(40% - 100px)',
+      height: 'calc(60% - 100px)',
       baseZIndex: 50
     });
     this.dismiss();

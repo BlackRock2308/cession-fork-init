@@ -26,6 +26,7 @@ export class AppLoginComponent implements OnInit{
 
   notAuthorized:boolean;
   changePassword:boolean;
+  changeCodePin:boolean;
   constructor(public router: Router,private authService:AuthService,private tokenStorage:TokenStorageService){}
   ngOnInit(): void {
 
@@ -50,6 +51,8 @@ export class AppLoginComponent implements OnInit{
 
         this.roles=this.tokenStorage.getUser().roles;
         this.changePassword=this.tokenStorage.getUser().updatePassword;
+        this.changeCodePin=this.tokenStorage.getUser().updateCodePin;
+
 
         
         if(this.changePassword){
@@ -57,16 +60,35 @@ export class AppLoginComponent implements OnInit{
         }
         else{
           if(this.roles.find(elem => elem.libelle == 'DRC')!=null){
-            this.router.navigate(['workstation/cdmp/dashboard']);
             localStorage.setItem('profil', 'DRC'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
+
           }
           if(this.roles.find(elem => elem.libelle == 'DSEAR')!=null){
-            this.router.navigate(['workstation/cdmp/dashboard']);
             localStorage.setItem('profil', 'DSEAR'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
           }
           if(this.roles.find(elem => elem.libelle == 'JURISTE')!=null){
-            this.router.navigate(['workstation/comptable/convention_cession']);
             localStorage.setItem('profil', 'JURISTE'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/comptable/convention_cession']);
+            }
           }
           if(this.roles.find(elem => elem.libelle == 'PME')!=null){
             this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
@@ -75,20 +97,44 @@ export class AppLoginComponent implements OnInit{
               } 
             )
             
-            this.router.navigate(['workstation/pme/demandes_en_cours']);
             localStorage.setItem('profil', 'PME'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/pme/demandes_en_cours']);
+            }
           }
           if(this.roles.find(elem => elem.libelle == 'DAF')!=null){
-            this.router.navigate(['workstation/cdmp/dashboard']);
-            localStorage.setItem('profil', 'DAF'); 
+            localStorage.setItem('profil', 'DAF');
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
           }
           if(this.roles.find(elem => elem.libelle == 'DG')!=null){
-            this.router.navigate(['workstation/cdmp/dashboard']);
             localStorage.setItem('profil', 'DG'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
           }
           if(this.roles.find(elem => elem.libelle == 'ORDONNATEUR')!=null){
-            this.router.navigate(['workstation/ordonnateur/conventions']);
             localStorage.setItem('profil', 'ORDONNATEUR'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/ordonnateur/conventions']);
+            }
           }
         }
         

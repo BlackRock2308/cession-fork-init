@@ -47,7 +47,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   nantissement: boolean;
   infosBEForm: any;
   infosBEDialog: boolean = false;
-  observation:Observation;
+  observation:Observation={};
   items: MenuItem[];
   home: MenuItem;
   notifier=new HttpHeaderResponse();
@@ -76,11 +76,14 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       this.demandeCession = data
       console.log(this.demandeCession)
       this.bonEngagement = this.demandeCession.bonEngagement;
-    })
-
       this.documents = this.documents.concat(this.demandeCession.bonEngagement.documents)
       this.documents = this.documents.concat(this.demandeCession.pme.documents)
       this.documents = this.documents.concat(this.demandeCession.documents)
+      console.log(this.documents)
+
+    })
+
+      
 
 
    
