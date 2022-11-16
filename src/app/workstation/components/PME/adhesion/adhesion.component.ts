@@ -33,7 +33,7 @@ export class AdhesionComponent implements OnInit {
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
-  observation: Observation;
+  observation: Observation={};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -160,7 +160,7 @@ export class AdhesionComponent implements OnInit {
             }
             this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
             this.observation.statut={}            
-            this.observation.idDemande =  response.idDemande;
+            this.observation.demandeid =  response.idDemande;
             this.observation.statut.libelle =StatutEnum.adhesionSoumise;
             this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
           }

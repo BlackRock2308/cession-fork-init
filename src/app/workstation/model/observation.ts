@@ -8,6 +8,6 @@ export interface Observation {
     dateObservation?:Date;
     adresse?:String;
     utilisateurid?:number;
-    idDemande?:number;
+    demandeid?:number;
     statut?:Statut;
 }

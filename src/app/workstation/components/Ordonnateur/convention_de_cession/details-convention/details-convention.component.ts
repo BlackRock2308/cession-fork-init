@@ -26,7 +26,7 @@ export class DetailsConventionComponent implements OnInit {
   cols: { field: string; header: string; }[];
   demandeCession: any;
   documents: Documents[];
-  observation: Observation;
+  observation: Observation={};
   pageVariable = 1;
   pageRenderCb = 0;
   totalPages: number;
@@ -62,21 +62,23 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
   ngOnInit(): void {
     
 
-    this.srcFile = "./assets/NINEA.pdf";
+    
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
       console.log(this.demandeCession)
       this.conventions = this.demandeCession.convention;
 
-      //this.conventions.forEach(el => this.docConventions = el.document )
+      this.conventions.forEach(el => this.docConventions = el.documents )
 
     });
 
-  //  this.dowloadFile(this.docConventions[0].url);
+   this.dowloadFile(this.docConventions[0].url);
+   this.srcFile = this.docConventions[0].url;
+  console.log('afficher' + this.srcFile)
 
-    // this.documentService.getDocumentsOrd().subscribe(data => {
-    //   this.documents = data
-    // })
+    this.documentService.getDocumentsOrd().subscribe(data => {
+      this.documents = data
+    })
 
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
@@ -139,7 +141,11 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
           })
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}    
+<<<<<<< HEAD
           //this.observation.idDemande = this.demandeCession.idDemande;
+=======
+          this.observation.demandeid= this.demandeCession.idDemande;
+>>>>>>> 4a37831aa4f02424e9ddccaa073cc3eebf014eb7
     this.observation.statut.libelle=StatutEnum.ConventionRejetee;
     await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
@@ -183,7 +189,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
 
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}  
-          this.observation.idDemande = this.demandeCession.idDemande;
+          this.observation.demandeid = this.demandeCession.idDemande;
           this.observation.statut.libelle =StatutEnum.ConventionAcceptee;
           await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 }
@@ -196,14 +202,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
         (data: any) => {
           if (data) {
             this.src = data[0];
-            this.ext = this.src.path.split('.').pop();
-            if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
-              this.images = [{
-                name: this.docConventions[0].nom,
-                url: this.src
-              }];
-            }
-            console.log("SRC", this.ext);
+           
           }
         }
         ,

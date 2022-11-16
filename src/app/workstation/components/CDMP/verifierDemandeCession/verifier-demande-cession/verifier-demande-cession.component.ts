@@ -47,7 +47,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   nantissement: boolean;
   infosBEForm: any;
   infosBEDialog: boolean = false;
-  observation:Observation;
+  observation:Observation={};
   items: MenuItem[];
   home: MenuItem;
   notifier=new HttpHeaderResponse();
@@ -76,11 +76,14 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       this.demandeCession = data
       console.log(this.demandeCession)
       this.bonEngagement = this.demandeCession.bonEngagement;
-    })
-
       this.documents = this.documents.concat(this.demandeCession.bonEngagement.documents)
       this.documents = this.documents.concat(this.demandeCession.pme.documents)
       this.documents = this.documents.concat(this.demandeCession.documents)
+      console.log(this.documents)
+
+    })
+
+      
 
 
    
@@ -111,11 +114,13 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
 
   async updatePME() {
-    this.demandeCession.pme.identificationBudgetaire= this.identifie
-    this.demandeCession.pme.atd=this.atd 
-    this.demandeCession.pme.interdictionBancaire=this.interdiction
+    let pme=this.demandeCession.pme
+    pme.identificationBudgetaire= this.identifie
+    pme.atd=this.atd 
+    pme.interdictionBancaire=this.interdiction
 
-    await this.pmeService.updatePme(this.demandeCession.pme).subscribe()
+    console.log(pme)
+    await this.pmeService.updatePme(pme).subscribe()
 
   }
   
@@ -128,7 +133,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande).subscribe()
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
         this.observation.statut={}          
-        this.observation.idDemande = this.demandeCession.idDemande;
+        this.observation.demandeid = this.demandeCession.idDemande;
           this.observation.statut.libelle =StatutEnum.rejetee;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
           Swal.fire(
@@ -154,7 +159,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
           ()=>{
             this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
             this.observation.statut={}          
-            this.observation.idDemande = this.demandeCession.idDemande;
+            this.observation.demandeid = this.demandeCession.idDemande;
           this.observation.statut.libelle =StatutEnum.recevable;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
@@ -212,7 +217,10 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       if (result.isConfirmed) {
         bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
-        this.rejeterDemande(bonEngagement)
+        let mergedObj = { ...bonEngagement, ...this.bonEngagement }
+        console.log(mergedObj,bonEngagement,this.bonEngagement)
+        this.rejeterDemande(mergedObj)
+        //location.reload()
         this.router.navigate(['workstation/cdmp/recevabilite'])
         
       }})
@@ -221,6 +229,8 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   onSubmitAccept(bonEngagement) {
     bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
     bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
-    this.accepterDemande(bonEngagement)
+    let mergedObj = { ...bonEngagement, ...this.bonEngagement }
+    console.log(mergedObj,bonEngagement,this.bonEngagement)
+    this.accepterDemande(mergedObj)
 }
 }

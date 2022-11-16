@@ -21,7 +21,7 @@ export class InformationsNineaComponent implements OnInit {
   demande: any;
   pme : PME;
   idPme:number;
-  observation:Observation;
+  observation:Observation={};
 
 
   constructor(private router: Router,
@@ -136,7 +136,7 @@ export class InformationsNineaComponent implements OnInit {
          ()=>{
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}          
-          this.observation.idDemande = this.demande.idDemande;
+          this.observation.demandeid = this.demande.idDemande;
           this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 

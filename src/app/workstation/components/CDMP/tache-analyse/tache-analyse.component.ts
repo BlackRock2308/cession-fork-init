@@ -58,7 +58,7 @@ export class TacheAnalyseComponent implements OnInit {
     home: MenuItem;
     msgs1: Message[];
 
-    observation:Observation;
+    observation:Observation={};
 
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
@@ -215,7 +215,7 @@ export class TacheAnalyseComponent implements OnInit {
             () => {
                 this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
                 this.observation.statut={}
-                this.observation.idDemande = this.demandeCession.idDemande;
+                this.observation.demandeid = this.demandeCession.idDemande;
                 this.observation.statut.libelle =StatutEnum.nonRisquee;
                 this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
@@ -268,7 +268,7 @@ export class TacheAnalyseComponent implements OnInit {
                     () => {
                         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
                         this.observation.statut={}                        
-                        this.observation.idDemande = this.demandeCession.idDemande;
+                        this.observation.demandeid = this.demandeCession.idDemande;
                         this.observation.statut.libelle =StatutEnum.risquee;
                         this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
@@ -293,7 +293,7 @@ export class TacheAnalyseComponent implements OnInit {
             () => {
                 this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
                 this.observation.statut={}                
-                this.observation.idDemande = this.demandeCession.idDemande;
+                this.observation.demandeid = this.demandeCession.idDemande;
                 this.observation.statut.libelle =StatutEnum.complementRequis;
                 this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
