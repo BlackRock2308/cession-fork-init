@@ -88,12 +88,9 @@ export class ConventionSignerComponent implements OnInit {
 
     await this.demandeCessionService.signerConventionDG(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
-      console.log(response)
-
-    },
-    (error) => {},
-    () => {
-      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      console.log(response.body)
+      if(response.body){
+        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}      
       this.observation.demandeid = idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParDG;
@@ -112,8 +109,23 @@ export class ConventionSignerComponent implements OnInit {
       })
   
       setTimeout(() => {
-        location.reload()
+        //location.reload()
        }, 1500);
+      }
+      else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Le code pin saisi est incorrect!',
+          confirmButtonColor: "#A6C733",
+        confirmButtonText: '<i class="pi pi-check"></i>OK',
+
+        })
+      }
+    },
+    (error) => {},
+    () => {
+      
     }
     )
     
