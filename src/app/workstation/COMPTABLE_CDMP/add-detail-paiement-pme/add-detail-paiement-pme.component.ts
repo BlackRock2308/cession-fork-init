@@ -79,6 +79,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   onSubmitForm() {
     this.detailPaiement.modePaiement = this.modePaiement.code;
     this.detailPaiement.paiementDto = this.config.data.paiement;
+    this.detailPaiement.datePaiement = new Date();
     this.detailsPaiementsService
       .addDetailPaiementPME(this.detailPaiement)
       .subscribe((res: DetailsPaiement) => {
@@ -97,7 +98,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
               });
           }
         }
-        this.close(res);
+        this.close(this.detailPaiement);
         Swal.fire({
           html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>PME payé avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
           color:"#203359",
