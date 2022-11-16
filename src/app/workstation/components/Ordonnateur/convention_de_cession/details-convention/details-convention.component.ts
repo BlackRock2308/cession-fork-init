@@ -148,13 +148,9 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['/ordonnateur
           })
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}    
-<<<<<<< HEAD
-          //this.observation.idDemande = this.demandeCession.idDemande;
-=======
           this.observation.demandeid= this.demandeCession.idDemande;
->>>>>>> 4a37831aa4f02424e9ddccaa073cc3eebf014eb7
-    this.observation.statut.libelle=StatutEnum.ConventionRejetee;
-    await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          this.observation.statut.libelle=StatutEnum.ConventionRejetee;
+          await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
 
   private async conventionAcceptee(){

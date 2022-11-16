@@ -4,11 +4,14 @@ import { Router } from "@angular/router";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { TokenStorageService } from "src/app/auth/token-storage.service";
 import { FileUploadService } from "src/app/workstation/service/fileUpload.service";
 import Swal from "sweetalert2";
 import { DetailsPaiement } from "../../model/detailsPaiements";
 import { Document } from "../../model/document";
+import { Observation } from "../../model/observation";
 import { Utilisateur } from "../../model/utilisateur";
+import { ObservationService } from "../../service/observation/observation.service";
 import { DetailsPaiementsService } from "../../service/paiements/details-paiements.services";
 
 @Component({
@@ -38,6 +41,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   detailPaiement: DetailsPaiement = {};
   user: Utilisateur = {};
   modePaiement: ModePaiement = {};
+  observation: Observation={};
 
   constructor(
     private router: Router,
@@ -46,7 +50,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private servicemsg: MessageService,
-    private detailsPaiementsService: DetailsPaiementsService
+    private detailsPaiementsService: DetailsPaiementsService,
+    private tokenStorage:TokenStorageService,
+    private observationService:ObservationService
   ) {
     this.user = JSON.parse(sessionStorage.getItem("auth-user"));
   }
@@ -109,7 +115,19 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           summary: "Erreur",
           detail: "Erreur, PME non payé",
         });
-      };
+      },
+      () => {
+        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+        this.observation.statut={}
+        this.observation.demandeid =  this.detailPaiement.paiementDto.demandecessionid;
+        this.observation.statut.libelle =this.detailPaiement.paiementDto.statutPme.libelle;
+        console.log(this.observation)
+
+        this.observationService.postObservation(this.observation).subscribe(data => 
+          console.log(data)
+          );
+      }
+      
   }
 }
 
