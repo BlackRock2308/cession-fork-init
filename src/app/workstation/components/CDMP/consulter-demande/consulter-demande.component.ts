@@ -9,6 +9,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 @Component({
     selector: 'app-consulter-demande',
     templateUrl: './consulter-demande.component.html',
@@ -45,17 +47,28 @@ export class ConsulterDemandeComponent implements OnInit {
 
     items: MenuItem[];
     home: MenuItem;
-
+    profile:string;
 
     constructor(private demandeCessionService: DemandesCessionService,
         public dialogService: DialogService,
          private documentService: DocumentService, 
          private messageService: MessageService, 
          private demandeAdhesionService: DemandesAdhesionService,
-         private breadcrumbService: BreadcrumbService) { this.breadcrumbService.setItems([
-            { label: 'Analyse du risque', routerLink: 'cdmp/analyse_risque' },
-            { label: 'Visualisation de la demande' }
-        ]);
+         private breadcrumbService: BreadcrumbService,
+         private observationService:ObservationService) { 
+            this.profile = localStorage.getItem('profil');
+
+            if (this.profile === 'DRC') {
+                this.breadcrumbService.setItems([
+                    { label: 'Analyse du risque', routerLink: 'cdmp/analyse_risque' },
+                    { label: 'Visualisation de la demande' }])
+              }
+              else if (this.profile === 'DSEAR') {
+                this.breadcrumbService.setItems([
+                  { label: 'Liste des demandes de cession', routerLink: 'cdmp/recevabilite' },
+                  { label: 'Visualisation de la demande' }
+                ]);
+              }
         this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
 
     ngOnInit() {
@@ -64,6 +77,7 @@ export class ConsulterDemandeComponent implements OnInit {
         this.documentService.getDocuments().subscribe(data => {
             this.documents = data
         });
+
 
         this.cols = [
             { field: 'ninea', header: 'NINEA' },
@@ -75,8 +89,20 @@ export class ConsulterDemandeComponent implements OnInit {
 
         this.demandeCessionService.getDemandeObs().subscribe(data => {
             this.demandeCession = data
+            if(this.demandeCession.documents.length > 0){
+                this.documents=this.documents.concat(this.demandeCession.documents)
+               }
+               if(this.demandeCession.pme.documents.length > 0){
+               this.documents=this.documents.concat(this.demandeCession.pme.documents)
+               }
+               if(this.demandeCession.bonEngagement.documents.length > 0){
+                this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
+               }
             console.log(this.demandeCession)
           })
+
+          //this.observationService.getByDemandeAndStatut(this.demandeCession.idDemande,StatutEnum.)
+
      
 
     }

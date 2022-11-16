@@ -215,7 +215,9 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       if (result.isConfirmed) {
         bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
-        this.rejeterDemande(bonEngagement)
+        let mergedObj = { ...bonEngagement, ...this.bonEngagement }
+        console.log(mergedObj,bonEngagement,this.bonEngagement)
+        this.rejeterDemande(mergedObj)
         this.router.navigate(['workstation/cdmp/recevabilite'])
         
       }})
@@ -224,6 +226,8 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   onSubmitAccept(bonEngagement) {
     bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
     bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
-    this.accepterDemande(bonEngagement)
+    let mergedObj = { ...bonEngagement, ...this.bonEngagement }
+    console.log(mergedObj,bonEngagement,this.bonEngagement)
+    this.accepterDemande(mergedObj)
 }
 }
