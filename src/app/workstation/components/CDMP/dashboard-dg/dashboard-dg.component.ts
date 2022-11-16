@@ -77,12 +77,11 @@ export class DashboardDGComponent implements OnInit {
   horizontalOptions: any;
 
   subscription: Subscription;
-
+  mois: any;
   config: AppConfig;
   idPME: number;
   profil: string;
   user: any;
-  dropdownYears: SelectItem[];
   statistiquePmes: StatistiqueDemandeCession[];
   statistiquePmesRembourses: StatistiquePaiementCDMP;
   statistiquePmesDebourses: StatistiquePaiementPME;
@@ -93,7 +92,7 @@ export class DashboardDGComponent implements OnInit {
   rangeDates: any[];
   matchModeOptions: SelectItem[];
   statuts: any[];
-  optionsBenRej:any; 
+  optionsBenRej: any;
   constructor(
     private configService: AppConfigService,
     private demandesAdhesionService: DemandesAdhesionService,
@@ -111,6 +110,20 @@ export class DashboardDGComponent implements OnInit {
   exportColumns: any[];
 
   ngOnInit() {
+    this.mois = [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre",
+    ];
     let today = new Date();
     this.profil = localStorage.getItem("profil");
     this.user = JSON.parse(sessionStorage.getItem("auth-user"));
@@ -131,17 +144,16 @@ export class DashboardDGComponent implements OnInit {
     } else {
       this.selectedYearPME = today;
       this.dashboardServices
-      .getPMEByUser(this.user.idUtilisateur)
-      .subscribe((res: any) => {
-        if (res) {
+        .getPMEByUser(this.user.idUtilisateur)
+        .subscribe((res: any) => {
+          if (res) {
             this.idPME = res.idPME;
             this.getStatistiqueDebourseCDMPByPME(
-                this.selectedYearPME.getFullYear(),
-                this.idPME
-              );
-        }
-      });
-      
+              this.selectedYearPME.getFullYear(),
+              this.idPME
+            );
+          }
+        });
     }
 
     this.cols = [
@@ -198,12 +210,10 @@ export class DashboardDGComponent implements OnInit {
 
   onSelectYearPME(event) {
     this.getStatistiqueDebourseCDMPByPME(
-        this.selectedYearPME.getFullYear(),
-        this.idPME
-      );
+      this.selectedYearPME.getFullYear(),
+      this.idPME
+    );
   }
-
-
 
   getStatistiquePMEBeneficiereAndRejete(annee: number) {
     this.dashboardServices
@@ -219,30 +229,20 @@ export class DashboardDGComponent implements OnInit {
             nombreDemandeRejete.push(el.nombreDemandeRejete);
             mois.push(el.mois);
           }
-          let maxNbr:number; let stepSiz:number = 1;
-          if(Math.max(...nombreDemandeAccepte) > Math.max(...nombreDemandeRejete)){
-            maxNbr = Math.max(...nombreDemandeAccepte) ;
-          }else{
+          let maxNbr: number;
+          let stepSiz: number = 1;
+          if (
+            Math.max(...nombreDemandeAccepte) > Math.max(...nombreDemandeRejete)
+          ) {
+            maxNbr = Math.max(...nombreDemandeAccepte);
+          } else {
             maxNbr = Math.max(...nombreDemandeRejete);
           }
-          if(maxNbr == 0){
+          if (maxNbr == 0) {
             stepSiz = 0;
           }
           this.basicData = {
-            labels: [
-              "Janvier",
-              "Février",
-              "Mars",
-              "Avril",
-              "Mai",
-              "Juin",
-              "Juillet",
-              "Août",
-              "Septembre",
-              "Octobre",
-              "Novembre",
-              "Décembre",
-            ],
+            labels: this.mois,
             datasets: [
               {
                 label: "PME bénéficiare",
@@ -261,20 +261,20 @@ export class DashboardDGComponent implements OnInit {
               },
             ],
           };
-          if(maxNbr >= 20){
+          if (maxNbr >= 20) {
             stepSiz = 10;
           }
           this.optionsBenRej = {
             scales: {
-                y: {
-                    max: maxNbr,
-                    min: 0,
-                    ticks: {
-                        stepSize:stepSiz
-                    }
-                }
-            }
-        };
+              y: {
+                max: maxNbr,
+                min: 0,
+                ticks: {
+                  stepSize: stepSiz,
+                },
+              },
+            },
+          };
         }
       });
   }
@@ -290,36 +290,20 @@ export class DashboardDGComponent implements OnInit {
           let cumulMontantCreance: number[] = [];
           for (var i = 0; i < 12; i++) {
             cumulSoldes.push(
-                Math.floor(this.statistiquePmesDebourses.cumulSoldes[i]?.montant/1000000)
+                this.statistiquePmesDebourses.cumulSoldes[i]?.montant / 1000000
             );
             cumulDebourses.push(
-                Math.floor(this.statistiquePmesDebourses.cmulDebourses[i]?.montant/1000000)
+                this.statistiquePmesDebourses.cmulDebourses[i]?.montant /
+                  1000000
             );
             cumulMontantCreance.push(
-                Math.floor(this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant/1000000)
+                this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant /
+                  1000000
             );
-          };
+          }
           this.stackedData = {
-            labels: [
-              "Janvier",
-              "Février",
-              "Mars",
-              "Avril",
-              "Mai",
-              "Juin",
-              "Juillet",
-              "Août",
-              "Septembre",
-              "Octobre",
-              "Novembre",
-              "Décembre",
-            ],
+            labels: this.mois,
             datasets: [
-              {
-                label: "Déboursé",
-                backgroundColor: " #99CC33",
-                data: cumulDebourses,
-              },
               {
                 label: "Engagé",
                 backgroundColor: " #333366",
@@ -329,6 +313,11 @@ export class DashboardDGComponent implements OnInit {
                 label: "Solde",
                 backgroundColor: " #981639",
                 data: cumulSoldes,
+              },
+              {
+                label: "Déboursé",
+                backgroundColor: " #99CC33",
+                data: cumulDebourses,
               },
             ],
           };
@@ -348,59 +337,46 @@ export class DashboardDGComponent implements OnInit {
         if (res) {
           for (var i = 0; i < 12; i++) {
             cumulDecotes.push(
-                Math.floor(this.statistiquePmesRembourses.cumulDecotes[i]?.montant/1000000)
+                this.statistiquePmesRembourses.cumulDecotes[i]?.montant /
+                  1000000
             );
             cumulSoldes.push(
-                Math.floor(this.statistiquePmesRembourses.cumulSoldes[i]?.montant/1000000)
+                this.statistiquePmesRembourses.cumulSoldes[i]?.montant / 1000000
             );
             cumulRembourse.push(
-                Math.floor( this.statistiquePmesRembourses.cmulRembourses[i]?.montant/1000000)
+                this.statistiquePmesRembourses.cmulRembourses[i]?.montant /
+                  1000000
             );
             cumulMontantCreance.push(
-                Math.floor(this.statistiquePmesRembourses.cumulMontantCreance[i]?.montant/1000000)
+                this.statistiquePmesRembourses.cumulMontantCreance[i]?.montant /
+                  1000000
             );
-          };
+          }
           this.stackedData1 = {
-            labels: [
-              "Janvier",
-              "Février",
-              "Mars",
-              "Avril",
-              "Mai",
-              "Juin",
-              "Juillet",
-              "Août",
-              "Septembre",
-              "Octobre",
-              "Novembre",
-              "Décembre",
-            ],
+            labels: this.mois,
             datasets: [
               {
-                type: "bar",
                 label: "Engagé",
-                backgroundColor: " #696969",
+                backgroundColor: " #333366",
                 data: cumulMontantCreance,
               },
               {
-                type: "bar",
+                label: "Solde",
+                backgroundColor: " #981639",
+                data: cumulSoldes,
+              },
+              {
                 label: "Remboursé",
                 backgroundColor: " #99CC33",
                 data: cumulRembourse,
               },
               {
                 type: "bar",
-                label: "Solde",
-                backgroundColor: " #981639",
-                data: cumulSoldes,
-              },
-              {
-                type: "bar",
                 label: "Décote",
-                backgroundColor: " #333366",
+                backgroundColor: " #696969",
                 data: cumulDecotes,
-              },
-            ],
+              }
+            ]
           };
         }
       });
@@ -417,36 +393,20 @@ export class DashboardDGComponent implements OnInit {
           let cumulMontantCreance: number[] = [];
           for (var i = 0; i < 12; i++) {
             cumulSoldes.push(
-                Math.floor(this.statistiquePmesDebourses.cumulSoldes[i]?.montant/1000000)
+                this.statistiquePmesDebourses.cumulSoldes[i]?.montant / 1000000
             );
             cumulDebourses.push(
-                Math.floor(this.statistiquePmesDebourses.cmulDebourses[i]?.montant/1000000)
+                this.statistiquePmesDebourses.cmulDebourses[i]?.montant /
+                  1000000
             );
             cumulMontantCreance.push(
-                Math.floor(this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant/1000000)
+                this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant /
+                  1000000
             );
-          };
+          }
           this.stackedDataPME = {
-            labels: [
-              "Janvier",
-              "Février",
-              "Mars",
-              "Avril",
-              "Mai",
-              "Juin",
-              "Juillet",
-              "Août",
-              "Septembre",
-              "Octobre",
-              "Novembre",
-              "Décembre",
-            ],
+            labels: this.mois,
             datasets: [
-              {
-                label: "Déboursé",
-                backgroundColor: " #99CC33",
-                data: cumulDebourses,
-              },
               {
                 label: "Engagé",
                 backgroundColor: " #333366",
@@ -456,6 +416,11 @@ export class DashboardDGComponent implements OnInit {
                 label: "Solde",
                 backgroundColor: " #981639",
                 data: cumulSoldes,
+              },
+              {
+                label: "Déboursé",
+                backgroundColor: " #99CC33",
+                data: cumulDebourses,
               },
             ],
           };
