@@ -40,21 +40,22 @@ export class InformationsNineaComponent implements OnInit {
       raisonSocial: [''],
       formeJuridique: [''],
       centreFiscal: [''],
-      adresse: [''],
+      adressePME: [''],
       enseigne: [''],
       localite: [''],
       controle: [''],
       activitePrincipale: [''],
       registre: [''],
-      representantLegal: [''],
-      date_creation: [''],
-      effectif: [''],
-      etablissements: [''],
-      chiffre: [''],
+      prenomRepresentant: [''],
+      dateCreation: [''],
+      effectifPermanent: [''],
+      nombreEtablissementSecondaires: [''],
+      chiffresDaffaires: [''],
       cniRepresentant: [''],
       dateImmatriculation: [''],
       telephonePME: [''],
-      capitalsocial : ['']
+      capitalsocial : [''],
+      autorisationMinisterielle : ['']
     });
 
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
