@@ -22,6 +22,7 @@ import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouv
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { ConventionCessionComponent } from './COMPTABLE_CDMP/convention-cession/convention-cession.component';
+import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-detail-paiement-cdmp/list-detail-paiement-cdmp.component';
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-detail-paiement-pme/list-detail-paiement-pme.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
@@ -54,6 +55,7 @@ const routes: Routes = [
   {path:'comptable/paiements' , component:PaimentsComponent},
   {path:'comptable/list-paiements-cdmp/:idPaiement' , component:ListPaiementCdmpComponent},
   {path:'comptable/list-paiements-pme/:idPaiement' , component:ListPaiementPMEComponent},
+  {path:'comptable/signer' , component:ConventionSignerComponent},
 
   //PME
   
