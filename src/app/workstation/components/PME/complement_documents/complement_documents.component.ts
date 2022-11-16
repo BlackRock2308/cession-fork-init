@@ -165,7 +165,7 @@ this.typesDocument=[
       await this.demandeCessionService.completeDemande(id).subscribe(response=>{
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
         this.observation.statut={}        
-        this.observation.idDemande =  response.idDemande;
+        this.observation.demandeid =  response.idDemande;
         this.observation.statut.libelle =StatutEnum.completee;
         this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
       })

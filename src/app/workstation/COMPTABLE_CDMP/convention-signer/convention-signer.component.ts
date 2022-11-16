@@ -79,7 +79,7 @@ export class ConventionSignerComponent implements OnInit {
     () => {
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}      
-      this.observation.idDemande = idDemande;
+      this.observation.demandeid = idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParDG;
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 

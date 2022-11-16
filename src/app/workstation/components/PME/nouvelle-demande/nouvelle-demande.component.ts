@@ -222,8 +222,9 @@ export class NouvelleDemandeComponent implements OnInit {
         )
       }
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      console.log('affichz' + this.tokenStorage.getUser().idUtilisateur)
       this.observation.statut={}
-      this.observation.idDemande =  result.idDemande;
+      this.observation.demandeid =  result.idDemande;
       this.observation.statut.libelle =StatutEnum.soumise;
       console.log(this.observation)
 

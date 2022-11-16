@@ -128,7 +128,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande).subscribe()
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
         this.observation.statut={}          
-        this.observation.idDemande = this.demandeCession.idDemande;
+        this.observation.demandeid = this.demandeCession.idDemande;
           this.observation.statut.libelle =StatutEnum.rejetee;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
           Swal.fire(
@@ -154,7 +154,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
           ()=>{
             this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
             this.observation.statut={}          
-            this.observation.idDemande = this.demandeCession.idDemande;
+            this.observation.demandeid = this.demandeCession.idDemande;
           this.observation.statut.libelle =StatutEnum.recevable;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
