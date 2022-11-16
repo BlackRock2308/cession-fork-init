@@ -117,8 +117,9 @@ export class ListPaiementPMEComponent implements OnInit {
       baseZIndex: 10000,
     });
     ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
-      console.log(detailsPaiement);
-      this.detailsPaiements.unshift(detailsPaiement);
+      if(detailsPaiement != null || detailsPaiement != undefined){
+        this.detailsPaiements.unshift(detailsPaiement);
+      }
     });
     
   }
