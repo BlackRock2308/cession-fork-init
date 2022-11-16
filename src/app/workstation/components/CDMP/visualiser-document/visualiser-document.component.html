@@ -65,13 +65,13 @@
 
             <p-toast></p-toast>
             <div class="grid p-fluid">
-                <div *ngIf="(demande.statut.libelle === 'CONVENTION_REJETEE') " class="col-12 md:col-12">
+                <div *ngIf="(demande.statut.libelle === 'CONVENTION_REJETEE'||demande.statut.libelle === 'CONVENTION_REJETEE_PAR_DG'||demande.statut.libelle === 'CONVENTION_REJETEE_PAR_PME') " class="col-12 md:col-12">
                     <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
                         <span class="h5texte">Observation</span>
                         <div class="p-inputgroup">
                             <span class="p-float-label">
                                 <textarea style="color: black; background-color: lightgray;" disabled [rows]="5"
-                                    [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+                                    [cols]="30" pInputTextarea autoResize="autoResize"style="background-color:#D3D3D3;">{{observationLibelle}} </textarea>
                             </span>
                         </div>
                     </p-card>
@@ -82,7 +82,7 @@
                         <span class="h5texte">Observation</span>
                         <div class="p-inputgroup">
                             <span class="p-float-label">
-                                <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+                                <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize">{{observationLibelle}}</textarea>
                             </span>
                         </div>
                     </p-card>

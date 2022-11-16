@@ -59,6 +59,7 @@ export class TacheAnalyseComponent implements OnInit {
     msgs1: Message[];
 
     observation:Observation={};
+    observationLibelle: string;
 
     constructor( private router: Router,
         private demandeCessionService: DemandesCessionService,
@@ -88,12 +89,19 @@ export class TacheAnalyseComponent implements OnInit {
         this.demandeCessionService.getDemandeObs().subscribe(data => {
             this.demandeCession = data
             console.log(this.demandeCession)
+            this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents);
+            this.documents=this.documents.concat(this.demandeCession.pme.documents);
+            this.documents=this.documents.concat(this.demandeCession.documents);
+
+            this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+                data => {
+                    this.observationLibelle=data.libelle
+                    console.log(this.observationLibelle)
+                })
           })
       
         //get all documents from the demand
-        this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents);
-        this.documents=this.documents.concat(this.demandeCession.pme.documents);
-        this.documents=this.documents.concat(this.demandeCession.documents);
+        
 
         // this.demandeCession.bonEngagement.documents.forEach(document => {
         //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {

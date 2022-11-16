@@ -61,7 +61,7 @@ export class ListPaiementCdmpComponent implements OnInit {
     );
     this.breadcrumbService.setItems([
       { label: "Paiements", routerLink: ["comptable/paiements"] },
-      { label: "Paiment CDMP" },
+      { label: "Paiement CDMP" },
     ]);
     this.breadcrumbService.setHome({
       icon: "pi pi-home",
@@ -112,8 +112,10 @@ export class ListPaiementCdmpComponent implements OnInit {
       baseZIndex: 10000,
     });
     ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
-      console.log(detailsPaiement);
-      this.detailsPaiements.unshift(detailsPaiement);
+      if(detailsPaiement != null || detailsPaiement != undefined){
+        this.detailsPaiements.unshift(detailsPaiement);
+      }
+      
       
   });
     // .close((result) => {

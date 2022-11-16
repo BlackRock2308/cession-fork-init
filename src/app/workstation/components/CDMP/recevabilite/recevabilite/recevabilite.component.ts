@@ -62,8 +62,9 @@ export class RecevabiliteComponent implements OnInit {
 
     this.recevabiliteService.getRecevabilites(args).subscribe(data => {
       this.demandes = data.content;
+     
       this.totalRecords = data.totalElements;
-      
+
 
     });
 

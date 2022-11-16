@@ -94,15 +94,16 @@ export class SignerconventionPMEComponent implements OnInit {
 
     this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
+      if(response.body){
       console.log(response)
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}            
       this.observation.demandeid =  response.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-    },
-    (error: any) =>{},
-    () =>{
+    
+    
+    
       Swal.fire({
         html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
         color: "#203359",
@@ -118,7 +119,15 @@ export class SignerconventionPMEComponent implements OnInit {
       setTimeout(() => {
         location.reload()
        }, 1500);
-   
+      }
+      else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Le code pin saisi est incorrect!',
+          confirmButtonColor: "#A6C733",
+          confirmButtonText: '<i class="pi pi-check"></i>OK',        })
+      }
     }
     )
 }

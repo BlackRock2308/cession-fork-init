@@ -6,7 +6,7 @@ export interface DetailsPaiement {
 
   modePaiement?: string;
 
-  datePaiement?: string;
+  datePaiement?: Date;
 
   comptable?: string;
 

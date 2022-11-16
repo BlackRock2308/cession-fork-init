@@ -32,7 +32,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.pme.ATD}}</label>
+                            <label for="inputtext"*ngIf="demandeCession.pme.ATD">Existance d'un avis à tiers detenteur</label>
+                            <label for="inputtext"*ngIf="!demandeCession.pme.ATD">Aucun avis à tiers detenteur</label>
                         </span>
                     </div>
                 </div>
@@ -41,7 +42,7 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.pme.denomination}}</label>
+                            <label for="inputtext">{{demandeCession.pme.raisonSocial}}</label>
                         </span>
                     </div>
                 </div>
@@ -52,7 +53,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.pme.nantissement}}</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.nantissement">Dèjà nanti</label>
+                            <label for="inputtext"*ngIf="!demandeCession.pme.nantissement">Pas encore nanti</label>
                         </span>
                     </div>
                 </div>
@@ -61,7 +63,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.pme.interdictionBancaire}}</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.interdiction">Existance d'une interdiction Bancaire</label>
+                            <label for="inputtext" *ngIf="!demandeCession.pme.interdiction">Aucune interdiction Bancaire</label>
                         </span>
                     </div>
                 </div>
@@ -135,7 +138,7 @@
         <label class="form-label" for="textAreaExample">Observations</label>
         <div class="d-flex flex-start w-100">
             <div class="form-outline w-100">
-                <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" [(ngModel)]="observation.libelle"></textarea>
+                <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" [(ngModel)]="observation.libelle" >{{observationLibelle}}</textarea>
             </div>
         </div>
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">

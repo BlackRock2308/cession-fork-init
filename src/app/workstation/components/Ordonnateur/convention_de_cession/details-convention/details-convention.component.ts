@@ -41,6 +41,8 @@ export class DetailsConventionComponent implements OnInit {
   images: any;
   textLayerRenderedCb = 0;
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
+  observationLibelle: string;
+
 
   constructor(
     private router: Router,
@@ -70,6 +72,16 @@ export class DetailsConventionComponent implements OnInit {
       this.conventions.forEach(el => this.docConventions = el.documents)
       console.log('afficher' +JSON.stringify( this.docConventions))
       this.documents = this.docConventions;
+      this.conventions = this.demandeCession.convention;
+
+      this.conventions.forEach(el => this.docConventions = el.documents )
+
+      this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+        data => {
+            this.observationLibelle=data.libelle
+            console.log(this.observationLibelle)
+        })
+
     });
 
     this.dowloadFile(this.docConventions[0].urlFile);
@@ -111,24 +123,25 @@ export class DetailsConventionComponent implements OnInit {
 
   private async conventionRejetee() {
 
-    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande, StatutEnum.ConventionRejetee)
-      .subscribe((response: any) => {
-        console.log(response)
-        console.log(StatutEnum.ConventionRejetee)
-      },
-        (error) => { },
-        () => {
-          Swal.fire(
-            'Rejetée!',
-            'La convention a bien été rejetée.',
-            'success'
-          )
-        })
-    this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-    this.observation.statut = {}
-    this.observation.demandeid = this.demandeCession.idDemande;
-    this.observation.statut.libelle = StatutEnum.ConventionRejetee;
-    await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+
+    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
+            .subscribe((response: any) => {
+              console.log(response)
+              console.log(StatutEnum.ConventionRejetee)
+          },
+          (error)=>{},
+          ()=>{
+            Swal.fire(
+              'Rejetée!',
+              'La convention a bien été rejetée.',
+              'success'
+            )
+          })
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          this.observation.statut={}    
+          this.observation.demandeid= this.demandeCession.idDemande;
+          this.observation.statut.libelle=StatutEnum.ConventionRejetee;
+          await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
 
   private async conventionAcceptee() {

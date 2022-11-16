@@ -12,6 +12,7 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { Router } from '@angular/router';
 import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
+import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -42,13 +43,15 @@ export class VisualiserDocumentComponent implements OnInit {
   paiement: string;
   observation: void;
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
+  observationLibelle: string;
 
 
   constructor(public activeModal: NgbActiveModal,
     private demandeCessionService:DemandesCessionService,
     private uploadFileService: FileUploadService, 
     private router : Router,
-    public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig) { }
+    public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig,
+    private observationService:ObservationService) { }
 
 
   ngOnInit() {
@@ -56,6 +59,12 @@ export class VisualiserDocumentComponent implements OnInit {
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demande = data
       console.log(this.demande , data)
+
+      this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
+        data => {
+            this.observationLibelle=data.libelle
+            console.log(this.observationLibelle)
+        })
     })
     this.srcFile = this.config.data.document.urlFile;
     console.log('test '+this.srcFile)

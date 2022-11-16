@@ -155,7 +155,7 @@ a{
         font-size: 12px;
         letter-spacing: .3px;
     
-        &.status-convention-rejetée {
+        &.status-convention_rejetee {
             background: #FFCDD2;
             color: #C63737;
         }
@@ -197,11 +197,11 @@ a{
             background: #c9ddfa;
             color: #354d8f;  
         }
-        &.status-convention-enregistrée {
+        &.status-convention_soumise {
             background: #c9ddfa;
             color: #354d8f;
         }
-        &.status-convention-corrigée {
+        &.status-convention_corrigee {
             background: #c9ddfa;
             color: #354d8f;
         }

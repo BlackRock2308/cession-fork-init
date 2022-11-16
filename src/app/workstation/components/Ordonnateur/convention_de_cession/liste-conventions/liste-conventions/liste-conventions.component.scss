@@ -22,8 +22,12 @@
         background: #C8E6C9;
         color: #256029;
     }
+    &.status-convention_acceptee {
+        background: #C8E6C9;
+        color: #256029;
+    }
    
-    &.status-convention-rejetée {
+    &.status-convention_rejetee {
         background: #FFCDD2;
         color: #C63737;
     }
@@ -33,7 +37,7 @@
         color: #C63737;
     }
 
-    &.status-convention-enregistrée{
+    &.status-convention_transmise{
         background: #FEEDAF;
         color: #8A5340;
     }
