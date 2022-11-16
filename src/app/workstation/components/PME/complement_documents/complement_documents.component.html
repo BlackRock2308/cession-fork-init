@@ -33,7 +33,7 @@
                         <div class="p-inputgroup">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" pInputText  [disabled]="true" />
-                                <label for="inputtext">{{demandeNantissementInfos.dateDemandeCession}}</label>
+                                <label for="inputtext">{{demandeNantissementInfos.dateDemandeCession | date:'dd/MM/yyyy'}}</label>
                             </span>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             </div>
                             <p-dropdown [options]="typesDocument" formControlName="typeDocument"
                                 [(ngModel)]="selectedTypeDocument" optionLabel="nom" optionValue="type" [filter]="true"
-                                filterBy="name" [showClear]="true" pTooltip="Sélectionner un type de fichier"
+                                filterBy="name" [showClear]="true" 
                                 placeholder="Sélectionnez un type de document">
                                 <ng-template pTemplate="selectedItem">
                                     <div class="country-item country-item-value" *ngIf="selectedTypeDocument">
@@ -69,7 +69,7 @@
 
                             </p-dropdown>
                         </div>
-                        <div class="field col-3 " *ngIf="selectedTypeDocument=='Autres'">
+                        <div class="field col-3 " *ngIf="selectedTypeDocument=='Autre'">
                             <div class="col-12 md:col-12  d-flex justify-content-center ">
                                 <h4 style="font-weight: bold;color: #203359;">Nom type</h4>
                             </div>
