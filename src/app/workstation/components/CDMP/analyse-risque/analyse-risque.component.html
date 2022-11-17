@@ -9,7 +9,7 @@
         <br>
         <div>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
-                [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="false"
                 [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes" [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
@@ -123,8 +123,11 @@
                         </td>
                     </tr>
                 </ng-template>
+
                 
             </p-table>
+            <p-paginator [rows]="5" [totalRecords]="page.totalElements" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
+
         </div>
         <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}" [modal]="true">
             <ng-template pTemplate="header">

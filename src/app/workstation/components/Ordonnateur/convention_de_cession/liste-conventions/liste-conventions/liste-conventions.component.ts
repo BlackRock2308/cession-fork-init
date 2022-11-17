@@ -6,6 +6,7 @@ import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
 import { Convention } from 'src/app/workstation/model/convention';
 import { DemandeCession } from 'src/app/workstation/model/demande';
 import { PME } from 'src/app/workstation/model/pme';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 
 @Component({
@@ -25,6 +26,8 @@ export class ListeConventionsComponent implements OnInit {
   
   matchModeOptions: SelectItem[];
   statuts:any[];
+  page: any;
+  paramStatuts: any[];
   constructor(
     private demandeCessionService:DemandesCessionService,
     private router:Router,
@@ -37,38 +40,40 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
 
   ngOnInit() {
 
+    this.paramStatuts=[StatutEnum.ConventionAcceptee,StatutEnum.conventionGeneree,StatutEnum.conventionCorrigee,StatutEnum.conventionSigneeParPME,StatutEnum.conventionSigneeParDG,StatutEnum.ConventionRejetee,StatutEnum.ConventionTransmise]
+    this.initGetDemandes(this.paramStatuts)
    
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes,data.content)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes,data.content)
+    // });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes)
+    // });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes)
+    // });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes)
+    // });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REFUSEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes)
+    // });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REFUSEE").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes)
+    // });
+    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
+    //   this.demandes=this.demandes.concat(data.content)
+    //   console.log(this.demandes)
+    // });
     
 
     this.cols=[
@@ -95,6 +100,55 @@ this.statuts = [
   {label: 'Convention Générée', value: 'NON_RISQUEE'}
 ]
   }
+
+  paginate(event) {
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
+
+    let statutsParam
+  if(Array.isArray(this.paramStatuts)){
+    statutsParam=this.paramStatuts.join(",")
+  }
+  else
+    statutsParam=this.paramStatuts
+    const args = {
+      page: event.page,
+      size: event.rows,
+      sort:"dateDemandeCession,DESC",
+      statut:statutsParam
+      
+      // search: this.searchText,
+    };
+    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+}
+
+initGetDemandes(statuts:StatutEnum[]){
+  let statutsParam
+  if(Array.isArray(statuts)){
+    statutsParam=statuts.join(",")
+  }
+  else
+    statutsParam=statuts
+    const args = {
+      page: 0,
+      size: 5,
+      sort:"dateDemandeCession,DESC",
+      statut:statutsParam
+      
+      // search: this.searchText,
+    };
+    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+  
+  
+}
 
   editerDemandeCession(demande: DemandeCession) {
    // this.demande = {...demande};

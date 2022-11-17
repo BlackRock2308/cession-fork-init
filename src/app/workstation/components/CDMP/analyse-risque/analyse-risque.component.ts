@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ConfirmationService, FilterMatchMode, FilterService, MenuItem, MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
+import { ConfirmationService, FilterMatchMode, FilterService, LazyLoadEvent, MenuItem, MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
@@ -10,6 +10,9 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import {PaginatorModule} from 'primeng/paginator';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+
 @Component({
   selector: 'app-analyse-risque',
   templateUrl: './analyse-risque.component.html',
@@ -97,6 +100,8 @@ export class AnalyseRisqueComponent implements OnInit {
   rangeDates:any[];
   matchModeOptions: SelectItem[];
   statuts:any[];
+  paramStatuts:any[];
+  page: any;
 
   constructor(
     private router: Router,
@@ -113,29 +118,10 @@ export class AnalyseRisqueComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.demandeCessionService.getDemandeCessionByStatut("RECEVABLE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes,data.content)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("COMPLETEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    this.paramStatuts=[StatutEnum.recevable,StatutEnum.completee,StatutEnum.complementRequis,StatutEnum.risquee,StatutEnum.nonRisquee]
+    this.initGetDemandes(this.paramStatuts)
 
-    this.demandeCessionService.getDemandeCessionByStatut("COMPLEMENT_REQUIS").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-
-    this.demandeCessionService.getDemandeCessionByStatut("RISQUEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-
-    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+   
 
     this.primengConfig.ripple = true;
     this.cols = [
@@ -161,6 +147,55 @@ export class AnalyseRisqueComponent implements OnInit {
         {label: 'Complétée', value: 'COMPLETEE'}
     ]
   }
+
+  paginate(event) {
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
+
+    let statutsParam
+  if(Array.isArray(this.paramStatuts)){
+    statutsParam=this.paramStatuts.join(",")
+  }
+  else
+    statutsParam=this.paramStatuts
+    const args = {
+      page: event.page,
+      size: event.rows,
+      sort:"dateDemandeCession,DESC",
+      statut:statutsParam
+      
+      // search: this.searchText,
+    };
+    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+}
+
+initGetDemandes(statuts:StatutEnum[]){
+  let statutsParam
+  if(Array.isArray(statuts)){
+    statutsParam=statuts.join(",")
+  }
+  else
+    statutsParam=statuts
+    const args = {
+      page: 0,
+      size: 5,
+      sort:"dateDemandeCession,DESC",
+      statut:statutsParam
+      
+      // search: this.searchText,
+    };
+    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+  
+  
+}
 
   openNew() {
     this.product = {};

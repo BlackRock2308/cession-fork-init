@@ -2,13 +2,14 @@ import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
+import { GenericService } from '../../generic/generic.service';
 import { DemandeCession } from '../../model/demande';
 import { StatutEnum } from '../../model/statut-enum';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DemandesCessionService {
+export class DemandesCessionService extends GenericService{
     
     
   private baseUrl = ApiSettings.API_CDMP;
@@ -28,7 +29,8 @@ export class DemandesCessionService {
     interdiction :"Aucune interdiction bancaire"
   });
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
+    super(http);
     //garder les infos demandes de cession en variable de session au cas où l'on fait un refresh
     try{
       let storedDemandeCession=localStorage.getItem('storedDemandeCession');
@@ -44,6 +46,14 @@ export class DemandesCessionService {
   getDemandesCession(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
   }
+  getPageDemandesCession(args:any): Observable<any> {
+    return this.getAllPagination(`${this.baseUrl}/demandecession`,args)
+  }
+
+  //Demande de cession par statut avec pagination
+  getPageDemandeCessionByStatut(args:any): Observable<any> {
+    return this.getAllPagination(`${this.baseUrl}/demandecession/bystatut`,args)
+}
 
    //Ajouter une nouvelle demande de cession
 public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{

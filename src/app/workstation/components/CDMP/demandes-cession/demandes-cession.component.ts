@@ -36,6 +36,8 @@ export class DemandesCessionComponent implements OnInit {
       this.demandes = data
     });
 
+    
+
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
       { field: 'raisonSocial', header: 'Raison Social' },

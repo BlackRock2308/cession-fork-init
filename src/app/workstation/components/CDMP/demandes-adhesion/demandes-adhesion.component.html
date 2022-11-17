@@ -8,7 +8,7 @@
                 </div>
             </div>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
-                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                [paginator]="false" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id" sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
@@ -92,6 +92,7 @@
                 </ng-template>
                 
             </p-table>
+            <p-paginator [rows]="5" [totalRecords]="page.totalElements" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
         </p-card>
     </div>
 </div>
