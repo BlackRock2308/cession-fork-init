@@ -1,5 +1,5 @@
 import { Injectable, ErrorHandler } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http'
 import { catchError, retry } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 const httpOptions = {
@@ -26,6 +26,33 @@ export class GenericService {
       .pipe(
         catchError(this.handleError('getAll', []))
       );
+  }
+
+  getAllPagination<T>(url: string,args:any={}) {
+    let params = new HttpParams();
+    Object.keys(args).forEach(key => {
+      console.log(key, args[key]);
+      
+      params = params.set(key, args[key]);
+    
+
+    });
+
+  //   if (args.page) {
+  //       params = params.set('page', args.page);
+  //   }
+  //   if (args.size) {
+  //       params = params.set('size', args.size);
+  //   }
+
+  //   if (args.sort) {
+  //     params = params.set('size', args.sort);
+  // }
+    return this.http.get<any>(url,{params})
+      .pipe(
+        catchError(this.handleError('getAll', []))
+      );    
+
   }
 
   add<T>(url: string, body: T) {

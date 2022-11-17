@@ -158,7 +158,7 @@ export class AdhesionComponent implements OnInit {
                 
               // }
             }
-            this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+            //this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
             this.observation.statut={}            
             this.observation.demandeid =  response.idDemande;
             this.observation.statut.libelle =StatutEnum.adhesionSoumise;

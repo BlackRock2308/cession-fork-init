@@ -36,6 +36,7 @@ export class RecevabiliteComponent implements OnInit {
   subscribe: any;
   rangeDates: any[];
   matchModeOptions: SelectItem[];
+  page: any;
 
   constructor(private demandesAdhesionService: DemandesAdhesionService,
     private messageService: MessageService,
@@ -51,24 +52,24 @@ export class RecevabiliteComponent implements OnInit {
     this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
   }
 
-  getDemndes(event: LazyLoadEvent = {}) {
-    const args = {
-      page: event.first / event.rows,
-      perPage: event.rows ? event.rows : this.rowSizes.XSMALL,
-      orderBy: event.sortField,
-      direction: event.sortOrder,
-      // search: this.searchText,
-    };
+  // // getDemndes(event: LazyLoadEvent = {}) {
+  // //   const args = {
+  // //     page: event.first / event.rows,
+  // //     perPage: event.rows ? event.rows : this.rowSizes.XSMALL,
+  // //     orderBy: event.sortField,
+  // //     direction: event.sortOrder,
+  // //     // search: this.searchText,
+  // //   };
 
-    this.recevabiliteService.getRecevabilites(args).subscribe(data => {
-      this.demandes = data.content;
+  //   this.recevabiliteService.getRecevabilites(args).subscribe(data => {
+  //     this.demandes = data.content;
      
-      this.totalRecords = data.totalElements;
+  //     this.totalRecords = data.totalElements;
 
 
-    });
+  //   });
 
-  }
+  // }
 
   ngOnInit() {
     //this.productDialog = this.communicationService.getDialogObs();
@@ -76,6 +77,8 @@ export class RecevabiliteComponent implements OnInit {
     //   this.subscribe=this.recevabiliteService.getRecevabilites().subscribe(data=>{
     // this.demandes=data
     // console.log(this.demandes)});
+
+    this.initGetDemandes()
 
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
@@ -95,6 +98,43 @@ export class RecevabiliteComponent implements OnInit {
       { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
   }
+
+  paginate(event) {
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
+
+    
+  
+    const args = {
+      page: event.page,
+      size: event.rows,
+      sort:"dateDemandeCession,DESC",      
+      // search: this.searchText,
+    };
+    this.recevabiliteService.getPageRecevabilites(args).subscribe(data => {
+      this.demandes = data.content;
+      this.totalRecords = data.totalElements;
+    });
+}
+
+initGetDemandes(){
+ 
+    const args = {
+      page: 0,
+      size: 5,
+      sort:"dateDemandeCession,DESC",      
+      
+      // search: this.searchText,
+    };
+    this.recevabiliteService.getPageRecevabilites(args).subscribe(data => {
+      this.demandes = data.content;     
+      this.totalRecords = data.totalElements;
+    });
+  
+  
+}
 
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };

@@ -39,6 +39,7 @@ export class DemandesAdhesionComponent implements OnInit {
   nineas:any;
   rangeDates:any[];
   matchModeOptions: SelectItem[];
+  page: any;
 
   constructor(private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private router: Router,
     private breadcrumbService: BreadcrumbService,    private filterService:FilterService
@@ -56,12 +57,13 @@ export class DemandesAdhesionComponent implements OnInit {
     console.log(this.rangeDates)
     //this.productDialog = this.communicationService.getDialogObs();
     //this.productService.getProducts().then(data => this.products = data);
-    this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
-      this.demandes = data.content
-      console.log(this.demandes)
-      //this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
-      console.log(this.demandes[0].dateDemandeAdhesion)
-    });
+    this.initGetDemandes()
+    // this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
+    //   this.demandes = data.content
+    //   console.log(this.demandes)
+    //   //this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
+    //   console.log(this.demandes[0].dateDemandeAdhesion)
+    // });
 
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
@@ -100,6 +102,43 @@ export class DemandesAdhesionComponent implements OnInit {
     this.demandesAdhesionService.getDialog().subscribe(data => this.demandeDialog = data)
 
   }
+
+  paginate(event) {
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
+
+    
+  
+    const args = {
+      page: event.page,
+      size: event.rows,
+      sort:"dateDemandeAdhesion,DESC",      
+      // search: this.searchText,
+    };
+    this.demandesAdhesionService.getPageDemandesAdhesion(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+}
+
+initGetDemandes(){
+ 
+    const args = {
+      page: 0,
+      size: 5,
+      sort:"dateDemandeAdhesion,DESC",      
+      
+      // search: this.searchText,
+    };
+    this.demandesAdhesionService.getPageDemandesAdhesion(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+  
+  
+}
 
   verifierDemande(demande: DemandeAdhesion) {
     this.demande = { ...demande };
