@@ -74,11 +74,12 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
 
   handleClick() {
     document.getElementById("upload-file").click();
+    
   }
 
   //sélectionner le fichier
   selectFile(files: any): void {
-    this.selectedFiles = files.target.files;
+    this.selectedFiles = files.target.files[0];
   }
 
   onSubmitForm() {
