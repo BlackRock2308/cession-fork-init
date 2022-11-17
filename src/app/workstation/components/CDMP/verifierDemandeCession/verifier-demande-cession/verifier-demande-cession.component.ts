@@ -141,6 +141,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
             'La demande a bien été rejetée.',
             'success'
           )
+          this.router.navigate(['workstation/cdmp/recevabilite'])
       }
 
     )
@@ -221,7 +222,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         console.log(mergedObj,bonEngagement,this.bonEngagement)
         this.rejeterDemande(mergedObj)
         //location.reload()
-        this.router.navigate(['workstation/cdmp/recevabilite'])
+        //this.router.navigate(['workstation/cdmp/recevabilite'])
         
       }})
 
