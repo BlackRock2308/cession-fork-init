@@ -229,7 +229,7 @@ export class DashboardDGComponent implements OnInit {
             nombreDemandeRejete.push(el.nombreDemandeRejete);
             mois.push(el.mois);
           }
-          let maxNbr: number;
+          let maxNbr: number ;
           let stepSiz: number = 1;
           if (
             Math.max(...nombreDemandeAccepte) > Math.max(...nombreDemandeRejete)
@@ -239,7 +239,7 @@ export class DashboardDGComponent implements OnInit {
             maxNbr = Math.max(...nombreDemandeRejete);
           }
           if (maxNbr == 0) {
-            stepSiz = 0;
+            maxNbr = 5;
           }
           this.basicData = {
             labels: this.mois,
