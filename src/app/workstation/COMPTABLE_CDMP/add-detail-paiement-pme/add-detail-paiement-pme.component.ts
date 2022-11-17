@@ -79,7 +79,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
 
   //sélectionner le fichier
   selectFile(files: any): void {
-    this.selectedFiles = files.target.files;
+    this.selectedFiles = files.target.files[0];
   }
 
   onSubmitForm() {
