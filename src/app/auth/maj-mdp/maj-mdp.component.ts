@@ -35,9 +35,14 @@ export class MajMdpComponent {
       email:this.tokenStorage.getUser().email,
       updatePassword:false
     }
+    let utilisateur=this.tokenStorage.getUser()
+    utilisateur.idUtilisateur=this.tokenStorage.getUser().idUtilisateur,
+    utilisateur.password=this.form.value['password'],
+    //utilisateur.email=this.tokenStorage.getUser().email,
+    utilisateur.updatePassword=false
     console.log(JSON.stringify(body));
 
-    this.authService.majMDP(body).subscribe(
+    this.authService.majMDP(utilisateur).subscribe(
       data=>{
         console.log(data);
         
