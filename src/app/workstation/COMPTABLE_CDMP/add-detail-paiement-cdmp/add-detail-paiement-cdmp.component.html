@@ -39,7 +39,7 @@
                         <ng-template #elseBlock id="file" type="text" pInputText>
                             <input id="file" type="text" pInputText placeholder="{{selectedFiles.name}}">
                         </ng-template>
-                        <input formControlName="nineaFile" class="hidden" type="file" id="upload-file"
+                        <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf" id="upload-file"
                             name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
                         <button type="button" pButton pRipple icon="pi pi-upload"
                             class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
