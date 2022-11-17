@@ -167,7 +167,9 @@ this.typesDocument=[
         this.observation.statut={}        
         this.observation.demandeid =  response.idDemande;
         this.observation.statut.libelle =StatutEnum.completee;
+        console.log(this.observation)
         this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+
       })
       
     }

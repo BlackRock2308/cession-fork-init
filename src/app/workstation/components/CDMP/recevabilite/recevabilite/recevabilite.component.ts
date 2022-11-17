@@ -50,7 +50,7 @@ export class RecevabiliteComponent implements OnInit {
       { label: 'Liste des demandes de cession' },
     ]);
     this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
-    location.reload()
+    //location.reload()
   }
 
   // // getDemndes(event: LazyLoadEvent = {}) {

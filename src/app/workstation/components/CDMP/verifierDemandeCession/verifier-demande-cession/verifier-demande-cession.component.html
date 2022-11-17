@@ -290,8 +290,10 @@
                                 style="font-weight: bold;color: #203359;">Montant de la dépense<span
                                     class="required">*</span></label>
                             <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="number" formControlName="montantCreance"
-                                    [(ngModel)]="bonEngagement.montantCreance" />
+                               
+                                    <p-inputNumber   mode="currency" currency="CFA" formControlName="montantCreance"
+                                    [(ngModel)]="bonEngagement.montantCreance">
+                                    </p-inputNumber>
                             </div>
                         </div>
                         <div class="field grid col-12 md:col-4 sm:col-6">
