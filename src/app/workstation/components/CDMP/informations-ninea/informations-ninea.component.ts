@@ -135,9 +135,17 @@ export class InformationsNineaComponent implements OnInit {
         },
         (error)=>{},
          ()=>{
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+           
+          
           this.observation.statut={}          
           this.observation.demandeid = this.demande.idDemande;
+
+          // this.observation.utilisateurid = this.demande.pme.utilisateur.id;
+          // this.observation.statut.libelle =StatutEnum.adhesionSoumise;
+          // this.observation.dateObservation = this.demande.dateDemandeAdhesion;
+          // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+       
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
           this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
