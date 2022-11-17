@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ConfirmationService, FilterMatchMode, FilterService, MenuItem, MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
+import { ConfirmationService, FilterMatchMode, FilterService, LazyLoadEvent, MenuItem, MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
 import { AppComponent } from 'src/app/app.component';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
 import { Product } from 'src/app/workstation/model/product';
@@ -10,6 +10,8 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import {PaginatorModule} from 'primeng/paginator';
+
 @Component({
   selector: 'app-analyse-risque',
   templateUrl: './analyse-risque.component.html',
@@ -97,6 +99,7 @@ export class AnalyseRisqueComponent implements OnInit {
   rangeDates:any[];
   matchModeOptions: SelectItem[];
   statuts:any[];
+  page: any;
 
   constructor(
     private router: Router,
@@ -137,6 +140,8 @@ export class AnalyseRisqueComponent implements OnInit {
       console.log(this.demandes)
     });
 
+   
+
     this.primengConfig.ripple = true;
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
@@ -160,7 +165,50 @@ export class AnalyseRisqueComponent implements OnInit {
         {label: 'Non Risquée', value: 'NON_RISQUEE'},
         {label: 'Complétée', value: 'COMPLETEE'}
     ]
+
+    this.demandeCessionService.getPageDemandesCession({
+      page: 0,
+      size: 5,
+      
+      // search: this.searchText,
+    }).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
   }
+
+  paginate(event) {
+    //event.first = Index of the first record
+    //event.rows = Number of rows to display in new page
+    //event.page = Index of the new page
+    //event.pageCount = Total number of pages
+
+    const args = {
+      page: event.page,
+      size: event.rows,
+      
+      // search: this.searchText,
+    };
+    this.demandeCessionService.getPageDemandesCession(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+    console.log(event)
+}
+
+initGetDemandes(){
+  const args = {
+    page: 0,
+    size: 5,
+    sort:"dateDemandeCession,DESC"
+    
+    // search: this.searchText,
+  };
+  this.demandeCessionService.getPageDemandesCession(args).subscribe(data => {
+    this.demandes = data.content
+    this.page=data      
+  });
+}
 
   openNew() {
     this.product = {};
