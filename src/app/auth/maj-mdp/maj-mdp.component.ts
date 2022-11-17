@@ -32,13 +32,15 @@ export class MajMdpComponent {
     var body={
       idUtilisateur:this.tokenStorage.getUser().idUtilisateur,
       password:this.form.value['password'],
-      //email:this.tokenStorage.getUser().email,
+      email:this.tokenStorage.getUser().email,
       updatePassword:false
     }
     console.log(JSON.stringify(body));
 
     this.authService.majMDP(body).subscribe(
       data=>{
+        console.log(data);
+        
         this.router.navigate(['login'])
       }
     )
