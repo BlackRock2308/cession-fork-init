@@ -158,11 +158,11 @@ export class AdhesionComponent implements OnInit {
                 
               // }
             }
-            //this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-            this.observation.statut={}            
-            this.observation.demandeid =  response.idDemande;
-            this.observation.statut.libelle =StatutEnum.adhesionSoumise;
-            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+            // this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+            // this.observation.statut={}            
+            // this.observation.demandeid =  response.idDemande;
+            // this.observation.statut.libelle =StatutEnum.adhesionSoumise;
+            // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
           }
          )
         });

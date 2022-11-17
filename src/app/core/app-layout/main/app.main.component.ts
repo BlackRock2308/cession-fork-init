@@ -107,7 +107,7 @@ export class AppMainComponent implements OnInit{
             this.menuHoverActive = false;
         }
 
-        this.menuClick = false;
+        this.menuClick = true;
         this.topbarItemClick = false;
         this.megaMenuClick = false;
         this.megaMenuMobileClick = false;
@@ -162,8 +162,8 @@ export class AppMainComponent implements OnInit{
     }
 
     onMenuButtonClick(event) {
-        this.menuClick = true;
-        this.topbarMenuActive = false;
+        this.menuClick = false;
+        this.topbarMenuActive = true;
 
         if (this.isMobile()) {
             this.menuMobileActive = !this.menuMobileActive;
@@ -173,7 +173,7 @@ export class AppMainComponent implements OnInit{
     }
 
     onSidebarClick(event: Event) {
-        this.menuClick = true;
+        this.menuClick = false;
     }
 
     onToggleMenuClick(event: Event) {
