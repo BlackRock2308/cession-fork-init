@@ -6,6 +6,7 @@ import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-do
 import { Convention } from '../../model/convention';
 import { DemandeAdhesion, DemandeCession } from '../../model/demande';
 import { Document, Documents } from '../../model/document';
+import { StatutEnum } from '../../model/statut-enum';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
 import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
@@ -56,6 +57,8 @@ export class ConventionCessionComponent implements OnInit {
   
   matchModeOptions: SelectItem[];
   statuts:any[];
+  paramStatuts: any[];
+  page: any;
   constructor(
     private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService,
     private breadcrumbService: BreadcrumbService,
@@ -70,53 +73,57 @@ export class ConventionCessionComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes,data.content)
-      this.documentConvention = this.demandes[0]?.conventions[0]?.documents[0];
-   console.log('affiche' + JSON.stringify(this.documentConvention))
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    this.paramStatuts=[StatutEnum.ConventionAcceptee,StatutEnum.conventionGeneree,StatutEnum.conventionCorrigee,StatutEnum.conventionSigneeParPME,StatutEnum.conventionSigneeParDG,StatutEnum.ConventionTransmise,StatutEnum.ConventionRejeteeParPME,StatutEnum.ConventionRejeteeParDG,StatutEnum.ConventionRejetee,StatutEnum.nonRisquee]
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE_PAR_PME").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+    this.initGetDemandes(this.paramStatuts)
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes,data.content)
+  //     this.documentConvention = this.demandes[0]?.conventions[0]?.documents[0];
+  //  console.log('affiche' + JSON.stringify(this.documentConvention))
+  //   });
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE_PAR_DG").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE_PAR_PME").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
 
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
-    this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
-      this.demandes=this.demandes.concat(data.content)
-      console.log(this.demandes)
-    });
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE_PAR_DG").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
+
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
+
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
+  //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
+  //   this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
+  //     this.demandes=this.demandes.concat(data.content)
+  //     console.log(this.demandes)
+  //   });
 
     this.profil = localStorage.getItem('profil');
 
@@ -152,6 +159,55 @@ export class ConventionCessionComponent implements OnInit {
         {label: 'Convention Générée', value: 'NON_RISQUEE'}
     ]
     }
+
+    paginate(event) {
+      //event.first = Index of the first record
+      //event.rows = Number of rows to display in new page
+      //event.page = Index of the new page
+      //event.pageCount = Total number of pages
+  
+      let statutsParam
+    if(Array.isArray(this.paramStatuts)){
+      statutsParam=this.paramStatuts.join(",")
+    }
+    else
+      statutsParam=this.paramStatuts
+      const args = {
+        page: event.page,
+        size: event.rows,
+        sort:"dateDemandeCession,DESC",
+        statut:statutsParam
+        
+        // search: this.searchText,
+      };
+      this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+        this.demandes = data.content
+        this.page=data      
+      });
+  }
+  
+  initGetDemandes(statuts:StatutEnum[]){
+    let statutsParam
+    if(Array.isArray(statuts)){
+      statutsParam=statuts.join(",")
+    }
+    else
+      statutsParam=statuts
+      const args = {
+        page: 0,
+        size: 5,
+        sort:"dateDemandeCession,DESC",
+        statut:statutsParam
+        
+        // search: this.searchText,
+      };
+      this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+        this.demandes = data.content
+        this.page=data      
+      });
+    
+    
+  }
 
 hideDialog() {
     this.demandeDialog = false;

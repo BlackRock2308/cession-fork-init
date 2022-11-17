@@ -5,14 +5,18 @@ import { ApiSettings } from '../../generic/const/apiSettings.const';
 import { PaginatedResults } from '../../model/paginatedResults';
 import { map, catchError } from 'rxjs/operators';
 import { DemandeCession } from '../../model/demande';
+import { GenericService } from '../../generic/generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecevabiliteService {
+export class RecevabiliteService extends GenericService {
+  
   private demandesCessionUrl =ApiSettings.API_CDMP + '/demandecession'; 
   
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {
+    super(http)
+  }
 
   //afficher les demandes de cession à l'étape de la recevabilité
   // getRecevabilites(): Observable<any[]> {
@@ -72,12 +76,17 @@ export class RecevabiliteService {
             return new PaginatedResults(response);
 
         }),
-        catchError(this.handleError),
+        //catchError(this.handleError),
     );
 }
 
-private handleError(error: any) {
-  console.error('An error occurred', error);
-  return observableThrowError(error);
+getPageRecevabilites(args:any): Observable<any> {
+  return this.getAllPagination(this.demandesCessionUrl,args)
 }
+
+
+// private handleError(error: any) {
+//   console.error('An error occurred', error);
+//   return observableThrowError(error);
+// }
 }

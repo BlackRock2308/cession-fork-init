@@ -58,6 +58,10 @@ export class DemandesAdhesionService extends GenericService {
     return this.http.get<any>(`${this.demandesADHUrl}`);
   }
 
+  getPageDemandesAdhesion(args:any): Observable<any> {
+    return this.getAllPagination(`${this.demandesADHUrl}`,args)
+  }
+
   getCreances(): Observable<any> {
     return this.http.get<any>(`${this.creancesUrl}`);
   }

@@ -10,9 +10,9 @@
             <br>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5"
-                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                [paginator]="false" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id"
-                lazy="true" (onLazyLoad)="getDemndes($event)" [totalRecords]="totalRecords">
+                lazy="true" [totalRecords]="totalRecords">
 
                 <ng-template pTemplate="header">
                     <tr>
@@ -99,6 +99,7 @@
                     </tr>
                 </ng-template>
             </p-table>
+            <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
         </div>
 
 
