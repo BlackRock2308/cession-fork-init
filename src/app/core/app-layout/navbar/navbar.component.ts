@@ -59,12 +59,16 @@ export class NavbarComponent implements OnInit {
 
   configActive: boolean;
   profil: string;
+  nom : string;
+  prenom : string;
 
   constructor(public renderer: Renderer2, public dialogService: DialogService,
     public appMain: AppMainComponent, public router: Router,
     private tokenStorage:TokenStorageService) { }
   ngOnInit() {
     this.profil = localStorage.getItem('profil')
+    this.nom = this.tokenStorage.getUser().nom
+    this.prenom = this.tokenStorage.getUser().prenom
 
   }
 
