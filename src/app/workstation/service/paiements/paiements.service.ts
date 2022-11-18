@@ -13,6 +13,7 @@ export class PaiementsService extends GenericService{
     super(http);
   }
 
+  
   getAllPaiements() {
     return this.getAll(this.paiementUrl);
   }
