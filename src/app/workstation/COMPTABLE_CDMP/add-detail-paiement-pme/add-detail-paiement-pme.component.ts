@@ -104,8 +104,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     this.detailPaiement.datePaiement = new Date();
     this.detailsPaiementsService
       .addDetailPaiementPME(this.detailPaiement)
-      .subscribe((res: DetailsPaiement) => {
-        if (res.id) {
+      .subscribe((res: any) => {
+        let data = JSON.parse(JSON.stringify(res));
+        if (data.id) {
           let typeDocument = "";
           if (res.modePaiement === "CHEQUE") {
             typeDocument = "CHEQUE";
@@ -114,12 +115,22 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           }
           //for (let file of this.selectedFiles) {
             this.uploadFileService
-              .uploadFile('/detailsPaiements/', res.id, this.selectedFiles, typeDocument)
+              .uploadFile('/detailsPaiements/', data.id, this.selectedFiles, typeDocument)
               .subscribe((resFil: any) => {
                 console.log(resFil);
               });
           //}
         }
+       if(res.status == "500"){
+        this.dismiss();
+        Swal.fire({
+          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Le montant dépasse le solde.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+          color:"#203359",
+          confirmButtonColor:"#99CC33",
+          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+          allowOutsideClick:false,
+        })
+       }else{
         this.close(this.detailPaiement);
         Swal.fire({
           html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>PME payé avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -129,11 +140,13 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           allowOutsideClick:false,
         }).then((result) => {
           if (result.isConfirmed) {
-            //this.router.navigate(['workstation/comptable/list-paiements-pme',  this.config.data.paiement.id])
-            setTimeout(() => {
-              location.reload()
-           },100);
-          } })
+             setTimeout(() => {
+               location.reload()
+            },100);
+          }
+          
+         })
+        }
       }),
       (error) => {
         this.servicemsg.add({
