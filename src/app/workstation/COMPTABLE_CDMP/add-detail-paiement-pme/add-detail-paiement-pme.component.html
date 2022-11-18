@@ -1,33 +1,53 @@
 <p-toast key="tst" [baseZIndex]="99999" [hideTransitionOptions]="'4ms'"></p-toast>
 <p-toast></p-toast>
 <div class="container-fluid text-right">
+    <div style="display: block;">
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
     <div class="modal-body">
         <div class="card p-fluid">
             <div class="field grid row">
                 <label htmlFor="modePaiement" class="col-12 md:col-4">Mode Paiement</label>
-                <div class="col-12 md:col-8">
-                    <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="modePaiement">
+                <div class="col-12 md:col-8"[ngClass]="{
+                    'has-error':(form.get('modePaiement').touched || form.get('modePaiement').dirty ) &&
+                    !form.get('modePaiement').valid
+                    }">
+                    <p-dropdown [options]="dropdownItems" formControlName="modePaiement" optionLabel="name" [(ngModel)]="modePaiement">
                     </p-dropdown>
+                    <span *ngIf="form.get('modePaiement').errors && submit " style="color: red;">
+                        {{message}}
+                     </span>
                 </div>
             </div>
             <div class="field grid row">
                 <label htmlFor="referencePaiement" class="col-12 md:col-4">Référence de
                     Paiement</label>
-                <div class="col-12 md:col-8">
-                    <input pInputText  type="text" [(ngModel)]="detailPaiement.reference" />
+                <div class="col-12 md:col-8" [ngClass]="{
+                    'has-error':(form.get('referencePaiement').touched || form.get('referencePaiement').dirty ) &&
+                    !form.get('referencePaiement').valid
+                    }">
+                    <input pInputText formControlName="referencePaiement"  type="text" [(ngModel)]="detailPaiement.reference" />
+                    <span *ngIf="form.get('referencePaiement').errors && submit" style="color: red;">
+                        {{message}}
+                     </span>
                 </div>
             </div>
             <div class="field grid row">
                 <label htmlFor="montant" class="col-12 md:col-4">Montant</label>
-                <div class="col-12 md:col-8">
-                    <p-inputNumber  [(ngModel)]="detailPaiement.montant" mode="currency" currency="CFA">
+                <div class="col-12 md:col-8" [ngClass]="{
+                    'has-error':(form.get('montant').touched || form.get('montant').dirty ) &&
+                    !form.get('montant').valid
+                    }">
+                    <p-inputNumber formControlName="montant"  [(ngModel)]="detailPaiement.montant" mode="currency" currency="CFA">
                     </p-inputNumber>
+                    <span *ngIf="form.get('montant').errors && submit" style="color: red;">
+                        {{message}}
+                     </span>
                 </div>
             </div>
             <div class="field grid row">
                 <label htmlFor="payer" class="col-12 md:col-4">Enregistré par :</label>
                 <div class="col-12 md:col-8">
-                    <input pInputText type="text" [(ngModel)]="detailPaiement.comptable" [disabled]="true" />
+                    <input pInputText type="text" formControlName="payer" [(ngModel)]="detailPaiement.comptable" [disabled]="true" />
                 </div>
             </div>
             <div class="field grid">
@@ -37,7 +57,7 @@
                     <ng-template #elseBlock id="file" type="text" pInputText>
                         <input id="file" type="text" pInputText placeholder="{{selectedFiles.name}}">
                     </ng-template>
-                    <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf" id="upload-file"
+                    <input formControlName="preuveFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf" id="upload-file"
                         name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
                     <button type="button" pButton pRipple icon="pi pi-upload"
                         class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
@@ -45,11 +65,14 @@
                 </div>
             </div>
         </div>
+        </div>
         <div class="modal-footer ">
             <div class="col-12  pr-0 d-flex  flex-row-reverse">
                 <button  style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
                     class="p-button-raised dangerButton" (click)="dismiss()"></button>
-                <button type="button"  style="width: min-content;" pButton pRipple label="Sauvegarder"
-                    icon="pi pi-check" (click)="onSubmitForm()" class="p-button-raised successButton"></button>
+                <button type="submit" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                    icon="pi pi-check"  class="p-button-raised successButton"></button>
             </div>
+        </div>
+        </form>
         </div>
