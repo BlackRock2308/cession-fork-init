@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilterMatchMode, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { EditerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/editer-convention/editer-convention.component';
 import { Convention } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { Paiements } from 'src/app/workstation/model/paiements';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 
@@ -53,7 +56,9 @@ export class PaiementsComponent implements OnInit {
   matchModeOptions: SelectItem[];
   statuts:any[];
   constructor(private documentService: DocumentService,private paiementsService: PaiementsService, public dialogService: DialogService,
-    private messageService:MessageService, private router: Router, private breadcrumbService: BreadcrumbService) {
+    private messageService:MessageService, private router: Router, private breadcrumbService: BreadcrumbService,
+    private tokenStorage:TokenStorageService,
+    private demandeCessionService:DemandesCessionService) {
     this.breadcrumbService.setItems([
       { label: 'Paiements' },
   ]);
@@ -90,8 +95,9 @@ export class PaiementsComponent implements OnInit {
   }
 
   getAllPaiements(){
-    this.paiementsService.getAllPaiements().subscribe((data:Paiements[])=>{
-      this.paiements=data});
+    this.demandeCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,StatutEnum.ConventionAcceptee).subscribe((data)=>{
+      this.paiements=data.content.map(item => item['paiement']);
+    console.log(this.paiements,data,data.content['paiement'])});
   }
   visualiserListPaiement(paiement: Paiements) {
     this.paiement = {...paiement};
