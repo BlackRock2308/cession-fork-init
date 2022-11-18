@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessageService } from "primeng/api";
@@ -42,8 +42,12 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   user: Utilisateur = {};
   modePaiement: ModePaiement = {};
   observation: Observation={};
+  message:string;
+  form!: FormGroup;
+  submit: boolean=false;
 
   constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     public activeModal: NgbActiveModal,
     private uploadFileService: FileUploadService,
@@ -64,7 +68,15 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     { name: "Virement", code: "VIREMENT" },
   ];
   ngOnInit() {
+    this.message = "Champ obligatoire";
     this.detailPaiement.comptable = this.user.prenom + " " + this.user.nom;
+    this.form = this.formBuilder.group({
+      modePaiement: ['', Validators.required],
+      referencePaiement: ['', Validators.required],
+      montant: ['', Validators.required],
+      payer: [''],
+      preuveFile: ['']
+    });
   }
   dismiss() {
     this.close(null);
@@ -83,6 +95,10 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   }
 
   onSubmitForm() {
+    this.submit = true;
+    if (this.form.invalid) {
+    return;
+  }
     this.detailPaiement.modePaiement = this.modePaiement.code;
     this.detailPaiement.paiementDto = this.config.data.paiement;
     this.detailPaiement.datePaiement = new Date();
@@ -111,7 +127,10 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           confirmButtonColor:"#99CC33",
           confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
           allowOutsideClick:false,
-        })
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['workstation/comptable/list-paiements-pme',  this.config.data.paiement.id])
+          } })
       }),
       (error) => {
         this.servicemsg.add({

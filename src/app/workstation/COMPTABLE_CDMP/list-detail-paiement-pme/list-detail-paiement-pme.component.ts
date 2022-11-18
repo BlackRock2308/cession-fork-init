@@ -116,19 +116,19 @@ export class ListPaiementPMEComponent implements OnInit {
       //height: "calc(90% - 200px)",
       baseZIndex: 10000,
     });
-    ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
-      if(detailsPaiement != null || detailsPaiement != undefined){
-        this.detailsPaiements.unshift(detailsPaiement);
-      }
-    });
+    // ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
+    //   if(detailsPaiement != null || detailsPaiement != undefined){
+    //     this.detailsPaiements.unshift(detailsPaiement);
+    //   }
+    // });
     
   }
 
-  detailPaimentPME(document: Documents) {
+  detailPaimentPME(document: any) {
     let paiement = "true";
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
-        document: document,
+        document: document[0],
         paiement: paiement,
       },
       header: "Preuve de Paiement PME",

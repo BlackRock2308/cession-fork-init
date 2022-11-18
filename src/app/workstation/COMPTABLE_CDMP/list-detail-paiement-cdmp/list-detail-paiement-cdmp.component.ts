@@ -111,23 +111,23 @@ export class ListPaiementCdmpComponent implements OnInit {
       width: "50%",
       baseZIndex: 10000,
     });
-    ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
-      if(detailsPaiement != null || detailsPaiement != undefined){
-        this.detailsPaiements.unshift(detailsPaiement);
-      }
+  //   ref.onClose.subscribe((detailsPaiement: DetailsPaiement) => {
+  //     if(detailsPaiement != null || detailsPaiement != undefined){
+  //       this.detailsPaiements.unshift(detailsPaiement);
+  //     }
       
       
-  });
+  // });
     // .close((result) => {
     //   this.getAllDetailsPaiements();
     // });
   }
 
-  detailPaimentCDMP(document: Documents) {
+  detailPaimentCDMP(document: any) {
     let paiement = "true";
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
-        document: document,
+        document: document[0],
         paiement: paiement,
       },
       header: "Preuve de Paiement CDMP",
