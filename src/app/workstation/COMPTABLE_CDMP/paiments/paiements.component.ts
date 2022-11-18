@@ -97,6 +97,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   getAllPaiement(){
     this.paiementsService.getAllPaiements().subscribe((data:Paiements[]) => {
       this.paiements = data
+      console.log(this.paiements)
     });
   }
 
