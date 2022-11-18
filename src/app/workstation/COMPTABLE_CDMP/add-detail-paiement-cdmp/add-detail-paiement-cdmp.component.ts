@@ -21,7 +21,7 @@ import { DetailsPaiementsService } from "../../service/paiements/details-paiemen
   providers: [MessageService],
 })
 export class AddDetailPaiementCDMPComponent implements OnInit {
-  selectedFiles: File[] = [];
+  selectedFiles: File;
   selectedFile?: File | null = null;
   images: any;
   docLoading: boolean;
@@ -112,13 +112,13 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           } else {
             typeDocument = "PREUVE_VIREMENT";
           }
-          for (let file of this.selectedFiles) {
+          //for (let file of this.selectedFiles) {
             this.uploadFileService
-              .uploadFile('/detailsPaiements/', res.id, file, typeDocument)
+              .uploadFile('/detailsPaiements/', res.id, this.selectedFiles, typeDocument)
               .subscribe((resFil: any) => {
                 console.log(resFil);
               });
-          }
+          //}
         }
         this.close(this.detailPaiement);
         Swal.fire({
@@ -129,8 +129,13 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           allowOutsideClick:false,
         }).then((result) => {
           if (result.isConfirmed) {
-            this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
-          } })
+            //this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
+            setTimeout(() => {
+               location.reload()
+            },100);
+          }
+          
+         })
       }),
       (error) => {
         this.servicemsg.add({
