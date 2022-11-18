@@ -25,6 +25,10 @@ export class PaiementsService extends GenericService{
     let body = JSON.stringify(data);
    return this.add(this.paiementUrl , body);
   }
+
+  getPaiementsByIdPME(id){
+    return this.getById(`${this.paiementUrl}/bypme`, id);
+  }
  
 }
 

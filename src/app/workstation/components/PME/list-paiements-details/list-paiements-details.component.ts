@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DetailsPaiement } from 'src/app/workstation/model/detailsPaiements';
 import { Paiements } from 'src/app/workstation/model/paiements';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 
@@ -14,15 +16,15 @@ export class ListPaiementsDetailsComponent implements OnInit {
   paiements:Paiements[];
 
   paiement:Paiements;
+  idPaiement: any;
 
-  constructor(public ref: DynamicDialogRef,private paiementsService: PaiementsService) { }
+  constructor(public ref: DynamicDialogRef,private paiementsService: PaiementsService,
+    public config: DynamicDialogConfig) {}
 
   ngOnInit(): void {
-    // this.paiementsService.getPaiementObs().subscribe(data=>{
-    //   this.paiementCession=data
-    //   console.log(this.paiementCession)
-    // })
-
+    this.paiementCession=this.config.data
+    console.log(this.paiementCession);
+    
   }
 
   dismiss() {
