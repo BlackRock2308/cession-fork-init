@@ -29,25 +29,25 @@ export class ProfilComponent implements OnInit {
     ) { 
       
       if(localStorage.getItem('profil')=='DRC'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+        this.breadcrumbService.setHome({ label: 'Dashboard' , icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
       }
       if(localStorage.getItem('profil')=='DSEAR'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+        this.breadcrumbService.setHome({ label: 'Dashboard' ,icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
       }
       if(localStorage.getItem('profil')=='JURISTE'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['comptable/convention_cession'] })
+        this.breadcrumbService.setHome({  label: 'Conventions' ,icon: 'pi pi-home', routerLink: ['comptable/convention_cession'] })
       }
       if(localStorage.getItem('profil')=='PME'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] })
+        this.breadcrumbService.setHome({ label: 'Demandes de cession' ,icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] })
       }
       if(localStorage.getItem('profil')=='DAF'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+        this.breadcrumbService.setHome({label: 'Dashboard' ,  icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
       }
       if(localStorage.getItem('profil')=='DG'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+        this.breadcrumbService.setHome({label: 'Dashboard' , icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
       }
       if(localStorage.getItem('profil')=='ORDONNATEUR'){
-        this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['ordonnateur/conventions'] })
+        this.breadcrumbService.setHome({ label: 'Conventions' ,icon: 'pi pi-home', routerLink: ['ordonnateur/conventions'] })
       }
 
     }
