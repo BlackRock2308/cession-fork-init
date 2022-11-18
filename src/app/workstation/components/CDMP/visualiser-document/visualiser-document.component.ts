@@ -59,12 +59,17 @@ export class VisualiserDocumentComponent implements OnInit {
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demande = data
       console.log(this.demande , data)
+      
+      if(this.demande.idDemande)
+      {
+        this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
+          data => {
+              this.observationLibelle=data.libelle
+              console.log(this.observationLibelle)
+          })
+      }
 
-      this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
-        data => {
-            this.observationLibelle=data.libelle
-            console.log(this.observationLibelle)
-        })
+      
     })
     this.srcFile = this.config.data.document.urlFile;
     console.log('test '+this.srcFile)
@@ -255,7 +260,7 @@ export class VisualiserDocumentComponent implements OnInit {
       },
       header: "Signer la convention",
       width: '40%',
-      height: 'calc(40% - 100px)',
+      height: 'calc(52% - 100px)',
       baseZIndex: 50
     });
     this.dismiss();

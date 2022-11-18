@@ -125,7 +125,7 @@ export class ConventionEnregistreeComponent implements OnInit {
           ()=>{
             Swal.fire({
 
-              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été soumise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été transmise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
               color: "#203359",
               confirmButtonColor: "#99CC33",
               confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',

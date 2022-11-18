@@ -14,6 +14,7 @@ import { ObservationService } from 'src/app/workstation/service/observation/obse
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-complement-documents',
@@ -51,10 +52,10 @@ export class ComplementDocumentsComponent implements OnInit {
     private tokenStorage:TokenStorageService
     ) { 
       this.breadcrumbService.setItems([
-        { label: 'Liste de Demandes ', routerLink: ['pme/demandes_en_cours '] },
+        { label: 'Liste des demandes ', routerLink: ['pme/demandes_en_cours'] },
         { label: 'Compléter les documents' }
     ]);
-    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] });
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['pme/demandes_en_cours'] });
     }
 
   ngOnInit(): void {
@@ -81,11 +82,11 @@ export class ComplementDocumentsComponent implements OnInit {
     {field: 'action', header: 'Action'},
 ];
 this.items = [
-  { label: 'Liste de Demandes ', url: '/#/workstation/pme/demandes_en_cours ' },
+  { label: 'Liste de Demandes ', url: '/pme/demandes_en_cours/complement_documents' },
   { label: 'Compléter les documents' }
 ];
 
-this.home = { icon: 'pi pi-home', url: '/#/workstation/cdmp/dashboard' };
+this.home = { icon: 'pi pi-home', url: '' };
 
 this.typesDocument=[
   {
@@ -155,29 +156,47 @@ this.typesDocument=[
 
       
       //location.reload()
-      this.router.navigate(['workstation/pme/demandes_en_cours'])
+      //this.router.navigate(['workstation/pme/demandes_en_cours'])
     
       
   }
   async completerDemande(id:number):Promise<any> {
     
-    try{
       await this.demandeCessionService.completeDemande(id).subscribe(response=>{
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
         this.observation.statut={}        
-        this.observation.demandeid =  response.idDemande;
+        this.observation.demandeid =  this.demandeNantissementInfos.idDemande;
         this.observation.statut.libelle =StatutEnum.completee;
-        console.log(this.observation)
-        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-
-      })
+        console.log(this.observation,response)
+        this.observationService.postObservation(this.observation).subscribe(
+          (data) => {console.log(data)},
+          
+        (error) =>{},
+        () =>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            color: "#203359",
+            confirmButtonColor: "#99CC33",
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+            allowOutsideClick: false,
       
+          }).then(() => {
+      
+            this.router.navigate(['workstation/pme/demandes_en_cours'])
+          })
     }
-    catch(error){
-      console.log(error)
-    }
+
+  )
+      
     
-  }
+    
+    
+  })
+}
   
   
   //enregistrement du pme avec l'appel du service d'enregistrement

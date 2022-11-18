@@ -98,27 +98,29 @@ export class SignerconventionPMEComponent implements OnInit {
       console.log(response)
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}            
-      this.observation.demandeid =  response.idDemande;
+      this.observation.demandeid =  this.demande.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
     
     
     
       Swal.fire({
-        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
+        position: 'center',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Convention Signée avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
         color: "#203359",
-        confirmButtonColor: "#A6C733",
-        confirmButtonText: '<i class="pi pi-check"></i>OK',
+        confirmButtonColor: "#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
         allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['workstation/comptable/convention_cession'])
-        }
+  
+      }).then(() => {
+  
+        this.router.navigate(['workstation/pme/convention_cession'])
       })
   
-      setTimeout(() => {
-        location.reload()
-       }, 1500);
+      
       }
       else{
         Swal.fire({
