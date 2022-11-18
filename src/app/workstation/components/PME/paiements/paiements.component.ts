@@ -95,14 +95,15 @@ export class PaiementsComponent implements OnInit {
   }
 
   getAllPaiements(){
-    this.demandeCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,StatutEnum.ConventionAcceptee).subscribe((data)=>{
-      this.paiements=data.content.map(item => item['paiement']);
-    console.log(this.paiements,data,data.content['paiement'])});
+    this.paiementsService.getPaiementsByIdPME(this.tokenStorage.getPME().idPME).subscribe((data)=>{
+      this.paiements=data
+    console.log(this.paiements)
+  });
   }
   visualiserListPaiement(paiement: Paiements) {
     this.paiement = {...paiement};
     this.paiementDialog = true;
-    this.router.navigate(['workstation/pme/list-paiements']);
+    this.router.navigate(['workstation/pme/list-paiements',this.paiement.idPaiement]);
     
   }
 

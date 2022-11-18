@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
+import { DetailsPaiement } from 'src/app/workstation/model/detailsPaiements';
 import { Paiements } from 'src/app/workstation/model/paiements';
+import { DetailsPaiementsService } from 'src/app/workstation/service/paiements/details-paiements.services';
 import { PaiementsService } from 'src/app/workstation/service/paiements/paiements.service';
 import { ListPaiementsDetailsComponent } from '../list-paiements-details/list-paiements-details.component';
 import { PaiementsComponent } from '../paiements/paiements.component';
@@ -43,9 +46,17 @@ export class ListPaiementsComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   home: MenuItem;
+  idPaiement: any;
+  detailsPaiements: DetailsPaiement[];
   
   constructor(private paiementsService: PaiementsService, public dialogService: DialogService,
-    private breadcrumbService: BreadcrumbService) {
+    private breadcrumbService: BreadcrumbService ,
+    private route: ActivatedRoute, private router:Router,
+    private detailsPaiementsService: DetailsPaiementsService
+  ) {
+    this.route.params.subscribe(
+      (params: Params) => (this.idPaiement = params["idPaiement"])
+    );
       this.breadcrumbService.setItems([
         { label: 'Paiements' , routerLink: ['pme/paiements']},
         { label: 'Liste des paiements' },
@@ -62,23 +73,35 @@ export class ListPaiementsComponent implements OnInit {
         { field: 'montant', header: 'Montant' },
         { field: 'modePaiement', header: 'Mode Paiement' },
       ];  
-      this.getAllPaiements();
+      this.getAllDetailPaiements();
+      this.getPaiement();
   }
-  getAllPaiements(){
-    this.paiementsService.getAllPaiements().subscribe((data:Paiements[])=>{
-      this.paiements=data});
+  getAllDetailPaiements() {
+    this.detailsPaiementsService.getDetailPaiementPMEByPaiement(this.idPaiement)
+    .subscribe((res:DetailsPaiement[]) =>{
+      this.detailsPaiements = res;
+    })
   }
-  visualiserDetails(paiement: Paiements) {
-    this.paiement = {...paiement};
+
+  getPaiement() {
+    this.paiementsService.getPaiementsById(this.idPaiement)
+    .subscribe((res:Paiements) =>{
+      this.paiement= res;
+      console.log(this.paiement);
+      
+    })
+  }
+  visualiserDetails(paiement: DetailsPaiement) {
+    //this.paiement = {...paiement};
     //console.log(demande)
-   // this.paiementsService.setPaiementObs(paiement);
+    //this.paiementsService.setPaiementObs(paiement);
     const ref = this.dialogService.open(ListPaiementsDetailsComponent, {
         data: {
             paiement: paiement
         },
         header: "Détails du paiement",
         width: '40%',
-        height: 'calc(70% - 100px)',
+        height: 'calc(80% - 100px)',
         baseZIndex: 10000
     });
 

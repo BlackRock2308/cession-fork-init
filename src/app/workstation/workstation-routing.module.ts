@@ -69,7 +69,7 @@ const routes: Routes = [
   {path:'pme/demandes_en_cours/complement_documents',component:ComplementDocumentsComponent},
   //Paiements et Recouvrement de la PME
   {path:'pme/paiements',component:PaiementsComponent},
-  {path:'pme/list-paiements',component:ListPaiementsComponent},
+  {path:'pme/list-paiements/:idPaiement',component:ListPaiementsComponent},
 
   {path:'profil',component:ProfilComponent},
 
