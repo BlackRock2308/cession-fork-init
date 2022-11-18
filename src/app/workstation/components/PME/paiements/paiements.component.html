@@ -78,7 +78,7 @@
                         </td>
                         <td style="width:16%;">
                             <span class="p-column-title">Total Marché</span>
-                            {{paiement.totalMarche}}
+                            {{paiement.montantCreanceInitial}}
                         </td>
                         <td style="width:12%;">
                             <span class="p-column-title">Solde PME</span>
@@ -90,10 +90,10 @@
                         </td>
                         <td style="width:15%;">
                             <span class="p-column-title">Montant Reçu</span>
-                            {{paiement.montantRecu}}
+                            {{paiement.montantCreance - paiement.soldePme}}
                         </td>
                         <td style="width:18%;">
-                            <span [class]="'product-badge status-' + (paiement.statut ? paiement.statut.toLowerCase() : '')">{{paiement.statut.replaceAll('-', ' ')}}</span>
+                            <span [class]="'product-badge status-' + (paiement.statutPme.libelle ? paiement.statutPme.libelle.toLowerCase() : '')">{{paiement.statutPme.libelle.replaceAll('-', ' ')}}</span>
 
                         </td>
                         <td>
