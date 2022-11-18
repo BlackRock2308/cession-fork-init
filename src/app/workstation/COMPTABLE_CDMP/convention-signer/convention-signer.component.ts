@@ -70,26 +70,25 @@ export class ConventionSignerComponent implements OnInit {
  
   private async signerConventionDG() {
 
-    let body = {
-      valeurDecote: this.form.value['decote'],
-    }
-
-
- 
     var  idDemande = this.demande.idDemande
     this.codePIN=this.form.value['codePIN']
-
-    if (this.form.value['decote'] !== null) {
-      this.conventionService.updateConvention(body , this.convention.idConvention)
-      .subscribe((response: any) => {
-        console.log(response)}
-  )}
 
 
     await this.demandeCessionService.signerConventionDG(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
       console.log(response.body)
       if(response.body){
+
+        let body = {
+          valeurDecote: this.form.value['decote'],
+        }
+    
+        if (this.form.value['decote'] !== null) {
+          this.conventionService.updateConvention(body , this.convention.idConvention)
+          .subscribe((response: any) => {
+            console.log(response)}
+      )}
+      
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}      
       this.observation.demandeid = idDemande;
@@ -97,11 +96,16 @@ export class ConventionSignerComponent implements OnInit {
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
       Swal.fire({
-        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
+        position: 'center',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Convention Signée avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
         color: "#203359",
-        confirmButtonColor: "#A6C733",
-        confirmButtonText: '<i class="pi pi-check"></i>OK',
+        confirmButtonColor: "#99CC33",
+        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
         allowOutsideClick: false,
+  
       }).then((result) => {
         if (result.isConfirmed) {
           this.router.navigate(['workstation/comptable/convention_cession'])
@@ -110,7 +114,8 @@ export class ConventionSignerComponent implements OnInit {
   
       setTimeout(() => {
         location.reload()
-       }, 1500);
+      },1600);
+     
       }
       else{
         Swal.fire({

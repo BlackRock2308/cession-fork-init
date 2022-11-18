@@ -94,7 +94,8 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-search"
+                                <button *ngIf="!(demande.statut.libelle === 'CONVENTION_GENEREE')"
+                                pButton pRipple icon="pi pi-search"
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
                                    
@@ -103,7 +104,7 @@
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
                                     *ngIf="(demande.statut.libelle === 'CONVENTION_GENEREE')"
-                                    (click)="signerConvention(demande)"></button> 
+                                    (click)="visualiserDocument(demande.conventions[0].documents[0] ,demande)"></button> 
                             </div>
                         </td>
                     </tr>

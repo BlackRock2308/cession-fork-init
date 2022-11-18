@@ -40,7 +40,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
 
   ngOnInit() {
 
-    this.paramStatuts=[StatutEnum.ConventionAcceptee,StatutEnum.conventionGeneree,StatutEnum.conventionCorrigee,StatutEnum.conventionSigneeParPME,StatutEnum.conventionSigneeParDG,StatutEnum.ConventionRejetee,StatutEnum.ConventionTransmise]
+    this.paramStatuts=[StatutEnum.ConventionAcceptee,StatutEnum.conventionCorrigee,StatutEnum.ConventionRejetee,StatutEnum.ConventionTransmise]
     this.initGetDemandes(this.paramStatuts)
    
     // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {

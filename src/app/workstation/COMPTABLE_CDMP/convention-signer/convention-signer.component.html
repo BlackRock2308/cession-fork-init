@@ -1,11 +1,18 @@
 <form [formGroup]="form" >
 <div class="formgroup-inline">
-    <div class="field grid">
+    <!-- <div class="field grid">
         <label class="text" htmlFor="codePIN" >Code PIN : </label>
         <div >
             <input class="marge " pInputText id="codePIN" type="text" pTooltip="Code PIN" formControlName="codePIN" placeholder="****"/>
         </div>
-    </div>
+    </div> -->
+    <div class="field grid">
+        <label htmlFor="profile"  htmlFor="codePIN" class="text" id="codePIN" class="col-12 mb-2 md:col-4 md:mb-0">Code PIN:</label>
+        <div class="col-12 md:col-6">
+            <p-password  pTooltip="Code PIN" formControlName="codePIN" placeholder="****" [toggleMask]="true" styleClass="w-full"
+                 ></p-password>
+        </div>
+        </div>
 <br>
 <br>
     <div class="field grid">

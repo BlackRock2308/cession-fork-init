@@ -164,10 +164,7 @@ export class DemandeAdhesionComponent implements OnInit {
             {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'}
         ]
 
-        this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
-            this.demandes = data
-            console.log(this.demandes,data)
-        });
+        
 
     }
     ngOnInit(): void {
@@ -177,7 +174,10 @@ export class DemandeAdhesionComponent implements OnInit {
 
         });
 
-        
+        this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
+            this.demandes = data
+            console.log(this.demandes,data)
+        });
 
         this.primengConfig.ripple = true;
 

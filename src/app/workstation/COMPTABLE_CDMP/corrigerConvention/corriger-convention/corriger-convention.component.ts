@@ -149,7 +149,7 @@ export class CorrigerConventionComponent implements OnInit {
                 
               }).then(() => {
                
-                  this.router.navigate(['workstation/ordonnateur/conventions'])
+                  this.router.navigate(['workstation/comptable/convention_cession'])
               })
               
           })
