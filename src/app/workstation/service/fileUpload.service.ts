@@ -32,4 +32,8 @@ export class FileUploadService extends GenericService {
     return this.getFile(this.documentFileUrl, path );
 
   }
+
+  public deleteFile(id:number){
+    return this.delete(this.uploadFileUrl+ '/documents/',id)
+  }
 }

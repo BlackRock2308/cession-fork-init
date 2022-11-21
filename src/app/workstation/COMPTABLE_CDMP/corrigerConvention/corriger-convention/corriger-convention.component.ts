@@ -129,32 +129,9 @@ export class CorrigerConventionComponent implements OnInit {
 
     
 
-    this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.conventionCorrigee)
-            .subscribe((response: any) => {
-              console.log(response)
-              console.log(StatutEnum.conventionCorrigee)
-          },
-          (error)=>{},
-          ()=>{
-            Swal.fire({
-              position: 'center',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été corrigée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                color:"#203359",
-                confirmButtonColor:"#99CC33",
-                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                allowOutsideClick:false,
-                
-              }).then(() => {
-               
-                  this.router.navigate(['workstation/comptable/convention_cession'])
-              })
-              
-          })
    
-    this.conventionService.updateConvention(body , this.convention.idConvention)
+   //à ce stade la transmission et la correction est la même chose
+    this.conventionService.transmettreConvention(this.convention, this.convention.idConvention)
       .subscribe((response: any) => {
       let data = JSON.parse(JSON.stringify(response));
         if (data && data.idConvention != null) {
@@ -173,6 +150,30 @@ export class CorrigerConventionComponent implements OnInit {
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
     
+      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.conventionCorrigee)
+      .subscribe((response: any) => {
+        console.log(response)
+        console.log(StatutEnum.conventionCorrigee)
+    },
+    (error)=>{},
+    ()=>{
+      Swal.fire({
+        position: 'center',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été corrigée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+          color:"#203359",
+          confirmButtonColor:"#99CC33",
+          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+          allowOutsideClick:false,
+          
+        }).then(() => {
+         
+            this.router.navigate(['workstation/comptable/convention_cession'])
+        })
+        
+    })
   
          setTimeout(() => {
            location.reload()
