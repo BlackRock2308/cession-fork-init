@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 
-const AUTH_API = 'http://localhost:8081/api/utilisateur';
+const AUTH_API = 'http://10.42.1.131:8081/api/utilisateur';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -31,6 +31,6 @@ export class AuthService {
   }
 
   getPmebyUser(id):Observable<any>{
-    return this.http.get(`http://localhost:8081/api/pme/byutilisateur/${id}`, httpOptions);
+    return this.http.get(`http://10.42.1.131/api/pme/byutilisateur/${id}`, httpOptions);
   }
 }
