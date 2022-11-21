@@ -31,6 +31,6 @@ export class AuthService {
   }
 
   getPmebyUser(id):Observable<any>{
-    return this.http.get(`http://10.42.1.131/api/pme/byutilisateur/${id}`, httpOptions);
+    return this.http.get(`http://10.42.1.131:8081/api/pme/byutilisateur/${id}`, httpOptions);
   }
 }
