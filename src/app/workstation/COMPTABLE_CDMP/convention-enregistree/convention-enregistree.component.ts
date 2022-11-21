@@ -107,48 +107,54 @@ export class ConventionEnregistreeComponent implements OnInit {
   console.log(body)
 
     
-
+    await this.conventionService.transmettreConvention(this.convention,this.convention.idConvention).subscribe(
+      data=>{console.log(data)},
+          ()=>{},
+          ()=>{
+            this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
+              data=>{console.log(data)},
+              ()=>{},
+              ()=>{
+                this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionTransmise)
+                .subscribe((response: any) => {
+                  console.log(response)
+                  console.log(StatutEnum.ConventionTransmise)
+              },
+              ()=>{},
+              ()=>{
+                Swal.fire({
+    
+                  html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été transmise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                  color: "#203359",
+                  confirmButtonColor: "#99CC33",
+                  confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                  allowOutsideClick: false,
+            
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    this.router.navigate(['workstation/comptable/convention_cession'])
+                  }
+                })
+            
+                setTimeout(() => {
+                  location.reload()
+                 }, 1500);
+              })
+              this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+              this.observation.statut={}            
+              this.observation.demandeid =  this.demande.idDemande;
+                this.observation.statut.libelle =StatutEnum.ConventionTransmise;
+              this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+              }
+    
+             )
+          }
+    )
     
 
 
       
-        await this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
-          data=>{console.log(data)},
-          ()=>{},
-          ()=>{
-            this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionTransmise)
-            .subscribe((response: any) => {
-              console.log(response)
-              console.log(StatutEnum.ConventionTransmise)
-          },
-          ()=>{},
-          ()=>{
-            Swal.fire({
-
-              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été transmise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-              color: "#203359",
-              confirmButtonColor: "#99CC33",
-              confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-              allowOutsideClick: false,
         
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.router.navigate(['workstation/comptable/convention_cession'])
-              }
-            })
-        
-            setTimeout(() => {
-              location.reload()
-             }, 1500);
-          })
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut={}            
-          this.observation.demandeid =  this.demande.idDemande;
-            this.observation.statut.libelle =StatutEnum.ConventionTransmise;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-          }
-
-         )
         
       
 
