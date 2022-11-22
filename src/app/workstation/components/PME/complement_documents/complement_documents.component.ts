@@ -146,13 +146,29 @@ this.typesDocument=[
           return;
       }
 
-      for(var i=0;i<this.newDocuments.length;i++){
-        this.enregistrerDocument(this.newDocuments[i]);
+      Swal.fire({
+        title: 'Soumettre complément de dossier?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Soumettre',
+        denyButtonText: `Annuler`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          for(var i=0;i<this.newDocuments.length;i++){
+            this.enregistrerDocument(this.newDocuments[i]);
+    
+    
+          }
+    
+          this.completerDemande(this.demandeNantissementInfos.idDemande)
+        } else if (result.isDenied) {
+          Swal.fire('Soumission abandonnée', '', 'info')
+        }
+      })
 
 
-      }
-
-      this.completerDemande(this.demandeNantissementInfos.idDemande)
+      
 
       
       //location.reload()

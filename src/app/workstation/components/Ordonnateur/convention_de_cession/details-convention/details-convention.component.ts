@@ -118,7 +118,22 @@ export class DetailsConventionComponent implements OnInit {
   }
 
   onSubmitAccept() {
-    this.conventionAcceptee();
+
+    Swal.fire({
+      title: 'Valider la convention?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Valider',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.conventionAcceptee();
+      } else if (result.isDenied) {
+        Swal.fire('Validation annulée', '', 'info')
+      }
+    })
+    
   }
 
   private async conventionRejetee() {

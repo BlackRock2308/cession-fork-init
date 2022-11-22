@@ -96,7 +96,6 @@ export class CorrigerConventionComponent implements OnInit {
     this.ref.close();
 
 
-    this.corrigerConvention();
 
     
 
@@ -104,6 +103,22 @@ export class CorrigerConventionComponent implements OnInit {
     if (this.documentForm.invalid) {
       return;
     }
+
+    Swal.fire({
+      title: 'Corriger la convention?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Valider',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.corrigerConvention();
+      } 
+        else if (result.isDenied) {
+        Swal.fire('Correction annulée', '', 'info')
+      }
+    })
 
     // for (var i = 0; i < this.documents.length; i++) {
     //   this.enregistrerDocument(this.documents[i]);
