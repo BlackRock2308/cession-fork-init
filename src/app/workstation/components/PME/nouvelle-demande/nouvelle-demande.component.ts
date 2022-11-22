@@ -133,12 +133,16 @@ export class NouvelleDemandeComponent implements OnInit {
   ngOnInit(): void {
     this.typesDocument = [
       {
-        "type": "AUTRE",
+        "type": "DOCUMENT_MARCHE",
         "nom": "Document du marché"
       },
       {
         "type": "BE",
         "nom": "Bon engagement"
+      },
+      {
+        "type": "AUTRE",
+        "nom": "AUTRE"
       }
     ]
     this.typesMarche = [
@@ -220,43 +224,58 @@ export class NouvelleDemandeComponent implements OnInit {
     }
 
     console.log(JSON.stringify(body))
-
-    await this.demandeCessionService.addDemandeCession(body).subscribe((result) => {
-      this.idBE = result.bonEngagement.idBonEngagement
-      console.log(result)
-      for (var i = 0; i < this.documents.length; i++) {
-        console.log(this.idBE)
-        this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
-        )
+    Swal.fire({
+      title: 'Vôtre demande de cession sera enregistrée.Voulez vous continuer?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Continuer',
+      denyButtonText: `Annuler`,
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        await this.demandeCessionService.addDemandeCession(body).subscribe((result) => {
+          this.idBE = result.bonEngagement.idBonEngagement
+          console.log(result)
+          for (var i = 0; i < this.documents.length; i++) {
+            console.log(this.idBE)
+            this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
+            )
+          }
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          console.log('affiche' + this.tokenStorage.getUser().idUtilisateur)
+          this.observation.statut={}
+          this.observation.demandeid =  result.idDemande;
+          this.observation.statut.libelle =StatutEnum.soumise;
+          console.log(this.observation)
+    
+          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    
+        },
+        (error) =>{},
+        () =>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            color: "#203359",
+            confirmButtonColor: "#99CC33",
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+            allowOutsideClick: false,
+      
+          }).then(() => {
+      
+            this.router.navigate(['workstation/pme/demandes_en_cours'])
+          })
+          
+        })
+      } else if (result.isDenied) {
+        Swal.fire('La demande a été annulée', '', 'info')
       }
-      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-      console.log('affichz' + this.tokenStorage.getUser().idUtilisateur)
-      this.observation.statut={}
-      this.observation.demandeid =  result.idDemande;
-      this.observation.statut.libelle =StatutEnum.soumise;
-      console.log(this.observation)
-
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-
-    },
-    (error) =>{},
-    () =>{
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500,
-        html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande a bien été envoyée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-        color: "#203359",
-        confirmButtonColor: "#99CC33",
-        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-        allowOutsideClick: false,
-  
-      }).then(() => {
-  
-        this.router.navigate(['workstation/pme/demandes_en_cours'])
-      })
     })
+
+    
 
     console.log("finish")
 

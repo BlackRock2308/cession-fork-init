@@ -216,37 +216,52 @@ export class TacheAnalyseComponent implements OnInit {
 
  
     onSubmit() {
-       
-        this.demandeCessionService.validateAnalyseRisque(this.demandeCession.idDemande).subscribe(
-            (response) => {},
-            (error) => {},
-            () => {
-                this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-                this.observation.statut={}
-                this.observation.demandeid = this.demandeCession.idDemande;
-                this.observation.statut.libelle =StatutEnum.nonRisquee;
-                this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
-                Swal.fire({
-                    position: 'center',
-                      icon: 'success',
-                      showConfirmButton: false,
-                      timer: 1500,
-                      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été completée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                      color:"#203359",
-                      confirmButtonColor:"#99CC33",
-                      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                      allowOutsideClick:false,
-                      
-                    }).then(() => {
-                     
-                        this.router.navigate(['workstation/cdmp/analyse_risque'])
-                    })
-            }
+        Swal.fire({
+            title: 'Etes-vous sûr de vouloir valider la demande de cession?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Valider',
+            denyButtonText: `Annuler`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                this.demandeCessionService.validateAnalyseRisque(this.demandeCession.idDemande).subscribe(
+                    (response) => {},
+                    (error) => {},
+                    () => {
+                        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+                        this.observation.statut={}
+                        this.observation.demandeid = this.demandeCession.idDemande;
+                        this.observation.statut.libelle =StatutEnum.nonRisquee;
+                        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+        
+                        Swal.fire({
+                            position: 'center',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 2500,
+                              html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande a bien été validée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                              color:"#203359",
+                              confirmButtonColor:"#99CC33",
+                              confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                              allowOutsideClick:false,
+                              
+                            }).then(() => {
+                             
+                                this.router.navigate(['workstation/cdmp/analyse_risque'])
+                            })
+                    }
+                    
+                )
+              
             
-        )
-      
-    
+            } else if (result.isDenied) {
+              Swal.fire('Changements non effectuée', '', 'info')
+            }
+          })
+       
+        
         
     
     
@@ -294,30 +309,46 @@ export class TacheAnalyseComponent implements OnInit {
     }
 
     onSubmitComplements() {
-       
-      this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe(
-        (response) => {},
-            (error) => {},
-            () => {
-                this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-                this.observation.statut={}                
-                this.observation.demandeid = this.demandeCession.idDemande;
-                this.observation.statut.libelle =StatutEnum.complementRequis;
-                this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-
-                Swal.fire({
-                    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Un complement des dossiers soumis sera demandé a la PME.</p> <br><p style='font-size: large;font-weight: bold;'></p>",
-                    color:"#203359",
-                    confirmButtonColor:"#99CC33",
-                    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                    allowOutsideClick:false,
-                    
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      this.router.navigate(['workstation/cdmp/analyse_risque'])
-                    }})
+        
+        Swal.fire({
+            title: 'Une demande de complément de dossier sera soumise à la PME.Poursuivre?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Continuer',
+            denyButtonText: `Annuler`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe(
+                    (response) => {},
+                        (error) => {},
+                        () => {
+                            this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+                            this.observation.statut={}                
+                            this.observation.demandeid = this.demandeCession.idDemande;
+                            this.observation.statut.libelle =StatutEnum.complementRequis;
+                            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+            
+                            Swal.fire({
+                                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Demande de complément de dossier soumise!</p> <br><p style='font-size: large;font-weight: bold;'></p>",
+                                color:"#203359",
+                                timer:2500,
+                                confirmButtonColor:"#99CC33",
+                                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                                allowOutsideClick:false,
+                                showConfirmButton:false
+                                
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  this.router.navigate(['workstation/cdmp/analyse_risque'])
+                                }})
+                        }
+                  )            } else if (result.isDenied) {
+              Swal.fire('Demande non soumise', '', 'info')
             }
-      )
+          })
+       
+      
     
         
     

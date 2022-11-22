@@ -99,7 +99,16 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.detailPaiement.modePaiement = this.modePaiement.code;
+    Swal.fire({
+      title: 'Continuer le paiement?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Continuer',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.detailPaiement.modePaiement = this.modePaiement.code;
     this.detailPaiement.paiementDto = this.config.data.paiement;
     this.detailPaiement.datePaiement = new Date();
     this.detailsPaiementsService
@@ -124,20 +133,19 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
        if(res.status == "500"){
         this.dismiss();
         Swal.fire({
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Le montant dépasse le solde.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Le montant renseigné dépasse le montant restant de la créance!',
         })
+       
        }else{
         this.close(this.detailPaiement);
         Swal.fire({
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>CDMP payé avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
+          position: 'center',
+          icon: 'success',
+          title: 'CDMP payé avec succès.',
+          showConfirmButton: false,
+          timer: 2500
         }).then((result) => {
           if (result.isConfirmed) {
             //this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
@@ -168,6 +176,11 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           console.log(data)
           );
       };
+      } else if (result.isDenied) {
+        Swal.fire('Paiement annulée', '', 'info')
+      }
+    })
+    
     
   }
 }

@@ -67,22 +67,21 @@ export class SignerconventionPMEComponent implements OnInit {
   onSubmit() {
     this.ref.close();
 
-    this.signerConventionPME();
     Swal.fire({
-      html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre convention a été signée.</p>",
-      color: "#203359",
-      confirmButtonColor: "#A6C733",
-      confirmButtonText: '<i class="pi pi-check"></i>OK',
-      allowOutsideClick: false,
+      title: 'Continuer la signature?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Continuer',
+      denyButtonText: `Annuler`,
     }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.router.navigate(['workstation/comptable/convention_cession'])
+        this.signerConventionPME();
+      } else if (result.isDenied) {
+        Swal.fire('Signature annulée', '', 'info')
       }
     })
-
-    setTimeout(() => {
-      location.reload()
-     }, 1500);
+    
  
   }
 

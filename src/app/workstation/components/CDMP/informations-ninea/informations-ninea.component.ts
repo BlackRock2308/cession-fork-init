@@ -73,8 +73,24 @@ export class InformationsNineaComponent implements OnInit {
   onSubmit() {
 
    
+    Swal.fire({
+      title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Continuer',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.enregistrerInfos()
+        //fermer la boite de dialogue
+        this.demandeAdhesionService.setDialog(false)
+      } else if (result.isDenied) {
+        Swal.fire('Traitement de la demande non effective!', '', 'info')
+      }
+    })
 
-    this.enregistrerInfos()
+    
 
     //fermer la boite de dialogue
     this.demandeAdhesionService.setDialog(false)
