@@ -463,9 +463,9 @@ export class DashboardDGComponent implements OnInit {
       fileName + "_export_" + new Date().getTime() + EXCEL_EXTENSION
     );
   }
-  visualiserDetails(demande: DemandeAdhesion) {
+  visualiserDetails(demande: Creance) {
     this.demande = { ...demande };
-    this.demandesAdhesionService.setDemandenantissementObs(demande);
+  //  this.demandesAdhesionService.setDemandenantissementObs(demande);
     const ref = this.dialogService.open(DetailsTableauComponent, {
       data: {
         demande: demande,

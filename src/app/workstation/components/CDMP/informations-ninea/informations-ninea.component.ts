@@ -110,15 +110,10 @@ export class InformationsNineaComponent implements OnInit {
   //       console.log(result)
   //       })
   //   }
-  
- 
 
    enregistrerInfos() {
    
    this.validerDemandeAdhesion();
-
-
-    
 
     console.log(this.pme)
   }
@@ -137,17 +132,17 @@ export class InformationsNineaComponent implements OnInit {
          ()=>{
            
           
-          this.observation.statut={}          
-          this.observation.demandeid = this.demande.idDemande;
+          // this.observation.statut={}          
+          // this.observation.demandeid = this.demande.idDemande;
 
           // this.observation.utilisateurid = this.demande.pme.utilisateur.id;
           // this.observation.statut.libelle =StatutEnum.adhesionSoumise;
           // this.observation.dateObservation = this.demande.dateDemandeAdhesion;
           // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
        
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          // this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          // this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
+          // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
           Swal.fire({
             position: 'center',
@@ -170,7 +165,5 @@ export class InformationsNineaComponent implements OnInit {
      )
   //  await this.createCompte()
   }
-
-  
 
 }

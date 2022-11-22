@@ -165,7 +165,7 @@ export class NouvelleDemandeComponent implements OnInit {
       file: [''],
       refBE: ['', [Validators.required]],
       nomMarche: ['', [Validators.required]],
-    //  typeMarche: ['', [Validators.required]]
+      typeMarche: ['', [Validators.required]]
     });
   }
 
@@ -196,13 +196,11 @@ export class NouvelleDemandeComponent implements OnInit {
     let body = {
       reference: this.documentForm.value['refBE'],
       nomMarche: this.documentForm.value['nomMarche'],
-     // typeMarche:this.documentForm.value['typeMarche']
+      typeMarche:this.documentForm.value['typeMarche']
     };
     console.log(body);
 
-    this.postDemandeCession();
-
-    
+    this.postDemandeCession();    
 
   }
 
