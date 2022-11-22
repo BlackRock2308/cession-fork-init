@@ -62,7 +62,22 @@ export class ConventionSignerComponent implements OnInit {
   onSubmit() {
     this.ref.close();
 
-    this.signerConventionDG();
+    Swal.fire({
+      title: 'Signer la convention?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Valider',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.signerConventionDG();
+           } 
+        else if (result.isDenied) {
+        Swal.fire('Signature annulée', '', 'info')
+      }
+    })
+    
     
  
   }

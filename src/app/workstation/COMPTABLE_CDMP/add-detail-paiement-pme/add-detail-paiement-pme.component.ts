@@ -99,7 +99,17 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     if (this.form.invalid) {
     return;
   }
-    this.detailPaiement.modePaiement = this.modePaiement.code;
+
+  Swal.fire({
+    title: 'Continuer le paiement?',
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Continuer',
+    denyButtonText: `Annuler`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      this.detailPaiement.modePaiement = this.modePaiement.code;
     this.detailPaiement.paiementDto = this.config.data.paiement;
     this.detailPaiement.datePaiement = new Date();
     this.detailsPaiementsService
@@ -124,11 +134,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
        if(res.status == "500"){
         this.dismiss();
         Swal.fire({
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Le montant dépasse le solde.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Le montant renseigné dépasse la solde PME!',
         })
        }else{
         this.close(this.detailPaiement);
@@ -167,6 +175,11 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           console.log(data)
           );
       }
+    } else if (result.isDenied) {
+      Swal.fire('Paiement annulée', '', 'info')
+    }
+  })
+    
       
   }
 }
