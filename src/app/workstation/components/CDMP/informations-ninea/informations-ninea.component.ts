@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
@@ -37,25 +37,25 @@ export class InformationsNineaComponent implements OnInit {
   ngOnInit(): void {
 
     this.informationsForm = this.formBuilder.group({
-      raisonSocial: [''],
-      formeJuridique: [''],
-      centreFiscal: [''],
-      adressePME: [''],
-      enseigne: [''],
-      localite: [''],
-      controle: [''],
-      activitePrincipale: [''],
-      registre: [''],
-      prenomRepresentant: [''],
-      dateCreation: [''],
-      effectifPermanent: [''],
-      nombreEtablissementSecondaires: [''],
-      chiffresDaffaires: [''],
-      cniRepresentant: [''],
-      dateImmatriculation: [''],
-      telephonePME: [''],
-      capitalsocial : [''],
-      autorisationMinisterielle : ['']
+      raisonSocial: ['' , [Validators.required]],
+      formeJuridique: ['' , [Validators.required]],
+      centreFiscal: ['' , [Validators.required]],
+      adressePME: ['' , [Validators.required]],
+      enseigne: ['' , [Validators.required]],
+      localite: ['' , [Validators.required]],
+      controle: ['' , [Validators.required]],
+      activitePrincipale: ['', [Validators.required]],
+      registre: ['' , [Validators.required]],
+      prenomRepresentant: ['' , [Validators.required]],
+      dateCreation: ['' , [Validators.required]],
+      effectifPermanent: ['' , [Validators.required]],
+      nombreEtablissementSecondaires: ['' , [Validators.required]],
+      chiffresDaffaires: ['' , [Validators.required]],
+      cniRepresentant: ['' , [Validators.required]],
+      dateImmatriculation: ['' , [Validators.required]],
+      telephonePME: ['' , [Validators.required]],
+      capitalsocial : ['' , [Validators.required]],
+      autorisationMinisterielle : ['' , [Validators.required]]
     });
 
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
@@ -63,6 +63,10 @@ export class InformationsNineaComponent implements OnInit {
       this.pme=this.demande.pme
 
     })
+  }
+
+  get f() {
+    return this.informationsForm.controls;
   }
 
   prevPage() {

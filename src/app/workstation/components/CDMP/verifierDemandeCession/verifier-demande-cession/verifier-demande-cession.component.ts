@@ -34,11 +34,15 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: any;
   bonEngagement: BonEngagement;
+  
   documents: any[]=[];
   cols: any[];
   pas_identifie: boolean;
+  
   identifie: boolean;
   pas_atd: boolean;
+  date10: Date;
+
   atd: boolean;
   pas_nantissement: boolean;
   pas_interdiction: boolean;

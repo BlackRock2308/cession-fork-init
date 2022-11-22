@@ -216,15 +216,17 @@
                     <div class="p-formgrid grid row container" [formGroup]="infosBEForm">
                         <div class="field grid col-12 md:col-4 sm:col-6">
                             <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Exercice</label>
+                                style="font-weight: bold;color: #203359;">Exercice<span
+                                class="required">*</span></label>
                             <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="exercice"
+                                <input pInputText id="name3" type="number" formControlName="exercice"
                                     [(ngModel)]="bonEngagement.exercice" />
                             </div>
                         </div>
                         <div class="field grid col-12 md:col-4 sm:col-6">
                             <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Numéro du BE validé</label>
+                                style="font-weight: bold;color: #203359;">Numéro du BE validé<span
+                                class="required">*</span></label>
                             <div class="col-12 xl:col-6">
                                 <input pInputText id="name3" type="text" formControlName="referenceBE"
                                     [(ngModel)]="bonEngagement.reference" />
