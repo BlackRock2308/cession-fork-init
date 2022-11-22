@@ -74,7 +74,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
       modePaiement: ['', Validators.required],
       referencePaiement: ['', Validators.required],
       montant: ['', Validators.required],
-      payer: [''],
+      payer: [{ value: '', disabled: true } ],
       preuveFile: ['']
     });
   }

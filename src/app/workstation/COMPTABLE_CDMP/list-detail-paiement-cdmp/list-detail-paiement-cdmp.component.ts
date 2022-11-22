@@ -13,6 +13,9 @@ import { PaiementsService } from "../../service/paiements/paiements.service";
 import { AddDetailPaiementCDMPComponent } from "../add-detail-paiement-cdmp/add-detail-paiement-cdmp.component";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { BonEngagement } from "../../model/bonEngagement";
+import { DemandesCessionService } from "../../service/demandes_cession/demandes-cession.service";
+import { DemandeCession } from "../../model/demande";
 registerLocaleData(localeFr, 'fr')
 @Component({
   selector: "app-list-paiement-cdmp",
@@ -48,13 +51,15 @@ export class ListPaiementCdmpComponent implements OnInit {
   ref: DynamicDialogRef;
   home: MenuItem;
   paiement:Paiements ={};
+  bonEngagement:BonEngagement={};
   constructor(
     private documentService: DocumentService,
     private paiementsService: PaiementsService,
     public dialogService: DialogService,
     private breadcrumbService: BreadcrumbService,
     private route: ActivatedRoute, private router:Router,
-    private detailsPaiementsService: DetailsPaiementsService
+    private detailsPaiementsService: DetailsPaiementsService,
+    private demandesCessionService: DemandesCessionService
   ) {
     this.route.params.subscribe(
       (params: Params) => (this.idPaiement = params["idPaiement"])
@@ -80,7 +85,7 @@ export class ListPaiementCdmpComponent implements OnInit {
       { field: "montant", header: "Montant" },
     ];
     this.getAllDetailsPaiements();
-    this.getPaiement();
+    this.getPaiementAndBonEngagement();
   }
 
   verifierDemande(paiement: Paiements) {
@@ -95,10 +100,16 @@ export class ListPaiementCdmpComponent implements OnInit {
     })
   }
 
-  getPaiement(){
+  getPaiementAndBonEngagement(){
     this.paiementsService.getPaiementsById(this.idPaiement)
     .subscribe((res:Paiements) =>{
+     if(res){
       this.paiement = res;
+      this.demandesCessionService.getDemandesCessionById(res.demandeId)
+      .subscribe((resp: DemandeCession) =>{
+        this.bonEngagement = resp.bonEngagement;
+      })
+     }
     });
   }
 
