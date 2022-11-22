@@ -91,7 +91,6 @@ export class EditerConventionComponent implements OnInit {
     this.ref.close();
 
 
-    this.enregistrerConvention();
 
     
 
@@ -100,6 +99,21 @@ export class EditerConventionComponent implements OnInit {
       return;
     }
 
+    Swal.fire({
+      title: 'Enregistrer la convention?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Enregistrer',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.enregistrerConvention();
+      } 
+        else if (result.isDenied) {
+        Swal.fire('Enregistrement annulée', '', 'info')
+      }
+    })
     // for (var i = 0; i < this.documents.length; i++) {
     //   this.enregistrerDocument(this.documents[i]);
     // }

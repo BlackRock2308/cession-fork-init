@@ -82,12 +82,25 @@ export class ConventionEnregistreeComponent implements OnInit {
 
     this.ref.close();
 
-
-    this.conventionTransmise();
-    // arrêter si le formulaire est invalide
+        // arrêter si le formulaire est invalide
     if (this.form.invalid) {
       return;
     }
+
+    Swal.fire({
+      title: 'Soumettre la convention transmise?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Soumettre',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.conventionTransmise();      } else if (result.isDenied) {
+        Swal.fire('Transmission annulée', '', 'info')
+      }
+    })
+
   }
 
   private async conventionTransmise() {
