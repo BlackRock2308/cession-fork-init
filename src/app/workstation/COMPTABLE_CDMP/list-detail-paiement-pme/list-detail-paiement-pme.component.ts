@@ -13,6 +13,9 @@ import { PaiementsService } from "../../service/paiements/paiements.service";
 import { AddDetailsPaiementPMEComponent } from "../add-detail-paiement-pme/add-detail-paiement-pme.component";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { BonEngagement } from "../../model/bonEngagement";
+import { DemandeCession } from "../../model/demande";
+import { DemandesCessionService } from "../../service/demandes_cession/demandes-cession.service";
 registerLocaleData(localeFr, 'fr')
 @Component({
   selector: "app-list-paiement-pme",
@@ -49,14 +52,17 @@ export class ListPaiementPMEComponent implements OnInit {
   pageVariable = 1;
   ref: DynamicDialogRef;
   home: MenuItem;
+  montantRecuPME:number = 0;
 
+  bonEngagement:BonEngagement={};
   constructor(
     private documentService: DocumentService,
     public dialogService: DialogService,
     private breadcrumbService: BreadcrumbService,
     private route: ActivatedRoute, private router: Router,
     private paiementService:PaiementsService,
-    private detailsPaiementsService: DetailsPaiementsService
+    private detailsPaiementsService: DetailsPaiementsService,
+    private demandesCessionService:DemandesCessionService
   ) {
     this.route.params.subscribe(
       (params: Params) => (this.idPaiement = params["idPaiement"])
@@ -76,7 +82,7 @@ export class ListPaiementPMEComponent implements OnInit {
       this.documents = data;
     });
     this.getAllDetailPaiements();
-    this.getPaiement();
+    this.getPaiementAndBonEngagement();
 
     this.cols = [
       { field: "datePaiement", header: "Date Paiement" },
@@ -90,14 +96,23 @@ export class ListPaiementPMEComponent implements OnInit {
     this.detailsPaiementsService.getDetailPaiementPMEByPaiement(this.idPaiement)
     .subscribe((res:DetailsPaiement[]) =>{
       this.detailsPaiements = res;
+      this.detailsPaiements.forEach(element => {
+        this.montantRecuPME = this.montantRecuPME +element.montant;
+      });
     })
   }
 
-  getPaiement(){
+  getPaiementAndBonEngagement(){
     this.paiementService.getPaiementsById(this.idPaiement)
     .subscribe((res:Paiements) =>{
+     if(res){
       this.paiement = res;
-    })
+      this.demandesCessionService.getDemandesCessionById(res.demandeId)
+      .subscribe((resp: DemandeCession) =>{
+        this.bonEngagement = resp.bonEngagement;
+      })
+     }
+    });
   }
 
   verifierDemande(paiement: Paiements) {

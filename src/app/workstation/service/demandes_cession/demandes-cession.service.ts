@@ -62,8 +62,8 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
 }
 
 
-  getDemandesCessionById(): Observable<DemandeCession[]> {
-    return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession?id=1`);
+  getDemandesCessionById(id){
+    return this.getById(this.baseUrl+'/demandecession',id);
   }
 
   //renseigner les informations de la demande de cession sélectionné

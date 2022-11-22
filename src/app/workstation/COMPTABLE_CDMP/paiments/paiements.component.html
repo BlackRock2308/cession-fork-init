@@ -106,11 +106,14 @@
                                 </td>
                             <td>
                                 <div class="flex">
-                                        <button pButton pRipple icon="pi pi-money-bill"
+                                        <!-- <button pButton pRipple icon="pi pi-money-bill"
                                         class="p-button-rounded p-button-text mr-2 button simpleButton"
                                         pTooltip="Paiement de la PME"  *ngIf="paiement.statutPme.code === 'PME_EN_ATTENTE_DE_PAIEMENT' || 
                                         paiement.statutPme.code=== 'PME_PARTIELLEMENT_PAYEE'"
-                                        (click)="visualiserPaiementListPME(paiement)"></button>
+                                        (click)="visualiserPaiementListPME(paiement)"></button> -->
+                                        <button pButton pRipple icon="pi pi-money-bill"
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        pTooltip="Paiement de la PME" (click)="visualiserPaiementListPME(paiement)"></button>
                                     <!-- <button pButton pRipple icon="pi pi-id-card"
                                         class="p-button-rounded p-button-text mr-2 button simpleButton"
                                         pTooltip="Paiment de la CDMP"

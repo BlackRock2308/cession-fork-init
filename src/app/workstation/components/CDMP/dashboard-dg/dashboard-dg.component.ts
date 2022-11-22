@@ -21,14 +21,9 @@ import * as FileSaver from "file-saver";
 import "jspdf-autotable";
 import { BreadcrumbService } from "src/app/core/breadcrumb/breadcrumb.service";
 import { Creance } from "src/app/workstation/model/creance";
-import { DemandesCessionService } from "../../../service/demandes_cession/demandes-cession.service";
 import { DashboardServices } from "src/app/workstation/service/dashboard.services";
-import {
-  StatistiqueDemandeCession,
-  StatistiquePaiementCDMP,
-  StatistiquePaiementPME,
+import {StatistiqueDemandeCession, StatistiquePaiementCDMP,StatistiquePaiementPME,
 } from "src/app/workstation/model/dashboard";
-import { AuthService } from "src/app/auth/auth.service";
 @Component({
   selector: "app-dashboard-dg",
   templateUrl: "./dashboard-dg.component.html",
@@ -125,6 +120,7 @@ export class DashboardDGComponent implements OnInit {
       "Décembre",
     ];
     let today = new Date();
+    today.setFullYear(today.getFullYear() -1)
     this.profil = localStorage.getItem("profil");
     this.user = JSON.parse(sessionStorage.getItem("auth-user"));
     this.demandesAdhesionService.getCreances().subscribe((data) => {
@@ -238,7 +234,7 @@ export class DashboardDGComponent implements OnInit {
           } else {
             maxNbr = Math.max(...nombreDemandeRejete);
           }
-          if (maxNbr == 0) {
+          if (maxNbr < 5) {
             maxNbr = 5;
           }
           this.basicData = {

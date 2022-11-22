@@ -183,13 +183,13 @@
         </ng-template>
     </p-table>
 </div>
-<div  class="row" *ngIf="profil === 'PME'">
+<div  class="row center-diagramme" *ngIf="profil === 'PME'">
     
     <div class="col-sm-12">
         <div class="card flex flex-column ">
             <div class="row">
-                <div class="col-10">
-                    <span style="font-weight: bold;">Statistiques des paiements réçu de la CDMP</span>
+                <div class="col-8">
+                    <span style="font-weight: bold;">Statistiques des paiements réçus de la CDMP</span>
                 </div>
                 <div class="col-2 calendar">
                     <p-calendar view="year" [(ngModel)]="selectedYearPME" dateFormat="yy" (onSelect)="onSelectYearPME($event)"
