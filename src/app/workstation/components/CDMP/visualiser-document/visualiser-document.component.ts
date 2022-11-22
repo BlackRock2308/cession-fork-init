@@ -280,79 +280,110 @@ export class VisualiserDocumentComponent implements OnInit {
   }
   rejetConventionPME() {
     this.dismiss();
+
+    Swal.fire({
+      title: 'Etes-vous sûr de vouloir rejeter la convention?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Rejeter',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        let body = {
+      
+          idDemande:this.demande.idDemande
+      }
+      console.log(body)
+    
+      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParPME)
+                .subscribe((response: any) => {
+                  console.log(response)
+    
+                  //console.log(StatutEnum.ConventionRejeteeParPME)
+              },
+              (error)=>{},
+              ()=>{
+                Swal.fire({
+                  position: 'center',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                    color:"#203359",
+                    confirmButtonColor:"#99CC33",
+                    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                    allowOutsideClick:false,
+                    
+                  })
+                
+    
+              })
+      } else if (result.isDenied) {
+        Swal.fire('Opération de rejet annulée', '', 'info')
+      }
+    })
+    
+
+    
+
     setTimeout(() => {
       location.reload()
      }, 1500);
-
-    let body = {
-      
-      idDemande:this.demande.idDemande
-  }
-  console.log(body)
-
-  this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParPME)
-            .subscribe((response: any) => {
-              console.log(response)
-
-              //console.log(StatutEnum.ConventionRejeteeParPME)
-          },
-          (error)=>{},
-          ()=>{
-            Swal.fire({
-              position: 'center',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                color:"#203359",
-                confirmButtonColor:"#99CC33",
-                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                allowOutsideClick:false,
-                
-              })
-            
-
-          })
 
   }
 
   rejetConventionDG(){
-    setTimeout(() => {
-      location.reload()
-     }, 1500);
+
     this.dismiss();
 
-    
-    let body = {
+    Swal.fire({
+      title: 'Etes-vous sûr de vouloir rejeter la convention?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Rejeter',
+      denyButtonText: `Annuler`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        let body = {
       
-      idDemande:this.demande.idDemande
-  }
-  console.log(body)
-
-  this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParDG)
-            .subscribe((response: any) => {
-              console.log(response)
-             // this.dismiss();
-
-             // console.log(StatutEnum.ConventionRejeteeParDG)
-          },
-          (error)=>{},
-          ()=>{
-            Swal.fire({
-              position: 'center',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                color:"#203359",
-                confirmButtonColor:"#99CC33",
-                confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                allowOutsideClick:false,
-                
+          idDemande:this.demande.idDemande
+      }
+      console.log(body)
+    
+      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParDG)
+                .subscribe((response: any) => {
+                  console.log(response)
+                 // this.dismiss();
+    
+                 // console.log(StatutEnum.ConventionRejeteeParDG)
+              },
+              (error)=>{},
+              ()=>{
+                Swal.fire({
+                  position: 'center',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a  été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+                    color:"#203359",
+                    confirmButtonColor:"#99CC33",
+                    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+                    allowOutsideClick:false,
+                    
+                  })
+                  this.dismiss();
+    
               })
-              this.dismiss();
-
-          })
+    
+              setTimeout(() => {
+                location.reload()
+               }, 1500);
+      } else if (result.isDenied) {
+        Swal.fire('Opération de rejet annulée', '', 'info')
+      }
+    })
   }
 
 }
