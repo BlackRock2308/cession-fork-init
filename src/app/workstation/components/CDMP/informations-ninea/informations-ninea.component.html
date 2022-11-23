@@ -46,10 +46,27 @@
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
                         style="font-weight: bold;color: #203359;">Téléphone</label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <!-- <ngx-intl-tel-input formControlName="telephonePME" style="width: 100%;"
-                            [preferredCountries]="['sn', 'fr']" [enablePlaceholder]="true" [enableSearch]="true">
-                        </ngx-intl-tel-input> -->
-                        <input pInputText id="name3" type="text" placeholder="33 333 33 33" formControlName="telephonePME" style="width: 100%;"/>
+                        <ngx-intl-tel-input
+                        [cssClass]="'custom'"
+                        [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[
+                          SearchCountryField.Iso2,
+                          SearchCountryField.Name
+                        ]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="CountryISO.India"
+                        [maxLength]="15"
+                        [phoneValidation]="true"
+                        [separateDialCode]="separateDialCode"
+                        [numberFormat]="PhoneNumberFormat.National"
+                        name="phone"
+                        formControlName="telephonePME"
+                      >
+                      </ngx-intl-tel-input>
+                        <!-- <input pInputText id="name3" type="text" placeholder="33 333 33 33" formControlName="telephonePME" style="width: 100%;"/> -->
                     </div>
                 </div>
                 <div class="field grid col-sm-12 col-xl-4 row">
@@ -64,8 +81,8 @@
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
                         style="font-weight: bold;color: #203359;">Date d'immatriculation</label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="date" placeholder="20/02/2000"
-                            formControlName="dateImmatriculation" style="width: 100%;" />
+                        <p-calendar inputId="basic" id="name3"  formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}"                             >
+                            </p-calendar>
                     </div>
                 </div>
                 <div class="field grid col-sm-12 col-xl-4 row">
@@ -120,8 +137,8 @@
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
                         style="font-weight: bold;color: #203359; width: 100%;">Date de création</label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="date" placeholder="20/10/2013" formControlName="dateCreation"
-                            style="width: 100%;" />
+                        <p-calendar inputId="basic" id="name3" formControlName="dateCreation" [ngStyle]="{'width': '10%'}">
+                            </p-calendar>
                     </div>
                 </div>
                 <div class="field grid col-sm-12 col-xl-3 row">
