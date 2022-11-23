@@ -86,11 +86,11 @@
                         </td>
                         <td style="width:12%;">
                             <span class="p-column-title">Décote</span>
-                            {{paiement.decote}}
+                            {{((paiement.montantCreanceInitial-paiement.montantCreance)/paiement.montantCreanceInitial)*100}}%
                         </td>
                         <td style="width:15%;">
                             <span class="p-column-title">Montant Reçu</span>
-                            {{paiement.montantCreance-paiement.soldePme}}
+                            {{paiement.montantCreance-paiement.soldePME}}
                         </td>
                         <td style="width:18%;">
                             <span [class]="'product-badge status-' + (paiement.statutPme.libelle ? paiement.statutPme.libelle.toLowerCase() : '')">{{paiement.statutPme.libelle.replaceAll('-', ' ')}}</span>
