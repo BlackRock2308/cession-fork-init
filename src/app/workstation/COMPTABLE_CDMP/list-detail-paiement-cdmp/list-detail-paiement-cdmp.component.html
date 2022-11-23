@@ -3,11 +3,11 @@
         <div class="d-flex justify-content-center col-12">
             <div class="col-12 md:col-10 modalTitle  ">
                 <h3 class="title">Liste des paiements
-                    reçu de SICA sur le marché. Réf. BE: 20-247510</h3>
+                    reçu de SICA sur le marché. Réf. BE: {{bonEngagement.reference}}</h3>
             </div>
         </div>
         <div class="card">
-            <button style="margin-left: 80%;" id="valider" pButton pRipple label="Enregistrer paiement"
+            <button *ngIf="paiement.statutCDMP.code !== 'CDMP_TOTALEMENT_PAYEE'" style="margin-left: 80%;" id="valider" pButton pRipple label="Enregistrer paiement"
                 icon="pi pi-plus" class="successButton" (click)="ajouterPaimentCDMP()"></button>
             <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
@@ -66,8 +66,8 @@
                 </ng-template>
                 <ng-template pTemplate="summary">
                     <span class="textLeft">
-                        <span>Solde :</span> {{paiement.soldePME  | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
-                    </span>
+                        <span>Solde :</span> {{paiement.montantCreanceInitial-paiement.montantRecuCDMP  | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                       </span>
                     <span class="textRight">
                         <span>Montant total :</span> {{paiement.montantRecuCDMP | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
                     </span>

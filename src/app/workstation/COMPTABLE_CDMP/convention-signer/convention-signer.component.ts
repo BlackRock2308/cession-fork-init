@@ -99,7 +99,7 @@ export class ConventionSignerComponent implements OnInit {
         }
     
         if (this.form.value['decote'] !== null) {
-          this.conventionService.updateConvention(body , this.convention.idConvention)
+          this.conventionService.updateDecote( this.convention.idConvention,this.form.value['decote'])
           .subscribe((response: any) => {
             console.log(response)}
       )}

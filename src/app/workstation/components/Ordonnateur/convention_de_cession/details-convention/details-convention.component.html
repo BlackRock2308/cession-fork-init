@@ -145,11 +145,11 @@
 
                         <td style="width:30%; min-width:8rem;">
                             <span class="p-column-title">Nom</span>
-                            {{document.nomDocument}}
+                            {{document.nom}}
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date Soumission</span>
-                            {{document.dateSoumission}}
+                            {{document.dateSauvegarde}}
                         </td>
 
                         <td>
@@ -187,9 +187,9 @@
         *ngIf="demandeCession.statut.libelle ==='CONVENTION_TRANSMISE';else fermerBoutton">
        
         <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter"
-            (click)="onSubmitRejet()" routerLink="../"></button>
+            (click)="onSubmitRejet()"></button>
             <button pButton pRipple icon="pi pi-check" class="p-button-raised successButton" label="Accepter"
-            (click)="onSubmitAccept()" routerLink="../"></button>
+            (click)="onSubmitAccept()"></button>
     </div>
 
     <ng-template #fermerBoutton class="float-end ">

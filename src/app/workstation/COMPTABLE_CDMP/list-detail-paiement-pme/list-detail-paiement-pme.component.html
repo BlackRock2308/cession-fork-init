@@ -3,11 +3,11 @@
         <div class="d-flex justify-content-center col-12">
             <div class="col-12 md:col-10 modalTitle  ">
                 <h3 class="title">Liste des paiements
-                    sur le marché. Réf. BE: 20-247510</h3>
+                    sur le marché. Réf. BE:  {{bonEngagement.reference}}</h3>
             </div>
         </div>
         <div class="card">
-            <button id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
+            <button *ngIf="paiement.statutPme.code !== 'PME_TOTALEMENT_PAYEE'" id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
                 class="successButton" (click)="ajouterPaimentPME()"></button>
             <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
@@ -70,7 +70,14 @@
                         </td>
                     </tr>
                 </ng-template>
-
+                <ng-template pTemplate="summary">
+                    <span class="textLeft">
+                        <span>Solde :</span> {{paiement.soldePME  | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                    </span>
+                    <span class="textRight">
+                        <span>Montant total :</span> {{montantRecuPME | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                    </span>
+                </ng-template>
             </p-table>
         </div>
     </div>
