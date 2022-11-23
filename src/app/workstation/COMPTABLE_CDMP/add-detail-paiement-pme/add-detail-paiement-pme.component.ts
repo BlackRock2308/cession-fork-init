@@ -99,6 +99,8 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     return;
   }
 
+  this.ref.close()
+
   Swal.fire({
     title: 'Continuer le paiement?',
     showDenyButton: true,

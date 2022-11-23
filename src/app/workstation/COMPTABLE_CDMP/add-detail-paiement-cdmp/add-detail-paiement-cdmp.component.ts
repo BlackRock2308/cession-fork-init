@@ -98,6 +98,8 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+
+    this.ref.close()
     Swal.fire({
       title: 'Continuer le paiement?',
       showDenyButton: true,

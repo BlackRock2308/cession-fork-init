@@ -9,6 +9,7 @@ import { DemandeAdhesion } from '../../model/demande';
   providedIn: 'root'
 })
 export class ConventionService extends GenericService {
+  
   private conventionUrl =ApiSettings.API_CDMP + '/conventions'; 
 
 
@@ -34,6 +35,10 @@ export class ConventionService extends GenericService {
 
     let body = JSON.stringify(data);
     return this.update(`${this.conventionUrl}/${id}`, body);
+  }
+
+  updateDecote(idConvention: number, decote: number) {
+    return this.http.patch<any>(`${this.conventionUrl}/${idConvention}/${decote}`,{});
   }
 
   corrigerConvention(data,id:number):Observable<any>{

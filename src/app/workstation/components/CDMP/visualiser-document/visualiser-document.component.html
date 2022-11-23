@@ -76,7 +76,7 @@
                         </div>
                     </p-card>
                 </div>
-                <div *ngIf="(profil === 'DG' && demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME') ||(profil=== 'PME' && demande.statut.libelle == 'CONVENTION_GENEREE') "
+                <div *ngIf="(profil === 'DG' && demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME') ||(profil=== 'PME' && (demande.statut.libelle == 'CONVENTION_GENEREE'|| demande.statut.libelle == 'CONVENTION_CORRIGEE')) "
                     class="col-12 md:col-12">
                     <p-card [style]="{'margin-bottom': '2em', 'border-radius': '2px'}" styleClass="shadow-2">
                         <span class="h5texte">Observation</span>
@@ -105,12 +105,12 @@
             type="button" id="valider" style="width: min-content;" pButton pRipple label="Signer" icon="pi pi-pencil"
             (click)="signerConventionPME()" class="p-button-raised successButton"></button>
         <button
-            *ngIf="((profil === 'DG') && (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME'))"
+            *ngIf="((profil === 'DG') && (demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_PME')||  (profil === 'DG') && (demande.statut.libelle === 'CONVENTION_CORRIGEE'))"
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
             (click)="rejetConventionDG()"
             class="p-button-raised dangerButton"></button>
             <button
-            *ngIf="((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE') )"
+            *ngIf="((profil === 'PME') && (demande.statut.libelle === 'CONVENTION_GENEREE') || (profil === 'PME') && (demande.statut.libelle === 'CONVENTION_CORRIGEE') )"
             id="rejeter" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
             (click)="rejetConventionPME()"
             class="p-button-raised dangerButton"></button>
@@ -121,7 +121,7 @@
             label="Fermer"></button>
 
             <button
-            *ngIf="((profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE_PAR_PME') || (profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE_PAR_DG') )"
+            *ngIf="((profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE_PAR_PME') || (profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE_PAR_DG')||(profil === 'JURISTE') && (demande.statut.libelle === 'CONVENTION_REJETEE') )"
             id="rejeter" style="width: min-content;" pButton pRipple label="Corriger" icon="pi pi-check"
             (click)="corrigerConvention()"
             class="p-button-raised successButton"></button>
