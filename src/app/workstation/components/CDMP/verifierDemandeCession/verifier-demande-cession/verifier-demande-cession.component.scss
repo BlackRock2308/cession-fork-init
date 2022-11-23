@@ -121,7 +121,12 @@ input{
     align-items: flex-end;
 }
 
-
+.p-fluid .p-calendar .p-inputtext {
+    width: 100%;
+}
+.p-calendar{
+    width: 100%;
+}
 // .switch{
 //     left: -350px;
 //     position: relative;
