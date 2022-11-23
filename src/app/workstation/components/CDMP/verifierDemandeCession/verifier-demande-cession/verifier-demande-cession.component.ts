@@ -51,7 +51,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   items: MenuItem[];
   home: MenuItem;
   notifier=new HttpHeaderResponse();
-
+  selectedYear: Date;
   constructor(
     private demandeCessionService: DemandesCessionService,
     private datepipe: DatePipe,
@@ -125,6 +125,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
   
   async rejeterDemande(bonEngagement){
+    bonEngagement.exercice = this.selectedYear.getFullYear();
     this.updatePME()
     await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
       ()=>{},
@@ -149,6 +150,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
      
   }
   async accepterDemande(bonEngagement) {
+    bonEngagement.exercice = this.selectedYear.getFullYear();
     this.updatePME()
     await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
       ()=>{},
@@ -216,6 +218,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       
     }).then((result) => {
       if (result.isConfirmed) {
+        bonEngagement.exercice = this.selectedYear.getFullYear();
         bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
@@ -237,6 +240,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        bonEngagement.exercice = this.selectedYear.getFullYear();
         bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
