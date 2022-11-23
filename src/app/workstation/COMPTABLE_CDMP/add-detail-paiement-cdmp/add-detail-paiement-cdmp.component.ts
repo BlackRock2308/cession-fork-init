@@ -62,7 +62,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
   dropdownItems = [
     { name: "Sélectionner", code: "" },
     { name: "Chèque", code: "CHEQUE" },
-    { name: "Espèce", code: "ESPECE" },
+  //  { name: "Espèce", code: "ESPECE" },
     { name: "Virement", code: "VIREMENT" },
   ];
   ngOnInit() {
@@ -99,6 +99,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    this.ref.close()
     Swal.fire({
       title: 'Continuer le paiement?',
       showDenyButton: true,
@@ -148,7 +149,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           timer: 2500
         }).then((result) => {
           if (result.isConfirmed) {
-            //this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
+          //  this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
             setTimeout(() => {
                location.reload()
             },100);

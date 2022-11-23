@@ -97,7 +97,7 @@
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{demande.dateDemandeCession|date:'dd/MM/yyyy' }}
+                            {{demande.dateDemandeCession | date:'dd/MM/yyyy' }}
                         </td>
                         <td style="width:20%;">
                             <span *ngIf="demande.statut.libelle!='RECEVABLE'" 

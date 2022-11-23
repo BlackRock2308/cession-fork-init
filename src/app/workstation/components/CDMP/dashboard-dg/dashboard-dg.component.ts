@@ -124,7 +124,7 @@ export class DashboardDGComponent implements OnInit {
     this.profil = localStorage.getItem("profil");
     this.user = JSON.parse(sessionStorage.getItem("auth-user"));
     this.demandesAdhesionService.getCreances().subscribe((data) => {
-      this.creances = data;
+      this.creances = data.content;
     });
     if (this.profil != "PME") {
       this.selectedYear = today;
@@ -460,7 +460,6 @@ export class DashboardDGComponent implements OnInit {
     );
   }
   visualiserDetails(demande: Creance) {
-    this.demande = { ...demande };
   //  this.demandesAdhesionService.setDemandenantissementObs(demande);
     const ref = this.dialogService.open(DetailsTableauComponent, {
       data: {
@@ -468,7 +467,7 @@ export class DashboardDGComponent implements OnInit {
       },
       header: "Détails du marché",
       width: "40%",
-      height: "calc(86% - 1000000px)",
+      height: "calc(86% - 100px)",
       baseZIndex: 100000000,
     });
   }

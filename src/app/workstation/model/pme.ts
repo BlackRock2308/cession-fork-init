@@ -27,7 +27,7 @@ export interface PME {
     effectif?: number,
     etablissements ?: number,
     chiffre?: number,
-    cniRepresentant ?: number ,
+    cniRepresentant ?: string ,
     dateimmatriculation ?: Date,
     telephone ?: number,
     capitalSocial ?: string,
