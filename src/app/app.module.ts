@@ -2,7 +2,6 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
-
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

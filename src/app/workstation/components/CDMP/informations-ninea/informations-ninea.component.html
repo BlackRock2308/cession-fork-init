@@ -44,7 +44,7 @@
                         <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12" style="font-weight: bold;color: #203359;">Téléphone<span
                             class="required">*</span></label>
                         <div class="col-sm-12 col-md-12 col-xl-12">
-                            <input pInputText id="name3" type="text" placeholder="33 333 33 33" formControlName="telephonePME" style="width: 100%;"/>
+                            <input pInputText id="name3" type="text"   formControlName="telephonePME" style="width: 100%;"/>
                         </div>
                     </div>
                     <div class="field grid col-sm-12 col-xl-4 row">
@@ -58,7 +58,8 @@
                         <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12" style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                             class="required">*</span></label>
                         <div class="col-sm-12 col-md-12 col-xl-12">
-                            <input pInputText id="name3" type="date"  formControlName="dateImmatriculation" style="width: 100%;"/>
+                            <p-calendar  [maxDate]="dateTime" formControlName="dateImmatriculation"  hourFormat="12" showButtonBar="true"  name="timeOfUse">
+                            </p-calendar>
                         </div>
                     </div>
                     <div class="field grid col-sm-12 col-xl-4 row">
@@ -107,22 +108,23 @@
                         <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12" style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
                             class="required">*</span></label>
                         <div class="col-sm-12 col-md-12 col-xl-12">
-                            <input pInputText id="name3" type="date" placeholder="20/10/2013" formControlName="dateCreation" style="width: 100%;"/>
-                        </div>
+                            <p-calendar  [maxDate]="dateTime" formControlName="dateCreation"  hourFormat="12" showButtonBar="true"  name="timeOfUse">
+                            </p-calendar>                        </div>
                     </div>
                     <div class="field grid col-sm-12 col-xl-3 row">
                         <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12" style="font-weight: bold;color: #203359;">Capital Social<span
                             class="required">*</span></label>
                         <div class="col-sm-12 col-md-12 col-xl-12">
-                            <input pInputText id="name3" type="text"  formControlName="capitalsocial"/>
+                            <p-inputNumber formControlName="capitalsocial"  [(ngModel)]="pme.capitalsocial" mode="currency" currency="CFA">
+                            </p-inputNumber>
                         </div>
                     </div>
                     <div class="field grid col-sm-12 col-xl-3 row">
                         <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12" style="font-weight: bold;color: #203359;">Chiffre d'affaires<span
                             class="required">*</span></label>
                         <div class="col-sm-12 col-md-12 col-xl-12">
-                            <input pInputText id="name3" type="text" placeholder="0000000" formControlName="chiffresDaffaires"/>
-                        </div>
+                            <p-inputNumber formControlName="chiffresDaffaires"  [(ngModel)]="pme.chiffresDaffaires" mode="currency" currency="CFA">
+                            </p-inputNumber>                        </div>
                     </div>
                     <div class="field grid col-sm-12 col-xl-3 row">
                         <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12" style="font-weight: bold;color: #203359;">Effectif Permanent<span
