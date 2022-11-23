@@ -2,7 +2,6 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
-
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -40,6 +39,7 @@ import { MenuService } from './core/app-layout/side-menu/app.menu.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { ErrorInterceptorService } from './workstation/service/gestionErreurCentralise/error-interceptor.service';
 import { HttpRetryInterceptorService } from './workstation/service/gestionErreurCentralise/http-retry-interceptor.service';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -69,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         DynamicDialogModule,
         OverlayModule,
         BreadcrumbModule,
+        NgxIntlTelInputModule,
         ToastModule
 
     ],

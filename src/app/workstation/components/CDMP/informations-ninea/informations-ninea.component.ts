@@ -10,13 +10,15 @@ import { ObservationService } from 'src/app/workstation/service/observation/obse
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { UtilisateurService } from 'src/app/workstation/service/utilisateur/utilisateur.service';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-informations-ninea',
   templateUrl: './informations-ninea.component.html',
   styleUrls: ['./informations-ninea.component.scss']
 })
 export class InformationsNineaComponent implements OnInit {
+  dateTime = new Date();
+  validPattern = "^[a-zA-Z0-9]$"
+ 
   informationsForm: any;
   demande: any;
   pme : PME;
@@ -51,7 +53,7 @@ export class InformationsNineaComponent implements OnInit {
       effectifPermanent: ['' , [Validators.required]],
       nombreEtablissementSecondaires: ['' , [Validators.required]],
       chiffresDaffaires: ['' , [Validators.required]],
-      cniRepresentant: ['' , [Validators.required]],
+      cniRepresentant: ['' , [Validators.required] , Validators.pattern(this.validPattern)],
       dateImmatriculation: ['' , [Validators.required]],
       telephonePME: ['' , [Validators.required]],
       capitalsocial : ['' , [Validators.required]],
@@ -121,15 +123,17 @@ export class InformationsNineaComponent implements OnInit {
 
 
     //A integrer apres le deploiement du microservice de notification
-  //  async createCompte(){
-  //     let infoEmail = {
-  //       email : this.pme.email
-  //     }
-  //     console.log(infoEmail)
-  //     this.utilisateurService.createCompte(infoEmail).subscribe((result)=>{
-  //       console.log(result)
-  //       })
-  //   }
+    async createCompte(){
+       let infoEmail = {
+        email : this.pme.email
+       }
+     console.log(infoEmail)
+       this.utilisateurService.createCompte(infoEmail).subscribe((result)=>{
+         console.log(result)
+         })
+     }
+  
+ 
 
    enregistrerInfos() {
    
@@ -177,13 +181,13 @@ export class InformationsNineaComponent implements OnInit {
       
           })
       
-          setTimeout(() => {
-           location.reload()
-          }, 1500);
-         }
+        //   setTimeout(() => {
+        //    location.reload()
+        //   }, 1500);
+          }
         
      )
-  //  await this.createCompte()
+    await this.createCompte()
   }
 
 }

@@ -62,7 +62,6 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
   dropdownItems = [
     { name: "Sélectionner", code: "" },
     { name: "Chèque", code: "CHEQUE" },
-  //  { name: "Espèce", code: "ESPECE" },
     { name: "Virement", code: "VIREMENT" },
   ];
   ngOnInit() {

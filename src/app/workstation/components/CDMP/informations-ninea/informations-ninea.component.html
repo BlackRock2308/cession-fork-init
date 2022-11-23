@@ -4,14 +4,12 @@
             <div class="p-formgrid grid row" [formGroup]="informationsForm">
                 <div class="field grid col-sm-12 col-xl-4 row">
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
-                        style="font-weight: bold;color: #203359;">Dénomination<span class="required">*</span></label>
+                        style="font-weight: bold;color: #203359;">Dénomination</label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" required="required" formControlName="raisonSocial"
+                        <input pInputText id="name3" type="text" placeholder="Nom de l'entreprise" formControlName="raisonSocial"
                             style="width: 100%;" />
                     </div>
-
                 </div>
-
 
                 <div class="field grid col-sm-12 col-xl-4 row">
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
@@ -170,8 +168,8 @@
             <div class="col-12 float-right d-flex justify-content-end">
                 <button id="suivant" pButton pRipple label="Précedent" class="p-button-raised simpleButton"
                     (click)="prevPage()"></button>
-                <button id="suivant" pButton pRipple label="Valider l'adhésion" [disabled]="!informationsForm.valid"
-                    icon="pi pi-check" class="successButton" (click)="onSubmit()"></button>
+                <button id="suivant" pButton pRipple label="Valider l'adhésion" icon="pi pi-check" class="successButton"
+                    (click)="onSubmit()"></button>
             </div>
         </ng-template>
     </p-card>

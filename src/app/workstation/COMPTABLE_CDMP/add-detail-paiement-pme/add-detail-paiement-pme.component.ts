@@ -64,7 +64,6 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   dropdownItems = [
     { name: "Sélectionner", code: "" },
     { name: "Chèque", code: "CHEQUE" },
-   // { name: "Espèce", code: "ESPECE" },
     { name: "Virement", code: "VIREMENT" },
   ];
   ngOnInit() {
@@ -99,7 +98,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     if (this.form.invalid) {
     return;
   }
-    this.ref.close()
+
+  this.ref.close()
+
   Swal.fire({
     title: 'Continuer le paiement?',
     showDenyButton: true,

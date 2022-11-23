@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { WorkstationRoutingModule } from './workstation-routing.module';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
@@ -95,6 +94,7 @@ import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention
     CardModule,
     TableModule,
     PdfViewerModule,
+    
     ChartModule
   ],
   exports: [
