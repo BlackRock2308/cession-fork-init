@@ -230,6 +230,9 @@ export class NouvelleDemandeComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

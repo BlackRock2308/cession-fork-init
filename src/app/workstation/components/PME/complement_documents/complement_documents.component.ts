@@ -152,6 +152,9 @@ this.typesDocument=[
         showCancelButton: true,
         confirmButtonText: 'Soumettre',
         denyButtonText: `Annuler`,
+        confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {

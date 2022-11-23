@@ -93,6 +93,9 @@ export class ConventionEnregistreeComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Soumettre',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -138,11 +141,11 @@ export class ConventionEnregistreeComponent implements OnInit {
               ()=>{
                 Swal.fire({
     
-                  html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été transmise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                  color: "#203359",
-                  confirmButtonColor: "#99CC33",
-                  confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                  allowOutsideClick: false,
+                  position: 'center',
+                  icon: 'success',
+                  title: 'La convention a bien été transmise.',
+                  showConfirmButton: false,
+                  timer: 2500
             
                 }).then((result) => {
                   if (result.isConfirmed) {

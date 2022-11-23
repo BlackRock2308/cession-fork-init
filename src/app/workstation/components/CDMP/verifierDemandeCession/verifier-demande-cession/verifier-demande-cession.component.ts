@@ -212,11 +212,12 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         title: 'Etes-vous sur de vouloir rejeter la demande?',
         icon: 'warning',
         showCancelButton: true,
-        cancelButtonColor: '#d33',
       color:"#203359",
-      confirmButtonColor:"#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
       allowOutsideClick:false,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
       
     }).then((result) => {
       if (result.isConfirmed) {
@@ -238,6 +239,9 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       showCancelButton: true,
       confirmButtonText: 'Valider',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
