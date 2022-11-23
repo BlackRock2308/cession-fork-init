@@ -30,7 +30,7 @@ export interface PME {
     cniRepresentant ?: number ,
     dateimmatriculation ?: Date,
     telephone ?: number,
-    capitalsocial ?: string,
+    capitalSocial ?: string,
     nineaValide?:boolean;
     pmeActive?:boolean;
     atd?:boolean;
