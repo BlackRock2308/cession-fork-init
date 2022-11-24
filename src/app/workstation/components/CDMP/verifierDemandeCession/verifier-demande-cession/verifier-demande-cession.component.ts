@@ -236,7 +236,6 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     Swal.fire({
       title: 'Etes-vous sûr de vouloir valider la demande de cession?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Valider',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

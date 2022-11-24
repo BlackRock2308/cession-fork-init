@@ -107,7 +107,6 @@ export class CorrigerConventionComponent implements OnInit {
     Swal.fire({
       title: 'Corriger la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Valider',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

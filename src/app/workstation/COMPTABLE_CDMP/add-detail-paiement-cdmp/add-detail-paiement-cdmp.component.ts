@@ -104,7 +104,6 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     Swal.fire({
       title: 'Continuer le paiement?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

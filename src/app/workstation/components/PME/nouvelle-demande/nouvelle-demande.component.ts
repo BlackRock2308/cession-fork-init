@@ -227,7 +227,6 @@ export class NouvelleDemandeComponent implements OnInit {
     Swal.fire({
       title: 'Vôtre demande de cession sera enregistrée.Voulez vous continuer?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

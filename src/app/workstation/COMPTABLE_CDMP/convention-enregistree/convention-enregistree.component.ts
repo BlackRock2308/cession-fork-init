@@ -90,7 +90,6 @@ export class ConventionEnregistreeComponent implements OnInit {
     Swal.fire({
       title: 'Soumettre la convention transmise?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Soumettre',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

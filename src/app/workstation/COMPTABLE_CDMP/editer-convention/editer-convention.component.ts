@@ -102,7 +102,6 @@ export class EditerConventionComponent implements OnInit {
     Swal.fire({
       title: 'Enregistrer la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Enregistrer',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

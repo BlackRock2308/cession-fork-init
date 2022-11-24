@@ -149,7 +149,6 @@ this.typesDocument=[
       Swal.fire({
         title: 'Soumettre complément de dossier?',
         showDenyButton: true,
-        showCancelButton: true,
         confirmButtonText: 'Soumettre',
         denyButtonText: `Annuler`,
         confirmButtonColor:'#99CC33FF',

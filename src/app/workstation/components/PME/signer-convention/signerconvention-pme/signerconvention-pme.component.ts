@@ -70,7 +70,6 @@ export class SignerconventionPMEComponent implements OnInit {
     Swal.fire({
       title: 'Continuer la signature?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

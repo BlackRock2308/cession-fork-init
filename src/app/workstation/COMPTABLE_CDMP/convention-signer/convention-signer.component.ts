@@ -47,7 +47,7 @@ export class ConventionSignerComponent implements OnInit {
       this.convention = this.demande.conventions[0]
      
 
-      console.log(this.convention)
+      console.log(this.convention.valeurDecote)
 
     })
   }
@@ -65,7 +65,6 @@ export class ConventionSignerComponent implements OnInit {
     Swal.fire({
       title: 'Signer la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Valider',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',

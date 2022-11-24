@@ -134,7 +134,6 @@ export class DetailsConventionComponent implements OnInit {
     Swal.fire({
       title: 'Valider la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Valider',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',
