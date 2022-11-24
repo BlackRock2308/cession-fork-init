@@ -15,9 +15,10 @@ export interface StatistiquePaiementCDMP {
 
 export interface StatistiquePaiementPME {
     year?:number;
-    cmulDebourses?:ObjetMoisAndMontant[]; 
+    cumulDebourses?:ObjetMoisAndMontant[]; 
     cumulMontantCreance?:ObjetMoisAndMontant[]; 
     cumulSoldes?:ObjetMoisAndMontant[]; 
+    cumulDecotes?:ObjetMoisAndMontant[]; 
 }
 
 
