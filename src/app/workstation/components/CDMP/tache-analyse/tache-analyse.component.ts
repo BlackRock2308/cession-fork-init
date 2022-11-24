@@ -220,9 +220,11 @@ export class TacheAnalyseComponent implements OnInit {
         Swal.fire({
             title: 'Etes-vous sûr de vouloir valider la demande de cession?',
             showDenyButton: true,
-            showCancelButton: true,
             confirmButtonText: 'Valider',
             denyButtonText: `Annuler`,
+            confirmButtonColor:'#99CC33FF',
+            denyButtonColor:'#981639FF',
+            cancelButtonColor:'#333366FF'
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -276,11 +278,12 @@ export class TacheAnalyseComponent implements OnInit {
             title: 'Etes-vous sur de vouloir rejeter la demande?',
             icon: 'warning',
             showCancelButton: true,
-            cancelButtonColor: '#d33',
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
+            color:"#203359",
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
+            allowOutsideClick:false,
+            confirmButtonColor:'#99CC33FF',
+            denyButtonColor:'#981639FF',
+            cancelButtonColor:'#333366FF'
           
         }).then((result) => {
           if (result.isConfirmed) {
@@ -313,9 +316,11 @@ export class TacheAnalyseComponent implements OnInit {
         Swal.fire({
             title: 'Une demande de complément de dossier sera soumise à la PME.Poursuivre?',
             showDenyButton: true,
-            showCancelButton: true,
             confirmButtonText: 'Continuer',
             denyButtonText: `Annuler`,
+            confirmButtonColor:'#99CC33FF',
+            denyButtonColor:'#981639FF',
+            cancelButtonColor:'#333366FF'
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -336,7 +341,8 @@ export class TacheAnalyseComponent implements OnInit {
                                 confirmButtonColor:"#99CC33",
                                 confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
                                 allowOutsideClick:false,
-                                showConfirmButton:false
+                                showConfirmButton:false,
+                                
                                 
                               }).then((result) => {
                                 if (result.isConfirmed) {

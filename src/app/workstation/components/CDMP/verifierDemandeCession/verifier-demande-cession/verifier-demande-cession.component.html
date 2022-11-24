@@ -214,21 +214,23 @@
                         </div>
                     </div><br>
                     <div class="p-formgrid p-fluid grid row container" [formGroup]="infosBEForm">
-                        <div class="field grid col-12 md:col-4    mr-2">
+                        <div class="field grid col-12 md:col-4 mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Exercice</label>
                             <p-calendar view="year" [(ngModel)]="selectedYear" dateFormat="yy" [readonlyInput]="false"
-                                inputId="pickYear" formControlName="exercice" [ngStyle]="{'width': '100%'}"> </p-calendar>
+                                inputId="pickYear" formControlName="exercice" [ngStyle]="{'width': '100%'}">
+                            </p-calendar>
                         </div>
-                        <div class="field grid col-12 md:col-4    mr-2">
-                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Numéro du BE validé</label>
+                        <div class="field grid col-12 md:col-4 mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Numéro du BE validé<span
+                                    class="required">*</span></label>
                             <div class="p-inputgroup">
                                 <span class="p-float-label">
                                     <input pInputText id="name3" type="text" formControlName="referenceBE"
-                                        [(ngModel)]="bonEngagement.reference" />
+                                        [(ngModel)]="bonEngagement.reference" disabled />
                                 </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4    mr-2">
+                        <div class="field grid col-12 md:col-4 mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Objet de la dépense<span
                                     class="required">*</span></label>
                             <div class="p-inputgroup">
@@ -295,11 +297,14 @@
                                 [(ngModel)]="bonEngagement.montantCreance">
                             </p-inputNumber>
                         </div>
-                        <div class="field grid col-12 md:col-4    mr-2">
+                        <div class="field grid col-12 md:col-4 mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date d'engagement<span
                                     class="required">*</span></label>
-                            <p-calendar inputId="basic" formControlName="dateBonEngagement" [ngStyle]="{'width': '100%'}"
-                                [(ngModel)]="bonEngagement.dateBonEngagement"></p-calendar>
+                            <p-calendar inputId="basic" formControlName="dateBonEngagement"
+                                [ngStyle]="{'width': '100%'}" [(ngModel)]="bonEngagement.dateBonEngagement">
+                            </p-calendar>
+                            <span *ngIf="submit && f['dateBonEngagement'].errors! && !f['dateBonEngagement'].hasError('required')"
+                                style="color: red;">Date supérieure à la date du jour</span>
                         </div>
                         <div class="field grid col-12 md:col-4    mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Identification
@@ -334,9 +339,12 @@
                         <div class="field grid col-12 md:col-4   mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date soumission du service
                                 depensier<span class="required">*</span></label>
-                            <p-calendar inputId="basic" formControlName="dateSoumissionServiceDepensier" [ngStyle]="{'width': '100%'}"
-                             [(ngModel)]="bonEngagement.dateSoumissionServiceDepensier">
+                            <p-calendar inputId="basic" formControlName="dateSoumissionServiceDepensier"
+                                [ngStyle]="{'width': '100%'}"
+                                [(ngModel)]="bonEngagement.dateSoumissionServiceDepensier">
                             </p-calendar>
+                            <span *ngIf="submit && f['dateSoumissionServiceDepensier'].errors! && !f['dateSoumissionServiceDepensier'].hasError('required')"
+                                style="color: red;">Date supérieure à la date du jour</span>
                         </div>
                     </div>
                 </p-card>
@@ -358,7 +366,7 @@
         <div class="float-end">
             <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter la demande"
                 (click)="onSubmitRejet(bonEngagement)"></button>
-            <button [disabled]="!infosBEForm.valid" *ngIf="identifie" pButton pRipple icon="pi pi-check"
+            <button  *ngIf="identifie" pButton pRipple icon="pi pi-check"
                 class="p-button-raised successButton" label="Valider" (click)="onSubmitAccept(bonEngagement)"></button>
 
         </div>

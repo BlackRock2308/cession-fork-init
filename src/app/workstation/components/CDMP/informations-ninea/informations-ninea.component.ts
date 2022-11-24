@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
-import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { SearchCountryField,  CountryISO } from 'ngx-intl-tel-input';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
@@ -24,8 +24,12 @@ export class InformationsNineaComponent implements OnInit {
   pme : PME;
   idPme:number;
   observation:Observation={};
-
-
+  separateDialCode = true;
+	SearchCountryField = SearchCountryField;
+	//TooltipLabel = TooltipLabel;
+	CountryISO = CountryISO;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  submit: boolean = false;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
@@ -49,12 +53,13 @@ export class InformationsNineaComponent implements OnInit {
       activitePrincipale: ['', [Validators.required]],
       registre: ['' , [Validators.required]],
       prenomRepresentant: ['' , [Validators.required]],
-      dateCreation: ['' , [Validators.required]],
+      nomRepresentant: ['' , [Validators.required]],
+      dateCreation: ['' , [Validators.required,  this.matchValues()]],
       effectifPermanent: ['' , [Validators.required]],
       nombreEtablissementSecondaires: ['' , [Validators.required]],
       chiffresDaffaires: ['' , [Validators.required]],
       cniRepresentant: ['' , [Validators.required] , Validators.pattern(this.validPattern)],
-      dateImmatriculation: ['' , [Validators.required]],
+      dateImmatriculation: ['' , [Validators.required, this.matchValues()]],
       telephonePME: ['' , [Validators.required]],
       capitalsocial : ['' , [Validators.required]],
       autorisationMinisterielle : ['' , [Validators.required]]
@@ -66,7 +71,15 @@ export class InformationsNineaComponent implements OnInit {
 
     })
   }
-
+  matchValues(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value <= new Date()
+        ? null
+        : { isMatching: false };
+    };
+  }
   get f() {
     return this.informationsForm.controls;
   }
@@ -77,20 +90,27 @@ export class InformationsNineaComponent implements OnInit {
   }
 
   onSubmit() {
-
-   
+    this.submit = true;
+    if (this.informationsForm.invalid) {
+      return;
+    }
     Swal.fire({
       title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
+
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.enregistrerInfos()
-        //fermer la boite de dialogue
         this.demandeAdhesionService.setDialog(false)
+        setTimeout(() => {
+          location.reload()
+       },100);
       } else if (result.isDenied) {
         Swal.fire('Traitement de la demande non effective!', '', 'info')
       }
@@ -154,20 +174,7 @@ export class InformationsNineaComponent implements OnInit {
         },
         (error)=>{},
          ()=>{
-           
           
-          // this.observation.statut={}          
-          // this.observation.demandeid = this.demande.idDemande;
-
-          // this.observation.utilisateurid = this.demande.pme.utilisateur.id;
-          // this.observation.statut.libelle =StatutEnum.adhesionSoumise;
-          // this.observation.dateObservation = this.demande.dateDemandeAdhesion;
-          // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-       
-          // this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          // this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
-          // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -178,12 +185,10 @@ export class InformationsNineaComponent implements OnInit {
             confirmButtonColor: "#99CC33",
             confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
             allowOutsideClick: false
-      
-          })
-      
-        //   setTimeout(() => {
-        //    location.reload()
-        //   }, 1500);
+          })      
+          setTimeout(() => {
+           location.reload()
+          }, 1500);
           }
         
      )

@@ -86,7 +86,8 @@ export class RecevabiliteComponent implements OnInit {
       { field: 'rccm', header: 'RCCM' },
       { field: 'datesoumission', header: 'Date Soumission' },
       { field: 'raisonSociale', header: 'Raison Sociale' },
-      { field: 'refBE', header: 'Reférence du BE' }
+      { field: 'refBE', header: 'Reférence du BE' },
+      { field: 'statut', header: 'Statut' }
     ];
 
     //filtre par range date

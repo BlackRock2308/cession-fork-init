@@ -22,14 +22,15 @@ export interface PME {
     controle?: number,
     activiteprincipale ?: string,
     registre ?: string,
-    representantLegal ?:string,
+    prenomRepresentant ?:string,
+    nomRepresentant ?:string,
     date_creation ?: Date,
     effectif?: number,
     etablissements ?: number,
     chiffre?: number,
     cniRepresentant ?: string ,
     dateimmatriculation ?: Date,
-    telephone ?: number,
+    telephonePME ?: string,
     capitalSocial ?: string,
     nineaValide?:boolean;
     pmeActive?:boolean;

@@ -1,168 +1,203 @@
 <div class="stepsdemo-content">
     <p-card>
         <ng-template pTemplate="content">
-            <div class="p-formgrid grid row" [formGroup]="informationsForm">
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
-                        style="font-weight: bold;color: #203359;">Dénomination</label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" placeholder="Nom de l'entreprise" formControlName="raisonSocial"
-                            style="width: 100%;" />
+            <div class="p-formgrid p-fluid grid row container" [formGroup]="informationsForm">
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">Dénomination</label>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                        <input pInputText id="name3" type="text" placeholder="Nom de l'entreprise"
+                            formControlName="raisonSocial" style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
-                        style="font-weight: bold;color: #203359;">Représentant Légal<span
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3" style="font-weight: bold;color: #203359;"> Prénom représentant <span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" placeholder="Prenom & Nom"
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
+                        <input pInputText id="name3" type="text" placeholder="Prénom "
                             formControlName="prenomRepresentant" style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
+                        style="font-weight: bold;color: #203359;">Nom représentant <span
+                            class="required">*</span></label>
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
+                        <input pInputText id="name3" type="text" placeholder="Nom"
+                            formControlName="nomRepresentant" style="width: 100%;" />
+                            </span>
+                    </div>
+                </div>
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Enseigne/Sigle<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" formControlName="enseigne" style="width: 100%;" />
+                   </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Forme Juridique<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" formControlName="formeJuridique"
                             style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">N° CNI du représentant<span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" placeholder="00000000000"
                             formControlName="cniRepresentant" style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Téléphone<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" placeholder="33 333 33 33"
-                            formControlName="telephonePME" style="width: 100%;" />
-                    </div>
+                        <ngx-intl-tel-input [preferredCountries]="preferredCountries"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
+                            [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone"
+                            formControlName="telephonePME" >
+                        </ngx-intl-tel-input>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Centre Fiscal<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" placeholder="Centre Fiscal"
                             formControlName="centreFiscal" style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="date" formControlName="dateImmatriculation"
-                            style="width: 100%;" />
-                    </div>
+                        <p-calendar inputId="basic" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}">
+                       </p-calendar>
+                       <span *ngIf="submit && f['dateImmatriculation'].errors! && !f['dateImmatriculation'].hasError('required')"
+                        style="color: red;">Date supérieure à la date du jour</span>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Adresse/BP<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" placeholder="Adresse" formControlName="adressePME"
                             style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Localité<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" formControlName="localite" style="width: 100%;" />
+                    </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Contrôle<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="number" formControlName="controle" style="width: 100%;" />
+                   </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Activité Principale<span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" placeholder="Secteur d'activité"
                             formControlName="activitePrincipale" style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Autorisation Ministérielle <span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" formControlName="autorisationMinisterielle"
                             style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Registre de commerce<span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="text" placeholder="SN DKR 2013 A 10515"
                             formControlName="registre" style="width: 100%;" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-4 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="date" placeholder="20/10/2013" formControlName="dateCreation"
-                            style="width: 100%;" />
+                        <p-calendar inputId="basic" formControlName="dateCreation" [ngStyle]="{'width': '100%'}">
+                        </p-calendar>
+                       <span *ngIf="submit && f['dateCreation'].errors! && !f['dateCreation'].hasError('required')"
+                       style="color: red;">Date supérieure à la date du jour</span>
                     </div>
-                </div>
-                <div class="field grid col-sm-12 col-xl-3 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Capital Social<span class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" placeholder="Capital social"
-                            formControlName="capitalsocial" />
+                        <p-inputNumber formControlName="capitalsocial"  mode="currency" currency="CFA">
+                        </p-inputNumber>
                     </div>
-                </div>
-                <div class="field grid col-sm-12 col-xl-3 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Chiffre d'affaires<span
-                            class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="number" placeholder="0000000"
-                            formControlName="chiffresDaffaires" />
-                    </div>
+                            class="required">*</span></label>                      
+                        <p-inputNumber formControlName="chiffresDaffaires"  mode="currency" currency="CFA">
+                        </p-inputNumber>
                 </div>
-                <div class="field grid col-sm-12 col-xl-3 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Effectif Permanent<span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="number" placeholder="Effectif Permanent"
                             formControlName="effectifPermanent" />
+                            </span>
                     </div>
                 </div>
-                <div class="field grid col-sm-12 col-xl-3 row">
-                    <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
+                <div  class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Nombre d'établ. sdaires<span
                             class="required">*</span></label>
-                    <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="p-inputgroup">
+                                <span class="p-float-label">
                         <input pInputText id="name3" type="number" placeholder="nombre Etablissement Secondaires"
                             formControlName="nombreEtablissementSecondaires" />
+                            </span>
                     </div>
                 </div>
-            </div>
+                </div>
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="col-12 float-right d-flex justify-content-end">

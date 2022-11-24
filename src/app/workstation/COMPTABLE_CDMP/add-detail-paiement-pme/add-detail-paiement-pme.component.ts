@@ -104,9 +104,11 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
   Swal.fire({
     title: 'Continuer le paiement?',
     showDenyButton: true,
-    showCancelButton: true,
     confirmButtonText: 'Continuer',
     denyButtonText: `Annuler`,
+    confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
@@ -142,11 +144,11 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
        }else{
         this.close(this.detailPaiement);
         Swal.fire({
-          html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>PME payé avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-          color:"#203359",
-          confirmButtonColor:"#99CC33",
-          confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-          allowOutsideClick:false,
+          position: 'center',
+          icon: 'success',
+          title: 'Payement PME enregistré avec succès.',
+          showConfirmButton: false,
+          timer: 2500
         }).then((result) => {
           if (result.isConfirmed) {
              setTimeout(() => {

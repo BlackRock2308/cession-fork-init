@@ -404,7 +404,7 @@ export class DashboardDGComponent implements OnInit {
             labels: this.mois,
             datasets: [
               {
-                label: "Engagé",
+                label: "Montant de créance",
                 backgroundColor: " #333366",
                 data: cumulMontantCreance,
               },
@@ -414,7 +414,7 @@ export class DashboardDGComponent implements OnInit {
                 data: cumulSoldes,
               },
               {
-                label: "Déboursé",
+                label: "Montant reçu",
                 backgroundColor: " #99CC33",
                 data: cumulDebourses,
               },
