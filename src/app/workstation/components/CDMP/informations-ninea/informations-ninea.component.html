@@ -6,8 +6,8 @@
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
                         style="font-weight: bold;color: #203359;">Dénomination</label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" placeholder="Nom de l'entreprise" formControlName="raisonSocial"
-                            style="width: 100%;" />
+                        <input pInputText id="name3" type="text" placeholder="Nom de l'entreprise"
+                            formControlName="raisonSocial" style="width: 100%;" />
                     </div>
                 </div>
 
@@ -48,8 +48,13 @@
                     <label htmlFor="name3" class="col-sm-12 col-md-12 col-xl-12"
                         style="font-weight: bold;color: #203359;">Téléphone<span class="required">*</span></label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="text" placeholder="33 333 33 33"
-                            formControlName="telephonePME" style="width: 100%;" />
+                        <ngx-intl-tel-input [preferredCountries]="preferredCountries"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
+                            [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone"
+                            formControlName="telephonePME" >
+                        </ngx-intl-tel-input>
                     </div>
                 </div>
                 <div class="field grid col-sm-12 col-xl-4 row">
