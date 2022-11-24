@@ -31,6 +31,20 @@
         background: #b7b5b0;
         color: #373737;
     }
+
+    &.status-cdmp_totalement_payee {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-cdmp_partiellement_payee {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-cdmp_en_attente_de_paiement {
+        background: #b7b5b0;
+        color: #373737;
+    }
 }
 
 //cacher les bouton de filtre
