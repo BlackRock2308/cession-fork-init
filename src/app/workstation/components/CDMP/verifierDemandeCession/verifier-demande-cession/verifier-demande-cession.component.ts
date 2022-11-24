@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
@@ -56,6 +56,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   home: MenuItem;
   notifier=new HttpHeaderResponse();
   selectedYear: Date;
+  submit:boolean = false;
   constructor(
     private demandeCessionService: DemandesCessionService,
     private datepipe: DatePipe,
@@ -87,11 +88,6 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
 
     })
 
-      
-
-
-   
-
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
       { field: 'nomDocument', header: 'Nom Document' },
@@ -102,7 +98,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       exercice: ['',Validators.required],
       naturePrestation: ['',Validators.required],
       designationBeneficiaire: ['',Validators.required],
-      referenceBE: [this.demandeCession.bonEngagement.reference,Validators.required],
+      referenceBE: [{ value: this.demandeCession.bonEngagement.reference, disabled: true } ],
       imputation: ['',Validators.required],
       modeReglement: ['',Validators.required],
       destinationAction: ['',Validators.required],
@@ -110,13 +106,24 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       typeDepense: ['',Validators.required],
       objetDepense: ['',Validators.required],
       montantCreance: ['',Validators.required],
-      dateBonEngagement: ['',Validators.required],
+      dateBonEngagement:['' ,[Validators.required, this.matchValues()]],
       destinationActivite: ['',Validators.required],
-      dateSoumissionServiceDepensier: ['',Validators.required]
+      dateSoumissionServiceDepensier: ['' ,[Validators.required, this.matchValues()]]
 
     });
   }
-
+  matchValues(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value <= new Date()
+        ? null
+        : { isMatching: false };
+    };
+  }
+  get f() {
+    return this.infosBEForm.controls;
+  }
   async updatePME() {
     let pme=this.demandeCession.pme
     pme.identificationBudgetaire= this.identifie
@@ -154,6 +161,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
      
   }
   async accepterDemande(bonEngagement) {
+   
     bonEngagement.exercice = this.selectedYear.getFullYear();
     this.updatePME()
     await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
@@ -236,6 +244,10 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
 
     }
   onSubmitAccept(bonEngagement) {
+    this.submit = true;
+    if (this.infosBEForm.invalid) {
+      return;
+    }
     Swal.fire({
       title: 'Etes-vous sûr de vouloir valider la demande de cession?',
       showDenyButton: true,
