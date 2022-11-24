@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
-import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { SearchCountryField,  CountryISO } from 'ngx-intl-tel-input';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
@@ -24,7 +24,11 @@ export class InformationsNineaComponent implements OnInit {
   pme : PME;
   idPme:number;
   observation:Observation={};
-
+  separateDialCode = true;
+	SearchCountryField = SearchCountryField;
+	//TooltipLabel = TooltipLabel;
+	CountryISO = CountryISO;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
