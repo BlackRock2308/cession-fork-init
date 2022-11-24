@@ -90,9 +90,11 @@ export class ConventionEnregistreeComponent implements OnInit {
     Swal.fire({
       title: 'Soumettre la convention transmise?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Soumettre',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -123,23 +125,20 @@ export class ConventionEnregistreeComponent implements OnInit {
                 console.log(response)
                 console.log(StatutEnum.ConventionTransmise)
               },
-                () => { },
-                () => {
-                  Swal.fire({
-                    html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été transmise.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-                    color: "#203359",
-                    confirmButtonColor: "#99CC33",
-                    confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                    allowOutsideClick: false,
-
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      this.router.navigate(['workstation/comptable/convention_cession'])
-                    }
-                  })
-                  setTimeout(() => {
-                    location.reload()
-                  }, 1500);
+              ()=>{},
+              ()=>{
+                Swal.fire({
+    
+                  position: 'center',
+                  icon: 'success',
+                  title: 'La convention a bien été transmise.',
+                  showConfirmButton: false,
+                  timer: 2500
+            
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    this.router.navigate(['workstation/comptable/convention_cession'])
+                  }
                 })
             this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
             this.observation.statut = {}

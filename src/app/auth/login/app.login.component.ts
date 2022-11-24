@@ -99,10 +99,12 @@ export class AppLoginComponent implements OnInit{
             localStorage.setItem('profil', 'PME'); 
             if(this.changeCodePin){
               this.router.navigate(['workstation/profil']);
+              
   
             }
             else{
               this.router.navigate(['workstation/pme/demandes_en_cours']);
+              
             }
           }
           if(this.roles.find(elem => elem.libelle == 'DAF')!=null){

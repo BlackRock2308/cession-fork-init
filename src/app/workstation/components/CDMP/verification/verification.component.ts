@@ -62,11 +62,12 @@ export class VerificationComponent implements OnInit {
       title: 'Etes-vous sur de vouloir rejeter la demande?',
       icon: 'warning',
       showCancelButton: true,
-      cancelButtonColor: '#d33',
       color: "#203359",
-      confirmButtonColor: "#99CC33",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
       allowOutsideClick: false,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
 
     }).then((result) => {
       if (result.isConfirmed) {

@@ -97,9 +97,12 @@ export class InformationsNineaComponent implements OnInit {
     Swal.fire({
       title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
+
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

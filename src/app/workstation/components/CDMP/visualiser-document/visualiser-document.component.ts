@@ -284,9 +284,11 @@ export class VisualiserDocumentComponent implements OnInit {
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Rejeter',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -340,9 +342,11 @@ export class VisualiserDocumentComponent implements OnInit {
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Rejeter',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
