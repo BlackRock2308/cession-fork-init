@@ -24,6 +24,31 @@
     display: none;
 }
 
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+    
+    &.status-adhesion_acceptee {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-adhesion_rejetee {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-soumise {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    
+
+}
+
 ::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted{
     background-color: #203359;
 

@@ -58,30 +58,33 @@
                         <th pSortableColumn="dateDemande" style="color: #203359;">Date soumission <p-sortIcon
                                 field="dateDemande"></p-sortIcon>
                         </th>
+                        
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon
+                            field="statut"></p-sortIcon>
+                    </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
 
-                        <td style="width:25%; min-width:10rem;">
-                            <span class="p-column-title">Nom Marché</span>
+                        <td style="width:20%; min-width:10rem;">
                             {{demande.bonEngagement.nomMarche}}
                         </td>
 
                         <td style="width:20%; min-width:8rem;">
-                            <span class="p-column-title">Raison Sociale</span>
                             {{demande.pme.raisonSocial}}
                         </td>
-                        <td style="width:20%; min-width:8rem;">
-                            <span class="p-column-title">Reférence du BE</span>
+                        <td style="width:15%; min-width:8rem;">
                             {{demande.bonEngagement.reference}}
                         </td>
-                        <td style="width:20%;">
-                            <span class="p-column-title">Date Demande</span>
+                        <td style="width:15%;">
                             {{demande.dateDemandeCession | date:'dd/MM/yyyy' }}
                         </td>
-
+                        <td style="width:15%;">                          
+                           <span [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
+                            ' ')}}</span>
+                        </td>
                         <td>
 
                             <div class="flex">
