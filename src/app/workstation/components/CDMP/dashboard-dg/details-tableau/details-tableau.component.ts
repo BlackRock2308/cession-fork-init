@@ -16,6 +16,7 @@ export class DetailsTableauComponent implements OnInit {
   constructor(public ref: DynamicDialogRef, private demandeAdhesionService: DemandesAdhesionService, public config: DynamicDialogConfig) { }
 
   ngOnInit() : void {
+    console.log('merciiii ' +JSON.stringify( this.config.data.demande))
     this.detailsCreances = this.config.data.demande;
 
   }

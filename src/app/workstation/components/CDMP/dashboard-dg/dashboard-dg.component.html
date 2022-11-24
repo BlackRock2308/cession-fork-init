@@ -49,7 +49,7 @@
 </div>
 
 <br>
-<div class="card"  *ngIf="profil !== 'PME'">
+<div class="card" *ngIf="profil !== 'PME'">
     <div class="dropdown">
         <button *ngIf="profil === 'DG'" id="valider" class="btn btn-secondary dropdown-toggle"
             style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;"
@@ -62,7 +62,6 @@
             <a class="dropdown-item" (click)="exportPdf()">PDF</a>
         </div>
     </div>
-
 
     <!-- <button *ngIf="profil === 'DG'" id="valider"
         style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;" pButton
@@ -139,44 +138,45 @@
                
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-demande>
+        <ng-template pTemplate="body" let-creance>
             <tr>
                 <td>
                     <span class="p-column-title">Nom marche</span>
-                    {{demande.nomMarche}}
+                    {{creance.nomMarche}}
                 </td>
                 <td>
                     <span class="p-column-title">Raison sociale</span>
-                    {{demande.raisonSocial}}
+                    {{creance.raisonSocial}}
                 </td>
                 <td>
                     <span class="p-column-title">Date demande</span>
-                    {{demande.dateDemandeCession}}
+                    {{creance.dateDemandeCession | date:'dd/MM/yyyy'}}
                 </td>
                 <td>
                     <span class="p-column-title">Montant total</span>
-                    {{demande.montantCreance}}
+                    {{creance.montantCreance | number: '1.0-0'}} FCFA
                 </td>
                 <td>
                     <span class="p-column-title">Date marché</span>
-                    {{demande.dateMarche}}
+                    {{creance.dateMarche | date:'dd/MM/yyyy'}}
                 </td>
-                <td>
-                    <span
-                        [class]="'product-badge status-' + (demande.statut_dg ? demande.statut_dg.toLowerCase() : '')">{{demande.statut_dg.replaceAll('-',
-                        ' ')}}</span>
+                <td >
+                    <span *ngIf="creance.statut.code === 'RISQUEE'  " 
+                    [class]="'product-badge status-' + (creance.statut.code ? creance.statut.code.toLowerCase() : '')"> refusée</span>
+
+                    <span *ngIf="creance.statut.code !=='RISQUEE'" 
+                    [class]="'product-badge status-' + (creance.statut.code ? creance.statut.code.toLowerCase() : '')">acceptée</span>
 
                 </td>
                 <td *ngIf="profil === 'DG'">
                     <span class="p-column-title">Décote</span>
-                    {{demande.decote}}
+                    {{creance.decote}}
                 </td>
                 <td>
                     <div class="flex">
                         <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text mr-2 button"
-                            style=" background-color: #203359; color: white;" (click)="visualiserDetails(demande)"
+                            style=" background-color: #203359; color: white;" (click)="visualiserDetails(creance)"
                             pInputText pTooltip="Détails"></button>
-                        <!-- <i  class="pi pi-search ml-3"  ></i> -->
                     </div>
                 </td>
             </tr>
@@ -184,7 +184,6 @@
     </p-table>
 </div>
 <div  class="row center-diagramme" *ngIf="profil === 'PME'">
-    
     <div class="col-sm-12">
         <div class="card flex flex-column ">
             <div class="row">

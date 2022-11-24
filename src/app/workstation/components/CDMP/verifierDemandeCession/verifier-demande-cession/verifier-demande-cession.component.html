@@ -213,15 +213,11 @@
                             <h4 class="title">Informations complémentaires</h4>
                         </div>
                     </div><br>
-                    <div class="p-formgrid grid row container" [formGroup]="infosBEForm">
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Exercice<span
-                                class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="number" formControlName="exercice"
-                                    [(ngModel)]="bonEngagement.exercice" />
-                            </div>
+                    <div class="p-formgrid p-fluid grid row container" [formGroup]="infosBEForm">
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Exercice</label>
+                            <p-calendar view="year" [(ngModel)]="selectedYear" dateFormat="yy" [readonlyInput]="false"
+                                inputId="pickYear" formControlName="exercice" [ngStyle]="{'width': '100%'}"> </p-calendar>
                         </div>
                         <div class="field grid col-12 md:col-4 sm:col-6">
                             <label htmlFor="name3" class="col-12 xl:col-5"
@@ -232,118 +228,116 @@
                                     [(ngModel)]="bonEngagement.reference" disabled/>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Objet de la dépense<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Objet de la dépense<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="objetDepense"
-                                    [(ngModel)]="bonEngagement.objetDepense" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="objetDepense"
+                                        [(ngModel)]="bonEngagement.objetDepense" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Nature de la dépense<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nature de la dépense<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="naturePrestation"
-                                    [(ngModel)]="bonEngagement.natureDepense" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="naturePrestation"
+                                        [(ngModel)]="bonEngagement.natureDepense" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Type de la dépense<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Type de la dépense<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="typeDepense"
-                                    [(ngModel)]="bonEngagement.typeDepense" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="typeDepense"
+                                        [(ngModel)]="bonEngagement.typeDepense" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Imputation budgetaire<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Imputation budgetaire<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="imputation"
-                                    [(ngModel)]="bonEngagement.imputation" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="imputation"
+                                        [(ngModel)]="bonEngagement.imputation" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Designation du bénéficiaire <span
-                                    class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="designationBeneficiaire"
-                                    [(ngModel)]="bonEngagement.designationBeneficiaire" />
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Designation du bénéficiaire
+                                <span class="required">*</span></label>
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="designationBeneficiaire"
+                                        [(ngModel)]="bonEngagement.designationBeneficiaire" />
+                                </span>
                             </div>
                         </div>
-
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Mode de réglement<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Mode de réglement<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="modeReglement"
-                                    [(ngModel)]="bonEngagement.modeReglement" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="modeReglement"
+                                        [(ngModel)]="bonEngagement.modeReglement" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Montant de la dépense<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Montant de la dépense<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                               
-                                    <p-inputNumber   mode="currency" currency="CFA" formControlName="montantCreance"
-                                    [(ngModel)]="bonEngagement.montantCreance">
-                                    </p-inputNumber>
+                            <p-inputNumber mode="currency" currency="CFA" formControlName="montantCreance"
+                                [(ngModel)]="bonEngagement.montantCreance">
+                            </p-inputNumber>
+                        </div>
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date d'engagement<span
+                                    class="required">*</span></label>
+                            <p-calendar inputId="basic" formControlName="dateBonEngagement" [ngStyle]="{'width': '100%'}"
+                                [(ngModel)]="bonEngagement.dateBonEngagement"></p-calendar>
+                        </div>
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Identification
+                                Comptable<span class="required">*</span></label>
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="identificationComptable"
+                                        [(ngModel)]="bonEngagement.identificationComptable" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Date d'engagement<span
+                        <div class="field grid col-12 md:col-4     mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Destination/Action<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="date" formControlName="dateBonEngagement" style=" width: 110%;"
-                                    [(ngModel)]="bonEngagement.dateBonEngagement" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="destinationAction"
+                                        [(ngModel)]="bonEngagement.destinationAction" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Identification Comptable<span
+                        <div class="field grid col-12 md:col-4    mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Destination/Activité<span
                                     class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="identificationComptable"
-                                    [(ngModel)]="bonEngagement.identificationComptable" />
+                            <div class="p-inputgroup">
+                                <span class="p-float-label">
+                                    <input pInputText id="name3" type="text" formControlName="destinationActivite"
+                                        [(ngModel)]="bonEngagement.destinationActivite" />
+                                </span>
                             </div>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Destination/Action<span
-                                    class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="destinationAction"
-                                    [(ngModel)]="bonEngagement.destinationAction" />
-                            </div>
+                        <div class="field grid col-12 md:col-4   mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date soumission du service
+                                depensier<span class="required">*</span></label>
+                            <p-calendar inputId="basic" formControlName="dateSoumissionServiceDepensier" [ngStyle]="{'width': '100%'}"
+                             [(ngModel)]="bonEngagement.dateSoumissionServiceDepensier">
+                            </p-calendar>
                         </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Destination/Activité<span
-                                    class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="text" formControlName="destinationActivite"
-                                    [(ngModel)]="bonEngagement.destinationActivite" />
-                            </div>
-                        </div>
-                        <div class="field grid col-12 md:col-4 sm:col-6">
-                            <label htmlFor="name3" class="col-12 xl:col-5"
-                                style="font-weight: bold;color: #203359;">Date soumission du service depensier<span
-                                    class="required">*</span></label>
-                            <div class="col-12 xl:col-6">
-                                <input pInputText id="name3" type="date" formControlName="dateSoumissionServiceDepensier" style=" width: 110%;"
-                                    [(ngModel)]="bonEngagement.dateSoumissionServiceDepensier" />
-                            </div>
-                        </div>
-
                     </div>
                 </p-card>
             </div>

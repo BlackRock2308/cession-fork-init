@@ -4,25 +4,31 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
-import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { SearchCountryField,  CountryISO } from 'ngx-intl-tel-input';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { UtilisateurService } from 'src/app/workstation/service/utilisateur/utilisateur.service';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-informations-ninea',
   templateUrl: './informations-ninea.component.html',
   styleUrls: ['./informations-ninea.component.scss']
 })
 export class InformationsNineaComponent implements OnInit {
+  dateTime = new Date();
+  validPattern = "^[a-zA-Z0-9]$"
+ 
   informationsForm: any;
   demande: any;
   pme : PME;
   idPme:number;
   observation:Observation={};
-
+  separateDialCode = true;
+	SearchCountryField = SearchCountryField;
+	//TooltipLabel = TooltipLabel;
+	CountryISO = CountryISO;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
@@ -51,7 +57,7 @@ export class InformationsNineaComponent implements OnInit {
       effectifPermanent: ['' , [Validators.required]],
       nombreEtablissementSecondaires: ['' , [Validators.required]],
       chiffresDaffaires: ['' , [Validators.required]],
-      cniRepresentant: ['' , [Validators.required]],
+      cniRepresentant: ['' , [Validators.required] , Validators.pattern(this.validPattern)],
       dateImmatriculation: ['' , [Validators.required]],
       telephonePME: ['' , [Validators.required]],
       capitalsocial : ['' , [Validators.required]],
@@ -124,24 +130,21 @@ export class InformationsNineaComponent implements OnInit {
 
 
     //A integrer apres le deploiement du microservice de notification
-  //  async createCompte(){
-  //     let infoEmail = {
-  //       email : this.pme.email
-  //     }
-  //     console.log(infoEmail)
-  //     this.utilisateurService.createCompte(infoEmail).subscribe((result)=>{
-  //       console.log(result)
-  //       })
-  //   }
+    async createCompte(){
+       let infoEmail = {
+        email : this.pme.email
+       }
+     console.log(infoEmail)
+       this.utilisateurService.createCompte(infoEmail).subscribe((result)=>{
+         console.log(result)
+         })
+     }
   
  
 
    enregistrerInfos() {
    
    this.validerDemandeAdhesion();
-
-
-    
 
     console.log(this.pme)
   }
@@ -160,17 +163,17 @@ export class InformationsNineaComponent implements OnInit {
          ()=>{
            
           
-          this.observation.statut={}          
-          this.observation.demandeid = this.demande.idDemande;
+          // this.observation.statut={}          
+          // this.observation.demandeid = this.demande.idDemande;
 
           // this.observation.utilisateurid = this.demande.pme.utilisateur.id;
           // this.observation.statut.libelle =StatutEnum.adhesionSoumise;
           // this.observation.dateObservation = this.demande.dateDemandeAdhesion;
           // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
        
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          // this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          // this.observation.statut.libelle =StatutEnum.adhesionAcceptee;
+          // this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
           Swal.fire({
             position: 'center',
@@ -185,15 +188,13 @@ export class InformationsNineaComponent implements OnInit {
       
           })
       
-          setTimeout(() => {
-           location.reload()
-          }, 1500);
-         }
+        //   setTimeout(() => {
+        //    location.reload()
+        //   }, 1500);
+          }
         
      )
-  //  await this.createCompte()
+    await this.createCompte()
   }
-
-  
 
 }

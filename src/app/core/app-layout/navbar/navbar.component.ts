@@ -61,6 +61,7 @@ export class NavbarComponent implements OnInit {
   profil: string;
   nom : string;
   prenom : string;
+  roles:string;
 
   constructor(public renderer: Renderer2, public dialogService: DialogService,
     public appMain: AppMainComponent, public router: Router,
@@ -69,12 +70,19 @@ export class NavbarComponent implements OnInit {
     this.profil = localStorage.getItem('profil')
     this.nom = this.tokenStorage.getUser().nom
     this.prenom = this.tokenStorage.getUser().prenom
+    this.roles=this.tokenStorage.getUser().roles[0].description;
 
   }
 
   loggout() {
     this.tokenStorage.signOut()
     this.router.navigate(['/login']);
+    localStorage.removeItem('auth-user');
+    localStorage.removeItem('is-auth');
+    localStorage.removeItem('pme-user');
+    localStorage.removeItem('auth-token');
+    localStorage.removeItem('storedDemande');
+    localStorage.removeItem('storedDemandeCession');
     localStorage.removeItem('profil');
   }
 

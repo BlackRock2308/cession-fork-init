@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { WorkstationRoutingModule } from './workstation-routing.module';
 import { DemandesAdhesionComponent } from './components/CDMP/demandes-adhesion/demandes-adhesion.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
@@ -46,6 +45,7 @@ import { MessageService } from 'primeng/api';
 import { CodeComponent } from './components/profil/code/code.component';
 import { SignerconventionPMEComponent } from './components/PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -95,6 +95,7 @@ import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention
     CardModule,
     TableModule,
     PdfViewerModule,
+    NgxIntlTelInputModule,
     ChartModule
   ],
   exports: [

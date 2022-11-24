@@ -124,7 +124,7 @@ export class DashboardDGComponent implements OnInit {
     this.profil = localStorage.getItem("profil");
     this.user = JSON.parse(sessionStorage.getItem("auth-user"));
     this.demandesAdhesionService.getCreances().subscribe((data) => {
-      this.creances = data;
+      this.creances = data.content;
     });
     if (this.profil != "PME") {
       this.selectedYear = today;
@@ -404,7 +404,7 @@ export class DashboardDGComponent implements OnInit {
             labels: this.mois,
             datasets: [
               {
-                label: "Engagé",
+                label: "Montant de créance",
                 backgroundColor: " #333366",
                 data: cumulMontantCreance,
               },
@@ -414,7 +414,7 @@ export class DashboardDGComponent implements OnInit {
                 data: cumulSoldes,
               },
               {
-                label: "Déboursé",
+                label: "Montant reçu",
                 backgroundColor: " #99CC33",
                 data: cumulDebourses,
               },
@@ -459,16 +459,15 @@ export class DashboardDGComponent implements OnInit {
       fileName + "_export_" + new Date().getTime() + EXCEL_EXTENSION
     );
   }
-  visualiserDetails(demande: DemandeAdhesion) {
-    this.demande = { ...demande };
-    this.demandesAdhesionService.setDemandenantissementObs(demande);
+  visualiserDetails(demande: Creance) {
+  //  this.demandesAdhesionService.setDemandenantissementObs(demande);
     const ref = this.dialogService.open(DetailsTableauComponent, {
       data: {
         demande: demande,
       },
       header: "Détails du marché",
       width: "40%",
-      height: "calc(86% - 1000000px)",
+      height: "calc(86% - 100px)",
       baseZIndex: 100000000,
     });
   }

@@ -53,7 +53,6 @@ export class AppLoginComponent implements OnInit{
         this.changePassword=this.tokenStorage.getUser().updatePassword;
         this.changeCodePin=this.tokenStorage.getUser().updateCodePin;
 
-
         
         if(this.changePassword){
           this.router.navigate(['login/maj_pwd']);

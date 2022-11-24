@@ -27,10 +27,10 @@ export interface PME {
     effectif?: number,
     etablissements ?: number,
     chiffre?: number,
-    cniRepresentant ?: number ,
+    cniRepresentant ?: string ,
     dateimmatriculation ?: Date,
-    telephone ?: number,
-    capitalsocial ?: string,
+    telephonePME ?: string,
+    capitalSocial ?: string,
     nineaValide?:boolean;
     pmeActive?:boolean;
     atd?:boolean;
