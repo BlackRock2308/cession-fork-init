@@ -70,8 +70,8 @@
                         style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                             class="required">*</span></label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="date" formControlName="dateImmatriculation"
-                            style="width: 100%;" />
+                        <p-calendar inputId="basic" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}">
+                       </p-calendar>
                     </div>
                 </div>
                 <div class="field grid col-sm-12 col-xl-4 row">
@@ -128,8 +128,9 @@
                         style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
                             class="required">*</span></label>
                     <div class="col-sm-12 col-md-12 col-xl-12">
-                        <input pInputText id="name3" type="date" placeholder="20/10/2013" formControlName="dateCreation"
-                            style="width: 100%;" />
+                        
+                        <p-calendar inputId="basic" formControlName="dateCreation" [ngStyle]="{'width': '100%'}">
+                        </p-calendar>$
                     </div>
                 </div>
                 <div class="field grid col-sm-12 col-xl-3 row">
