@@ -22,7 +22,10 @@ import "jspdf-autotable";
 import { BreadcrumbService } from "src/app/core/breadcrumb/breadcrumb.service";
 import { Creance } from "src/app/workstation/model/creance";
 import { DashboardServices } from "src/app/workstation/service/dashboard.services";
-import {StatistiqueDemandeCession, StatistiquePaiementCDMP,StatistiquePaiementPME,
+import {
+  StatistiqueDemandeCession,
+  StatistiquePaiementCDMP,
+  StatistiquePaiementPME,
 } from "src/app/workstation/model/dashboard";
 @Component({
   selector: "app-dashboard-dg",
@@ -120,7 +123,7 @@ export class DashboardDGComponent implements OnInit {
       "Décembre",
     ];
     let today = new Date();
-    today.setFullYear(today.getFullYear() -1)
+    today.setFullYear(today.getFullYear() - 1);
     this.profil = localStorage.getItem("profil");
     this.user = JSON.parse(sessionStorage.getItem("auth-user"));
     this.demandesAdhesionService.getCreances().subscribe((data) => {
@@ -225,7 +228,7 @@ export class DashboardDGComponent implements OnInit {
             nombreDemandeRejete.push(el.nombreDemandeRejete);
             mois.push(el.mois);
           }
-          let maxNbr: number ;
+          let maxNbr: number;
           let stepSiz: number = 1;
           if (
             Math.max(...nombreDemandeAccepte) > Math.max(...nombreDemandeRejete)
@@ -284,17 +287,20 @@ export class DashboardDGComponent implements OnInit {
           let cumulDebourses: number[] = [];
           let cumulSoldes: number[] = [];
           let cumulMontantCreance: number[] = [];
+          let cumulDecotes: number[] = [];
           for (var i = 0; i < 12; i++) {
-            cumulSoldes.push(
-                this.statistiquePmesDebourses.cumulSoldes[i]?.montant / 1000000
+             cumulDebourses.push(
+              this.statistiquePmesDebourses.cumulDebourses[i]?.montant / 1000000
             );
-            cumulDebourses.push(
-                this.statistiquePmesDebourses.cmulDebourses[i]?.montant /
-                  1000000
+            cumulDecotes.push(
+              this.statistiquePmesDebourses.cumulDecotes[i]?.montant / 1000000
+            );
+            cumulSoldes.push(
+              this.statistiquePmesDebourses.cumulSoldes[i]?.montant / 1000000
             );
             cumulMontantCreance.push(
-                this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant /
-                  1000000
+              this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant /
+                1000000
             );
           }
           this.stackedData = {
@@ -315,6 +321,11 @@ export class DashboardDGComponent implements OnInit {
                 backgroundColor: " #99CC33",
                 data: cumulDebourses,
               },
+              {
+                label: "Décote",
+                backgroundColor: " #696969",
+                data: cumulDecotes,
+              }
             ],
           };
         }
@@ -333,19 +344,18 @@ export class DashboardDGComponent implements OnInit {
         if (res) {
           for (var i = 0; i < 12; i++) {
             cumulDecotes.push(
-                this.statistiquePmesRembourses.cumulDecotes[i]?.montant /
-                  1000000
+              this.statistiquePmesRembourses.cumulDecotes[i]?.montant / 1000000
             );
             cumulSoldes.push(
-                this.statistiquePmesRembourses.cumulSoldes[i]?.montant / 1000000
+              this.statistiquePmesRembourses.cumulSoldes[i]?.montant / 1000000
             );
             cumulRembourse.push(
-                this.statistiquePmesRembourses.cmulRembourses[i]?.montant /
-                  1000000
+              this.statistiquePmesRembourses.cmulRembourses[i]?.montant /
+                1000000
             );
             cumulMontantCreance.push(
-                this.statistiquePmesRembourses.cumulMontantCreance[i]?.montant /
-                  1000000
+              this.statistiquePmesRembourses.cumulMontantCreance[i]?.montant /
+                1000000
             );
           }
           this.stackedData1 = {
@@ -371,8 +381,8 @@ export class DashboardDGComponent implements OnInit {
                 label: "Décote",
                 backgroundColor: " #696969",
                 data: cumulDecotes,
-              }
-            ]
+              },
+            ],
           };
         }
       });
@@ -387,17 +397,20 @@ export class DashboardDGComponent implements OnInit {
           let cumulDebourses: number[] = [];
           let cumulSoldes: number[] = [];
           let cumulMontantCreance: number[] = [];
+          let cumulDecotes: number[] = [];
           for (var i = 0; i < 12; i++) {
+            cumulDecotes.push(
+              this.statistiquePmesDebourses.cumulDecotes[i]?.montant / 1000000
+            );
             cumulSoldes.push(
-                this.statistiquePmesDebourses.cumulSoldes[i]?.montant / 1000000
+              this.statistiquePmesDebourses.cumulSoldes[i]?.montant / 1000000
             );
             cumulDebourses.push(
-                this.statistiquePmesDebourses.cmulDebourses[i]?.montant /
-                  1000000
+              this.statistiquePmesDebourses.cumulDebourses[i]?.montant / 1000000
             );
             cumulMontantCreance.push(
-                this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant /
-                  1000000
+              this.statistiquePmesDebourses.cumulMontantCreance[i]?.montant /
+                1000000
             );
           }
           this.stackedDataPME = {
@@ -418,6 +431,12 @@ export class DashboardDGComponent implements OnInit {
                 backgroundColor: " #99CC33",
                 data: cumulDebourses,
               },
+              {
+                type: "bar",
+                label: "Décote",
+                backgroundColor: " #696969",
+                data: cumulDecotes,
+              }
             ],
           };
         }
@@ -460,7 +479,7 @@ export class DashboardDGComponent implements OnInit {
     );
   }
   visualiserDetails(demande: Creance) {
-  //  this.demandesAdhesionService.setDemandenantissementObs(demande);
+    //  this.demandesAdhesionService.setDemandenantissementObs(demande);
     const ref = this.dialogService.open(DetailsTableauComponent, {
       data: {
         demande: demande,
