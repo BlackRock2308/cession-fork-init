@@ -179,6 +179,10 @@ export class DemandeAdhesionComponent implements OnInit {
             console.log(this.demandes,data)
         });
 
+        if(this.demandes===undefined){
+            location.reload()
+        }
+
         this.primengConfig.ripple = true;
 
         this.cols = [

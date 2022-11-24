@@ -102,9 +102,11 @@ export class EditerConventionComponent implements OnInit {
     Swal.fire({
       title: 'Enregistrer la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Enregistrer',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -159,9 +161,10 @@ export class EditerConventionComponent implements OnInit {
 
         html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
         color:"#203359",
-        confirmButtonColor:"#99CC33",
+        icon:'success',
         confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
         allowOutsideClick:false,
+        showConfirmButton:false
         
       }).then((result) => {
         if (result.isConfirmed) {

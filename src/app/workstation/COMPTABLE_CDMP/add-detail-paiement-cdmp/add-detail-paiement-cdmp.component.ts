@@ -102,9 +102,11 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     Swal.fire({
       title: 'Continuer le paiement?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -143,7 +145,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'CDMP payé avec succès.',
+          title: 'Payement CDMP enregistré avec succès.',
           showConfirmButton: false,
           timer: 2500
         }).then((result) => {

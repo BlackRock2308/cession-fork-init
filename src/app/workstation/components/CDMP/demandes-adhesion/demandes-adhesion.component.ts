@@ -72,8 +72,8 @@ export class DemandesAdhesionComponent implements OnInit {
       { field: 'statut', header: 'Statut' }
     ];
     this.statuts = [
-      {label: 'Soumise', value: 'Soumise'},
-      {label: 'Rejetée', value: 'Rejetée'}
+      {label: 'Soumise', value: 'ADHESION_SOUMISE'},
+      {label: 'Rejetée', value: 'ADHESION_REJETEE'}
   ]
     console.log(this.nineas)
     // this.items1 = [
@@ -138,6 +138,26 @@ initGetDemandes(){
     });
   
   
+}
+
+filterByStatus(event){
+  if(event.value){
+    let statutsParam=event.value
+    const args = {
+      page: event.page,
+      size: event.rows,
+      sort:["dateDemandeCession,DESC",statutsParam]
+      
+      // search: this.searchText,
+    };
+    this.demandesAdhesionService.getPageDemandesAdhesion(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+  }
+  else
+    this.paginate(event)
+    
 }
 
   verifierDemande(demande: DemandeAdhesion) {

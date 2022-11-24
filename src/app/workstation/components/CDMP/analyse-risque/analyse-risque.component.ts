@@ -140,7 +140,7 @@ export class AnalyseRisqueComponent implements OnInit {
         { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
     this.statuts = [
-        {label: 'Recevable', value: 'RECEVABLE'},
+        {label: 'En cours de traitement', value: 'RECEVABLE'},
         {label: 'Risquée', value: 'RISQUEE'},
         {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'},
         {label: 'Non Risquée', value: 'NON_RISQUEE'},
@@ -196,6 +196,29 @@ initGetDemandes(statuts:StatutEnum[]){
   
   
 }
+
+filterByStatus(event){
+  if(event.value){
+    let statutsParam=event.value
+    const args = {
+      page: event.page,
+      size: event.rows,
+      sort:"dateDemandeCession,DESC",
+      statut:statutsParam
+      
+      // search: this.searchText,
+    };
+    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+      this.demandes = data.content
+      this.page=data      
+    });
+  }
+  else
+    this.paginate(event)
+    
+}
+
+
 
   openNew() {
     this.product = {};

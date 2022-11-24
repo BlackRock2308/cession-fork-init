@@ -219,13 +219,13 @@
                             <p-calendar view="year" [(ngModel)]="selectedYear" dateFormat="yy" [readonlyInput]="false"
                                 inputId="pickYear" formControlName="exercice" [ngStyle]="{'width': '100%'}"> </p-calendar>
                         </div>
-                        <div class="field grid col-12 md:col-4    mr-2">
-                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Numéro du BE validé</label>
-                            <div class="p-inputgroup">
-                                <span class="p-float-label">
-                                    <input pInputText id="name3" type="text" formControlName="referenceBE"
-                                        [(ngModel)]="bonEngagement.reference" />
-                                </span>
+                        <div class="field grid col-12 md:col-4 sm:col-6">
+                            <label htmlFor="name3" class="col-12 xl:col-5"
+                                style="font-weight: bold;color: #203359;">Numéro du BE validé<span
+                                class="required">*</span></label>
+                            <div class="col-12 xl:col-6">
+                                <input pInputText id="name3" type="text" formControlName="referenceBE"
+                                    [(ngModel)]="bonEngagement.reference" disabled/>
                             </div>
                         </div>
                         <div class="field grid col-12 md:col-4    mr-2">

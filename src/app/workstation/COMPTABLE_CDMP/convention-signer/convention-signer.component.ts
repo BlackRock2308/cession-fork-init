@@ -47,7 +47,7 @@ export class ConventionSignerComponent implements OnInit {
       this.convention = this.demande.conventions[0]
      
 
-      console.log(this.convention)
+      console.log(this.convention.valeurDecote)
 
     })
   }
@@ -65,9 +65,11 @@ export class ConventionSignerComponent implements OnInit {
     Swal.fire({
       title: 'Signer la convention?',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Valider',
       denyButtonText: `Annuler`,
+      confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF'
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -137,8 +139,9 @@ export class ConventionSignerComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: 'Le code pin saisi est incorrect!',
-          confirmButtonColor: "#A6C733",
-        confirmButtonText: '<i class="pi pi-check"></i>OK',
+          confirmButtonText: '<i class="pi pi-check"></i>OK',
+          confirmButtonColor:'#99CC33FF',
+      
 
         })
       }
