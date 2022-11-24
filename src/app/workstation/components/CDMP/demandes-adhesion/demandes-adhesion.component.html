@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <p-card>
@@ -7,50 +6,61 @@
                     <h3 class="titleTab">Demandes d'adhésion</h3>
                 </div>
             </div>
-            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
-                [paginator]="false" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
-                currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id" sortMode="multiple">
+            <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5" [paginator]="false"
+                [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {totalRecords} demandes au total" [rowHover]="true" dataKey="id"
+                sortMode="multiple">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="ninea" placeholder="NINEA" [matchModeOptions]="matchModeOptions" [matchMode]="'contains'" ></p-columnFilter>
+                            <p-columnFilter type="text" field="ninea" placeholder="NINEA"
+                                [matchModeOptions]="matchModeOptions" [matchMode]="'contains'"></p-columnFilter>
                         </th>
-                       
+
                         <th>
-                            <p-columnFilter type="text" field="rccm" placeholder="RCCM" [matchModeOptions]="matchModeOptions" [matchMode]="'contains'"  ></p-columnFilter>
+                            <p-columnFilter type="text" field="rccm" placeholder="RCCM"
+                                [matchModeOptions]="matchModeOptions" [matchMode]="'contains'"></p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="date" field="date_soumission" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" placeholder="Date demande" selectionMode="range" style="display: none;"></p-columnFilter>
-                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date demande"></p-calendar>
+                            <p-columnFilter type="date" field="date_soumission" [matchModeOptions]="matchModeOptions"
+                                [matchMode]="'rangeDate'" placeholder="Date demande" selectionMode="range"
+                                style="display: none;"></p-columnFilter>
+                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                                inputId="range" formDate="dd/mm/yyyy" placeholder="Date demande"></p-calendar>
                         </th>
                         <th>
                             <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                     <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filterByStatus($event)" placeholder="Statuts" [showClear]="true">
                                         <ng-template let-option pTemplate="item">
-                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                            <span
+                                                [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
                                         </ng-template>
                                     </p-dropdown>
                                 </ng-template>
                             </p-columnFilter>
                         </th>
                         <th>
-                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search" class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher" (click)="dt.filter()" ></button>
+                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
+                                class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher"
+                                (click)="dt.filter()"></button>
                         </th>
                         <th *ngIf="rangeDates!=undefined">
-                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
+                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
+                                label="Annuler" (click)="clearRange(dt)"
+                                style="background: white; color:#203359"></button>
                         </th>
                     </tr>
-                    
-                    
+
+
                     <tr>
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="rccm" style="color: #203359;">RCCM <p-sortIcon
-                                field="rccm"></p-sortIcon>
+                        <th pSortableColumn="rccm" style="color: #203359;">RCCM <p-sortIcon field="rccm"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="date_soumission"  style="color: #203359;">Date demande<p-sortIcon field="date_soumission">
+                        <th pSortableColumn="date_soumission" style="color: #203359;">Date demande<p-sortIcon
+                                field="date_soumission">
                             </p-sortIcon>
                         </th>
                         <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
@@ -58,8 +68,8 @@
                         </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
-                    
-                    
+
+
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
@@ -76,59 +86,65 @@
                             {{demande.dateDemandeAdhesion| date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:40%;">
-                           <span [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
-                            ' ')}}</span>
+                            <span
+                                [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
+                                ' ')}}</span>
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-eye"
-                                 class="p-button-rounded  simpleButton"  pInputText  pTooltip="Visualiser la demande" (click)="visualiserDemande(demande)"></button>
-                                <button *ngIf="demande.statut.libelle === 'ADHESION_SOUMISE'" pButton pRipple icon="pi pi-pencil" (click)="verifierDemande(demande)" class="p-button-rounded simpleButton"  pInputText  pTooltip="Analyser le dossier" ></button>
-                                
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded  simpleButton"
+                                    pInputText pTooltip="Visualiser la demande"
+                                    (click)="visualiserDemande(demande)"></button>
+                                <button *ngIf="demande.statut.libelle === 'ADHESION_SOUMISE'" pButton pRipple
+                                    icon="pi pi-pencil" (click)="verifierDemande(demande)"
+                                    class="p-button-rounded simpleButton" pInputText
+                                    pTooltip="Analyser le dossier"></button>
                             </div>
-                          
                         </td>
                     </tr>
                 </ng-template>
-                
+
             </p-table>
-            <p-paginator [rows]="5" [totalRecords]="page.totalElements" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
+            <p-paginator [rows]="5" [totalRecords]="page.totalElements" (onPageChange)="paginate($event)"
+                [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
         </p-card>
     </div>
 </div>
 <p-dialog header="" [(visible)]="demandeDialog" [modal]="true" [style]="{width: '70vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false">
     <ng-template pTemplate="header" class="row justify-content-center" style="border: none;">
-        <div class="col-8 mx-auto px-auto" style="background-color:white ;" >
-            <div id="steps" >
+        <div class="col-8 mx-auto px-auto" style="background-color:white ;">
+            <div id="steps">
                 <p-toast></p-toast>
                 <p-steps [model]="items" [readonly]="false" styleClass="steps-custom"></p-steps>
             </div>
         </div>
     </ng-template>
-        <ng-template pTemplate="content" style="border: none;">
-            <div>
-                <div class=" justify-content-center p-fluid ">
-                    <div class="p-formgrid grid">
-                        <div class="field col-6 d-flex">
-                            <div class="col-3  d-flex justify-content-center mt-3">
-                                <h6 style="font-weight: bold;color: #203359;">NINEA</h6>
-                            </div>
-                            <div class="col-9  d-flex justify-content-center">
-                                <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.pme.ninea}}'/>
-                            </div>
+    <ng-template pTemplate="content" style="border: none;">
+        <div>
+            <div class=" justify-content-center p-fluid ">
+                <div class="p-formgrid grid">
+                    <div class="field col-6 d-flex">
+                        <div class="col-3  d-flex justify-content-center mt-3">
+                            <h6 style="font-weight: bold;color: #203359;">NINEA</h6>
                         </div>
-                        <div class="field col-6 d-flex">
-                            <div class="col-2 d-flex justify-content-center mt-3">
-                                <h6 style="font-weight: bold;color: #203359">RCCM</h6>
-                            </div>
-                            <div class="col-10 d-flex justify-content-center">
-                                <input class=" label" pInputText id="name3" type="text" disabled value='{{demande.pme.rccm}}'/>
-                            </div>
+                        <div class="col-9  d-flex justify-content-center">
+                            <input class=" label" pInputText id="name3" type="text" disabled
+                                value='{{demande.pme.ninea}}' />
+                        </div>
+                    </div>
+                    <div class="field col-6 d-flex">
+                        <div class="col-2 d-flex justify-content-center mt-3">
+                            <h6 style="font-weight: bold;color: #203359">RCCM</h6>
+                        </div>
+                        <div class="col-10 d-flex justify-content-center">
+                            <input class=" label" pInputText id="name3" type="text" disabled
+                                value='{{demande.pme.rccm}}' />
                         </div>
                     </div>
                 </div>
             </div>
-            <router-outlet></router-outlet>
-        </ng-template>
-    </p-dialog>
+        </div>
+        <router-outlet></router-outlet>
+    </ng-template>
+</p-dialog>
