@@ -94,6 +94,8 @@ export class InformationsNineaComponent implements OnInit {
     if (this.informationsForm.invalid) {
       return;
     }
+    let telephonePME = JSON.parse(this.informationsForm.get('telephonePME'));
+    this.informationsForm.get('telephonePME').setValue(telephonePME.internationalNumber);
     Swal.fire({
       title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
@@ -133,7 +135,6 @@ export class InformationsNineaComponent implements OnInit {
      }
 
      console.log(JSON.stringify(body))
-    
      await this.pmeService.patchPme(this.pme.idPME,body).subscribe((result)=>{
       console.log(result)
       })
