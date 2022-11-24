@@ -107,8 +107,10 @@ export class InformationsNineaComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.enregistrerInfos()
-        //fermer la boite de dialogue
         this.demandeAdhesionService.setDialog(false)
+        setTimeout(() => {
+          location.reload()
+       },100);
       } else if (result.isDenied) {
         Swal.fire('Traitement de la demande non effective!', '', 'info')
       }
