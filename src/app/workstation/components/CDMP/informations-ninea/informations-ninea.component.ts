@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
@@ -29,7 +29,7 @@ export class InformationsNineaComponent implements OnInit {
 	//TooltipLabel = TooltipLabel;
 	CountryISO = CountryISO;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-
+  submit: boolean = false;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
@@ -53,12 +53,13 @@ export class InformationsNineaComponent implements OnInit {
       activitePrincipale: ['', [Validators.required]],
       registre: ['' , [Validators.required]],
       prenomRepresentant: ['' , [Validators.required]],
-      dateCreation: ['' , [Validators.required]],
+      nomRepresentant: ['' , [Validators.required]],
+      dateCreation: ['' , [Validators.required,  this.matchValues()]],
       effectifPermanent: ['' , [Validators.required]],
       nombreEtablissementSecondaires: ['' , [Validators.required]],
       chiffresDaffaires: ['' , [Validators.required]],
       cniRepresentant: ['' , [Validators.required] , Validators.pattern(this.validPattern)],
-      dateImmatriculation: ['' , [Validators.required]],
+      dateImmatriculation: ['' , [Validators.required, this.matchValues()]],
       telephonePME: ['' , [Validators.required]],
       capitalsocial : ['' , [Validators.required]],
       autorisationMinisterielle : ['' , [Validators.required]]
@@ -70,7 +71,15 @@ export class InformationsNineaComponent implements OnInit {
 
     })
   }
-
+  matchValues(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value <= new Date()
+        ? null
+        : { isMatching: false };
+    };
+  }
   get f() {
     return this.informationsForm.controls;
   }
@@ -81,8 +90,10 @@ export class InformationsNineaComponent implements OnInit {
   }
 
   onSubmit() {
-
-   
+    this.submit = true;
+    if (this.informationsForm.invalid) {
+      return;
+    }
     Swal.fire({
       title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
