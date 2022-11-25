@@ -114,8 +114,7 @@ export class ConventionEnregistreeComponent implements OnInit {
 
     await this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
       data => { console.log(data) }),
-      () => { },
-      () => {
+      
         this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
           data => { console.log(data) },
           () => { },
@@ -149,6 +148,6 @@ export class ConventionEnregistreeComponent implements OnInit {
         )
       }
     )
-  }
+
   }
 }
