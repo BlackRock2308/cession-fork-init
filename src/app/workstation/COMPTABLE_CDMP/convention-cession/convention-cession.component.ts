@@ -323,8 +323,7 @@ EditerConvention(convention: Convention) {
     baseZIndex: 50
   });
 }
-EditConvention(convention: Convention,demande:any) {
-  this.demandeCessionService.setDemandeObs(demande)
+EditConvention(convention: Convention) {
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention

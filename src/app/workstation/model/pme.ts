@@ -38,5 +38,6 @@ export interface PME {
     nantissement?:boolean;
     interdictionBancaire?:boolean;
     identificationBudgetaire?:boolean;
+    utilisateurid?: number
 
 }

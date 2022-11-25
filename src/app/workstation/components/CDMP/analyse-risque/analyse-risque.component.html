@@ -126,7 +126,7 @@
 
                 
             </p-table>
-            <p-paginator [rows]="5" [totalRecords]="page.totalElements" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
+            <p-paginator [rows]="5" [totalRecords]="page?.totalElements" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
 
         </div>
         <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}" [modal]="true">

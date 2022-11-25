@@ -97,6 +97,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     this.infosBEForm = this.formBuilder.group({
       exercice: ['',Validators.required],
       naturePrestation: ['',Validators.required],
+      natureDepense: ['',Validators.required],
       designationBeneficiaire: ['',Validators.required],
       referenceBE: [{ value: this.demandeCession.bonEngagement.reference, disabled: true } ],
       imputation: ['',Validators.required],
@@ -126,6 +127,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
   async updatePME() {
     let pme=this.demandeCession.pme
+    console.log("affiche moi " + JSON.stringify(pme))
     pme.identificationBudgetaire= this.identifie
     pme.atd=this.atd 
     pme.interdictionBancaire=this.interdiction

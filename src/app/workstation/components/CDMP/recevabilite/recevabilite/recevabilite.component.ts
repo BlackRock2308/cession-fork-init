@@ -38,8 +38,7 @@ export class RecevabiliteComponent implements OnInit {
   matchModeOptions: SelectItem[];
   page: any;
 
-  constructor(private demandesAdhesionService: DemandesAdhesionService,
-    private messageService: MessageService,
+  constructor(
     private router: Router,
     private demandeCessionService: DemandesCessionService,
     private recevabiliteService: RecevabiliteService,
@@ -53,31 +52,8 @@ export class RecevabiliteComponent implements OnInit {
     //location.reload()
   }
 
-  // // getDemndes(event: LazyLoadEvent = {}) {
-  // //   const args = {
-  // //     page: event.first / event.rows,
-  // //     perPage: event.rows ? event.rows : this.rowSizes.XSMALL,
-  // //     orderBy: event.sortField,
-  // //     direction: event.sortOrder,
-  // //     // search: this.searchText,
-  // //   };
-
-  //   this.recevabiliteService.getRecevabilites(args).subscribe(data => {
-  //     this.demandes = data.content;
-     
-  //     this.totalRecords = data.totalElements;
-
-
-  //   });
-
-  // }
-
+ 
   ngOnInit() {
-    //this.productDialog = this.communicationService.getDialogObs();
-    //this.productService.getProducts().then(data => this.products = data);
-    //   this.subscribe=this.recevabiliteService.getRecevabilites().subscribe(data=>{
-    // this.demandes=data
-    // console.log(this.demandes)});
 
     this.initGetDemandes()
 
@@ -101,13 +77,7 @@ export class RecevabiliteComponent implements OnInit {
     ];
   }
 
-  paginate(event) {
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
-
-    
+  paginate(event) { 
   
     const args = {
       page: event.page,
