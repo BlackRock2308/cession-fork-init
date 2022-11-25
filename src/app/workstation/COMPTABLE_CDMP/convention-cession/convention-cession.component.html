@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
@@ -31,9 +30,11 @@
                         <th>
                             <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)"
+                                        placeholder="Statuts" [showClear]="true">
                                         <ng-template let-option pTemplate="item">
-                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                            <span
+                                                [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
                                         </ng-template>
                                     </p-dropdown>
                                 </ng-template>
@@ -98,15 +99,15 @@
                                     pTooltip="Signer la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_GENEREE') &&( profil=== 'pme')) || ((demande.statut.libelle=== 'CONVENTION_SIGNEE_PAR_PME') && (profil ==='DG') || ((demande.statut.libelle=== 'CONVENTION_CORRIGEE') && (profil ==='PME')   ))"
                                     (click)="visualiserDocument(demande.conventions[0].documents[0],demande)"></button>
-                                    <button pButton pRipple icon="pi pi-cloud-download" class="p-button-rounded successButton"
-                                    pTooltip="Corriger la convention"
+                                <button pButton pRipple icon="pi pi-cloud-download"
+                                    class="p-button-rounded successButton" pTooltip="Corriger la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_REJETEE_PAR_PME') &&( profil=== 'JURISTE')) || ((demande.statut.libelle=== 'CONVENTION_REJETEE_PAR_DG') && (profil ==='JURISTE'))|| ((demande.statut.libelle === 'CONVENTION_REJETEE') && (profil === 'JURISTE'))"
                                     (click)="visualiserDocument(demande.conventions[0].documents[0],demande)"></button>
                                 <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "
                                     (click)="ChargerConvention(convention,demande)"></button>
-                                    <!-- <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
+                                <!-- <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger le bordereau"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_TRANSMISE') && (profil === 'JURISTE')) "
                                     (click)="ChargerConvention(convention)"></button> -->
@@ -114,15 +115,17 @@
                                     pTooltip="Editer la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_REJETEE') && (profil === 'JURISTE')) "
                                     (click)="EditerConvention(convention)"></button> -->
-                                <button pButton pRipple icon="pi pi-file" class="p-button-rounded simpleButton successButton"
-                                    pTooltip="Générer la convention" *ngIf="demande.statut.libelle === 'NON_RISQUEE' "
-                                    (click)="EditConvention(convention,demande)"></button>
+                                <button pButton pRipple icon="pi pi-file"
+                                    class="p-button-rounded simpleButton successButton" pTooltip="Générer la convention"
+                                    *ngIf="demande.statut.libelle === 'NON_RISQUEE' "
+                                    (click)="EditConvention(convention)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
-            <p-paginator [rows]="5" [totalRecords]="page.totalElements" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
+            <p-paginator [rows]="5" [totalRecords]="page?.totalElements" (onPageChange)="paginate($event)"
+                [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
         </div>
     </div>
 </div>

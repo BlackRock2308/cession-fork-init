@@ -79,10 +79,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
     localStorage.removeItem('auth-user');
     localStorage.removeItem('is-auth');
-    localStorage.removeItem('pme-user');
     localStorage.removeItem('auth-token');
     localStorage.removeItem('storedDemande');
-    localStorage.removeItem('storedDemandeCession');
     localStorage.removeItem('profil');
   }
 

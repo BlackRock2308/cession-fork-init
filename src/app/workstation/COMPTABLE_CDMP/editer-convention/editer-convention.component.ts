@@ -40,7 +40,6 @@ export class EditerConventionComponent implements OnInit {
     public ref: DynamicDialogRef, private formBuilder: FormBuilder, private pmeService: PmeService
     ,private conventionService : ConventionService,
     private uploadFileService: FileUploadService,
-    private demandeAdhesionService: DemandesAdhesionService,
     private demandeCessionService : DemandesCessionService,
 
     private tokenStorage:TokenStorageService,
@@ -89,10 +88,6 @@ export class EditerConventionComponent implements OnInit {
   onSubmit() {
 
     this.ref.close();
-
-
-
-    
 
     // arrêter si le formulaire est invalide
     if (this.documentForm.invalid) {

@@ -167,12 +167,12 @@ export class DemandeAdhesionComponent implements OnInit {
 
         this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
             this.demandes = data
-            console.log(this.demandes,data)
+            console.log(this.demandes)
         });
 
-        if(this.demandes!==undefined){
-            location.reload()
-        }
+        // if(this.demandes!==undefined){
+        //     location.reload()
+        // }
 
         this.primengConfig.ripple = true;
 
