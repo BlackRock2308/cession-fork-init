@@ -138,14 +138,6 @@ export class DemandeAdhesionComponent implements OnInit {
         ]);
         this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['pme/demandes_en_cours'] });
 
-        this.cities = [
-            { name: 'RCCM', code: 'NY' },
-            { name: 'NINEA', code: 'RM' },
-            { name: 'CDI', code: 'LDN' },
-            { name: 'Autres', code: 'IST' }
-
-        ];
-
         //filtre par range date
         this.calenderFilter()
 
@@ -178,7 +170,7 @@ export class DemandeAdhesionComponent implements OnInit {
             console.log(this.demandes,data)
         });
 
-        if(this.demandes===undefined){
+        if(this.demandes!==undefined){
             location.reload()
         }
 
