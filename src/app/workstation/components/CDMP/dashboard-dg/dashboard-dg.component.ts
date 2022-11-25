@@ -422,7 +422,7 @@ export class DashboardDGComponent implements OnInit {
                 data: cumulMontantCreance,
               },
               {
-                label: "Solde",
+                label: "Restant",
                 backgroundColor: " #981639",
                 data: cumulSoldes,
               },
