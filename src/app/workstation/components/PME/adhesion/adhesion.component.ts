@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormBuilder, AbstractControlOptions } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormBuilder, AbstractControlOptions, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdhesionService } from 'src/app/workstation/service/adhesion/adhesion.service';
@@ -29,7 +29,7 @@ export class AdhesionComponent implements OnInit {
   message = '';
   fileInfos?: Observable<any>;
   form!: FormGroup;
-  submitted = false;
+  submit = false;
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
@@ -50,7 +50,7 @@ export class AdhesionComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      ninea: ['', Validators.required],
+      ninea: ['', [Validators.required, this.matchValuesNINEA()]],
       rccm: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       nineaFile: ['', Validators.required],
@@ -65,6 +65,18 @@ export class AdhesionComponent implements OnInit {
     console.log(this.selectedNINEAFiles);
   }
 
+  matchValuesNINEA(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value && !!control.value &&
+        (control.value.length < 14)
+        ? null
+        : { isMatching: false };
+    };
+  }
+  get f() {
+    return this.form.controls;
+  }
 
   //ouvrir la boite de dialogue du répertoire
   handleNINEAClick() {
@@ -90,6 +102,7 @@ export class AdhesionComponent implements OnInit {
 
   //envoie du formulaire
   onSubmit() {
+    this.submit=true;
     // arrêter si le formulaire est invalide
     if (this.form.invalid) {
       return;

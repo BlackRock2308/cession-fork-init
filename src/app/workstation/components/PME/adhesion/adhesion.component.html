@@ -17,14 +17,15 @@
                 <div class="field grid">
                     <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-1 text">NINEA</label>
                     <div class="col-12 md:col-3 mb-2">
-                        <p-inputNumber formControlName="ninea" placeholder="10585678"  minlength="8"  maxlength="12" ></p-inputNumber>
+                            <input pInputText formControlName="ninea" placeholder="10585678" type="text" id="ninea" >
+                        <!-- <p-inputNumber formControlName="ninea" placeholder="10585678"  minlength="8"  maxlength="12" ></p-inputNumber> --> 
+                       <span *ngIf="submit && f['ninea'].errors! && !f['ninea'].hasError('required')"
+                       style="color: red;">Renseigner au plus 13 caractères</span>
                     </div>
                     <div class="col-12 md:col-5 mb-2">
                         <div class="col-12">
                             <div class="formgroup-inline">
-                                <div class="field col-12 md:col-12 mb-1">
-                                    
-                                        
+                                <div class="field col-12 md:col-12 mb-1">                                        
                                         <div class=" inputContainer">
                                             <span class="p-float-label">
                                                 <input *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile" type="text"
@@ -45,16 +46,8 @@
                                             <button type="button" pButton pRipple icon="pi pi-upload"
                                                         class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
                                                         (click)="handleNINEAClick()"></button>
-                                        </div>
-                                 
-                                    
+                                        </div>                                    
                                 </div>
-                                <!--div class="field col-12 md:col-4 mb-1">
-    
-                                    <button type="button" pButton pRipple icon="pi pi-upload"
-                                        class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
-                                        (click)="handleNINEAClick()"></button>
-                                </div-->
                             </div>
                         </div>
                     </div>
@@ -108,7 +101,7 @@
                             label="Annuler" class="dangerButton" routerLink="../../login" ></button>
                     </div>
                     <div class="col-3">
-                        <button type="submit" [disabled]="!form.valid" pButton pRipple
+                        <button type="submit"  pButton pRipple
                             label="Soumettre" class=" successButton" ></button>
                     </div>
                 </div>
