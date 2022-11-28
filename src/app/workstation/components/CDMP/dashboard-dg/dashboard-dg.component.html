@@ -1,6 +1,6 @@
 
 <div class="row" *ngIf="profil !== 'PME'">
-    <div class="col-sm-6" *ngIf="profil === 'DG'">
+    <div class="col-sm-6" *ngIf="profil === 'DG' || profil === 'PCA'">
         <div class="card flex flex-column ">
             <div class="row">
                 <div class="col-10">
@@ -15,7 +15,7 @@
             <p-chart type="bar" [data]="stackedData1" [options]="basicOptions"></p-chart>
         </div>
     </div>
-    <div class="col-sm-6" *ngIf="profil === 'DG'">
+    <div class="col-sm-6" *ngIf="profil === 'DG' || profil === 'PCA'">
         <div class="card flex flex-column ">
             <div class="row">
                 <div class="col-10">
@@ -31,7 +31,7 @@
         </div><br />
     </div>
     <div class="col-sm-3"></div>
-    <div class="col-sm-6" *ngIf="profil === 'DG' || profil === 'DSEAR' || profil === 'DRC'">
+    <div class="col-sm-6" *ngIf="profil === 'DG' || profil === 'DSEAR' || profil === 'DRC' || profil === 'PCA'">
         <div class="card flex flex-column ">
             <div class="row">
                 <div class="col-10">
