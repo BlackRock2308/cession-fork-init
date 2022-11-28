@@ -127,6 +127,16 @@ export class AppLoginComponent implements OnInit{
               this.router.navigate(['workstation/cdmp/dashboard']);
             }
           }
+          if(this.roles.find(elem => elem.libelle == 'PCA')!=null){
+            localStorage.setItem('profil', 'PCA'); 
+            if(this.changeCodePin){
+              this.router.navigate(['workstation/profil']);
+  
+            }
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+            }
+          }
           if(this.roles.find(elem => elem.libelle == 'ORDONNATEUR')!=null){
             localStorage.setItem('profil', 'ORDONNATEUR'); 
             if(this.changeCodePin){

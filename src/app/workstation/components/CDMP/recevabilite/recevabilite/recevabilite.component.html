@@ -24,15 +24,26 @@
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE">
+                            <p-columnFilter type="text" field="reference" placeholder="Référence du BE">
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="date" field="dateDemande" placeholder="Date de demande"
+                            <p-columnFilter type="date" field="dateDemandeCession" placeholder="Date de demande"
                                 [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range"
                                 style="display: none;"></p-columnFilter>
                             <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
                                 inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
+                        </th>
+                        <th>
+                            <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                        <ng-template let-option pTemplate="item">
+                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
                         </th>
                         <th>
                             <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
@@ -52,16 +63,16 @@
                         <th pSortableColumn="raisonSocial" style="color: #203359;">Raison Sociale <p-sortIcon
                                 field="raisonSocial"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon
-                                field="referenceBE"></p-sortIcon>
+                        <th pSortableColumn="reference" style="color: #203359;">Reférence du BE <p-sortIcon
+                                field="reference"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="dateDemande" style="color: #203359;">Date soumission <p-sortIcon
-                                field="dateDemande"></p-sortIcon>
+                        <th pSortableColumn="dateDemandeCession" style="color: #203359;">Date soumission <p-sortIcon
+                                field="dateDemandeCession"></p-sortIcon>
                         </th>
-                        
-                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon
-                            field="statut"></p-sortIcon>
-                    </th>
+
+                        <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
+                            </p-sortIcon>
+                        </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
@@ -81,19 +92,18 @@
                         <td style="width:15%;">
                             {{demande.dateDemandeCession | date:'dd/MM/yyyy' }}
                         </td>
-                        <td style="width:15%;">                          
-                           <span [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
-                            ' ')}}</span>
+                        <td style="width:15%;">
+                            <span
+                                [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
+                                ' ')}}</span>
                         </td>
                         <td>
 
                             <div class="flex">
-                                    <button pButton pRipple icon="pi pi-pencil"
-                                    *ngIf="demande.statut.libelle === 'SOUMISE'"
-                                    (click)="verifierDemandeCession(demande)" class="p-button-rounded  simpleBoldButton" pInputText
-                                    pTooltip="Verifier la demande"></button>
-                                <button pButton pRipple icon="pi pi-eye"
-                                    *ngIf="demande.statut.libelle != 'SOUMISE'"
+                                <button pButton pRipple icon="pi pi-pencil" *ngIf="demande.statut.libelle === 'SOUMISE'"
+                                    (click)="verifierDemandeCession(demande)" class="p-button-rounded  simpleBoldButton"
+                                    pInputText pTooltip="Verifier la demande"></button>
+                                <button pButton pRipple icon="pi pi-eye" *ngIf="demande.statut.libelle != 'SOUMISE'"
                                     (click)="consulterDemande(demande)" class="p-button-rounded  simpleBoldButton"
                                     pInputText pTooltip="Visualiser le dossier"></button>
 
@@ -102,7 +112,8 @@
                     </tr>
                 </ng-template>
             </p-table>
-            <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
+            <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"
+                [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
         </div>
 
 

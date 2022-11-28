@@ -37,6 +37,7 @@ export class RecevabiliteComponent implements OnInit {
   rangeDates: any[];
   matchModeOptions: SelectItem[];
   page: any;
+  statuts:any[];
 
   constructor(
     private router: Router,
@@ -58,11 +59,11 @@ export class RecevabiliteComponent implements OnInit {
     this.initGetDemandes()
 
     this.cols = [
-      { field: 'ninea', header: 'NINEA' },
-      { field: 'rccm', header: 'RCCM' },
-      { field: 'datesoumission', header: 'Date Soumission' },
-      { field: 'raisonSociale', header: 'Raison Sociale' },
-      { field: 'refBE', header: 'Reférence du BE' },
+  
+      { field: 'dateDemandeCession', header: 'Date de demande' },
+      { field: 'raisonSocial', header: 'Raison Sociale' },
+      { field: 'nomMarche', header: 'Nom marché' },
+      { field: 'reference', header: 'Reférence du BE' },
       { field: 'statut', header: 'Statut' }
     ];
 
@@ -75,6 +76,11 @@ export class RecevabiliteComponent implements OnInit {
       { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
       { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
+
+    this.statuts = [
+      {label: 'Soumise', value: 'REJETEE'},
+      {label: 'Rejetée', value: 'SOUMISE'}
+    ]
   }
 
   paginate(event) { 
@@ -89,6 +95,7 @@ export class RecevabiliteComponent implements OnInit {
       this.demandes = data.content;
       this.totalRecords = data.totalElements;
     });
+    
 }
 
 initGetDemandes(){

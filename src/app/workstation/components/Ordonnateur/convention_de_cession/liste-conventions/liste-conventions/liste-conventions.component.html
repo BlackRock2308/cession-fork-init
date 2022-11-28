@@ -26,6 +26,10 @@
                             <p-columnFilter type="text" field="referenceBE" placeholder="Référence du BE">
                             </p-columnFilter>
                         </th>
+                        <th>
+                            <p-columnFilter type="text" field="nomMarche" placeholder="Nom Marché">
+                            </p-columnFilter>
+                        </th>
 
                         <th>
                             <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
@@ -50,12 +54,15 @@
                         <th pSortableColumn="ninea" style="color: #203359;">NINEA <p-sortIcon field="ninea">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="raisonSociale" style="color: #203359;">Raison Sociale <p-sortIcon
-                                field="raisonSociale"></p-sortIcon>
+                        <th pSortableColumn="raisonSocial" style="color: #203359;">Raison Sociale <p-sortIcon
+                                field="raisonSocial"></p-sortIcon>
                         </th>
                         <th pSortableColumn="referenceBE" style="color: #203359;">Reférence du BE <p-sortIcon
                                 field="referenceBE"></p-sortIcon>
                         </th>
+                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon
+                            field="nomMarche"></p-sortIcon>
+                    </th>
                         <th pSortableColumn="statut" style="color: #203359;">Statut<p-sortIcon field="statut">
                             </p-sortIcon>
                         </th>
@@ -71,11 +78,15 @@
                         </td>
                         <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Raison Sociale</span>
-                            {{demande.bonEngagement.denomination}}
+                            {{demande.pme.raisonSocial}}
                         </td>
                         <td style="width:25%; min-width:8rem;">
                             <span class="p-column-title">Reférence du BE</span>
                             {{demande.bonEngagement.reference}}
+                        </td>
+                        <td style="width:25%; min-width:8rem;">
+                            <span class="p-column-title">Nom marché</span>
+                            {{demande.bonEngagement.nomMarche}}
                         </td>
                         <td style="width:25%;">
                             <span
