@@ -148,15 +148,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           icon: 'success',
           title: 'Payement PME enregistré avec succès.',
           showConfirmButton: false,
-          timer: 2500
-        }).then((result) => {
-          if (result.isConfirmed) {
-             setTimeout(() => {
-               location.reload()
-            },100);
-          }
-          
-         })
+          timer: 1500
+        })          
+        window.location.reload();
         }
       }),
       (error) => {

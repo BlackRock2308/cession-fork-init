@@ -147,17 +147,10 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           icon: 'success',
           title: 'Payement CDMP enregistré avec succès.',
           showConfirmButton: false,
-          timer: 2500
-        }).then((result) => {
-          if (result.isConfirmed) {
-          //  this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
-            setTimeout(() => {
-               location.reload()
-            },100);
-          }
-          
-         })
-        }
+          timer: 1500
+        })
+         window.location.reload();
+         }
       }),
       (error) => {
         this.servicemsg.add({
