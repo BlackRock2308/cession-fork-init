@@ -72,7 +72,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
       referencePaiement: ['', Validators.required],
       montant: ['', Validators.required],
       payer: [{ value: '', disabled: true } ],
-      preuveFile: ['']
+      preuveFile: ['', Validators.required]
     });
   }
   dismiss() {

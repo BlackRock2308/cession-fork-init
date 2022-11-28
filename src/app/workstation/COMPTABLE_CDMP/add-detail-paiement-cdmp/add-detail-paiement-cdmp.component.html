@@ -10,7 +10,7 @@
                         'has-error':(form.get('modePaiement').touched || form.get('modePaiement').dirty ) &&
                         !form.get('modePaiement').valid
                         }">
-                        <p-dropdown [options]="dropdownItems" optionLabel="name" formControlName="modePaiement"
+                        <p-dropdown [options]="dropdownItems" aria-placeholder="Séléctionner" optionLabel="name" formControlName="modePaiement"
                             [(ngModel)]="modePaiement"></p-dropdown>
                             <span *ngIf="form.get('modePaiement').errors && submit">
                                {{message}}
@@ -25,7 +25,7 @@
                         !form.get('referencePaiement').valid
                         }">
                         <input pInputText id="referencePaiement" formControlName="referencePaiement" type="text" [(ngModel)]="detailPaiement.reference" />
-                        <span *ngIf="form.get('referencePaiement').errors && submit">
+                        <span *ngIf="form.get('referencePaiement').errors && submit" style="color: red;">
                            {{message}}
                         </span>
                     </div>
@@ -63,7 +63,11 @@
                         <button type="button" pButton pRipple icon="pi pi-upload"
                             class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
                             (click)="handleClick()"></button>
+                            <span *ngIf="form.get('preuveFile').errors && submit" style="color: red;">
+                                Charger la preuve
+                              </span>
                     </div>
+                    
                 </div>
             </div>
         </div>
