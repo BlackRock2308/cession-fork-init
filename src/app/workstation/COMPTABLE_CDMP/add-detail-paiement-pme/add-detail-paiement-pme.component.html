@@ -62,7 +62,11 @@
                     <button type="button" pButton pRipple icon="pi pi-upload"
                         class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
                         (click)="handleClick()"></button>
+                        <span *ngIf="form.get('preuveFile').errors && submit" style="color: red;">
+                            Charger la preuve
+                          </span>
                 </div>
+                
             </div>
         </div>
         </div>
