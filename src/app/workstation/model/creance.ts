@@ -1,3 +1,5 @@
+import { Statut } from "./statut";
+
 export interface Creance {
 
     idCreance?:number;
@@ -12,7 +14,7 @@ export interface Creance {
     decote?:number; //Convention
     soldePME?:number; //Paiement
     soldeSICA?:number; //Paiement
-    statut?:string; //DemandeCession
+    statut?:Statut; //DemandeCession
     dateDemandeCession?:Date; //DemandeCession
     dateMarche?:Date; //DemandeCession
 }
