@@ -112,8 +112,8 @@ export class InformationsNineaComponent implements OnInit {
         this.enregistrerInfos()
         this.demandeAdhesionService.setDialog(false)
         setTimeout(() => {
-          location.reload()
-       },100);
+          //location.reload()
+       },1000);
       } else if (result.isDenied) {
         Swal.fire('Traitement de la demande non effective!', '', 'info')
       }

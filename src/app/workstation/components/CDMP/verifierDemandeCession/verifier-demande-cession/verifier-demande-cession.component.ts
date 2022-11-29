@@ -133,7 +133,12 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     pme.interdictionBancaire=this.interdiction
 
     console.log(pme)
-    await this.pmeService.updatePme(pme).subscribe()
+    await this.pmeService.updatePme(pme).subscribe(
+      (data)=>{
+        console.log(data);
+        
+      }
+    )
 
   }
   

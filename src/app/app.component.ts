@@ -41,7 +41,7 @@ export class AppComponent implements OnInit{
 
 
         if(!this.isAuthenticated){
-            this.router.navigate(['login'])
+            this.router.navigate(['http://localhost:4200/#/login'])
         }
     }
 }
