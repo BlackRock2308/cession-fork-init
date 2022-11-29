@@ -10,7 +10,7 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import {PaginatorModule} from 'primeng/paginator';
+import { PaginatorModule } from 'primeng/paginator';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 
 @Component({
@@ -28,13 +28,13 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
       transition('* => *', animate('250ms cubic-bezier(0, 0, 0.2, 1)'))
     ])
   ],
-  providers:[DialogService]
+  providers: [DialogService]
 })
 export class AnalyseRisqueComponent implements OnInit {
 
-  demandes:any[]=[];
+  demandes: any[] = [];
 
-  demande:any;
+  demande: any;
 
 
 
@@ -97,31 +97,29 @@ export class AnalyseRisqueComponent implements OnInit {
   isAuthenticated: boolean;
   items: MenuItem[];
   home: MenuItem;
-  rangeDates:any[];
+  rangeDates: any[];
   matchModeOptions: SelectItem[];
-  statuts:any[];
-  paramStatuts:any[];
+  statuts: any[];
+  paramStatuts: any[];
   page: any;
 
   constructor(
     private router: Router,
-    private demandeCessionService :DemandesCessionService,private demandesAdhesionService: DemandesAdhesionService, private messageService: MessageService, private menuService: MenuService,
-    private confirmationService: ConfirmationService, 
-    private breadcrumbService: BreadcrumbService, 
+    private demandeCessionService: DemandesCessionService, private messageService: MessageService, private menuService: MenuService,
+   
+    private breadcrumbService: BreadcrumbService,
     private primengConfig: PrimeNGConfig, public app: AppComponent,
-    private filterService:FilterService
-    ) {
-      this.breadcrumbService.setItems([
-        { label: 'Analyse du risque' }
+    private filterService: FilterService
+  ) {
+    this.breadcrumbService.setItems([
+      { label: 'Analyse du risque' }
     ]);
-    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
   }
 
   ngOnInit() {
-    this.paramStatuts=[StatutEnum.recevable,StatutEnum.completee,StatutEnum.complementRequis,StatutEnum.risquee,StatutEnum.nonRisquee]
+    this.paramStatuts = [StatutEnum.recevable, StatutEnum.completee, StatutEnum.complementRequis, StatutEnum.risquee, StatutEnum.nonRisquee]
     this.initGetDemandes(this.paramStatuts)
-
-   
 
     this.primengConfig.ripple = true;
     this.cols = [
@@ -135,148 +133,88 @@ export class AnalyseRisqueComponent implements OnInit {
     this.calenderFilter()
 
     this.matchModeOptions = [
-        { label: 'Intervalle de date', value: 'rangeDate' },
-        { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
-        { label: 'Contient', value: FilterMatchMode.CONTAINS },
+      { label: 'Intervalle de date', value: 'rangeDate' },
+      { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+      { label: 'Contient', value: FilterMatchMode.CONTAINS },
     ];
     this.statuts = [
-        {label: 'En cours de traitement', value: 'RECEVABLE'},
-        {label: 'Risquée', value: 'RISQUEE'},
-        {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'},
-        {label: 'Non Risquée', value: 'NON_RISQUEE'},
-        {label: 'Complétée', value: 'COMPLETEE'}
+      { label: 'En cours de traitement', value: 'RECEVABLE' },
+      { label: 'Risquée', value: 'RISQUEE' },
+      { label: 'Complément Requis', value: 'COMPLEMENT_REQUIS' },
+      { label: 'Non Risquée', value: 'NON_RISQUEE' },
+      { label: 'Complétée', value: 'COMPLETEE' }
     ]
   }
 
   paginate(event) {
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
 
     let statutsParam
-  if(Array.isArray(this.paramStatuts)){
-    statutsParam=this.paramStatuts.join(",")
-  }
-  else
-    statutsParam=this.paramStatuts
+    if (Array.isArray(this.paramStatuts)) {
+      statutsParam = this.paramStatuts.join(",")
+    }
+    else
+      statutsParam = this.paramStatuts
     const args = {
       page: event.page,
       size: event.rows,
-      sort:"dateDemandeCession,DESC",
-      statut:statutsParam
-      
+      sort: "dateDemandeCession,DESC",
+      statut: statutsParam
+
       // search: this.searchText,
     };
     this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
       this.demandes = data.content
-      this.page=data      
+      this.page = data
     });
-}
-
-initGetDemandes(statuts:StatutEnum[]){
-  let statutsParam
-  if(Array.isArray(statuts)){
-    statutsParam=statuts.join(",")
   }
-  else
-    statutsParam=statuts
+
+  initGetDemandes(statuts: StatutEnum[]) {
+    let statutsParam
+    if (Array.isArray(statuts)) {
+      statutsParam = statuts.join(",")
+    }
+    else
+      statutsParam = statuts
     const args = {
       page: 0,
       size: 5,
-      sort:"dateDemandeCession,DESC",
-      statut:statutsParam
-      
+      sort: "dateDemandeCession,DESC",
+      statut: statutsParam
+
       // search: this.searchText,
     };
     this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
       this.demandes = data.content
-      this.page=data      
+      this.page = data
     });
-  
-  
-}
-
-filterByStatus(event){
-  if(event.value){
-    let statutsParam=event.value
-    const args = {
-      page: event.page,
-      size: event.rows,
-      sort:"dateDemandeCession,DESC",
-      statut:statutsParam
-      
-      // search: this.searchText,
-    };
-    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
-      this.demandes = data.content
-      this.page=data      
-    });
-  }
-  else
-    this.paginate(event)
-    
-}
 
 
-
-  openNew() {
-    this.product = {};
-    this.submitted = false;
-    this.productDialog = true;
   }
 
-  deleteSelectedProducts() {
-    this.deleteProductsDialog = true;
-  }
+  filterByStatus(event) {
+    if (event.value) {
+      let statutsParam = event.value
+      const args = {
+        page: event.page,
+        size: event.rows,
+        sort: "dateDemandeCession,DESC",
+        statut: statutsParam
 
-  deleteProduct(product: Product) {
-    this.deleteProductDialog = true;
-    this.product = { ...product };
-  }
+        // search: this.searchText,
+      };
+      this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+        this.demandes = data.content
+        this.page = data
+      });
+    }
+    else
+      this.paginate(event)
 
-  confirmDeleteSelected() {
-    this.deleteProductsDialog = false;
-    this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-    this.selectedProducts = null;
-  }
-
-  confirmDelete() {
-    this.deleteProductDialog = false;
-    this.products = this.products.filter(val => val.id !== this.product.id);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    this.product = {};
   }
 
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
-  }
-
-  saveProduct() {
-    this.submitted = true;
-
-    if (this.product.name.trim()) {
-      if (this.product.id) {
-        // @ts-ignore
-        this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-        this.products[this.findIndexById(this.product.id)] = this.product;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-      } else {
-        this.product.id = this.createId();
-        this.product.code = this.createId();
-        this.product.image = 'product-placeholder.svg';
-        // @ts-ignore
-        this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-        this.products.push(this.product);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-      }
-
-      this.products = [...this.products];
-      this.productDialog = false;
-      this.product = {};
-    }
   }
 
   findIndexById(id: string): number {
@@ -449,61 +387,61 @@ filterByStatus(event){
     this.router.navigate(['workstation/cdmp/analyser']);
 
 
-}
-
-//filtre par intervalle de date
-public calenderFilter() {
-    
-  this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
-   //Afficher toute les lignes du tableau au démarrage
-   if(this.rangeDates== undefined){
-     return true;
-   }
-  //redéfinir les dates pour comparer sans prendre en compte l'heure
-  //on donne toutes les date l'heure 00:00:00
-  value=new Date((new Date(value)).toDateString())
-  this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
-  if( this.rangeDates[1] !== null ){
-    this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
   }
 
-  console.log(this.filterService.filters.is(value,this.rangeDates[0]))
-   //comparaison et filtre
-   if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
-     console.log(value)
-     console.log(1)
-     return true;
- }
+  //filtre par intervalle de date
+  public calenderFilter() {
 
- if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
-   console.log(2)
-     return true;
- }
+    this.filterService.register('rangeDate', (value: any, filter: any): boolean => {
+      //Afficher toute les lignes du tableau au démarrage
+      if (this.rangeDates == undefined) {
+        return true;
+      }
+      //redéfinir les dates pour comparer sans prendre en compte l'heure
+      //on donne toutes les date l'heure 00:00:00
+      value = new Date((new Date(value)).toDateString())
+      this.rangeDates[0] = new Date((new Date(this.rangeDates[0])).toDateString())
+      if (this.rangeDates[1] !== null) {
+        this.rangeDates[1] = new Date((new Date(this.rangeDates[1])).toDateString())
+      }
 
- if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
-   this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
-     console.log(3)
-     return true;
- }
+      console.log(this.filterService.filters.is(value, this.rangeDates[0]))
+      //comparaison et filtre
+      if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
+        console.log(value)
+        console.log(1)
+        return true;
+      }
 
- console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
- return false;
-})
-}
+      if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
+        console.log(2)
+        return true;
+      }
 
-//effacer le filtre par date
-clearRange(table){
- this.rangeDates=undefined;
- table.filter()
-}
+      if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+        this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
+        console.log(3)
+        return true;
+      }
 
-consulterDemande(demande) {
-  this.demande = { ...demande };
-  //this.demandeDialog = true;
-  console.log(demande)
-  this.demandeCessionService.setDemandeObs(demande);
-  this.router.navigate(['workstation/cdmp/consulter_demande'], {  queryParams: {  page: 'demande cession' } });
-}
+      console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
+      return false;
+    })
+  }
+
+  //effacer le filtre par date
+  clearRange(table) {
+    this.rangeDates = undefined;
+    table.filter()
+  }
+
+  consulterDemande(demande) {
+    this.demande = { ...demande };
+    //this.demandeDialog = true;
+    console.log(demande)
+    this.demandeCessionService.setDemandeObs(demande);
+    this.router.navigate(['workstation/cdmp/consulter_demande'], { queryParams: { page: 'demande cession' } });
+  }
 }
 
 

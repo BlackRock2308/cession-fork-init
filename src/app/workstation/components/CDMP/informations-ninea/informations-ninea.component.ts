@@ -98,7 +98,7 @@ export class InformationsNineaComponent implements OnInit {
     this.informationsForm.get('telephonePME').setValue(telephonePME);
     
     Swal.fire({
-      title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
+      title: 'La demande d\'adhésion sera validée et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
