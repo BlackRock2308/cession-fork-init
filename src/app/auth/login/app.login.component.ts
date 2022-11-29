@@ -103,7 +103,7 @@ export class AppLoginComponent implements OnInit{
   
             }
             else{
-              this.router.navigate(['workstation/pme/demandes_en_cours']);
+              this.router.navigate(['workstation/cdmp/dashboard']);
               
             }
           }
