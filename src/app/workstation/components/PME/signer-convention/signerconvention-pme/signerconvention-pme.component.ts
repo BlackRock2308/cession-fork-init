@@ -126,7 +126,7 @@ export class SignerconventionPMEComponent implements OnInit {
       else{
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Erreur',
           text: 'Le code pin saisi est incorrect!',
           confirmButtonColor: "#A6C733",
           confirmButtonText: '<i class="pi pi-check"></i>OK',        })

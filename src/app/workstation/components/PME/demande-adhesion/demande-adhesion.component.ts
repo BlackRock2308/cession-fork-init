@@ -15,7 +15,7 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { Observation } from 'src/app/workstation/model/observation';
-import { async } from '@angular/core/testing';
+import { DashboardServices } from 'src/app/workstation/service/dashboard.services';
 
 @Component({
     selector: 'app-demande-adhesion',
@@ -105,9 +105,9 @@ export class DemandeAdhesionComponent implements OnInit {
 
     rangeDates: any[];
     matchModeOptions: SelectItem[];
-    statuts: any[];
-
-    observation: Observation = {};
+    statuts:any[];
+    user: any;
+    observation:Observation={};
 
     constructor(
         private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,
@@ -117,9 +117,10 @@ export class DemandeAdhesionComponent implements OnInit {
         public renderer: Renderer2, private menuService: MenuService,
         private primengConfig: PrimeNGConfig,
         public app: AppComponent,
-        private filterService: FilterService,
-
-    ) {
+        private filterService:FilterService,
+        private dashboardServices: DashboardServices   ) {
+        
+    this.user = JSON.parse(sessionStorage.getItem("auth-user"));
         this.breadcrumbService.setItems([
             { label: 'Demandes' },
             { label: 'Liste des demandes', routerLink: ['pme/demandes_en_cours'] }
@@ -147,14 +148,20 @@ export class DemandeAdhesionComponent implements OnInit {
 
     }
     ngOnInit(): void {
-
-        this.getAll();
-
         this.form = this.formBuilder.group({
             ninea: ['', Validators.required],
             nineaFile: ['', Validators.required]
 
         });
+        this.dashboardServices
+        .getPMEByUser(this.user.idUtilisateur)
+        .subscribe((res: any) => {
+          if (res) {
+           let idPME = res.idPME;
+            this.getDemandeCessionByPME(idPME);
+          }
+        });
+       
 
         this.primengConfig.ripple = true;
 
@@ -168,13 +175,11 @@ export class DemandeAdhesionComponent implements OnInit {
         ];
     }
 
-    async getAll() {
-        this.idPme = await this.tokenStorage.getPME().idPME;
-        this.demandesCessionService.getDemandesCessionByPme(this.idPme).subscribe(data => {
+    getDemandeCessionByPME(idPME){
+        this.demandesCessionService.getDemandesCessionByPme(idPME).subscribe(data => {
             this.demandes = data
             console.log(this.demandes)
         });
-        
     }
     onSubmit() {
         // arrêter si le formulaire est invalide
