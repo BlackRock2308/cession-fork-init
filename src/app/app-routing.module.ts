@@ -48,7 +48,7 @@ const routes: Routes = [
     { path: 'login', component: AppLoginComponent },
     // Error Handling
     { path: '404', component: AppNotfoundComponent },
-    { path: '**', redirectTo: '/notfound' },
+    { path: '**', redirectTo: '/login' },
     { path: 'error', component: AppErrorComponent },
     { path: 'accessdenied', component: AppAccessdeniedComponent },
 
