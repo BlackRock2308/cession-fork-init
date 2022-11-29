@@ -51,7 +51,12 @@
                         <input pInputText id="payer" type="text" pTooltip="Sica" placeholder="{{detailsCreances.typeMarche}}" [disabled]="true"/>
                     </div>
                 </div>
-                
+                <div class="field grid" *ngIf="motif">
+                    <label htmlFor="payer" class="col-12 mb-2 md:col-4 md:mb-0">Motif du rejet</label>
+                    <div class="col-12 md:col-8">
+                        <textarea pInputText id="payer" type="text" pTooltip="Sica" placeholder="{{motif}}" [disabled]="true"></textarea>
+                    </div>
+                </div>
             </div>
             <div class="col-12  pr-0 d-flex  flex-row-reverse">
                 <button id="valider"style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton"  (click)="dismiss()" ></button>

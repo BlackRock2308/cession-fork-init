@@ -62,11 +62,6 @@
             <a class="dropdown-item" (click)="exportPdf()">PDF</a>
         </div>
     </div>
-
-    <!-- <button *ngIf="profil === 'DG'" id="valider"
-        style="width: min-content; left: 90%; background-color: #203359; top: -10px; position: relative;" pButton
-        pRipple label="Exporter" icon="pi pi-download" (click)="exportexcel()"
-        class="p-button-raised p-button-info mx-1  my-auto ml-2"></button> -->
     <h3 style=" margin-left: 40%;"> Liste des créances</h3>
 
     <p-table #dt [value]="creances" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
@@ -120,7 +115,7 @@
                         <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                             <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
                                 <ng-template let-option pTemplate="item">
-                                    <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                    <span [class]="'product-badge status-' + (option.label ? option.label.toLowerCase() : '')">{{option.label}}</span>
                                 </ng-template>
                             </p-dropdown>
                         </ng-template>
@@ -162,10 +157,10 @@
                 </td>
                 <td >
                     <span *ngIf="creance.statut.code === 'RISQUEE'  " 
-                    [class]="'product-badge status-' + (creance.statut.code ? creance.statut.code.toLowerCase() : '')"> refusée</span>
+                    [class]="'product-badge status-risquee'"> refusée</span>
 
                     <span *ngIf="creance.statut.code !=='RISQUEE'" 
-                    [class]="'product-badge status-' + (creance.statut.code ? creance.statut.code.toLowerCase() : '')">acceptée</span>
+                    [class]="'product-badge status-non_risquee'">acceptée</span>
 
                 </td>
                 <td *ngIf="profil === 'DG'">
