@@ -1,13 +1,13 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AppComponent } from 'src/app/app.component';
-import { ConfirmationService, FilterMatchMode, FilterService, MenuItem, MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FilterMatchMode, FilterService, MenuItem, PrimeNGConfig, SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/workstation/model/product';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeAdhesion, DemandeNantissemantInfo } from 'src/app/workstation/model/demande';
-import { BasicInfo, DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { Observable } from 'rxjs';
 import { PME } from 'src/app/workstation/model/pme';
 import { MenuService } from 'src/app/core/app-layout/side-menu/app.menu.service';
@@ -15,6 +15,7 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { Observation } from 'src/app/workstation/model/observation';
+import { async } from '@angular/core/testing';
 
 @Component({
     selector: 'app-demande-adhesion',
@@ -34,14 +35,7 @@ import { Observation } from 'src/app/workstation/model/observation';
 })
 export class DemandeAdhesionComponent implements OnInit {
 
-
     productDialog: boolean;
-
-    deleteProductDialog: boolean = false;
-
-    deleteProductsDialog: boolean = false;
-
-    products: Product[];
     demandes: any[];
 
     demande: any;
@@ -58,7 +52,6 @@ export class DemandeAdhesionComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 20];
 
     routeItems: MenuItem[];
-
 
     rightPanelClick: boolean;
 
@@ -105,30 +98,26 @@ export class DemandeAdhesionComponent implements OnInit {
     form!: FormGroup;
     cities: Product[];
     pme: PME;
+    idPme: any;
 
     //basic info as reference BE ninea and date
     basicInfo: DemandeNantissemantInfo;
 
-    rangeDates:any[];
+    rangeDates: any[];
     matchModeOptions: SelectItem[];
-    statuts:any[];
+    statuts: any[];
 
-    observation:Observation={};
+    observation: Observation = {};
 
     constructor(
-        private messageService: MessageService,
-        private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
+        private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,
+        private router: Router, private tokenStorage: TokenStorageService,
         private demandesCessionService: DemandesCessionService,
-        private demandesAdhesionService:DemandesAdhesionService,
+        private demandesAdhesionService: DemandesAdhesionService,
         public renderer: Renderer2, private menuService: MenuService,
         private primengConfig: PrimeNGConfig,
         public app: AppComponent,
-        private filterService:FilterService,
-        private tokenStorage:TokenStorageService,
-        private observationService:ObservationService
-
+        private filterService: FilterService,
 
     ) {
         this.breadcrumbService.setItems([
@@ -148,31 +137,24 @@ export class DemandeAdhesionComponent implements OnInit {
             { label: 'Contient', value: FilterMatchMode.CONTAINS },
         ];
         this.statuts = [
-            {label: 'Recevable', value: 'RECEVABLE'},
-            {label: 'Complétée', value: 'COMPLETEE'},
-            {label: 'Risquée', value: 'RISQUEE'},
-            {label: 'Non Risquée', value: 'NON_RISQUEE'},
-            {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'}
+            { label: 'Recevable', value: 'RECEVABLE' },
+            { label: 'Complétée', value: 'COMPLETEE' },
+            { label: 'Risquée', value: 'RISQUEE' },
+            { label: 'Non Risquée', value: 'NON_RISQUEE' },
+            { label: 'Complément Requis', value: 'COMPLEMENT_REQUIS' }
         ]
 
-        
 
     }
     ngOnInit(): void {
+
+        this.getAll();
+
         this.form = this.formBuilder.group({
             ninea: ['', Validators.required],
             nineaFile: ['', Validators.required]
 
         });
-
-        this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
-            this.demandes = data
-            console.log(this.demandes)
-        });
-
-        // if(this.demandes!==undefined){
-        //     location.reload()
-        // }
 
         this.primengConfig.ripple = true;
 
@@ -183,8 +165,16 @@ export class DemandeAdhesionComponent implements OnInit {
             { field: 'numeroDemande', header: 'Numéro demande' },
             { field: 'statut', header: 'Statut' },
 
-
         ];
+    }
+
+    async getAll() {
+        this.idPme = await this.tokenStorage.getPME().idPME;
+        this.demandesCessionService.getDemandesCessionByPme(this.idPme).subscribe(data => {
+            this.demandes = data
+            console.log(this.demandes)
+        });
+        
     }
     onSubmit() {
         // arrêter si le formulaire est invalide
@@ -193,7 +183,6 @@ export class DemandeAdhesionComponent implements OnInit {
         }
 
         this.enregistrerBon();
-
 
     }
     //sélectionner le fichier du ninea
@@ -220,77 +209,18 @@ export class DemandeAdhesionComponent implements OnInit {
 
     }
 
-    openNew() {
-        this.product = {};
-        this.submitted = false;
-        this.productDialog = true;
-    }
-
-    deleteSelectedProducts() {
-        this.deleteProductsDialog = true;
-    }
-
     consulterDemande(demande) {
         this.demande = { ...demande };
         //this.demandeDialog = true;
         console.log(demande)
         this.demandesAdhesionService.setDemandeObs(demande);
-        this.router.navigate(['workstation/cdmp/visualiser-demandes'], {  queryParams: {  page: 'demande cession' } });
-    }
-
-    deleteProduct(product: Product) {
-        this.deleteProductDialog = true;
-        this.product = { ...product };
-    }
-
-    confirmDeleteSelected() {
-        this.deleteProductsDialog = false;
-        this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-        this.selectedProducts = null;
-    }
-
-    confirmDelete() {
-        this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        this.product = {};
-    }
-
-    hideDialog() {
-        this.productDialog = false;
-        this.submitted = false;
-    }
-
-    saveProduct() {
-        this.submitted = true;
-
-        if (this.product.name.trim()) {
-            if (this.product.id) {
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-            } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-            }
-
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
-        }
+        this.router.navigate(['workstation/cdmp/visualiser-demandes'], { queryParams: { page: 'demande cession' } });
     }
 
     findIndexById(id: string): number {
         let index = -1;
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
+        for (let i = 0; i < this.demandes.length; i++) {
+            if (this.demandes[i].id === id) {
                 index = i;
                 break;
             }
@@ -314,10 +244,6 @@ export class DemandeAdhesionComponent implements OnInit {
         targetDiv.style.display = "flex";
 
     }
-
-
-
-
     onLayoutClick() {
         if (!this.topbarItemClick) {
             this.activeTopbarItem = null;
@@ -458,49 +384,49 @@ export class DemandeAdhesionComponent implements OnInit {
         console.log(this.demandesAdhesionService.getDemandenantissementObs())
     }
 
-          //filtre par intervalle de date
-  public calenderFilter() {
-    
-    this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
-     //Afficher toute les lignes du tableau au démarrage
-     if(this.rangeDates== undefined){
-       return true;
-     }
-     //redéfinir les dates pour comparer sans prendre en compte l'heure
-     //on donne toutes les date l'heure 00:00:00
-     const d=value.split("/")
-     value=new Date((new Date(d[2],d[1]-1,d[0])).toDateString())
-     this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
-     if( this.rangeDates[1] !== null ){
-       this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
-     }
+    //filtre par intervalle de date
+    public calenderFilter() {
 
-     if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
-        console.log(value)
-        console.log(1)
-        return true;
-    }
-   
-    if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
-      console.log(2)
-        return true;
-    }
-   
-    if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
-      this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
-        console.log(3)
-        return true;
-    }
-   
-    console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
-    return false;
-   })
-   }
+        this.filterService.register('rangeDate', (value: any, filter: any): boolean => {
+            //Afficher toute les lignes du tableau au démarrage
+            if (this.rangeDates == undefined) {
+                return true;
+            }
+            //redéfinir les dates pour comparer sans prendre en compte l'heure
+            //on donne toutes les date l'heure 00:00:00
+            const d = value.split("/")
+            value = new Date((new Date(d[2], d[1] - 1, d[0])).toDateString())
+            this.rangeDates[0] = new Date((new Date(this.rangeDates[0])).toDateString())
+            if (this.rangeDates[1] !== null) {
+                this.rangeDates[1] = new Date((new Date(this.rangeDates[1])).toDateString())
+            }
 
- //effacer le filtre par date
- clearRange(table){
-   this.rangeDates=undefined;
-   table.filter()
- }
+            if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
+                console.log(value)
+                console.log(1)
+                return true;
+            }
+
+            if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
+                console.log(2)
+                return true;
+            }
+
+            if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+                this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
+                console.log(3)
+                return true;
+            }
+
+            console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
+            return false;
+        })
+    }
+
+    //effacer le filtre par date
+    clearRange(table) {
+        this.rangeDates = undefined;
+        table.filter()
+    }
 }
 
