@@ -114,6 +114,7 @@ export class DemandeAdhesionComponent implements OnInit {
     statuts:any[];
 
     observation:Observation={};
+    idPME: any;
 
     constructor(
         private messageService: MessageService,
@@ -155,6 +156,8 @@ export class DemandeAdhesionComponent implements OnInit {
             {label: 'Complément Requis', value: 'COMPLEMENT_REQUIS'}
         ]
 
+        this.idPME=this.tokenStorage.getPME().idPME
+
         
 
     }
@@ -165,7 +168,7 @@ export class DemandeAdhesionComponent implements OnInit {
 
         });
 
-        this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
+        this.demandesCessionService.getDemandesCessionByPme(this.idPME).subscribe(data => {
             this.demandes = data
             console.log(this.demandes)
         });
