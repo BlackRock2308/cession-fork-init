@@ -137,7 +137,7 @@ export class ConventionSignerComponent implements OnInit {
       else{
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Erreur',
           text: 'Le code pin saisi est incorrect!',
           confirmButtonText: '<i class="pi pi-check"></i>OK',
           confirmButtonColor:'#99CC33FF',

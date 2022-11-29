@@ -153,10 +153,10 @@ export class ConventionCessionComponent implements OnInit {
         {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
         {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
         {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
-        {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
-        {label: 'Convention Générée', value: 'CONVETION_REJETEE_PAR_PME'},
-        {label: 'Convention Générée', value: 'CONVETION_REJETEE_PAR_DG'},
-        {label: 'Convention Générée', value: 'NON_RISQUEE'}
+        {label: 'Convention Rejetée', value: 'CONVETION_REJETEE'},
+        {label: 'Convention Rejetée par PME', value: 'CONVETION_REJETEE_PAR_PME'},
+        {label: 'Convention Rejetée par DG', value: 'CONVETION_REJETEE_PAR_DG'},
+        {label: 'Non risquée', value: 'NON_RISQUEE'}
     ]
     }
 

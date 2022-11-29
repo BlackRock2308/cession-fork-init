@@ -98,7 +98,7 @@ export class InformationsNineaComponent implements OnInit {
     this.informationsForm.get('telephonePME').setValue(telephonePME);
     
     Swal.fire({
-      title: 'La demande d\'adhesion sera validé et les informations de la pme mise à jour.Voulez vous continuer?',
+      title: 'La demande d\'adhésion sera validée et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
@@ -160,8 +160,6 @@ export class InformationsNineaComponent implements OnInit {
    enregistrerInfos() {
    
    this.validerDemandeAdhesion();
-
-    console.log(this.pme)
   }
 
   
@@ -188,12 +186,8 @@ export class InformationsNineaComponent implements OnInit {
             confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
             allowOutsideClick: false
           })      
-          setTimeout(() => {
-           location.reload()
-          }, 1500);
-          }
-        
-     )
+          window.location.reload();
+          })
     await this.createCompte()
   }
 

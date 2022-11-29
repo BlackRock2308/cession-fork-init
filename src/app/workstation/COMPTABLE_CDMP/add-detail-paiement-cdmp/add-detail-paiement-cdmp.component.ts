@@ -72,7 +72,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
       referencePaiement: ['', Validators.required],
       montant: ['', Validators.required],
       payer: [{ value: '', disabled: true } ],
-      preuveFile: ['']
+      preuveFile: ['', Validators.required]
     });
   }
   dismiss() {
@@ -136,7 +136,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         this.dismiss();
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Erreur',
           text: 'Le montant renseigné dépasse le montant restant de la créance!',
         })
        
@@ -147,17 +147,10 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           icon: 'success',
           title: 'Payement CDMP enregistré avec succès.',
           showConfirmButton: false,
-          timer: 2500
-        }).then((result) => {
-          if (result.isConfirmed) {
-          //  this.router.navigate(['workstation/comptable/list-paiements-cdmp',  this.config.data.paiement.id])
-            setTimeout(() => {
-               location.reload()
-            },100);
-          }
-          
-         })
-        }
+          timer: 1500
+        })
+         window.location.reload();
+         }
       }),
       (error) => {
         this.servicemsg.add({

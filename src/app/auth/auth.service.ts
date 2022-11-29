@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiSettings } from '../workstation/generic/const/apiSettings.const';
+import { Utilisateur } from '../workstation/model/utilisateur';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -22,8 +23,8 @@ export class AuthService {
     return this.http.post(this.authUrl + "/auth" , credentials, httpOptions);
   }
 
-  majMDP(password):Observable<any>{
-    return this.http.patch(this.authUrl +"/update",password, httpOptions);
+  majMDP(utilisateur: Utilisateur):Observable<any>{
+    return this.http.patch(this.authUrl +"/update/password",utilisateur, httpOptions);
   }
 
   recupMDP(email):Observable<any>{

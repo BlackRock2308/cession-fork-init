@@ -40,14 +40,14 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                       if(error.status==400){
                         Swal.fire({
                           icon: 'error',
-                          title: 'Oops...',
+                          title: 'Erreur',
                           text: 'Une erreur est survenue!',
                         })
                       }
                       if(error.status==403){
                         Swal.fire({
                           icon: 'error',
-                          title: 'Oops...',
+                          title: 'Erreur',
                           text: 'Vous n\'êtes pas authorisée à faire cette requête!',
                         })
                       }

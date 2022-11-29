@@ -74,7 +74,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
       referencePaiement: ['', Validators.required],
       montant: ['', Validators.required],
       payer: [{ value: '', disabled: true } ],
-      preuveFile: ['']
+      preuveFile: ['', Validators.required]
     });
   }
   dismiss() {
@@ -138,7 +138,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
         this.dismiss();
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Erreur',
           text: 'Le montant renseigné dépasse la solde PME!',
         })
        }else{
@@ -148,15 +148,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           icon: 'success',
           title: 'Payement PME enregistré avec succès.',
           showConfirmButton: false,
-          timer: 2500
-        }).then((result) => {
-          if (result.isConfirmed) {
-             setTimeout(() => {
-               location.reload()
-            },100);
-          }
-          
-         })
+          timer: 1500
+        })          
+        window.location.reload();
         }
       }),
       (error) => {

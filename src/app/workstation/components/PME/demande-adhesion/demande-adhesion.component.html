@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <p-card>
@@ -8,35 +7,40 @@
                 </div>
             </div>
             <br>
-
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
-                [globalFilterFields]="['name','country.name','representative.name','status']" 
-                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true"
+                [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [(selection)]="selectedProducts"
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
-
                 <ng-template pTemplate="header">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="refBE" placeholder="Référence du BE">
-
+                            <p-columnFilter type="text" field="reference" placeholder="Référence du BE">
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="type_marche" placeholder="Nom du marché">
-
+                            <p-columnFilter type="text" field="nomMarche" placeholder="Nom du marché">
                             </p-columnFilter>
                         </th>
                         <th>
-                            <p-columnFilter type="date"  field="date_soumission" placeholder="Date de demande" [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range" style="display: none;"></p-columnFilter>
-                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
+                            <p-columnFilter type="date" field="date_soumission" placeholder="Date de demande"
+                                [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range"
+                                style="display: none;"></p-columnFilter>
+                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                                inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
+                        </th>
+                        <th>
+                            <p-columnFilter type="text" field="numeroDemande" placeholder="Numéro demande">
+                            </p-columnFilter>
                         </th>
                         <th>
                             <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
+                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)"
+                                        placeholder="Statuts" [showClear]="true">
                                         <ng-template let-option pTemplate="item">
-                                            <span [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                                            <span
+                                                [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
                                         </ng-template>
                                     </p-dropdown>
                                 </ng-template>
@@ -44,34 +48,37 @@
                         </th>
                         <th>
                             <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
-                                 label="Rechercher"
-                                (click)="dt.filter(refBE,datesoumission,statut)"></button>
+                                label="Rechercher"
+                                (click)="dt.filter(reference,nomMarche,dateDemandeCession,numeroDemande,statut)"></button>
                         </th>
                         <th *ngIf="rangeDates!=undefined">
-                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded " label="Annuler" (click)="clearRange(dt)" style="background: white; color:#203359"></button>
+                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
+                                label="Annuler" (click)="clearRange(dt)"
+                                style="background: white; color:#203359"></button>
                         </th>
                     </tr>
                     <tr>
-
-                        <th pSortableColumn="refBE" style="color: #203359;">Référence du BE <p-sortIcon field="refBE">
+                        <th pSortableColumn="reference" style="color: #203359;">Référence du BE <p-sortIcon
+                                field="reference">
                             </p-sortIcon>
                         </th>
-                        <th pSortableColumn="type_marche" style="color: #203359;">Nom du marché<p-sortIcon
-                                field="type_marche"></p-sortIcon>
+                        <th pSortableColumn="nomMarche" style="color: #203359;">Nom du marché<p-sortIcon
+                                field="nomMarche"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="date_soumission" style="color: #203359;">Date de demande <p-sortIcon
-                                field="datesoumission"></p-sortIcon>
+                        <th pSortableColumn="dateDemandeCession" style="color: #203359;">Date de demande <p-sortIcon
+                                field="dateDemandeCession"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="numeroDemande" style="color: #203359;">Numéro demande <p-sortIcon
+                                field="numeroDemande"></p-sortIcon>
                         </th>
                         <th pSortableColumn="statut" style="color: #203359;">Statut <p-sortIcon field="rccm">
                             </p-sortIcon>
                         </th>
-
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr>
-
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Référence du BE</span>
                             {{demande.bonEngagement.reference}}
@@ -80,43 +87,42 @@
                             <span class="p-column-title">Nom du marché</span>
                             {{demande.bonEngagement.nomMarche}}
                         </td>
-
                         <td style="width:20%; min-width:8rem;">
                             <span class="p-column-title">Date demande</span>
-                            {{demande.dateDemandeCession  | date:'dd/MM/yyyy'}}
+                            {{demande.dateDemandeCession | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Nom du marché</span>
+                            {{demande.numeroDemande}}
                         </td>
                         <td style="width:20%;">
-                            <span [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_', ' ')}}</span>
-
-       
+                            <span
+                                [class]="'product-badge status-' + (demande.statut.libelle ? demande.statut.libelle.toLowerCase() : '')">{{demande.statut.libelle.replaceAll('_',
+                                ' ')}}</span>
                         </td>
-
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-eye"
-                                    class="p-button-rounded simpleButton"
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
-                                <button *ngIf="demande.statut.libelle=='COMPLEMENT_REQUIS'" pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded simpleButton" pTooltip="Completer le dossier"
-                                    [routerLink]="['complement_documents']" (click)="setDemandeInfo(demande)"></button>
+                                <button *ngIf="demande.statut.libelle=='COMPLEMENT_REQUIS'" pButton pRipple
+                                    icon="pi pi-pencil" class="p-button-rounded simpleButton"
+                                    pTooltip="Completer le dossier" [routerLink]="['complement_documents']"
+                                    (click)="setDemandeInfo(demande)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </p-card>
-
         <p-dialog showHeader="false" [(visible)]="productDialog" [style]="{width: '80%'}" [modal]="true">
             <ng-template pTemplate="header">
 
             </ng-template>
             <div class="col-12">
-
                 <div class="cardDoc card-w-title flex flex-wrap">
                     <div class="col-12 md:col-8 h-full">
                         <h5 style="text-align:center;position: relative; right: -200px;">Documents Complementaires</h5>
-
                     </div>
                     <div class="col-12 md:col-4 mt-5 md:mt-0">
                         <router-outlet>
@@ -141,27 +147,17 @@
                         </div>
                     </div>
                 </div><br>
-
                 <br>
                 <div class="">
                     <div class="mt-8 p-fluid">
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
                             <div class="field grid">
-
-
                                 <p-dropdown [options]="cities" [(ngModel)]="selectedCity1"
                                     placeholder="Selectionner le type du document" optionLabel="name"
                                     [showClear]="true"></p-dropdown>
-
-
-
-
                                 <div class="col-12 md:col-6 mb-2">
                                     <div class="col-12">
-
                                         <div class="formgroup-inline">
-
                                             <div class="field col-12 md:col-5 mb-1">
                                                 <input *ngIf="selectedBONFiles==null;else elseNINEABlock" id="NINEAfile"
                                                     type="text" pInputText pTooltip="Charger le fichier du bon"
@@ -172,62 +168,25 @@
                                                     id="upload-NINEAfile" name="upload-BONfile" ngf-max-size="2MB"
                                                     (change)="selectBONFile($event)">
                                             </div>
-
                                             <div class="field col-12 md:col-5 mb-1">
-
                                                 <button type="button" pButton pRipple label="Parcourir"
                                                     icon="pi pi-upload" class="mr-2 mb-2 upload " id="upload-NINEAfile"
                                                     (click)="handleBONClick()"></button>
                                             </div>
-
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                             <div class="field grid" style="margin-top: 30px;">
                                 <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
-
                                 <div class="col-12 md:col-4">
                                     <button type="submit" class="btn btn-success" [disabled]="!form.valid" pButton
                                         pRipple label="Soumettre" class="successButton mr-2 mb-2"></button>
                                 </div>
-
                             </div>
                         </form>
-
                     </div>
                 </div>
-
-            </ng-template>
-
-
-        </p-dialog>
-
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
-                    (click)="confirmDelete()"></button>
-            </ng-template>
-        </p-dialog>
-
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
-                    (click)="confirmDeleteSelected()"></button>
             </ng-template>
         </p-dialog>
     </div>
