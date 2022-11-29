@@ -160,8 +160,6 @@ export class InformationsNineaComponent implements OnInit {
    enregistrerInfos() {
    
    this.validerDemandeAdhesion();
-
-    console.log(this.pme)
   }
 
   
@@ -188,12 +186,8 @@ export class InformationsNineaComponent implements OnInit {
             confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
             allowOutsideClick: false
           })      
-          setTimeout(() => {
-           location.reload()
-          }, 1500);
-          }
-        
-     )
+          window.location.reload();
+          })
     await this.createCompte()
   }
 
