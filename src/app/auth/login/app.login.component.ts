@@ -102,11 +102,9 @@ export class AppLoginComponent implements OnInit {
 
 
             }
-            else {
-              this.router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {
-                this.router.navigate(['workstation/pme/demandes_en_cours']);
-              });
-
+            else{
+              this.router.navigate(['workstation/cdmp/dashboard']);
+              
             }
           }
           if (this.roles.find(elem => elem.libelle == 'DAF') != null) {
