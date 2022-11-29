@@ -136,7 +136,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         this.dismiss();
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Erreur',
           text: 'Le montant renseigné dépasse le montant restant de la créance!',
         })
        

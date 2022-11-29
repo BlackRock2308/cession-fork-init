@@ -15,6 +15,7 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { Observation } from 'src/app/workstation/model/observation';
+import { DashboardServices } from 'src/app/workstation/service/dashboard.services';
 
 @Component({
     selector: 'app-demande-adhesion',
@@ -112,7 +113,7 @@ export class DemandeAdhesionComponent implements OnInit {
     rangeDates:any[];
     matchModeOptions: SelectItem[];
     statuts:any[];
-
+    user: any;
     observation:Observation={};
 
     constructor(
@@ -126,11 +127,9 @@ export class DemandeAdhesionComponent implements OnInit {
         private primengConfig: PrimeNGConfig,
         public app: AppComponent,
         private filterService:FilterService,
-        private tokenStorage:TokenStorageService,
-        private observationService:ObservationService
-
-
-    ) {
+        private dashboardServices: DashboardServices   ) {
+        
+    this.user = JSON.parse(sessionStorage.getItem("auth-user"));
         this.breadcrumbService.setItems([
             { label: 'Demandes' },
             { label: 'Liste des demandes', routerLink: ['pme/demandes_en_cours'] }
@@ -164,15 +163,15 @@ export class DemandeAdhesionComponent implements OnInit {
             nineaFile: ['', Validators.required]
 
         });
-
-        this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
-            this.demandes = data
-            console.log(this.demandes)
+        this.dashboardServices
+        .getPMEByUser(this.user.idUtilisateur)
+        .subscribe((res: any) => {
+          if (res) {
+           let idPME = res.idPME;
+            this.getDemandeCessionByPME(idPME);
+          }
         });
-
-        // if(this.demandes!==undefined){
-        //     location.reload()
-        // }
+       
 
         this.primengConfig.ripple = true;
 
@@ -185,6 +184,13 @@ export class DemandeAdhesionComponent implements OnInit {
 
 
         ];
+    }
+
+    getDemandeCessionByPME(idPME){
+        this.demandesCessionService.getDemandesCessionByPme(idPME).subscribe(data => {
+            this.demandes = data
+            console.log(this.demandes)
+        });
     }
     onSubmit() {
         // arrêter si le formulaire est invalide

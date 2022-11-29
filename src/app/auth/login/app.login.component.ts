@@ -93,14 +93,10 @@ export class AppLoginComponent implements OnInit{
             this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
               data =>{
                 this.tokenStorage.savePME(data)
-              } 
-            )
-            
+              }  )            
             localStorage.setItem('profil', 'PME'); 
             if(this.changeCodePin){
               this.router.navigate(['workstation/profil']);
-              
-  
             }
             else{
               this.router.navigate(['workstation/cdmp/dashboard']);
