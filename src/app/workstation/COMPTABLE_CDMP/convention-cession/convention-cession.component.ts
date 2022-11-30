@@ -310,27 +310,15 @@ visualiserDocument(document: Documents , demande : any) {
   });
 }
 
-EditerConvention(convention: Convention) {
- // this.demandeCessionService.setDemandeObs(demande)
 
+editConvention(convention: Convention) {
   const ref = this.dialogService.open(EditerConventionComponent, {
     data: {
       convention: convention
     },
     header: "Editer la convention",
     width: '40%',
-    height: 'calc(50% - 100px)',
-    baseZIndex: 50
-  });
-}
-EditConvention(convention: Convention) {
-  const ref = this.dialogService.open(EditerConventionComponent, {
-    data: {
-      convention: convention
-    },
-    header: "Editer la convention",
-    width: '40%',
-    height: 'calc(50% - 100px)',
+    //height: 'calc(50% - 100px)',
     baseZIndex: 50
   });
 }
