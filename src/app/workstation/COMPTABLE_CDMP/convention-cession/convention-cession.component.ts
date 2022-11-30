@@ -77,54 +77,7 @@ export class ConventionCessionComponent implements OnInit {
     this.paramStatuts = [StatutEnum.ConventionAcceptee, StatutEnum.conventionGeneree, StatutEnum.conventionCorrigee, StatutEnum.conventionSigneeParPME, StatutEnum.conventionSigneeParDG, StatutEnum.ConventionTransmise, StatutEnum.ConventionRejeteeParPME, StatutEnum.ConventionRejeteeParDG, StatutEnum.ConventionRejetee, StatutEnum.nonRisquee]
 
     this.initGetDemandes(this.paramStatuts)
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes,data.content)
-    //     this.documentConvention = this.demandes[0]?.conventions[0]?.documents[0];
-    //  console.log('affiche' + JSON.stringify(this.documentConvention))
-    //   });
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE_PAR_PME").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE_PAR_DG").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REJETEE").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-    //   this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-    //   this.demandeCessionService.getDemandeCessionByStatut("NON_RISQUEE").subscribe(data => {
-    //     this.demandes=this.demandes.concat(data.content)
-    //     console.log(this.demandes)
-    //   });
-
+    
     this.profil = localStorage.getItem('profil');
 
 
@@ -246,28 +199,19 @@ export class ConventionCessionComponent implements OnInit {
 
     // Finds anchors and sets hrefs void
     console.log('(text-layer-rendered)');
-
   }
 
-  /**
-  * Permet de faire une rotation sur l'affichage du document
-  */
-  rotate() {
-    console.log(this.angle);
-    if (this.angle === 0) {
-      this.angle = 90;
-    } else if (this.angle === 90) {
-      this.angle = 180;
-    } else if (this.angle === 180) {
-      this.angle = 0;
-    }
-  }
-  /**
-  * Permet de faire un zoom plus sur l'affichage du document
-  */
-  plusZoom() {
-    this.zoom = this.zoom + 0.10;
-  }
+editConvention(convention: Convention) {
+  const ref = this.dialogService.open(EditerConventionComponent, {
+    data: {
+      convention: convention
+    },
+    header: "Editer la convention",
+    width: '30%',
+    //height: 'calc(50% - 100px)',
+    baseZIndex: 50
+  });
+}
 
   minusZoom() {
     if (this.zoom > 0.8) {
