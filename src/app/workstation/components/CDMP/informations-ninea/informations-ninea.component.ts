@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
-import { SearchCountryField,  CountryISO } from 'ngx-intl-tel-input';
+import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
@@ -18,56 +18,53 @@ import Swal from 'sweetalert2';
 export class InformationsNineaComponent implements OnInit {
   dateTime = new Date();
   validPattern = "^[a-zA-Z0-9]$"
- 
+
   informationsForm: any;
   demande: any;
-  pme : PME;
-  idPme:number;
-  observation:Observation={};
+  pme: PME;
+  idPme: number;
+  observation: Observation = {};
   separateDialCode = true;
-	SearchCountryField = SearchCountryField;
-	//TooltipLabel = TooltipLabel;
-	CountryISO = CountryISO;
-	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   submit: boolean = false;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
     private pmeService: PmeService,
-    private utilisateurService : UtilisateurService,
-    private observationService:ObservationService,
-    private tokenStorage:TokenStorageService
-  
+    private utilisateurService: UtilisateurService,
+
   ) { }
 
   ngOnInit(): void {
 
     this.informationsForm = this.formBuilder.group({
-      raisonSocial: ['' , [Validators.required]],
-      formeJuridique: ['' , [Validators.required]],
-      centreFiscal: ['' , [Validators.required]],
-      adressePME: ['' , [Validators.required]],
-      enseigne: ['' , [Validators.required]],
-      localite: ['' , [Validators.required]],
-      controle: ['' , [Validators.required]],
+      raisonSocial: ['', [Validators.required]],
+      formeJuridique: ['', [Validators.required]],
+      centreFiscal: ['', [Validators.required]],
+      adressePME: ['', [Validators.required]],
+      enseigne: ['', [Validators.required]],
+      localite: ['', [Validators.required]],
+      controle: ['', [Validators.required]],
       activitePrincipale: ['', [Validators.required]],
-      registre: ['' , [Validators.required]],
-      prenomRepresentant: ['' , [Validators.required]],
-      nomRepresentant: ['' , [Validators.required]],
-      dateCreation: ['' , [Validators.required,  this.matchValues()]],
-      effectifPermanent: ['' , [Validators.required]],
-      nombreEtablissementSecondaires: ['' , [Validators.required]],
-      chiffresDaffaires: ['' , [Validators.required]],
-      cniRepresentant: ['' , [Validators.required] , Validators.pattern(this.validPattern)],
-      dateImmatriculation: ['' , [Validators.required, this.matchValues()]],
-      telephonePME: ['' , [Validators.required]],
-      capitalsocial : ['' , [Validators.required]],
-      autorisationMinisterielle : ['' , [Validators.required]]
+      registre: ['', [Validators.required]],
+      prenomRepresentant: ['', [Validators.required]],
+      nomRepresentant: ['', [Validators.required]],
+      dateCreation: ['', [Validators.required, this.matchValues()]],
+      effectifPermanent: ['', [Validators.required]],
+      nombreEtablissementSecondaires: ['', [Validators.required]],
+      chiffresDaffaires: ['', [Validators.required]],
+      cniRepresentant: ['', [Validators.required], Validators.pattern(this.validPattern)],
+      dateImmatriculation: ['', [Validators.required, this.matchValues()]],
+      telephonePME: ['', [Validators.required]],
+      capitalsocial: ['', [Validators.required]],
+      autorisationMinisterielle: ['', [Validators.required]]
     });
 
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
-      this.pme=this.demande.pme
+      this.pme = this.demande.pme
 
     })
   }
@@ -96,85 +93,62 @@ export class InformationsNineaComponent implements OnInit {
     }
     let telephonePME = this.informationsForm.get('telephonePME').value.internationalNumber;
     this.informationsForm.get('telephonePME').setValue(telephonePME);
-    
+
     Swal.fire({
       title: 'La demande d\'adhésion sera validée et les informations de la pme mise à jour.Voulez vous continuer?',
       showDenyButton: true,
       confirmButtonText: 'Continuer',
       denyButtonText: `Annuler`,
-      confirmButtonColor:'#99CC33FF',
-      denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
+      confirmButtonColor: '#99CC33FF',
+      denyButtonColor: '#981639FF',
+      cancelButtonColor: '#333366FF'
 
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.enregistrerInfos()
+        this.validerDemandeAdhesion()
         this.demandeAdhesionService.setDialog(false)
         setTimeout(() => {
-          //location.reload()
-       },1000);
+          location.reload()
+        }, 1000);
       } else if (result.isDenied) {
         Swal.fire('Traitement de la demande non effective!', '', 'info')
       }
     })
 
-    
+
 
     //fermer la boite de dialogue
     this.demandeAdhesionService.setDialog(false)
 
   }
 
-  async patchPme (){
-    let body2 = {
-      hasninea : this.demande.hasninea,
-      isactive : this.demande.isactive
+  //A integrer apres le deploiement du microservice de notification
+  async createCompte() {
+    let infoEmail = {
+      email: this.pme.email
     }
-    let body={
-      ...this.informationsForm.value , ...body2
-     }
-
-     console.log(JSON.stringify(body))
-     await this.pmeService.patchPme(this.pme.idPME,body).subscribe((result)=>{
+    console.log(infoEmail)
+    this.utilisateurService.createCompte(infoEmail).subscribe((result) => {
       console.log(result)
-      })
-   
-      
-    }
-
-
-    //A integrer apres le deploiement du microservice de notification
-    async createCompte(){
-       let infoEmail = {
-        email : this.pme.email
-       }
-     console.log(infoEmail)
-       this.utilisateurService.createCompte(infoEmail).subscribe((result)=>{
-         console.log(result)
-         })
-     }
-  
- 
-
-   enregistrerInfos() {
-   
-   this.validerDemandeAdhesion();
+    })
   }
 
-  
-  async validerDemandeAdhesion() {
-
-  
-      await this.patchPme()
-      console.log(this.pme.idPME)
-      await this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
-       (result)=>{
-         console.log(result)
+  validerDemandeAdhesion() {
+    let body2 = {
+      hasninea: this.demande.hasninea,
+      isactive: this.demande.isactive
+    }
+    let body = {
+      idPME: this.pme.idPME,
+      ...this.informationsForm.value, ...body2
+    }
+    this.pmeService.updatePme(body).subscribe((result) => {
+      this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
+        (result) => {
+          console.log(result)
         },
-        (error)=>{},
-         ()=>{
-          
+        () => {
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -185,10 +159,11 @@ export class InformationsNineaComponent implements OnInit {
             confirmButtonColor: "#99CC33",
             confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
             allowOutsideClick: false
-          })      
-          window.location.reload();
           })
-    await this.createCompte()
+          
+        })
+        this.createCompte()
+    })
   }
 
 }

@@ -26,9 +26,9 @@ export class ConventionCessionPMEComponent implements OnInit {
 
   demandeDialog: boolean;
 
-  demandes:any[] = [] ;
+  demandes: any[] = [];
 
-  demande:any;
+  demande: any;
 
   submitted: boolean;
 
@@ -39,7 +39,7 @@ export class ConventionCessionPMEComponent implements OnInit {
   rowsPerPageOptions = [5, 10, 20];
 
   items: MenuItem[];
-   
+
   activeIndex: number = 1;
   documents: any[];
   convention: any;
@@ -53,304 +53,305 @@ export class ConventionCessionPMEComponent implements OnInit {
   afterpageLoadedCb = 0;
   pageVariable = 1;
   ref: DynamicDialogRef;
-  profil : string;
+  profil: string;
   home: MenuItem;
-  
-  rangeDates:any[];
-  matchModeOptions: SelectItem[];
-  statuts:any[];
 
-  observation:Observation={};
+  rangeDates: any[];
+  matchModeOptions: SelectItem[];
+  statuts: any[];
+
+  observation: Observation = {};
 
   constructor(
-    public dialogService: DialogService, 
+    public dialogService: DialogService,
     public messageService: MessageService,
-    private pmeService:PmeService,
-    private tokenStorage : TokenStorageService,
+    private pmeService: PmeService,
+    private tokenStorage: TokenStorageService,
     private breadcrumbService: BreadcrumbService,
-    private filterService:FilterService,
-    private demandesCessionService : DemandesCessionService,
-    private observationService:ObservationService
+    private filterService: FilterService,
+    private demandesCessionService: DemandesCessionService,
+    private observationService: ObservationService
 
 
-    ) { 
-      this.breadcrumbService.setItems([
-        { label: 'Convention de cession' },
-        //{ label: 'Icons', routerLink: ['/utilities/icons'] }
+  ) {
+    this.breadcrumbService.setItems([
+      { label: 'Convention de cession' },
+      //{ label: 'Icons', routerLink: ['/utilities/icons'] }
     ]);
-      this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
 
-    }
+  }
 
   ngOnInit() {
     this.profil = localStorage.getItem('profil');
-   
+
     // this.pmeService.getConventions().subscribe(data => {
     //   this.documents = data
     //   console.log( JSON.stringify(data))
     // });
 
-    
-        this.getDemandes()
-  
-    
 
-      this.cols = [
-        { field: 'nomDocument', header: 'Nom de Document' },
-        { field: 'typeDocument', header: 'Type de Document' },
-        { field: 'dateSoumission', header: 'Date de Soumission' },
-      ];
-
-       //filtre par range date
-       this.calenderFilter()
+    this.getDemandes()
 
 
-       this.matchModeOptions = [
-           { label: 'Intervalle de date', value: 'rangeDate' },
-           { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
-           { label: 'Contient', value: FilterMatchMode.CONTAINS },
-       ];
-       this.statuts = [
-           {label: 'Convention Soumise', value: 'CONVENTION_SOUMISE'},
-           {label: 'Convention Rejetée', value: 'CONVENTION_REJETEE'},
-           {label: 'Convention Signée par la PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
-           {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
-           {label: 'Convention Acceptée', value: 'CONVENTION_ACCEPTEE'},
-           {label: 'Convention Générée', value: 'CONVENTION_GENEREE'}
-       ]
- 
-     
+
+    this.cols = [
+      { field: 'nomDocument', header: 'Nom de Document' },
+      { field: 'typeDocument', header: 'Type de Document' },
+      { field: 'dateSoumission', header: 'Date de Soumission' },
+    ];
+
+    //filtre par range date
+    this.calenderFilter()
+
+
+    this.matchModeOptions = [
+      { label: 'Intervalle de date', value: 'rangeDate' },
+      { label: 'Commence par', value: FilterMatchMode.STARTS_WITH },
+      { label: 'Contient', value: FilterMatchMode.CONTAINS },
+    ];
+    this.statuts = [
+      { label: 'Convention Soumise', value: 'CONVENTION_SOUMISE' },
+      { label: 'Convention Rejetée', value: 'CONVENTION_REJETEE' },
+      { label: 'Convention Signée par la PME', value: 'CONVENTION_SIGNEE_PAR_PME' },
+      { label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG' },
+      { label: 'Convention Acceptée', value: 'CONVENTION_ACCEPTEE' },
+      { label: 'Convention Générée', value: 'CONVENTION_GENEREE' }
+    ]
+
+
   }
 
-  getDemandes(){
+  getDemandes() {
 
-    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"NON_RISQUE").subscribe(data => {
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "NON_RISQUE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes,data)
-  });
-  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
-    this.demandes = this.demandes.concat(data.content)
-    console.log(this.demandes,data)
-  });
-  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
-    this.demandes = this.demandes.concat(data.content)
-    console.log(this.demandes,data)
-  });
-  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_ACCEPTEE").subscribe(data => {
-    this.demandes = this.demandes.concat(data.content)
-    console.log(this.demandes,data)
-  });
-  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE").subscribe(data => {
-    this.demandes = this.demandes.concat(data.content)
-    console.log(this.demandes,data)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_ACCEPTEE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_REJETEE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
     });
 
-  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_CORRIGEE").subscribe(data => {
-    this.demandes = this.demandes.concat(data.content)
-    console.log(this.demandes,data)
-      });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_CORRIGEE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
 
-  this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_TRANSMISE").subscribe(data => {
-    this.demandes = this.demandes.concat(data.content)
-    console.log(this.demandes,data)
-        });
-        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE_PAR_PME").subscribe(data => {
-          this.demandes = this.demandes.concat(data.content)
-          console.log(this.demandes,data)
-        });
-        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_REJETEE_PAR_DG").subscribe(data => {
-          this.demandes = this.demandes.concat(data.content)
-          console.log(this.demandes,data)
-        });
-        this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME,"CONVENTION_GENEREE").subscribe(data => {
-          this.demandes = this.demandes.concat(data.content)
-          console.log(this.demandes,data)
-        });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_TRANSMISE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_REJETEE_PAR_PME").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_REJETEE_PAR_DG").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
+    this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_GENEREE").subscribe(data => {
+      this.demandes = this.demandes.concat(data.content)
+      console.log(this.demandes, data)
+    });
   }
 
   dismiss() {
     this.ref.close();
   }
 
-hideDialog() {
+  hideDialog() {
     this.demandeDialog = false;
     this.submitted = false;
-}
-
-nineaValide():any{
-  const targetDiv = document.getElementById("actif");
-  const btn = document.getElementById("oui");
-  targetDiv.style.display = "flex";
-
-}
-visualiserDocument(document: Documents , demande : any) {
-  this.demandesCessionService.setDemandeObs(demande)
-  console.log('ccccc '+ JSON.stringify(document))
-
-  const ref = this.dialogService.open(VisualiserDocumentComponent, {
-    data: {
-      document: document
-    },
-    header: "Convention de Cession",
-    width: '70%',
-    height: 'calc(100% - 100px)',
-    baseZIndex: 10000
-  });
-}
-
-signerConvention(demande : any) {
-  this.demandesCessionService.setDemandeObs(demande)
-  console.log(demande)
-
-  const ref = this.dialogService.open(SignerconventionPMEComponent, {
-    data: {
-      convention: this.convention
-    },
-    header: "Signer la convention",
-    width: '50%',
-    height: 'calc(50% - 100px)',
-    baseZIndex: 50
-  });
-  this.dismiss();
-}
-
-afterLoadComplete(pdf: any) {
-  this.afterpageLoadedCb++;
-  this.totalPages = pdf.numPages;
-  console.log('after-load-complete', this.totalPages);
-}
-
-pageRendered(e: CustomEvent) {
-  console.log('(page-rendered)');
-}
-
-/**
-* Permet d'aller à la page suivante dans le document
-*/
-nextPage() {
-  this.pageVariable++;
-}
-/**
- * Permet de retourner à la page précédente dans le document
- */
-previousPage() {
-  if (this.pageVariable > 1) {
-    this.pageVariable--;
   }
-}
 
-textLayerRendered(e: CustomEvent) {
-  // Callback Monitor variable
-  this.textLayerRenderedCb++;
+  nineaValide(): any {
+    const targetDiv = document.getElementById("actif");
+    const btn = document.getElementById("oui");
+    targetDiv.style.display = "flex";
 
-  // Finds anchors and sets hrefs void
-  console.log('(text-layer-rendered)');
-
-}
-
-/**
-* Permet de faire une rotation sur l'affichage du document
-*/
-rotate() {
-  console.log(this.angle);
-  if (this.angle === 0) {
-    this.angle = 90;
-  } else if (this.angle === 90) {
-    this.angle = 180;
-  } else if (this.angle === 180) {
-    this.angle = 0;
   }
-}
-/**
-* Permet de faire un zoom plus sur l'affichage du document
-*/
-plusZoom() {
-  this.zoom = this.zoom + 0.10;
-}
+  visualiserDocument(document: Documents, demande: any) {
+    this.demandesCessionService.setDemandeObs(demande)
+    console.log('ccccc ' + JSON.stringify(document))
 
-minusZoom() {
-  if (this.zoom > 0.8) {
-    this.zoom = this.zoom - 0.10
+    const ref = this.dialogService.open(VisualiserDocumentComponent, {
+      data: {
+        document: document
+      },
+      header: "Convention de Cession",
+      width: '70%',
+      height: 'calc(100% - 100px)',
+      baseZIndex: 10000
+    });
   }
-}
 
-ChargerConvention(convention: Convention) {
-  const ref = this.dialogService.open(ConventionEnregistreeComponent, {
-    data: {
-      convention: convention
-    },
-    header: "Charger la convention enregistree",
-    width: '40%',
-    height: 'calc(40% - 100px)',
-    baseZIndex: 50
-  });
-}
+  signerConvention(demande: any) {
+    this.demandesCessionService.setDemandeObs(demande)
+    console.log(demande)
 
-EditerConvention(convention: Convention) {
-  const ref = this.dialogService.open(EditerConventionComponent, {
-    data: {
-      convention: convention
-    },
-    header: "",
-    width: '55%',
-    height: 'calc(65% - 250px)',
-    baseZIndex: 50
-  });
-}
-EditConvention(convention: Convention) {
-  const ref = this.dialogService.open(EditerConventionComponent, {
-    data: {
-      convention: convention
-    },
-    header: "",
-    width: '60%',
-    height: 'calc(98% - 250px)',
-    baseZIndex: 50
-  });
-}
+    const ref = this.dialogService.open(SignerconventionPMEComponent, {
+      data: {
+        convention: this.convention
+      },
+      header: "Signer la convention",
+      width: '50%',
+      height: 'calc(50% - 100px)',
+      baseZIndex: 50
+    });
+    this.dismiss();
+    this.getDemandes();
+  }
 
-      //filtre par intervalle de date
-      public calenderFilter() {
-    
-        this.filterService.register('rangeDate' ,(value: any, filter: any): boolean => {
-         //Afficher toute les lignes du tableau au démarrage
-         if(this.rangeDates== undefined){
-           return true;
-         }
-         //redéfinir les dates pour comparer sans prendre en compte l'heure
-         //on donne toutes les date l'heure 00:00:00
-         const d=value.split("/")
-         value=new Date((new Date(d[2],d[1]-1,d[0])).toDateString())
-         this.rangeDates[0]=new Date((new Date(this.rangeDates[0])).toDateString())
-         if( this.rangeDates[1] !== null ){
-           this.rangeDates[1]=new Date((new Date(this.rangeDates[1])).toDateString())
-         }
-    
-         if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
-            console.log(value)
-            console.log(1)
-            return true;
-        }
-       
-        if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
-          console.log(2)
-            return true;
-        }
-       
-        if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
-          this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
-            console.log(3)
-            return true;
-        }
-       
-        console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
-        return false;
-       })
-       }
-    
-     //effacer le filtre par date
-     clearRange(table){
-       this.rangeDates=undefined;
-       table.filter()
-     }
+  afterLoadComplete(pdf: any) {
+    this.afterpageLoadedCb++;
+    this.totalPages = pdf.numPages;
+    console.log('after-load-complete', this.totalPages);
+  }
+
+  pageRendered(e: CustomEvent) {
+    console.log('(page-rendered)');
+  }
+
+  /**
+  * Permet d'aller à la page suivante dans le document
+  */
+  nextPage() {
+    this.pageVariable++;
+  }
+  /**
+   * Permet de retourner à la page précédente dans le document
+   */
+  previousPage() {
+    if (this.pageVariable > 1) {
+      this.pageVariable--;
+    }
+  }
+
+  textLayerRendered(e: CustomEvent) {
+    // Callback Monitor variable
+    this.textLayerRenderedCb++;
+
+    // Finds anchors and sets hrefs void
+    console.log('(text-layer-rendered)');
+
+  }
+
+  /**
+  * Permet de faire une rotation sur l'affichage du document
+  */
+  rotate() {
+    console.log(this.angle);
+    if (this.angle === 0) {
+      this.angle = 90;
+    } else if (this.angle === 90) {
+      this.angle = 180;
+    } else if (this.angle === 180) {
+      this.angle = 0;
+    }
+  }
+  /**
+  * Permet de faire un zoom plus sur l'affichage du document
+  */
+  plusZoom() {
+    this.zoom = this.zoom + 0.10;
+  }
+
+  minusZoom() {
+    if (this.zoom > 0.8) {
+      this.zoom = this.zoom - 0.10
+    }
+  }
+
+  ChargerConvention(convention: Convention) {
+    const ref = this.dialogService.open(ConventionEnregistreeComponent, {
+      data: {
+        convention: convention
+      },
+      header: "Charger la convention enregistree",
+      width: '40%',
+      height: 'calc(40% - 100px)',
+      baseZIndex: 50
+    });
+  }
+
+  EditerConvention(convention: Convention) {
+    const ref = this.dialogService.open(EditerConventionComponent, {
+      data: {
+        convention: convention
+      },
+      header: "",
+      width: '55%',
+      height: 'calc(65% - 250px)',
+      baseZIndex: 50
+    });
+  }
+  EditConvention(convention: Convention) {
+    const ref = this.dialogService.open(EditerConventionComponent, {
+      data: {
+        convention: convention
+      },
+      header: "",
+      width: '60%',
+      height: 'calc(98% - 250px)',
+      baseZIndex: 50
+    });
+  }
+
+  //filtre par intervalle de date
+  public calenderFilter() {
+
+    this.filterService.register('rangeDate', (value: any, filter: any): boolean => {
+      //Afficher toute les lignes du tableau au démarrage
+      if (this.rangeDates == undefined) {
+        return true;
+      }
+      //redéfinir les dates pour comparer sans prendre en compte l'heure
+      //on donne toutes les date l'heure 00:00:00
+      const d = value.split("/")
+      value = new Date((new Date(d[2], d[1] - 1, d[0])).toDateString())
+      this.rangeDates[0] = new Date((new Date(this.rangeDates[0])).toDateString())
+      if (this.rangeDates[1] !== null) {
+        this.rangeDates[1] = new Date((new Date(this.rangeDates[1])).toDateString())
+      }
+
+      if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
+        console.log(value)
+        console.log(1)
+        return true;
+      }
+
+      if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
+        console.log(2)
+        return true;
+      }
+
+      if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
+        this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
+        console.log(3)
+        return true;
+      }
+
+      console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
+      return false;
+    })
+  }
+
+  //effacer le filtre par date
+  clearRange(table) {
+    this.rangeDates = undefined;
+    table.filter()
+  }
 }
