@@ -79,7 +79,15 @@ export class RecevabiliteComponent implements OnInit {
 
     this.statuts = [
       {label: 'Soumise', value: 'REJETEE'},
-      {label: 'Rejetée', value: 'SOUMISE'}
+      {label: 'Rejetée', value: 'SOUMISE'},
+      {label: 'Convention Enregistrée', value: 'CONVENTION_GENEREE'},
+      {label: 'Convention Rejetée', value: 'CONVENTION_CORRIGEE'},
+      {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
+      {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
+      {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
+      {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
+      {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
+      {label: 'Convention Générée', value: 'NON_RISQUEE'}
     ]
   }
 

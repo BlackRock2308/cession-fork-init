@@ -27,21 +27,24 @@
                 
             </div>
             <div class="field col-4 ">
-                <p-dropdown [options]="typesMarche" formControlName="typeMarche"
-                     optionLabel="nom" optionValue="type" [filter]="true"
-                    filterBy="name" [showClear]="true" 
-                    placeholder="Sélectionnez le type de marché">
-                    <ng-template pTemplate="selectedItem">
-                        <div class="country-item country-item-value" *ngIf="documentForm.value['typeMarche']">
-                            <div>{{documentForm.value['typeMarche']}}</div>
-                        </div>
-                    </ng-template>
-                    <ng-template let-typeMarche>
-                        <div class="country-item">
-                            <div>{{typeMarche.nom}}</div>
-                        </div>
-                    </ng-template>
-                </p-dropdown>
+                <span class="p-float-label ">
+                    <p-dropdown [options]="typesMarche" formControlName="typeMarche"
+                        optionLabel="nom" optionValue="type" [filter]="true"
+                        filterBy="name" [showClear]="true" 
+                        placeholder="Sélectionnez le type de marché">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="documentForm.value['typeMarche']">
+                                <div>{{documentForm.value['typeMarche']}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-typeMarche>
+                            <div class="country-item">
+                                <div>{{typeMarche.nom}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    <label for="inputtext">Type Marché</label>
+                </span>
             </div> 
         </div>
         <div class="p-fluid grid justify-content-center">

@@ -108,6 +108,7 @@ export class DemandeAdhesionComponent implements OnInit {
     statuts:any[];
     user: any;
     observation:Observation={};
+    idPME: any;
 
     constructor(
         private breadcrumbService: BreadcrumbService, private formBuilder: FormBuilder,

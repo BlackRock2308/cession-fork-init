@@ -15,6 +15,7 @@ export class TokenStorageService {
 
   signOut() {
     window.sessionStorage.clear();
+    this.authenticate(false)
   }
 
   public saveToken(token: string) {
