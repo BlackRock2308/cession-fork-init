@@ -61,7 +61,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
     private demandeCessionService: DemandesCessionService,
     private datepipe: DatePipe,
     private bonEngagementService: BonEngagementService,
-    private recevabiliteService: RecevabiliteService,
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
     private router:Router,
@@ -127,7 +126,6 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
   async updatePME() {
     let pme=this.demandeCession.pme
-    console.log("affiche moi " + JSON.stringify(pme))
     pme.identificationBudgetaire= this.identifie
     pme.atd=this.atd 
     pme.interdictionBancaire=this.interdiction
