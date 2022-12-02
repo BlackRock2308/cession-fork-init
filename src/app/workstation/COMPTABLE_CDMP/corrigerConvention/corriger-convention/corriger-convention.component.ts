@@ -105,13 +105,18 @@ export class CorrigerConventionComponent implements OnInit {
     }
 
     Swal.fire({
-      title: 'Corriger la convention?',
+      title: 'Voulez-vous corriger la convention?',
       showDenyButton: true,
-      confirmButtonText: 'Valider',
+      confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
