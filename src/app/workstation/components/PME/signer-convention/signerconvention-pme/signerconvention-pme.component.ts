@@ -120,6 +120,10 @@ export class SignerconventionPMEComponent implements OnInit {
   
         this.router.navigate(['workstation/pme/convention_cession'])
       })
+
+      setTimeout(() => {
+        location.reload()
+      },1600);
   
       
       }

@@ -112,7 +112,7 @@
                                     *ngIf="demande.statut.libelle === 'COMPLETEE' || demande.statut.libelle === 'RECEVABLE'"
                                     (click)="pmeInfo(demande)" class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Analyser le dossier"></button>
-                                <button pButton pRipple icon="pi pi-eye"
+                                <button pButton pRipple icon="pi pi-search"
                                     *ngIf="demande.statut.libelle === 'RISQUEE' || demande.statut.libelle === 'NON_RISQUEE' || demande.statut.libelle === 'COMPLEMENT_REQUIS'"
                                     (click)="consulterDemande(demande)" class="p-button-rounded  mr-2 button" pInputText
                                     pTooltip="Visualiser le dossier"></button>
