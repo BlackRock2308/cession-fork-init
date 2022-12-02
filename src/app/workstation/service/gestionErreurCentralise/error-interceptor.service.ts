@@ -10,6 +10,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 
 @Injectable({
@@ -18,7 +19,8 @@ import { Router } from '@angular/router';
 
 export class ErrorInterceptorService  implements HttpInterceptor {
   constructor(
-    private router:Router
+    private router:Router,
+    private tokenStorage:TokenStorageService
   ){}
   intercept(
       request: HttpRequest<any>,
@@ -37,19 +39,16 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                       // erreur serveur
                       console.log('erreur serveur',error.name,error.type,error.statusText,error.url,)
                       errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
-                      if(error.status==400){
-                        Swal.fire({
-                          icon: 'error',
-                          title: 'Erreur',
-                          text: 'Une erreur est survenue!',
-                        })
+                      if(error.status===404){
+                        this.router.navigate(['404'])
                       }
-                      if(error.status==403){
-                        Swal.fire({
-                          icon: 'error',
-                          title: 'Erreur',
-                          text: 'Vous n\'êtes pas authorisée à faire cette requête!',
-                        })
+                      if(error.status===500){
+                        this.router.navigate(['error'])
+                      }
+                      if(error.status===403){
+                        this.tokenStorage.signOut()
+
+                        this.router.navigate(['denied'])
                       }
                   }
                   console.log(errorMessage);
