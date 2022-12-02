@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
 import { AppBreadcrumbComponent } from '../core/breadcrumb/app.breadcrumb.component';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
