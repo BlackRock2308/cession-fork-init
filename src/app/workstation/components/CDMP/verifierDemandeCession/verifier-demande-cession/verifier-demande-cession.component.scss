@@ -131,3 +131,39 @@ input{
 //     left: -350px;
 //     position: relative;
 // }
+
+.boxtoggle{
+    //border-radius: 2rem;
+    border-color: $success;
+    color: $success;
+    border-width: 30px;
+    background-color: #203359;
+}
+
+.box0{
+    //border-radius: 2rem;
+    border-color: $danger;
+    color: $danger;
+}
+
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+    
+    &.oui {
+        background: #C8E6C9;
+        color: $success;
+    }
+
+    &.non{
+        background: #FFCDD2;
+        color: $danger;
+    }
+    
+    
+
+}
