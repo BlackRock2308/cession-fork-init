@@ -88,7 +88,7 @@ export class ConventionEnregistreeComponent implements OnInit {
     }
 
     Swal.fire({
-      title: 'Soumettre la convention enregistrée?',
+      title: 'Vpulez-vous soumettre la convention enregistrée',
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
