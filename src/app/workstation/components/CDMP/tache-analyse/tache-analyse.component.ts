@@ -324,6 +324,8 @@ export class TacheAnalyseComponent implements OnInit {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
+                this.router.navigate(['workstation/cdmp/analyse_risque'])
+
                 this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe(
                     (response) => {},
                         (error) => {},

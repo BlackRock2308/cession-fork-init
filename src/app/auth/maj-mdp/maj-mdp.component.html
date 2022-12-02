@@ -9,7 +9,7 @@
                 <img class="logo-cdmp" src="../../../assets/layout/images/logo-cdmp.png" alt="mirage-layout" />
             </div>
             <div class="">
-                <h5>Veuiller changer et confirmer votre nouveau mot de passe</h5>
+                <h5>Veuillez changer et confirmer votre nouveau mot de passe</h5>
                 <br>
             </div>
             <div>
@@ -50,7 +50,7 @@
                     
                     <div *ngIf="f.confirm_password.touched && f.confirm_password.invalid" class="alert alert-danger">
                         <div *ngIf="f.confirm_password.errors.required">Le mot de passe est requis.</div>
-                        <div *ngIf="f.confirm_password.errors.confirmedValidator">La confirmation du mot de passe ne concordent pas</div>
+                        <div *ngIf="f.confirm_password.errors.confirmedValidator">Les mots de passe ne concordent pas</div>
                     </div>
                 
                 <div>
