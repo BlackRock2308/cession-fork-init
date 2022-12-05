@@ -13,7 +13,7 @@
                     }">
                     <p-dropdown [options]="dropdownItems" formControlName="modePaiement" optionLabel="name" [(ngModel)]="modePaiement">
                     </p-dropdown>
-                    <span *ngIf="form.get('modePaiement').errors && submit " style="color: red;">
+                    <span *ngIf="form.get('modePaiement').errors && submit " style="color: red; font-size: x-small">
                         {{message}}
                      </span>
                 </div>
@@ -26,7 +26,7 @@
                     !form.get('referencePaiement').valid
                     }">
                     <input pInputText formControlName="referencePaiement"  type="text" [(ngModel)]="detailPaiement.reference" />
-                    <span *ngIf="form.get('referencePaiement').errors && submit" style="color: red;">
+                    <span *ngIf="form.get('referencePaiement').errors && submit" style="color: red; font-size: x-small">
                         {{message}}
                      </span>
                 </div>
@@ -39,7 +39,7 @@
                     }">
                     <p-inputNumber formControlName="montant"  [(ngModel)]="detailPaiement.montant" mode="currency" currency="CFA">
                     </p-inputNumber>
-                    <span *ngIf="form.get('montant').errors && submit" style="color: red;">
+                    <span *ngIf="form.get('montant').errors && submit" style="color: red; font-size: x-small">
                         {{message}}
                      </span>
                 </div>
@@ -62,7 +62,7 @@
                     <button type="button" pButton pRipple icon="pi pi-upload"
                         class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
                         (click)="handleClick()"></button>
-                        <span *ngIf="form.get('preuveFile').errors && submit" style="color: red;">
+                        <span *ngIf="form.get('preuveFile').errors && submit" style="color: red; font-size: x-small">
                             Charger la preuve
                           </span>
                 </div>

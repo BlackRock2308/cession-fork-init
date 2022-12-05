@@ -11,7 +11,7 @@
                             formControlName="raisonSocial" style="width: 100%;" />
                             </span>
                     </div>
-                    <span *ngIf="submit && f['raisonSocial'].errors!" style="color: red;">{{message}}</span>
+                    <span *ngIf="submit && f['raisonSocial'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;"> Prénom représentant <span
@@ -22,7 +22,7 @@
                             formControlName="prenomRepresentant" style="width: 100%;" />
                             </span>
                     </div>
-                    <span *ngIf="submit && f['prenomRepresentant'].errors!" style="color: red;">{{message}}</span>
+                    <span *ngIf="submit && f['prenomRepresentant'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -34,7 +34,7 @@
                             formControlName="nomRepresentant" style="width: 100%;" />
                             </span>
                     </div>
-                    <span *ngIf="submit && f['nomRepresentant'].errors!" style="color: red;">{{message}}</span>
+                    <span *ngIf="submit && f['nomRepresentant'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -44,7 +44,7 @@
                         <input pInputText id="name3" type="text" formControlName="enseigne" style="width: 100%;" />
                    </span>
                   </div>
-                  <span *ngIf="submit && f['enseigne'].errors!" style="color: red;">{{message}}</span>
+                  <span *ngIf="submit && f['enseigne'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -55,7 +55,7 @@
                             style="width: 100%;" />
                         </span>
                        </div>
-                       <span *ngIf="submit && f['formeJuridique'].errors!" style="color: red;">{{message}}</span>
+                       <span *ngIf="submit && f['formeJuridique'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -67,9 +67,9 @@
                             formControlName="cniRepresentant" style="width: 100%;" />
                             </span>
                             </div>
-                            <span *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')" style="color: red;">Veuillez renseigner 13 caratères</span>
+                            <span *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')" style="color: red; font-size: x-small">Veuillez renseigner 13 caratères</span>
                         
-                            <span *ngIf="submit && f['cniRepresentant'].hasError('required')" style="color: red;">{{message}}</span>
+                            <span *ngIf="submit && f['cniRepresentant'].hasError('required')" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -82,9 +82,9 @@
                             formControlName="telephonePME" >
                         </ngx-intl-tel-input>
                         <span *ngIf="submit && f['telephonePME'].invalid && !f['telephonePME'].hasError('required')"
-                         style="color: red;">Renseigner un bon numéro</span>
+                         style="color: red; font-size: x-small">Renseigner un bon numéro</span>
                          <span *ngIf="submit && f['telephonePME'].hasError('required')"
-                          style="color: red;">{{message}}</span>
+                          style="color: red; font-size: x-small">{{message}}</span>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -94,7 +94,7 @@
                         <input pInputText id="name3" type="text" placeholder="Centre Fiscal"
                             formControlName="centreFiscal" style="width: 100%;" />
                             </span>
-                    </div> <span *ngIf="submit && f['centreFiscal'].errors!" style="color: red;">{{message}}</span>
+                    </div> <span *ngIf="submit && f['centreFiscal'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
@@ -104,9 +104,9 @@
                         <p-calendar inputId="basic" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}">
                        </p-calendar>
                        <span *ngIf="submit && f['dateImmatriculation'].errors! && !f['dateImmatriculation'].hasError('required')"
-                        style="color: red;">Date supérieure à la date du jour</span>
+                        style="color: red; font-size: x-small">Date supérieure à la date du jour</span>
                         <span *ngIf="submit && f['dateImmatriculation'].hasError('required')"
-                         style="color: red;">{{message}}</span>
+                         style="color: red; font-size: x-small">{{message}}</span>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -117,7 +117,7 @@
                             style="width: 100%;" />
                            </span>
                           </div>
-                          <span *ngIf="submit && f['adressePME'].errors!" style="color: red;">{{message}}</span>
+                          <span *ngIf="submit && f['adressePME'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -127,7 +127,7 @@
                         <input pInputText id="name3" type="text" formControlName="localite" style="width: 100%;" />
                        </span>
                        </div>
-                       <span *ngIf="submit && f['localite'].errors!" style="color: red;">{{message}}</span>
+                       <span *ngIf="submit && f['localite'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -137,7 +137,7 @@
                         <input pInputText id="name3" type="number" formControlName="controle" style="width: 100%;" />
                          </span>
                          </div>
-                         <span *ngIf="submit && f['controle'].errors!" style="color: red;">{{message}}</span>
+                         <span *ngIf="submit && f['controle'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -149,7 +149,7 @@
                             formControlName="activitePrincipale" style="width: 100%;" />
                             </span>
                             </div>
-                            <span *ngIf="submit && f['activitePrincipale'].errors!" style="color: red;">{{message}}</span>
+                            <span *ngIf="submit && f['activitePrincipale'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -161,7 +161,7 @@
                             style="width: 100%;" />
                             </span>
                             </div>
-                            <span *ngIf="submit && f['autorisationMinisterielle'].errors!" style="color: red;">{{message}}</span>
+                            <span *ngIf="submit && f['autorisationMinisterielle'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -173,7 +173,7 @@
                             formControlName="registre" style="width: 100%;" />
                             </span>
                             </div>
-                            <span *ngIf="submit && f['registre'].errors!" style="color: red;">{{message}}</span>
+                            <span *ngIf="submit && f['registre'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -182,15 +182,15 @@
                         <p-calendar inputId="basic" formControlName="dateCreation" [ngStyle]="{'width': '100%'}">
                         </p-calendar>
                        <span *ngIf="submit && f['dateCreation'].errors! && !f['dateCreation'].hasError('required')"
-                       style="color: red;">Date supérieure à la date du jour</span>
-                       <span *ngIf="submit && f['dateCreation'].hasError('required')" style="color: red;">{{message}}</span>
+                       style="color: red; font-size: x-small">Date supérieure à la date du jour</span>
+                       <span *ngIf="submit && f['dateCreation'].hasError('required')" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Capital Social<span class="required">*</span></label>
                         <p-inputNumber formControlName="capitalsocial" placeholder="CFA"  currency="CFA">
                         </p-inputNumber>
-                        <span *ngIf="submit && f['capitalsocial'].errors!" style="color: red;">{{message}}</span>
+                        <span *ngIf="submit && f['capitalsocial'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -198,7 +198,7 @@
                             class="required">*</span></label>                      
                         <p-inputNumber formControlName="chiffresDaffaires"  currency="CFA">
                         </p-inputNumber>
-                        <span *ngIf="submit && f['chiffresDaffaires'].errors!" style="color: red;">{{message}}</span>
+                        <span *ngIf="submit && f['chiffresDaffaires'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -210,7 +210,7 @@
                             formControlName="effectifPermanent" />
                             </span>
                             </div>
-                            <span *ngIf="submit && f['effectifPermanent'].errors!" style="color: red;">{{message}}</span>
+                            <span *ngIf="submit && f['effectifPermanent'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -222,7 +222,7 @@
                             formControlName="nombreEtablissementSecondaires" />
                            </span>
                             </div>
-                            <span *ngIf="submit && f['nombreEtablissementSecondaires'].errors!" style="color: red;">{{message}}</span>
+                            <span *ngIf="submit && f['nombreEtablissementSecondaires'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>
                 </div>
         </ng-template>
