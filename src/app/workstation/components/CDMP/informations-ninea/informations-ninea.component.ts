@@ -18,6 +18,8 @@ import Swal from 'sweetalert2';
 export class InformationsNineaComponent implements OnInit {
   dateTime = new Date();
   validPattern = "^[a-zA-Z0-9]$"
+  fj: Forme[];
+  selectedCity : Forme;
 
   informationsForm: any;
   demande: any;
@@ -35,7 +37,15 @@ export class InformationsNineaComponent implements OnInit {
     private pmeService: PmeService,
     private utilisateurService: UtilisateurService,
 
-  ) { }
+  ) { 
+    this.fj = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
+  }
 
   ngOnInit(): void {
 
@@ -171,4 +181,8 @@ export class InformationsNineaComponent implements OnInit {
     })
   }
 
+}
+interface Forme {
+  name: string,
+  code: string
 }
