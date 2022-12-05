@@ -100,13 +100,18 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
     }
     this.ref.close()
     Swal.fire({
-      title: 'Continuer le paiement?',
+      title: 'Voulez-vous continuer le paiement?',
       showDenyButton: true,
-      confirmButtonText: 'Continuer',
+      confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -170,7 +175,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           );
       };
       } else if (result.isDenied) {
-        Swal.fire('Paiement annulée', '', 'info')
+        Swal.fire('Paiement annulé', '', 'info')
       }
     })
     

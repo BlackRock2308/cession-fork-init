@@ -62,7 +62,7 @@
             <a class="dropdown-item" (click)="exportPdf()">PDF</a>
         </div>
     </div>
-    <h3 style=" margin-left: 40%;"> Liste des créances</h3>
+    <h3 style=" margin-left: 40%;"> Liste des demandes de cessions de créances</h3>
 
     <p-table #dt [value]="creances" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decote']"
@@ -169,7 +169,7 @@
                 </td>
                 <td>
                     <div class="flex">
-                        <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text mr-2 button"
+                        <button pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-text mr-2 button"
                             style=" background-color: #203359; color: white;" (click)="visualiserDetails(creance)"
                             pInputText pTooltip="Détails"></button>
                     </div>

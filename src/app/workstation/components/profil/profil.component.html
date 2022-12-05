@@ -1,5 +1,5 @@
 <div class="justify-content-center">
-    <div *ngIf="updateCodePin" class="alert alert-danger">Veuillez mettre à jour vôtre Code PIN!</div>
+    <div *ngIf="updateCodePin" class="alert alert-danger">Veuillez mettre à jour votre Code PIN!</div>
 
 </div>
 <div class="container-fluid ">
@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="card p-fluid col-8">
-                    <h1 class="infostitre">Informations personnelles</h1>
+                    <h1 class="infostitre">Informations Personnelles</h1>
                     <div class="field grid">
                         <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Nom:</label>
                         <div class="col-12 md:col-8">
@@ -47,6 +47,13 @@
                             <button type="button" pButton pRipple icon="pi pi-pencil"
                                 class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
                                 pTooltip="Modifier votre code" (click)="modifierCode()"></button>
+                        </div>
+                    </div>
+                    <div class="col-12 justify-content-end pr-0 d-flex">
+                    
+                        <div class="col-3">
+                            <button type="submit"  pButton pRipple
+                                label="Terminer" routerLink="../pme/new_demande" class=" successButton" ></button>
                         </div>
                     </div>
                 </div>

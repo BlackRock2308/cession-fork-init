@@ -74,7 +74,7 @@ export class ConventionCessionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.paramStatuts = [StatutEnum.ConventionAcceptee, StatutEnum.conventionGeneree, StatutEnum.conventionCorrigee, StatutEnum.conventionSigneeParPME, StatutEnum.conventionSigneeParDG, StatutEnum.ConventionTransmise, StatutEnum.ConventionRejeteeParPME, StatutEnum.ConventionRejeteeParDG, StatutEnum.ConventionRejetee, StatutEnum.nonRisquee]
+    this.paramStatuts = [StatutEnum.ConventionAcceptee, StatutEnum.conventionGeneree, StatutEnum.conventionCorrigee, StatutEnum.conventionSigneeParPME, StatutEnum.conventionSigneeParDG, StatutEnum.ConventionTransmise, StatutEnum.ConventionRejeteeParPME, StatutEnum.ConventionRejeteeParDG, StatutEnum.ConventionRejetee]
 
     this.initGetDemandes(this.paramStatuts)
     
@@ -109,7 +109,6 @@ export class ConventionCessionComponent implements OnInit {
       { label: 'Convention Rejetée', value: 'CONVETION_REJETEE' },
       { label: 'Convention Rejetée par PME', value: 'CONVETION_REJETEE_PAR_PME' },
       { label: 'Convention Rejetée par DG', value: 'CONVETION_REJETEE_PAR_DG' },
-      { label: 'Non risquée', value: 'NON_RISQUEE' }
     ]
   }
 

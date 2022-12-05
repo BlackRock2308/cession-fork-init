@@ -188,7 +188,7 @@
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Capital Social<span class="required">*</span></label>
-                        <p-inputNumber formControlName="capitalsocial"  mode="currency" currency="CFA">
+                        <p-inputNumber formControlName="capitalsocial" placeholder="CFA"  currency="CFA">
                         </p-inputNumber>
                         <span *ngIf="submit && f['capitalsocial'].errors!" style="color: red;">{{message}}</span>
                     </div>
@@ -196,7 +196,7 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Chiffre d'affaires<span
                             class="required">*</span></label>                      
-                        <p-inputNumber formControlName="chiffresDaffaires"  mode="currency" currency="CFA">
+                        <p-inputNumber formControlName="chiffresDaffaires"  currency="CFA">
                         </p-inputNumber>
                         <span *ngIf="submit && f['chiffresDaffaires'].errors!" style="color: red;">{{message}}</span>
                         </div>

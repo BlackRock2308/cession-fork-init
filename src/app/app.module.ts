@@ -38,6 +38,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { MenuService } from './core/app-layout/side-menu/app.menu.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { AuthGuard } from './auth/auth.guard';
+import { AppAccessdeniedComponent } from './core/access-denied/app.accessdenied.component';
+import { AppErrorComponent } from './core/error/app.error.component';
+import { AppNotfoundComponent } from './core/not-found/app.notfound.component';
+import { ErrorInterceptorService } from './workstation/service/gestionErreurCentralise/error-interceptor.service';
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
     timeGridPlugin,
@@ -77,12 +82,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         HomeComponent,
         MajMdpComponent,
         RecupMdpComponent,
-
         CodeVerificationComponent,
-
-
+        
     ],
     providers: [
+        AuthGuard,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         , BreadcrumbService, MessageService, MenuService,
         {provide: LOCALE_ID,
@@ -90,6 +94,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptorService,
+            multi: true
+          },
+          {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
             multi: true
           },
 
