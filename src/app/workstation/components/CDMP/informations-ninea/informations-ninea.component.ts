@@ -59,7 +59,7 @@ message:string = "";
   }); }
 
   ngOnInit(): void {
-    this.message = "Champs obligatoire"
+    this.message = "Champ obligatoire"
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme
@@ -95,7 +95,7 @@ message:string = "";
 
   onSubmit() {
     this.submit = true;
-    if (this.informationsForm.invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
+    if (this.informationsForm.invalid || this.f['cniRepresentant'].invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
       return;
     }
     let telephonePME = this.informationsForm.get('telephonePME').value.internationalNumber;
