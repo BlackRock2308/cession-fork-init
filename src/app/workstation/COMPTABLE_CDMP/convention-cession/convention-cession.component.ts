@@ -74,10 +74,10 @@ export class ConventionCessionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.paramStatuts = [StatutEnum.ConventionAcceptee, StatutEnum.conventionGeneree, StatutEnum.conventionCorrigee, StatutEnum.conventionSigneeParPME, StatutEnum.conventionSigneeParDG, StatutEnum.ConventionTransmise, StatutEnum.ConventionRejeteeParPME, StatutEnum.ConventionRejeteeParDG, StatutEnum.ConventionRejetee]
+    this.paramStatuts = [StatutEnum.ConventionAcceptee, StatutEnum.conventionGeneree, StatutEnum.conventionCorrigee, StatutEnum.conventionSigneeParPME, StatutEnum.conventionSigneeParDG, StatutEnum.ConventionTransmise, StatutEnum.ConventionRejeteeParPME, StatutEnum.ConventionRejeteeParDG, StatutEnum.ConventionRejetee, StatutEnum.nonRisquee]
 
     this.initGetDemandes(this.paramStatuts)
-    
+
     this.profil = localStorage.getItem('profil');
 
 
@@ -200,17 +200,17 @@ export class ConventionCessionComponent implements OnInit {
     console.log('(text-layer-rendered)');
   }
 
-editConvention(convention: Convention) {
-  const ref = this.dialogService.open(EditerConventionComponent, {
-    data: {
-      convention: convention
-    },
-    header: "Editer la convention",
-    width: '30%',
-    //height: 'calc(50% - 100px)',
-    baseZIndex: 50
-  });
-}
+  editConvention(convention: Convention) {
+    const ref = this.dialogService.open(EditerConventionComponent, {
+      data: {
+        convention: convention
+      },
+      header: "Editer la convention",
+      width: '30%',
+      //height: 'calc(50% - 100px)',
+      baseZIndex: 50
+    });
+  }
 
   minusZoom() {
     if (this.zoom > 0.8) {

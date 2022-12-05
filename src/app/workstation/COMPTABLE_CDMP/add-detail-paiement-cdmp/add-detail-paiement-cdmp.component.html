@@ -25,7 +25,7 @@
                         !form.get('referencePaiement').valid
                         }">
                         <input pInputText id="referencePaiement" formControlName="referencePaiement" type="text" [(ngModel)]="detailPaiement.reference" />
-                        <span *ngIf="form.get('referencePaiement').errors && submit" style="color: red;">
+                        <span *ngIf="form.get('referencePaiement').errors && submit" style="color: red; font-size: x-small">
                            {{message}}
                         </span>
                     </div>
@@ -38,7 +38,7 @@
                         }">
                         <p-inputNumber formControlName="montant" [(ngModel)]="detailPaiement.montant" mode="currency" currency="CFA">
                         </p-inputNumber>
-                        <span *ngIf="form.get('montant').errors && submit" style="color: red;">
+                        <span *ngIf="form.get('montant').errors && submit" style="color: red; font-size: x-small">
                            {{message}}
                         </span>
                     </div>
@@ -58,12 +58,12 @@
                         <ng-template #elseBlock id="file" type="text" pInputText>
                             <input id="file" type="text" pInputText placeholder="{{selectedFiles.name}}">
                         </ng-template>
-                        <input formControlName="preuveFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf" id="upload-file"
+                        <input formControlName="preuveFile" class="hidden" type="file" accept=".pdf" id="upload-file"
                             name="upload-file" ngf-max-size="2MB" (change)="selectFile($event)">
                         <button type="button" pButton pRipple icon="pi pi-upload"
                             class="mr-2 mb-2  upload p-button-rounded p-button-text" id="upload-file"
                             (click)="handleClick()"></button>
-                            <span *ngIf="form.get('preuveFile').errors && submit" style="color: red;">
+                            <span *ngIf="form.get('preuveFile').errors && submit" style="color: red; font-size: x-small">
                                 Charger la preuve
                               </span>
                     </div>
@@ -73,10 +73,11 @@
         </div>
         <div class="modal-footer">
             <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                icon="pi pi-check"  class="p-button-raised successButton"></button>
                 <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
                     class="p-button-raised dangerButton" (click)="dismiss()"></button>
-                <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
-                    icon="pi pi-check"  class="p-button-raised successButton"></button>
+               
             </div>
         </div>
         </form>
