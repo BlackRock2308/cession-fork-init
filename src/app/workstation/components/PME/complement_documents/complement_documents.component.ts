@@ -28,6 +28,8 @@ export class ComplementDocumentsComponent implements OnInit {
   documents:any[]=[];
   newDocuments:any[]=[];
   document:any;
+  observationLibelle: string;
+
   documentPresentation:Document;
   cols: any[];
   selectedProducts: Document[];
@@ -71,6 +73,12 @@ export class ComplementDocumentsComponent implements OnInit {
 
 
   })
+
+  this.observationService.getObservationByDemandeCessionANDStatut(this.demandeNantissementInfos.idDemande,this.demandeNantissementInfos.statut.libelle).subscribe(
+    data => {
+        this.observationLibelle=data.libelle
+        console.log(this.observationLibelle)
+    })
 
     this.documentForm= this.formBuilder.group({
       typeDocument: [''],

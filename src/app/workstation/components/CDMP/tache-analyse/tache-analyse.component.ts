@@ -284,11 +284,16 @@ export class TacheAnalyseComponent implements OnInit {
             icon: 'warning',
             showCancelButton: true,
             color:"#203359",
-            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Oui',
             allowOutsideClick:false,
             confirmButtonColor:'#99CC33FF',
             denyButtonColor:'#981639FF',
-            cancelButtonColor:'#333366FF'
+            cancelButtonColor:'#333366FF',
+            customClass: {
+                actions: 'my-actions',
+                denyButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+              }
           
         }).then((result) => {
           if (result.isConfirmed) {
@@ -319,13 +324,18 @@ export class TacheAnalyseComponent implements OnInit {
     onSubmitComplements() {
         
         Swal.fire({
-            title: 'Une demande de complément de dossier sera soumise à la PME.Poursuivre?',
+            title: 'Une demande de complément de dossier sera soumise à la PME. Voulez-vous poursuivre?',
             showDenyButton: true,
-            confirmButtonText: 'Continuer',
+            confirmButtonText: 'Oui',
             denyButtonText: `Annuler`,
             confirmButtonColor:'#99CC33FF',
             denyButtonColor:'#981639FF',
-            cancelButtonColor:'#333366FF'
+            cancelButtonColor:'#333366FF',
+            customClass: {
+                actions: 'my-actions',
+                denyButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+              }
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -354,6 +364,7 @@ export class TacheAnalyseComponent implements OnInit {
                               }).then((result) => {
                                 if (result.isConfirmed) {
                                   this.router.navigate(['workstation/cdmp/analyse_risque'])
+                                  
                                 }})
                         }
                   )            } else if (result.isDenied) {
