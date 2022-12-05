@@ -124,13 +124,11 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
           } else {
             typeDocument = "PREUVE_VIREMENT";
           }
-          //for (let file of this.selectedFiles) {
             this.uploadFileService
               .uploadFile('/detailsPaiements/', data.id, this.selectedFiles, typeDocument)
               .subscribe((resFil: any) => {
                 console.log(resFil);
               });
-          //}
         }
        if(res.status == "500"){
         this.dismiss();
