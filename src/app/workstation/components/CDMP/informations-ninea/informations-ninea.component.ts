@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 export class InformationsNineaComponent implements OnInit {
   dateTime = new Date();
   validPattern = "^[a-zA-Z0-9]$"
-
+message:string = "";
   informationsForm: any;
   demande: any;
   pme: PME;
@@ -35,38 +35,45 @@ export class InformationsNineaComponent implements OnInit {
     private pmeService: PmeService,
     private utilisateurService: UtilisateurService,
 
-  ) { }
+  ) { this.informationsForm = this.formBuilder.group({
+    raisonSocial: ['', Validators.required],
+    formeJuridique: ['', Validators.required],
+    centreFiscal: ['', Validators.required],
+    adressePME: ['', Validators.required],
+    enseigne: ['', Validators.required],
+    localite: ['', Validators.required],
+    controle: ['', Validators.required],
+    activitePrincipale: ['', Validators.required],
+    registre: ['', Validators.required],
+    prenomRepresentant: ['', Validators.required],
+    nomRepresentant: ['', Validators.required],
+    dateCreation: ['', [Validators.required, this.matchValues()]],
+    effectifPermanent: ['', Validators.required],
+    nombreEtablissementSecondaires: ['', Validators.required],
+    chiffresDaffaires: ['', Validators.required],
+    cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
+    dateImmatriculation: ['', [Validators.required, this.matchValues()]],
+    telephonePME: ['', Validators.required],
+    capitalsocial: ['', Validators.required],
+    autorisationMinisterielle: ['', Validators.required]
+  }); }
 
   ngOnInit(): void {
-
-    this.informationsForm = this.formBuilder.group({
-      raisonSocial: ['', [Validators.required]],
-      formeJuridique: ['', [Validators.required]],
-      centreFiscal: ['', [Validators.required]],
-      adressePME: ['', [Validators.required]],
-      enseigne: ['', [Validators.required]],
-      localite: ['', [Validators.required]],
-      controle: ['', [Validators.required]],
-      activitePrincipale: ['', [Validators.required]],
-      registre: ['', [Validators.required]],
-      prenomRepresentant: ['', [Validators.required]],
-      nomRepresentant: ['', [Validators.required]],
-      dateCreation: ['', [Validators.required, this.matchValues()]],
-      effectifPermanent: ['', [Validators.required]],
-      nombreEtablissementSecondaires: ['', [Validators.required]],
-      chiffresDaffaires: ['', [Validators.required]],
-      cniRepresentant: ['', [Validators.required], Validators.pattern(this.validPattern)],
-      dateImmatriculation: ['', [Validators.required, this.matchValues()]],
-      telephonePME: ['', [Validators.required]],
-      capitalsocial: ['', [Validators.required]],
-      autorisationMinisterielle: ['', [Validators.required]]
-    });
-
+    this.message = "Champs obligatoire"
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme
 
     })
+  }
+  matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value && !!control.value &&
+        control.value.length === 13
+        ? null
+        : { isMatching: false };
+    };
   }
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -88,7 +95,7 @@ export class InformationsNineaComponent implements OnInit {
 
   onSubmit() {
     this.submit = true;
-    if (this.informationsForm.invalid) {
+    if (this.informationsForm.invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
       return;
     }
     let telephonePME = this.informationsForm.get('telephonePME').value.internationalNumber;
