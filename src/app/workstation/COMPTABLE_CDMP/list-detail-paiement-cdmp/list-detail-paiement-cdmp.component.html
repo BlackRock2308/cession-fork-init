@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents"
+                                <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents;length"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser le paiement"
                                     (click)="detailPaimentCDMP(detailsPaiement.documents)"></button>

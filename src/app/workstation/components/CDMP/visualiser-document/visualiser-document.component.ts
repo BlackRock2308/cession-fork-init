@@ -48,8 +48,6 @@ export class VisualiserDocumentComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal,
     private demandeCessionService:DemandesCessionService,
-    private uploadFileService: FileUploadService, 
-    private router : Router,
     public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig,
     private observationService:ObservationService) { }
 
