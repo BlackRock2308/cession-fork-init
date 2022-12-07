@@ -108,11 +108,18 @@
                                 </td>
                             <td>
                                 <div class="flex">
-                                        <button pButton pRipple icon="pi pi-money-bill"
-                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    <button pButton pRipple icon="pi pi-money-bill" 
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutPme.code !== 'PME_TOTALEMENT_PAYEE'"
+                                    pTooltip="Paiement de la PME" (click)="visualiserPaiementListPME(paiement)"></button>
+                                <button pButton pRipple icon="pi pi-id-card"
+                                class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutCDMP.code !== 'CDMP_TOTALEMENT_PAYEE'"
+                                pTooltip="Paiement de la CDMP"  (click)="visualiserPaiementListCDMP(paiement)"></button>
+
+                                        <button pButton pRipple icon="pi-check-circle" 
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutPme.code === 'PME_TOTALEMENT_PAYEE'"
                                         pTooltip="Paiement de la PME" (click)="visualiserPaiementListPME(paiement)"></button>
-                                    <button pButton pRipple icon="pi pi-id-card"
-                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    <button pButton pRipple icon="pi pi-check-circle"
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutCDMP.code === 'CDMP_TOTALEMENT_PAYEE'"
                                     pTooltip="Paiement de la CDMP"  (click)="visualiserPaiementListCDMP(paiement)"></button>
                                 </div>
                             </td>
