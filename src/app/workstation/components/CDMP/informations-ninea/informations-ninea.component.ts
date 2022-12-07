@@ -179,3 +179,7 @@ message:string = "";
   }
 
 }
+interface Forme {
+  name: string,
+  code: string
+}
