@@ -158,8 +158,9 @@
                 <td >
                     <span *ngIf="creance.statut.code === 'RISQUEE'  " 
                     [class]="'product-badge status-risquee'"> refusée</span>
-
-                    <span *ngIf="creance.statut.code !=='RISQUEE'" 
+                    <span *ngIf="creance.statut.code ==='DEMANDE_BOUCLEE'" 
+                    [class]="'product-badge status-clocture'">bouclée</span>
+                    <span *ngIf="creance.statut.code !=='RISQUEE' && creance.statut.code !=='DEMANDE_BOUCLEE'" 
                     [class]="'product-badge status-non_risquee'">acceptée</span>
 
                 </td>
