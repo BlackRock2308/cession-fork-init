@@ -28,7 +28,7 @@ message:string = "";
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-  submit: boolean = false;
+  submit: boolean = true;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
@@ -94,10 +94,10 @@ message:string = "";
   }
 
   onSubmit() {
-    this.submit = true;
     if (this.informationsForm.invalid || this.f['cniRepresentant'].invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
       return;
     }
+    this.submit = false;
     let telephonePME = this.informationsForm.get('telephonePME').value.internationalNumber;
     this.informationsForm.get('telephonePME').setValue(telephonePME);
 

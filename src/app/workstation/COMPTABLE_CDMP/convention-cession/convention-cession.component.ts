@@ -212,6 +212,9 @@ export class ConventionCessionComponent implements OnInit {
     });
   }
 
+genereConvention(convention: Convention) {
+}
+
   minusZoom() {
     if (this.zoom > 0.8) {
       this.zoom = this.zoom - 0.10
