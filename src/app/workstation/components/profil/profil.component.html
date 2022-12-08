@@ -7,7 +7,7 @@
         <button pButton pRipple pTooltip="Annuler" icon="pi pi-arrow-left" [routerLink]="['../']" class="btn btn-outline-secondary"
                                 label="Retour" 
                                 style="background: rgb(240, 196, 196); color:#b81919"></button>
-        <div class="modal-body">
+        <div class="modal-body" [formGroup]="informationsForm">
             <div class="row">
                 <div class="col-2"></div>
                 <div class="card p-fluid col-8">
@@ -23,6 +23,20 @@
                         <label htmlFor="prenom" class="col-12 mb-2 md:col-4 md:mb-0">Prénom:</label>
                         <div class="col-12 md:col-8">
                             <input pInputText id="prenom" type="text" pTooltip="Prénom" placeholder="{{prenom}}"
+                                [disabled]="true" />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label htmlFor="prenom" class="col-12 mb-2 md:col-4 md:mb-0">Adresse:</label>
+                        <div class="col-12 md:col-8">
+                            <input pInputText id="prenom" type="text" pTooltip="Prénom" placeholder="{{adressePME}}"
+                                [disabled]="true" />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label htmlFor="prenom" class="col-12 mb-2 md:col-4 md:mb-0">Téléphone:</label>
+                        <div class="col-12 md:col-8">
+                            <input pInputText id="prenom" type="text" pTooltip="Prénom" placeholder="{{telephonePME}}"
                                 [disabled]="true" />
                         </div>
                     </div>
@@ -43,7 +57,7 @@
                     <div class="field grid">
                         <label htmlFor="profile" class="col-12 mb-2 md:col-4 md:mb-0">Code PIN de signature:</label>
                         <div class="col-12 md:col-6">
-                            <p-password id="profil" [(ngModel)]="code" [toggleMask]="true" styleClass="w-full mb-3"
+                            <p-password id="profil" formControlName="code" [(ngModel)]="code" [toggleMask]="true" styleClass="w-full mb-3"
                                 name="profil" [disabled]="true"></p-password>
                         </div>
                         <div>
