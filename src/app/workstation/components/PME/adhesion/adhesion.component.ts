@@ -45,6 +45,7 @@ export class AdhesionComponent implements OnInit {
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
+  minDate:any;
   observation: Observation = {};
   constructor(
     private formBuilder: FormBuilder,
@@ -86,6 +87,12 @@ export class AdhesionComponent implements OnInit {
       capitalsocial: ['', [Validators.required]],
       autorisationMinisterielle: ['', [Validators.required]]
     });
+    
+  }
+
+  setMinDate(){
+    this.minDate=((new Date(this.form.value['dateCreation'])).getDate()+1).toString()
+    console.log(this.minDate)
   }
 
   matchValues(): (AbstractControl) => ValidationErrors | null {

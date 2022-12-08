@@ -1,12 +1,13 @@
 <div class="layout-topbar-left">
-    <div class="layout-topbar-logo-wrapper">
-        <a href="#" class="layout-topbar-logo">
-            <img src="../../../assets/layout/images/logo-cdmp.png" class="image" alt="mirage-layout" />
-            <span class="app-name"></span>
-        </a>
-        <!-- <img src="../../assets/layout/images/logo-cdmp.svg" class="rounded mx-auto d-block" alt="..."> -->
-    </div>
+   
 </div>
+<div class="layout-megamenu-wrapper">
+    <a class="" >
+      <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.png" alt="mirage-layout" />
+
+    </a>
+
+  </div>
 <div class="card card-w-title">
     <h5>Demande d'adhésion</h5>
 </div>
@@ -188,10 +189,10 @@
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                                                 class="required">*</span></label>
-                                            <p-calendar inputId="basic" formControlName="dateImmatriculation"  [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
+                                            <p-calendar inputId="basic" formControlName="dateImmatriculation"   [minDate]="form.value['dateCreation']" [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
                                            </p-calendar>
-                                           <span *ngIf="submit && f['dateImmatriculation'].errors! && !f['dateImmatriculation'].hasError('required')"
-                                            style="color: red;">Date supérieure à la date du jour</span>
+                                           <span *ngIf="!form.value['dateCreation'] && form.controls.dateImmatriculation.touched"
+                                            style="color: red;">Veuillez renseigner la date de création d'abord.</span>
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
