@@ -7,12 +7,14 @@ export interface PME {
     raisonSocial?:string;
     email?:string;
     nineaFile?:any;
+    nombreEtablissementSecondaires?:number
     rccmFile?:any;
+    autorisationMinisterielle ?: string
     denommination?:string;
     formuleJuridique?:string;
     centrefiscal?:string;
     dateImmatriculation?:Date;
-    adresse?:string;
+    adressePME?:string;
     hasninea?:boolean;
     isactive?:boolean;
     denomination?: string ,
