@@ -1,4 +1,3 @@
-
 <div class="grid">
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
@@ -32,8 +31,9 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext"*ngIf="demandeCession.pme.ATD">Existance d'un avis à tiers detenteur</label>
-                            <label for="inputtext"*ngIf="!demandeCession.pme.ATD">Aucun avis à tiers detenteur</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.atd">Existance d'un avis à tiers
+                                detenteur</label>
+                            <label for="inputtext" *ngIf="!demandeCession.pme.atd">Aucun avis à tiers detenteur</label>
                         </span>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
                             <label for="inputtext" *ngIf="demandeCession.pme.nantissement">Dèjà nanti</label>
-                            <label for="inputtext"*ngIf="!demandeCession.pme.nantissement">Pas encore nanti</label>
+                            <label for="inputtext" *ngIf="!demandeCession.pme.nantissement">Pas encore nanti</label>
                         </span>
                     </div>
                 </div>
@@ -63,8 +63,10 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext" *ngIf="demandeCession.pme.interdiction">Existance d'une interdiction Bancaire</label>
-                            <label for="inputtext" *ngIf="!demandeCession.pme.interdiction">Aucune interdiction Bancaire</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.interdictionBancaire">Existance d'une
+                                interdiction Bancaire</label>
+                            <label for="inputtext" *ngIf="!demandeCession.pme.interdictionBancaire">Aucune interdiction
+                                Bancaire</label>
                         </span>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                 </div>
             </div>
             <br>
-            
+
             <br>
             <p-table #dt [value]="documents" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
@@ -97,13 +99,15 @@
                 selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon field="typeDocument">
+                        <th pSortableColumn="typeDocument" style="color: #203359;">Type document <p-sortIcon
+                                field="typeDocument">
                             </p-sortIcon>
                         </th>
                         <th pSortableColumn="nomDocument" style="color: #203359;">Nom document <p-sortIcon
                                 field="nomDocument"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="dateSoumission" style="color: #203359;">Date soumission <p-sortIcon field="dateSoumission">
+                        <th pSortableColumn="dateSoumission" style="color: #203359;">Date soumission <p-sortIcon
+                                field="dateSoumission">
                             </p-sortIcon>
                         </th>
                         <th style="color: #203359;">Action</th>
@@ -126,8 +130,7 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-eye"
-                                    class="p-button-rounded  mr-2 button"
+                                <button pButton pRipple icon="pi pi-search" class="p-button-rounded  mr-2 button"
                                     (click)="visualiserDocument(document)"></button>
                             </div>
                         </td>
@@ -138,18 +141,18 @@
         <label class="form-label" for="textAreaExample">Observations</label>
         <div class="d-flex flex-start w-100">
             <div class="form-outline w-100">
-                <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" [(ngModel)]="observation.libelle" >{{observationLibelle}}</textarea>
+                <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;"
+                    [(ngModel)]="observation.libelle">{{observationLibelle}}</textarea>
             </div>
         </div>
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
             <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
-                label="Valider" icon="pi pi-check" class="p-button-raised successButton"
-                (click)="onSubmit()"></button>
+                label="Valider" icon="pi pi-check" class="p-button-raised successButton" (click)="onSubmit()"></button>
             <button id="valider" pButton pRipple label="Demander Complements" icon="pi pi-pencil"
-                class="p-button-raised simpleButton " (click)="onSubmitComplements()" ></button>
-            
-                <button id="valider" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
-                class="p-button-raised dangerButton" (click)="onSubmitRejet()" ></button>
+                class="p-button-raised simpleButton " (click)="onSubmitComplements()"></button>
+
+            <button id="valider" style="width: min-content;" pButton pRipple label="Rejeter" icon="pi pi-times"
+                class="p-button-raised dangerButton" (click)="onSubmitRejet()"></button>
         </div>
     </div>
 </div>

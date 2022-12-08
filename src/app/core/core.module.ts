@@ -116,7 +116,8 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
         AppBreadcrumbComponent,
         AppTopBarComponent,
         AppMenuComponent,
-        TestComponent
+        TestComponent,
+        
     ],
 
     schemas: [],

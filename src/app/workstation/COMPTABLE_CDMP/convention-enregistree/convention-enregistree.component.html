@@ -11,7 +11,7 @@
                                     pTooltip="Charger le document de référence de la CONVENTION"
                                     placeholder="{{selectedCONVENTIONFiles.name}}" class="inpute">
                             </ng-template>
-                            <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                            <input formControlName="nineaFile" class="hidden" type="file" accept=".pdf,.
                             PDF" id="upload-CONVENTIONfile"
                                 name="upload-CONVENTIONfile" ngf-max-size="2MB" (change)="selectCONVENTIONFile($event)">
 
@@ -24,8 +24,8 @@
             </div>
 <br>
 <div class="col-12  pr-0 d-flex  flex-row-reverse">
-    <button    style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton"  (click)="dismiss()" ></button>
     <button    type="button" id="valider"style="width: min-content;" pButton pRipple label="Charger" icon="pi pi-check" class="p-button-raised successButton" (click)="onSubmit()" ></button>
-
+    <button    style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton"  (click)="dismiss()" ></button>
+  
 </div>
 </form>

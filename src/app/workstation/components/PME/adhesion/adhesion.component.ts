@@ -41,7 +41,7 @@ export class AdhesionComponent implements OnInit {
   message = "";
   fileInfos?: Observable<any>;
   form!: FormGroup;
-  submit = false;
+  submit = true;
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
@@ -58,7 +58,7 @@ export class AdhesionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.message = "Champs obligatoire";
+    this.message = "Champ obligatoire";
     this.form = this.formBuilder.group({
       ninea: ["", [Validators.required, this.matchValuesNINEA()]],
       rccm: ["", Validators.required],

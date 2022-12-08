@@ -88,7 +88,7 @@
                                     class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile" (click)="handleClick()">
                                 </button>
                             </div>
-                            <input formControlName="file" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                            <input formControlName="file" class="hidden" type="file" accept=".pdf,.
                             PDF" id="upload-file" name="upload-file"
                                 ngf-max-size="2MB" (change)="selectFile($event)">
 
@@ -134,6 +134,8 @@
                                 </td>
 
                                 <td>
+
+                                    
                                     <div class="flex">
                                         <button pButton pRipple icon="pi pi-trash" [disabled]="!(newDocuments.indexOf(document) != -1)"
                                             class="p-button-rounded p-button-text mr-2  dangerButton"
@@ -149,6 +151,16 @@
 
         </div>
 
+        <div  class="grid p-fluid">
+            <div class="col-12 md:col-12">
+                <span class="h5texte">Commentaire du service de cession</span>
+                <div class="p-inputgroup">
+                    <span class="p-float-label">
+                        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"style="background-color:#D3D3D3;">{{observationLibelle}}</textarea>
+                    </span>
+                </div>
+            </div>
+        </div>
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
             <button [disabled]="!documents" type="button" id="valider" style="width: min-content;" pButton pRipple
             label="Soumettre" icon="pi pi-check" class="p-button-raised successButton " 

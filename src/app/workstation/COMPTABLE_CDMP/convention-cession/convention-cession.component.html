@@ -67,7 +67,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-demande>
                     <tr
-                        *ngIf="!((profil === 'DG') && ((demande.statut.libelle === 'Non-Risquee') || (demande.statut.libelle === 'Convention-générée'))) && !((profil === 'pme') && (demande.statut.libelle === 'Non-Risquee'))">
+                        *ngIf="!((profil === 'DG') && ((demande.statut.libelle === 'Non-Risquee') || (demande.statut.libelle === 'Convention-générée'))) ">
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Nom Marché</span>
                             {{demande.bonEngagement.nomMarche}}
