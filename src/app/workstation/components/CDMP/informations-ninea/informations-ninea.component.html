@@ -110,6 +110,8 @@
                         <input pInputText id="name3" type="text" formControlName="localite" [(ngModel)]="pme.localite" placeholder="{{pme.localite}}" style="width: 100%;" />
                     </span>
                     </div>
+                    <span *ngIf="submit && f['localite'].errors!" style="color: red; font-size: x-small">{{message}}</span>
+
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
@@ -119,6 +121,8 @@
                         <input pInputText id="name3" type="number" formControlName="controle" [(ngModel)]="pme.controle" placeholder="{{pme.controle}}" style="width: 100%;" />
                    </span>
                     </div>
+                    <span *ngIf="submit && f['controle'].errors!" style="color: red; font-size: x-small">{{message}}</span>
+
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
