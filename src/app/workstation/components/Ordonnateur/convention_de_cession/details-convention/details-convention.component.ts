@@ -47,7 +47,6 @@ export class DetailsConventionComponent implements OnInit {
   constructor(
     private router: Router,
     private demandeCessionService: DemandesCessionService,
-    private documentService: DocumentService,
     private paiementService: PaiementsService,
     private dialogService: DialogService,
     public ref: DynamicDialogRef,

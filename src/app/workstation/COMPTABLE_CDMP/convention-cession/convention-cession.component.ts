@@ -230,7 +230,6 @@ export class ConventionCessionComponent implements OnInit {
       height: 'calc(50% - 100px)',
       baseZIndex: 50
     });
-    this.dismiss();
   }
 
   visualiserDocument(document: Documents, demande: any) {

@@ -3,14 +3,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
-import { DemandeCession } from 'src/app/workstation/model/demande';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
-import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { SignerconventionPMEComponent } from '../../PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 import Swal from 'sweetalert2';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
-import { Router } from '@angular/router';
-import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 
