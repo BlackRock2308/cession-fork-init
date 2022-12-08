@@ -62,7 +62,7 @@
             <a class="dropdown-item" (click)="exportPdf()">PDF</a>
         </div>
     </div>
-    <h3 style=" margin-left: 40%;"> Liste des créances</h3>
+    <h3 style=" margin-left: 20%;"> Liste des demandes de cessions de créances</h3>
 
     <p-table #dt [value]="creances" [columns]="cols" id="excel-table" responsiveLayout="scroll" [rows]="5"
         [globalFilterFields]="['ninea','raisonSocial','type_marche','montant_total','date_marche','decote']"
@@ -77,9 +77,9 @@
                 <th pSortableColumn="raisonSocial" style="color: #203359;">Raison sociale <p-sortIcon
                         field="raisonSocial"></p-sortIcon>
                 </th>
-                <th pSortableColumn="dateDemandeCession" style="color: #203359;">Date de demande <p-sortIcon field="dateDemandeCession">
-                    </p-sortIcon>
-                </th>
+                <!-- <th pSortableColumn="dateDemandeCession" style="color: #203359;">Date de demande <p-sortIcon field="dateDemandeCession">
+                    </p-sortIcon> 
+                </th>-->
                 <th pSortableColumn="montantCreance" style="color: #203359;">Montant total <p-sortIcon field="montantCreance"></p-sortIcon>
                 </th>
                 <th pSortableColumn="dateMarche" style="color: #203359;">Date marché <p-sortIcon field="dateMarche"></p-sortIcon>
@@ -98,11 +98,11 @@
                 <th>
                     <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale"></p-columnFilter>
                 </th>
-                <th>
+                <!-- <th>
 
                     <p-columnFilter type="text" field="dateDemandeCession" placeholder="Date de demande"></p-columnFilter>
 
-                </th>
+                </th> -->
                 <th>
                     <p-columnFilter type="text" field="montantCreance" placeholder="Montant total"></p-columnFilter>
                 </th>
@@ -143,10 +143,10 @@
                     <span class="p-column-title">Raison sociale</span>
                     {{creance.raisonSocial}}
                 </td>
-                <td>
+                <!-- <td>
                     <span class="p-column-title">Date demande</span>
                     {{creance.dateDemandeCession | date:'dd/MM/yyyy'}}
-                </td>
+                </td> -->
                 <td>
                     <span class="p-column-title">Montant total</span>
                     {{creance.montantCreance | number: '1.0-0'}} FCFA
@@ -158,8 +158,9 @@
                 <td >
                     <span *ngIf="creance.statut.code === 'RISQUEE'  " 
                     [class]="'product-badge status-risquee'"> refusée</span>
-
-                    <span *ngIf="creance.statut.code !=='RISQUEE'" 
+                    <span *ngIf="creance.statut.code ==='DEMANDE_BOUCLEE'" 
+                    [class]="'product-badge status-clocture'">bouclée</span>
+                    <span *ngIf="creance.statut.code !=='RISQUEE' && creance.statut.code !=='DEMANDE_BOUCLEE'" 
                     [class]="'product-badge status-non_risquee'">acceptée</span>
 
                 </td>
@@ -169,7 +170,7 @@
                 </td>
                 <td>
                     <div class="flex">
-                        <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text mr-2 button"
+                        <button pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-text mr-2 button"
                             style=" background-color: #203359; color: white;" (click)="visualiserDetails(creance)"
                             pInputText pTooltip="Détails"></button>
                     </div>

@@ -62,7 +62,7 @@ export class CodeComponent implements OnInit {
         )
         
         Swal.fire({
-          html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Vôtre Code PIN a été modifiée avec succès.</p>",
+          html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre Code PIN a été modifié avec succès. Vous pouvez maintenant créer une demande de cession</p>",
           color: "#203359",
           confirmButtonColor: "#A6C733",
           confirmButtonText: '<i class="pi pi-check"></i>OK',

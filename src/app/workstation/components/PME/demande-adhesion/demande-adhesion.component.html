@@ -102,7 +102,7 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded simpleButton"
+                                <button pButton pRipple icon="pi pi-search" class="p-button-rounded simpleButton"
                                     (click)="consulterDemande(demande)" pInputText
                                     pTooltip="Consulter les dossiers"></button>
                                 <button *ngIf="demande.statut.libelle=='COMPLEMENT_REQUIS'" pButton pRipple
@@ -164,8 +164,8 @@
                                                     placeholder="Here">
                                                 <ng-template #elseNINEABlock id="NINEAfile" type="text" pInputText
                                                     pTooltip="Upload NINEA file">{{selectedBONFiles.name}}</ng-template>
-                                                <input formControlName="nineaFile" class="hidden" type="file"
-                                                    id="upload-NINEAfile" name="upload-BONfile" ngf-max-size="2MB"
+                                                <input formControlName="nineaFile" class="hidden" type="file" accept=".pdf,.
+                                                PDF" id="upload-NINEAfile" name="upload-BONfile" ngf-max-size="2MB"
                                                     (change)="selectBONFile($event)">
                                             </div>
                                             <div class="field col-12 md:col-5 mb-1">

@@ -4,6 +4,7 @@ const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const PME_KEY = 'pme-user';
 const IS_AUTHENTICATED='is-auth';
+const HOPE_PAGE='home_page';
 
 
 @Injectable({

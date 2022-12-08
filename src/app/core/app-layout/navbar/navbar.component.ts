@@ -71,6 +71,7 @@ export class NavbarComponent implements OnInit {
     this.nom = this.tokenStorage.getUser().nom
     this.prenom = this.tokenStorage.getUser().prenom
     this.roles=this.tokenStorage.getUser().roles[0].description;
+    console.log('affichhh' + JSON.stringify(this.tokenStorage.getUser()))
 
   }
 

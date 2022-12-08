@@ -3,14 +3,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
-import { DemandeCession } from 'src/app/workstation/model/demande';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
-import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { SignerconventionPMEComponent } from '../../PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 import Swal from 'sweetalert2';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
-import { Router } from '@angular/router';
-import { ConventionEnregistreeComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-enregistree/convention-enregistree.component';
 import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 
@@ -48,8 +44,6 @@ export class VisualiserDocumentComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal,
     private demandeCessionService:DemandesCessionService,
-    private uploadFileService: FileUploadService, 
-    private router : Router,
     public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig,
     private observationService:ObservationService) { }
 
@@ -284,11 +278,16 @@ export class VisualiserDocumentComponent implements OnInit {
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
-      confirmButtonText: 'Rejeter',
+      confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -342,11 +341,16 @@ export class VisualiserDocumentComponent implements OnInit {
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
-      confirmButtonText: 'Rejeter',
+      confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {

@@ -77,7 +77,7 @@ export class ConventionCessionComponent implements OnInit {
     this.paramStatuts = [StatutEnum.ConventionAcceptee, StatutEnum.conventionGeneree, StatutEnum.conventionCorrigee, StatutEnum.conventionSigneeParPME, StatutEnum.conventionSigneeParDG, StatutEnum.ConventionTransmise, StatutEnum.ConventionRejeteeParPME, StatutEnum.ConventionRejeteeParDG, StatutEnum.ConventionRejetee, StatutEnum.nonRisquee]
 
     this.initGetDemandes(this.paramStatuts)
-    
+
     this.profil = localStorage.getItem('profil');
 
 
@@ -109,7 +109,6 @@ export class ConventionCessionComponent implements OnInit {
       { label: 'Convention Rejetée', value: 'CONVETION_REJETEE' },
       { label: 'Convention Rejetée par PME', value: 'CONVETION_REJETEE_PAR_PME' },
       { label: 'Convention Rejetée par DG', value: 'CONVETION_REJETEE_PAR_DG' },
-      { label: 'Non risquée', value: 'NON_RISQUEE' }
     ]
   }
 
@@ -201,16 +200,19 @@ export class ConventionCessionComponent implements OnInit {
     console.log('(text-layer-rendered)');
   }
 
-editConvention(convention: Convention) {
-  const ref = this.dialogService.open(EditerConventionComponent, {
-    data: {
-      convention: convention
-    },
-    header: "Editer la convention",
-    width: '30%',
-    //height: 'calc(50% - 100px)',
-    baseZIndex: 50
-  });
+  editConvention(convention: Convention) {
+    const ref = this.dialogService.open(EditerConventionComponent, {
+      data: {
+        convention: convention
+      },
+      header: "Editer la convention",
+      width: '30%',
+      //height: 'calc(50% - 100px)',
+      baseZIndex: 50
+    });
+  }
+
+genereConvention(convention: Convention) {
 }
 
   minusZoom() {
@@ -231,7 +233,6 @@ editConvention(convention: Convention) {
       height: 'calc(50% - 100px)',
       baseZIndex: 50
     });
-    this.dismiss();
   }
 
   visualiserDocument(document: Documents, demande: any) {

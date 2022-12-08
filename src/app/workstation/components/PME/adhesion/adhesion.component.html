@@ -38,7 +38,7 @@
                                                 <input id="NINEAfile" type="text"
                                                 pInputText pTooltip="Charger le document de référence du NINEA" placeholder="{{selectedNINEAFiles.name}}">
                                             </ng-template>
-                                            <input formControlName="nineaFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                                            <input formControlName="nineaFile" class="hidden" type="file" accept=".pdf,.
                                             PDF" id="upload-NINEAfile"
                                                 name="upload-NINEAfile" ngf-max-size="2MB" (change)="selectNINEAFile($event)">
                                                <button type="button" pButton pRipple icon="pi pi-upload"
@@ -73,7 +73,7 @@
                                         </ng-template>
                                         
                                         
-                                        <input formControlName="rccmFile" class="hidden" type="file" accept="image/png, image/jpeg,image/jpg,.pdf,.
+                                        <input formControlName="rccmFile" class="hidden" type="file" accept=".pdf,.
                                         PDF" id="upload-RCCMfile" 
                                             name="upload-RCCMfile" ngf-max-size="2MB" (change)="selectRCCMFile($event)">
                                             <button type="button" pButton pRipple icon="pi pi-upload"
@@ -82,7 +82,8 @@
                                             <span *ngIf="submit && f['rccmFile'].errors" style="color: red;">{{message}}</span>
                                     </div>
                                 </div>
-                                <input formControlName="rccmFile" class="hidden" type="file" id="upload-RCCMfile"
+                                <input formControlName="rccmFile" class="hidden" type="file" accept=".pdf,.
+                                PDF" id="upload-RCCMfile"
                                     name="upload-RCCMfile" ngf-max-size="2MB" (change)="selectRCCMFile($event)">
                             </div>
                         </div>
@@ -91,7 +92,7 @@
                 <div class="field grid">
                     <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0 text">Email</label>
                     <div class="col-12 md:col-3">
-                        <input formControlName="email" pInputText id="email3" type="text" placeholder="...@.....sn" />
+                        <input formControlName="email" pInputText id="email3" type="text" placeholder="exple@mail.sn" />
                          <span *ngIf="submit && f['email'].errors! && !f['email'].hasError('required')"
                         style="color: red;">Renseigner un bon email</span>
                         <span *ngIf="submit && f['email'].hasError('required')" style="color: red;">{{message}}</span>

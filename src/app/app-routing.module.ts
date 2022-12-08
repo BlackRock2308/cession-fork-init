@@ -13,6 +13,7 @@ import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/co
 
 
 import { AdhesionComponent } from './workstation/components/PME/adhesion/adhesion.component';
+import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
     // Root Path
     {
@@ -27,10 +28,10 @@ const routes: Routes = [
                 loadChildren: () => import('./workstation/workstation.module').then(m => m.WorkstationModule),
             },
         ]
-    },
+        ,canActivate: [AuthGuard]},
     //{ path: '**', redirectTo: 'login' },
 
-    { path: 'pme/adhesion', component: AdhesionComponent },
+    { path: 'pme/adhesion', component: AdhesionComponent},
 
     { path: 'test', component: TestComponent },
 
@@ -47,10 +48,11 @@ const routes: Routes = [
     //Mise a jour mot de passe
     { path: 'login', component: AppLoginComponent },
     // Error Handling
+    { path: 'denied', component: AppAccessdeniedComponent },
     { path: '404', component: AppNotfoundComponent },
-    { path: '**', redirectTo: '/login' },
     { path: 'error', component: AppErrorComponent },
-    { path: 'accessdenied', component: AppAccessdeniedComponent },
+    { path: '**', redirectTo: '/login' },
+    
 
 
 ];
