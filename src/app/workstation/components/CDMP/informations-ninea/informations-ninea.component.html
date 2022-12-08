@@ -6,7 +6,7 @@
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Dénomination</label>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
-                        <input pInputText id="name3" type="text" value="{{pme.raisonSocial}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.raisonSocial" placeholder="{{pme.raisonSocial}}"
                             formControlName="raisonSocial" style="width: 100%;" />
                             </span>
                     </div>
@@ -16,7 +16,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.prenomRepresentant}} "
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.prenomRepresentant" placeholder="{{pme.prenomRepresentant}} "
                             formControlName="prenomRepresentant" style="width: 100%;" />
                             </span>
                     </div>
@@ -27,7 +27,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.nomRepresentant}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.nomRepresentant" placeholder="{{pme.nomRepresentant}}"
                             formControlName="nomRepresentant" style="width: 100%;" />
                             </span>
                     </div>
@@ -37,7 +37,7 @@
                         style="font-weight: bold;color: #203359;">Enseigne/Sigle<span class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.enseigne}}" formControlName="enseigne" style="width: 100%;" />
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.enseigne" placeholder="{{pme.enseigne}}" formControlName="enseigne" style="width: 100%;" />
                    </span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                         style="font-weight: bold;color: #203359;">Forme Juridique<span class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" formControlName="formeJuridique" placeholder="{{pme.formeJuridique}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.formeJuridique" formControlName="formeJuridique" placeholder="{{pme.formeJuridique}}"
                             style="width: 100%;" />
                             </span>
                     </div>
@@ -57,7 +57,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.cniRepresentant}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.cniRepresentant" placeholder="{{pme.cniRepresentant}}"
                             formControlName="cniRepresentant" style="width: 100%;" />
                             </span>
                     </div>
@@ -70,7 +70,7 @@
                             [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
                             [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
                             [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone"
-                            formControlName="telephonePME" placeholder="{{pme.telephonePME}}" >
+                            formControlName="telephonePME" [(ngModel)]="pme.telephonePME" placeholder="{{pme.telephonePME}}" >
                         </ngx-intl-tel-input>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
@@ -78,7 +78,7 @@
                         style="font-weight: bold;color: #203359;">Centre Fiscal<span class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.centreFiscal}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.centreFiscal" placeholder="{{pme.centreFiscal}}"
                             formControlName="centreFiscal" style="width: 100%;" />
                             </span>
                     </div>
@@ -87,7 +87,7 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                             class="required">*</span></label>
-                        <p-calendar inputId="basic" [maxDate]="dateTime" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateImmatriculation}}">
+                        <p-calendar inputId="basic" [maxDate]="dateTime" [(ngModel)]="pme.dateImmatriculation" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateImmatriculation | date:'dd/MM/yyyy'}}">
                        </p-calendar >
                        <span *ngIf="submit && f['dateImmatriculation'].errors! && !f['dateImmatriculation'].hasError('required')"
                         style="color: red;">Date supérieure à la date du jour</span>
@@ -97,7 +97,7 @@
                         style="font-weight: bold;color: #203359;">Adresse/BP<span class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.adressePME}}" formControlName="adressePME"
+                        <input pInputText id="name3" type="text" placeholder="{{pme.adressePME}}" [(ngModel)]="pme.adressePME" formControlName="adressePME"
                             style="width: 100%;" />
                             </span>
                     </div>
@@ -107,7 +107,7 @@
                         style="font-weight: bold;color: #203359;">Localité<span class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" formControlName="localite" placeholder="{{pme.localite}}" style="width: 100%;" />
+                        <input pInputText id="name3" type="text" formControlName="localite" [(ngModel)]="pme.localite" placeholder="{{pme.localite}}" style="width: 100%;" />
                     </span>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         style="font-weight: bold;color: #203359;">Contrôle<span class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="number" formControlName="controle" placeholder="{{pme.controle}}" style="width: 100%;" />
+                        <input pInputText id="name3" type="number" formControlName="controle" [(ngModel)]="pme.controle" placeholder="{{pme.controle}}" style="width: 100%;" />
                    </span>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.activitePrincipale}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.activitePrincipale" placeholder="{{pme.activitePrincipale}}"
                             formControlName="activitePrincipale" style="width: 100%;" />
                             </span>
                     </div>
@@ -137,7 +137,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" formControlName="autorisationMinisterielle" placeholder="{{pme.autorisationMinisterielle}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.autorisationMinisterielle" formControlName="autorisationMinisterielle" placeholder="{{pme.autorisationMinisterielle}}"
                             style="width: 100%;" />
                             </span>
                     </div>
@@ -148,7 +148,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="text" placeholder="{{pme.registre}}"
+                        <input pInputText id="name3" type="text" [(ngModel)]="pme.registre" placeholder="{{pme.registre}}"
                             formControlName="registre" style="width: 100%;" />
                             </span>
                     </div>
@@ -157,8 +157,8 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
                             class="required">*</span></label>
-                        <p-calendar inputId="basic" formControlName="dateCreation"   [maxDate]="dateTime"
-                         [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateCreation}}">
+                        <p-calendar inputId="basic" formControlName="dateCreation"  [(ngModel)]="pme.dateCreation" [maxDate]="dateTime"
+                         [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateCreation | date:'dd/MM/yyyy'}}">
                         </p-calendar>
                        <span *ngIf="submit && f['dateCreation'].errors! && !f['dateCreation'].hasError('required')"
                        style="color: red;">Date supérieure à la date du jour</span>
@@ -166,14 +166,14 @@
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Capital Social<span class="required">*</span></label>
-                        <p-inputNumber formControlName="capitalsocial"  placeholder="{{pme.capitalsocial}}" mode="currency" currency="CFA">
+                        <p-inputNumber formControlName="capitalsocial" [(ngModel)]="pme.capitalsocial" placeholder="{{pme.capitalsocial}}" mode="currency" currency="CFA">
                         </p-inputNumber>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Chiffre d'affaires<span
                             class="required">*</span></label>                      
-                        <p-inputNumber formControlName="chiffresDaffaires"  placeholder="{{pme.chiffresDaffaires}}" mode="currency" currency="CFA">
+                        <p-inputNumber formControlName="chiffresDaffaires" [(ngModel)]="pme.chiffresDaffaires" placeholder="{{pme.chiffresDaffaires}}" mode="currency" currency="CFA">
                         </p-inputNumber>
                 </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
@@ -182,7 +182,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="number" placeholder="{{pme.effectifPermanent}}"
+                        <input pInputText id="name3" type="number" [(ngModel)]="pme.effectifPermanent" placeholder="{{pme.effectifPermanent}}"
                             formControlName="effectifPermanent" />
                             </span>
                     </div>
@@ -193,7 +193,7 @@
                             class="required">*</span></label>
                     <div class="p-inputgroup">
                                 <span class="p-float-label">
-                        <input pInputText id="name3" type="number" placeholder="{{pme.nombreEtablissementSecondaires}}"
+                        <input pInputText id="name3" type="number" [(ngModel)]="pme.nombreEtablissementSecondaires" placeholder="{{pme.nombreEtablissementSecondaires}}"
                             formControlName="nombreEtablissementSecondaires" />
                             </span>
                     </div>
