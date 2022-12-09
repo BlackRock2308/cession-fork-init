@@ -140,7 +140,6 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
           //}
         }
        if(res.status == "500"){
-        this.dismiss();
         Swal.fire({
           icon: 'error',
           title: 'Erreur',

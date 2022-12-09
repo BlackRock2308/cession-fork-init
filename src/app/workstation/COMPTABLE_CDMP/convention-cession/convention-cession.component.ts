@@ -206,7 +206,7 @@ export class ConventionCessionComponent implements OnInit {
         convention: convention
       },
       header: "Editer la convention",
-      width: '30%',
+      width: '40%',
       //height: 'calc(50% - 100px)',
       baseZIndex: 50
     });
@@ -233,6 +233,9 @@ genereConvention(convention: Convention) {
       height: 'calc(50% - 100px)',
       baseZIndex: 50
     });
+    this.dismiss();
+    
+    this.initGetDemandes(this.paramStatuts);
   }
 
   visualiserDocument(document: Documents, demande: any) {

@@ -33,19 +33,19 @@ export class EditerConventionComponent implements OnInit {
   cols: any[];
   pme: PME;
   demande: any;
-  observation:Observation={}
+  observation: Observation = {}
 
   constructor(
-    private router : Router,
+    private router: Router,
     public ref: DynamicDialogRef, private formBuilder: FormBuilder, private pmeService: PmeService
-    ,private conventionService : ConventionService,
+    , private conventionService: ConventionService,
     private uploadFileService: FileUploadService,
-    private demandeCessionService : DemandesCessionService,
+    private demandeCessionService: DemandesCessionService,
 
-    private tokenStorage:TokenStorageService,
-    private observationService:ObservationService
+    private tokenStorage: TokenStorageService,
+    private observationService: ObservationService
 
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     // this.pmeService.getTypesDocument().subscribe(data => {
@@ -54,14 +54,14 @@ export class EditerConventionComponent implements OnInit {
     //   //console.log(this.typesDocument)
     // })
     this.documentForm = this.formBuilder.group({
-     // typeDocument: [''],
+      // typeDocument: [''],
       file: ['']
     });
 
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demande = data;
-      this.pme=this.demande.pme
-      console.log(this.pme,this.demande)
+      this.pme = this.demande.pme
+      console.log(this.pme, this.demande)
 
     })
     this.cols = [
@@ -71,13 +71,13 @@ export class EditerConventionComponent implements OnInit {
     ];
   }
 
- //sélectionner le fichier 
- selectFile(files: any): void {
-  this.selectedFiles = files.target.files[0];
-  console.log(this.selectedFiles);
-}
+  //sélectionner le fichier 
+  selectFile(files: any): void {
+    this.selectedFiles = files.target.files[0];
+    console.log(this.selectedFiles);
+  }
 
- 
+
 
   //ouvrir la boite de dialogue du répertoire
   handleClick() {
@@ -99,9 +99,9 @@ export class EditerConventionComponent implements OnInit {
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
-      confirmButtonColor:'#99CC33FF',
-      denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF',
+      confirmButtonColor: '#99CC33FF',
+      denyButtonColor: '#981639FF',
+      cancelButtonColor: '#333366FF',
       customClass: {
         actions: 'my-actions',
         denyButton: 'order-1 right-gap',
@@ -111,8 +111,8 @@ export class EditerConventionComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.enregistrerConvention();
-      } 
-        else if (result.isDenied) {
+      }
+      else if (result.isDenied) {
         Swal.fire('Enregistrement annulée', '', 'info')
       }
     })
@@ -125,61 +125,60 @@ export class EditerConventionComponent implements OnInit {
   }
 
   //enregistrement du document avec l'appel du service d'enregistrement
-  private async enregistrerConvention() {
+  private enregistrerConvention() {
 
     let body = {
-      
+
       file: this.selectedFiles,
-      idDemande:this.demande.idDemande,
+      idDemande: this.demande.idDemande,
       dateConvention: new Date(),
-      pme:{
-        idPME:this.pme.idPME
-    }
+      pme: {
+        idPME: this.pme.idPME
+      }
     }
     console.log(body)
-    
-   
+
+
     this.conventionService.postConvention(body)
       .subscribe((response: any) => {
-      let data = JSON.parse(JSON.stringify(response));
+        let data = JSON.parse(JSON.stringify(response));
         if (data && data.idConvention != null) {
-          this.uploadFileService.uploadFile('/conventions/', response.idConvention, this.selectedFiles, 'AUTRE').subscribe(data=>console.log(data)
-           )
-          
-          }
-      
+          this.uploadFileService.uploadFile('/conventions/', response.idConvention, this.selectedFiles, 'AUTRE').subscribe(data => console.log(data)
+          )
+
+        }
+
       },
-      (error) => {},
-      () => {
-        this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-        this.observation.statut={}      
-        this.observation.demandeid = this.demande.idDemande;
-      this.observation.statut.libelle =StatutEnum.conventionGeneree;
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+        (error) => { },
+        () => {
+          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+          this.observation.statut = {}
+          this.observation.demandeid = this.demande.idDemande;
+          this.observation.statut.libelle = StatutEnum.conventionGeneree;
+          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
 
-      Swal.fire({
+          Swal.fire({
 
-        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-        color:"#203359",
-        icon:'success',
-        confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-        allowOutsideClick:false,
-        showConfirmButton:false
-        
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['workstation/comptable/convention_cession'])
-        }})
-  
-        setTimeout(() => {
-          location.reload()
-         }, 1500);
-     
-  
-      }
+            html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            color: "#203359",
+            icon: 'success',
+            confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+            allowOutsideClick: false,
+            showConfirmButton: false
+
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['workstation/comptable/convention_cession'])
+            }
+          })
+
+          setTimeout(() => {
+            location.reload()
+          }, 1500);
+
+
+        }
       )
-      
-
   }
 
   delete(document: Document) {

@@ -6,22 +6,20 @@ import { AuthService } from '../auth.service';
   selector: 'app-recup-mdp',
   templateUrl: './recup-mdp.component.html',
   styleUrls: ['../login/app.login.component.scss']
- 
+
 })
-export class RecupMdpComponent{
-  email:String;
+export class RecupMdpComponent {
+  email: string;
 
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
-    constructor(private authService:AuthService,
-      private router:Router) {}
-
-  recupMDP(){
-    this.authService.recupMDP(this.email).subscribe(
-      data=>{
+  recupMDP(email) {
+    this.authService.recupMDP(email).subscribe(
+      data => {
         this.router.navigate(['login/maj_pwd'])
       }
     )
   }
-
 
 }

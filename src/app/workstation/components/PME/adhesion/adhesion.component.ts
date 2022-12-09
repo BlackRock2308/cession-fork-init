@@ -155,7 +155,7 @@ export class AdhesionComponent implements OnInit {
             Swal.fire({
               icon: "error",
               title: "Erreur",
-              text: "Votre demande d'adhésion a été prise en compte.",
+              text: "Erreur de création de la demande.",
             });
           }
         });

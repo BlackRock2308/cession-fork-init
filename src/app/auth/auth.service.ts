@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiSettings } from '../workstation/generic/const/apiSettings.const';
@@ -27,8 +27,14 @@ export class AuthService {
     return this.http.patch(this.authUrl +"/update/password",utilisateur, httpOptions);
   }
 
-  recupMDP(email):Observable<any>{
-    return this.http.post(this.authUrl + "/forget-password",email, httpOptions);
+  recupMDP(email: string){
+    const req = new HttpRequest("POST", `${this.authUrl}/forget-password`,email,{
+      reportProgress: true,
+      responseType: "json"
+    });
+    console.log(email)
+  
+    return this.http.request(req);
   }
 
   getPmebyUser(id):Observable<any>{

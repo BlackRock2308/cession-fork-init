@@ -46,13 +46,10 @@ export class ConventionSignerComponent implements OnInit {
       this.demande = data;
       this.convention = this.demande.conventions[0]
 
-
       console.log(this.convention.valeurDecote)
 
     })
   }
-
-
 
   dismiss() {
     this.ref.close();
@@ -85,18 +82,14 @@ export class ConventionSignerComponent implements OnInit {
       }
     })
 
-
-
   }
 
-
-  private async signerConventionDG() {
+  private  signerConventionDG() {
 
     var idDemande = this.demande.idDemande
     this.codePIN = this.form.value['codePIN']
 
-
-    await this.demandeCessionService.signerConventionDG(this.codePIN, this.tokenStorage.getUser().idUtilisateur, idDemande).subscribe
+    this.demandeCessionService.signerConventionDG(this.codePIN, this.tokenStorage.getUser().idUtilisateur, idDemande).subscribe
       ((response: any) => {
         console.log(response.body)
         if (response.body) {
@@ -136,9 +129,9 @@ export class ConventionSignerComponent implements OnInit {
             }
           })
 
-          // setTimeout(() => {
-          //   location.reload()
-          // },1600);
+          setTimeout(() => {
+            location.reload()
+          },1600);
 
         }
         else {
@@ -149,7 +142,6 @@ export class ConventionSignerComponent implements OnInit {
             confirmButtonText: '<i class="pi pi-check"></i>OK',
             confirmButtonColor: '#99CC33FF',
 
-
           })
         }
       },
@@ -158,6 +150,5 @@ export class ConventionSignerComponent implements OnInit {
 
         }
       )
-
   }
 }

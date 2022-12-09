@@ -43,9 +43,7 @@ export class ComplementDocumentsComponent implements OnInit {
 
   constructor(    
     private formBuilder: FormBuilder,
-    private pmeService:PmeService,
     private demandeAdhesionService:DemandesAdhesionService,
-    private documentService:DocumentService,
     private breadcrumbService: BreadcrumbService,
     private demandeCessionService:DemandesCessionService,
     private documenService:FileUploadService,
@@ -87,6 +85,8 @@ export class ComplementDocumentsComponent implements OnInit {
   this.cols = [
     {field: 'typeDocument', header: 'Type Document'},
     {field: 'nomDocument', header: 'Nom Document'},
+    {field: 'dateSauvegarde', header: 'Date sauvegarde'},
+    
     {field: 'action', header: 'Action'},
 ];
 this.items = [

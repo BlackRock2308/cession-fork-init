@@ -82,19 +82,19 @@ export class ConventionEnregistreeComponent implements OnInit {
 
     this.ref.close();
 
-        // arrêter si le formulaire est invalide
+    // arrêter si le formulaire est invalide
     if (this.form.invalid) {
       return;
     }
 
     Swal.fire({
-      title: 'Vpulez-vous soumettre la convention enregistrée',
+      title: 'Voulez-vous soumettre la convention enregistrée',
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
-      confirmButtonColor:'#99CC33FF',
-      denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF',
+      confirmButtonColor: '#99CC33FF',
+      denyButtonColor: '#981639FF',
+      cancelButtonColor: '#333366FF',
       customClass: {
         actions: 'my-actions',
         denyButton: 'order-1 right-gap',
@@ -103,56 +103,51 @@ export class ConventionEnregistreeComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.conventionTransmise();      } else if (result.isDenied) {
+        this.conventionTransmise();
+      } else if (result.isDenied) {
         Swal.fire('Transmission annulée', '', 'info')
       }
     })
 
   }
 
-  private async conventionTransmise() {
+  private conventionTransmise() {
     let body = {
       file: this.selectedCONVENTIONFiles,
       idConvention: this.convention.idConvention
     }
-    console.log(body)
 
-    await this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
+    this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
       data => { console.log(data) }),
-      
-        this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
-          data => { console.log(data) },
-          () => { },
-          () => {
-            this.demandeCessionService.updateStatut(this.demande.idDemande, StatutEnum.ConventionTransmise)
-              .subscribe((response: any) => {
-                console.log(response)
-                console.log(StatutEnum.ConventionTransmise)
-              },
-              ()=>{},
-              ()=>{
-                Swal.fire({
-    
-                  position: 'center',
-                  icon: 'success',
-                  title: 'La convention a bien été transmise.',
-                  showConfirmButton: false,
-                  timer: 2500
-            
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    this.router.navigate(['workstation/comptable/convention_cession'])
-                  }
-                })
-            this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-            this.observation.statut = {}
-            this.observation.demandeid = this.demande.idDemande;
-            this.observation.statut.libelle = StatutEnum.ConventionTransmise;
-            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-          }
-        )
-      }
-    )
 
+      this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
+        data => { console.log(data) }),
+
+      this.demandeCessionService.updateStatut(this.demande.idDemande, StatutEnum.ConventionTransmise)
+        .subscribe((response: any) => {
+
+          Swal.fire({
+
+            position: 'center',
+            icon: 'success',
+            title: 'La convention a bien été transmise.',
+            showConfirmButton: false,
+            timer: 2500
+
+          }).then(() => {
+              this.router.navigate(['workstation/comptable/convention_cession'])
+             
+          })
+          setTimeout(() => {
+            location.reload()
+          },1600);
+        })
+    this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+    this.observation.statut = {}
+    this.observation.demandeid = this.demande.idDemande;
+    this.observation.statut.libelle = StatutEnum.ConventionTransmise;
+    this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
+      
 }
+      
