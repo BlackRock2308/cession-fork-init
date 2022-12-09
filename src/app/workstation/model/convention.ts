@@ -6,5 +6,6 @@ export interface Convention {
     date_soumission?: string,
     conv_file ?:File,
     path ?: string,
-    valeurDecote : number
+    valeurDecote : number;
+    remarqueJuriste?:string;
 }
