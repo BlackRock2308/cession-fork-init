@@ -147,10 +147,25 @@
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">Forme Juridique<span class="required">*</span></label>
                                         <div class="p-inputgroup">
-                                                    <span class="p-float-label">
+                                                    <!-- <span class="p-float-label">
                                             <input pInputText id="name3" type="text" formControlName="formeJuridique"
                                                 style="width: 100%;" />
-                                                </span>
+                                                </span> -->
+                                                <p-dropdown [options]="formeJuridique" [style]="{width: '20vw'}" formControlName="formeJuridique"
+                                                    optionLabel="nom" optionValue="type" [filter]="true"
+                                                    filterBy="name" [showClear]="true" 
+                                                    placeholder="Sélectionnez une forme juridique">
+                                                    <ng-template pTemplate="selectedItem">
+                                                        <div class="country-item country-item-value" *ngIf="form.value['formeJuridique']">
+                                                            <div>{{form.value['formeJuridique']}}</div>
+                                                        </div>
+                                                    </ng-template>
+                                                    <ng-template let-formeJuridique>
+                                                        <div class="country-item">
+                                                            <div>{{formeJuridique}}</div>
+                                                        </div>
+                                                    </ng-template>
+                                                </p-dropdown>
                                         </div>
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">

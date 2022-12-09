@@ -29,7 +29,7 @@
                             <span class="menuitem-text"> Demandes </span>
                             <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
                             <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i></a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <ul class="collapse list-unstyled nav-pills" id="homeSubmenu" >
                             <li>
                                 <a [attr.tabindex]="0" [routerLink]="['pme/new_demande']">
                                     <span class="menuitem-text">Nouvelle demande</span>
@@ -44,8 +44,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li *ngIf="profil === 'PME'">
-                        <a [attr.tabindex]="0" [routerLink]="['pme/paiements']">
+                    <li class="nav-item" *ngIf="profil === 'PME'">
+                        <a [attr.tabindex]="0" class="nav-link" [routerLinkActiveOptions]="{exact : true}"
+                        routerLinkActive="active" [routerLink]="['pme/paiements']">
                             <span class="mn"> Suivi des paiements</span>
                             <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
                         </a>
