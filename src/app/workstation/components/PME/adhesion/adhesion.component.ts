@@ -33,6 +33,8 @@ export class AdhesionComponent implements OnInit {
   selectedNINEAFiles: File | null = null;
   selectedRCCMFiles: File | null = null;
   currentFile?: File;
+  formeJuridique: any[];
+
   progress = 0;
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -59,6 +61,40 @@ export class AdhesionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.formeJuridique = [
+      {
+        "type": "SA",
+        "nom": " Société anonyme"
+      },
+      {
+        "type": "SARL",
+        "nom": "Société à Responsabilité Limitée"
+      },
+      {
+        "type": "GIE",
+        "nom": "GIE"
+      },
+      {
+        "type": "SNC",
+        "nom": "Société en Nom Collectif"
+      },
+      {
+        "type": "SCS",
+        "nom": "Société en Commandite Simple"
+      },
+      {
+        "type": "Société civile",
+        "nom": "Société civile"
+      },
+      {
+        "type": "Société Coopérative",
+        "nom": "Société Coopérative"
+      },
+      {
+        "type": "Entreprise Individuelle",
+        "nom": "Entreprise Individuelle"
+      }
+    ]
     this.message = "Champ obligatoire";
     this.form = this.formBuilder.group({
       ninea: ["", [Validators.required, this.matchValuesNINEA()]],
