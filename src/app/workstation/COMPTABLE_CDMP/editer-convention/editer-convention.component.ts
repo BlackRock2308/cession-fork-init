@@ -37,7 +37,7 @@ export class EditerConventionComponent implements OnInit {
     private tokenStorage:TokenStorageService,
     private observationService:ObservationService
 
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.dateEdit = new Date();
@@ -57,7 +57,6 @@ export class EditerConventionComponent implements OnInit {
   }
 
 
- 
 
   //ouvrir la boite de dialogue du répertoire
   handleClick() {
@@ -79,9 +78,9 @@ export class EditerConventionComponent implements OnInit {
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
-      confirmButtonColor:'#99CC33FF',
-      denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF',
+      confirmButtonColor: '#99CC33FF',
+      denyButtonColor: '#981639FF',
+      cancelButtonColor: '#333366FF',
       customClass: {
         actions: 'my-actions',
         denyButton: 'order-1 right-gap',
@@ -91,8 +90,8 @@ export class EditerConventionComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.enregistrerConvention();
-      } 
-        else if (result.isDenied) {
+      }
+      else if (result.isDenied) {
         Swal.fire('Enregistrement annulée', '', 'info')
       }
     })
@@ -135,8 +134,6 @@ export class EditerConventionComponent implements OnInit {
       (error) => {
         console.log(error)      }
       )
-      
-
   }
 
   // delete(document: Document) {
@@ -150,9 +147,9 @@ export class EditerConventionComponent implements OnInit {
   dismiss() {
     this.ref.close();
   }
+
+
 }
-
-
 interface Document {
 
   type?: String;
