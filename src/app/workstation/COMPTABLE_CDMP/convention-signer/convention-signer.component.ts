@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import Swal from 'sweetalert2';
 import { Convention } from '../../model/convention';
@@ -27,7 +27,7 @@ export class ConventionSignerComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public ref: DynamicDialogRef,
+    public ref: DynamicDialogRef,private config: DynamicDialogConfig,
     private demandeCessionService: DemandesCessionService,
     private tokenStorage: TokenStorageService,
     private conventionService: ConventionService,
@@ -41,15 +41,7 @@ export class ConventionSignerComponent implements OnInit {
       decote: ['']
 
     });
-
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-      this.convention = this.demande.conventions[0]
-
-
-      console.log(this.convention.valeurDecote)
-
-    })
+    this.convention = this.config.data.convention;
   }
 
 

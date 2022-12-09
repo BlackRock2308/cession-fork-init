@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Convention } from 'src/app/workstation/model/demande';
 import { Observation } from 'src/app/workstation/model/observation';
@@ -30,7 +30,7 @@ export class SignerconventionPMEComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
+    private router: Router,private config: DynamicDialogConfig,
     public ref: DynamicDialogRef, private conventionService:ConventionService,
     private demandeCessionService : DemandesCessionService,
     private tokenStorage : TokenStorageService,
@@ -40,22 +40,11 @@ export class SignerconventionPMEComponent implements OnInit {
 
   ngOnInit(): void {
 
-  //   this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
-  //     this.demandes = data
-  //     console.log(this.demandes,data)
-  // });
     this.form = this.formBuilder.group({
       convention: ['', Validators.required],
       codePIN : ['' , Validators.required]
-    });
-
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-     
-
-      console.log(this.demande,data)
-
-    })
+    });    
+    this.convention = this.config.data.convention;
   }
 
   get f(){

@@ -94,30 +94,8 @@ export class VisualiserDocumentComponent implements OnInit {
   dowloadFile(path: string) {
 
     this.src=this.documentFileUrl+path;
-
-  //   this.uploadFileService.dowloadFile(path)
-  //     .subscribe(
-  //       (data: any) => {
-  //         if (data) {
-  //           console.log('merci de d'+ data)
-  //           this.src = data;
-  //           console.log('merci de afficher ' +JSON.stringify( this.src))
-  //          // this.ext = this.src.url.split('.').pop();
-  //           // if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
-  //           //   this.images = [{
-  //           //     name: this.config.data.document.nom,
-  //           //     url: this.src
-  //           //   }];
-  //           // }
-  //           // console.log("SRC", this.ext);
-  //         }
-  //       }
-  //       ,
-  //       (error) => {
-  //         console.log("erreur de récupération du document", error);
-  //       }
-  //     )
    }
+   
   dismiss() {
     this.ref.close();
   }

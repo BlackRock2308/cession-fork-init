@@ -102,7 +102,7 @@
                                 <button pButton pRipple icon="pi pi-cloud-download"
                                     class="p-button-rounded successButton" pTooltip="Corriger la convention"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_REJETEE_PAR_PME') &&( profil=== 'JURISTE')) || ((demande.statut.libelle=== 'CONVENTION_REJETEE_PAR_DG') && (profil ==='JURISTE'))|| ((demande.statut.libelle === 'CONVENTION_REJETEE') && (profil === 'JURISTE'))"
-                                    (click)="visualiserDocument(demande.conventions[0].documents[0],demande)"></button>
+                                    (click)="editConvention(demande)"></button>
                                 <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "
@@ -117,7 +117,7 @@
                                     (click)="EditerConvention(convention)"></button> -->
                                 <button pButton pRipple icon="pi pi-file"
                                     class="p-button-rounded simpleButton successButton" pTooltip="Générer la convention"
-                                    *ngIf="demande.statut.libelle === 'NON_RISQUEE' "
+                                    *ngIf="demande.statut.libelle === 'NON_RISQUEE'"
                                     (click)="editConvention(demande)"></button>
                             </div>
                         </td>
