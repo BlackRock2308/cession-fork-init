@@ -233,6 +233,9 @@ genereConvention(convention: Convention) {
       height: 'calc(50% - 100px)',
       baseZIndex: 50
     });
+    this.dismiss();
+    
+    this.initGetDemandes(this.paramStatuts);
   }
 
   visualiserDocument(document: Documents, demande: any) {

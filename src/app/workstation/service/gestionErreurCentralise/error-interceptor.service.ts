@@ -42,9 +42,9 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                       if(error.status===404){
                         this.router.navigate(['404'])
                       }
-                      if(error.status===500){
-                        this.router.navigate(['error'])
-                      }
+                      // if(error.status===500){
+                      //   this.router.navigate(['error'])
+                      // }
                       if(error.status===403 || error.status===401){
                         this.tokenStorage.signOut()
 
