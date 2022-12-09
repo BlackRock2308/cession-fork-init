@@ -46,13 +46,10 @@ export class ConventionSignerComponent implements OnInit {
       this.demande = data;
       this.convention = this.demande.conventions[0]
 
-
       console.log(this.convention.valeurDecote)
 
     })
   }
-
-
 
   dismiss() {
     this.ref.close();
@@ -85,18 +82,14 @@ export class ConventionSignerComponent implements OnInit {
       }
     })
 
-
-
   }
 
-
-  private async signerConventionDG() {
+  private  signerConventionDG() {
 
     var idDemande = this.demande.idDemande
     this.codePIN = this.form.value['codePIN']
 
-
-    await this.demandeCessionService.signerConventionDG(this.codePIN, this.tokenStorage.getUser().idUtilisateur, idDemande).subscribe
+    this.demandeCessionService.signerConventionDG(this.codePIN, this.tokenStorage.getUser().idUtilisateur, idDemande).subscribe
       ((response: any) => {
         console.log(response.body)
         if (response.body) {
@@ -117,7 +110,12 @@ export class ConventionSignerComponent implements OnInit {
           this.observation.statut = {}
           this.observation.demandeid = idDemande;
           this.observation.statut.libelle = StatutEnum.conventionSigneeParDG;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          this.observationService.postObservation(this.observation).subscribe((data:any) =>{
+            if(data.body){
+              this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
+                console.log(res))
+            }
+          })
 
           Swal.fire({
             position: 'center',
@@ -136,9 +134,9 @@ export class ConventionSignerComponent implements OnInit {
             }
           })
 
-          // setTimeout(() => {
-          //   location.reload()
-          // },1600);
+          setTimeout(() => {
+            location.reload()
+          },1600);
 
         }
         else {
@@ -149,7 +147,6 @@ export class ConventionSignerComponent implements OnInit {
             confirmButtonText: '<i class="pi pi-check"></i>OK',
             confirmButtonColor: '#99CC33FF',
 
-
           })
         }
       },
@@ -158,6 +155,5 @@ export class ConventionSignerComponent implements OnInit {
 
         }
       )
-
   }
 }

@@ -1,8 +1,8 @@
 <div class="grid">
     <div class="col-12">
-        <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
+        <!-- <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()"> -->
             <div class="modal-body">
-                <div class="field grid">
+                <!-- <div class="field grid">
                     <div class="col-8 mb-2">
                         <input formControlName="file" class="hidden" type="file" accept=".pdf,.
                         PDF" id="upload-file" name="upload-file"
@@ -20,19 +20,54 @@
                                 (click)="handleClick()"></button>
                         </div>
                     </div>
+                </div> -->
+                <div class="entete">
+                    <div class="sn" >
+                        Ministère des Finances et du Budget <br/>
+                        Caisse de Dépôt et Consignation <br/>
+                        Caisse des marchés publics <br/>
+                        Direction des risques et du contentieux
+                    </div>
+                
+                    <div class="date">
+                        Le <span >{{dateEdit | date: 'dd/MM/yyyy'}}</span>
+                    </div>
+                </div>
+                <div class="titre">
+                    Convention de cession
+                </div>
+                
+                <div class="text row">
+                    <label class="col-12 ">PME: <span> {{demande.pme.raisonSocial}}</span> </label>
+                    <label class="col-12 ">NINEA: <span>{{demande.pme.ninea}}</span> </label>
+                    <label class="col-12 ">RCCM: <span >{{demande.pme.rccm}}</span> </label>
+                    <label class="col-12 ">Nom marché: <span >{{demande.bonEngagement.nomMarche}}</span> </label>
+                    <label class="col-12 ">RefBE: <span >{{demande.bonEngagement.reference}}</span> </label>
+                    <label class="col-12 ">Type de marché: <span>{{demande.bonEngagement.typeMarche}}</span></label>
+                    <label class="col-12 ">Montant: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
+                        'symbol' : '1.0-0':'fr'}} </span> </label>     
+                        <!-- Décote: <span>{{decode}} </span> FCFA<br/> -->
+                    <!-- <p>
+                        <span >{{convention.remarqueJuriste}}</span>
+                    </p> -->
+                </div>
+                <div class="field grid row">
+                    <label htmlFor="remarqueJuriste" class="col-12 ">Texte</label>
+                    <div class="col-12 ">
+                        <textarea pInputText id="remarqueJuriste" type="text" [(ngModel)]="convention.remarqueJuriste" style="width: 95%;"></textarea>
+                    </div>
                 </div>
             </div>
             <div><br></div>
             <div class="modal-footer ">
                 <div class="col-12  pr-0 d-flex  flex-row-reverse">
-                    <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Soumettre"
-                        icon="pi pi-check" class="p-button-raised successButton pull-right"
+                    <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Enregistrer"
+                        icon="pi pi-save" class="p-button-raised successButton pull-right"
                         (click)="onSubmit()"></button>
-                    <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                    <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
                         class="p-button-raised dangerButton" (click)="dismiss()"></button>
                 </div>
             </div>
-        </form>
-
+        <!-- </form> -->
     </div>
 </div>
