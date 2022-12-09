@@ -200,13 +200,13 @@ export class ConventionCessionComponent implements OnInit {
     console.log('(text-layer-rendered)');
   }
 
-  editConvention(convention: Convention) {
+  editConvention(demande) {
     const ref = this.dialogService.open(EditerConventionComponent, {
       data: {
-        convention: convention
+        demande: demande
       },
       header: "Editer la convention",
-      width: '30%',
+      width: '700px',
       //height: 'calc(50% - 100px)',
       baseZIndex: 50
     });

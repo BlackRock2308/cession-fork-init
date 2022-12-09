@@ -21,3 +21,53 @@
 .right-gap {
   margin-right: auto;
 }
+
+.entete {
+  margin: 0em;
+}
+.sn{
+  display: inline-block;
+  font-size: 13px;
+  text-align: center;
+}
+.date{
+  display: inline-block;
+  width: 8em;
+  height: 5em;
+  float: right;
+
+}
+.titre{
+  text-align: center;
+  font-size: 30px;
+  margin: 2em;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  margin: 3em;
+  //font-size: 17px;
+}
+.footer{
+  margin: 1em;
+  align-content: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.signPME{
+  float: left;
+  width: 32%;
+}
+
+.signORD{
+  float:left;
+  text-align: center;
+  width: 30%;
+}
+.signCDMP{
+  float: right;
+  margin-right: 20px;
+}
