@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-12 md:col-3">
-                    <span class="h5texte">Numero demande</span>
+                    <span class="h5texte">Numéro demande</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
@@ -31,17 +31,17 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext"*ngIf="demandeCession.pme.ATD">Existance d'un avis à tiers detenteur</label>
-                            <label for="inputtext"*ngIf="!demandeCession.pme.ATD">Aucun avis à tiers detenteur</label>
+                            <label for="inputtext"*ngIf="demandeCession.pme.atd">Existance d'un avis à tiers detenteur</label>
+                            <label for="inputtext"*ngIf="!demandeCession.pme.atd">Aucun avis à tiers detenteur</label>
                         </span>
                     </div>
                 </div>
                 <div class="col-12 md:col-3">
-                    <span class="h5texte">Denomination</span>
+                    <span class="h5texte">Dénomination</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext">{{demandeCession.pme.denomination}}</label>
+                            <label for="inputtext">{{demandeCession.pme.raisonSocial}}</label>
                         </span>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input type="text" id="inputtext" pInputText [disabled]="true" />
-                            <label for="inputtext" *ngIf="demandeCession.pme.interdiction">Existance d'une interdiction Bancaire</label>
-                            <label for="inputtext" *ngIf="!demandeCession.pme.interdiction">Aucune interdiction Bancaire</label>
+                            <label for="inputtext" *ngIf="demandeCession.pme.interdictionBancaire">Existance d'une interdiction Bancaire</label>
+                            <label for="inputtext" *ngIf="!demandeCession.pme.interdictionBancaire">Aucune interdiction Bancaire</label>
                         </span>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         </td>
                         <td style="width:30%;">
                             <span class="p-column-title">Date de Soumission</span>
-                            {{document.dateSauvegarde}}
+                            {{document.dateSauvegarde | date:'dd/MM/yyyy'}}
                         </td>
 
                         <td>
