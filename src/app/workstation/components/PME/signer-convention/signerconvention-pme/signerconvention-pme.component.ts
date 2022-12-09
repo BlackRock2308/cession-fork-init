@@ -8,6 +8,7 @@ import { Convention } from 'src/app/workstation/model/demande';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { ConventionService } from 'src/app/workstation/service/convention/convention.service';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import Swal from 'sweetalert2';
@@ -30,7 +31,7 @@ export class SignerconventionPMEComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public ref: DynamicDialogRef,
+    public ref: DynamicDialogRef, private conventionService:ConventionService,
     private demandeCessionService : DemandesCessionService,
     private tokenStorage : TokenStorageService,
     private observationService:ObservationService
@@ -102,12 +103,16 @@ export class SignerconventionPMEComponent implements OnInit {
     this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
     ((response: any) => {
       if(response.body){
-      console.log(response)
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}            
       this.observation.demandeid =  this.demande.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+      this.observationService.postObservation(this.observation).subscribe((data:any) => {
+        if(data.body){
+          this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
+            console.log(res))
+        }
+      })
     
     
     

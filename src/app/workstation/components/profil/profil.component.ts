@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Profile } from 'src/app/workstation/model/profil';
+import { PME } from '../../model/pme';
+import { DemandesAdhesionService } from '../../service/demandes_adhesion/demandes-adhesion.service';
 import { CodeComponent } from './code/code.component';
 
 @Component({
@@ -19,15 +23,28 @@ export class ProfilComponent implements OnInit {
   nom: string;
   prenom: string;
   email: string;
+  adressePME : string;
+  telephonePME : string;
   poste: string;
+  informationsForm: any;
   code: string;
   updateCodePin:boolean
+  demande: any;
+  pme: PME;
 
   constructor(public dialogService: DialogService,
     private tokenStorage:TokenStorageService,
+    private formBuilder: FormBuilder,
+
+    private demandeAdhesionService: DemandesAdhesionService,
     private breadcrumbService: BreadcrumbService,
     ) { 
       
+      this.informationsForm = this.formBuilder.group({
+        telephonePME: [''],
+        adressePME: [''],
+        code : ['']
+      });
       if(localStorage.getItem('profil')=='DRC'){
         this.breadcrumbService.setHome({ label: 'Dashboard' , icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
       }
@@ -51,8 +68,16 @@ export class ProfilComponent implements OnInit {
       }
 
     }
+    
 
   ngOnInit() {
+
+    this.demandeAdhesionService.getDemandeObs().subscribe(data => {
+      this.demande = data;
+      this.pme = this.demande.pme
+      console.log(this.pme)
+
+    })
 
     this.updateCodePin=this.tokenStorage.getUser().updateCodePin
     this.nom = this.tokenStorage.getUser().nom;
@@ -60,6 +85,8 @@ export class ProfilComponent implements OnInit {
     this.poste = localStorage.getItem('profil');
     this.email = this.tokenStorage.getUser().email;
     this.code = this.tokenStorage.getUser().codePin;
+    this.telephonePME = this.tokenStorage.getPME().telephonePME;
+    this.adressePME = this.tokenStorage.getPME().adressePME;
 
   }
   modifierCode(){

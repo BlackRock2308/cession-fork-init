@@ -20,6 +20,7 @@ import { Observation } from "src/app/workstation/model/observation";
 import { TokenStorageService } from "src/app/auth/token-storage.service";
 import { StatutEnum } from "src/app/workstation/model/statut-enum";
 import { ObservationService } from "src/app/workstation/service/observation/observation.service";
+import { SearchCountryField, CountryISO } from "ngx-intl-tel-input";
 
 @Component({
   selector: "app-adhesion",
@@ -27,10 +28,16 @@ import { ObservationService } from "src/app/workstation/service/observation/obse
   styleUrls: ["./adhesion.component.scss"],
 })
 export class AdhesionComponent implements OnInit {
+  validPattern = "^[a-zA-Z0-9]$"
+  dateTime = new Date();
   selectedNINEAFiles: File | null = null;
   selectedRCCMFiles: File | null = null;
   currentFile?: File;
   progress = 0;
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   message = "";
   fileInfos?: Observable<any>;
   form!: FormGroup;
@@ -38,6 +45,7 @@ export class AdhesionComponent implements OnInit {
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
+  minDate:any;
   observation: Observation = {};
   constructor(
     private formBuilder: FormBuilder,
@@ -58,7 +66,43 @@ export class AdhesionComponent implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       nineaFile: ["", Validators.required],
       rccmFile: ["", [Validators.required]],
+      raisonSocial: ['', [Validators.required]],
+      formeJuridique: ['', [Validators.required]],
+      centreFiscal: ['', [Validators.required]],
+      adressePME: ['', [Validators.required]],
+      enseigne: ['', [Validators.required]],
+      localite: ['', [Validators.required]],
+      controle: ['', [Validators.required]],
+      activitePrincipale: ['', [Validators.required]],
+      registre: ['', [Validators.required]],
+      prenomRepresentant: ['', [Validators.required]],
+      nomRepresentant: ['', [Validators.required]],
+      dateCreation: ['', [Validators.required, this.matchValues()]],
+      effectifPermanent: ['', [Validators.required]],
+      nombreEtablissementSecondaires: ['', [Validators.required]],
+      chiffresDaffaires: ['', [Validators.required]],
+      cniRepresentant: ['', [Validators.required], Validators.pattern(this.validPattern)],
+      dateImmatriculation: ['', [Validators.required, this.matchValues()]],
+      telephonePME: ['', [Validators.required]],
+      capitalsocial: ['', [Validators.required]],
+      autorisationMinisterielle: ['', [Validators.required]]
     });
+    
+  }
+
+  setMinDate(){
+    this.minDate=((new Date(this.form.value['dateCreation'])).getDate()+1).toString()
+    console.log(this.minDate)
+  }
+
+  matchValues(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value <= new Date()
+        ? null
+        : { isMatching: false };
+    };
   }
 
   //sélectionner le fichier du ninea
@@ -104,6 +148,8 @@ export class AdhesionComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    let telephonePME = this.form.get('telephonePME').value.internationalNumber;
+    this.form.get('telephonePME').setValue(telephonePME);
     this.enregistrerPme();
   }
 
@@ -117,7 +163,26 @@ export class AdhesionComponent implements OnInit {
       rccm: this.pme.rccm,
       email: this.pme.email,
       nineaFile: this.selectedNINEAFiles,
-      rccmFile: this.selectedRCCMFiles,
+      raisonSocial: this.pme.raisonSocial,
+      formeJuridique: this.pme.formejuridique,
+      centreFiscal: this.pme.centrefiscal,
+      adressePME: this.pme.adressePME,
+      enseigne: this.pme.enseigne,
+      localite: this.pme.localite,
+      controle: this.pme.controle,
+      activitePrincipale: this.pme.activiteprincipale,
+      registre: this.pme.registre,
+      prenomRepresentant: this.pme.prenomRepresentant,
+      nomRepresentant: this.pme.nomRepresentant,
+      dateCreation: this.pme.date_creation,
+      effectifPermanent: this.pme.effectif,
+      nombreEtablissementSecondaires: this.pme.nombreEtablissementSecondaires,
+      chiffresDaffaires: this.pme.chiffre,
+      cniRepresentant: this.pme.cniRepresentant,
+      dateImmatriculation: this.pme.dateImmatriculation,
+      telephonePME:this.pme.telephonePME,
+      capitalsocial:this.pme.capitalSocial,
+      autorisationMinisterielle: this.pme.autorisationMinisterielle,
       date_soumission: new Date(),
     };
     this.pmeService.postPME(body).subscribe((response: PME) => {

@@ -110,7 +110,12 @@ export class ConventionSignerComponent implements OnInit {
           this.observation.statut = {}
           this.observation.demandeid = idDemande;
           this.observation.statut.libelle = StatutEnum.conventionSigneeParDG;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          this.observationService.postObservation(this.observation).subscribe((data:any) =>{
+            if(data.body){
+              this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
+                console.log(res))
+            }
+          })
 
           Swal.fire({
             position: 'center',

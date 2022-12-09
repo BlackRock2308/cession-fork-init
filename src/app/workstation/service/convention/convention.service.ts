@@ -55,5 +55,8 @@ export class ConventionService extends GenericService {
   //   });
   //   return this.http.request(req);
   // }
+  genererConventionSigner(data){
+    return this.add(this.conventionUrl+'/generer-convention_signer', data);
+  }
 
 }
