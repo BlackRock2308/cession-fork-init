@@ -153,18 +153,17 @@ export class DashboardDGComponent implements OnInit {
             );
           }
         });
-    }
+    } 
 
     this.cols = [
       { field: "nomMarche", header: "Nom du marché" },
       { field: "raisonSocial", header: "Raison Sociale" },
-      { field: "date_soumission", header: "Date de demande" },
-      { field: "montant_total", header: "Montant Total" },
-      { field: "date_marche", header: "Date du marché" },
-      { field: "statut_dg", header: "Statut" },
-      { field: "decode", header: "Decote" },
-      { field: "date_cession", header: "Date cession" },
-      { field: "solde_PME", header: "Solde de la PME" },
+      { field: "dateDemandeCession", header: "Date de demande" },
+      { field: "montantCreance", header: "Montant Total" },
+      { field: "dateMarche", header: "Date du marché" },
+      { field: "statut", header: "Statut" },
+      { field: "decote", header: "Decote" },
+      { field: "soldePME", header: "Solde de la PME" },
     ];
 
     //filtre par range date
