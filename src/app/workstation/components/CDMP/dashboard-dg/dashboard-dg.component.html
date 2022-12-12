@@ -111,7 +111,7 @@
                     <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" inputId="range" formDate="dd/mm/yyyy" placeholder="Date de marché"></p-calendar>
                 </th>
                 <th>
-                    <p-columnFilter field="statut_dg" matchMode="equals" [showMenu]="false">
+                    <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
                         <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                             <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)" placeholder="Statuts" [showClear]="true">
                                 <ng-template let-option pTemplate="item">
