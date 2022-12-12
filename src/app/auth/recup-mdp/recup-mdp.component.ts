@@ -17,7 +17,7 @@ export class RecupMdpComponent {
   recupMDP(email) {
     this.authService.recupMDP(email).subscribe(
       data => {
-        this.router.navigate(['login/maj_pwd'])
+        this.router.navigate(['login'])
       }
     )
   }
