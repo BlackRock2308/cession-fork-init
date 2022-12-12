@@ -54,7 +54,7 @@ message:string = "";
     cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
     dateImmatriculation: ['', [Validators.required, this.matchValues()]],
     telephonePME: ['', Validators.required],
-    capitalsocial: ['', Validators.required],
+    capitalSocial: ['', Validators.required],
     autorisationMinisterielle: ['', Validators.required]
   }); }
 

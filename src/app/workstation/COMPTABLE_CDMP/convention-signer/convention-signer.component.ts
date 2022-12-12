@@ -23,6 +23,7 @@ export class ConventionSignerComponent implements OnInit {
   demande: any;
   convention: Convention;
   codePIN: string;
+  decote : number;
   observation: Observation = {};
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +36,7 @@ export class ConventionSignerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.form = this.formBuilder.group({
       convention: ['', Validators.required],
       codePIN: ['', Validators.required],
