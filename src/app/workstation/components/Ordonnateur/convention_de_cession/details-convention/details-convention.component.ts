@@ -63,34 +63,34 @@ export class DetailsConventionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demandeCession = data
+    // this.demandeCessionService.getDemandeObs().subscribe(data => {
+    //   this.demandeCession = data
       
-      console.log(this.demandeCession)
-      this.conventions = this.demandeCession.conventions;
-      //console.log('afficher1' +JSON.stringify( this.conventions))
-      this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
-      this.documents=this.documents.concat(this.demandeCession.pme.documents)
-      this.documents=this.documents.concat(this.demandeCession.documents)
+    //   console.log(this.demandeCession)
+    //   this.conventions = this.demandeCession.conventions;
+    //   //console.log('afficher1' +JSON.stringify( this.conventions))
+    //   this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
+    //   this.documents=this.documents.concat(this.demandeCession.pme.documents)
+    //   this.documents=this.documents.concat(this.demandeCession.documents)
 
-      this.conventions.forEach(el => {
-        this.docConventions = el.documents
-        this.documents=this.documents.concat(el.documents)
-      })
-      console.log('afficher' +JSON.stringify( this.docConventions))
-      //this.documents = this.docConventions;
-      this.conventions = this.demandeCession.convention;
+    //   this.conventions.forEach(el => {
+    //     this.docConventions = el.documents
+    //     this.documents=this.documents.concat(el.documents)
+    //   })
+    //   console.log('afficher' +JSON.stringify( this.docConventions))
+    //   //this.documents = this.docConventions;
+    //   this.conventions = this.demandeCession.convention;
 
-      //this.conventions.forEach(el => this.docConventions = el.documents )
+    //   //this.conventions.forEach(el => this.docConventions = el.documents )
 
-      this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
-        data => {
-            this.observationLibelle=data.libelle
-            console.log(this.observationLibelle)
-        })
+    //   this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+    //     data => {
+    //         this.observationLibelle=data.libelle
+    //         console.log(this.observationLibelle)
+    //     })
 
 
-    });
+    // });
     console.log(this.documents)
 
 

@@ -221,12 +221,11 @@ genereConvention(convention: Convention) {
     }
   }
 
-  ChargerConvention(convention: Convention, demande: any) {
-    this.demandeCessionService.setDemandeObs(demande)
+  ChargerConvention(demande: any) {
 
     const ref = this.dialogService.open(ConventionEnregistreeComponent, {
       data: {
-        convention: convention
+        demande: demande
       },
       header: "Chargement de la convention enregistrée",
       width: '40%',
@@ -238,12 +237,11 @@ genereConvention(convention: Convention) {
     this.initGetDemandes(this.paramStatuts);
   }
 
-  visualiserDocument(document: Documents, demande: any) {
-    this.demandeCessionService.setDemandeObs(demande)
-
+  visualiserDocument(demande: any) {    
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
-        document: document
+        demande: demande,
+        document: demande.conventions[0].documents[demande.conventions[0].documents.length-1]
       },
       header: "Convention de Cession",
       width: '70%',
@@ -282,12 +280,9 @@ genereConvention(convention: Convention) {
   }
 
   signerConvention(demande: any) {
-    this.demandeCessionService.setDemandeObs(demande)
-    console.log(demande)
-
     const ref = this.dialogService.open(ConventionSignerComponent, {
       data: {
-        convention: this.convention
+        demande: demande
       },
       header: "Signer la convention",
       width: '80%',

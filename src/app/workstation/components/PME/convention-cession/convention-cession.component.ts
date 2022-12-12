@@ -65,12 +65,10 @@ export class ConventionCessionPMEComponent implements OnInit {
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
-    private pmeService: PmeService,
     private tokenStorage: TokenStorageService,
     private breadcrumbService: BreadcrumbService,
     private filterService: FilterService,
     private demandesCessionService: DemandesCessionService,
-    private observationService: ObservationService
 
 
   ) {
@@ -123,26 +121,20 @@ export class ConventionCessionPMEComponent implements OnInit {
   }
 
   getDemandes() {
-
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "NON_RISQUE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_ACCEPTEE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_REJETEE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
 
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_CORRIGEE").subscribe(data => {
@@ -152,19 +144,15 @@ export class ConventionCessionPMEComponent implements OnInit {
 
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_TRANSMISE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_REJETEE_PAR_PME").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_REJETEE_PAR_DG").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_GENEREE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
   }
 
@@ -183,13 +171,11 @@ export class ConventionCessionPMEComponent implements OnInit {
     targetDiv.style.display = "flex";
 
   }
-  visualiserDocument(document: Documents, demande: any) {
-    this.demandesCessionService.setDemandeObs(demande)
-    console.log('ccccc ' + JSON.stringify(document))
-
+  visualiserDocument(demande: any) {
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
-        document: document
+        demande: demande,
+        document: demande.conventions[0].documents[demande.conventions[0].documents.length-1]
       },
       header: "Convention de Cession",
       width: '70%',
@@ -198,22 +184,6 @@ export class ConventionCessionPMEComponent implements OnInit {
     });
   }
 
-  signerConvention(demande: any) {
-    this.demandesCessionService.setDemandeObs(demande)
-    console.log(demande)
-
-    const ref = this.dialogService.open(SignerconventionPMEComponent, {
-      data: {
-        convention: this.convention
-      },
-      header: "Signer la convention",
-      width: '50%',
-      height: 'calc(50% - 100px)',
-      baseZIndex: 50
-    });
-    this.dismiss();
-    this.getDemandes();
-  }
 
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;

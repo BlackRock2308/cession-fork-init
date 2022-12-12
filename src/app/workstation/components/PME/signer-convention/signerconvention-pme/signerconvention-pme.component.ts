@@ -32,9 +32,9 @@ export class SignerconventionPMEComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,private config: DynamicDialogConfig,
     public ref: DynamicDialogRef, private conventionService:ConventionService,
-    private demandeCessionService : DemandesCessionService,
+    public demandeCessionService : DemandesCessionService,
     private tokenStorage : TokenStorageService,
-    private observationService:ObservationService
+    public observationService:ObservationService
 
   ) { }
 
@@ -43,8 +43,11 @@ export class SignerconventionPMEComponent implements OnInit {
     this.form = this.formBuilder.group({
       convention: ['', Validators.required],
       codePIN : ['' , Validators.required]
-    });    
-    this.convention = this.config.data.convention;
+    });  
+    this.demande = this.config.data.demande; 
+    console.log(this.demande);
+     
+    this.convention = this.demande.conventions[0];
   }
 
   get f(){
@@ -56,7 +59,6 @@ export class SignerconventionPMEComponent implements OnInit {
 
   onSubmit() {
     this.ref.close();
-
     Swal.fire({
       title: 'Voulez-vous continuer la signature',
       showDenyButton: true,
@@ -70,9 +72,7 @@ export class SignerconventionPMEComponent implements OnInit {
         denyButton: 'order-1 right-gap',
         confirmButton: 'order-2',
       }
-      
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.signerConventionPME();
       } else if (result.isDenied) {
@@ -83,24 +83,21 @@ export class SignerconventionPMEComponent implements OnInit {
  
   }
 
-  private signerConventionPME() {
+  signerConventionPME() {
 
- 
-    var  idDemande = this.demande.idDemande
-    this.codePIN=this.form.value['codePIN']
-
-    this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
-    ((response: any) => {
-      if(response.body){
+    this.codePIN=this.form.value['codePIN'].
+    this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,this.demande.idDemande)
+    .subscribe((response: any) => {      
+      if(response){
       this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
       this.observation.statut={}            
       this.observation.demandeid =  this.demande.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
-      this.observationService.postObservation(this.observation).subscribe((data:any) => {
-        if(data.body){
+      this.observationService.postObservation(this.observation).subscribe((data:any) => {        
+        //if(data.body){
           this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
             console.log(res))
-        }
+        //}
       })
     
     

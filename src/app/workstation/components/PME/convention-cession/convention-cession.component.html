@@ -99,12 +99,12 @@
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
                                    
-                                    (click)="visualiserDocument(demande.conventions[0].documents[0] ,demande)"></button>
+                                    (click)="visualiserDocument(demande)"></button>
                                      <button pButton pRipple icon="pi pi-key"
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
                                     *ngIf="(demande.statut.libelle === 'CONVENTION_GENEREE')"
-                                    (click)="visualiserDocument(demande.conventions[0].documents[0] ,demande)"></button> 
+                                    (click)="visualiserDocument(demande)"></button> 
                             </div>
                         </td>
                     </tr>

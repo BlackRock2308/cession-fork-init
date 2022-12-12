@@ -41,15 +41,10 @@ export class ConventionSignerComponent implements OnInit {
       decote: ['']
 
     });
-    this.convention = this.config.data.convention;
+    this.demande = this.config.data.demande;
+    this.convention = this.demande.conventions[0];
 
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-      this.convention = this.demande.conventions[0]
-
-      console.log(this.convention.valeurDecote)
-
-    })
+  
   }
 
   dismiss() {
@@ -90,32 +85,29 @@ export class ConventionSignerComponent implements OnInit {
     var idDemande = this.demande.idDemande
     this.codePIN = this.form.value['codePIN']
 
-    this.demandeCessionService.signerConventionDG(this.codePIN, this.tokenStorage.getUser().idUtilisateur, idDemande).subscribe
+    this.demandeCessionService.signerConventionDG(this.codePIN, this.tokenStorage.getUser().idUtilisateur, idDemande)
+    .subscribe
       ((response: any) => {
-        console.log(response.body)
-        if (response.body) {
-
+        if (response) {
           let body = {
             valeurDecote: this.form.value['decote'],
           }
-
           if (this.form.value['decote'] !== null) {
             this.conventionService.updateDecote(this.convention.idConvention, this.form.value['decote'])
-              .subscribe((response: any) => {
-                console.log(response)
+              .subscribe((res: any) => {
+                console.log(res)
               }
               )
           }
-
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut = {}
-          this.observation.demandeid = idDemande;
+          this.observation.demandeid = this.demande.idDemande;
           this.observation.statut.libelle = StatutEnum.conventionSigneeParDG;
           this.observationService.postObservation(this.observation).subscribe((data:any) =>{
-            if(data.body){
+           // if(data.body){
               this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
                 console.log(res))
-            }
+           // }
           })
 
           Swal.fire({
