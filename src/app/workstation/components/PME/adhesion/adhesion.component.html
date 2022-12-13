@@ -207,12 +207,12 @@
                                             </span>
                                             <span
                                                 *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')"
-                                                style="color: red; font-size: x-small">Veuillez renseigner 13
+                                                style="color: red; ">Veuillez renseigner 13
                                                 caratères</span>
 
                                         </div>
                                         <span *ngIf="submit && f['cniRepresentant'].hasError('required')"
-                                            style="color: red; font-size: x-small">{{message}}</span>
+                                            style="color: red; ">{{message}}</span>
 
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
@@ -226,9 +226,9 @@
                                                 formControlName="telephonePME" >
                                             </ngx-intl-tel-input>
                                             <span *ngIf="submit && f['telephonePME'].invalid && !f['telephonePME'].hasError('required')"
-                                            style="color: red; font-size: x-small">Renseigner un bon numéro</span>
+                                            style="color: red; ">Renseigner un bon numéro</span>
                                         <span *ngIf="submit && f['telephonePME'].hasError('required')"
-                                            style="color: red; font-size: x-small">{{message}}</span>
+                                            style="color: red; ">{{message}}</span>
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Centre
@@ -302,7 +302,7 @@
                                                 </span>
                                         </div>
                                     </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
+                                    <!-- <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">Registre de commerce<span
                                                 class="required"></span></label>
@@ -312,7 +312,7 @@
                                                 formControlName="registre" style="width: 100%;" />
                                                 </span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">Date d'immatriculation<span
@@ -336,13 +336,13 @@
                                             <p-inputNumber formControlName="chiffresDaffaires" [(ngModel)]="chiffresDaffaires" placeholder="{{chiffresDaffaires}}"  mode="currency" currency="CFA">
                                             </p-inputNumber>
                                     </div>
-                                    <div class="field grid col-12 md:col-4 mr-2">
+                                    <!-- <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Chiffre
                                             d'affaires<span class="required"></span></label>
                                         <p-inputNumber formControlName="chiffresDaffaires" mode="currency"
                                             currency="CFA">
                                         </p-inputNumber>
-                                    </div>
+                                    </div> -->
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Effectif
                                             Permanent<span class="required"></span></label>

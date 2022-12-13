@@ -105,7 +105,7 @@ export class AdhesionComponent implements OnInit {
       localite: [''],
       controle: [''],
       activitePrincipale: [''],
-      registre: [''],
+     // registre: [''],
       prenomRepresentant: ['', [Validators.required]],
       nomRepresentant: ['', [Validators.required]],
       dateCreation: ['', [Validators.required, this.matchValues()]],
