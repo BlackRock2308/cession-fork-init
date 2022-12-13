@@ -106,22 +106,22 @@ export class AdhesionComponent implements OnInit {
       formeJuridique: ['', [Validators.required]],
       centreFiscal: ['', [Validators.required]],
       adressePME: ['', [Validators.required]],
-      enseigne: ['', [Validators.required]],
-      localite: ['', [Validators.required]],
-      controle: ['', [Validators.required]],
-      activitePrincipale: ['', [Validators.required]],
-      registre: ['', [Validators.required]],
+      enseigne: [''],
+      localite: [''],
+      controle: [''],
+      activitePrincipale: [''],
+      registre: [''],
       prenomRepresentant: ['', [Validators.required]],
       nomRepresentant: ['', [Validators.required]],
       dateCreation: ['', [Validators.required, this.matchValues()]],
-      effectifPermanent: ['', [Validators.required]],
-      nombreEtablissementSecondaires: ['', [Validators.required]],
-      chiffresDaffaires: ['', [Validators.required]],
-      cniRepresentant: ['', [Validators.required], Validators.pattern(this.validPattern)],
+      effectifPermanent: [''],
+      nombreEtablissementSecondaires: [''],
+      chiffresDaffaires: [''],
+      cniRepresentant: ['', [Validators.required], this.matchValuesCNI()],
       dateImmatriculation: ['', [Validators.required, this.matchValues()]],
       telephonePME: ['', [Validators.required]],
-      capitalSocial: ['', [Validators.required]],
-      autorisationMinisterielle: ['', [Validators.required]]
+      capitalSocial: [''],
+      autorisationMinisterielle: ['']
     });
     
   }
@@ -131,6 +131,15 @@ export class AdhesionComponent implements OnInit {
     console.log(this.minDate)
   }
 
+  matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value && !!control.value &&
+        control.value.length === 13
+        ? null
+        : { isMatching: false };
+    };
+  }
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&

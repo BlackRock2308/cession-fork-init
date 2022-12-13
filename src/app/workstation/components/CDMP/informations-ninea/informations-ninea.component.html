@@ -50,10 +50,11 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Forme Juridique<span class="required">*</span></label>
                     <div class="p-inputgroup">
-                                <span class="p-float-label">
+                                 <span class="p-float-label">
                         <input pInputText id="name3" type="text" [(ngModel)]="pme.formeJuridique" formControlName="formeJuridique" placeholder="{{pme.formeJuridique}}"
-                            style="width: 100%;" />
-                        </span>
+                            style="width: 100%;" /> 
+                         </span>
+                        
                        </div>
                        <span *ngIf="submit && f['formeJuridique'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
