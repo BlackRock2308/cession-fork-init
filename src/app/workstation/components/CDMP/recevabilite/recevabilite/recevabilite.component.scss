@@ -50,6 +50,56 @@
         background: #FEEDAF;
         color: #8A5340;
     }
+    &.status-convention_rejetee {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_corrigee {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-convention_acceptee{
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-risquée {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_rejetee_par_pme {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_rejetee_par_dg {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_signee_par_pme {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-convention_signee_par_dg {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-convention_soumise {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+    &.status-convention_generee {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+    &.status-convention_signee_par_pme {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-substitution-effectuée {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
     
 
 }
