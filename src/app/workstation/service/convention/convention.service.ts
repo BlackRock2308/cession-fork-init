@@ -39,7 +39,7 @@ export class ConventionService extends GenericService {
   }
 
   updateDecote(idConvention: number, decote: number) {
-    return this.update(`${this.conventionUrl}/${idConvention}`,decote);
+    return this.update(`${this.conventionUrl}/valeurCreance/${idConvention}`,decote);
   }
 
   corrigerConvention(data){
