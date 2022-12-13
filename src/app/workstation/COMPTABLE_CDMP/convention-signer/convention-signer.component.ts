@@ -83,8 +83,8 @@ export class ConventionSignerComponent implements OnInit {
         });        
       this.conventionService.signerConventionDG( this.codePIN, this.idUser, this.convention.idConvention
         )
-        .subscribe((response: any) => {
-          if (response) {
+        .subscribe((response) => {
+          if (response==true) {
             Swal.fire({
               position: "center",
               icon: "success",
