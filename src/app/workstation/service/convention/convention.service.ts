@@ -31,6 +31,7 @@ export class ConventionService extends GenericService {
     return this.add(this.conventionUrl, body);
   }
 
+
   updateConvention(data , id : number) {
 
     let body = JSON.stringify(data);
@@ -41,8 +42,8 @@ export class ConventionService extends GenericService {
     return this.http.patch<any>(`${this.conventionUrl}/${idConvention}/${decote}`,{});
   }
 
-  corrigerConvention(data,id:number):Observable<any>{
-    return this.update(`${this.conventionUrl}/correction/${id}`,data)
+  corrigerConvention(data){
+    return this.update(this.conventionUrl+'/correction',data)
   }
 
   transmettreConvention(data,id:number):Observable<any>{
@@ -55,8 +56,23 @@ export class ConventionService extends GenericService {
   //   });
   //   return this.http.request(req);
   // }
-  genererConventionSigner(data){
-    return this.add(this.conventionUrl+'/generer-convention_signer', data);
+  signerConventionPME(codePin : string , idUtilisateur : any , idConvention : any){
+    const req = new HttpRequest('POST', `${this.conventionUrl}/${idConvention}/signer-convention-pme/${idUtilisateur}`,codePin,{
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
   }
+  
+  signerConventionDG(codePin : string , idUtilisateur : any , idConvention : any){
+    const req = new HttpRequest('POST', `${this.conventionUrl}/${idConvention}/signer-convention-dg/${idUtilisateur}`,codePin,{
+      reportProgress: true,
+      responseType: 'json'
+    });
+    console.log(codePin)
+  
+    return this.http.request(req);
+  }
+  
 
 }

@@ -2,14 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
-import { Convention } from 'src/app/workstation/model/demande';
-import { Observation } from 'src/app/workstation/model/observation';
-import { PME } from 'src/app/workstation/model/pme';
-import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { ConventionService } from 'src/app/workstation/service/convention/convention.service';
-import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import Swal from 'sweetalert2';
 
@@ -21,41 +16,25 @@ import Swal from 'sweetalert2';
 export class SignerconventionPMEComponent implements OnInit {
 
   form!: FormGroup;
-  convention: Convention;
+  convention: any;
   codePIN: string;
-  demande: any;
-  pme : PME;
-
-  observation:Observation={};
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
+    private router: Router,private config: DynamicDialogConfig,
     public ref: DynamicDialogRef, private conventionService:ConventionService,
-    private demandeCessionService : DemandesCessionService,
     private tokenStorage : TokenStorageService,
-    private observationService:ObservationService
+    public observationService:ObservationService
 
   ) { }
 
   ngOnInit(): void {
 
-  //   this.demandesCessionService.getDemandesCessionByPme(this.tokenStorage.getPME().idPME).subscribe(data => {
-  //     this.demandes = data
-  //     console.log(this.demandes,data)
-  // });
     this.form = this.formBuilder.group({
       convention: ['', Validators.required],
       codePIN : ['' , Validators.required]
-    });
-
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
-     
-
-      console.log(this.demande,data)
-
-    })
+    });  
+    this.convention = this.config.data.convention; 
   }
 
   get f(){
@@ -67,7 +46,6 @@ export class SignerconventionPMEComponent implements OnInit {
 
   onSubmit() {
     this.ref.close();
-
     Swal.fire({
       title: 'Voulez-vous continuer la signature',
       showDenyButton: true,
@@ -81,11 +59,9 @@ export class SignerconventionPMEComponent implements OnInit {
         denyButton: 'order-1 right-gap',
         confirmButton: 'order-2',
       }
-      
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.signerConventionPME();
+        this.signerConvention();
       } else if (result.isDenied) {
         Swal.fire('Signature annulée', '', 'info')
       }
@@ -94,28 +70,11 @@ export class SignerconventionPMEComponent implements OnInit {
  
   }
 
-  private signerConventionPME() {
-
- 
-    var  idDemande = this.demande.idDemande
-    this.codePIN=this.form.value['codePIN']
-
-    this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,idDemande).subscribe
-    ((response: any) => {
-      if(response.body){
-      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-      this.observation.statut={}            
-      this.observation.demandeid =  this.demande.idDemande;
-      this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
-      this.observationService.postObservation(this.observation).subscribe((data:any) => {
-        if(data.body){
-          this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
-            console.log(res))
-        }
-      })
-    
-    
-    
+  signerConvention() {
+    this.codePIN=this.form.value['codePIN'];
+    this.conventionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,this.convention.idConvention)
+    .subscribe((response: any) => {      
+      if(response){
       Swal.fire({
         position: 'center',
         icon: 'success',
