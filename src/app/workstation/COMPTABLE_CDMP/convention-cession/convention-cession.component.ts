@@ -212,8 +212,6 @@ export class ConventionCessionComponent implements OnInit {
     });
   }
 
-genereConvention(convention: Convention) {
-}
 
   minusZoom() {
     if (this.zoom > 0.8) {
@@ -221,7 +219,7 @@ genereConvention(convention: Convention) {
     }
   }
 
-  ChargerConvention(demande: any) {
+  chargerConvention(demande: any) {
 
     const ref = this.dialogService.open(ConventionEnregistreeComponent, {
       data: {
@@ -250,47 +248,11 @@ genereConvention(convention: Convention) {
     });
   }
 
-  EditerConvention(convention: Convention) {
-    // this.demandeCessionService.setDemandeObs(demande)
-
-    const ref = this.dialogService.open(EditerConventionComponent, {
-      data: {
-        convention: convention
-      },
-      header: "Editer la convention",
-      width: '40%',
-      height: 'calc(50% - 100px)',
-      baseZIndex: 50
-    });
-  }
-  EditConvention(convention: Convention) {
-    const ref = this.dialogService.open(EditerConventionComponent, {
-      data: {
-        convention: convention
-      },
-      header: "Editer la convention",
-      width: '40%',
-      height: 'calc(50% - 100px)',
-      baseZIndex: 50
-    });
-  }
 
   dismiss() {
     this.ref.close();
   }
 
-  signerConvention(demande: any) {
-    const ref = this.dialogService.open(ConventionSignerComponent, {
-      data: {
-        convention: demande.conventions[0]
-      },
-      header: "Signer la convention",
-      width: '80%',
-      height: 'calc(100% - 300px)',
-      baseZIndex: 90
-    });
-    this.dismiss();
-  }
 
 
 }

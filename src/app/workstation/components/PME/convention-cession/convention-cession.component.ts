@@ -244,40 +244,7 @@ export class ConventionCessionPMEComponent implements OnInit {
     }
   }
 
-  ChargerConvention(convention: Convention) {
-    const ref = this.dialogService.open(ConventionEnregistreeComponent, {
-      data: {
-        convention: convention
-      },
-      header: "Charger la convention enregistree",
-      width: '40%',
-      height: 'calc(40% - 100px)',
-      baseZIndex: 50
-    });
-  }
 
-  EditerConvention(convention: Convention) {
-    const ref = this.dialogService.open(EditerConventionComponent, {
-      data: {
-        convention: convention
-      },
-      header: "",
-      width: '55%',
-      height: 'calc(65% - 250px)',
-      baseZIndex: 50
-    });
-  }
-  EditConvention(convention: Convention) {
-    const ref = this.dialogService.open(EditerConventionComponent, {
-      data: {
-        convention: convention
-      },
-      header: "",
-      width: '60%',
-      height: 'calc(98% - 250px)',
-      baseZIndex: 50
-    });
-  }
 
   //filtre par intervalle de date
   public calenderFilter() {
