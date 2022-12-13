@@ -111,28 +111,35 @@
                                             <input pInputText id="name3" type="text" placeholder="Nom de l'entreprise"
                                                 formControlName="raisonSocial" style="width: 100%;" />
                                                 </span>
+
                                         </div>
+                                        <span *ngIf="submit && f['raisonSocial'].errors" style="color: red;">{{message}}</span>
+
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;"> Prénom représentant <span
-                                                class="required">*</span></label>
+                                                class="required"></span></label>
                                         <div class="p-inputgroup">
                                                     <span class="p-float-label">
                                             <input pInputText id="name3" type="text" placeholder="Prénom "
                                                 formControlName="prenomRepresentant" style="width: 100%;" />
                                                 </span>
                                         </div>
+                                        <span *ngIf="submit && f['prenomRepresentant'].errors" style="color: red;">{{message}}</span>
+
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">Nom représentant <span
-                                                class="required">*</span></label>
+                                                class="required"></span></label>
                                         <div class="p-inputgroup">
                                                     <span class="p-float-label">
                                             <input pInputText id="name3" type="text" placeholder="Nom"
                                                 formControlName="nomRepresentant" style="width: 100%;" />
                                                 </span>
                                         </div>
+                                        <span *ngIf="submit && f['nomRepresentant'].errors" style="color: red;">{{message}}</span>
+
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
@@ -166,6 +173,8 @@
                                                         </div>
                                                     </ng-template>
                                                 </p-dropdown>
+                                                <span *ngIf="submit && f['formeJuridique'].errors" style="color: red;">{{message}}</span>
+
                                         </div>
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
@@ -177,7 +186,11 @@
                                             <input pInputText id="name3" type="text" placeholder="00000000000"
                                                 formControlName="cniRepresentant" style="width: 100%;" />
                                                 </span>
+                                                <span *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')" style="color: red; font-size: x-small">Veuillez renseigner 13 caratères</span>
+                        
                                         </div>
+                                        <span *ngIf="submit && f['cniRepresentant'].hasError('required')" style="color: red; font-size: x-small">{{message}}</span>
+
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
@@ -210,8 +223,8 @@
                                                 class="required"></span></label>
                                             <p-calendar inputId="basic" formControlName="dateCreation" [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
                                             </p-calendar>
-                                           <span *ngIf="submit && f['dateCreation'].errors! && !f['dateCreation'].hasError('required')"
-                                           style="color: red;">Date supérieure à la date du jour</span>
+                                            <span *ngIf="submit && f['dateCreation'].errors" style="color: red;">{{message}}</span>
+
                                         </div>
                                    
                                     <div  class="field grid col-12 md:col-4 mr-2">

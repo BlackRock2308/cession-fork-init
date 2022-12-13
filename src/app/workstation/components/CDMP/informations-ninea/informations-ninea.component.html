@@ -104,8 +104,7 @@
                             class="required">*</span></label>
                         <p-calendar inputId="basic" [maxDate]="dateTime" [(ngModel)]="pme.dateImmatriculation" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateImmatriculation | date:'dd/MM/yyyy'}}">
                        </p-calendar >
-                       <span *ngIf="submit && f['dateImmatriculation'].errors! && !f['dateImmatriculation'].hasError('required')"
-                        style="color: red; font-size: x-small">Date supérieure à la date du jour</span>
+                      
                         <span *ngIf="submit && f['dateImmatriculation'].hasError('required')"
                          style="color: red; font-size: x-small">{{message}}</span>
                 </div>
@@ -185,8 +184,7 @@
                         <p-calendar inputId="basic" formControlName="dateCreation"  [(ngModel)]="pme.dateCreation" [maxDate]="dateTime"
                          [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateCreation | date:'dd/MM/yyyy'}}">
                         </p-calendar>
-                       <span *ngIf="submit && f['dateCreation'].errors! && !f['dateCreation'].hasError('required')"
-                       style="color: red; font-size: x-small">Date supérieure à la date du jour</span>
+                       
                        <span *ngIf="submit && f['dateCreation'].hasError('required')" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
