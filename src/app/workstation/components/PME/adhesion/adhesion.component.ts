@@ -33,6 +33,8 @@ export class AdhesionComponent implements OnInit {
   selectedNINEAFiles: File | null = null;
   selectedRCCMFiles: File | null = null;
   currentFile?: File;
+  formeJuridique: any[];
+
   progress = 0;
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -59,6 +61,40 @@ export class AdhesionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.formeJuridique = [
+      {
+        "type": "SA",
+        "nom": " Société anonyme"
+      },
+      {
+        "type": "SARL",
+        "nom": "Société à Responsabilité Limitée"
+      },
+      {
+        "type": "GIE",
+        "nom": "GIE"
+      },
+      {
+        "type": "SNC",
+        "nom": "Société en Nom Collectif"
+      },
+      {
+        "type": "SCS",
+        "nom": "Société en Commandite Simple"
+      },
+      {
+        "type": "Société civile",
+        "nom": "Société civile"
+      },
+      {
+        "type": "Société Coopérative",
+        "nom": "Société Coopérative"
+      },
+      {
+        "type": "Entreprise Individuelle",
+        "nom": "Entreprise Individuelle"
+      }
+    ]
     this.message = "Champ obligatoire";
     this.form = this.formBuilder.group({
       ninea: ["", [Validators.required, this.matchValuesNINEA()]],
@@ -69,23 +105,23 @@ export class AdhesionComponent implements OnInit {
       raisonSocial: ['', [Validators.required]],
       formeJuridique: ['', [Validators.required]],
       centreFiscal: ['', [Validators.required]],
-      adressePME: ['', [Validators.required]],
-      enseigne: ['', [Validators.required]],
-      localite: ['', [Validators.required]],
-      controle: ['', [Validators.required]],
-      activitePrincipale: ['', [Validators.required]],
-      registre: ['', [Validators.required]],
+      adressePME: [''],
+      enseigne: [''],
+      localite: [''],
+      controle: [''],
+      activitePrincipale: [''],
+      registre: [''],
       prenomRepresentant: ['', [Validators.required]],
       nomRepresentant: ['', [Validators.required]],
       dateCreation: ['', [Validators.required, this.matchValues()]],
-      effectifPermanent: ['', [Validators.required]],
-      nombreEtablissementSecondaires: ['', [Validators.required]],
-      chiffresDaffaires: ['', [Validators.required]],
-      cniRepresentant: ['', [Validators.required], Validators.pattern(this.validPattern)],
+      effectifPermanent: [''],
+      nombreEtablissementSecondaires: [''],
+      chiffresDaffaires: [''],
+      cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
       dateImmatriculation: ['', [Validators.required, this.matchValues()]],
       telephonePME: ['', [Validators.required]],
-      capitalsocial: ['', [Validators.required]],
-      autorisationMinisterielle: ['', [Validators.required]]
+      capitalSocial: [''],
+      autorisationMinisterielle: ['']
     });
     
   }
@@ -95,6 +131,15 @@ export class AdhesionComponent implements OnInit {
     console.log(this.minDate)
   }
 
+  matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value && !!control.value &&
+        control.value.length === 13
+        ? null
+        : { isMatching: false };
+    };
+  }
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
@@ -164,24 +209,24 @@ export class AdhesionComponent implements OnInit {
       email: this.pme.email,
       nineaFile: this.selectedNINEAFiles,
       raisonSocial: this.pme.raisonSocial,
-      formeJuridique: this.pme.formejuridique,
-      centreFiscal: this.pme.centrefiscal,
+      formeJuridique: this.pme.formeJuridique,
+      centreFiscal: this.pme.centreFiscal,
       adressePME: this.pme.adressePME,
       enseigne: this.pme.enseigne,
       localite: this.pme.localite,
       controle: this.pme.controle,
-      activitePrincipale: this.pme.activiteprincipale,
+      activitePrincipale: this.pme.activitePrincipale,
       registre: this.pme.registre,
       prenomRepresentant: this.pme.prenomRepresentant,
       nomRepresentant: this.pme.nomRepresentant,
-      dateCreation: this.pme.date_creation,
+      dateCreation: this.pme.dateCreation,
       effectifPermanent: this.pme.effectif,
       nombreEtablissementSecondaires: this.pme.nombreEtablissementSecondaires,
-      chiffresDaffaires: this.pme.chiffre,
+      chiffresDaffaires: this.pme.chiffresDaffaires,
       cniRepresentant: this.pme.cniRepresentant,
       dateImmatriculation: this.pme.dateImmatriculation,
       telephonePME:this.pme.telephonePME,
-      capitalsocial:this.pme.capitalSocial,
+      capitalSocial:this.pme.capitalSocial,
       autorisationMinisterielle: this.pme.autorisationMinisterielle,
       date_soumission: new Date(),
     };

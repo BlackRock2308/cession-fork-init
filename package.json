@@ -4,7 +4,7 @@
   "license": "PrimeNG Commercial",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" --routes routes.json\"",
+    "start": "concurrently \"ng serve\" --proxy-config proxy.config.json\" --routes routes.json\"",
     "build": "ng build",
     "test": "ng test --watch",
     "test:singlerun": "ng test --code-coverage",

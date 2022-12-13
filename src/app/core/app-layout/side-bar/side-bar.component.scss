@@ -12,6 +12,13 @@ h1 {
 
 }
 
+.active {
+    color: rgba(123, 224, 120, 0.579);
+    font-weight:bolder;
+    border-left: 3px solid rgb(123, 194, 123);
+
+}
+
 * {
     color: #fff;
 }
