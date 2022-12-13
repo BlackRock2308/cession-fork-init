@@ -73,8 +73,8 @@ export class SignerconventionPMEComponent implements OnInit {
   signerConvention() {
     this.codePIN=this.form.value['codePIN'];
     this.conventionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,this.convention.idConvention)
-    .subscribe((response: any) => {      
-      if(response){
+    .subscribe((response) => {      
+      if(response==true){
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -93,9 +93,7 @@ export class SignerconventionPMEComponent implements OnInit {
 
       setTimeout(() => {
         location.reload()
-      },1600);
-  
-      
+      },1600);    
       }
       else{
         Swal.fire({
@@ -103,7 +101,7 @@ export class SignerconventionPMEComponent implements OnInit {
           title: 'Erreur',
           text: 'Le code pin saisi est incorrect!',
           confirmButtonColor: "#A6C733",
-          confirmButtonText: '<i class="pi pi-check"></i>OK',        })
+          confirmButtonText: '<i class="pi pi-check"></i>OK', })
       }
     }
     )
