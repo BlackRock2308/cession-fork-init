@@ -207,7 +207,7 @@ export class VisualiserDocumentComponent implements OnInit {
   signerConventionDG() {
     const ref = this.dialogService.open(ConventionSignerComponent, {
       data: {
-        demande:  this.demande
+        convention: this.demande.conventions[0]
       },
       header: "Signer la convention",
       width: '40%',
@@ -220,7 +220,7 @@ export class VisualiserDocumentComponent implements OnInit {
   signerConventionPME() {
     const ref = this.dialogService.open(SignerconventionPMEComponent, {
       data: {
-        demande:  this.demande
+        convention: this.demande.conventions[0]
       },
       header: "Signer la convention",
       width: '40%',
@@ -243,6 +243,8 @@ export class VisualiserDocumentComponent implements OnInit {
     this.dismiss();
   }
   rejetConventionPME() {
+    console.log("hello");
+    
     this.dismiss();
 
     Swal.fire({

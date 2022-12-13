@@ -282,7 +282,7 @@ genereConvention(convention: Convention) {
   signerConvention(demande: any) {
     const ref = this.dialogService.open(ConventionSignerComponent, {
       data: {
-        demande: demande
+        convention: demande.conventions[0]
       },
       header: "Signer la convention",
       width: '80%',

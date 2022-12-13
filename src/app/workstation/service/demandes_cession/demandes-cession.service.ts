@@ -133,8 +133,6 @@ signerConventionPME(codePin : string , idUtilisateur : any , idDemande : any){
     reportProgress: true,
     responseType: 'json'
   });
-  console.log(codePin)
-
   return this.http.request(req);
 }
 

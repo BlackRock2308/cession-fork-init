@@ -139,7 +139,6 @@ export class ConventionCessionPMEComponent implements OnInit {
 
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_CORRIGEE").subscribe(data => {
       this.demandes = this.demandes.concat(data.content)
-      console.log(this.demandes, data)
     });
 
     this.demandesCessionService.getDemandesCessionByPmeAndStatut(this.tokenStorage.getPME().idPME, "CONVENTION_TRANSMISE").subscribe(data => {

@@ -4,12 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
-import { Convention } from 'src/app/workstation/model/demande';
-import { Observation } from 'src/app/workstation/model/observation';
-import { PME } from 'src/app/workstation/model/pme';
-import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { ConventionService } from 'src/app/workstation/service/convention/convention.service';
-import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import Swal from 'sweetalert2';
 
@@ -21,18 +16,13 @@ import Swal from 'sweetalert2';
 export class SignerconventionPMEComponent implements OnInit {
 
   form!: FormGroup;
-  convention: Convention;
+  convention: any;
   codePIN: string;
-  demande: any;
-  pme : PME;
-
-  observation:Observation={};
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,private config: DynamicDialogConfig,
     public ref: DynamicDialogRef, private conventionService:ConventionService,
-    public demandeCessionService : DemandesCessionService,
     private tokenStorage : TokenStorageService,
     public observationService:ObservationService
 
@@ -44,10 +34,7 @@ export class SignerconventionPMEComponent implements OnInit {
       convention: ['', Validators.required],
       codePIN : ['' , Validators.required]
     });  
-    this.demande = this.config.data.demande; 
-    console.log(this.demande);
-     
-    this.convention = this.demande.conventions[0];
+    this.convention = this.config.data.convention; 
   }
 
   get f(){
@@ -74,7 +61,7 @@ export class SignerconventionPMEComponent implements OnInit {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        this.signerConventionPME();
+        this.signerConvention();
       } else if (result.isDenied) {
         Swal.fire('Signature annulée', '', 'info')
       }
@@ -83,25 +70,11 @@ export class SignerconventionPMEComponent implements OnInit {
  
   }
 
-  signerConventionPME() {
-
-    this.codePIN=this.form.value['codePIN'].
-    this.demandeCessionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,this.demande.idDemande)
+  signerConvention() {
+    this.codePIN=this.form.value['codePIN'];
+    this.conventionService.signerConventionPME(this.codePIN,this.tokenStorage.getUser().idUtilisateur,this.convention.idConvention)
     .subscribe((response: any) => {      
       if(response){
-      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-      this.observation.statut={}            
-      this.observation.demandeid =  this.demande.idDemande;
-      this.observation.statut.libelle =StatutEnum.conventionSigneeParPME;
-      this.observationService.postObservation(this.observation).subscribe((data:any) => {        
-        //if(data.body){
-          this.conventionService.genererConventionSigner(this.convention).subscribe(res =>
-            console.log(res))
-        //}
-      })
-    
-    
-    
       Swal.fire({
         position: 'center',
         icon: 'success',
