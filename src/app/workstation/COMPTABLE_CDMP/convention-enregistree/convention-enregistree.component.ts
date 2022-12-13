@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import Swal from 'sweetalert2';
 import { Convention } from '../../model/convention';
@@ -37,7 +37,7 @@ export class ConventionEnregistreeComponent implements OnInit {
     private router: Router,
     private demandeCessionService: DemandesCessionService,
     private conventionService: ConventionService,
-    private uploadFileService: FileUploadService,
+    private uploadFileService: FileUploadService, private config: DynamicDialogConfig,
     private tokenStorage: TokenStorageService,
     private observationService: ObservationService
 
@@ -49,14 +49,9 @@ export class ConventionEnregistreeComponent implements OnInit {
       convention: ['', Validators.required]
     });
 
-
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data;
+      this.demande = this.config.data.demande;
       this.pme = this.demande.pme
-      this.convention = this.demande.conventions[0]
-      console.log(this.pme, this.demande, this.convention.idConvention)
-
-    })
+      this.convention = this.demande.conventions[0];
 
     this.form = this.formBuilder.group({
 
