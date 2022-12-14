@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
 import { RowSizes } from 'src/app/core/generic-component/cdmp-table/row-sizes.model';
+import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 
 @Component({
   selector: 'app-recevabilite',
@@ -32,8 +33,13 @@ export class RecevabiliteComponent implements OnInit {
   subscribe: any;
   rangeDates: any[];
   matchModeOptions: SelectItem[];
-  page: any;
+  page: any={};
   statuts:any[];
+  paramStatuts:any[];
+  paramStatutsInit:any[];
+  defaultRow:number;
+  
+
 
   constructor(
     private router: Router,
@@ -51,8 +57,9 @@ export class RecevabiliteComponent implements OnInit {
 
  
   ngOnInit() {
-
-    this.initGetDemandes()
+    this.paramStatutsInit = [StatutEnum.recevable, StatutEnum.rejetee,StatutEnum.soumise]
+    this.paramStatuts = this.paramStatutsInit
+    this.initGetDemandes(this.paramStatuts)
 
     this.cols = [
   
@@ -74,50 +81,72 @@ export class RecevabiliteComponent implements OnInit {
     ];
 
     this.statuts = [
-      {label: 'Soumise', value: 'REJETEE'},
-      {label: 'Rejetée', value: 'SOUMISE'},
-      {label: 'Convention Enregistrée', value: 'CONVENTION_GENEREE'},
-      {label: 'Convention Rejetée', value: 'CONVENTION_CORRIGEE'},
-      {label: 'Convention Signée par le PME', value: 'CONVENTION_SIGNEE_PAR_PME'},
-      {label: 'Convention Signée par le DG', value: 'CONVENTION_SIGNEE_PAR_DG'},
-      {label: 'Convention Générée', value: 'CONVENTION_ACCEPTEE'},
-      {label: 'Convention Transmise', value: 'CONVENTION_TRANSMISE'},
-      {label: 'Convention Générée', value: 'CONVETION_REJETEE'},
-      {label: 'Convention Générée', value: 'NON_RISQUEE'}
+      {label: 'Soumise', value: 'SOUMISE'},
+      {label: 'Rejetée', value: 'REJETEE'},
+      {label: 'Recevable', value: 'RECEVABLE'}
     ]
   }
 
   paginate(event) { 
+  console.log(this.page);
   
+    let statutsParam
+    if (Array.isArray(this.paramStatuts)) {
+      statutsParam = this.paramStatuts.join(",")
+    }
+    else
+      statutsParam = this.paramStatuts
     const args = {
       page: event.page,
       size: event.rows,
-      sort:"dateDemandeCession,DESC",   
+      sort: "dateDemandeCession,DESC",
+      statut: statutsParam
+
+      // search: this.searchText,
     };
-    this.recevabiliteService.getPageRecevabilites(args).subscribe(data => {
-      this.demandes = data.content;
-      this.totalRecords = data.totalElements;
+    this.page=args
+    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+      this.demandes = data.content
+      this.page = data
     });
     
 }
 
-initGetDemandes(){
- 
-    const args = {
-      page: 0,
-      size: 5,
-      sort:"dateDemandeCession,DESC",      
-      
-      // search: this.searchText,
-    };
-    this.recevabiliteService.getPageRecevabilites(args).subscribe(data => {
-      this.demandes = data.content;     
-      this.totalRecords = data.totalElements;
-    });
-  
-  
+initGetDemandes(statuts: StatutEnum[]) {
+  let statutsParam
+  if (Array.isArray(statuts)) {
+    statutsParam = statuts.join(",")
+  }
+  else
+    statutsParam = statuts
+  const args = {
+    page: 0,
+    size: 5,
+    sort: "dateDemandeCession,DESC",
+    statut: statutsParam
+
+    // search: this.searchText,
+  };
+  this.page=args
+  this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+    this.demandes = data.content
+    console.log(data)
+    this.totalRecords=data.totalElements
+    console.log(this.totalRecords)
+  });
+
+
 }
 
+filterStatus(event){
+  if(event.value)
+    this.paramStatuts=[event.value]
+  else
+    this.paramStatuts=this.paramStatutsInit
+  this.initGetDemandes(this.page)
+
+  
+}
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };
     //console.log(demande)
