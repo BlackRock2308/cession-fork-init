@@ -37,7 +37,7 @@ export class RecevabiliteComponent implements OnInit {
   statuts:any[];
   paramStatuts:any[];
   paramStatutsInit:any[];
-  defaultRow:number;
+  defaultRows:number;
   
 
 
@@ -143,9 +143,12 @@ filterStatus(event){
     this.paramStatuts=[event.value]
   else
     this.paramStatuts=this.paramStatutsInit
-  this.initGetDemandes(this.page)
+  this.initGetDemandes(this.paramStatuts)
 
   
+}
+OnPageEvent(){
+  this.defaultRows=5;
 }
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };
