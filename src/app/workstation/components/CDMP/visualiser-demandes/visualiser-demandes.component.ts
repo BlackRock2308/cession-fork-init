@@ -47,8 +47,7 @@ export class VisualiserDemandesComponent implements OnInit {
     public messageService: MessageService,
     private route: ActivatedRoute,
     private demandeAdhesionService: DemandesAdhesionService,
-    private breadcrumbService: BreadcrumbService,
-    private observationService:ObservationService) {
+    private breadcrumbService: BreadcrumbService) {
     this.profile = localStorage.getItem('profil');
     if (this.profile === 'PME') {
       this.breadcrumbService.setItems([

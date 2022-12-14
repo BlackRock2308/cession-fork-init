@@ -49,8 +49,8 @@ export class VisualiserDocumentComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.config.data);
-    
-    this.demande = this.config.data.demande;
+    if(this.config.data.demande){
+      this.demande = this.config.data.demande;
       if(this.demande.idDemande)
       {
         this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
@@ -59,6 +59,7 @@ export class VisualiserDocumentComponent implements OnInit {
               console.log(this.observationLibelle)
           })
       }
+    }
 
     this.srcFile = this.config.data.document.urlFile;
     console.log('test '+this.srcFile)

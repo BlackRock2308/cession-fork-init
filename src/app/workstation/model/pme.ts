@@ -27,7 +27,7 @@ export interface PME {
     prenomRepresentant ?:string,
     nomRepresentant ?:string,
     dateCreation ?: Date,
-    effectif?: number,
+    effectifPermanent?: number,
     etablissements ?: number,
     chiffresDaffaires?: number,
     cniRepresentant ?: string ,

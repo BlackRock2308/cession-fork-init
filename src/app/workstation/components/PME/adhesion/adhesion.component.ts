@@ -215,7 +215,7 @@ export class AdhesionComponent implements OnInit {
       prenomRepresentant: this.pme.prenomRepresentant,
       nomRepresentant: this.pme.nomRepresentant,
       dateCreation: this.pme.dateCreation,
-      effectifPermanent: this.pme.effectif,
+      effectifPermanent: this.pme.effectifPermanent,
       nombreEtablissementSecondaires: this.pme.nombreEtablissementSecondaires,
       chiffresDaffaires: this.pme.chiffresDaffaires,
       cniRepresentant: this.pme.cniRepresentant,

@@ -152,8 +152,7 @@
                                                     formControlName="nomRepresentant" style="width: 100%;" />
                                             </span>
                                         </div>
-                                        <span *ngIf="submit && f['nomRepresentant'].errors"
-                                            style="color: red;">{{message}}</span>
+                                        <span *ngIf="submit && f['nomRepresentant'].errors" style="color: red;">{{message}}</span>
 
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
@@ -177,7 +176,7 @@
                                                 </span> -->
                                             <p-dropdown [options]="formeJuridique" [style]="{width: '20vw'}"
                                                 formControlName="formeJuridique" optionLabel="nom" optionValue="type"
-                                                [filter]="true" filterBy="name" [showClear]="true"
+                                                [filter]="false" filterBy="name" [showClear]="true"
                                                 placeholder="Sélectionnez une forme juridique">
                                                 <ng-template pTemplate="selectedItem">
                                                     <div class="country-item country-item-value"
@@ -205,15 +204,13 @@
                                                 <input pInputText id="name3" type="text" placeholder="00000000000"
                                                     formControlName="cniRepresentant" style="width: 100%;" />
                                             </span>
-                                            <span
-                                                *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')"
-                                                style="color: red; ">Veuillez renseigner 13
-                                                caratères</span>
+                                            
 
                                         </div>
-                                        <span *ngIf="submit && f['cniRepresentant'].hasError('required')"
-                                            style="color: red; ">{{message}}</span>
-
+                                        <span
+                                        *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')"
+                                        style="color: red; ">Veuillez renseigner 13
+                                        caratères</span>
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
@@ -267,7 +264,7 @@
                                             style="font-weight: bold;color: #203359;">Localité<span class="required"></span></label>
                                         <div class="p-inputgroup">
                                                     <span class="p-float-label">
-                                            <input pInputText id="name3" type="text" formControlName="localite" style="width: 100%;" />
+                                            <input pInputText id="name3" type="text" formControlName="localite" style="width: 100%;"/>
                                         </span>
                                         </div>
                                     </div>
