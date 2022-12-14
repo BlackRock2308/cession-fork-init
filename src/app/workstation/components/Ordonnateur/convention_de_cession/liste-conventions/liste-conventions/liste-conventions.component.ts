@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilterMatchMode, MenuItem, SelectItem } from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { BonEngagement } from 'src/app/workstation/model/bonEngagement';
-import { Convention } from 'src/app/workstation/model/convention';
 import { DemandeCession } from 'src/app/workstation/model/demande';
-import { PME } from 'src/app/workstation/model/pme';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 
@@ -41,40 +38,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   ngOnInit() {
 
     this.paramStatuts=[StatutEnum.ConventionAcceptee,StatutEnum.conventionCorrigee,StatutEnum.ConventionRejetee,StatutEnum.ConventionTransmise]
-    this.initGetDemandes(this.paramStatuts)
-   
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_GENEREE").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes,data.content)
-    // });
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_CORRIGEE").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes)
-    // });
-
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_PME").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes)
-    // });
-
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_SIGNEE_PAR_DG").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes)
-    // });
-
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_ACCEPTEE").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes)
-    // });
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_REFUSEE").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes)
-    // });
-    // this.demandeCessionService.getDemandeCessionByStatut("CONVENTION_TRANSMISE").subscribe(data => {
-    //   this.demandes=this.demandes.concat(data.content)
-    //   console.log(this.demandes)
-    // });
-    
+    this.initGetDemandes(this.paramStatuts);
 
     this.cols=[
       {field: 'ninea', header: 'NINEA'},
@@ -102,10 +66,6 @@ this.statuts = [
   }
 
   paginate(event) {
-    //event.first = Index of the first record
-    //event.rows = Number of rows to display in new page
-    //event.page = Index of the new page
-    //event.pageCount = Total number of pages
 
     let statutsParam
   if(Array.isArray(this.paramStatuts)){
@@ -151,9 +111,7 @@ initGetDemandes(statuts:StatutEnum[]){
 }
 
   editerDemandeCession(demande: DemandeCession) {
-   // this.demande = {...demande};
     console.log(demande)
-    //this.demandeCessionService.setDemandeObs(demande);
 
     this.router.navigate(['workstation/ordonnateur/conventions/details_convention']);
 

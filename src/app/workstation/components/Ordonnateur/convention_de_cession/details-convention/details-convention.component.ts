@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { Convention, DemandeCession } from 'src/app/workstation/model/demande';
+import { Convention} from 'src/app/workstation/model/demande';
 import { Document, Documents } from 'src/app/workstation/model/document';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { VisualiserDocumentComponent } from '../../../CDMP/visualiser-document/visualiser-document.component';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
@@ -43,14 +42,12 @@ export class DetailsConventionComponent implements OnInit {
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
   observationLibelle: string;
 
-
   constructor(
     private router: Router,
     private demandeCessionService: DemandesCessionService,
     private paiementService: PaiementsService,
     private dialogService: DialogService,
     public ref: DynamicDialogRef,
-    private uploadFileService: FileUploadService,
     private breadcrumbService: BreadcrumbService,
     private observationService: ObservationService,
     private tokenStorage: TokenStorageService
@@ -63,36 +60,35 @@ export class DetailsConventionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.demandeCessionService.getDemandeObs().subscribe(data => {
-    //   this.demandeCession = data
+    this.demandeCessionService.getDemandeObs().subscribe(data => {
+      this.demandeCession = data
       
-    //   console.log(this.demandeCession)
-    //   this.conventions = this.demandeCession.conventions;
-    //   //console.log('afficher1' +JSON.stringify( this.conventions))
-    //   this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
-    //   this.documents=this.documents.concat(this.demandeCession.pme.documents)
-    //   this.documents=this.documents.concat(this.demandeCession.documents)
+      console.log(this.demandeCession)
+      
+      this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
+      this.documents=this.documents.concat(this.demandeCession.pme.documents)
+      this.documents=this.documents.concat(this.demandeCession.documents)
+      this.conventions = this.demandeCession.conventions;
+      console.log('afficher1' +JSON.stringify(this.conventions ))
+      this.conventions.forEach(el => {
+        this.docConventions = el.documents
+        this.documents=this.documents.concat(el.documents)
+      })
+      console.log('afficher' +JSON.stringify( this.docConventions))
+      //this.documents = this.docConventions;
+      this.conventions = this.demandeCession.convention;
 
-    //   this.conventions.forEach(el => {
-    //     this.docConventions = el.documents
-    //     this.documents=this.documents.concat(el.documents)
-    //   })
-    //   console.log('afficher' +JSON.stringify( this.docConventions))
-    //   //this.documents = this.docConventions;
-    //   this.conventions = this.demandeCession.convention;
+      //this.conventions.forEach(el => this.docConventions = el.documents )
 
-    //   //this.conventions.forEach(el => this.docConventions = el.documents )
-
-    //   this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
-    //     data => {
-    //         this.observationLibelle=data.libelle
-    //         console.log(this.observationLibelle)
-    //     })
+      this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+        data => {
+            this.observationLibelle=data.libelle
+            console.log(this.observationLibelle)
+        })
 
 
-    // });
+     });
     console.log(this.documents)
-
 
     this.dowloadFile(this.docConventions[0].urlFile);
     console.log('affiche2r' + this.docConventions[0].urlFile)
