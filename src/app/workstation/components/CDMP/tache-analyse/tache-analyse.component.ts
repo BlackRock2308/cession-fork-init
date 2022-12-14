@@ -352,14 +352,14 @@ export class TacheAnalyseComponent implements OnInit {
                             this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
             
                             Swal.fire({
-                                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Demande de complément de dossier soumise!</p> <br><p style='font-size: large;font-weight: bold;'></p>",
+                                html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Demande de complément de dossier soumise !</p> <br><p style='font-size: large;font-weight: bold;'></p>",
                                 color:"#203359",
-                                timer:2500,
+                                timer:2000,
                                 confirmButtonColor:"#99CC33",
                                 confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
                                 allowOutsideClick:false,
                                 showConfirmButton:false,
-                                
+                                icon : 'success'
                                 
                               }).then((result) => {
                                 if (result.isConfirmed) {

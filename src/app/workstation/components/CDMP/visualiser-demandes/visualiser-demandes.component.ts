@@ -43,7 +43,6 @@ export class VisualiserDemandesComponent implements OnInit {
   observationLibelle: string;
 
   constructor(
-    private documentService: DocumentService,
     public dialogService: DialogService,
     public messageService: MessageService,
     private route: ActivatedRoute,
@@ -87,11 +86,11 @@ export class VisualiserDemandesComponent implements OnInit {
        }
        console.log(data,this.documents)
 
-       this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
-        data => {
-            this.observationLibelle=data.libelle
-            console.log(this.observationLibelle)
-        })
+      //  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
+      //   data => {
+      //       this.observationLibelle=data.libelle
+      //       console.log(this.observationLibelle)
+      //   })
      })
 
     // //recuperer les infos d'une demande d'adhesion

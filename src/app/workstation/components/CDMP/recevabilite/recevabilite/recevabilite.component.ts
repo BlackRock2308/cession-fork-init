@@ -1,17 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfirmationService, FilterMatchMode, FilterService, LazyLoadEvent, SelectItem } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { FilterMatchMode, FilterService, SelectItem } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
-import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { DemandeAdhesion, DemandeCession } from 'src/app/workstation/model/demande';
-import { MessageService } from 'primeng/api';
-import { Product } from 'src/app/workstation/model/product';
+import { DemandeCession } from 'src/app/workstation/model/demande';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
 import { RowSizes } from 'src/app/core/generic-component/cdmp-table/row-sizes.model';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
-
 
 @Component({
   selector: 'app-recevabilite',

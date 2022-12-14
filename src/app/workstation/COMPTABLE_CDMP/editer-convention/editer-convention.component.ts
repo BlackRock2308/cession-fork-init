@@ -43,16 +43,21 @@ export class EditerConventionComponent implements OnInit {
     this.dateEdit = new Date();
    this.demande = this.config.data.demande;
    if(this.demande.conventions.length){
-    this.convention = this.demande.conventions[0]
+    this.convention = {      
+      idDemande:this.demande.idDemande,
+      remarqueJuriste: this.demande.conventions[0].remarqueJuriste,
+      idConvention: this.demande.conventions[0].idConvention
+    }
    }else{
     this.convention = {
-      remarqueJuriste:this.remarqueJuriste,
+      remarqueJuriste:"",
       idDemande:this.demande.idDemande,
-      dateConvention: new Date(),
       pme:{
         idPME:this.demande.pme.idPME
     }
     }
+    console.log(this.convention);
+    
    }
   }
 
@@ -95,26 +100,24 @@ export class EditerConventionComponent implements OnInit {
         Swal.fire('Enregistrement annulée', '', 'info')
       }
     })
-    // for (var i = 0; i < this.documents.length; i++) {
-    //   this.enregistrerDocument(this.documents[i]);
-    // }
   }
   patchDemandeStatut(id: number, statut: any) {
     this.pmeService.patchStatutDemande(id, statut).subscribe()
   }
 
   //enregistrement du document avec l'appel du service d'enregistrement
-  private async enregistrerConvention() {   
-    this.conventionService.postConvention(this.convention)
+  enregistrerConvention() {   
+    if(this.demande.conventions[0] !=null){
+      this.conventionService.corrigerConvention(this.convention)
       .subscribe((response: any) =>  {
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
         this.observation.statut={}      
         this.observation.demandeid = this.demande.idDemande;
-      this.observation.statut.libelle =StatutEnum.conventionGeneree;
+      this.observation.statut.libelle =StatutEnum.conventionCorrigee;
       this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
       Swal.fire({
 
-        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+        html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a été corrigée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
         color:"#203359",
         icon:'success',
         confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
@@ -134,27 +137,43 @@ export class EditerConventionComponent implements OnInit {
       (error) => {
         console.log(error)      }
       )
-  }
+    }
+   else{
+    this.conventionService.postConvention(this.convention)
+    .subscribe((response: any) =>  {
+      this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.statut={}      
+      this.observation.demandeid = this.demande.idDemande;
+    this.observation.statut.libelle =StatutEnum.conventionGeneree;
+    this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    Swal.fire({
 
-  // delete(document: Document) {
-  //   var myIndex = this.documents.indexOf(document);
-  //   if (myIndex !== -1) {
-  //     this.documents.splice(myIndex, 1);
-  //   }
-  //   console.log(this.documents)
-  // }
+      html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+      color:"#203359",
+      icon:'success',
+      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+      allowOutsideClick:false,
+      showConfirmButton:false
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['workstation/comptable/convention_cession'])
+      }})
+      setTimeout(() => {
+        location.reload()
+       }, 1500);
+   
+
+    },
+    (error) => {
+      console.log(error)      }
+    )
+   }
+  }
 
   dismiss() {
     this.ref.close();
   }
 
 
-}
-interface Document {
-
-  type?: String;
-  file?: File;
-}
-interface typeDocument {
-  nom?: String;
 }

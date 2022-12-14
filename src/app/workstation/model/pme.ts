@@ -11,8 +11,8 @@ export interface PME {
     rccmFile?:any;
     autorisationMinisterielle ?: string
     denommination?:string;
-    formuleJuridique?:string;
-    centrefiscal?:string;
+    formeJuridique?:string;
+    centreFiscal?:string;
     dateImmatriculation?:Date;
     adressePME?:string;
     hasninea?:boolean;
@@ -22,18 +22,18 @@ export interface PME {
     enseigne?: string,
     localite?: string,
     controle?: number,
-    activiteprincipale ?: string,
+    activitePrincipale ?: string,
     registre ?: string,
     prenomRepresentant ?:string,
     nomRepresentant ?:string,
-    date_creation ?: Date,
+    dateCreation ?: Date,
     effectif?: number,
     etablissements ?: number,
-    chiffre?: number,
+    chiffresDaffaires?: number,
     cniRepresentant ?: string ,
     dateimmatriculation ?: Date,
     telephonePME ?: string,
-    capitalSocial ?: string,
+    capitalSocial ?: number,
     nineaValide?:boolean;
     pmeActive?:boolean;
     atd?:boolean;

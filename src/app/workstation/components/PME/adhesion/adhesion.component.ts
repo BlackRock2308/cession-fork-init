@@ -3,7 +3,6 @@ import {
   FormGroup,
   Validators,
   FormBuilder,
-  AbstractControlOptions,
   ValidationErrors,
   AbstractControl,
 } from "@angular/forms";
@@ -18,7 +17,6 @@ import { PmeService } from "src/app/workstation/service/pme/pmeservice.service";
 import { DemandeAdhesion } from "../../../model/demande";
 import { Observation } from "src/app/workstation/model/observation";
 import { TokenStorageService } from "src/app/auth/token-storage.service";
-import { StatutEnum } from "src/app/workstation/model/statut-enum";
 import { ObservationService } from "src/app/workstation/service/observation/observation.service";
 import { SearchCountryField, CountryISO } from "ngx-intl-tel-input";
 
@@ -47,18 +45,15 @@ export class AdhesionComponent implements OnInit {
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
-  minDate:any;
+  minDate: any;
   observation: Observation = {};
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private adhesionService: AdhesionService,
     private pmeService: PmeService,
-    private uploadFileService: FileUploadService,
-    private tokenStorage: TokenStorageService,
-    private observationService: ObservationService
-  ) {}
+    private uploadFileService: FileUploadService
+  ) { }
 
   ngOnInit(): void {
     this.formeJuridique = [
@@ -105,32 +100,41 @@ export class AdhesionComponent implements OnInit {
       raisonSocial: ['', [Validators.required]],
       formeJuridique: ['', [Validators.required]],
       centreFiscal: ['', [Validators.required]],
-      adressePME: ['', [Validators.required]],
-      enseigne: ['', [Validators.required]],
-      localite: ['', [Validators.required]],
-      controle: ['', [Validators.required]],
-      activitePrincipale: ['', [Validators.required]],
-      registre: ['', [Validators.required]],
+      adressePME: [''],
+      enseigne: [''],
+      localite: [''],
+      controle: [''],
+      activitePrincipale: [''],
+     // registre: [''],
       prenomRepresentant: ['', [Validators.required]],
       nomRepresentant: ['', [Validators.required]],
       dateCreation: ['', [Validators.required, this.matchValues()]],
-      effectifPermanent: ['', [Validators.required]],
-      nombreEtablissementSecondaires: ['', [Validators.required]],
-      chiffresDaffaires: ['', [Validators.required]],
-      cniRepresentant: ['', [Validators.required], Validators.pattern(this.validPattern)],
+      effectifPermanent: [''],
+      nombreEtablissementSecondaires: [''],
+      chiffresDaffaires: [''],
+      cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
       dateImmatriculation: ['', [Validators.required, this.matchValues()]],
       telephonePME: ['', [Validators.required]],
-      capitalsocial: ['', [Validators.required]],
-      autorisationMinisterielle: ['', [Validators.required]]
+      capitalSocial: [''],
+      autorisationMinisterielle: ['']
     });
-    
+
   }
 
-  setMinDate(){
-    this.minDate=((new Date(this.form.value['dateCreation'])).getDate()+1).toString()
+  setMinDate() {
+    this.minDate = ((new Date(this.form.value['dateCreation'])).getDate() + 1).toString()
     console.log(this.minDate)
   }
 
+  matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value && !!control.value &&
+        control.value.length === 13
+        ? null
+        : { isMatching: false };
+    };
+  }
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
@@ -200,24 +204,24 @@ export class AdhesionComponent implements OnInit {
       email: this.pme.email,
       nineaFile: this.selectedNINEAFiles,
       raisonSocial: this.pme.raisonSocial,
-      formeJuridique: this.pme.formejuridique,
-      centreFiscal: this.pme.centrefiscal,
+      formeJuridique: this.pme.formeJuridique,
+      centreFiscal: this.pme.centreFiscal,
       adressePME: this.pme.adressePME,
       enseigne: this.pme.enseigne,
       localite: this.pme.localite,
       controle: this.pme.controle,
-      activitePrincipale: this.pme.activiteprincipale,
+      activitePrincipale: this.pme.activitePrincipale,
       registre: this.pme.registre,
       prenomRepresentant: this.pme.prenomRepresentant,
       nomRepresentant: this.pme.nomRepresentant,
-      dateCreation: this.pme.date_creation,
+      dateCreation: this.pme.dateCreation,
       effectifPermanent: this.pme.effectif,
       nombreEtablissementSecondaires: this.pme.nombreEtablissementSecondaires,
-      chiffresDaffaires: this.pme.chiffre,
+      chiffresDaffaires: this.pme.chiffresDaffaires,
       cniRepresentant: this.pme.cniRepresentant,
       dateImmatriculation: this.pme.dateImmatriculation,
-      telephonePME:this.pme.telephonePME,
-      capitalsocial:this.pme.capitalSocial,
+      telephonePME: this.pme.telephonePME,
+      capitalSocial: this.pme.capitalSocial,
       autorisationMinisterielle: this.pme.autorisationMinisterielle,
       date_soumission: new Date(),
     };
@@ -238,8 +242,8 @@ export class AdhesionComponent implements OnInit {
         .subscribe((response: any) => {
           let data = JSON.parse(JSON.stringify(response));
           if (data && data.idDemande != null) {
-            this.uploadFileService.uploadFile( "/pme/", data.pme.idPME, this.selectedRCCMFiles, "RCCM" ) .subscribe();
-            this.uploadFileService.uploadFile( "/pme/", data.pme.idPME, this.selectedNINEAFiles, "NINEA").subscribe();
+            this.uploadFileService.uploadFile("/pme/", data.pme.idPME, this.selectedRCCMFiles, "RCCM").subscribe();
+            this.uploadFileService.uploadFile("/pme/", data.pme.idPME, this.selectedNINEAFiles, "NINEA").subscribe();
             Swal.fire({
               html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre demande d'adhésion a été prise en compte.</p><br><p style='font-size: large;font-weight: bold;'>Vous allez recevoir un message de la part du service de cession de créances dans les plus brefs délais.</p>",
               color: "#203359",

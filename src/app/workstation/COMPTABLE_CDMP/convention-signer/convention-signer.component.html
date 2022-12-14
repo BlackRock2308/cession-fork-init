@@ -12,12 +12,21 @@
             <p-password  pTooltip="Code PIN" formControlName="codePIN" placeholder="****" [toggleMask]="true" styleClass="w-full"
                  ></p-password>
         </div>
-        </div>
+        <br>
+        <br>
+        <br>
+        
+        </div>        <label htmlFor=""  htmlFor="" class="text" id="" class="">La valeur de la decote actuelle est de :<b> {{convention.valeurDecote}}</b></label>
+
+
+<br>
 <br>
 <br>
     <div class="field grid">
         <label class="text" htmlFor="codePIN" >Modifier decote: </label>
+
         <div >
+
             <p-inputNumber pTooltip="Decote" formControlName="decote"  [showButtons]="true" placeholder="{{convention.valeurDecote}}"
             decrementButtonClass="simpleBoldButton" incrementButtonClass="simpleBoldButton" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal" min="0" max="1" step="0.1"></p-inputNumber>
         </div>

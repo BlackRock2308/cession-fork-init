@@ -35,7 +35,6 @@ export class VisualiserDocumentComponent implements OnInit {
   ext: string;
   profil: string;
   statut: string;
-  convention: any;
   paiement: string;
   observation: void;
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
@@ -49,11 +48,9 @@ export class VisualiserDocumentComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.demandeCessionService.getDemandeObs().subscribe(data => {
-      this.demande = data
-      console.log(this.demande , data)
-      
+    console.log(this.config.data);
+    
+    this.demande = this.config.data.demande;
       if(this.demande.idDemande)
       {
         this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
@@ -63,12 +60,9 @@ export class VisualiserDocumentComponent implements OnInit {
           })
       }
 
-      
-    })
     this.srcFile = this.config.data.document.urlFile;
     console.log('test '+this.srcFile)
     this.dowloadFile(this.srcFile);
-    this.convention = this.config.data.document;
     this.profil = localStorage.getItem('profil');
     console.log(this.profil)
 
@@ -94,30 +88,8 @@ export class VisualiserDocumentComponent implements OnInit {
   dowloadFile(path: string) {
 
     this.src=this.documentFileUrl+path;
-
-  //   this.uploadFileService.dowloadFile(path)
-  //     .subscribe(
-  //       (data: any) => {
-  //         if (data) {
-  //           console.log('merci de d'+ data)
-  //           this.src = data;
-  //           console.log('merci de afficher ' +JSON.stringify( this.src))
-  //          // this.ext = this.src.url.split('.').pop();
-  //           // if (this.ext == "jpg" || this.ext == "png" || this.ext == "jpeg") {
-  //           //   this.images = [{
-  //           //     name: this.config.data.document.nom,
-  //           //     url: this.src
-  //           //   }];
-  //           // }
-  //           // console.log("SRC", this.ext);
-  //         }
-  //       }
-  //       ,
-  //       (error) => {
-  //         console.log("erreur de récupération du document", error);
-  //       }
-  //     )
    }
+   
   dismiss() {
     this.ref.close();
   }
@@ -229,19 +201,17 @@ export class VisualiserDocumentComponent implements OnInit {
     // Callback Monitor variable
     this.textLayerRenderedCb++;
 
-    // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
 
   }
 
   signerConventionDG() {
     const ref = this.dialogService.open(ConventionSignerComponent, {
       data: {
-        convention: this.convention
+        convention: this.demande.conventions[0]
       },
       header: "Signer la convention",
       width: '40%',
-      height: 'calc(60% - 100px)',
+      height: 'calc(70% - 100px)',
       baseZIndex: 50
     });
     this.dismiss();
@@ -250,7 +220,7 @@ export class VisualiserDocumentComponent implements OnInit {
   signerConventionPME() {
     const ref = this.dialogService.open(SignerconventionPMEComponent, {
       data: {
-        convention: this.convention
+        convention: this.demande.conventions[0]
       },
       header: "Signer la convention",
       width: '40%',
@@ -263,7 +233,7 @@ export class VisualiserDocumentComponent implements OnInit {
   corrigerConvention() {
     const ref = this.dialogService.open(CorrigerConventionComponent, {
       data: {
-        convention: this.convention
+        demande:  this.demande
       },
       header: "Corriger la convention",
       width: '40%',
@@ -273,6 +243,8 @@ export class VisualiserDocumentComponent implements OnInit {
     this.dismiss();
   }
   rejetConventionPME() {
+    console.log("hello");
+    
     this.dismiss();
 
     Swal.fire({

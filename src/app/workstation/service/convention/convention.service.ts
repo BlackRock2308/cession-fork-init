@@ -31,6 +31,7 @@ export class ConventionService extends GenericService {
     return this.add(this.conventionUrl, body);
   }
 
+
   updateConvention(data , id : number) {
 
     let body = JSON.stringify(data);
@@ -38,25 +39,26 @@ export class ConventionService extends GenericService {
   }
 
   updateDecote(idConvention: number, decote: number) {
-    return this.http.patch<any>(`${this.conventionUrl}/${idConvention}/${decote}`,{});
+    return this.update(`${this.conventionUrl}/valeurCreance/${idConvention}`,decote);
   }
 
-  corrigerConvention(data,id:number):Observable<any>{
-    return this.update(`${this.conventionUrl}/correction/${id}`,data)
+  corrigerConvention(data){
+    return this.update(this.conventionUrl+'/correction',data)
   }
 
   transmettreConvention(data,id:number):Observable<any>{
     return this.update(`${this.conventionUrl}/transmission/${id}`,data)
   }
-  // updateConvention(convention:any): Observable<HttpEvent<any>> {
-  //   const req = new HttpRequest('PUT', `${this.conventionUrl}`,convention, {
-  //     reportProgress: true,
-  //     responseType: 'json'
-  //   });
-  //   return this.http.request(req);
-  // }
-  genererConventionSigner(data){
-    return this.add(this.conventionUrl+'/generer-convention_signer', data);
+
+  signerConventionPME(codePin : string , idUtilisateur : any , idConvention : any){
+
+    return this.add( `${this.conventionUrl}/${idConvention}/signer-convention-pme/${idUtilisateur}`,codePin)
   }
+  
+  signerConventionDG(codePin : string , idUtilisateur : any , idConvention : any){
+    return this.add( `${this.conventionUrl}/${idConvention}/signer-convention-dg/${idUtilisateur}`,codePin)
+    
+  }
+  
 
 }

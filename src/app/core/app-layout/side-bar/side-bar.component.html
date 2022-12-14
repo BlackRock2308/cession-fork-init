@@ -24,72 +24,72 @@
                                     <i class="pi pi-fw pi-chart-line layout-menuitem-icon"></i>
                                 </a>
                     </li>
-                    <li class="active" *ngIf="profil === 'PME'">
+                    <li  *ngIf="profil === 'PME'">
                         <a [attr.tabindex]="0" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <span class="menuitem-text"> Demandes </span>
+                            <span class="menuitem-text" > Demandes </span>
                             <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
                             <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i></a>
                         <ul class="collapse list-unstyled nav-pills" id="homeSubmenu" >
                             <li>
                                 <a [attr.tabindex]="0" [routerLink]="['pme/new_demande']">
-                                    <span class="menuitem-text">Nouvelle demande</span>
+                                    <span class="menuitem-text" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Nouvelle demande</span>
                                     <i class="pi pi-fw pi-plus-circle layout-menuitem-icon"></i>
                                 </a>
                             </li>
                             <li>
-                                <a [attr.tabindex]="0" [routerLink]="['pme/demandes_en_cours']">
-                                    <span class="menuitem-text"> Liste des demandes</span>
+                                <a [attr.tabindex]="0"  [routerLink]="['pme/demandes_en_cours']">
+                                    <span class="menuitem-text" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Liste des demandes</span>
                                     <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" *ngIf="profil === 'PME'">
-                        <a [attr.tabindex]="0" class="nav-link" [routerLinkActiveOptions]="{exact : true}"
-                        routerLinkActive="active" [routerLink]="['pme/paiements']">
-                            <span class="mn"> Suivi des paiements</span>
+                        <a [attr.tabindex]="0" 
+                         [routerLink]="['pme/paiements']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Suivi des paiements</span>
                             <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'PME'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['pme/convention_cession']">
-                            <span class="mn">Convention de cession</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Convention de cession</span>
                             <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'DSEAR'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['cdmp/demandes_en_cours']">
-                            <span class="mn"> Demandes Adhésion</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Demandes Adhésion</span>
                             <i class="pi pi-fw pi-folder-open layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'DSEAR'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['cdmp/recevabilite']">
-                            <span class="mn"> Recevabilite</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Recevabilite</span>
                             <i class="pi pi-fw pi-directions layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'DRC'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['cdmp/analyse_risque']">
-                            <span class="mn"> Analyse du risque</span>
+                            <span class="mn"  class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Analyse du risque</span>
                             <i class="pi pi-fw pi-exclamation-circle layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'JURISTE' || profil === 'DG'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['comptable/convention_cession']">
-                            <span class="mn">Convention de cession</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Convention de cession</span>
                             <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'DAF'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['comptable/paiements']">
-                            <span class="mn">Paiements/Recouvrement</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Paiements/Recouvrement</span>
                                 <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
                             </a>
                     </li>
                     <li *ngIf="profil === 'ORDONNATEUR'">
                         <a [attr.tabindex]="0" [routerLink]="['ordonnateur/conventions']">
-                            <span class="mn"> Convention de cession</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Convention de cession</span>
                             <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
                         </a>
                     </li>

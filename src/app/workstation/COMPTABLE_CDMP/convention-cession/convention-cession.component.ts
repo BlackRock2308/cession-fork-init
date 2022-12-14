@@ -212,8 +212,6 @@ export class ConventionCessionComponent implements OnInit {
     });
   }
 
-genereConvention(convention: Convention) {
-}
 
   minusZoom() {
     if (this.zoom > 0.8) {
@@ -221,12 +219,11 @@ genereConvention(convention: Convention) {
     }
   }
 
-  ChargerConvention(convention: Convention, demande: any) {
-    this.demandeCessionService.setDemandeObs(demande)
+  chargerConvention(demande: any) {
 
     const ref = this.dialogService.open(ConventionEnregistreeComponent, {
       data: {
-        convention: convention
+        demande: demande
       },
       header: "Chargement de la convention enregistrée",
       width: '40%',
@@ -238,12 +235,11 @@ genereConvention(convention: Convention) {
     this.initGetDemandes(this.paramStatuts);
   }
 
-  visualiserDocument(document: Documents, demande: any) {
-    this.demandeCessionService.setDemandeObs(demande)
-
+  visualiserDocument(demande: any) {    
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
       data: {
-        document: document
+        demande: demande,
+        document: demande.conventions[0].documents[demande.conventions[0].documents.length-1]
       },
       header: "Convention de Cession",
       width: '70%',
@@ -252,50 +248,11 @@ genereConvention(convention: Convention) {
     });
   }
 
-  EditerConvention(convention: Convention) {
-    // this.demandeCessionService.setDemandeObs(demande)
-
-    const ref = this.dialogService.open(EditerConventionComponent, {
-      data: {
-        convention: convention
-      },
-      header: "Editer la convention",
-      width: '40%',
-      height: 'calc(50% - 100px)',
-      baseZIndex: 50
-    });
-  }
-  EditConvention(convention: Convention) {
-    const ref = this.dialogService.open(EditerConventionComponent, {
-      data: {
-        convention: convention
-      },
-      header: "Editer la convention",
-      width: '40%',
-      height: 'calc(50% - 100px)',
-      baseZIndex: 50
-    });
-  }
 
   dismiss() {
     this.ref.close();
   }
 
-  signerConvention(demande: any) {
-    this.demandeCessionService.setDemandeObs(demande)
-    console.log(demande)
-
-    const ref = this.dialogService.open(ConventionSignerComponent, {
-      data: {
-        convention: this.convention
-      },
-      header: "Signer la convention",
-      width: '80%',
-      height: 'calc(100% - 300px)',
-      baseZIndex: 90
-    });
-    this.dismiss();
-  }
 
 
 }

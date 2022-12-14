@@ -50,10 +50,11 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Forme Juridique<span class="required">*</span></label>
                     <div class="p-inputgroup">
-                                <span class="p-float-label">
+                                 <span class="p-float-label">
                         <input pInputText id="name3" type="text" [(ngModel)]="pme.formeJuridique" formControlName="formeJuridique" placeholder="{{pme.formeJuridique}}"
-                            style="width: 100%;" />
-                        </span>
+                            style="width: 100%;" /> 
+                         </span>
+                        
                        </div>
                        <span *ngIf="submit && f['formeJuridique'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
@@ -101,10 +102,9 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                             class="required">*</span></label>
-                        <p-calendar inputId="basic" [maxDate]="dateTime" [(ngModel)]="pme.dateImmatriculation" formControlName="dateImmatriculation" [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateImmatriculation | date:'dd/MM/yyyy'}}">
+                        <p-calendar inputId="basic" [maxDate]="dateTime" [ngModel]="pme.dateImmatriculation | date :'yyyy-MM-dd'" formControlName="dateImmatriculation" placeholder="{{pme.dateImmatriculation | date :'yyyy-MM-dd'}}" [ngStyle]="{'width': '100%'}" >{{pme.dateImmatriculation}}
                        </p-calendar >
-                       <span *ngIf="submit && f['dateImmatriculation'].errors! && !f['dateImmatriculation'].hasError('required')"
-                        style="color: red; font-size: x-small">Date supérieure à la date du jour</span>
+                      
                         <span *ngIf="submit && f['dateImmatriculation'].hasError('required')"
                          style="color: red; font-size: x-small">{{message}}</span>
                 </div>
@@ -181,25 +181,24 @@
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
                             class="required">*</span></label>
-                        <p-calendar inputId="basic" formControlName="dateCreation"  [(ngModel)]="pme.dateCreation" [maxDate]="dateTime"
-                         [ngStyle]="{'width': '100%'}" placeholder="{{pme.dateCreation | date:'dd/MM/yyyy'}}">
+                        <p-calendar  formControlName="dateCreation" value="pme.dateCreation" placeholder="{{pme.dateImmatriculation | date :'yyyy-MM-dd'}}" [(ngModel)]="pme.dateCreation" [maxDate]="dateTime"
+                         [ngStyle]="{'width': '100%'}">{{pme.dateCreation}}
                         </p-calendar>
-                       <span *ngIf="submit && f['dateCreation'].errors! && !f['dateCreation'].hasError('required')"
-                       style="color: red; font-size: x-small">Date supérieure à la date du jour</span>
+                       
                        <span *ngIf="submit && f['dateCreation'].hasError('required')" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Capital Social<span class="required">*</span></label>
-                        <p-inputNumber formControlName="capitalsocial" [(ngModel)]="pme.capitalsocial" placeholder="{{pme.capitalsocial}}" mode="currency" currency="CFA">
+                        <p-inputNumber formControlName="capitalSocial" [(ngModel)]="pme.capitalSocial" placeholder="{{pme.capitalSocial}}" mode="currency" currency="CFA">
                         </p-inputNumber>
-                        <span *ngIf="submit && f['capitalsocial'].errors!" style="color: red; font-size: x-small">{{message}}</span>
+                        <span *ngIf="submit && f['capitalSocial'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                     </div>
                 <div  class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3"
                         style="font-weight: bold;color: #203359;">Chiffre d'affaires<span
                             class="required">*</span></label>                      
-                        <p-inputNumber formControlName="chiffresDaffaires" [(ngModel)]="pme.chiffresDaffaires" placeholder="{{pme.chiffresDaffaires}}" mode="currency" currency="CFA">
+                        <p-inputNumber formControlName="chiffresDaffaires" [(ngModel)]="pme.chiffresDaffaires"  mode="currency" currency="CFA">
                         </p-inputNumber>
                         <span *ngIf="submit && f['chiffresDaffaires'].errors!" style="color: red; font-size: x-small">{{message}}</span>
                         </div>

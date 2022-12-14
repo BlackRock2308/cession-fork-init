@@ -47,14 +47,14 @@ message:string = "";
     registre: ['', Validators.required],
     prenomRepresentant: ['', Validators.required],
     nomRepresentant: ['', Validators.required],
-    dateCreation: ['', [Validators.required, this.matchValues()]],
+    dateCreation: [''],
     effectifPermanent: ['', Validators.required],
     nombreEtablissementSecondaires: ['', Validators.required],
     chiffresDaffaires: ['', Validators.required],
     cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
-    dateImmatriculation: ['', [Validators.required, this.matchValues()]],
+    dateImmatriculation: [''],
     telephonePME: ['', Validators.required],
-    capitalsocial: ['', Validators.required],
+    capitalSocial: ['', Validators.required],
     autorisationMinisterielle: ['', Validators.required]
   }); }
 
