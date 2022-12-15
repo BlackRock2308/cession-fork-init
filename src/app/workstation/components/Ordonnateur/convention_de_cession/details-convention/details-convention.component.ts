@@ -127,7 +127,7 @@ export class DetailsConventionComponent implements OnInit {
   onSubmitAccept() {
 
     Swal.fire({
-      title: 'Voulez-vous valider la convention',
+      title: 'Voulez-vous accepter la convention?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,

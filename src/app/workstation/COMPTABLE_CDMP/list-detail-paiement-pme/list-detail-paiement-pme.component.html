@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card">
-            <button *ngIf="paiement.statutPme.code !== 'PME_TOTALEMENT_PAYEE'" id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
+            <button *ngIf="paiement?.statutPme.code !== 'PME_TOTALEMENT_PAYEE'" id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
                 class="successButton" (click)="ajouterPaimentPME()"></button>
             <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
