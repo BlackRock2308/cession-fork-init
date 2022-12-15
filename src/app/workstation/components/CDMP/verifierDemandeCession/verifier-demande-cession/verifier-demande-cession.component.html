@@ -328,17 +328,16 @@
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Montant de la dépense<span
                                     class="required">*</span></label>
                             <p-inputNumber mode="currency" currency="CFA" formControlName="montantCreance"
-                                [(ngModel)]="bonEngagement.montantCreance">
+                                [(ngModel)]="montantCreance" placeholder="{{montantCreance}}" >
                             </p-inputNumber>
                         </div>
                         <div class="field grid col-12 md:col-4 mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date d'engagement<span
                                     class="required">*</span></label>
-                            <p-calendar inputId="basic" formControlName="dateBonEngagement"
+                            <p-calendar inputId="basic" formControlName="dateBonEngagement" [maxDate]="dateTime"
                                 [ngStyle]="{'width': '100%'}" [(ngModel)]="bonEngagement.dateBonEngagement">
                             </p-calendar>
-                            <span *ngIf="submit && f['dateBonEngagement'].errors! && !f['dateBonEngagement'].hasError('required')"
-                                style="color: red;">Date supérieure à la date du jour</span>
+                            
                         </div>
                         <div class="field grid col-12 md:col-4    mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Identification
@@ -373,7 +372,7 @@
                         <div class="field grid col-12 md:col-4   mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date soumission du service
                                 depensier<span class="required">*</span></label>
-                            <p-calendar inputId="basic" formControlName="dateSoumissionServiceDepensier"
+                            <p-calendar inputId="basic" formControlName="dateSoumissionServiceDepensier" [maxDate]="dateTime"
                                 [ngStyle]="{'width': '100%'}"
                                 [(ngModel)]="bonEngagement.dateSoumissionServiceDepensier">
                             </p-calendar>

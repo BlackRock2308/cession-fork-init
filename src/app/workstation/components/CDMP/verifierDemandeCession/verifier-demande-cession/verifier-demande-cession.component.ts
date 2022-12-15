@@ -34,7 +34,8 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: any;
   bonEngagement: BonEngagement;
-  
+  dateTime = new Date();
+
   documents: any[]=[];
   cols: any[];
   pas_identifie: boolean;
@@ -69,7 +70,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     private observationService:ObservationService,
     private tokenStorage:TokenStorageService
   ) { this.breadcrumbService.setItems([
-    { label: 'Liste des demandes de cession', url: '/#/workstation/cdmp/recevabilite' },
+    { label: 'Liste des demandes de cession', routerLink: 'cdmp/recevabilite' },
       { label: 'Recevabilité' }
 ]);
 this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}

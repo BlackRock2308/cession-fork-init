@@ -19,7 +19,7 @@
                 </div>
                 <ul class="list-unstyled components mb-5 menu">
                     <li *ngIf="profil === 'DG' || profil === 'DRC' || profil === 'DSEAR' || profil === 'DAF' || profil === 'PME'" class="tableau_bord">
-                                <a [attr.tabindex]="0" [routerLink]="['cdmp/dashboard']">
+                                <a [attr.tabindex]="0" [routerLink]="['cdmp/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">
                                     <span class="mn"> Tableau de bord</span>
                                     <i class="pi pi-fw pi-chart-line layout-menuitem-icon"></i>
                                 </a>
