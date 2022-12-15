@@ -97,7 +97,7 @@
 
                         <td>
                             <div class="flex">
-                                <button *ngIf="demande.statut.libelle!='CONVENTION_ACCEPTEE'" pButton pRipple icon="pi pi-reply" class="p-button-rounded successButton"
+                                <button *ngIf="demande.statut.libelle =='CONVENTION_TRANSMISE'" pButton pRipple icon="pi pi-reply" class="p-button-rounded successButton"
                                     (click)="editerDemandeCession(demande)"></button>
                                     <button pButton pRipple icon="pi pi-search" *ngIf="demande.statut.libelle!='CONVENTION_TRANSMISE'" class="p-button-rounded simpleButton"
                                     (click)="editerDemandeCession(demande)"></button>
