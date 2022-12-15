@@ -35,9 +35,8 @@
                 </div>
                 <div class="titre">
                     Convention de cession
-                </div>
-                
-                <div class="text row">
+                </div>                
+                <div class="field grid row row">
                     <label class="col-12 ">PME: <span> {{demande.pme.raisonSocial}}</span> </label>
                     <label class="col-12 ">NINEA: <span>{{demande.pme.ninea}}</span> </label>
                     <label class="col-12 ">RCCM: <span >{{demande.pme.rccm}}</span> </label>
@@ -52,13 +51,17 @@
                     </p> -->
                 </div>
                 <div class="field grid row">
-                    <label htmlFor="remarqueJuriste" class="col-12 ">Texte</label>
-                    <div class="col-12 ">
-                        <textarea pInputText id="remarqueJuriste" type="text" [(ngModel)]="convention.remarqueJuriste" style="width: 95%;"></textarea>
-                    </div>
+                    <!-- <label htmlFor="remarqueJuriste" class="col-12 ">Texte</label> -->
+                    <div class="col-12 " id="texteJuridique"></div>                    
                 </div>
             </div>
-            <div><br></div>
+            <div><br>
+                <label class="form-label" for="textAreaExample">Observations</label>
+                <div class="d-flex flex-start w-100">        
+                    <div class="form-outline w-100">
+                        <textarea class="form-control" id="textAreaExample" rows="4" style="background-color:#D3D3D3;">{{motifRejet}}</textarea>
+                    </div>
+                </div></div>
             <div class="modal-footer ">
                 <div class="col-12  pr-0 d-flex  flex-row-reverse">
                     <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Enregistrer"

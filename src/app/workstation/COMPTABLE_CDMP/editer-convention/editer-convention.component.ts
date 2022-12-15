@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
-import { Convention } from '../../model/convention';
 import { Observation } from '../../model/observation';
 import { StatutEnum } from '../../model/statut-enum';
 import { ConventionService } from '../../service/convention/convention.service';
@@ -20,8 +19,6 @@ export class EditerConventionComponent implements OnInit {
 
 
   dateEdit:Date;
-  //selectedFiles: File | null = null;
-  //selectedFile?: File;
   typesDocument: any[];
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
@@ -29,7 +26,8 @@ export class EditerConventionComponent implements OnInit {
   observation:Observation={}
   remarqueJuriste:string;
   decode:number;
-  convention:any;
+  convention:any =null;
+  motifRejet:String;
   constructor(
     private router : Router,
     private ref: DynamicDialogRef, private pmeService: PmeService
@@ -38,17 +36,25 @@ export class EditerConventionComponent implements OnInit {
     private observationService:ObservationService
 
   ) { }
+  // ngAfterViewInit(): void {
+  //   this.convention.remarqueJuriste =
+  //   document.getElementById("texteJuridique").innerHTML = this.convention.remarqueJuriste;
+  //   console.log(this.convention.remarqueJuriste);
+  // }
 
   ngOnInit(): void {
     this.dateEdit = new Date();
    this.demande = this.config.data.demande;
    if(this.demande.conventions.length){
+    document.getElementById("texteJuridique").innerHTML = this.convention.remarqueJuriste;
+    this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
       remarqueJuriste: this.demande.conventions[0].remarqueJuriste,
       idConvention: this.demande.conventions[0].idConvention
     }
    }else{
+    document.getElementById("texteJuridique").innerHTML = 'Article 10 et 10-1 de la loi <span contenteditable="true" style="font-weight: bold;">n°95-73</span> modifiée du 21 janvier 1995 d’orientation et de programmation relative à la sécurité. <br/> Article 5 de la loi <span contenteditable="true" style="font-weight: bold;">...........</span> du 5 juillet 2006 relative à la prévention des violences lors des manifestations sportives. <br/> Loi n°2007-297 du 5 mars 2007 relative à la prévention de la délinquance, qui a créé l’article L5211-60 du Code général des collectivités territoriales. <br/>';
     this.convention = {
       remarqueJuriste:"",
       idDemande:this.demande.idDemande,
@@ -56,17 +62,19 @@ export class EditerConventionComponent implements OnInit {
         idPME:this.demande.pme.idPME
     }
     }
-    console.log(this.convention);
+      this.convention.remarqueJuriste =
+    document.getElementById("texteJuridique").innerHTML;
     
    }
   }
 
+getObervation(){
+  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.code)
+  .subscribe((res:Observation) =>{
+    this.motifRejet = res.libelle;
+  })
+}
 
-
-  //ouvrir la boite de dialogue du répertoire
-  handleClick() {
-    document.getElementById('upload-file').click();
-  }
 
   //envoie du formulaire
   onSubmit() {
@@ -106,7 +114,10 @@ export class EditerConventionComponent implements OnInit {
   }
 
   //enregistrement du document avec l'appel du service d'enregistrement
-  enregistrerConvention() {   
+  enregistrerConvention() { 
+    this.convention.remarqueJuriste = document.getElementById("texteJuridique");
+    console.log(this.convention.remarqueJuriste);
+    
     if(this.demande.conventions[0] !=null){
       this.conventionService.corrigerConvention(this.convention)
       .subscribe((response: any) =>  {
@@ -177,3 +188,5 @@ export class EditerConventionComponent implements OnInit {
 
 
 }
+
+
