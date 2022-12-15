@@ -37,8 +37,7 @@
                         <th>
                             <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filter($event.value)"
-                                        placeholder="Statuts" [showClear]="true">
+                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filterStatus($event)" placeholder="Statuts" [showClear]="true">
                                         <ng-template let-option pTemplate="item">
                                             <span
                                                 [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
@@ -114,8 +113,8 @@
                     </tr>
                 </ng-template>
             </p-table>
-            <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"
-                [rowsPerPageOptions]="[5,10,20,30]"></p-paginator>
+            <p-paginator [rows]="defaultRows" [first]=0 [totalRecords]="totalRecords" (onPageChange)="paginate($event)"
+                [rowsPerPageOptions]="[5,10,15,20,30]"></p-paginator>
         </div>
 
 

@@ -15,18 +15,6 @@ export class DemandesCessionService extends GenericService{
   private baseUrl = ApiSettings.API_CDMP;
 
   private cessionObs: BehaviorSubject<any> = new BehaviorSubject({
-    id: 1,
-    ninea: "567567",
-    statut: "Non Risquée",
-    raisonSocial: "Modelsis SARL",
-    referenceBE: "294067",
-    dateDemande: "21/03/2021",
-    numeroDemande: "2022-0001",
-    nomMarche: "Contruction d'immeuble",
-    ATD :"Aucun ATD",
-    denomination : "Modelsis SARL",
-    nantissement :"Creance  nanti",
-    interdiction :"Aucune interdiction bancaire"
   });
 
   constructor(public http: HttpClient) {
@@ -73,7 +61,7 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
   }
 
   //récupérer les informations de la demande de cession sélectionné
-  getDemandeObs(): Observable<any> {
+  getDemandeObs(): Observable<DemandeCession> {
     return this.cessionObs.asObservable();
   }
 

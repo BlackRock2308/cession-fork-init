@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card">
-            <button *ngIf="paiement.statutPme.code !== 'PME_TOTALEMENT_PAYEE'" id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
+            <button *ngIf="paiement?.statutPme.code !== 'PME_TOTALEMENT_PAYEE'" id="valider" style=" float: right;margin-left: 90%;" pButton pRipple label="Payer" icon="pi pi-plus"
                 class="successButton" (click)="ajouterPaimentPME()"></button>
             <p-table #dt [value]="detailsPaiements" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['referencePaiement','datePaiement','payer','montant']" [rows]="10"
@@ -62,10 +62,10 @@
                                 <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents.length!==0"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
                                     pTooltip="Visualiser le paiement"
-                                    (click)="detailPaimentCDMP(detailsPaiement.documents)"></button>
+                                    (click)="detailPaimentPME(detailsPaiement.documents)"></button>
                                 <button pButton pRipple icon="pi pi-file" *ngIf="detailsPaiement.documents.length===0"
                                     class="p-button-rounded p-button-text mr-2 button simpleButton"
-                                    (click)="detailPaimentCDMP(detailsPaiement.documents)" [disabled]="true"></button>
+                                    (click)="detailPaimentPME(detailsPaiement.documents)" [disabled]="true"></button>
                             </div>
                         </td>
                     </tr>

@@ -3,11 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
-import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 
 @Component({
@@ -43,13 +40,11 @@ export class VisualiserDemandesComponent implements OnInit {
   observationLibelle: string;
 
   constructor(
-    private documentService: DocumentService,
     public dialogService: DialogService,
     public messageService: MessageService,
     private route: ActivatedRoute,
     private demandeAdhesionService: DemandesAdhesionService,
-    private breadcrumbService: BreadcrumbService,
-    private observationService:ObservationService) {
+    private breadcrumbService: BreadcrumbService) {
     this.profile = localStorage.getItem('profil');
     if (this.profile === 'PME') {
       this.breadcrumbService.setItems([
@@ -87,11 +82,11 @@ export class VisualiserDemandesComponent implements OnInit {
        }
        console.log(data,this.documents)
 
-       this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
-        data => {
-            this.observationLibelle=data.libelle
-            console.log(this.observationLibelle)
-        })
+      //  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
+      //   data => {
+      //       this.observationLibelle=data.libelle
+      //       console.log(this.observationLibelle)
+      //   })
      })
 
     // //recuperer les infos d'une demande d'adhesion

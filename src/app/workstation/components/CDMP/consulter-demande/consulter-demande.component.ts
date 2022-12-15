@@ -52,9 +52,7 @@ export class ConsulterDemandeComponent implements OnInit {
 
     constructor(private demandeCessionService: DemandesCessionService,
         public dialogService: DialogService,
-         private documentService: DocumentService, 
          private messageService: MessageService, 
-         private demandeAdhesionService: DemandesAdhesionService,
          private breadcrumbService: BreadcrumbService,
          private observationService:ObservationService) { 
             this.profile = localStorage.getItem('profil');
@@ -126,31 +124,6 @@ export class ConsulterDemandeComponent implements OnInit {
         });
     
       }
-
-    saveProduct() {
-        this.submitted = true;
-
-        if (this.product.name.trim()) {
-            if (this.product.id) {
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-            } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-            }
-
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
-        }
-    }
 
     findIndexById(id: string): number {
         let index = -1;

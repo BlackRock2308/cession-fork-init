@@ -144,7 +144,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Erreur',
-          text: 'Le montant renseigné dépasse la solde PME!',
+          text: 'Le montant renseigné dépasse le solde à payer à la PME!',
         })
        }else{
         this.close(this.detailPaiement);

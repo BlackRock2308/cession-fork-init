@@ -70,7 +70,7 @@ export class TacheAnalyseComponent implements OnInit {
          private observationService:ObservationService,
          private tokenStorage:TokenStorageService) {
             this.breadcrumbService.setItems([
-                { label: 'Liste de demandes à analyser'},
+                { label: 'Liste de demandes à analyser' , routerLink :  'cdmp/analyse_risque'},
                 { label: 'Analyse du risque',  routerLink: ['/cdmp/analyse_risque']  }
             ]);
             this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })

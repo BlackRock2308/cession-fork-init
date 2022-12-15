@@ -68,6 +68,8 @@ export class DemandesAdhesionComponent implements OnInit {
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
       { field: 'rccm', header: 'RCCM' },
+      { field: 'raisonSocial', header: 'Raison Sociale' },
+
       { field: 'date_soumission', header: 'Date Soumission' },
       { field: 'statut', header: 'Statut' }
     ];

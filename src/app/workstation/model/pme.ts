@@ -27,13 +27,13 @@ export interface PME {
     prenomRepresentant ?:string,
     nomRepresentant ?:string,
     dateCreation ?: Date,
-    effectif?: number,
+    effectifPermanent?: number,
     etablissements ?: number,
     chiffresDaffaires?: number,
     cniRepresentant ?: string ,
     dateimmatriculation ?: Date,
     telephonePME ?: string,
-    capitalSocial ?: string,
+    capitalSocial ?: number,
     nineaValide?:boolean;
     pmeActive?:boolean;
     atd?:boolean;

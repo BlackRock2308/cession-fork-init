@@ -44,15 +44,14 @@ message:string = "";
     localite: ['', Validators.required],
     controle: ['', Validators.required],
     activitePrincipale: ['', Validators.required],
-    registre: ['', Validators.required],
     prenomRepresentant: ['', Validators.required],
     nomRepresentant: ['', Validators.required],
-    dateCreation: ['', [Validators.required, this.matchValues()]],
+    dateCreation: [''],
     effectifPermanent: ['', Validators.required],
     nombreEtablissementSecondaires: ['', Validators.required],
     chiffresDaffaires: ['', Validators.required],
     cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
-    dateImmatriculation: ['', [Validators.required, this.matchValues()]],
+    dateImmatriculation: [''],
     telephonePME: ['', Validators.required],
     capitalSocial: ['', Validators.required],
     autorisationMinisterielle: ['', Validators.required]
@@ -95,9 +94,9 @@ message:string = "";
   }
 
   onSubmit() {
-    if (this.informationsForm.invalid || this.f['cniRepresentant'].invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
-      return;
-    }
+    // if (this.informationsForm.invalid || this.f['cniRepresentant'].invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
+    //   return;
+    // }
     this.submit = false;
     let telephonePME = this.informationsForm.get('telephonePME').value.internationalNumber;
     this.informationsForm.get('telephonePME').setValue(telephonePME);
@@ -173,7 +172,7 @@ message:string = "";
             confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
             allowOutsideClick: false
           })
-          
+
         })
         this.createCompte()
     })

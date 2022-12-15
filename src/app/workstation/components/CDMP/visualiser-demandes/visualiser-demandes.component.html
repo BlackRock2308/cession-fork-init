@@ -11,7 +11,16 @@
             <br>
             <br>
             <div *ngIf="page=='adhesion'" class="grid p-fluid">
-                <div class="col-12 md:col-4">
+                <div class="col-12 md:col-3">
+                    <span class="h5texte">Dénomination</span>
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="value1" [disabled]="true" />
+                            <label for="inputtext">{{demande.pme.raisonSocial}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 md:col-3">
                     <span class="h5texte">NINEA</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -20,7 +29,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-12 md:col-4">
+                <div class="col-12 md:col-3">
                     <span class="h5texte">RCCM</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -29,7 +38,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-12 md:col-4">
+                <div class="col-12 md:col-3">
                     <span class="h5texte">Date de la demande</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -38,7 +47,7 @@
                         </span>
                     </div>
                 </div>
-                <div *ngIf="demande.type_marche" class="col-12 md:col-4">
+                <!-- <div *ngIf="demande.type_marche" class="col-12 md:col-4">
                     <span class="h5texte">Nom du marché</span>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
@@ -46,7 +55,7 @@
                             <label for="inputtext">{{demande.type_marche}}</label>
                         </span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div *ngIf="page=='demande cession'" class="grid p-fluid">
                 <div class="col-12 md:col-3">
