@@ -3,11 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
-import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 
 @Component({

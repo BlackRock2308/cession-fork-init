@@ -101,26 +101,35 @@
                             <td style="width:20%;">
                                 <span class="p-column-title">Statut</span>
                                 <!-- <span>{{paiement.statutPme.libelle}}</span> -->
-                                <span [class]="'product-badge status-' + (paiement.statutPme.libelle ? paiement.statutPme.libelle.toLowerCase() : '')">{{paiement.statutPme.libelle.replaceAll('_',
+                                <span
+                                    [class]="'product-badge status-' + (paiement.statutPme.libelle ? paiement.statutPme.libelle.toLowerCase() : '')">{{paiement.statutPme.libelle.replaceAll('_',
                                     ' ')}}</span>
-                                    <!-- <span [class]="'product-badge status-' + (paiement.statutCDMP.libelle ? paiement.statutCDMP.libelle.toLowerCase() : '')">{{paiement.statutCDMP.libelle.replaceAll('_',
+                                <!-- <span [class]="'product-badge status-' + (paiement.statutCDMP.libelle ? paiement.statutCDMP.libelle.toLowerCase() : '')">{{paiement.statutCDMP.libelle.replaceAll('_',
                                         ' ')}}</span> -->
-                                </td>
+                            </td>
                             <td>
                                 <div class="flex">
-                                    <button pButton pRipple icon="pi pi-money-bill" 
-                                    class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutPme.code !== 'PME_TOTALEMENT_PAYEE'"
-                                    pTooltip="Paiement de la PME" (click)="visualiserPaiementListPME(paiement)"></button>
-                                <button pButton pRipple icon="pi pi-id-card"
-                                class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutCDMP.code !== 'CDMP_TOTALEMENT_PAYEE'"
-                                pTooltip="Paiement de la CDMP"  (click)="visualiserPaiementListCDMP(paiement)"></button>
+                                    <button pButton pRipple icon="pi pi-money-bill"
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        *ngIf="paiement.statutPme.code !== 'PME_TOTALEMENT_PAYEE'"
+                                        pTooltip="Paiement de la PME"
+                                        (click)="visualiserPaiementListPME(paiement)"></button>
+                                    <button pButton pRipple icon="pi pi-id-card"
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        *ngIf="paiement.statutCDMP.code !== 'CDMP_TOTALEMENT_PAYEE'"
+                                        pTooltip="Paiement de la CDMP"
+                                        (click)="visualiserPaiementListCDMP(paiement)"></button>
 
-                                        <button pButton pRipple icon="pi-check-circle" 
-                                        class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutPme.code === 'PME_TOTALEMENT_PAYEE'"
-                                        pTooltip="Paiement de la PME" (click)="visualiserPaiementListPME(paiement)"></button>
                                     <button pButton pRipple icon="pi pi-check-circle"
-                                    class="p-button-rounded p-button-text mr-2 button simpleButton" *ngIf="paiement.statutCDMP.code === 'CDMP_TOTALEMENT_PAYEE'"
-                                    pTooltip="Paiement de la CDMP"  (click)="visualiserPaiementListCDMP(paiement)"></button>
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        *ngIf="paiement.statutPme.code === 'PME_TOTALEMENT_PAYEE'"
+                                        pTooltip="Paiement de la PME"
+                                        (click)="visualiserPaiementListPME(paiement)"></button>
+                                    <button pButton pRipple icon="pi pi-check-circle"
+                                        class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                        *ngIf="paiement.statutCDMP.code === 'CDMP_TOTALEMENT_PAYEE'"
+                                        pTooltip="Paiement de la CDMP"
+                                        (click)="visualiserPaiementListCDMP(paiement)"></button>
                                 </div>
                             </td>
                         </tr>

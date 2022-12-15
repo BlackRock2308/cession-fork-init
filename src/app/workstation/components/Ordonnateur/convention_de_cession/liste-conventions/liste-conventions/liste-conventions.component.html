@@ -98,9 +98,9 @@
                         <td>
                             <div class="flex">
                                 <button *ngIf="demande.statut.libelle =='CONVENTION_TRANSMISE'" pButton pRipple icon="pi pi-reply" class="p-button-rounded successButton"
-                                    (click)="editerDemandeCession(demande)"></button>
+                                    (click)="editerDemandeCession(demande)" pTooltip="Accepter la convention"></button>
                                     <button pButton pRipple icon="pi pi-search" *ngIf="demande.statut.libelle!='CONVENTION_TRANSMISE'" class="p-button-rounded simpleButton"
-                                    (click)="editerDemandeCession(demande)"></button>
+                                    (click)="editerDemandeCession(demande)" pTooltip="Visualiser le dossier"></button>
                             </div>
                         </td>
                     </tr>
