@@ -7,6 +7,7 @@ import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
 import { Observation } from '../../model/observation';
 import { StatutEnum } from '../../model/statut-enum';
+import { TextConvention } from '../../model/TextConvention';
 import { ConventionService } from '../../service/convention/convention.service';
 import { ObservationService } from '../../service/observation/observation.service';
 
@@ -28,19 +29,19 @@ export class EditerConventionComponent implements OnInit {
   decode:number;
   convention:any =null;
   motifRejet:String;
+  text:TextConvention = null;
   constructor(
     private router : Router,
     private ref: DynamicDialogRef, private pmeService: PmeService
     ,private conventionService : ConventionService, private config: DynamicDialogConfig,
     private tokenStorage:TokenStorageService,
     private observationService:ObservationService
-
-  ) { }
-  // ngAfterViewInit(): void {
-  //   this.convention.remarqueJuriste =
-  //   document.getElementById("texteJuridique").innerHTML = this.convention.remarqueJuriste;
-  //   console.log(this.convention.remarqueJuriste);
-  // }
+  ) {     
+    this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
+    "l’intégralité de la contribution", "les documents écrits relatifs au projet",
+     "réclamation ou revendication", "5 % du montant");
+  }
+  
 
   ngOnInit(): void {
     this.dateEdit = new Date();
@@ -50,20 +51,16 @@ export class EditerConventionComponent implements OnInit {
     this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
-      remarqueJuriste: this.demande.conventions[0].remarqueJuriste,
       idConvention: this.demande.conventions[0].idConvention
     }
+    this.text =this.demande.conventions[0].textConventionDto;
    }else{
-    document.getElementById("texteJuridique").innerHTML = 'Article 10 et 10-1 de la loi <span contenteditable="true" style="font-weight: bold;">n°95-73</span> modifiée du 21 janvier 1995 d’orientation et de programmation relative à la sécurité. <br/> Article 5 de la loi <span contenteditable="true" style="font-weight: bold;">...........</span> du 5 juillet 2006 relative à la prévention des violences lors des manifestations sportives. <br/> Loi n°2007-297 du 5 mars 2007 relative à la prévention de la délinquance, qui a créé l’article L5211-60 du Code général des collectivités territoriales. <br/>';
     this.convention = {
-      remarqueJuriste:"",
       idDemande:this.demande.idDemande,
       pme:{
         idPME:this.demande.pme.idPME
     }
     }
-      this.convention.remarqueJuriste =
-    document.getElementById("texteJuridique").innerHTML;
     
    }
   }
@@ -73,6 +70,38 @@ getObervation(){
   .subscribe((res:Observation) =>{
     this.motifRejet = res.libelle;
   })
+}
+
+htmlToText(val:string){
+  val = val.replace('&nbsp;',' ');
+  val = val.replace('</div>', ' ');
+  val = val.replace('<div>', '\n')
+  return val;
+}
+onNameChangeVar1(val) {
+ this.text.var1 =val;
+ this.text.var1 = this.htmlToText(this.text.var1);
+}
+onNameChangeVar2(val) {
+  this.text.var2 =val;
+  this.text.var1 = this.htmlToText(this.text.var1);
+}
+onNameChangeVar3(val) {
+  this.text.var3 =val;
+  this.text.var1 = this.htmlToText(this.text.var1);
+}
+onNameChangeVar4(val) {
+  this.text.var4 =val;
+  this.text.var1 = this.htmlToText(this.text.var1);
+}
+onNameChangeVar5(val) {
+  this.text.var5 =val;
+  this.text.var1 = this.htmlToText(this.text.var1);
+}
+
+onNameChangeVar6(val) {
+  this.text.var6 =val;
+  this.text.var1 = this.htmlToText(this.text.var1);
 }
 
 
@@ -115,9 +144,7 @@ getObervation(){
 
   //enregistrement du document avec l'appel du service d'enregistrement
   enregistrerConvention() { 
-    this.convention.remarqueJuriste = document.getElementById("texteJuridique");
-    console.log(this.convention.remarqueJuriste);
-    
+    this.convention.textConventionDto = this.text;
     if(this.demande.conventions[0] !=null){
       this.conventionService.corrigerConvention(this.convention)
       .subscribe((response: any) =>  {

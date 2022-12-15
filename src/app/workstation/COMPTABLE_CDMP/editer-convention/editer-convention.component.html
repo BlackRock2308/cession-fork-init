@@ -1,76 +1,145 @@
 <div class="grid">
     <div class="col-12">
         <!-- <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()"> -->
-            <div class="modal-body">
-                <!-- <div class="field grid">
-                    <div class="col-8 mb-2">
-                        <input formControlName="file" class="hidden" type="file" accept=".pdf,.
-                        PDF" id="upload-file" name="upload-file"
-                            ngf-max-size="2MB" (change)="selectFile($event)">
-                        <div class=" inputContainer">
-                            <input *ngIf="selectedFiles==null;else elseBlock" id="file" type="text" pInputText
-                                pTooltip="Charger la convention " placeholder="Nouvelle Convention" class="inpute">
-                            <ng-template #elseBlock id="file" type="text" pInputText pTooltip="Charger document">
-                                <input id="file" type="text" style="width: 265px;" pInputText
-                                    pTooltip="Charger la convention" placeholder="{{selectedFiles.name}}"
-                                    class="inpute">
-                            </ng-template>
-                            <button type="button" pButton pRipple icon="pi pi-upload"
-                                class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-file"
-                                (click)="handleClick()"></button>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="entete">
-                    <div class="sn" >
-                        Ministère des Finances et du Budget <br/>
-                        Caisse de Dépôt et Consignation <br/>
-                        Caisse des marchés publics <br/>
-                        Direction des risques et du contentieux
-                    </div>
-                
-                    <div class="date">
-                        Le <span >{{dateEdit | date: 'dd/MM/yyyy'}}</span>
-                    </div>
+        <div class="modal-body ">
+            <div class="container-fluid" style="height: 90%;">
+            <div class="entete">
+                <div class="sn">
+                    Ministère des Finances et du Budget <br/>
+                    Caisse des dépôts et consignations <br/>
+                    Caisse des marchés publics <br/>
+                    Direction des risques et du contentieux
                 </div>
-                <div class="titre">
-                    Convention de cession
-                </div>                
-                <div class="field grid row row">
-                    <label class="col-12 ">PME: <span> {{demande.pme.raisonSocial}}</span> </label>
-                    <label class="col-12 ">NINEA: <span>{{demande.pme.ninea}}</span> </label>
-                    <label class="col-12 ">RCCM: <span >{{demande.pme.rccm}}</span> </label>
-                    <label class="col-12 ">Nom marché: <span >{{demande.bonEngagement.nomMarche}}</span> </label>
-                    <label class="col-12 ">RefBE: <span >{{demande.bonEngagement.reference}}</span> </label>
-                    <label class="col-12 ">Type de marché: <span>{{demande.bonEngagement.typeMarche}}</span></label>
-                    <label class="col-12 ">Montant: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
-                        'symbol' : '1.0-0':'fr'}} </span> </label>     
-                        <!-- Décote: <span>{{decode}} </span> FCFA<br/> -->
-                    <!-- <p>
-                        <span >{{convention.remarqueJuriste}}</span>
-                    </p> -->
-                </div>
-                <div class="field grid row">
-                    <!-- <label htmlFor="remarqueJuriste" class="col-12 ">Texte</label> -->
-                    <div class="col-12 " id="texteJuridique"></div>                    
+
+                <div class="date">
+                    Le {{dateEdit | date: 'dd/MM/yyyy'}}
                 </div>
             </div>
-            <div><br>
-                <label class="form-label" for="textAreaExample">Observations</label>
-                <div class="d-flex flex-start w-100">        
-                    <div class="form-outline w-100">
-                        <textarea class="form-control" id="textAreaExample" rows="4" style="background-color:#D3D3D3;">{{motifRejet}}</textarea>
-                    </div>
-                </div></div>
-            <div class="modal-footer ">
-                <div class="col-12  pr-0 d-flex  flex-row-reverse">
-                    <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Enregistrer"
-                        icon="pi pi-save" class="p-button-raised successButton pull-right"
-                        (click)="onSubmit()"></button>
-                    <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
-                        class="p-button-raised dangerButton" (click)="dismiss()"></button>
+            <div class="titre">
+                Convention de cession
+            </div>
+            <div class="field grid row row">
+                <label class="col-12 ">PME: <span> {{demande.pme.raisonSocial}}</span> </label>
+                <label class="col-12 ">NINEA: <span>{{demande.pme.ninea}}</span> </label>
+                <label class="col-12 ">RCCM: <span>{{demande.pme.rccm}}</span> </label>
+                <label class="col-12 ">Nom marché: <span>{{demande.bonEngagement.nomMarche}}</span> </label>
+                <label class="col-12 ">RefBE: <span>{{demande.bonEngagement.reference}}</span> </label>
+                <label class="col-12 ">Type de marché: <span>{{demande.bonEngagement.typeMarche}}</span></label>
+                <label class="col-12 ">Montant: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
+                        'symbol' : '1.0-0':'fr'}} </span> </label>
+                <!-- Décote: <span>{{decode}} </span> FCFA<br/> -->
+            </div>
+            <div class="field grid row">
+                <div class="col-12 ">
+                    
+                    <h6 >Article 1 – Objet de la convention</h6>
+                    La présente convention (ci-après la « Convention ») a pour objet de définir :<br/>
+                    - les modalités du soutien apporté par le Mécène au Bénéficiaire pour parvenir à mettre en œuvre le
+                    Projet décrit ci-dessus;<br/>
+                    - les modalités de <span contenteditable (input)="onNameChangeVar1($event.target.innerHTML)"
+                        class="span-var">{{text.var1}}</span> au soutien apporté
+                    par le Mécène consenties par le
+                    Bénéficiaire.<br/>
+                    <br/>
+                    
+                    <h6 >Article 2 – Apports du Mécène</h6>
+                    Le Mécène s’engage à <span contenteditable (input)="onNameChangeVar2($event.target.innerHTML)"
+                        class="span-var">{{text.var2}}</span> décrit ci-dessus
+                    en versant la somme de [ X
+                    en chiffres et en lettres HT au Bénéficiaire.<br/>
+                    <br/>                     
+                    
+                    <h6 >Article 3 – Apports du Bénéficiaire</h6>
+
+                    3-1 Soutien financier <br/>
+                    Le Bénéficiaire s’engage à utiliser <span contenteditable
+                        (input)="onNameChangeVar3($event.target.innerHTML)"
+                        class="span-var">{{text.var3}}</span> apportée par le Mécène pour
+                    financer le Projet.
+                    <br/>
+                    3-2 Communication<br/>
+                    Pendant toute la durée de la présente Convention, le Bénéficiaire s’engage à faire mention du
+                    partenariat avec le Mécène sur tous les supports de communication liés à l’opération et, notamment à
+                    reproduire le logo du Mécène sur tous <span contenteditable
+                        (input)="onNameChangeVar4($event.target.innerHTML)" class="span-var">{{text.var4}}</span> (sous réserve de la
+                    bonne réception par le Bénéficiaire des éléments – logos, mention, dans les délais et formats
+                    requis) : invitations, affiches, tracts, bannières, dossiers de presse, site Internet et réseaux
+                    sociaux du Bénéficiaire .<br/>
+                    Le Bénéficiaire s’engage à soumettre au Mécène lesdits documents avant impression, afin qu’il puisse
+                    notamment vérifier l’utilisation de son logotype au regard de sa charte graphique.<br/>
+                    Le Bénéficiaire autorise le Mécène à évoquer son action de soutien dans sa propre communication
+                    institutionnelle et communication interne, sur tous supports, sous réserve que les différentes
+                    mentions relatives à ce soutien lui soient soumises pour accord.<br/>
+                    <br/>
+                    3-3 Droits d’utilisation<br/>
+                    Le Mécène peut utiliser, sans s’acquitter de droits supplémentaires, les photographies communiquées
+                    par le Bénéficiaire et liées au projet pour tout usage non commercial, dans le monde entier et pour
+                    la durée des droits de propriété intellectuelle attachés à ces photographies dans le cadre de la
+                    communication du projet.
+                    <br/>A cet égard, le Bénéficiaire déclare au Mécène qu’il est en droit de concéder de telles
+                    autorisations et garantit le Mécène contre toute <span contenteditable
+                        (input)="onNameChangeVar5($event.target.innerHTML)"
+                        class="span-var">{{text.var5}}</span> des photographes et/ou
+                    des auteurs du projet, dans le cadre des droits accordés à l’occasion du projet.
+                    <br/>Pour ces utilisations, le Mécène s’engage à :
+                    <br/>- préciser les crédits d’image suivant : [préciser],
+                    <br/>- opposer à proximité de chaque visuel utilisé une mention explicitant le lien entre le dit
+                    visuel et le soutien du Mécène avec le projet.
+                    <br/>
+                    3-4 Contreparties<br/>
+                    3-4-1 Octroi de contreparties <br/>
+                    En contrepartie de son soutien, le Bénéficiaire accorde au Mécène les avantages suivants : [les
+                    décrire], repris en annexe de la présente Convention.
+                    <br/>Exemples : <br/>
+                    - Accès au projet<br/>
+                    Le Bénéficiaire propose au Mécène la possibilité d’inviter xxx (en chiffres et en toutes lettres)
+                    personnes pendant la durée d’ouverture au public du projet. A cet effet, xxx (en chiffres et en
+                    toutes lettres) laissez-passer valables pour X personnes sont fournis au Mécène un mois avant
+                    l’ouverture au public du projet.
+                     
+                    <br/>- Invitations au vernissage du projet
+                    <br/>Le Bénéficiaire propose au Mécène xxx (en chiffres et en toutes lettres) invitations au
+                    vernissage le cas échéant du projet qui aura lieu le (préciser la date)
+                    <br/>- Exemplaires offerts d’un ouvrage
+                    <br/>Le Bénéficiaire remet à titre gracieux au mécène xxx (en chiffres et en toutes lettres)
+                    exemplaires de l’ouvrage présentant le projet.
+                    - ….
+                    <br/>Chaque contrepartie octroyée fait l’objet d’une valorisation par le Bénéficiaire, dont le
+                    détail figure en annexe. En matière de communication mentionnée au 3-2 et conformément à la doctrine
+                    fiscale, la contrepartie est valorisée [dans la limite de 10 % du montant du don compte tenu de la
+                    dimension nationale du projet ou dans la limite de <span contenteditable
+                        (input)="onNameChangeVar6($event.target.innerHTML)" class="span-var">{{text.var6}}</span> du don compte tenu de la dimension
+                    régionale du projet].
+                    <br/>L’ensemble de ces contreparties y compris en matière de communication sont accordées dans la
+                    limite d’un plafond de 25 % de l’apport du Mécène, soit dans la limite de (montant en chiffres)
+                    (montant en lettres) euros nets de taxe.
+                    <br/>3-4-2 Utilisation des contreparties <br/>
+                    <br/>Lorsque le Mécène lui en fait la demande, le Bénéficiaire lui fait parvenir un état des
+                    contreparties consommées et de celles qui restent à consommer.
+                    <br/>La durée de consommation par le Mécène des contreparties octroyées par le Bénéficiaire ne peut
+                    excéder [XX en chiffres et en lettres] mois suivant la fin de la présente Convention.
+                    
                 </div>
             </div>
+        </div><br>
+        <div *ngIf="demande.statut.code !== 'NON_RISQUEE'">
+            <label class="form-label" for="textAreaExample">Observations</label>
+            <div class="d-flex flex-start w-100">
+                <div class="form-outline w-100">
+                    <textarea class="form-control" id="textAreaExample" rows="4"
+                        disabled="true">{{motifRejet}}</textarea>
+                </div>
+            </div>
+        </div>        
+    </div>
+        <div class="modal-footer ">
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Enregistrer"
+                    icon="pi pi-save" class="p-button-raised successButton pull-right" (click)="onSubmit()"></button>
+                <button id="valider" style="width: min-content;" pButton pRipple label="Annuler" icon="pi pi-times"
+                    class="p-button-raised dangerButton" (click)="dismiss()"></button>
+            </div>
+        </div>
         <!-- </form> -->
     </div>
 </div>
