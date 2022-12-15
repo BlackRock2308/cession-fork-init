@@ -84,24 +84,24 @@ onNameChangeVar1(val) {
 }
 onNameChangeVar2(val) {
   this.text.var2 =val;
-  this.text.var1 = this.htmlToText(this.text.var1);
+  this.text.var2 = this.htmlToText(this.text.var2);
 }
 onNameChangeVar3(val) {
   this.text.var3 =val;
-  this.text.var1 = this.htmlToText(this.text.var1);
+  this.text.var3 = this.htmlToText(this.text.var3);
 }
 onNameChangeVar4(val) {
   this.text.var4 =val;
-  this.text.var1 = this.htmlToText(this.text.var1);
+  this.text.var4 = this.htmlToText(this.text.var4);
 }
 onNameChangeVar5(val) {
   this.text.var5 =val;
-  this.text.var1 = this.htmlToText(this.text.var1);
+  this.text.var5 = this.htmlToText(this.text.var5);
 }
 
 onNameChangeVar6(val) {
   this.text.var6 =val;
-  this.text.var1 = this.htmlToText(this.text.var1);
+  this.text.var6 = this.htmlToText(this.text.var6);
 }
 
 
