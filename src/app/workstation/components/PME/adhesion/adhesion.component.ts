@@ -64,32 +64,32 @@ export class AdhesionComponent implements OnInit {
         "nom": " Dakar Plateau"
       },
       {
-        "type": "SARL",
-        "nom": "Société à Responsabilité Limitée"
+        "type": "A definir",
+        "nom": "ADF"
       },
       {
-        "type": "GIE",
-        "nom": "GIE"
+        "type": "A definir",
+        "nom": "A definir"
       },
       {
-        "type": "SNC",
-        "nom": "Société en Nom Collectif"
+        "type": "A definir",
+        "nom": "A definir"
       },
       {
-        "type": "SCS",
-        "nom": "Société en Commandite Simple"
+        "type": "A definir",
+        "nom": "A definir"
       },
       {
-        "type": "Société civile",
-        "nom": "Société civile"
+        "type": "A definir",
+        "nom": "A definir"
       },
       {
-        "type": "Société Coopérative",
-        "nom": "Société Coopérative"
+        "type": "A definir",
+        "nom": "A definir"
       },
       {
-        "type": "Entreprise Individuelle",
-        "nom": "Entreprise Individuelle"
+        "type": "A definir",
+        "nom": "A definirs"
       }
   ];
     this.formeJuridique = [
