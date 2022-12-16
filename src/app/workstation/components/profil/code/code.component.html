@@ -11,10 +11,10 @@
             </div>
         </div>
         <div class="col-12 pr-0 d-flex flex-row-reverse">
-            <button id="fermer" style="width: min-content;" pButton  label="Fermer" icon="pi pi-times"
-                class="dangerButton" (click)="dismiss()"></button>
             <button type="button" id="valider" style="width: min-content;" pButton  label="Valider" [disabled]="!code"
                 icon="pi pi-check" class="successButton" (click)=" onSubmit()"></button>
+            <button id="fermer" style="width: min-content;" pButton  label="Fermer" icon="pi pi-times"
+                class="dangerButton" (click)="dismiss()"></button>
         </div>
 </form>
 </div>

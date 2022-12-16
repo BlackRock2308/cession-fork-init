@@ -49,9 +49,9 @@ export class ConventionEnregistreeComponent implements OnInit {
       convention: ['', Validators.required]
     });
 
-      this.demande = this.config.data.demande;
-      this.pme = this.demande.pme
-      this.convention = this.demande.conventions[0];
+    this.demande = this.config.data.demande;
+    this.pme = this.demande.pme
+    this.convention = this.demande.conventions[0];
 
     this.form = this.formBuilder.group({
 
@@ -113,7 +113,7 @@ export class ConventionEnregistreeComponent implements OnInit {
     }
 
     this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
-      data => { console.log(data) }),
+      data => { console.log('meriiiiiiiiii   '+ data) }),
 
       this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'CONVENTION').subscribe(
         data => { console.log(data) }),
@@ -130,12 +130,12 @@ export class ConventionEnregistreeComponent implements OnInit {
             timer: 2500
 
           }).then(() => {
-              this.router.navigate(['workstation/comptable/convention_cession'])
-             
+            this.router.navigate(['workstation/comptable/convention_cession'])
+
           })
           setTimeout(() => {
             location.reload()
-          },1600);
+          }, 1600);
         })
     this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
     this.observation.statut = {}
@@ -143,6 +143,5 @@ export class ConventionEnregistreeComponent implements OnInit {
     this.observation.statut.libelle = StatutEnum.ConventionTransmise;
     this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
   }
-      
+
 }
-      
