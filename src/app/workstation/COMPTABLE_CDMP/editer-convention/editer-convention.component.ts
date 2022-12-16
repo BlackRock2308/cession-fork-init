@@ -37,9 +37,7 @@ export class EditerConventionComponent implements OnInit {
     private tokenStorage:TokenStorageService,
     private observationService:ObservationService
   ) {     
-    this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
-    "l’intégralité de la contribution", "les documents écrits relatifs au projet",
-     "réclamation ou revendication", "5 % du montant");
+    
   }
   
 
@@ -47,14 +45,17 @@ export class EditerConventionComponent implements OnInit {
     this.dateEdit = new Date();
    this.demande = this.config.data.demande;
    if(this.demande.conventions.length){
-    document.getElementById("texteJuridique").innerHTML = this.convention.remarqueJuriste;
-    this.getObervation();
+    this.decode = this.demande.conventions[0].valeurDecoteByDG*this.demande.bonEngagement.montantCreance;
+    this.getTextConvention(this.demande.conventions[0].idConvention);
+   // this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
       idConvention: this.demande.conventions[0].idConvention
     }
-    this.text =this.demande.conventions[0].textConventionDto;
    }else{
+    this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
+    "l’intégralité de la contribution", "les documents écrits relatifs au projet",
+     "réclamation ou revendication", "5 % du montant");
     this.convention = {
       idDemande:this.demande.idDemande,
       pme:{
@@ -66,9 +67,16 @@ export class EditerConventionComponent implements OnInit {
   }
 
 getObervation(){
-  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.code)
+  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.libelle)
   .subscribe((res:Observation) =>{
     this.motifRejet = res.libelle;
+  })
+}
+
+getTextConvention(id){
+  this.conventionService.getTextConvention(id)
+  .subscribe((res:TextConvention) =>{
+    this.text = res;
   })
 }
 
@@ -80,28 +88,28 @@ htmlToText(val:string){
 }
 onNameChangeVar1(val) {
  this.text.var1 =val;
- this.text.var1 = this.htmlToText(this.text.var1);
+ //this.text.var1 = this.htmlToText(this.text.var1);
 }
 onNameChangeVar2(val) {
   this.text.var2 =val;
-  this.text.var2 = this.htmlToText(this.text.var2);
+  //this.text.var2 = this.htmlToText(this.text.var2);
 }
 onNameChangeVar3(val) {
   this.text.var3 =val;
-  this.text.var3 = this.htmlToText(this.text.var3);
+  //this.text.var3 = this.htmlToText(this.text.var3);
 }
 onNameChangeVar4(val) {
   this.text.var4 =val;
-  this.text.var4 = this.htmlToText(this.text.var4);
+ // this.text.var4 = this.htmlToText(this.text.var4);
 }
 onNameChangeVar5(val) {
   this.text.var5 =val;
-  this.text.var5 = this.htmlToText(this.text.var5);
+  //this.text.var5 = this.htmlToText(this.text.var5);
 }
 
 onNameChangeVar6(val) {
   this.text.var6 =val;
-  this.text.var6 = this.htmlToText(this.text.var6);
+  //this.text.var6 = this.htmlToText(this.text.var6);
 }
 
 
