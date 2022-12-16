@@ -89,7 +89,7 @@ export class AdhesionComponent implements OnInit {
       },
       {
         "type": "A definir",
-        "nom": "A definirs"
+        "nom": "A definir"
       }
   ];
     this.formeJuridique = [
