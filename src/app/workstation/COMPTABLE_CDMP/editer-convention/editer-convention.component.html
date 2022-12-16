@@ -27,6 +27,8 @@
                 <label class="col-12 ">Type de marché: <span>{{demande.bonEngagement.typeMarche}}</span></label>
                 <label class="col-12 ">Montant: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
                         'symbol' : '1.0-0':'fr'}} </span> </label>
+                <label class="col-12" *ngIf="demande.statut.code !== 'NON_RISQUEE'">Décote: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
+                            'symbol' : '1.0-0':'fr'}} </span> </label>
                 <!-- Décote: <span>{{decode}} </span> FCFA<br/> -->
             </div>
             <div class="field grid row">
@@ -36,7 +38,7 @@
                     La présente convention (ci-après la « Convention ») a pour objet de définir :<br/>
                     - les modalités du soutien apporté par le Mécène au Bénéficiaire pour parvenir à mettre en œuvre le
                     Projet décrit ci-dessus;<br/>
-                    - les modalités de <span contenteditable (input)="onNameChangeVar1($event.target.innerHTML)"
+                    - les modalités de <span contenteditable (input)="onNameChangeVar1($event.target)"
                         class="span-var">{{text.var1}}</span> au soutien apporté
                     par le Mécène consenties par le
                     Bénéficiaire.<br/>
