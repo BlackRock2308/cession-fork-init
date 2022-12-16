@@ -45,13 +45,13 @@ export class EditerConventionComponent implements OnInit {
     this.dateEdit = new Date();
    this.demande = this.config.data.demande;
    if(this.demande.conventions.length){
-    this.getObervation();
+    this.decode = this.demande.conventions[0].valeurDecoteByDG*this.demande.bonEngagement.montantCreance;
+    this.getTextConvention(this.demande.conventions[0].idConvention);
+   // this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
       idConvention: this.demande.conventions[0].idConvention
     }
-    this.decode = this.demande.conventions[0].valeurDecoteByDG*this.demande.bonEngagement.montantCreance;
-    this.text =this.demande.conventions[0].textConventionDto;
    }else{
     this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
     "l’intégralité de la contribution", "les documents écrits relatifs au projet",
@@ -67,9 +67,16 @@ export class EditerConventionComponent implements OnInit {
   }
 
 getObervation(){
-  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.code)
+  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.libelle)
   .subscribe((res:Observation) =>{
     this.motifRejet = res.libelle;
+  })
+}
+
+getTextConvention(id){
+  this.conventionService.getTextConvention(id)
+  .subscribe((res:TextConvention) =>{
+    this.text = res;
   })
 }
 
