@@ -113,7 +113,7 @@ export class ConventionEnregistreeComponent implements OnInit {
     }
 
     this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
-      data => { console.log('meriiiiiiiiii   '+ data) }),
+      data => { console.log( data) }),
 
       this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'CONVENTION').subscribe(
         data => { console.log(data) }),
