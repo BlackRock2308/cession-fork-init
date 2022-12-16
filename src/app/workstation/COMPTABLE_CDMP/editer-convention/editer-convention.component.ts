@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
-import { Convention } from '../../model/convention';
 import { Observation } from '../../model/observation';
 import { StatutEnum } from '../../model/statut-enum';
+import { TextConvention } from '../../model/TextConvention';
 import { ConventionService } from '../../service/convention/convention.service';
 import { ObservationService } from '../../service/observation/observation.service';
 
@@ -20,8 +20,6 @@ export class EditerConventionComponent implements OnInit {
 
 
   dateEdit:Date;
-  //selectedFiles: File | null = null;
-  //selectedFile?: File;
   typesDocument: any[];
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
@@ -29,44 +27,91 @@ export class EditerConventionComponent implements OnInit {
   observation:Observation={}
   remarqueJuriste:string;
   decode:number;
-  convention:any;
+  convention:any =null;
+  motifRejet:String;
+  text:TextConvention = null;
   constructor(
     private router : Router,
     private ref: DynamicDialogRef, private pmeService: PmeService
     ,private conventionService : ConventionService, private config: DynamicDialogConfig,
     private tokenStorage:TokenStorageService,
     private observationService:ObservationService
-
-  ) { }
+  ) {     
+    
+  }
+  
 
   ngOnInit(): void {
     this.dateEdit = new Date();
    this.demande = this.config.data.demande;
    if(this.demande.conventions.length){
+    this.decode = this.demande.conventions[0].valeurDecoteByDG*this.demande.bonEngagement.montantCreance;
+    this.getTextConvention(this.demande.conventions[0].idConvention);
+   // this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
-      remarqueJuriste: this.demande.conventions[0].remarqueJuriste,
       idConvention: this.demande.conventions[0].idConvention
     }
    }else{
+    this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
+    "l’intégralité de la contribution", "les documents écrits relatifs au projet",
+     "réclamation ou revendication", "5 % du montant");
     this.convention = {
-      remarqueJuriste:"",
       idDemande:this.demande.idDemande,
       pme:{
         idPME:this.demande.pme.idPME
     }
     }
-    console.log(this.convention);
     
    }
   }
 
+getObervation(){
+  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.libelle)
+  .subscribe((res:Observation) =>{
+    this.motifRejet = res.libelle;
+  })
+}
 
+getTextConvention(id){
+  this.conventionService.getTextConvention(id)
+  .subscribe((res:TextConvention) =>{
+    this.text = res;
+  })
+}
 
-  //ouvrir la boite de dialogue du répertoire
-  handleClick() {
-    document.getElementById('upload-file').click();
-  }
+htmlToText(val:string){
+  val = val.replace('&nbsp;',' ');
+  val = val.replace('</div>', ' ');
+  val = val.replace('<div>', '\n')
+  return val;
+}
+onNameChangeVar1(val) {
+ this.text.var1 =val;
+ //this.text.var1 = this.htmlToText(this.text.var1);
+}
+onNameChangeVar2(val) {
+  this.text.var2 =val;
+  //this.text.var2 = this.htmlToText(this.text.var2);
+}
+onNameChangeVar3(val) {
+  this.text.var3 =val;
+  //this.text.var3 = this.htmlToText(this.text.var3);
+}
+onNameChangeVar4(val) {
+  this.text.var4 =val;
+ // this.text.var4 = this.htmlToText(this.text.var4);
+}
+onNameChangeVar5(val) {
+  this.text.var5 =val;
+  //this.text.var5 = this.htmlToText(this.text.var5);
+}
+
+onNameChangeVar6(val) {
+  this.text.var6 =val;
+  //this.text.var6 = this.htmlToText(this.text.var6);
+}
+
 
   //envoie du formulaire
   onSubmit() {
@@ -106,7 +151,8 @@ export class EditerConventionComponent implements OnInit {
   }
 
   //enregistrement du document avec l'appel du service d'enregistrement
-  enregistrerConvention() {   
+  enregistrerConvention() { 
+    this.convention.textConventionDto = this.text;
     if(this.demande.conventions[0] !=null){
       this.conventionService.corrigerConvention(this.convention)
       .subscribe((response: any) =>  {
@@ -177,3 +223,5 @@ export class EditerConventionComponent implements OnInit {
 
 
 }
+
+

@@ -107,14 +107,6 @@
                                     pTooltip="Charger la convention enregistrée"
                                     *ngIf="((demande.statut.libelle === 'CONVENTION_SIGNEE_PAR_DG') && (profil === 'JURISTE')) "
                                     (click)="chargerConvention(demande)"></button>
-                                <!-- <button pButton pRipple icon="pi pi-upload" class="p-button-rounded simpleButton"
-                                    pTooltip="Charger le bordereau"
-                                    *ngIf="((demande.statut.libelle === 'CONVENTION_TRANSMISE') && (profil === 'JURISTE')) "
-                                    (click)="ChargerConvention(convention)"></button> -->
-                                <!-- <button pButton pRipple icon="pi pi-file-excel" class="p-button-rounded simpleButton"
-                                    pTooltip="Editer la convention"
-                                    *ngIf="((demande.statut.libelle === 'CONVENTION_REJETEE') && (profil === 'JURISTE')) "
-                                    (click)="EditerConvention(convention)"></button> -->
                                 <button pButton pRipple icon="pi pi-file"
                                     class="p-button-rounded simpleButton successButton" pTooltip="Générer la convention"
                                     *ngIf="demande.statut.libelle === 'NON_RISQUEE' && (profil === 'JURISTE') "
