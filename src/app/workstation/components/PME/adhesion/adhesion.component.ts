@@ -64,32 +64,16 @@ export class AdhesionComponent implements OnInit {
         "nom": " Dakar Plateau"
       },
       {
-        "type": "A definir",
-        "nom": "ADF"
+        "type": "NG-ALM",
+        "nom": "Ngor Almadies"
       },
       {
-        "type": "A definir",
-        "nom": "A definir"
+        "type": "RUFISQUE",
+        "nom": "Rufisque"
       },
       {
-        "type": "A definir",
-        "nom": "A definir"
-      },
-      {
-        "type": "A definir",
-        "nom": "A definir"
-      },
-      {
-        "type": "A definir",
-        "nom": "A definir"
-      },
-      {
-        "type": "A definir",
-        "nom": "A definir"
-      },
-      {
-        "type": "A definir",
-        "nom": "A definir"
+        "type": "GRD-DKR",
+        "nom": "Grand Dakar"
       }
   ];
     this.formeJuridique = [

@@ -234,7 +234,7 @@ this.typesDocument=[
   private async enregistrerDocument(document:Document):Promise<any>{
     //fonction à continuer 
     try{
-      let file=await this.documenService.uploadFile('/pme/',this.demandeNantissementInfos.pme.idPME,document.file,document.typeDocument).subscribe()
+      let file=await this.documenService.uploadFile('/demandes/',this.demandeNantissementInfos.idDemande,document.file,document.typeDocument).subscribe()
       console.log(file)
     }
     catch(error){
