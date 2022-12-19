@@ -72,7 +72,7 @@
                 </ng-template>
                 <ng-template pTemplate="summary">
                     <span class="textLeft">
-                        <span>Solde :</span> {{paiement.soldePME  | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                        <span>Solde :</span> {{paiement?.soldePME  | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
                     </span>
                     <span class="textRight">
                         <span>Montant total :</span> {{montantRecuPME | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}

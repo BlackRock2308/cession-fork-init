@@ -145,6 +145,7 @@ export class AppLoginComponent implements OnInit {
           }
           if (this.roles.find(elem => elem.libelle == 'ORDONNATEUR') != null) {
             localStorage.setItem('profil', 'ORDONNATEUR');
+            localStorage.setItem('CODE_MINISTERE', 'ORDONNATEUR');
             if (this.changeCodePin) {
               this.router.navigate(['workstation/profil']);
 

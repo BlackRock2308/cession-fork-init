@@ -13,7 +13,7 @@ import { take, takeUntil, takeWhile } from 'rxjs/operators';
 import { HttpHeaderResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { BonEngagement } from '../../../../model/bonEngagement';
+import { BonEngagement, Ministere } from '../../../../model/bonEngagement';
 import { DatePipe } from '@angular/common';
 import { MY_DATE_FORMATS } from 'src/app/workstation/model/my-date-format';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
@@ -27,19 +27,21 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
   selector: 'app-verifier-demande-cession',
   templateUrl: './verifier-demande-cession.component.html',
   styleUrls: ['./verifier-demande-cession.component.scss'],
-  providers: [DialogService, 
+  providers: [DialogService,
     DatePipe]
-  
+
 })
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: any;
   bonEngagement: BonEngagement;
   dateTime = new Date();
+  ministeres: Ministere[];
+  code: string;
 
-  documents: any[]=[];
+  documents: any[] = [];
   cols: any[];
   pas_identifie: boolean;
-  
+
   identifie: boolean;
   pas_atd: boolean;
   date10: Date;
@@ -52,31 +54,33 @@ export class VerifierDemandeCessionComponent implements OnInit {
   nantissement: boolean;
   infosBEForm: any;
   infosBEDialog: boolean = false;
-  observation:Observation={};
+  observation: Observation = {};
   items: MenuItem[];
   home: MenuItem;
-  notifier=new HttpHeaderResponse();
+  notifier = new HttpHeaderResponse();
   selectedYear: Date;
-  submit:boolean = false;
+  submit: boolean = false;
   constructor(
     private demandeCessionService: DemandesCessionService,
     private datepipe: DatePipe,
     private bonEngagementService: BonEngagementService,
     private formBuilder: FormBuilder,
     private dialogService: DialogService,
-    private router:Router,
+    private router: Router,
     private breadcrumbService: BreadcrumbService,
-    private pmeService:PmeService,
-    private observationService:ObservationService,
-    private tokenStorage:TokenStorageService
-  ) { this.breadcrumbService.setItems([
-    { label: 'Liste des demandes de cession', routerLink: 'cdmp/recevabilite' },
+    private pmeService: PmeService,
+    private observationService: ObservationService,
+    private tokenStorage: TokenStorageService
+  ) {
+    this.breadcrumbService.setItems([
+      { label: 'Liste des demandes de cession', routerLink: 'cdmp/recevabilite' },
       { label: 'Recevabilité' }
-]);
-this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })}
+    ]);
+    this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
+  }
 
   ngOnInit(): void {
-    this.observation.libelle=''
+    this.observation.libelle = ''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
       console.log(this.demandeCession)
@@ -88,6 +92,10 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
 
     })
 
+    this.demandeCessionService.getAllMinistere().subscribe(data => {
+      this.ministeres = <Ministere[]>data;
+    })
+
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
       { field: 'nomDocument', header: 'Nom Document' },
@@ -95,21 +103,22 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     ];
 
     this.infosBEForm = this.formBuilder.group({
-      exercice: ['',Validators.required],
-      naturePrestation: ['',Validators.required],
-      natureDepense: ['',Validators.required],
-      designationBeneficiaire: ['',Validators.required],
-      referenceBE: [{ value: this.demandeCession.bonEngagement.reference, disabled: true } ],
-      imputation: ['',Validators.required],
-      modeReglement: ['',Validators.required],
-      destinationAction: ['',Validators.required],
-      identificationComptable: ['',Validators.required],
-      typeDepense: ['',Validators.required],
-      objetDepense: ['',Validators.required],
-      montantCreance: ['',Validators.required],
-      dateBonEngagement:['' ,[Validators.required, this.matchValues()]],
-      destinationActivite: ['',Validators.required],
-      dateSoumissionServiceDepensier: ['' ,[Validators.required, this.matchValues()]]
+      exercice: ['', Validators.required],
+      naturePrestation: ['', Validators.required],
+      natureDepense: ['', Validators.required],
+      designationBeneficiaire: ['', Validators.required],
+      referenceBE: [{ value: this.demandeCession.bonEngagement.reference, disabled: true }],
+      imputation: ['', Validators.required],
+      modeReglement: ['', Validators.required],
+      destinationAction: ['', Validators.required],
+      identificationComptable: ['', Validators.required],
+      typeDepense: ['', Validators.required],
+      objetDepense: ['', Validators.required],
+      montantCreance: ['', Validators.required],
+      dateBonEngagement: ['', [Validators.required, this.matchValues()]],
+      destinationActivite: ['', Validators.required],
+      code: ['', Validators.required],
+      dateSoumissionServiceDepensier: ['', [Validators.required, this.matchValues()]]
 
     });
   }
@@ -126,84 +135,86 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
     return this.infosBEForm.controls;
   }
   async updatePME() {
-    let pme=this.demandeCession.pme
-    pme.identificationBudgetaire= this.identifie
-    pme.atd=this.atd 
-    pme.interdictionBancaire=this.interdiction
+    let pme = this.demandeCession.pme
+    pme.identificationBudgetaire = this.identifie
+    pme.atd = this.atd
+    pme.interdictionBancaire = this.interdiction
     pme.nantissement = this.nantissement;
 
     console.log(pme)
     await this.pmeService.updatePme(pme).subscribe(
-      (data)=>{
+      (data) => {
         console.log(data);
-        
+
       }
     )
 
   }
-  
-  async rejeterDemande(bonEngagement){
+
+  async rejeterDemande(bonEngagement) {
     bonEngagement.exercice = this.selectedYear ? this.selectedYear.getFullYear() : '';
     this.updatePME()
-    await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
-      ()=>{},
-      ()=>{},
-      ()=>{
-        this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande).subscribe()
+    await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement, bonEngagement).subscribe(
+      () => { },
+      () => { },
+      () => {
+        this.demandeCessionService.rejeterRecevabilite(this.demandeCession.idDemande, this.code).subscribe()
         this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-        this.observation.statut={}          
+        this.observation.statut = {}
         this.observation.demandeid = this.demandeCession.idDemande;
-          this.observation.statut.libelle =StatutEnum.rejetee;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-          Swal.fire(
-            'Rejetée!',
-            'La demande a bien été rejetée.',
-            'success'
-          )
-          this.router.navigate(['workstation/cdmp/recevabilite'])
+        this.observation.statut.libelle = StatutEnum.rejetee;
+        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+        Swal.fire(
+          'Rejetée!',
+          'La demande a bien été rejetée.',
+          'success'
+        )
+        this.router.navigate(['workstation/cdmp/recevabilite'])
       }
 
     )
 
-     
+
   }
   async accepterDemande(bonEngagement) {
-   
-    bonEngagement.exercice = this.selectedYear.getFullYear();
-    this.updatePME()
-    await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement,bonEngagement).subscribe(
-      ()=>{},
-      ()=>{},
-      ()=>{
-        this.demandeCessionService.accepterRecevabilite(this.demandeCession.idDemande).subscribe(
-          (response)=>{},
-          (error)=>{},
-          ()=>{
-            this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-            this.observation.statut={}          
-            this.observation.demandeid = this.demandeCession.idDemande;
-          this.observation.statut.libelle =StatutEnum.recevable;
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    console.log('affiche MOI' + this.code)
 
-          Swal.fire({
-            position: 'center',
+    bonEngagement.exercice = this.selectedYear.getFullYear();
+
+    this.updatePME()
+    await this.bonEngagementService.updateBonEngagement(bonEngagement.idBonEngagement, bonEngagement).subscribe(
+      () => { },
+      () => { },
+      () => {
+        this.demandeCessionService.accepterRecevabilite(this.demandeCession.idDemande, this.code).subscribe(
+          (response) => { },
+          (error) => { },
+          () => {
+            this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+            this.observation.statut = {}
+            this.observation.demandeid = this.demandeCession.idDemande;
+            this.observation.statut.libelle = StatutEnum.recevable;
+            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+
+            Swal.fire({
+              position: 'center',
               icon: 'success',
               showConfirmButton: false,
               timer: 1500,
-              html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande de cession est recevable à priori.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-              color:"#203359",
-              confirmButtonColor:"#99CC33",
+              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La demande de cession est recevable à priori.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+              color: "#203359",
+              confirmButtonColor: "#99CC33",
               confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-              allowOutsideClick:false,
-              
+              allowOutsideClick: false,
+
             }).then(() => {
-             
-                this.router.navigate(['workstation/cdmp/recevabilite'])
+
+              this.router.navigate(['workstation/cdmp/recevabilite'])
             })
           }
-        
+
         )
-        
+
       }
 
     )
@@ -215,7 +226,7 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       data: {
         document: document
       },
-      header:nom,
+      header: nom,
       width: '70%',
       height: 'calc(100% - 100px)',
       baseZIndex: 10000
@@ -223,33 +234,35 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
   }
 
   onSubmitRejet(bonEngagement) {
-           
+
     Swal.fire({
-        position: 'center',
-        title: 'Etes-vous sur de vouloir rejeter la demande?',
-        icon: 'warning',
-        showCancelButton: true,
-      color:"#203359",
+      position: 'center',
+      title: 'Etes-vous sur de vouloir rejeter la demande?',
+      icon: 'warning',
+      showCancelButton: true,
+      color: "#203359",
       confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
-      allowOutsideClick:false,
-      confirmButtonColor:'#99CC33FF',
-      denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
-      
+      allowOutsideClick: false,
+      confirmButtonColor: '#99CC33FF',
+      denyButtonColor: '#981639FF',
+      cancelButtonColor: '#333366FF'
+
     }).then((result) => {
       if (result.isConfirmed) {
-        bonEngagement.exercice =  this.selectedYear ? this.selectedYear.getFullYear() : '' ;
+        bonEngagement.exercice = this.selectedYear ? this.selectedYear.getFullYear() : '';
         bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
-        console.log(mergedObj,bonEngagement,this.bonEngagement)
+        this.code = this.infosBEForm.value['code'];
+        console.log(mergedObj, bonEngagement, this.bonEngagement)
         this.rejeterDemande(mergedObj)
         //location.reload()
         //this.router.navigate(['workstation/cdmp/recevabilite'])
-        
-      }})
 
-    }
+      }
+    })
+
+  }
   onSubmitAccept(bonEngagement) {
     this.submit = true;
     if (this.infosBEForm.invalid) {
@@ -260,9 +273,9 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Annuler`,
-      confirmButtonColor:'#99CC33FF',
-      denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF',
+      confirmButtonColor: '#99CC33FF',
+      denyButtonColor: '#981639FF',
+      cancelButtonColor: '#333366FF',
       customClass: {
         actions: 'my-actions',
         denyButton: 'order-1 right-gap',
@@ -274,14 +287,19 @@ this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboa
         bonEngagement.exercice = this.selectedYear.getFullYear();
         bonEngagement.dateBonEngagement = new Date(this.datepipe.transform(bonEngagement.dateBonEngagement, 'yyyy-MM-dd'));
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
+        bonEngagement.montantCreance = this.infosBEForm.value['montantCreance'];
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
-        console.log(mergedObj,bonEngagement,this.bonEngagement)
+        this.code = this.infosBEForm.value['code'];
+        console.log(mergedObj, bonEngagement, this.bonEngagement)
         this.accepterDemande(mergedObj)
       } else if (result.isDenied) {
         Swal.fire('Traitement non effectif!', '', 'info')
       }
     })
-    
-    
+
+
+  }
+getMinistere(code: string){
+  this.demandeCessionService.getMinistereByCode(code).subscribe()
 }
 }
