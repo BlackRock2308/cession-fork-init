@@ -43,7 +43,7 @@ export class AdhesionComponent implements OnInit {
   message = "";
   fileInfos?: Observable<any>;
   form!: FormGroup;
-  submit = true;
+  submit: boolean = false;
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
