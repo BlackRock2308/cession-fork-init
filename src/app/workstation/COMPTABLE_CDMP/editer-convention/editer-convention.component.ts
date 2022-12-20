@@ -30,6 +30,7 @@ export class EditerConventionComponent implements OnInit {
   convention:any =null;
   motifRejet:String;
   text:TextConvention = null;
+  text2:TextConvention=new TextConvention();
   constructor(
     private router : Router,
     private ref: DynamicDialogRef, private pmeService: PmeService
@@ -47,7 +48,7 @@ export class EditerConventionComponent implements OnInit {
    if(this.demande.conventions.length){
     this.decode = this.demande.conventions[0].valeurDecoteByDG*this.demande.bonEngagement.montantCreance;
     this.getTextConvention(this.demande.conventions[0].idConvention);
-   // this.getObervation();
+    this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
       idConvention: this.demande.conventions[0].idConvention
@@ -56,6 +57,7 @@ export class EditerConventionComponent implements OnInit {
     this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
     "l’intégralité de la contribution", "les documents écrits relatifs au projet",
      "réclamation ou revendication", "5 % du montant");
+     //this.text2 =this.text;
     this.convention = {
       idDemande:this.demande.idDemande,
       pme:{
@@ -80,36 +82,25 @@ getTextConvention(id){
   })
 }
 
-htmlToText(val:string){
-  val = val.replace('&nbsp;',' ');
-  val = val.replace('</div>', ' ');
-  val = val.replace('<div>', '\n')
-  return val;
-}
+
 onNameChangeVar1(val) {
- this.text.var1 =val;
- //this.text.var1 = this.htmlToText(this.text.var1);
-}
+  this.text2.var1 =val;
+  }
 onNameChangeVar2(val) {
-  this.text.var2 =val;
-  //this.text.var2 = this.htmlToText(this.text.var2);
+  this.text2.var2 =val;
 }
 onNameChangeVar3(val) {
-  this.text.var3 =val;
-  //this.text.var3 = this.htmlToText(this.text.var3);
+  this.text2.var3 =val;
 }
 onNameChangeVar4(val) {
-  this.text.var4 =val;
- // this.text.var4 = this.htmlToText(this.text.var4);
+  this.text2.var4 =val;
 }
 onNameChangeVar5(val) {
-  this.text.var5 =val;
-  //this.text.var5 = this.htmlToText(this.text.var5);
+  this.text2.var5 =val;
 }
 
 onNameChangeVar6(val) {
-  this.text.var6 =val;
-  //this.text.var6 = this.htmlToText(this.text.var6);
+  this.text2.var6 =val;
 }
 
 
@@ -117,12 +108,6 @@ onNameChangeVar6(val) {
   onSubmit() {
 
     this.ref.close();
-
-    // arrêter si le formulaire est invalide
-    // if (this.documentForm.invalid) {
-    //   return;
-    // }
-
     Swal.fire({
       title: 'Voulez-vous enregistrer la convention',
       showDenyButton: true,
@@ -150,9 +135,32 @@ onNameChangeVar6(val) {
     this.pmeService.patchStatutDemande(id, statut).subscribe()
   }
 
+  getData(){
+    if(this.text2.var1 ==null ){
+      this.text2.var1 = this.text.var1;
+    }
+    if(this.text2.var2 ==null ){
+      this.text2.var2 = this.text.var2;
+    }
+    if(this.text2.var3 ==null ){
+      this.text2.var3 = this.text.var3;
+    }
+    if(this.text2.var4 ==null ){
+      this.text2.var4 = this.text.var4;
+    }
+    if(this.text2.var6 ==null ){
+      this.text2.var6 = this.text.var6;
+    }
+    if(this.text2.var5 ==null ){
+      this.text2.var5 = this.text.var5;
+    }
+  }
+
   //enregistrement du document avec l'appel du service d'enregistrement
   enregistrerConvention() { 
-    this.convention.textConventionDto = this.text;
+    this.getData()
+    this.text2.id = this.text?.id;
+    this.convention.textConventionDto = this.text2;
     if(this.demande.conventions[0] !=null){
       this.conventionService.corrigerConvention(this.convention)
       .subscribe((response: any) =>  {
