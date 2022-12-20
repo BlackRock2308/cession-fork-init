@@ -5,6 +5,8 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { DemandeCession } from 'src/app/workstation/model/demande';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { TokenStorageService } from '../../../../../../auth/token-storage.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-liste-conventions',
@@ -18,6 +20,7 @@ export class ListeConventionsComponent implements OnInit {
   demande:DemandeCession;
   items: MenuItem[];
   home:MenuItem;
+  codeMinistere: string
   cols: any[];
 
   
@@ -28,6 +31,7 @@ export class ListeConventionsComponent implements OnInit {
   constructor(
     private demandeCessionService:DemandesCessionService,
     private router:Router,
+    private tokenStorageService: TokenStorageService,
     private breadcrumbService: BreadcrumbService
 
   ) { this.breadcrumbService.setItems([
@@ -36,7 +40,7 @@ export class ListeConventionsComponent implements OnInit {
 this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] });}
 
   ngOnInit() {
-
+    this.codeMinistere = this.tokenStorageService.getUser().ministere.code;
     this.paramStatuts=[StatutEnum.ConventionAcceptee,StatutEnum.conventionCorrigee,StatutEnum.ConventionRejetee,StatutEnum.ConventionTransmise]
     this.initGetDemandes(this.paramStatuts);
 
@@ -77,11 +81,12 @@ this.statuts = [
       page: event.page,
       size: event.rows,
       sort:"dateDemandeCession,DESC",
-      statut:statutsParam
+      statut:statutsParam, 
+      code: this.codeMinistere
       
       // search: this.searchText,
     };
-    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+    this.demandeCessionService.getPageDemandeCessionByStatutAndMinister(args).subscribe(data => {
       this.demandes = data.content
       this.page=data      
     });
@@ -98,7 +103,8 @@ initGetDemandes(statuts:StatutEnum[]){
       page: 0,
       size: 5,
       sort:"dateDemandeCession,DESC",
-      statut:statutsParam
+      statut:statutsParam,
+      code: this.codeMinistere
       
       // search: this.searchText,
     };

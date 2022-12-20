@@ -32,7 +32,9 @@ export class AdhesionComponent implements OnInit {
   selectedRCCMFiles: File | null = null;
   currentFile?: File;
   formeJuridique: any[];
+  selectedCentre: string;
 
+  centreFiscal: any[];
   progress = 0;
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -56,6 +58,24 @@ export class AdhesionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.centreFiscal = [
+      {
+        "type": "DKR-PLT",
+        "nom": " Dakar Plateau"
+      },
+      {
+        "type": "NG-ALM",
+        "nom": "Ngor Almadies"
+      },
+      {
+        "type": "RUFISQUE",
+        "nom": "Rufisque"
+      },
+      {
+        "type": "GRD-DKR",
+        "nom": "Grand Dakar"
+      }
+  ];
     this.formeJuridique = [
       {
         "type": "SA",
@@ -260,7 +280,7 @@ export class AdhesionComponent implements OnInit {
             Swal.fire({
               icon: "error",
               title: "Erreur",
-              text: "Erreur de création de la demande.",
+              text: "Erreur lors de la création de la demande.",
             });
           }
         });

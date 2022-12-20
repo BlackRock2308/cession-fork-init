@@ -173,7 +173,7 @@
                     </div>
                 </div>
                 <div class="col-12 mt-0 ml-0" *ngIf="identifie">
-                    <div class="field col-12 d-flex etape">
+                    <div class="field col-12 d-flex etape1">
                         <div class="col-10 mt-0  d-flex justify-content-start">
                             <span class="h5texte">Y a-t-il un Avis à Tiers Détenteur sur cette PME?
                             </span>
@@ -371,6 +371,25 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="field grid col-12 md:col-4 mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Ministère Dépensier<span
+                                class="required">*</span></label>
+                                <p-dropdown [options]="ministeres" formControlName="code"
+                                    optionLabel="libelle" optionValue="code" [filter]="true"
+                                    filterBy="code" [showClear]="true" 
+                                    placeholder="Sélectionnez le Ministère Dépensier" [ngStyle]="{'width': '100%'}">
+                                    <ng-template pTemplate="selectedItem" >
+                                        <div class="country-item country-item-value" *ngIf="infosBEForm.value['code']">
+                                            <div>{{infosBEForm.value['code']}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-ministere>
+                                        <div class="country-item">
+                                            <div>{{ministere.libelle}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                        </div> 
                         <div class="field grid col-12 md:col-4   mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date soumission du service
                                 depensier<span class="required">*</span></label>

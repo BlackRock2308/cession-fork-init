@@ -7,6 +7,20 @@
     border-radius:0px;
 }
 
+:host ::ng-deep .p-dropdown {
+    width: 14rem;
+}
+
+.country-item-value {
+    img.flag {
+        width: 17px;
+    }
+}
+
+p-skeleton {
+    width: 100%;
+}
+
 .text{
     color: #203359;
     font-weight: bold;

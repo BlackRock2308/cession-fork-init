@@ -13,5 +13,6 @@ export interface Utilisateur {
     username ?: String;
     password ?: String;
     poste ?:String;
+    minister?: String;
    
 }

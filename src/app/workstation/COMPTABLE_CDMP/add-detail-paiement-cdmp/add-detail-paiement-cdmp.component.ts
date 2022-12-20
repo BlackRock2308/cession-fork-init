@@ -148,7 +148,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Payement CDMP enregistré avec succès.',
+          title: 'Paiement CDMP enregistré avec succès.',
           showConfirmButton: false,
           timer: 1500
         })

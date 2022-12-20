@@ -110,7 +110,8 @@
                     </div>
                 </div>
                 <div
-                    *ngIf="form.value['ninea'] && form.value['rccm'] && form.value['nineaFile'] && form.value['rccmFile'] && form.value['email']">
+                    >
+                    <!-- *ngIf="form.value['ninea'] && form.value['rccm'] && form.value['nineaFile'] && form.value['rccmFile'] && form.value['email']" -->
                     <div class="stepsdemo-content">
                         <p-card>
                             <ng-template pTemplate="content">
@@ -174,7 +175,7 @@
                                             <input pInputText id="name3" type="text" formControlName="formeJuridique"
                                                 style="width: 100%;" />
                                                 </span> -->
-                                            <p-dropdown [options]="formeJuridique" [style]="{width: '20vw'}"
+                                            <p-dropdown [options]="formeJuridique" [style]="{width: '100%'}"
                                                 formControlName="formeJuridique" optionLabel="nom" optionValue="type"
                                                 [filter]="false" filterBy="name" [showClear]="true"
                                                 placeholder="Sélectionnez une forme juridique">
@@ -190,10 +191,11 @@
                                                     </div>
                                                 </ng-template>
                                             </p-dropdown>
-                                            <span *ngIf="submit && f['formeJuridique'].errors"
-                                                style="color: red;">{{message}}</span>
+                                           
 
                                         </div>
+                                        <span *ngIf="submit && f['formeJuridique'].errors"
+                                        style="color: red;">{{message}}</span>
                                     </div>
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
@@ -230,12 +232,35 @@
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Centre
                                             Fiscal<span class="required"></span></label>
-                                        <div class="p-inputgroup">
-                                            <span class="p-float-label">
+                                            
+                                         <div class="p-inputgroup">
+                                           
+                                            <p-dropdown [options]="centreFiscal" [style]="{width: '20vw'}"
+                                                formControlName="centreFiscal" optionLabel="nom" optionValue="type"
+                                                [filter]="true" filterBy="nom" [showClear]="true"
+                                                placeholder="Sélectionnez un centre fiscal">
+                                                <ng-template pTemplate="selectedItem">
+                                                    <div class="country-item country-item-value"
+                                                        *ngIf="form.value['centreFiscal']">
+                                                        <div>{{form.value['centreFiscal']}}</div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-centreFiscal>
+                                                    <div class="country-item">
+                                                        <div>{{centreFiscal}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-dropdown>
+                                            
+
+                                            
+                                            <!-- <span class="p-float-label">
                                                 <input pInputText id="name3" type="text" placeholder="Centre Fiscal"
                                                     formControlName="centreFiscal" style="width: 100%;" />
-                                            </span>
-                                        </div>
+                                            </span> -->
+                                        </div> 
+                                        <span *ngIf="submit && f['centreFiscal'].errors"
+                                                style="color: red;">{{message}}</span>
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"

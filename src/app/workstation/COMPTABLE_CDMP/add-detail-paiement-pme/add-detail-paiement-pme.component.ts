@@ -151,7 +151,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Payement PME enregistré avec succès.',
+          title: 'Paiement PME enregistré avec succès.',
           showConfirmButton: false,
           timer: 1500
         })          
