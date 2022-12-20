@@ -76,6 +76,7 @@ export class ConventionSignerComponent implements OnInit {
    signerConventionDG() {
     this.codePIN = this.form.value["codePIN"];
     if (this.form.value["decote"] !== null) {
+      this.form.value['decote']=this.form.value['decote']/100
       this.conventionService
         .updateDecote(this.convention.idConvention, this.form.value["decote"])
         .subscribe((res: any) => {
@@ -119,4 +120,6 @@ export class ConventionSignerComponent implements OnInit {
         });
     }
   }
+
+  
 }

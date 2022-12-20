@@ -26,7 +26,7 @@ export class RecevabiliteComponent implements OnInit {
   rowSizes: any = RowSizes;
   totalRecords: number;
 
-  rowsPerPageOptions = [5, 10, 20];
+  rowsPerPageOptions : any[]=[5,10,15,20,30];
 
   items: MenuItem[];
   home: MenuItem;
@@ -38,6 +38,7 @@ export class RecevabiliteComponent implements OnInit {
   paramStatuts:any[];
   paramStatutsInit:any[];
   defaultRows:number;
+  defaultPageSize:number;
   
 
 
@@ -144,11 +145,12 @@ filterStatus(event){
   else
     this.paramStatuts=this.paramStatutsInit
   this.initGetDemandes(this.paramStatuts)
-
+  this.OnPageEvent;
   
 }
 OnPageEvent(){
   this.defaultRows=5;
+  this.rowsPerPageOptions=[5,10,15,20,30];
 }
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };
