@@ -1,11 +1,11 @@
 {
-  "name": "mirage",
-  "version": "13.1.0",
-  "license": "PrimeNG Commercial",
+  "name": "wootoo",
+  "version": "0.1.2",
+  "license": "ModelSis",
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"ng serve\" --proxy-config proxy.config.json\" --routes routes.json\"",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test --watch",
     "test:singlerun": "ng test --code-coverage",
     "lint": "ng lint",
