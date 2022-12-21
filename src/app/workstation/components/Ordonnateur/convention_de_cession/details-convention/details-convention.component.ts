@@ -109,6 +109,7 @@ export class DetailsConventionComponent implements OnInit {
       showCancelButton: true,
       color: "#203359",
       confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
+      denyButtonText: `Annuler`,
       allowOutsideClick: false,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
