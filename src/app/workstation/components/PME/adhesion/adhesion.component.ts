@@ -16,8 +16,6 @@ import { FileUploadService } from "src/app/workstation/service/fileUpload.servic
 import { PmeService } from "src/app/workstation/service/pme/pmeservice.service";
 import { DemandeAdhesion } from "../../../model/demande";
 import { Observation } from "src/app/workstation/model/observation";
-import { TokenStorageService } from "src/app/auth/token-storage.service";
-import { ObservationService } from "src/app/workstation/service/observation/observation.service";
 import { SearchCountryField, CountryISO } from "ngx-intl-tel-input";
 
 @Component({
