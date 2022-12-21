@@ -20,15 +20,36 @@
 p-skeleton {
     width: 100%;
 }
-
+.required{
+    color: red;
+}
 .text{
     color: #203359;
     font-weight: bold;
 }
-.logo-menu{
-    height: 30px;
+.error-validation{
+    color:  red;
+    font-size: small;
 }
-
+.adhesion-topbar{
+    height: 5rem;
+}
+.logo-menu{
+    height: 2.2rem;
+    margin: 1.25rem;
+}
+.layout-wrapper .adhesion-topbar .topbar-logo a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .layout-wrapper .adhesion-topbar .topbar-logo a .app-name {
+    margin-left: 10px;
+    color: #d8dee9;
+    font-size: 18px;
+  }
 /*::ng-deep .p-fileupload{
     display:flex;
     flex-direction: row-reverse;
