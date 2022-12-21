@@ -212,6 +212,18 @@ export class ConventionCessionComponent implements OnInit {
     });
   }
 
+  corrigerConvention(demande) {
+    const ref = this.dialogService.open(EditerConventionComponent, {
+      data: {
+        demande: demande
+      },
+      header: "Corriger la convention",
+      width: '70%',
+      //height: 'calc(50% - 100px)',
+      baseZIndex: 50
+    });
+  }
+
 
   minusZoom() {
     if (this.zoom > 0.8) {
@@ -225,7 +237,7 @@ export class ConventionCessionComponent implements OnInit {
       data: {
         demande: demande
       },
-      header: "Chargement de la convention enregistrée",
+      header: "Chargement de la convention transmise",
       width: '40%',
       height: 'calc(50% - 100px)',
       baseZIndex: 50
