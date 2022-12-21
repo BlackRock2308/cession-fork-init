@@ -54,7 +54,7 @@ export class ConventionSignerComponent implements OnInit {
       title: "Voulez vous signer la convention?",
       showDenyButton: true,
       confirmButtonText: "Oui",
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor: "#99CC33FF",
       denyButtonColor: "#981639FF",
       cancelButtonColor: "#333366FF",

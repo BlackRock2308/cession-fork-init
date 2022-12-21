@@ -52,7 +52,7 @@ export class VerificationComponent implements OnInit {
 
     Swal.fire({
       position: 'center',
-      title: 'Etes-vous sur de vouloir rejeter la demande?',
+      title: 'Etes-vous sûr de vouloir rejeter la demande?',
       icon: 'warning',
       showCancelButton: true,
       color: "#203359",

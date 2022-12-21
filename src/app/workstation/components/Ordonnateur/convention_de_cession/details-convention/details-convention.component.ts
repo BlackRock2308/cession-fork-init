@@ -104,7 +104,7 @@ export class DetailsConventionComponent implements OnInit {
 
     Swal.fire({
       position: 'center',
-      title: 'Etes-vous sur de vouloir rejeter la convention?',
+      title: 'Etes-vous sûr de vouloir rejeter la convention?',
       icon: 'warning',
       showCancelButton: true,
       color: "#203359",
@@ -131,7 +131,7 @@ export class DetailsConventionComponent implements OnInit {
       title: 'Voulez-vous accepter la convention?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',

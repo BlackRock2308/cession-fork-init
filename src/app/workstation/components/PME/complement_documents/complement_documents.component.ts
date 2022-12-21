@@ -158,7 +158,7 @@ this.typesDocument=[
         title: 'Voulez-vous soumettre complément de dossier',
         showDenyButton: true,
         confirmButtonText: 'Oui',
-        denyButtonText: `Annuler`,
+        denyButtonText: `Non`,
         confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',

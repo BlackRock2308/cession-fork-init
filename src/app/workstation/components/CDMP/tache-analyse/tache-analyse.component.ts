@@ -221,7 +221,7 @@ export class TacheAnalyseComponent implements OnInit {
             title: 'Etes-vous sûr de vouloir valider la demande de cession?',
             showDenyButton: true,
             confirmButtonText: 'Oui',
-            denyButtonText: `Annuler`,
+            denyButtonText: `Non`,
             confirmButtonColor:'#99CC33FF',
             denyButtonColor:'#981639FF',
             cancelButtonColor:'#333366FF',
@@ -280,7 +280,7 @@ export class TacheAnalyseComponent implements OnInit {
     
         Swal.fire({
             position: 'center',
-            title: 'Etes-vous sur de vouloir rejeter la demande?',
+            title: 'Etes-vous sûr de vouloir rejeter la demande?',
             icon: 'warning',
             showCancelButton: true,
             color:"#203359",
@@ -327,7 +327,7 @@ export class TacheAnalyseComponent implements OnInit {
             title: 'Une demande de complément de dossier sera soumise à la PME. Voulez-vous poursuivre?',
             showDenyButton: true,
             confirmButtonText: 'Oui',
-            denyButtonText: `Annuler`,
+            denyButtonText: `Non`,
             confirmButtonColor:'#99CC33FF',
             denyButtonColor:'#981639FF',
             cancelButtonColor:'#333366FF',

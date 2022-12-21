@@ -105,7 +105,7 @@ message:string = "";
       title: 'La demande d\'adhésion sera validée et les informations de la PME mises à jour. Voulez vous continuer?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor: '#99CC33FF',
       denyButtonColor: '#981639FF',
       cancelButtonColor: '#333366FF',
