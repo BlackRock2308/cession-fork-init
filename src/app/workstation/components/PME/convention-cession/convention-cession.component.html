@@ -94,7 +94,7 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button *ngIf="!(demande.statut.libelle === 'CONVENTION_GENEREE')"
+                                <button *ngIf="!(demande.statut.libelle === 'CONVENTION_GENEREE') || !(demande.statut.libelle === 'CONVENTION_CORRIGEE')"
                                 pButton pRipple icon="pi pi-eye"
                                     class="p-button-rounded simpleButton"
                                     pTooltip="Consulter la convention"
@@ -103,7 +103,7 @@
                                      <button pButton pRipple icon="pi pi-key"
                                     class="p-button-rounded successButton"
                                     pTooltip="Signer la convention"
-                                    *ngIf="(demande.statut.libelle === 'CONVENTION_GENEREE')"
+                                    *ngIf="(demande.statut.libelle === 'CONVENTION_GENEREE') || (demande.statut.libelle === 'CONVENTION_CORRIGEE')"
                                     (click)="visualiserDocument(demande)"></button> 
                             </div>
                         </td>

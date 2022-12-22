@@ -103,18 +103,18 @@ export class DetailsConventionComponent implements OnInit {
   onSubmitRejet() {
 
     Swal.fire({
-      position: 'center',
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
-      icon: 'warning',
-      showCancelButton: true,
-      color: "#203359",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
-      denyButtonText: `Annuler`,
-      allowOutsideClick: false,
+      showDenyButton: true,
+      confirmButtonText: 'Oui',
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
-
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         this.conventionRejetee();
