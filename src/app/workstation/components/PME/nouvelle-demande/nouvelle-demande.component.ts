@@ -226,7 +226,7 @@ export class NouvelleDemandeComponent implements OnInit {
       title: 'Votre demande de cession sera enregistrée. Voulez-vous continuer ?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
