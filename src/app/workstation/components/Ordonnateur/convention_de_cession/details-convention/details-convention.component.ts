@@ -153,8 +153,6 @@ export class DetailsConventionComponent implements OnInit {
   }
 
   private async conventionRejetee() {
-
-
     await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
             .subscribe((response: any) => {
               console.log(response)
@@ -162,11 +160,22 @@ export class DetailsConventionComponent implements OnInit {
           },
           (error)=>{},
           ()=>{
-            Swal.fire(
-              'Rejetée!',
-              'La convention a bien été rejetée.',
-              'success'
-            )
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500,
+              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+              color: "#203359",
+              confirmButtonColor: "#99CC33",
+              confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+              allowOutsideClick: false,
+  
+            }).then(() => {
+  
+              this.router.navigate(['workstation/ordonnateur/conventions'])
+            })
+           
           })
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
           this.observation.statut={}    
@@ -176,16 +185,11 @@ export class DetailsConventionComponent implements OnInit {
   }
 
   private async conventionAcceptee() {
-
     let body = {
 
       demandeId: this.demandeCession.idDemande,
     }
-
     console.log(body)
-
-
-
     await this.demandeCessionService.updateStatut(this.demandeCession.idDemande, StatutEnum.ConventionAcceptee)
       .subscribe((response: any) => {
         console.log(response)

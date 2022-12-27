@@ -233,6 +233,10 @@ export class TacheAnalyseComponent implements OnInit {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
+                setTimeout(() => {
+                    location.reload()
+                  }, 1000);
+                  this.router.navigate(['workstation/cdmp/analyse_risque'])
                 this.demandeCessionService.validateAnalyseRisque(this.demandeCession.idDemande).subscribe(
                     (response) => {},
                     (error) => {},
@@ -259,20 +263,11 @@ export class TacheAnalyseComponent implements OnInit {
                                 this.router.navigate(['workstation/cdmp/analyse_risque'])
                             })
                     }
-                    
-                )
-              
-            
+                )            
             } else if (result.isDenied) {
               Swal.fire('Changements non effectués', '', 'info')
             }
-          })
-       
-        
-        
-    
-    
-          
+          })  
     }
 
     onSubmitRejet() {
@@ -297,6 +292,9 @@ export class TacheAnalyseComponent implements OnInit {
           
         }).then((result) => {
           if (result.isConfirmed) {
+            setTimeout(() => {
+                location.reload()
+              }, 1000);
             this.router.navigate(['workstation/cdmp/analyse_risque'])
             this.demandeCessionService.rejeterAnalyseRisque(this.demandeCession.idDemande).subscribe(
                 (response) => {},
@@ -339,6 +337,9 @@ export class TacheAnalyseComponent implements OnInit {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
+                setTimeout(() => {
+                    location.reload()
+                  }, 1000);
                 this.router.navigate(['workstation/cdmp/analyse_risque'])
 
                 this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe(
@@ -363,6 +364,7 @@ export class TacheAnalyseComponent implements OnInit {
                                 
                               }).then((result) => {
                                 if (result.isConfirmed) {
+                                  
                                   this.router.navigate(['workstation/cdmp/analyse_risque'])
                                   
                                 }})
@@ -370,13 +372,7 @@ export class TacheAnalyseComponent implements OnInit {
                   )            } else if (result.isDenied) {
               Swal.fire('Demande non soumise', '', 'info')
             }
-          })
-       
-      
-    
-        
-    
-          
+          })   
     }
 
 }
