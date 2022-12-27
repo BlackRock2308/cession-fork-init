@@ -93,7 +93,7 @@ export class ProfilComponent implements OnInit {
       const ref = this.dialogService.open(CodeComponent, {
         header: "Changer le code",
         width: '40%',
-        height: 'calc(45% - 100px)',
+        height: 'calc(50% - 80px)',
         baseZIndex: 50
       });
      

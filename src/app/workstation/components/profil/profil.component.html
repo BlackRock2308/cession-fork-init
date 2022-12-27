@@ -4,7 +4,7 @@
 </div>
 <div class="container-fluid ">
     <div style="display: block;">
-        <button pButton pRipple pTooltip="Annuler" icon="pi pi-arrow-left" [routerLink]="['../']" class="btn btn-outline-secondary"
+        <button *ngIf="poste =='PME'" pButton pRipple pTooltip="Annuler" icon="pi pi-arrow-left" [routerLink]="['../']" class="btn btn-outline-secondary"
                                 label="Retour" 
                                 style="background: rgb(240, 196, 196); color:#b81919"></button>
         <div class="modal-body" [formGroup]="informationsForm">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-12 justify-content-end pr-0 d-flex">
                     
-                        <div class="col-3">
+                        <div class="col-3" *ngIf="poste =='PME'">
                             <button type="submit"  pButton pRipple
                                 label="Terminer" routerLink="../pme/new_demande" class=" successButton" ></button>
                         </div>
