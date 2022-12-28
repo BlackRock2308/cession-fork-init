@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } from 'primeng/api';
+import { FilterMatchMode, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
-import { Convention } from '../../model/convention';
-import { DemandeAdhesion, DemandeCession } from '../../model/demande';
+import { DemandeCession } from '../../model/demande';
 import { Document, Documents } from '../../model/document';
 import { StatutEnum } from '../../model/statut-enum';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
-import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
-import { ConventionSignerComponent } from '../convention-signer/convention-signer.component';
 import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
 
 @Component({
