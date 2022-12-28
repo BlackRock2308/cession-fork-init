@@ -152,11 +152,15 @@ export class DetailsConventionComponent implements OnInit {
     
   }
 
-  private async conventionRejetee() {
-    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
+  conventionRejetee() {
+    this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.statut = {};
+      this.observation.demandeid = this.demandeCession.idDemande;
+      this.observation.statut.libelle = StatutEnum.ConventionRejetee;
+      this.observation.dateObservation = new Date();
+    this.observationService.addObservation(this.observation) 
             .subscribe((response: any) => {
               console.log(response)
-              console.log(StatutEnum.ConventionRejetee)
           },
           (error)=>{},
           ()=>{
@@ -169,20 +173,12 @@ export class DetailsConventionComponent implements OnInit {
               color: "#203359",
               confirmButtonColor: "#99CC33",
               confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-              allowOutsideClick: false,
-  
-            }).then(() => {
-  
+              allowOutsideClick: false,  
+            }).then(() => {  
               this.router.navigate(['workstation/ordonnateur/conventions'])
-            })
-           
+            })           
           })
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut={}    
-          this.observation.demandeid= this.demandeCession.idDemande;
-          this.observation.statut.libelle=StatutEnum.ConventionRejetee;
-          await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-  }
+         }
 
   private async conventionAcceptee() {
     let body = {
