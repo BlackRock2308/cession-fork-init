@@ -27,7 +27,7 @@
                 <label class="col-12 ">Type de marché: <span>{{demande.bonEngagement.typeMarche}}</span></label>
                 <label class="col-12 ">Montant: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
                         'symbol' : '1.0-0':'fr'}} </span> </label>
-                <label class="col-12" *ngIf="demande.statut.code !== 'NON_RISQUEE'">Décote: <span>{{demande.bonEngagement.montantCreance | currency:'CFA' :
+                <label class="col-12" *ngIf="demande.statut.code !== 'NON_RISQUEE'">Décote: <span>{{decode | currency:'CFA' :
                             'symbol' : '1.0-0':'fr'}} </span> </label>
                 <!-- Décote: <span>{{decode}} </span> FCFA<br/> -->
             </div>

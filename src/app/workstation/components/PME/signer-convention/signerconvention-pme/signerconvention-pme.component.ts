@@ -47,7 +47,7 @@ export class SignerconventionPMEComponent implements OnInit {
   onSubmit() {
     this.ref.close();
     Swal.fire({
-      title: 'Voulez-vous continuer la signature',
+      title: 'Voulez-vous continuer la signature?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Non`,

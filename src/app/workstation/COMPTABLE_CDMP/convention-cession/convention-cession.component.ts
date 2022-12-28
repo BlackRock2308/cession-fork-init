@@ -236,7 +236,7 @@ export class ConventionCessionComponent implements OnInit {
       data: {
         demande: demande
       },
-      header: "Chargement de la convention transmise",
+      header: "Chargement de la convention enregistrée aux impôts",
       width: '40%',
       height: 'calc(50% - 100px)',
       baseZIndex: 50
