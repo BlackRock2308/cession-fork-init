@@ -1,9 +1,9 @@
-<div class="p-card" >
-<form>
+<div>
+    <form>
         <div class="row">
-            <div class="field grid">
-                <label class="col-12 mb-2 md:col-4 md:mb-0" htmlFor="codePIN">Code : </label>
-                <div class="col-12 md:col-6">
+            <div class="field grid col-12">
+                <label class="col-12 mb-2 md:col-4 md:mb-" htmlFor="codePIN">Code : </label>
+                <div class="col-12 md:col-8">
                     <p-password id="code" [(ngModel)]="code" [toggleMask]="true" styleClass="w-full mb-3" name="code">
                     </p-password>
                 </div>
@@ -11,10 +11,10 @@
             </div>
         </div>
         <div class="col-12 pr-0 d-flex flex-row-reverse">
-            <button type="button" id="valider" style="width: min-content;" pButton  label="Valider" [disabled]="!code"
+            <button type="button" id="valider" style="width: min-content;" pButton label="Valider" [disabled]="!code"
                 icon="pi pi-check" class="successButton" (click)=" onSubmit()"></button>
-            <button id="fermer" style="width: min-content;" pButton  label="Fermer" icon="pi pi-times"
+            <button id="fermer" style="width: min-content;" pButton label="Fermer" icon="pi pi-times"
                 class="dangerButton" (click)="dismiss()"></button>
         </div>
-</form>
+    </form>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
@@ -59,10 +60,8 @@ export class ConventionCessionComponent implements OnInit {
   statuts: any[];
   paramStatuts: any[];
   page: any;
-  constructor(
-    private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService,
+  constructor(public dialogService: DialogService, public router: Router,public messageService: MessageService,
     private breadcrumbService: BreadcrumbService,
-    private filterService: FilterService,
     private demandeCessionService: DemandesCessionService
 
   ) {
@@ -134,7 +133,7 @@ export class ConventionCessionComponent implements OnInit {
     });
   }
 
-  initGetDemandes(statuts: StatutEnum[]) {
+    initGetDemandes(statuts: StatutEnum[]) {
     let statutsParam
     if (Array.isArray(statuts)) {
       statutsParam = statuts.join(",")
@@ -265,6 +264,13 @@ export class ConventionCessionComponent implements OnInit {
     this.ref.close();
   }
 
+  consulterDemande(demande) {
+    this.demande = { ...demande };
+    //this.demandeDialog = true;
+    console.log(demande)
+    this.demandeCessionService.setDemandeObs(demande);
+    this.router.navigate(['workstation/cdmp/consulter_demande'], { queryParams: { page: 'demande cession' } });
+  }
 
 
 }
