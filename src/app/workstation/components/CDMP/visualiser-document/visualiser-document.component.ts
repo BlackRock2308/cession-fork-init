@@ -1,14 +1,15 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
-import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { SignerconventionPMEComponent } from '../../PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 import Swal from 'sweetalert2';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { Observation } from 'src/app/workstation/model/observation';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -39,10 +40,10 @@ export class VisualiserDocumentComponent implements OnInit {
   observation: void;
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
   observationLibelle: string;
-
+  observationSave: Observation = {};
 
   constructor(public activeModal: NgbActiveModal,
-    private demandeCessionService:DemandesCessionService,
+    private tokenStorage: TokenStorageService,
     public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig,
     private observationService:ObservationService) { }
 
@@ -243,11 +244,10 @@ export class VisualiserDocumentComponent implements OnInit {
     });
     this.dismiss();
   }
-  rejetConventionPME() {
-    console.log("hello");
-    
-    this.dismiss();
 
+
+  rejetConventionPME() {
+    this.dismiss();
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
@@ -262,19 +262,15 @@ export class VisualiserDocumentComponent implements OnInit {
         confirmButton: 'order-2',
       }
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        let body = {
-      
-          idDemande:this.demande.idDemande
-      }
-      console.log(body)
-    
-      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParPME)
-                .subscribe((response: any) => {
+      if (result.isConfirmed) {       
+      this.observationSave.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observationSave.statut = {};
+      this.observationSave.demandeid = this.demande.idDemande;
+      this.observationSave.statut.libelle = StatutEnum.ConventionRejeteeParPME;
+      this.observationSave.dateObservation = new Date();
+      this.observationService.addObservation(this.observationSave)  
+               .subscribe((response: any) => {
                   console.log(response)
-    
-                  //console.log(StatutEnum.ConventionRejeteeParPME)
               },
               (error)=>{},
               ()=>{
@@ -287,30 +283,21 @@ export class VisualiserDocumentComponent implements OnInit {
                     color:"#203359",
                     confirmButtonColor:"#99CC33",
                     confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                    allowOutsideClick:false,
-                    
-                  })
-                
-    
+                    allowOutsideClick:false,                    
+                  })             
               })
+              setTimeout(() => {
+                location.reload()
+               }, 1500);
       } else if (result.isDenied) {
         Swal.fire('Opération de rejet annulée', '', 'info')
       }
     })
-    
-
-    
-
-    setTimeout(() => {
-      location.reload()
-     }, 1500);
 
   }
 
   rejetConventionDG(){
-
     this.dismiss();
-
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
@@ -325,20 +312,14 @@ export class VisualiserDocumentComponent implements OnInit {
         confirmButton: 'order-2',
       }
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        let body = {
-      
-          idDemande:this.demande.idDemande
-      }
-      console.log(body)
-    
-      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParDG)
-                .subscribe((response: any) => {
-                  console.log(response)
-                 // this.dismiss();
-    
-                 // console.log(StatutEnum.ConventionRejeteeParDG)
+      this.observationSave.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observationSave.statut = {};
+      this.observationSave.demandeid = this.demande.idDemande;
+      this.observationSave.statut.libelle = StatutEnum.ConventionRejeteeParDG;
+      this.observationSave.dateObservation = new Date();
+      this.observationService.addObservation(this.observationSave).subscribe((response: any) => {
+        console.log(response)
               },
               (error)=>{},
               ()=>{
@@ -355,9 +336,7 @@ export class VisualiserDocumentComponent implements OnInit {
                     
                   })
                   this.dismiss();
-    
-              })
-    
+              })    
               setTimeout(() => {
                 location.reload()
                }, 1500);

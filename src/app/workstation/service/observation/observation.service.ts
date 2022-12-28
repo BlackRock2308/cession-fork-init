@@ -20,6 +20,10 @@ export class ObservationService extends GenericService {
     return this.add(this.observationUrl, body);
   }
 
+  addObservation(data){
+    return this.add(this.observationUrl+'/rejet-convention', data);
+  }
+
   updateObservation(data) {
     let body = JSON.stringify(data);
     return this.update(this.observationUrl, body);
