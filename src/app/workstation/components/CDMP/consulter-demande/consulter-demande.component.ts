@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Product } from 'src/app/workstation/model/product';
-import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { Document, Documents } from 'src/app/workstation/model/document';
 import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
-import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 @Component({
     selector: 'app-consulter-demande',
     templateUrl: './consulter-demande.component.html',
@@ -52,7 +49,6 @@ export class ConsulterDemandeComponent implements OnInit {
 
     constructor(private demandeCessionService: DemandesCessionService,
         public dialogService: DialogService,
-         private messageService: MessageService, 
          private breadcrumbService: BreadcrumbService,
          private observationService:ObservationService) { 
             this.profile = localStorage.getItem('profil');

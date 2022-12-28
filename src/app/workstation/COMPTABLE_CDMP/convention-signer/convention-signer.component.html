@@ -1,40 +1,44 @@
-<form [formGroup]="form" >
-<div class="formgroup-inline">
-    <!-- <div class="field grid">
+<form [formGroup]="form">
+    <div class="formgroup-inline">
+        <!-- <div class="field grid">
         <label class="text" htmlFor="codePIN" >Code PIN : </label>
         <div >
             <input class="marge " pInputText id="codePIN" type="text" pTooltip="Code PIN" formControlName="codePIN" placeholder="****"/>
         </div>
     </div> -->
-    <div class="field grid">
-        <label htmlFor="profile"  htmlFor="codePIN" class="text" id="codePIN" class="col-12 mb-2 md:col-4 md:mb-0">Code PIN:</label>
-        <div class="col-12 md:col-6">
-            <p-password  pTooltip="Code PIN" formControlName="codePIN" placeholder="****" [toggleMask]="true" styleClass="w-full"
-                 ></p-password>
+        <div class="field grid">
+            <label htmlFor="profile" htmlFor="codePIN" class="text" id="codePIN"
+                class="col-12 mb-2 md:col-4 md:mb-0">Code PIN:</label>
+            <div class="col-12 md:col-6">
+                <p-password pTooltip="Code PIN" formControlName="codePIN" placeholder="****" [toggleMask]="true"
+                    styleClass="w-full"></p-password>
+            </div>
+            <br>
+            <br>
+            <br>
+
+        </div> <label htmlFor="" htmlFor="" class="text" id="" class="">La valeur de la decote actuelle est de :<b>
+                {{convention.valeurDecote * 100}} %</b></label>
+        <br>
+        <br>
+        <br>
+        <div class="field grid">
+            <label class="text" htmlFor="codePIN">Modifier decote: </label>
+
+            <div>
+
+                <p-inputNumber pTooltip="Decote" formControlName="decote" [showButtons]="true"
+                    placeholder="{{convention.valeurDecote}}" decrementButtonClass="simpleBoldButton"
+                    incrementButtonClass="simpleBoldButton" incrementButtonIcon="pi pi-plus"
+                    decrementButtonIcon="pi pi-minus" mode="decimal" min="0" max="1" step="0.1"></p-inputNumber>
+            </div>
         </div>
-        <br>
-        <br>
-        <br>
-        
-        </div>        <label htmlFor=""  htmlFor="" class="text" id="" class="">La valeur de la decote actuelle est de :<b> {{convention.valeurDecote * 100}} %</b></label>
+        <div class="col-12 pr-0 d-flex flex-row-reverse">
+            <button type="button" id="valider" style="width: min-content;" pButton pRipple label="Valider"
+                icon="pi pi-check" class="p-button-raised successButton my-auto " (click)=" onSubmit()"></button>
 
-
-<br>
-<br>
-<br>
-    <div class="field grid">
-        <label class="text" htmlFor="codePIN" >Modifier decote: </label>
-
-        <div >
-
-            <p-inputNumber pTooltip="Decote" formControlName="decote"  [showButtons]="true" placeholder="{{convention.valeurDecote}}"
-            decrementButtonClass="simpleBoldButton" incrementButtonClass="simpleBoldButton" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal" min="0" max="1" step="0.1"></p-inputNumber>
+            <button id="fermer" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised dangerButton mx-1  my-auto ml-2" (click)="dismiss()"></button>
         </div>
     </div>
-    <div class="col-12 pr-0 d-flex flex-row-reverse">
-        <button type="button" id="valider"style="width: min-content;" pButton pRipple label="Valider" icon="pi pi-check" class="p-button-raised successButton my-auto " (click)=" onSubmit()"></button>
-
-        <button id="fermer" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-raised dangerButton mx-1  my-auto ml-2"  (click)="dismiss()" ></button>
-    </div>
-</div>
 </form>

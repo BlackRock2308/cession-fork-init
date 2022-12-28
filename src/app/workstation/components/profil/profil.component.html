@@ -9,11 +9,11 @@
                                 style="background: rgb(240, 196, 196); color:#b81919"></button>
         <div class="modal-body" [formGroup]="informationsForm">
             <div class="row">
-                <div class="col-2"></div>
-                <div class="card p-fluid col-8">
+                <div class="col-1"></div>
+                <div class="card p-fluid col-10">
                     <h1 class="infostitre">Informations Personnelles</h1>
                     <div class="field grid">
-                        <label htmlFor="montant" class="col-12 mb-2 md:col-4 md:mb-0">Nom:</label>
+                        <label htmlFor="nom" class="col-12 mb-2 md:col-4 md:mb-0">Nom:</label>
                         <div class="col-12 md:col-8">
                             <input pInputText id="nom" type="text" pTooltip="Nom" placeholder="{{nom}}"
                                 [disabled]="true" />
@@ -27,16 +27,16 @@
                         </div>
                     </div>
                     <div class="field grid">
-                        <label htmlFor="prenom" class="col-12 mb-2 md:col-4 md:mb-0">Adresse:</label>
+                        <label htmlFor="adresse" class="col-12 mb-2 md:col-4 md:mb-0">Adresse:</label>
                         <div class="col-12 md:col-8">
-                            <input pInputText id="prenom" type="text" pTooltip="Prénom" placeholder="{{adressePME}}"
+                            <input pInputText id="adresse" type="text" pTooltip="Adresse" placeholder="{{adressePME}}"
                                 [disabled]="true" />
                         </div>
                     </div>
                     <div class="field grid">
-                        <label htmlFor="prenom" class="col-12 mb-2 md:col-4 md:mb-0">Téléphone:</label>
+                        <label htmlFor="telephone" class="col-12 mb-2 md:col-4 md:mb-0">Téléphone:</label>
                         <div class="col-12 md:col-8">
-                            <input pInputText id="prenom" type="text" pTooltip="Prénom" placeholder="{{telephonePME}}"
+                            <input pInputText id="telephone" type="text" pTooltip="Téléphone" placeholder="{{telephonePME}}"
                                 [disabled]="true" />
                         </div>
                     </div>
@@ -54,13 +54,13 @@
                                 placeholder="{{poste.toUpperCase()}}" [disabled]="true" />
                         </div>
                     </div>
-                    <div class="field grid">
-                        <label htmlFor="profile" class="col-12 mb-2 md:col-4 md:mb-0">Code PIN de signature:</label>
+                    <div class="field grid" *ngIf="poste =='PME' || poste == 'DG'">
+                        <label htmlFor="profile" class="col-12 mb-1 md:col-4 md:mb-0">Code PIN de signature:</label>
                         <div class="col-12 md:col-6">
-                            <p-password id="profil" formControlName="code" [(ngModel)]="code" [toggleMask]="true" styleClass="w-full mb-3"
+                            <p-password id="profil" formControlName="code" [(ngModel)]="code" [toggleMask]="true" styleClass="w-full mb-4"
                                 name="profil" [disabled]="true"></p-password>
                         </div>
-                        <div>
+                        <div class="col-12 md:col-2">
                             <button type="button" pButton pRipple icon="pi pi-pencil"
                                 class="mr-2 mb-2 upload p-button-rounded p-button-text" id="upload-NINEAfile"
                                 pTooltip="Modifier votre code" (click)="modifierCode()"></button>
