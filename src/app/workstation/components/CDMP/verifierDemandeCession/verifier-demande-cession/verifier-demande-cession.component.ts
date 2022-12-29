@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, PrimeIcons } from 'primeng/api';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
@@ -9,13 +9,11 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { VisualiserDocumentComponent } from '../../visualiser-document/visualiser-document.component';
 import { DemandeCession } from 'src/app/workstation/model/demande';
 import { Router } from '@angular/router';
-import { take, takeUntil, takeWhile } from 'rxjs/operators';
 import { HttpHeaderResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { BonEngagement, Ministere } from '../../../../model/bonEngagement';
 import { DatePipe } from '@angular/common';
-import { MY_DATE_FORMATS } from 'src/app/workstation/model/my-date-format';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { BonEngagementService } from 'src/app/workstation/service/bonEngagement/bon-engagement.service';
 import { Observation } from 'src/app/workstation/model/observation';
@@ -28,15 +26,20 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
   templateUrl: './verifier-demande-cession.component.html',
   styleUrls: ['./verifier-demande-cession.component.scss'],
   providers: [DialogService,
-    DatePipe]
+    DatePipe],
+    
+     
+  })
 
-})
 export class VerifierDemandeCessionComponent implements OnInit {
   demandeCession: any;
   bonEngagement: BonEngagement;
   dateTime = new Date();
   ministeres: Ministere[];
   code: string;
+  events1: any[];
+    
+  events2: any[];
 
   documents: any[] = [];
   cols: any[];
@@ -80,6 +83,16 @@ export class VerifierDemandeCessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.events1 = [
+      {status: 'Ordered', date: '15/10/2020 10:30', icon: PrimeIcons.SHOPPING_CART, color: '#9C27B0', image: 'game-controller.jpg'},
+      {status: 'Processing', date: '15/10/2020 14:00', icon: PrimeIcons.COG, color: '#673AB7'},
+      {status: 'Shipped', date: '15/10/2020 16:15', icon: PrimeIcons.ENVELOPE, color: '#FF9800'},
+      {status: 'Delivered', date: '16/10/2020 10:00', icon: PrimeIcons.CHECK, color: '#607D8B'}
+  ];
+
+  this.events2 = [
+      "2020", "2021", "2022" , "2023" , "2024"
+  ];
     this.observation.libelle = ''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data

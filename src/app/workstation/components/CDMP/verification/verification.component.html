@@ -11,8 +11,13 @@
                     <div class="col-8 d-flex ">
                         <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true" [(ngModel)]="existant" id="active" >
                         </p-inputSwitch>
+                    </div> 
+                    <div class="col-4 d-flex ">
+                        <span *ngIf="existant" [class]="'product-badge oui'">Oui</span>
+                        <div *ngIf="!existant" [class]="'product-badge non'">Non</div>
                     </div>                 
                 </div>
+                
             </div>
             <div class="field col-12 d-flex justify-content-center" *ngIf="existant">
                 <div class="col-6 d-flex justify-content-start">
@@ -21,8 +26,13 @@
                 <div class="col-6   d-flex ">
                     <div class="col-8 d-flex ">
                         <p-inputSwitch styleClass="oui" [(ngModel)]="active" ></p-inputSwitch>
-                    </div>                
+                    </div>  
+                    <div class="col-4 d-flex ">
+                        <span *ngIf="active" [class]="'product-badge oui'">Oui</span>
+                        <div *ngIf="!active" [class]="'product-badge non'">Non</div>
+                    </div>              
                 </div>
+                
             </div>
         </ng-template>
         <ng-template pTemplate="footer">
