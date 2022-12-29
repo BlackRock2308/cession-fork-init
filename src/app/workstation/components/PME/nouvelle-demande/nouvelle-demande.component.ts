@@ -107,7 +107,7 @@ export class NouvelleDemandeComponent implements OnInit {
   pme: PME;
   observation: Observation={};
   idBE: number;
-
+  submit:boolean = false;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -131,6 +131,7 @@ export class NouvelleDemandeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.message = "Champ obligatoire";
     this.typesDocument = [
       {
         "type": "DOCUMENT_MARCHE",
@@ -165,8 +166,8 @@ export class NouvelleDemandeComponent implements OnInit {
     ]
 
     this.documentForm = this.formBuilder.group({
-      typeDocument: [''],
-      file: [''],
+      typeDocument:  ['', [Validators.required]],
+      file:  ['', [Validators.required]],
       refBE: ['', [Validators.required]],
       nomMarche: ['', [Validators.required]],
       typeMarche: ['', [Validators.required]]
@@ -195,8 +196,10 @@ export class NouvelleDemandeComponent implements OnInit {
   }
 
   onSubmit() {
-
-    console.log(this.bonEngagement);
+    this.submit =true;
+    if(this.documentForm.invalid){
+      return;
+    }
     let body = {
       reference: this.documentForm.value['refBE'],
       nomMarche: this.documentForm.value['nomMarche'],
