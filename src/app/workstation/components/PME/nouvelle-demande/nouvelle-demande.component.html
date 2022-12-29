@@ -1,9 +1,9 @@
 <form [(formGroup)]="documentForm" (ngSubmit)="onSubmit()">
 
     <p-card>
-        <div class="p-fluid grid justify-content-left">
+        <!-- <div class="p-fluid grid justify-content-left">
             <h6 style="color: #203359;">Note : <span style="color: red;" > Tous les champs sont obligatoires.</span></h6>
-        </div>
+        </div> -->
         <div class="d-flex justify-content-center col-11 mx-6 px-0">
             <div class="col-12 md:col-12 modalTitle d-flex justify-content-center ">
                 <h3 class="label" style="color:  #203359;">Nouvelle Demande</h3>
@@ -18,16 +18,14 @@
                     <input type="text" id="inputtext" pInputText formControlName="refBE">
                     <label for="inputtext">Référence BE valide</label>
                 </span>
+                <span *ngIf="submit && f['refBE'].errors" class="error-validation">{{message}}</span>
             </div>
-            
-           
-            
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext-left" pInputText formControlName="nomMarche">
                     <label for="inputtext-left">Nom du Marché</label>
                 </span>
-                
+                <span *ngIf="submit && f['nomMarche'].errors" class="error-validation">{{message}}</span>                
             </div>
             <div class="field col-4 ">
                 <span class="p-float-label ">
@@ -48,9 +46,10 @@
                     </p-dropdown>
                     <label for="inputtext">Type Marché</label>
                 </span>
+                <span *ngIf="submit && f['typeMarche'].errors" class="error-validation">{{message}}</span>
             </div> 
         </div>
-        <div class="p-fluid grid justify-content-center">
+        <!-- <div class="p-fluid grid justify-content-center">
             <div class="field col-12 md:col-4 alert alert-danger" *ngIf="f.refBE.touched && f.refBE.invalid">
                 <div *ngIf="f.refBE.errors.required">La référence du BE valide est obligatoire.</div>
             </div>
@@ -61,7 +60,7 @@
                 <div *ngIf="f.nomMarche.errors.required">Le nom du marché est obligatoire.</div>
 
             </div>
-        </div>
+        </div> -->
         <div></div>
         <div class="d-flex col-12 justify-content-center">
             <div class="col-12 md:col-8 modalTitle d-flex justify-content-center">
@@ -89,6 +88,8 @@
                             </div>
                         </ng-template>
                     </p-dropdown>
+                    
+                <span *ngIf="submit && f['typeDocument'].errors" class="error-validation">{{message}}</span>
                 </div>
     
                 <div class="field col-3">
@@ -106,6 +107,8 @@
                     <input formControlName="file" class="hidden" type="file" accept=".pdf,.
                     PDF" id="upload-file" name="upload-file"
                         ngf-max-size="2MB" (change)="selectFile($event)">
+                        
+                <span *ngIf="submit && f['file'].errors" class="error-validation">{{message}}</span>
 
                 </div>
             </div>
@@ -158,7 +161,7 @@
         </div>
         <div class="col-12 float-right pr-0 d-flex flex-row-reverse">
             <button type="submit" id="valider" pButton pRipple label="Soumettre" icon="pi pi-check"
-            class="float-right successButton" type="submit" [disabled]="!documentForm.valid"></button>
+            class="float-right successButton" type="submit" ></button>
             <button id="valider" pButton pRipple label="Annuler" icon="pi pi-times" class="float-right dangerButton"
                 routerLink="../demandes_en_cours"></button>
           
