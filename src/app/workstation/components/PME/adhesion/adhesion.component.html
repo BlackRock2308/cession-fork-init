@@ -219,7 +219,7 @@
                                     <div  class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">N° CNI du représentant<span
-                                                class="required"></span></label>
+                                                class="required">*</span></label>
                                         <div class="p-inputgroup">
                                             <span class="p-float-label">
                                                 <input pInputText id="name3" type="text" placeholder="00000000000"
@@ -252,12 +252,12 @@
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Centre
                                             Fiscal<span class="required">*</span><span class="required"></span></label>
                                             
-                                         <div class="p-inputgroup">
+                                         
                                            
                                             <p-dropdown [options]="centreFiscal" [style]="{width: '20vw'}"
                                                 formControlName="centreFiscal" optionLabel="nom" optionValue="type"
                                                 [filter]="true" filterBy="nom" [showClear]="true"
-                                                placeholder="Sélectionnez un centre fiscal">
+                                                placeholder="Sélectionnez un centre fiscal" [ngStyle]="{'width': '100%'}">
                                                 <ng-template pTemplate="selectedItem">
                                                     <div class="country-item country-item-value"
                                                         *ngIf="form.value['centreFiscal']">
@@ -270,7 +270,7 @@
                                                     </div>
                                                 </ng-template>
                                             </p-dropdown>
-                                        </div> 
+                                        
                                         <span *ngIf="submit && f['centreFiscal'].errors"
                                                 class="error-validation">{{message}}</span>
                                     </div>
@@ -278,7 +278,7 @@
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359; width: 100%;">Date de création<span class="required">*</span>
                                             <span class="required"></span></label>
-                                        <p-calendar inputId="basic" formControlName="dateCreation" [maxDate]="dateTime"
+                                        <p-calendar inputId="dateFormat" formControlName="dateCreation"  dateFormat="dd/mm/yy" [maxDate]="dateTime"
                                             [ngStyle]="{'width': '100%'}">
                                         </p-calendar>
                                         <span *ngIf="submit && f['dateCreation'].errors"
@@ -351,7 +351,7 @@
                                         <label htmlFor="name3"
                                             style="font-weight: bold;color: #203359;">Date d'immatriculation<span
                                                 class="required"></span></label>
-                                            <p-calendar inputId="basic" formControlName="dateImmatriculation"   [minDate]="form.value['dateCreation']" [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
+                                            <p-calendar inputId="dateFormat"   dateFormat="dd/mm/yy" formControlName="dateImmatriculation"   [minDate]="form.value['dateCreation']" [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
                                            </p-calendar>
                                            <span *ngIf="!form.value['dateCreation'] && form.controls.dateImmatriculation.touched"
                                             class="error-validation">Veuillez renseigner la date de création d'abord.</span>

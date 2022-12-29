@@ -18,6 +18,7 @@ import { AdhesionComponent } from './components/PME/adhesion/adhesion.component'
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { ConventionCessionPMEComponent } from './components/PME/convention-cession/convention-cession.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
+import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
@@ -59,7 +60,7 @@ const routes: Routes = [
   {path:'comptable/signer' , component:ConventionSignerComponent},
 
   //PME
-  
+  {path:'pme/infosPME',component:InfosPMEComponent},
   //Liste des demandes de la PME
   {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
 

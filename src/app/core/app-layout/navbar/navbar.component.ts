@@ -1,11 +1,13 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { PrimeNGConfig } from 'primeng/api';
+import { MenuItem, PrimeNGConfig, SelectItem } from 'primeng/api';
 import { AppMainComponent } from '../main/app.main.component';
 import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProfilComponent } from '../../../workstation/components/profil/profil.component';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
+import { DemandeCession } from 'src/app/workstation/model/demande';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -24,6 +26,10 @@ import { TokenStorageService } from 'src/app/auth/token-storage.service';
   providers: [ DialogService]
 })
 export class NavbarComponent implements OnInit {
+
+  demandes: any[];
+
+  demande: any;
 
   rightPanelClick: boolean;
 
@@ -56,7 +62,15 @@ export class NavbarComponent implements OnInit {
   topbarMenuActive: boolean;
 
   menuHoverActive: boolean;
-
+  home: MenuItem;
+  subscribe: any;
+  rangeDates: any[];
+  matchModeOptions: SelectItem[];
+  page: any={};
+  statuts:any[];
+  paramStatuts:any[];
+  paramStatutsInit:any[];
+  defaultRows:number;
   configActive: boolean;
   profil: string;
   nom : string;
@@ -65,8 +79,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(public renderer: Renderer2, public dialogService: DialogService,
     public appMain: AppMainComponent, public router: Router,
+    private demandeCessionService: DemandesCessionService,
+
     private tokenStorage:TokenStorageService) { }
   ngOnInit() {
+    this.paramStatuts = this.paramStatutsInit
     this.profil = localStorage.getItem('profil')
     this.nom = this.tokenStorage.getUser().nom
     this.prenom = this.tokenStorage.getUser().prenom
@@ -87,6 +104,12 @@ export class NavbarComponent implements OnInit {
 
   visualiserProfil() {
     this.router.navigate(['workstation/profil']);
+  }
+  modifierInfosPME(demande: DemandeCession) {
+    this.demande = { ...demande };
+    console.log(demande)
+    this.demandeCessionService.setDemandeObs(demande);
+    this.router.navigate(['workstation/pme/infosPME']);
   }
 
 }
