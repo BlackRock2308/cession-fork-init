@@ -409,6 +409,8 @@
         <br>
         <br>
         <label class="form-label" for="textAreaExample">Observations</label>
+
+        
         <div class="d-flex flex-start w-100">
 
             <div class="form-outline w-100">
@@ -426,5 +428,15 @@
 
         </div>
 
+       
+
     </div>
 </p-card>
+
+<br>
+<br>
+<p-timeline [value]="events2" layout="horizontal" align="top">
+    <ng-template pTemplate="content" let-event>
+        {{event}}
+    </ng-template>
+</p-timeline>

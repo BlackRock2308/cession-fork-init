@@ -47,6 +47,7 @@ import { SignerconventionPMEComponent } from './components/PME/signer-convention
 import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
+import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.componen
     CodeComponent,
     SignerconventionPMEComponent,
     CorrigerConventionComponent,
-    InfosPMEComponent
+    InfosPMEComponent,
+    AdminComponent
     
     
   ],
