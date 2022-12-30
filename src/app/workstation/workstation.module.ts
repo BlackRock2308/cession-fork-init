@@ -49,7 +49,13 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
 import { AddMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/add-ministereDepensier/add-ministereDepensiers.component';
 import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
-import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/update-ministereDepensier/add-ministereDepensiers.component';
+import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/update-ministereDepensier/update-ministereDepensiers.component';
+import { AddFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/add-formeJuridique/add-formeJuridique.component';
+import { ListFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/list-formeJuridique/list-formeJuridiques.component';
+import { AddCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/add-centreDesServicesFiscaux/add-centreDesServicesFiscaux.component';
+import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
+import { UpdateCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/update-centreDesServicesFiscaux/update-centreDesServicesFiscaux.component';
+import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/update-formeJuridique/update-formeJuridique.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +99,13 @@ import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereD
     InfosPMEComponent,
     AddMinistereDepensierComponent,
     ListMinistereDepensierComponent,
-    UpdateMinistereDepensierComponent
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    ListFormeJuridiqueComponent,
+    UpdateFormeJuridiqueComponent,
+    AddCentreDesServicesFiscauxComponent,
+    ListCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent
 
     
     
@@ -117,7 +129,13 @@ import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereD
     AddDetailPaiementCDMPComponent,
     AddDetailsPaiementPMEComponent,
     ConventionSignerComponent,
-    CodeComponent
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent
      
 ],
 providers: [

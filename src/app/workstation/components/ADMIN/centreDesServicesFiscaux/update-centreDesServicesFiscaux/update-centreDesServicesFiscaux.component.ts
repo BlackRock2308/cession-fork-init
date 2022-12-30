@@ -4,24 +4,24 @@ import { Router } from "@angular/router";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
-import { MinistereDepensier } from "src/app/workstation/model/ministereDepensier";
-import { MinistereDepensierService } from "src/app/workstation/service/ministereDepensier/ministereDepensierService.service";
+import { CentreDesServicesFiscaux } from "src/app/workstation/model/centreDesServicesFiscaux";
+import { CentreDesServicesFiscauxService } from "src/app/workstation/service/centreDesServicesFiscaux/centreDesServicesFiscauxService.service";
 import Swal from "sweetalert2";
 
 @Component({
-  selector: "app-add-ministereDepensier",
-  templateUrl: "./add-ministereDepensiers.component.html",
-  styleUrls: ["./add-ministereDepensiers.component.scss"],
+  selector: "app-update-centreDesServicesFiscaux",
+  templateUrl: "./update-centreDesServicesFiscaux.component.html",
+  styleUrls: ["./update-centreDesServicesFiscaux.component.scss"],
   providers: [MessageService],
 })
-export class AddMinistereDepensierComponent implements OnInit {
+export class UpdateCentreDesServicesFiscauxComponent implements OnInit {
   form!: FormGroup;
-  ministereDepensier: MinistereDepensier ={};
+  centreDesServicesFiscaux: CentreDesServicesFiscaux;
   message:string;
   submit: boolean=false;
   constructor(
     private formBuilder: FormBuilder,
-    private ministereDepensierService : MinistereDepensierService,
+    private centreDesServicesFiscauxService : CentreDesServicesFiscauxService,
     public activeModal: NgbActiveModal,
     public ref: DynamicDialogRef,
     private servicemsg: MessageService,
@@ -31,6 +31,7 @@ export class AddMinistereDepensierComponent implements OnInit {
 
   ngOnInit() {
     this.message = "Champ obligatoire";
+    this.centreDesServicesFiscaux = this.config.data.centreDesServicesFiscaux;
     this.form = this.formBuilder.group({
       code: ['', Validators.required],
       libelle: ['', Validators.required]
@@ -47,8 +48,8 @@ export class AddMinistereDepensierComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }  
-    this.ministereDepensierService
-      .addMinistereDepensier(this.ministereDepensier)
+    this.centreDesServicesFiscauxService
+      .updateCentreDesServicesFiscaux(this.centreDesServicesFiscaux)
       .subscribe((res: any) => {
         this.dismiss();
         if(res.status == "409"){
@@ -58,17 +59,17 @@ export class AddMinistereDepensierComponent implements OnInit {
             text: 'Ce code existe',
           })
          }else{
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Ministère enregistré avec succès.',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          setTimeout(() => {
-            location.reload()
-          },1600);
-         }
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Centre des services fiscaux modifié avec succès.',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(() => {
+          location.reload()
+        },1600);
+      }
       }),
       (error) => {
         this.servicemsg.add({

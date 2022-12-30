@@ -4,21 +4,22 @@ import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { BreadcrumbService } from "src/app/core/breadcrumb/breadcrumb.service";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { MinistereDepensier } from "src/app/workstation/model/ministereDepensier";
-import { MinistereDepensierService } from "src/app/workstation/service/ministereDepensier/ministereDepensierService.service";
-import { AddMinistereDepensierComponent } from "../add-ministereDepensier/add-ministereDepensiers.component";
+import { FormeJuridiqueService } from "src/app/workstation/service/formeJuridique/formeJuridiqueService.service";
 import Swal from "sweetalert2";
-import { UpdateMinistereDepensierComponent } from "../update-ministereDepensier/update-ministereDepensiers.component";
+import { FormeJuridique } from "src/app/workstation/model/formeJuridique";
+import { AddFormeJuridiqueComponent } from "../add-formeJuridique/add-formeJuridique.component";
+import { UpdateFormeJuridiqueComponent } from "../update-formeJuridique/update-formeJuridique.component";
 registerLocaleData(localeFr, 'fr')
 @Component({
-  selector: 'app-list-ministereDepensiers',
-  templateUrl: './list-ministereDepensiers.component.html',
-  styleUrls: ['./list-ministereDepensiers.component.scss'],
+  selector: "app-list-formeJuridiques",
+  templateUrl: "./list-formeJuridiques.component.html",
+  styleUrls: ["./list-formeJuridiques.component.scss"],
   providers: [DialogService],
 })
-export class ListMinistereDepensierComponent implements OnInit {
+export class ListFormeJuridiqueComponent implements OnInit {
+  paiementDialog: boolean;
 
-  ministereDepensiers : MinistereDepensier[]=[];
+  formeJuridiques : FormeJuridique[]=[];
 
   submitted: boolean;
 
@@ -43,19 +44,19 @@ export class ListMinistereDepensierComponent implements OnInit {
   ref: DynamicDialogRef;
   home: MenuItem;
   constructor(
-    private ministereDepensierService: MinistereDepensierService,
+    private formeJuridiqueService: FormeJuridiqueService,
     public dialogService: DialogService,
-    private breadcrumbService: BreadcrumbService,
+    private breadcrumbService: BreadcrumbService
   ) {
-    this.breadcrumbService.setItems([{ label: "Ministères" }]);
+    this.breadcrumbService.setItems([{ label: "Formes juridiques" }]);
     this.breadcrumbService.setHome({
       icon: "pi pi-home",
-      routerLink: ["admin/ministere_depensier"],
+      routerLink: ["admin/forme_juridique"],
     });
   }
 
   ngOnInit(): void {
-   this.getAllMinistereDepensier();
+   this.getAllFormeJuridique();
     this.cols = [
       { field: "code", header: "Code" },
       { field: "libelle", header: "Libellé" }
@@ -63,24 +64,24 @@ export class ListMinistereDepensierComponent implements OnInit {
   }
 
 
-  getAllMinistereDepensier() {
-    this.ministereDepensierService.getAllMinistereDepensier()
-    .subscribe((res:MinistereDepensier[]) =>{
-      this.ministereDepensiers = res;
+  getAllFormeJuridique() {
+    this.formeJuridiqueService.getAllFormeJuridique()
+    .subscribe((res:FormeJuridique[]) =>{
+      this.formeJuridiques = res;
     })
   }
 
 
-  ajouterMinistereDepensier() {
-    const ref = this.dialogService.open(AddMinistereDepensierComponent, {
-      header: "Nouveau ministère",
+  ajouterFormeJuridique() {
+    const ref = this.dialogService.open(AddFormeJuridiqueComponent, {
+      header: "Nouvelle forme juridique",
       width: "50%",
       baseZIndex: 10000,
     });
   }
-  supprimerMinistereDepensier(ministereDepensier) {
+  supprimerFormeJuridique(formeJuridique) {
     Swal.fire({
-      title: 'Voulez-vous supprimer le '+ministereDepensier.libelle+'?',
+      title: 'Voulez-vous supprimer la forme juridique'+formeJuridique.libelle+'?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
       denyButtonText: `Non`,
@@ -94,8 +95,8 @@ export class ListMinistereDepensierComponent implements OnInit {
         }
     }).then((result) => {
       if (result.isConfirmed) {
-      this.ministereDepensierService
-        .deleteMinistereDepensier(ministereDepensier.id)
+      this.formeJuridiqueService
+        .deleteFormeJuridique(formeJuridique.id)
         .subscribe((res: any) => {        
           Swal.fire({
             position: 'center',
@@ -116,12 +117,12 @@ export class ListMinistereDepensierComponent implements OnInit {
   }})
 }
 
-  modifierMinistereDepensier(ministereDepensier) {    
-    const ref = this.dialogService.open(UpdateMinistereDepensierComponent, {
+  modifierFormeJuridique(formeJuridique) {
+    const ref = this.dialogService.open(UpdateFormeJuridiqueComponent, {
       data: {
-        ministereDepensier: ministereDepensier
+        formeJuridique: formeJuridique,
       },
-      header: "Motifier ministère",
+      header: "Motifier forme juridique",
       width: "50%",
       baseZIndex: 10000,
     });

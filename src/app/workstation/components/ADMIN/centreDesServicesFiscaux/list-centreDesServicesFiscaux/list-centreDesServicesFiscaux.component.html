@@ -2,13 +2,13 @@
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
             <div class="col-12 md:col-10 modalTitle  ">
-                <h3 class="title">Liste des ministère</h3>
+                <h3 class="title">Liste des formes juridiques</h3>
             </div>
         </div>
         <div class="card">
-            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter un ministère"
-                icon="pi pi-plus" class="successButton" (click)="ajouterMinistereDepensier()"></button>
-            <p-table #dt [value]="ministereDepensiers" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter une forme juridique"
+                icon="pi pi-plus" class="successButton" (click)="ajouterCentreDesServicesFiscaux()"></button>
+            <p-table #dt [value]="centreDesServicesFiscaux" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['code','libelle']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
@@ -42,25 +42,26 @@
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-ministereDepensier>
+                <ng-template pTemplate="body" let-centreSF>
                     <tr>
+
                         <td style="width:25%; min-width:10rem;">
                             <span class="p-column-title">Code</span>
-                            {{ministereDepensier.code}}
+                            {{centreSF.code}}
                         </td>
 
                         <td style="width:50%; min-width:8rem;">
                             <span class="p-column-title">Libellé</span>
-                            {{ministereDepensier.libelle}}
+                            {{centreSF.libelle}}
                         </td>
                         <td>
                             <div class="flex">                                
-                                <button pButton pRipple icon="pi pi-pencil" pTooltip="Modifier le ministère"
-                                    class="p-button-rounded p-button-text mr-2 button-edit simpleButton" 
-                                    (click)="modifierMinistereDepensier(ministereDepensier)"></button>                                                                    
-                                <button pButton pRipple icon="pi pi-trash" pTooltip="Supprimer le ministère"
-                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton" 
-                                (click)="supprimerMinistereDepensier(ministereDepensier)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" pTooltip="Modifier le centre"
+                                class="p-button-rounded p-button-text mr-2 button-edit simpleButton" 
+                                    (click)="modifierCentreDesServicesFiscaux(centreSF)"></button>                                                                    
+                                <button pButton pRipple icon="pi pi-trash" pTooltip="Supprimer le centre"
+                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton"
+                                (click)="supprimerCentreDesServicesFiscaux(centreSF)"></button>
 
                             </div>
                         </td>

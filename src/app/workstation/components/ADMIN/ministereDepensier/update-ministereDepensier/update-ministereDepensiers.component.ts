@@ -9,14 +9,14 @@ import { MinistereDepensierService } from "src/app/workstation/service/ministere
 import Swal from "sweetalert2";
 
 @Component({
-  selector: "app-add-ministereDepensier",
-  templateUrl: "./add-ministereDepensiers.component.html",
-  styleUrls: ["./add-ministereDepensiers.component.scss"],
+  selector: "app-update-ministereDepensier",
+  templateUrl: "./update-ministereDepensiers.component.html",
+  styleUrls: ["./update-ministereDepensiers.component.scss"],
   providers: [MessageService],
 })
-export class AddMinistereDepensierComponent implements OnInit {
+export class UpdateMinistereDepensierComponent implements OnInit {
   form!: FormGroup;
-  ministereDepensier: MinistereDepensier ={};
+  ministereDepensier: MinistereDepensier={};
   message:string;
   submit: boolean=false;
   constructor(
@@ -27,15 +27,21 @@ export class AddMinistereDepensierComponent implements OnInit {
     private servicemsg: MessageService,
     public config: DynamicDialogConfig,
   ) {
+    this.ministereDepensier = this.config.data.ministereDepensier; 
+    console.log(this.ministereDepensier);
   }
 
   ngOnInit() {
     this.message = "Champ obligatoire";
+    this.ministereDepensier = this.config.data.ministereDepensier; 
+    console.log(this.ministereDepensier);
+    
     this.form = this.formBuilder.group({
       code: ['', Validators.required],
       libelle: ['', Validators.required]
     });
   }
+
   dismiss() {
     this.ref.close(null);
   }
@@ -48,7 +54,7 @@ export class AddMinistereDepensierComponent implements OnInit {
       return;
     }  
     this.ministereDepensierService
-      .addMinistereDepensier(this.ministereDepensier)
+      .updateMinistereDepensier(this.ministereDepensier)
       .subscribe((res: any) => {
         this.dismiss();
         if(res.status == "409"){
@@ -58,17 +64,17 @@ export class AddMinistereDepensierComponent implements OnInit {
             text: 'Ce code existe',
           })
          }else{
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Ministère enregistré avec succès.',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          setTimeout(() => {
-            location.reload()
-          },1600);
-         }
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Ministère modifié avec succès.',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(() => {
+          location.reload()
+        },1600);
+      }
       }),
       (error) => {
         this.servicemsg.add({

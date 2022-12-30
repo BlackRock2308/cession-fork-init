@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdateMinistereDepensierComponent } from './add-ministereDepensiers.component';
+import { UpdateMinistereDepensierComponent } from './update-ministereDepensiers.component';
 
 describe('UpdateMinistereDepensierComponent', () => {
   let component: UpdateMinistereDepensierComponent;

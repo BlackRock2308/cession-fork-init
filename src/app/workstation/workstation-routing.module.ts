@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { AppBreadcrumbComponent } from '../core/breadcrumb/app.breadcrumb.component';
+import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
+import { ListFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/list-formeJuridique/list-formeJuridiques.component';
 import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
@@ -83,7 +85,11 @@ const routes: Routes = [
 
   {path:'ordonnateur/conventions',component:ListeConventionsComponent},
   {path:'ordonnateur/conventions/details_convention',component:DetailsConventionComponent},
-  {path: 'admin/ministereDepensier', component:ListMinistereDepensierComponent}
+
+  //admin
+  {path: 'admin/ministere_depensier', component:ListMinistereDepensierComponent},
+  {path: 'admin/forme_juridique', component:ListFormeJuridiqueComponent},  
+  {path: 'admin/centre_des_servicesFiscaux', component:ListCentreDesServicesFiscauxComponent}
 ];
 
 @NgModule({

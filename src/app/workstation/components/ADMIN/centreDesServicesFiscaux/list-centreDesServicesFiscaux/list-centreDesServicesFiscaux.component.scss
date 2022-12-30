@@ -1,22 +1,17 @@
+
 @import "../../../../../../assets/sass/custom/variables.scss";
 @import "../../../../../../assets/sass/custom/layout.scss";
-
-.modal-body {
-    height: 60vh;
-    overflow-y: auto;
+.textLeft {
+    text-align: left;
+    font-size: 130%;
+    color: #333333;
 }
 
-.pdf-container {
-    height: 50vh;
-}
-
-.my-actions { margin: 0 2em; }
-.order-1 { order: 1; }
-.order-2 { order: 2; }
-.order-3 { order: 3; }
-
-.right-gap {
-  margin-right: auto;
+.textRight {
+    text-align: right;
+    font-size: 130%;
+    color: #333333;
+    margin-left: 52%;
 }
 
 h1 {
@@ -171,7 +166,11 @@ a {
     color: #203359;
 
 }
-
-.boutton {
-    background-color: #99CC33;
+.button-delete{
+    background-color:  #981639;
+    color: white;
+}
+.button-edit{
+    color: white;
+    background-color: #203359;
 }
