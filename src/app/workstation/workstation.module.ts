@@ -47,7 +47,16 @@ import { SignerconventionPMEComponent } from './components/PME/signer-convention
 import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
-import { AdminComponent } from './components/ADMIN/admin/admin.component';
+import { AddMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/add-ministereDepensier/add-ministereDepensiers.component';
+import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
+import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/update-ministereDepensier/update-ministereDepensiers.component';
+import { AddFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/add-formeJuridique/add-formeJuridique.component';
+import { ListFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/list-formeJuridique/list-formeJuridiques.component';
+import { AddCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/add-centreDesServicesFiscaux/add-centreDesServicesFiscaux.component';
+import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
+import { UpdateCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/update-centreDesServicesFiscaux/update-centreDesServicesFiscaux.component';
+import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/update-formeJuridique/update-formeJuridique.component';
+//import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +98,17 @@ import { AdminComponent } from './components/ADMIN/admin/admin.component';
     SignerconventionPMEComponent,
     CorrigerConventionComponent,
     InfosPMEComponent,
-    AdminComponent
+    AddMinistereDepensierComponent,
+    ListMinistereDepensierComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    ListFormeJuridiqueComponent,
+    UpdateFormeJuridiqueComponent,
+    AddCentreDesServicesFiscauxComponent,
+    ListCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent
+
+    //AdminComponent
     
     
   ],
@@ -112,7 +131,13 @@ import { AdminComponent } from './components/ADMIN/admin/admin.component';
     AddDetailPaiementCDMPComponent,
     AddDetailsPaiementPMEComponent,
     ConventionSignerComponent,
-    CodeComponent
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent
      
 ],
 providers: [

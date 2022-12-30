@@ -1,0 +1,75 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="d-flex justify-content-center col-12">
+            <div class="col-12 md:col-10 modalTitle  ">
+                <h3 class="title">Liste des formes juridiques</h3>
+            </div>
+        </div>
+        <div class="card">
+            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter une forme juridique"
+                icon="pi pi-plus" class="successButton" (click)="ajouterFormeJuridique()"></button>
+            <p-table #dt [value]="formeJuridiques" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['code','libelle']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="header">
+                    <ng-template pTemplate="header">                                        
+                        <!-- <tr>
+                            <th>
+                                <p-columnFilter type="text" field="code" placeholder="Code"></p-columnFilter>
+                            </th>
+                            <th>
+                                <p-columnFilter type="text" field="libelle" placeholder="Libellé">
+                                </p-columnFilter>
+                            </th>
+                            <th>
+                                <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
+                                    class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher"
+                                    (click)="dt.filter()"></button>
+                            </th>
+                            <th *ngIf="rangeDates!=undefined">
+                                <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
+                                    label="Annuler" (click)="clearRange(dt)"
+                                    style="background: white; color:#203359"></button>
+                            </th>
+                        </tr> -->
+                        <tr>
+                            <th pSortableColumn="code" style="color: #203359;">Codet<p-sortIcon
+                                    field="code"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="libelle" style="color: #203359;">Libellé<p-sortIcon
+                                    field="libelle"></p-sortIcon>
+                            </th>
+                            <th style="color: #203359;">Actions</th>
+                        </tr>
+                    </ng-template>
+                </ng-template>
+                <ng-template pTemplate="body" let-formeJuridique>
+                    <tr>
+
+                        <td style="width:25%; min-width:10rem;">
+                            <span class="p-column-title">Code</span>
+                            {{formeJuridique.code}}
+                        </td>
+
+                        <td style="width:50%; min-width:8rem;">
+                            <span class="p-column-title">Libellé</span>
+                            {{formeJuridique.libelle}}
+                        </td>
+                        <td>
+                            <div class="flex">                                
+                                <button pButton pRipple icon="pi pi-pencil" pTooltip="Modifier la forme juridique"
+                                class="p-button-rounded p-button-text mr-2 button-edit simpleButton" 
+                                    (click)="modifierFormeJuridique(formeJuridique)"></button>                                                                    
+                                <button pButton pRipple icon="pi pi-trash" pTooltip="Supprimer la forme juridique"
+                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton"
+                                (click)="supprimerFormeJuridique(formeJuridique)"></button>
+
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

@@ -154,6 +154,16 @@ export class AppLoginComponent implements OnInit {
               this.router.navigate(['workstation/ordonnateur/conventions']);
             }
           }
+          if (this.roles.find(elem => elem.libelle == 'ADMIN') != null) {
+            localStorage.setItem('profil', 'ADMIN');
+            if (this.changeCodePin) {
+              this.router.navigate(['workstation/profil']);
+
+            }
+            else {
+              this.router.navigate(['workstation/admin/ministere_depensier']);
+            }
+          }
         }
 
 

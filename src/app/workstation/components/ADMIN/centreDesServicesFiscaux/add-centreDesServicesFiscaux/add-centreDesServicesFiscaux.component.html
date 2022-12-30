@@ -1,0 +1,42 @@
+<div class="container-fluid text-right">
+    <div style="display: block;">
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+        <div class="modal-body">
+                <div class="card p-fluid">
+                <div class="field grid">
+                    <label htmlFor="libelle" class="col-12 mb-2 md:col-4 md:mb-0">Libellé</label>
+                    <div class="col-12 md:col-8" [ngClass]="{
+                        'has-error':(form.get('libelle').touched || form.get('libelle').dirty ) &&
+                        !form.get('libelle').valid
+                        }">
+                        <input pInputText id="libelle" formControlName="libelle" type="text" [(ngModel)]="centreDesServicesFiscaux.libelle" />
+                        <span *ngIf="form.get('libelle').errors && submit" style="color: red; font-size: x-small">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="code" class="col-12 mb-2 md:col-4 md:mb-0">Code</label>
+                    <div class="col-12 md:col-8" [ngClass]="{
+                        'has-error':(form.get('code').touched || form.get('code').dirty ) &&
+                        !form.get('code').valid
+                        }">
+                        <input pInputText id="code" formControlName="code" type="text" [(ngModel)]="centreDesServicesFiscaux.code" />
+                        <span *ngIf="form.get('code').errors && submit" style="color: red; font-size: x-small">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                icon="pi pi-check"  class="p-button-raised successButton"></button>
+                <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                    class="p-button-raised dangerButton" (click)="dismiss()"></button>
+               
+            </div>
+        </div>
+        </form>
+    </div>
