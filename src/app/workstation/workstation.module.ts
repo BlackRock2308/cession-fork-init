@@ -47,6 +47,9 @@ import { SignerconventionPMEComponent } from './components/PME/signer-convention
 import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
+import { AddMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/add-ministereDepensier/add-ministereDepensiers.component';
+import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
+import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/update-ministereDepensier/add-ministereDepensiers.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +90,11 @@ import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.componen
     CodeComponent,
     SignerconventionPMEComponent,
     CorrigerConventionComponent,
-    InfosPMEComponent
+    InfosPMEComponent,
+    AddMinistereDepensierComponent,
+    ListMinistereDepensierComponent,
+    UpdateMinistereDepensierComponent
+
     
     
   ],

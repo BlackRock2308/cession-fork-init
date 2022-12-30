@@ -1,0 +1,54 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="d-flex justify-content-center col-12">
+            <div class="col-12 md:col-10 modalTitle  ">
+                <h3 class="title">Liste des ministère</h3>
+            </div>
+        </div>
+        <div class="card">
+            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter un ministère"
+                icon="pi pi-plus" class="successButton" (click)="ajouterMinistereDepensier()"></button>
+            <p-table #dt [value]="ministereDepensiers" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['code','libelle']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="code" style="color: #203359;">Codet<p-sortIcon
+                                field="code"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="libelle" style="color: #203359;">Libellé<p-sortIcon
+                                field="libelle"></p-sortIcon>
+                        </th>
+                        <th style="color: #203359;">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ministereDepensier>
+                    <tr>
+
+                        <td style="width:25%; min-width:10rem;">
+                            <span class="p-column-title">Code</span>
+                            {{ministereDepensier.code}}
+                        </td>
+
+                        <td style="width:45%; min-width:8rem;">
+                            <span class="p-column-title">Libellé</span>
+                            {{ministereDepensier.libelle}}
+                        </td>
+                        <td>
+                            <div class="flex">                                
+                                <button pButton pRipple icon="pi pi-file" 
+                                    class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                    (click)="modifierMinistereDepensier(ministereDepensier)"></button>                                                                    
+                                <button pButton pRipple icon="pi pi-file" 
+                                class="p-button-rounded p-button-text mr-2 button simpleButton"
+                                (click)="supprimerMinistereDepensier(ministereDepensier)"></button>
+
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
