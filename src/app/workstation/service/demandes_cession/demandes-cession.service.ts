@@ -196,6 +196,8 @@ rejeterRecevabilite(idDemande: any):Observable<any> {
   return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/rejeterRecevabilite`,idDemande);
 }
 
-
+search(body:any):Observable<any[]> {
+  return this.addWithText(`${this.baseUrl}/demandecession/search`, body);
+}
 }
 

@@ -8,6 +8,7 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
 import { RowSizes } from 'src/app/core/generic-component/cdmp-table/row-sizes.model';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-recevabilite',
@@ -39,6 +40,9 @@ export class RecevabiliteComponent implements OnInit {
   paramStatutsInit:any[];
   defaultRows:number;
   defaultPageSize:number;
+  searchForm: any;
+  nomMarche:string='';
+  referenceBE:string=''
   
 
 
@@ -47,13 +51,19 @@ export class RecevabiliteComponent implements OnInit {
     private demandeCessionService: DemandesCessionService,
     private recevabiliteService: RecevabiliteService,
     private breadcrumbService: BreadcrumbService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private formBuilder:FormBuilder
   ) {
     this.breadcrumbService.setItems([
       { label: 'Liste des demandes de cession' },
     ]);
     this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
     //location.reload()
+
+    this.searchForm = this.formBuilder.group({
+      nom_marche: ['',],
+      reference_be: ['',]
+    })
   }
 
  
@@ -148,6 +158,19 @@ filterStatus(event){
   this.OnPageEvent;
   
 }
+
+search(){
+  //this.searchForm.value['nom_marche']=this.nomMarche
+  //this.searchForm.value['nom_marche']="Marché test"
+  
+console.log(this.searchForm.value);
+
+  this.demandeCessionService.search(this.searchForm.value).subscribe(
+    (data)=>{
+      console.log(data);
+    }
+  ) 
+}
 OnPageEvent(){
   this.defaultRows=5;
   this.rowsPerPageOptions=[5,10,15,20,30];
@@ -160,6 +183,10 @@ OnPageEvent(){
     this.router.navigate(['workstation/cdmp/recevabilite/verifier']);
 
 
+  }
+
+  private filter(){
+    
   }
 
   // ngOnDestroy() {

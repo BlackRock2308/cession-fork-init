@@ -14,18 +14,17 @@
                 currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id"
                 lazy="true" [totalRecords]="totalRecords">
 
-                <ng-template pTemplate="header">
+                <ng-template pTemplate="header" [formGroup]="searchForm">
                     <tr>
                         <th>
-                            <p-columnFilter type="text" field="nomMarche" placeholder="Nom Marché"></p-columnFilter>
+                            <input pInputText type="text" formControlName="nom_marche" placeholder="Nom Marché">
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="raisonSocial" placeholder="Raison Sociale">
-                            </p-columnFilter>
+                            <input pInputText type="text" field="raisonSocial" placeholder="Raison Sociale">
+                            
                         </th>
                         <th>
-                            <p-columnFilter type="text" field="reference" placeholder="Référence du BE">
-                            </p-columnFilter>
+                            <input pInputText type="text" field="reference" formControlName="reference_be" placeholder="Référence du BE">
                         </th>
                         <th>
                             <p-columnFilter type="date" field="dateDemandeCession" placeholder="Date de demande"
@@ -49,7 +48,7 @@
                         <th>
                             <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
                                 class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher"
-                                (click)="dt.filter()"></button>
+                                (click)="search()"></button>
                         </th>
                         <th *ngIf="rangeDates!=undefined">
                             <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
