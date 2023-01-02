@@ -1,4 +1,6 @@
 import { EmailValidator } from "@angular/forms";
+import { CentreDesServicesFiscaux } from "./centreDesServicesFiscaux";
+import { FormeJuridique } from "./formeJuridique";
 
 export interface PME {
     idPME?:number;
@@ -11,14 +13,13 @@ export interface PME {
     rccmFile?:any;
     autorisationMinisterielle ?: string
     denommination?:string;
-    formeJuridique?:string;
-    centreFiscal?:string;
+    formeJuridique?:FormeJuridique;
+    centreFiscal?:CentreDesServicesFiscaux;
     dateImmatriculation?:Date;
     adressePME?:string;
     hasninea?:boolean;
     isactive?:boolean;
     denomination?: string ,
-    formejuridique?: string,
     enseigne?: string,
     localite?: string,
     controle?: number,

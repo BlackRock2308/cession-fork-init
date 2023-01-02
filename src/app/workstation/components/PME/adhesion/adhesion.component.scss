@@ -122,6 +122,9 @@ p-skeleton {
     font-weight: bold;
 }
 
+:host ::ng-deep .p-dropdown {
+    width: 14rem;
+  }
 
 
 

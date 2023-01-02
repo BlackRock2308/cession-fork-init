@@ -88,8 +88,8 @@
         <span class="h5texte">Forme Juridique</span>
 
         <span class="p-float-label">
-            <input type="text" [(ngModel)]="formeJuridique"
-            placeholder="{{formeJuridique}}" formControlName="formeJuridique" id="inputtext-right" pInputText > 
+            <input type="text" [(ngModel)]="formeJuridique.code"
+            placeholder="{{formeJuridique.code}}" formControlName="formeJuridique" id="inputtext-right" pInputText > 
             <label for="chips"></label>
         </span>
     </div>
@@ -120,8 +120,8 @@
         <span class="h5texte">Centre Fiscal</span>
         <span class="p-float-label p-input-icon-left">
             <i class="pi pi-ticket"></i>
-            <input type="text" [(ngModel)]="centreFiscal"
-            placeholder="{{centreFiscal}}" formControlName="centreFiscal" id="inputtext-right" pInputText > 
+            <input type="text" [(ngModel)]="centreFiscal.code"
+            placeholder="{{centreFiscal.code}}" formControlName="centreFiscal" id="inputtext-right" pInputText > 
             <label for="chips"></label>
         </span>
     </div>
