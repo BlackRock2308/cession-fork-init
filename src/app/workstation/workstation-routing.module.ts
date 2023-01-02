@@ -5,6 +5,7 @@ import { AppBreadcrumbComponent } from '../core/breadcrumb/app.breadcrumb.compon
 import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
 import { ListFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/list-formeJuridique/list-formeJuridiques.component';
 import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
+import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
@@ -89,7 +90,9 @@ const routes: Routes = [
   //admin
   {path: 'admin/ministere_depensier', component:ListMinistereDepensierComponent},
   {path: 'admin/forme_juridique', component:ListFormeJuridiqueComponent},  
-  {path: 'admin/centre_des_servicesFiscaux', component:ListCentreDesServicesFiscauxComponent}
+  {path: 'admin/centre_des_servicesFiscaux', component:ListCentreDesServicesFiscauxComponent},
+  {path: 'admin/parametrages_decotes', component:ListParametrageDecoteComponent},  
+  {path: 'admin/utilisateurs', component:ListCentreDesServicesFiscauxComponent}
 ];
 
 @NgModule({
