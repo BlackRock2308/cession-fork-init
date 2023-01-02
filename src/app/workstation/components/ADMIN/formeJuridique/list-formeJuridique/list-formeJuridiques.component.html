@@ -12,8 +12,7 @@
                 [globalFilterFields]="['code','libelle']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
-                <ng-template pTemplate="header">
-                    <ng-template pTemplate="header">                                        
+                <ng-template pTemplate="header">                                     
                         <!-- <tr>
                             <th>
                                 <p-columnFilter type="text" field="code" placeholder="Code"></p-columnFilter>
@@ -34,7 +33,7 @@
                             </th>
                         </tr> -->
                         <tr>
-                            <th pSortableColumn="code" style="color: #203359;">Codet<p-sortIcon
+                            <th pSortableColumn="code" style="color: #203359;">Code<p-sortIcon
                                     field="code"></p-sortIcon>
                             </th>
                             <th pSortableColumn="libelle" style="color: #203359;">Libellé<p-sortIcon
@@ -42,7 +41,6 @@
                             </th>
                             <th style="color: #203359;">Actions</th>
                         </tr>
-                    </ng-template>
                 </ng-template>
                 <ng-template pTemplate="body" let-formeJuridique>
                     <tr>

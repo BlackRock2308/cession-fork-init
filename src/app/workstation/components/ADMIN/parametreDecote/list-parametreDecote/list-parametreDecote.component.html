@@ -2,13 +2,13 @@
     <div class="col-12">
         <div class="d-flex justify-content-center col-12">
             <div class="col-12 md:col-10 modalTitle  ">
-                <h3 class="title">Liste des ministères</h3>
+                <h3 class="title">Liste des décotes</h3>
             </div>
         </div>
         <div class="card">
-            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter un ministère"
-                icon="pi pi-plus" class="successButton" (click)="ajouterMinistereDepensier()"></button>
-            <p-table #dt [value]="ministereDepensiers" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter une décote"
+                icon="pi pi-plus" class="successButton" (click)="ajouterDecote()"></button>
+            <p-table #dt [value]="parametrageDecotes" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['code','libelle']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[5,10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate=" {totalRecords} lignes " [rowHover]="true" dataKey="id">
@@ -33,34 +33,41 @@
                         </th>
                     </tr> -->
                     <tr>
-                        <th pSortableColumn="code" style="color: #203359;">Code<p-sortIcon
+                        <th pSortableColumn="code" style="color: #203359;">Borne inférieure<p-sortIcon
                                 field="code"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="libelle" style="color: #203359;">Libellé<p-sortIcon
+                        <th pSortableColumn="libelle" style="color: #203359;">Borne supérieure<p-sortIcon
+                                field="libelle"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="libelle" style="color: #203359;">Valeur décote<p-sortIcon
                                 field="libelle"></p-sortIcon>
                         </th>
                         <th style="color: #203359;">Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-ministereDepensier>
+                <ng-template pTemplate="body" let-decote>
                     <tr>
-                        <td style="width:25%; min-width:10rem;">
-                            <span class="p-column-title">Code</span>
-                            {{ministereDepensier.code}}
-                        </td>
 
-                        <td style="width:50%; min-width:8rem;">
-                            <span class="p-column-title">Libellé</span>
-                            {{ministereDepensier.libelle}}
+                        <td style="width:30%; min-width:10rem;">
+                            <span class="p-column-title">Borne inférieure</span>
+                            {{decote.borneInf | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                        </td>
+                        <td style="width:30%; min-width:8rem;">
+                            <span class="p-column-title">Borne supérieure</span>
+                            {{decote.borneSup | currency:'CFA' : 'symbol' : '1.0-0':'fr'}}
+                        </td>
+                        <td style="width:20%; min-width:8rem;">
+                            <span class="p-column-title">Valeur décote</span>
+                            {{decote.decoteValue*100}}%
                         </td>
                         <td>
                             <div class="flex">                                
-                                <button pButton pRipple icon="pi pi-pencil" pTooltip="Modifier le ministère"
-                                    class="p-button-rounded p-button-text mr-2 button-edit simpleButton" 
-                                    (click)="modifierMinistereDepensier(ministereDepensier)"></button>                                                                    
-                                <button pButton pRipple icon="pi pi-trash" pTooltip="Supprimer le ministère"
-                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton" 
-                                (click)="supprimerMinistereDepensier(ministereDepensier)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" pTooltip="Modifier la décote"
+                                class="p-button-rounded p-button-text mr-2 button-edit simpleButton" 
+                                    (click)="modifierDecote(decote)"></button>                                                                    
+                                <button pButton pRipple icon="pi pi-trash" pTooltip="Supprimer la décote"
+                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton"
+                                (click)="supprimerDecote(decote)"></button>
 
                             </div>
                         </td>

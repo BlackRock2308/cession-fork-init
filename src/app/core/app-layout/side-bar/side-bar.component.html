@@ -96,20 +96,32 @@
                     
                     <li *ngIf="profil === 'ADMIN'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['admin/ministere_depensier']">
-                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Ministère</span>
-                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Ministères</span>
+                            <i class="pi pi-fw pi-building layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'ADMIN'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['admin/centre_des_servicesFiscaux']">
-                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Centre des Services Fiscaux</span>
-                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Centres des Services Fiscaux</span>
+                            <i class="pi pi-fw pi-home layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'ADMIN'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['admin/forme_juridique']">
                             <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Formes Juridiques</span>
-                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                            <i class="pi pi-fw pi-book layout-menuitem-icon"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/parametrages_decotes']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Paramétrage décotes</span>
+                            <i class="pi pi-fw pi-cog layout-menuitem-icon"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/utilisateurs']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Utilisateurs</span>
+                            <i class="pi pi-fw pi-users layout-menuitem-icon"></i>
                         </a>
                     </li>
                 </ul>
