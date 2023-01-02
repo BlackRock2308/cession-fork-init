@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@ang
 import { Router } from '@angular/router';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
+import { CentreDesServicesFiscaux } from 'src/app/workstation/model/centreDesServicesFiscaux';
+import { FormeJuridique } from 'src/app/workstation/model/formeJuridique';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
@@ -21,8 +23,8 @@ export class InfosPMEComponent implements OnInit {
 message:string = "";
   informationsForm: any;
   demande: any;
-  formeJuridique: string
-  centreFiscal:string 
+  formeJuridique: FormeJuridique={};
+  centreFiscal:CentreDesServicesFiscaux={}; 
   ninea : number
   activitePrincipale: string
   email : string
@@ -50,9 +52,7 @@ message:string = "";
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
     private pmeService: PmeService,
-    private tokenStorage: TokenStorageService,
-
-    private utilisateurService: UtilisateurService) { 
+    private tokenStorage: TokenStorageService) { 
       this.informationsForm = this.formBuilder.group({
         raisonSocial: [''],
         formeJuridique: ['', Validators.required],
