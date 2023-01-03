@@ -161,6 +161,8 @@ import { ParametrageDecoteServices } from './service/parametrageDecote/parametra
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
     UpdateParametrageDecoteComponent,
+    AddUtilisateurComponent,
+    UpdateUtilisateurComponent,
     VisualiserDocumentComponent,
     AddDetailPaiementCDMPComponent,
     AddDetailsPaiementPMEComponent,
