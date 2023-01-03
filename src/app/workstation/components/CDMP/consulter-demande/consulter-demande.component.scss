@@ -6,54 +6,6 @@
 
 }
 
-
-::ng-deep .p-timeline-event-opposite{
-    display: none;
-}
-
-hr.dotted {
-    border-top: 3px dotted rgb(109, 109, 109);
-  }
-
-
-.product-badge {
-    border-radius: var(--border-radius);
-    padding: .25em .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: .3px;
-
-    &.status-non_risquee {
-        background: #C8E6C9;
-        color: #256029;
-    }
-
-    &.status-risquee {
-        background: #FFCDD2;
-        color: #C63737;
-    }
-    &.status-soumise {
-        background: #fed6af;
-        color: #8a4640;
-    }
-
-    &.status-complement_requis {
-        background: #fed6af;
-        color: #8a4640;
-    }
-    &.status-completee {
-        background: #FEEDAF;
-        color: #8A5340;
-    }
-    &.status-recevable {
-        background: #c9ddfa;
-        color: #354d8f;
-    }
-    
-}
-
-
 ::ng-deep span.p-paginator-current.ng-star-inserted{
     color: #203359;
 
@@ -103,10 +55,9 @@ h3{
 }
 
 .modalTitle{
+    background-color: #F2F2F2;
     justify-content: center;
     height: 40px;
-    left: 400px;
-    position: relative;
     border-radius: 2%;
     
 }
