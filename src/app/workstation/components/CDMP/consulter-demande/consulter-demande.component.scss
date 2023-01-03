@@ -28,6 +28,10 @@ hr.dotted {
         background: #C8E6C9;
         color: #256029;
     }
+    &.status-convention_corrigee {
+        background: #C8E6C9;
+        color: #256029;
+    }
 
     &.status-risquee {
         background: #FFCDD2;
@@ -42,11 +46,19 @@ hr.dotted {
         background: #fed6af;
         color: #8a4640;
     }
+    &.status-convention_signee_par_pme {
+        background: #fed6af;
+        color: #8a4640;
+    }
     &.status-completee {
         background: #FEEDAF;
         color: #8A5340;
     }
     &.status-recevable {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+    &.status-convention_signee_par_dg {
         background: #c9ddfa;
         color: #354d8f;
     }

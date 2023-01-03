@@ -60,10 +60,12 @@ import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecot
 import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
 import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
 import { ObservationsComponent } from './components/observations/observations.component';
+import { ParametrageDecoteServices } from './service/parametrageDecote/parametrageDecoteServices.service';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
   declarations: [
+    
     NouvelleDemandeComponent,
     DemandesAdhesionComponent,
     DemandeAdhesionComponent,
@@ -110,8 +112,23 @@ import { ObservationsComponent } from './components/observations/observations.co
     UpdateFormeJuridiqueComponent,
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent
+    UpdateCentreDesServicesFiscauxComponent,
 
+    UpdateParametrageDecoteComponent,
+    AddMinistereDepensierComponent,
+    ListMinistereDepensierComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    ListFormeJuridiqueComponent,
+    UpdateFormeJuridiqueComponent,
+    AddCentreDesServicesFiscauxComponent,
+    ListCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    ListParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+   
+    
     //AdminComponent
     
     
@@ -143,8 +160,21 @@ import { ObservationsComponent } from './components/observations/observations.co
     AddCentreDesServicesFiscauxComponent,
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent
-     
+    UpdateParametrageDecoteComponent,
+    VisualiserDocumentComponent,
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
+    ConventionSignerComponent,
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+ 
 ],
 providers: [
   NgbActiveModal,

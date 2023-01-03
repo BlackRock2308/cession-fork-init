@@ -32,60 +32,11 @@ import { TimelineElement } from '../../../observations/timeline-element';
   })
 
 export class VerifierDemandeCessionComponent implements OnInit {
-  // timelineItems = [
-  //   { date: 'January 1, 2020', content: 'Item 1' },
-  //   { date: 'January 2, 2020', content: 'Item 2' },
-  //   { date: 'January 3, 2020', content: 'Item 3' }
-  // ];
-  name = 'Angular 6';
-  content = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae 
-  ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, 
-  ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam 
-  quisquam, quae, temporibus dolores porro doloribus.`;
+
   events1: TimelineElement[] = [];
   
 
 
-  // load() {
-  //   this.timeline = [];
-    
-  //   // setTimeout(() => { // simulate delay 
-  //   //   this.timeline = [
-  //   // { caption: '16 Jan', date: new Date(2014, 1, 16), title: 'Demande Soumise', content: this.content },
-  //   // { caption: '28 Feb', date: new Date(2014, 2, 28), title: 'Demande Acceptée', content: this.content },
-  //   // { caption: '20 Mar', date: new Date(2014, 3, 20), selected: true, title: 'Demande rejetée', content: this.content },
-  //   // { caption: '20 May', date: new Date(2014, 5, 20), title: 'Status#3', content: this.content },
-  //   // { caption: '09 Jul', date: new Date(2014, 7, 9), title: 'Status#4', content: this.content },
-  //   // { caption: '30 Aug', date: new Date(2014, 8, 30), title: 'Status#5', content: this.content },
-  //   // { caption: '15 Sep', date: new Date(2014, 9, 15), title: 'Status#6', content: this.content },
-  //   // { caption: '01 Nov', date: new Date(2014, 11, 1), title: 'Status#7', content: this.content },
-  //   // { caption: '10 Dec', date: new Date(2014, 12, 10), title: 'Status#8', content: this.content },
-  //   // { caption: '29 Jan', date: new Date(2015, 1, 19), title: 'Status#9', content: this.content },
-  //   // { caption: '3 Mar', date: new Date(2015, 3, 3), title: 'Status#9', content: this.content },
-  //   // ];
-  //   // }, 500);
-
-  //   this.timeline = this.demandeCession.observations
-  //   this.timeline.find(element=>{
-  //     if(element['statut']['code']==StatutEnum.rejetee || element['statut']['code']==StatutEnum.recevable)
-  //       element.selected=true
-      
-  //     else
-  //       if(element['statut']['code']==StatutEnum.soumise)
-  //         element.selected=true
-      
-  //     if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
-  //       element.libelle="Pas d'observations."
-  //   })
-  //   this.timeline[0].selected=true
-  //   console.log(this.timeline);
-    
-  //   this.timeline.forEach(element => {
-  //     element.dateObservation=new Date(element.dateObservation)
-      
-  //   });  
-  //   console.log(this.timeline)
-  // }
   demandeCession: any;
   demande : any;
   bonEngagement: BonEngagement;
@@ -138,15 +89,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-   
-  this.date= new Date(2015, 3, 3)
-  console.log(this.date)
-
-  this.events2 = [
-      "2020", "2021", "2022" , "2023" , "2024"
-  ];
-  
+     
     this.observation.libelle = ''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
@@ -209,9 +152,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     });
   }
 
-  showText(){
-    this.contentShow = true;
-   }
+  
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
