@@ -20,7 +20,7 @@ import { Observation } from 'src/app/workstation/model/observation';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
-
+import { TimelineElement } from '../../../observations/timeline-element';
 @Component({
   selector: 'app-verifier-demande-cession',
   templateUrl: './verifier-demande-cession.component.html',
@@ -32,15 +32,70 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
   })
 
 export class VerifierDemandeCessionComponent implements OnInit {
+  // timelineItems = [
+  //   { date: 'January 1, 2020', content: 'Item 1' },
+  //   { date: 'January 2, 2020', content: 'Item 2' },
+  //   { date: 'January 3, 2020', content: 'Item 3' }
+  // ];
+  name = 'Angular 6';
+  content = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae 
+  ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, 
+  ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam 
+  quisquam, quae, temporibus dolores porro doloribus.`;
+  events1: TimelineElement[] = [];
+  
+
+
+  // load() {
+  //   this.timeline = [];
+    
+  //   // setTimeout(() => { // simulate delay 
+  //   //   this.timeline = [
+  //   // { caption: '16 Jan', date: new Date(2014, 1, 16), title: 'Demande Soumise', content: this.content },
+  //   // { caption: '28 Feb', date: new Date(2014, 2, 28), title: 'Demande Acceptée', content: this.content },
+  //   // { caption: '20 Mar', date: new Date(2014, 3, 20), selected: true, title: 'Demande rejetée', content: this.content },
+  //   // { caption: '20 May', date: new Date(2014, 5, 20), title: 'Status#3', content: this.content },
+  //   // { caption: '09 Jul', date: new Date(2014, 7, 9), title: 'Status#4', content: this.content },
+  //   // { caption: '30 Aug', date: new Date(2014, 8, 30), title: 'Status#5', content: this.content },
+  //   // { caption: '15 Sep', date: new Date(2014, 9, 15), title: 'Status#6', content: this.content },
+  //   // { caption: '01 Nov', date: new Date(2014, 11, 1), title: 'Status#7', content: this.content },
+  //   // { caption: '10 Dec', date: new Date(2014, 12, 10), title: 'Status#8', content: this.content },
+  //   // { caption: '29 Jan', date: new Date(2015, 1, 19), title: 'Status#9', content: this.content },
+  //   // { caption: '3 Mar', date: new Date(2015, 3, 3), title: 'Status#9', content: this.content },
+  //   // ];
+  //   // }, 500);
+
+  //   this.timeline = this.demandeCession.observations
+  //   this.timeline.find(element=>{
+  //     if(element['statut']['code']==StatutEnum.rejetee || element['statut']['code']==StatutEnum.recevable)
+  //       element.selected=true
+      
+  //     else
+  //       if(element['statut']['code']==StatutEnum.soumise)
+  //         element.selected=true
+      
+  //     if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+  //       element.libelle="Pas d'observations."
+  //   })
+  //   this.timeline[0].selected=true
+  //   console.log(this.timeline);
+    
+  //   this.timeline.forEach(element => {
+  //     element.dateObservation=new Date(element.dateObservation)
+      
+  //   });  
+  //   console.log(this.timeline)
+  // }
   demandeCession: any;
+  demande : any;
   bonEngagement: BonEngagement;
   dateTime = new Date();
   ministeres: Ministere[];
   code: string;
-  events1: any[];
-    
+  date: Date;
   events2: any[];
-
+  contentShow : any;
+  poste : string;
   documents: any[] = [];
   cols: any[];
   pas_identifie: boolean;
@@ -48,7 +103,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   identifie: boolean;
   pas_atd: boolean;
   date10: Date;
-
+  observations : any ;
   atd: boolean;
   pas_nantissement: boolean;
   pas_interdiction: boolean;
@@ -83,16 +138,15 @@ export class VerifierDemandeCessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.events1 = [
-      {status: 'Ordered', date: '15/10/2020 10:30', icon: PrimeIcons.SHOPPING_CART, color: '#9C27B0', image: 'game-controller.jpg'},
-      {status: 'Processing', date: '15/10/2020 14:00', icon: PrimeIcons.COG, color: '#673AB7'},
-      {status: 'Shipped', date: '15/10/2020 16:15', icon: PrimeIcons.ENVELOPE, color: '#FF9800'},
-      {status: 'Delivered', date: '16/10/2020 10:00', icon: PrimeIcons.CHECK, color: '#607D8B'}
-  ];
+    
+   
+  this.date= new Date(2015, 3, 3)
+  console.log(this.date)
 
   this.events2 = [
       "2020", "2021", "2022" , "2023" , "2024"
   ];
+  
     this.observation.libelle = ''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
@@ -102,8 +156,27 @@ export class VerifierDemandeCessionComponent implements OnInit {
       this.documents = this.documents.concat(this.demandeCession.pme.documents)
       this.documents = this.documents.concat(this.demandeCession.documents)
       console.log(this.documents)
+      this.events1 = [];
+      this.events1=this.demandeCession.observations
+      this.events1.find(element=>{
+        
+             if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+               element.libelle="Pas d'observations."
+           })
+      console.log(this.events1)
+      // this.observationService.getObservationByDemandeCession(this.demandeCession.idDemande).subscribe(data => {
+      //   this.observations = data
+      //   console.log('yup',this.observations)
+        
+    
+      // })
+    
 
     })
+
+  
+
+    this.poste = localStorage.getItem('profil');
 
     this.demandeCessionService.getAllMinistere().subscribe(data => {
       this.ministeres = <Ministere[]>data;
@@ -135,6 +208,10 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
     });
   }
+
+  showText(){
+    this.contentShow = true;
+   }
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
@@ -233,6 +310,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     )
   }
 
+
   visualiserDocument(document: Documents) {
     let nom = document.nomDocument;
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
@@ -246,6 +324,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     });
   }
 
+  
   onSubmitRejet(bonEngagement) {
 
     Swal.fire({

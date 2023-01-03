@@ -56,6 +56,7 @@ import { AddCentreDesServicesFiscauxComponent } from './components/ADMIN/centreD
 import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
 import { UpdateCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/update-centreDesServicesFiscaux/update-centreDesServicesFiscaux.component';
 import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/update-formeJuridique/update-formeJuridique.component';
+import { ObservationsComponent } from './components/observations/observations.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
@@ -106,7 +107,8 @@ import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique
     UpdateFormeJuridiqueComponent,
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent
+    UpdateCentreDesServicesFiscauxComponent,
+    ObservationsComponent
 
     //AdminComponent
     

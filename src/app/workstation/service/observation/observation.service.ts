@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams ,HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiSettings } from '../../generic/const/apiSettings.const';
@@ -35,5 +35,11 @@ getObservationByDemandeCessionANDStatut(id:number,statut:string): Observable<any
   .set('status',statut)
 
 return this.http.get<any>(`${this.observationUrl}/observation-by-demandeid-and-status/${id}`,{params});
+}
+
+//get observation  par demande cession et statut
+getObservationByDemandeCession(id:number): Observable<any> {
+  return this.getAll<any>(`${this.observationUrl}/${id}/demande-cession`);
+
 }
 }
