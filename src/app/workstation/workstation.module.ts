@@ -59,6 +59,9 @@ import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique
 import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecote/add-parametreDecote/add-parametreDecote.component';
 import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
 import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
+import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
+import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
+import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
@@ -112,7 +115,10 @@ import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDe
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
     ListParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent
+    UpdateParametrageDecoteComponent,
+    AddUtilisateurComponent,
+    ListUtilisateurComponent,
+    UpdateUtilisateurComponent
 
     //AdminComponent
     
@@ -145,7 +151,9 @@ import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDe
     AddCentreDesServicesFiscauxComponent,
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent
+    UpdateParametrageDecoteComponent,
+    AddUtilisateurComponent,
+    UpdateUtilisateurComponent
      
 ],
 providers: [

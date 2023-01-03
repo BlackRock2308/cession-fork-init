@@ -7,7 +7,9 @@ import { CentreDesServicesFiscaux } from 'src/app/workstation/model/centreDesSer
 import { FormeJuridique } from 'src/app/workstation/model/formeJuridique';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
+import { CentreDesServicesFiscauxService } from 'src/app/workstation/service/centreDesServicesFiscaux/centreDesServicesFiscauxService.service';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
+import { FormeJuridiqueService } from 'src/app/workstation/service/formeJuridique/formeJuridiqueService.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { UtilisateurService } from 'src/app/workstation/service/utilisateur/utilisateur.service';
 import Swal from 'sweetalert2';
@@ -23,8 +25,10 @@ export class InfosPMEComponent implements OnInit {
 message:string = "";
   informationsForm: any;
   demande: any;
-  formeJuridique: FormeJuridique={};
-  centreFiscal:CentreDesServicesFiscaux={}; 
+  formeJuridiques: any[];
+  formeJuridique:FormeJuridique ={};
+  centreFiscals: any[];
+  centreFiscal: CentreDesServicesFiscaux={}; 
   ninea : number
   activitePrincipale: string
   email : string
@@ -52,7 +56,9 @@ message:string = "";
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
     private pmeService: PmeService,
-    private tokenStorage: TokenStorageService) { 
+    private tokenStorage: TokenStorageService,
+    private centreDesServicesFiscauxService: CentreDesServicesFiscauxService,
+    private formeJuridiqueService : FormeJuridiqueService) { 
       this.informationsForm = this.formBuilder.group({
         raisonSocial: [''],
         formeJuridique: ['', Validators.required],
@@ -82,9 +88,10 @@ message:string = "";
   ngOnInit(): void {
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
-      this.pme = this.demande.pme
-      console.log(this.pme)
-
+      this.pme = this.demande.pme;
+      console.log(this.pme);
+      this.centreFiscal = this.pme.centreFiscal;
+      this.formeJuridique = this.pme.formeJuridique;
     this.telephonePME = this.tokenStorage.getPME().telephonePME;
     this.raisonSocial = this.tokenStorage.getPME().raisonSocial;
     this.adressePME = this.tokenStorage.getPME().adressePME;
@@ -101,6 +108,8 @@ message:string = "";
     this.ninea=this.tokenStorage.getPME().ninea;
     this.rccm=this.tokenStorage.getPME().rccm;
 
+    this.getFormeJuridiques();
+    this.getCentreFiscals();
 
 
 
@@ -128,6 +137,24 @@ matchValues(): (AbstractControl) => ValidationErrors | null {
 }
 get f() {
   return this.informationsForm.controls;
+}
+
+getFormeJuridiques(){
+  this.formeJuridiqueService.getAllFormeJuridique()
+  .subscribe((res:FormeJuridique[])=>{
+    if(res.length){
+      this.formeJuridiques = res;
+    }
+  })
+}
+
+getCentreFiscals(){
+  this.centreDesServicesFiscauxService.getAllCentreDesServicesFiscaux()
+  .subscribe((res:CentreDesServicesFiscaux[])=>{
+    if(res.length){
+      this.centreFiscals = res;
+    }
+  })
 }
 
 prevPage() {
