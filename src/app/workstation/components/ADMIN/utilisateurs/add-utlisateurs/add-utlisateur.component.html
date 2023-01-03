@@ -34,11 +34,7 @@
                         !form.get('email').valid
                         }">
                         <input pInputText id="email" formControlName="email" type="text" [(ngModel)]="utilisateur.email" />
-                        <!-- <span *ngIf="form.get('email').errors && submit" class="error-validation">
-                           {{message}}
-                        </span> -->
-
-                        <span *ngIf="submit && f['email'].errors! && !f['email'].hasError('required')"
+                         <span *ngIf="submit && f['email'].errors! && !f['email'].hasError('required')"
                         class="error-validation">Renseigner un bon email</span>
                     <span *ngIf="submit && f['email'].hasError('required')" class="error-validation">{{message}}</span>
                     </div>
@@ -49,8 +45,18 @@
                         'has-error':(form.get('telephone').touched || form.get('telephone').dirty ) &&
                         !form.get('telephone').valid
                         }">
-                        <input pInputText id="telephone" formControlName="telephone" type="text" [(ngModel)]="utilisateur.telephone" />
-                        <span *ngIf="form.get('telephone').errors && submit" class="error-validation">
+                        <div class="col-12 md:col-12">
+                        <ngx-intl-tel-input [preferredCountries]="preferredCountries" [(ngModel)]="utilisateur.telephone"
+                        [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [style]="{width: '100%'}"
+                        [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
+                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone"
+                        formControlName="telephone" >
+                    </ngx-intl-tel-input>
+                </div>
+                    <span *ngIf="submit && f['telephone'].invalid && !f['telephone'].hasError('required')"
+                    class="error-validation">Renseigner un bon numéro</span>
+                        <span *ngIf="f['telephone'].hasError('required') && submit" class="error-validation">
                            {{message}}
                         </span>
                     </div>
@@ -61,32 +67,18 @@
                         'has-error':(form.get('adresse').touched || form.get('adresse').dirty ) &&
                         !form.get('adresse').valid
                         }">
-                        <input pInputText id="adresse" formControlName="adresse" type="text" [(ngModel)]="utilisateur.adresse" />
-                        <!-- <span *ngIf="form.get('adresse').errors && submit" class="error-validation">
-                           {{message}}
-                        </span> -->
+                        <input pInputText id="adresse" formControlName="adresse" type="text" [(ngModel)]="utilisateur.adresse" />  
                     </div>
                 </div>
                 <div class="field grid">
                     <label htmlFor="profil" class="col-12 mb-2 md:col-3 md:mb-0">Profil<span class="required">*</span></label>
-                      <!-- <div class="col-12 md:col-9" [ngClass]="{
+                      <div class="col-12 md:col-9" [ngClass]="{
                         'has-error':(form.get('ministere').touched || form.get('ministere').dirty ) &&
                         !form.get('ministere').valid
-                        }"> -->
-                        <div class="col-12 md:col-9">
+                        }">
                         <p-dropdown [options]="roles" [showClear]="true" (onChange)="rolesChange($event)" formControlName="profil"
                          [(ngModel)]="profil" optionLabel="libelle"  placeholder="Sélectionnez un profil">
                         </p-dropdown>
-                       
-                        <!-- <p-dropdown [options]="roles" (onChange)="rolesChange($event)"
-                        formControlName="profil" [(ngModel)]="profil" [showClear]="true" placeholder="Sélectionnez un profil" >
-                        <ng-template pTemplate="selectedItem">
-                                <div >{{profil.libelle}}</div>
-                        </ng-template>
-                        <ng-template let-role pTemplate="item" >
-                                <div>{{role.description}}</div>
-                        </ng-template>
-                    </p-dropdown> -->
                         <span *ngIf="form.get('profil').errors && submit" class="error-validation">
                            {{message}}
                         </span>
