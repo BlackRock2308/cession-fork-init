@@ -17,6 +17,10 @@ import { PmeService } from "src/app/workstation/service/pme/pmeservice.service";
 import { DemandeAdhesion } from "../../../model/demande";
 import { Observation } from "src/app/workstation/model/observation";
 import { SearchCountryField, CountryISO } from "ngx-intl-tel-input";
+import { CentreDesServicesFiscaux } from "src/app/workstation/model/centreDesServicesFiscaux";
+import { CentreDesServicesFiscauxService } from "src/app/workstation/service/centreDesServicesFiscaux/centreDesServicesFiscauxService.service";
+import { FormeJuridiqueService } from "src/app/workstation/service/formeJuridique/formeJuridiqueService.service";
+import { FormeJuridique } from "src/app/workstation/model/formeJuridique";
 
 @Component({
   selector: "app-adhesion",
@@ -29,10 +33,11 @@ export class AdhesionComponent implements OnInit {
   selectedNINEAFiles: File | null = null;
   selectedRCCMFiles: File | null = null;
   currentFile?: File;
-  formeJuridique: any[];
+  formeJuridiques: any[];
   selectedCentre: string;
-
-  centreFiscal: any[];
+  formeJuridique:FormeJuridique ={};
+  centreFiscals: any[];
+  centreFiscal: CentreDesServicesFiscaux={}; 
   progress = 0;
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -52,62 +57,14 @@ export class AdhesionComponent implements OnInit {
     private router: Router,
     private adhesionService: AdhesionService,
     private pmeService: PmeService,
-    private uploadFileService: FileUploadService
+    private uploadFileService: FileUploadService,
+    private centreDesServicesFiscauxService: CentreDesServicesFiscauxService,
+    private formeJuridiqueService : FormeJuridiqueService
   ) { }
 
   ngOnInit(): void {
-    this.centreFiscal = [
-      {
-        "type": "DKR-PLT",
-        "nom": " Dakar Plateau"
-      },
-      {
-        "type": "NG-ALM",
-        "nom": "Ngor Almadies"
-      },
-      {
-        "type": "RUFISQUE",
-        "nom": "Rufisque"
-      },
-      {
-        "type": "GRD-DKR",
-        "nom": "Grand Dakar"
-      }
-  ];
-    this.formeJuridique = [
-      {
-        "type": "SA",
-        "nom": " Société anonyme"
-      },
-      {
-        "type": "SARL",
-        "nom": "Société à Responsabilité Limitée"
-      },
-      {
-        "type": "GIE",
-        "nom": "GIE"
-      },
-      {
-        "type": "SNC",
-        "nom": "Société en Nom Collectif"
-      },
-      {
-        "type": "SCS",
-        "nom": "Société en Commandite Simple"
-      },
-      {
-        "type": "Société civile",
-        "nom": "Société civile"
-      },
-      {
-        "type": "Société Coopérative",
-        "nom": "Société Coopérative"
-      },
-      {
-        "type": "Entreprise Individuelle",
-        "nom": "Entreprise Individuelle"
-      }
-    ]
+    this.getFormeJuridiques();
+    this.getCentreFiscals();
     this.message = "Champ obligatoire";
     this.form = this.formBuilder.group({
       ninea: ["", [Validators.required, this.matchValuesNINEA()]],
@@ -164,6 +121,23 @@ export class AdhesionComponent implements OnInit {
     };
   }
 
+  getFormeJuridiques(){
+    this.formeJuridiqueService.getAllFormeJuridique()
+    .subscribe((res:FormeJuridique[])=>{
+      if(res.length){
+        this.formeJuridiques = res;
+      }
+    })
+  }
+
+  getCentreFiscals(){
+    this.centreDesServicesFiscauxService.getAllCentreDesServicesFiscaux()
+    .subscribe((res:CentreDesServicesFiscaux[])=>{
+      if(res.length){
+        this.centreFiscals = res;
+      }
+    })
+  }
   //sélectionner le fichier du ninea
   selectNINEAFile(files: any): void {
     this.selectedNINEAFiles = files.target.files[0];
@@ -215,6 +189,8 @@ export class AdhesionComponent implements OnInit {
   //enregistrement du pme avec l'appel du service d'enregistrement
   enregistrerPme() {
     this.pme = this.form.value;
+    this.pme.formeJuridique = this.formeJuridique;
+    this.pme.centreFiscal = this.centreFiscal;
     this.pme.nineaFile = this.selectedNINEAFiles;
     this.pme.rccmFile = this.selectedRCCMFiles;
     let body = {

@@ -1,0 +1,62 @@
+<div class="container-fluid text-right">
+    <div style="display: block;">
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+            <div class="modal-body">
+                <div class="card p-fluid">
+                    <div class="field grid">
+                        <label htmlFor="borneInf" class="col-12 mb-2 md:col-4 md:mb-0">Borne inférieure</label>
+                        <div class="col-12 md:col-8" [ngClass]="{
+                        'has-error':(form.get('borneInf').touched || form.get('borneInf').dirty ) &&
+                        !form.get('borneInf').valid
+                        }">
+                            <p-inputNumber formControlName="borneInf" [(ngModel)]="parametrageDecote.borneInf"
+                                mode="currency" currency="CFA">
+                            </p-inputNumber>
+                            <span *ngIf="form.get('borneInf').errors && submit" style="color: red; font-size: x-small">
+                                {{message}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label htmlFor="borneSup" class="col-12 mb-2 md:col-4 md:mb-0">Borne supérieure</label>
+                        <div class="col-12 md:col-8" [ngClass]="{
+                        'has-error':(form.get('borneSup').touched || form.get('borneSup').dirty ) &&
+                        !form.get('borneSup').valid
+                        }">
+                            <p-inputNumber formControlName="borneSup" [(ngModel)]="parametrageDecote.borneSup"
+                                mode="currency" currency="CFA">
+                            </p-inputNumber>
+                            <span *ngIf="form.get('borneSup').errors && submit" style="color: red; font-size: x-small">
+                                {{message}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label htmlFor="decoteValue" class="col-12 mb-2 md:col-4 md:mb-0">Valeur décote en %</label>
+                        <div class="col-12 md:col-8" [ngClass]="{
+                        'has-error':(form.get('decoteValue').touched || form.get('decoteValue').dirty ) &&
+                        !form.get('decoteValue').valid
+                        }">
+                        <p-inputNumber inputId="integeronly" formControlName="decoteValue" 
+                        [(ngModel)]="decoteValue">
+                        </p-inputNumber>
+                            <span *ngIf="form.get('decoteValue').errors && submit"
+                                style="color: red; font-size: x-small">
+                                {{message}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                    <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                        icon="pi pi-check" class="p-button-raised successButton"></button>
+                    <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                        class="p-button-raised dangerButton" (click)="dismiss()"></button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

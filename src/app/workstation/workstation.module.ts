@@ -56,6 +56,9 @@ import { AddCentreDesServicesFiscauxComponent } from './components/ADMIN/centreD
 import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
 import { UpdateCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/update-centreDesServicesFiscaux/update-centreDesServicesFiscaux.component';
 import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/update-formeJuridique/update-formeJuridique.component';
+import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecote/add-parametreDecote/add-parametreDecote.component';
+import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
+import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
 import { ObservationsComponent } from './components/observations/observations.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
@@ -107,8 +110,7 @@ import { ObservationsComponent } from './components/observations/observations.co
     UpdateFormeJuridiqueComponent,
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent,
-    ObservationsComponent
+    UpdateCentreDesServicesFiscauxComponent
 
     //AdminComponent
     
@@ -139,7 +141,9 @@ import { ObservationsComponent } from './components/observations/observations.co
     AddFormeJuridiqueComponent,
     UpdateMinistereDepensierComponent,
     AddCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent
      
 ],
 providers: [
