@@ -114,7 +114,13 @@ import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utl
     UpdateFormeJuridiqueComponent,
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent
+    UpdateCentreDesServicesFiscauxComponent,
+    UpdateUtilisateurComponent,
+    ListUtilisateurComponent,
+    AddUtilisateurComponent,
+    UpdateParametrageDecoteComponent,
+    ListParametrageDecoteComponent,
+    AddParametrageDecoteComponent
 
     //AdminComponent
     
