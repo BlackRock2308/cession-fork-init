@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="card">
-            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter une forme juridique"
+            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter un centre fiscal"
                 icon="pi pi-plus" class="successButton" (click)="ajouterCentreDesServicesFiscaux()"></button>
             <p-table #dt [value]="centreDesServicesFiscaux" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['code','libelle']" [rows]="10"

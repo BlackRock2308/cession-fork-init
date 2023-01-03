@@ -1,34 +1,35 @@
 <div class="container-fluid text-right">
     <div style="display: block;">
         <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
-        <div class="modal-body">
+            <div class="modal-body" style="height: 100%;">
                 <div class="card p-fluid">
                 <div class="field grid">
-                    <label htmlFor="libelle" class="col-12 mb-2 md:col-4 md:mb-0">Libellé</label>
+                    <label htmlFor="libelle" class="col-12 mb-2 md:col-4 md:mb-0">Libellé<span class="required">*</span></label>
                     <div class="col-12 md:col-8" [ngClass]="{
                         'has-error':(form.get('libelle').touched || form.get('libelle').dirty ) &&
                         !form.get('libelle').valid
                         }">
                         <input pInputText id="libelle" formControlName="libelle" type="text" [(ngModel)]="formeJuridique.libelle" />
-                        <span *ngIf="form.get('libelle').errors && submit" style="color: red; font-size: x-small">
+                        <span *ngIf="form.get('libelle').errors && submit" class="error-validation">
                            {{message}}
                         </span>
                     </div>
                 </div>
                 <div class="field grid">
-                    <label htmlFor="code" class="col-12 mb-2 md:col-4 md:mb-0">Code</label>
+                    <label htmlFor="code" class="col-12 mb-2 md:col-4 md:mb-0">Code<span class="required">*</span></label>
                     <div class="col-12 md:col-8" [ngClass]="{
                         'has-error':(form.get('code').touched || form.get('code').dirty ) &&
                         !form.get('code').valid
                         }">
                         <input pInputText id="code" formControlName="code" type="text" [(ngModel)]="formeJuridique.code" />
-                        <span *ngIf="form.get('code').errors && submit" style="color: red; font-size: x-small">
+                        <span *ngIf="form.get('code').errors && submit" class="error-validation">
                            {{message}}
                         </span>
                     </div>
                 </div>
         </div>
         </div>
+        <br/>
         <div class="modal-footer">
             <div class="col-12  pr-0 d-flex  flex-row-reverse">
                 <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
