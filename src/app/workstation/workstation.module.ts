@@ -61,6 +61,9 @@ import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDeco
 import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
 import { ObservationsComponent } from './components/observations/observations.component';
 import { ParametrageDecoteServices } from './service/parametrageDecote/parametrageDecoteServices.service';
+import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
+import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
+import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
@@ -127,6 +130,21 @@ import { ParametrageDecoteServices } from './service/parametrageDecote/parametra
     AddParametrageDecoteComponent,
     ListParametrageDecoteComponent,
     UpdateParametrageDecoteComponent,
+    AddMinistereDepensierComponent,
+    ListMinistereDepensierComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    ListFormeJuridiqueComponent,
+    UpdateFormeJuridiqueComponent,
+    AddCentreDesServicesFiscauxComponent,
+    ListCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    ListParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    UpdateUtilisateurComponent,
+    ListUtilisateurComponent,
+    AddUtilisateurComponent
    
     
     //AdminComponent
@@ -153,6 +171,7 @@ import { ParametrageDecoteServices } from './service/parametrageDecote/parametra
     AddDetailsPaiementPMEComponent,
     ConventionSignerComponent,
     CodeComponent,
+    UpdateUtilisateurComponent,
     AddDetailsPaiementPMEComponent,
     UpdateMinistereDepensierComponent,
     AddFormeJuridiqueComponent,
@@ -161,8 +180,6 @@ import { ParametrageDecoteServices } from './service/parametrageDecote/parametra
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
     UpdateParametrageDecoteComponent,
-    AddUtilisateurComponent,
-    UpdateUtilisateurComponent,
     VisualiserDocumentComponent,
     AddDetailPaiementCDMPComponent,
     AddDetailsPaiementPMEComponent,
@@ -176,6 +193,20 @@ import { ParametrageDecoteServices } from './service/parametrageDecote/parametra
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
     UpdateParametrageDecoteComponent,
+    
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
+    ConventionSignerComponent,
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    ListUtilisateurComponent
  
 ],
 providers: [
