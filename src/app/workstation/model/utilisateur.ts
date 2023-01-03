@@ -1,3 +1,5 @@
+import { MinistereDepensier } from "./ministereDepensier";
+import { Roles } from "./roles";
 
 export interface Utilisateur {
     updateCodePin?:boolean;
@@ -13,6 +15,7 @@ export interface Utilisateur {
     username ?: String;
     password ?: String;
     poste ?:String;
-    minister?: String;
+    minister?: MinistereDepensier;
+    roles?:Roles[];
    
 }

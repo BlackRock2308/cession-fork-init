@@ -143,7 +143,9 @@ import { ObservationsComponent } from './components/observations/observations.co
     AddCentreDesServicesFiscauxComponent,
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent
+    UpdateParametrageDecoteComponent,
+    AddUtilisateurComponent,
+    UpdateUtilisateurComponent
      
 ],
 providers: [
