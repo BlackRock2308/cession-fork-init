@@ -23,7 +23,6 @@ export class ListPaiementsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.paiementCession=this.config.data
-    console.log(this.paiementCession);
     
   }
 

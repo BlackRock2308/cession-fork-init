@@ -87,14 +87,10 @@ export class ListPaiementsComponent implements OnInit {
     this.paiementsService.getPaiementsById(this.idPaiement)
     .subscribe((res:Paiements) =>{
       this.paiement= res;
-      console.log(this.paiement);
       
     })
   }
   visualiserDetails(paiement: DetailsPaiement) {
-    //this.paiement = {...paiement};
-    //console.log(demande)
-    //this.paiementsService.setPaiementObs(paiement);
     const ref = this.dialogService.open(ListPaiementsDetailsComponent, {
         data: {
             paiement: paiement

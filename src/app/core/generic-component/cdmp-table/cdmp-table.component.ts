@@ -81,7 +81,6 @@ export class CdmpTableComponent implements OnInit {
     }
 
     showValues(data: any) {
-        console.log('Valeur', data);
     }
 
     onSelect(event: any) {
@@ -104,7 +103,6 @@ export class CdmpTableComponent implements OnInit {
         this.countDown = timer(0, this.tick).subscribe(
             () => {
                 this.counter > 0 ? --this.counter : null;
-                console.log(this.counter);
                 if (this.counter === 0) {
                     this.tableConfig.loading = false;
                     this.countDown?.unsubscribe();
@@ -143,7 +141,6 @@ export class CdmpTableComponent implements OnInit {
     }
 
     searchEventMethode(keyWord: any) {
-        console.log(this.tableConfig.initialShowDatas);
         if (keyWord) {
             this.datas = this.allDatas;
         } else {

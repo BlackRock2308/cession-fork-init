@@ -19,7 +19,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(credentials): Observable<any> {
-    console.log(credentials.email)
     return this.http.post(this.authUrl + "/auth" , credentials, httpOptions);
   }
 
@@ -32,7 +31,6 @@ export class AuthService {
       reportProgress: true,
       responseType: "json"
     });
-    console.log(email)
   
     return this.http.request(req);
   }

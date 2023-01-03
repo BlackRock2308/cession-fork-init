@@ -28,13 +28,11 @@ export class UpdateMinistereDepensierComponent implements OnInit {
     public config: DynamicDialogConfig,
   ) {
     this.ministereDepensier = this.config.data.ministereDepensier; 
-    console.log(this.ministereDepensier);
   }
 
   ngOnInit() {
     this.message = "Champ obligatoire";
     this.ministereDepensier = this.config.data.ministereDepensier; 
-    console.log(this.ministereDepensier);
     
     this.form = this.formBuilder.group({
       code: ['', Validators.required],

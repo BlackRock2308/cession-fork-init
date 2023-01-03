@@ -88,11 +88,9 @@ export class ConsulterDemandeComponent implements OnInit {
                if(this.demandeCession.bonEngagement.documents.length > 0){
                 this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
                }
-            console.log(this.demandeCession)
             this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
                 data => {
                     this.observationLibelle=data.libelle
-                    console.log(this.observationLibelle)
                 }
             )
           })

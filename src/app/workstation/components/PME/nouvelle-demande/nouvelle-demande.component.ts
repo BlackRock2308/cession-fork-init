@@ -185,8 +185,7 @@ export class NouvelleDemandeComponent implements OnInit {
     this.document.file = files.target.files[0];
     this.documents.push(files.target.files[0]);
     this.documentPresentation.push(this.document);
-    console.log(this.documentPresentation)
-    console.log(this.documents)
+ 
 
   }
 
@@ -205,7 +204,6 @@ export class NouvelleDemandeComponent implements OnInit {
       nomMarche: this.documentForm.value['nomMarche'],
       typeMarche:this.documentForm.value['typeMarche']
     };
-    console.log(body);
 
     this.postDemandeCession();    
 
@@ -224,7 +222,6 @@ export class NouvelleDemandeComponent implements OnInit {
       }
     }
 
-    console.log(JSON.stringify(body))
     Swal.fire({
       title: 'Votre demande de cession sera enregistrée. Voulez-vous continuer ?',
       showDenyButton: true,
@@ -243,20 +240,17 @@ export class NouvelleDemandeComponent implements OnInit {
       if (result.isConfirmed) {
         await this.demandeCessionService.addDemandeCession(body).subscribe((result) => {
           this.idBE = result.bonEngagement.idBonEngagement
-          console.log(result)
           for (var i = 0; i < this.documents.length; i++) {
-            console.log(this.idBE)
-            this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
+            this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => data
             )
           }
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          console.log('affiche' + this.tokenStorage.getUser().idUtilisateur)
           this.observation.statut={}
+          this.observation.libelle= "Création de la demande de cession"
           this.observation.demandeid =  result.idDemande;
           this.observation.statut.libelle =StatutEnum.soumise;
-          console.log(this.observation)
     
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          this.observationService.postObservation(this.observation).subscribe(data => data)
     
         },
         (error) =>{},
@@ -283,10 +277,6 @@ export class NouvelleDemandeComponent implements OnInit {
       }
     })
 
-    
-
-    console.log("finish")
-
   }
 
   filtertypeDocument(event) {
@@ -311,7 +301,6 @@ export class NouvelleDemandeComponent implements OnInit {
     if (myIndex !== -1) {
       this.documentPresentation.splice(myIndex2, 1)
     }
-    console.log(this.documents)
   }
 
   visualiserDocument(document: Documents) {

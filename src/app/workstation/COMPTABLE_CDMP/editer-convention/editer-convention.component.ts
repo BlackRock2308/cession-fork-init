@@ -168,7 +168,7 @@ onNameChangeVar6(val) {
         this.observation.statut={}      
         this.observation.demandeid = this.demande.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionCorrigee;
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+      this.observationService.postObservation(this.observation).subscribe(data => data)
       Swal.fire({
 
         html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a été corrigée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -189,7 +189,7 @@ onNameChangeVar6(val) {
   
       },
       (error) => {
-        console.log(error)      }
+        error   }
       )
     }
    else{
@@ -199,7 +199,7 @@ onNameChangeVar6(val) {
       this.observation.statut={}      
       this.observation.demandeid = this.demande.idDemande;
     this.observation.statut.libelle =StatutEnum.conventionGeneree;
-    this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    this.observationService.postObservation(this.observation).subscribe(data => data)
     Swal.fire({
 
       html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -220,7 +220,8 @@ onNameChangeVar6(val) {
 
     },
     (error) => {
-      console.log(error)      }
+      error
+      }
     )
    }
   }

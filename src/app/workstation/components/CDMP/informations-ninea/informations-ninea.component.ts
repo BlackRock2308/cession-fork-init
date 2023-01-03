@@ -60,7 +60,6 @@ message:string = "";
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme
-      console.log(this.pme)
 
     })
   }
@@ -138,9 +137,7 @@ message:string = "";
     let infoEmail = {
       email: this.pme.email
     }
-    console.log(infoEmail)
     this.utilisateurService.createCompte(infoEmail).subscribe((result) => {
-      console.log(result)
     })
   }
 
@@ -156,7 +153,6 @@ message:string = "";
     this.pmeService.updatePme(body).subscribe((result) => {
       this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
         (result) => {
-          console.log(result)
         },
         () => {
           Swal.fire({

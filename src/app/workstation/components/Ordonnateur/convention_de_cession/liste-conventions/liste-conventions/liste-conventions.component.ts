@@ -117,7 +117,6 @@ initGetDemandes(statuts:StatutEnum[]){
 }
 
   editerDemandeCession(demande: DemandeCession) {
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
     this.router.navigate(['workstation/ordonnateur/conventions/details_convention']);
 

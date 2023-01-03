@@ -40,11 +40,9 @@ export class MajMdpComponent {
     utilisateur.password=this.form.value['password'],
     //utilisateur.email=this.tokenStorage.getUser().email,
     utilisateur.updatePassword=false
-    console.log(JSON.stringify(body));
 
     this.authService.majMDP(utilisateur).subscribe(
       data=>{
-        console.log(data);
         
         this.router.navigate(['login'])
       }
@@ -59,7 +57,6 @@ export class MajMdpComponent {
   }
    
   submit(){
-    console.log(this.form.value);
   }
 
 }

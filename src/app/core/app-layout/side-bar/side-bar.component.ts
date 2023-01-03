@@ -67,7 +67,6 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit() {
     this.profil = localStorage.getItem('profil');
-    console.log(this.profil)
   }
  
 

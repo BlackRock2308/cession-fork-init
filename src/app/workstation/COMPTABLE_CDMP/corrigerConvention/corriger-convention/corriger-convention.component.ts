@@ -52,11 +52,6 @@ export class CorrigerConventionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.pmeService.getTypesDocument().subscribe(data => {
-    //   this.typesDocument = data;
-    //   this.typesDocument.push({ nom: "Autres" })
-    //   //console.log(this.typesDocument)
-    // })
     this.documentForm = this.formBuilder.group({
       // typeDocument: [''],
        file: ['']
@@ -66,7 +61,6 @@ export class CorrigerConventionComponent implements OnInit {
        this.demande = data;
        this.pme=this.demande.pme
        this.convention=this.demande.conventions[0]
-       console.log(this.demande,this.convention)
  
      })
      this.cols = [
@@ -80,7 +74,6 @@ export class CorrigerConventionComponent implements OnInit {
   //sélectionner le fichier 
  selectFile(files: any): void {
   this.selectedFiles = files.target.files[0];
-  console.log(this.selectedFiles);
 }
 
  
@@ -157,7 +150,7 @@ export class CorrigerConventionComponent implements OnInit {
       .subscribe((response: any) => {
       let data = JSON.parse(JSON.stringify(response));
         if (data && data.idConvention != null) {
-          this.uploadFileService.uploadFile('/conventions/', response.idConvention, this.selectedFiles, 'AUTRE').subscribe(data=>console.log(data)
+          this.uploadFileService.uploadFile('/conventions/', response.idConvention, this.selectedFiles, 'AUTRE').subscribe(data=> data
            )
           
           }
@@ -169,13 +162,12 @@ export class CorrigerConventionComponent implements OnInit {
         this.observation.statut={}      
         this.observation.demandeid = this.demande.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionCorrigee;
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+      this.observationService.postObservation(this.observation).subscribe(data => data)
 
     
       this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.conventionCorrigee)
       .subscribe((response: any) => {
-        console.log(response)
-        console.log(StatutEnum.conventionCorrigee)
+        response
     },
     (error)=>{},
     ()=>{
@@ -213,7 +205,6 @@ export class CorrigerConventionComponent implements OnInit {
     if (myIndex !== -1) {
       this.documents.splice(myIndex, 1);
     }
-    console.log(this.documents)
   }
 
   dismiss() {

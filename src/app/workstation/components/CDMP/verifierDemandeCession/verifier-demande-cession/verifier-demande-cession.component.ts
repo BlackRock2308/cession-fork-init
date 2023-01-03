@@ -96,12 +96,10 @@ export class VerifierDemandeCessionComponent implements OnInit {
     this.observation.libelle = ''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
-      console.log(this.demandeCession)
       this.bonEngagement = this.demandeCession.bonEngagement;
       this.documents = this.documents.concat(this.demandeCession.bonEngagement.documents)
       this.documents = this.documents.concat(this.demandeCession.pme.documents)
       this.documents = this.documents.concat(this.demandeCession.documents)
-      console.log(this.documents)
 
     })
 
@@ -154,10 +152,8 @@ export class VerifierDemandeCessionComponent implements OnInit {
     pme.interdictionBancaire = this.interdiction
     pme.nantissement = this.nantissement;
 
-    console.log(pme)
     await this.pmeService.updatePme(pme).subscribe(
       (data) => {
-        console.log(data);
 
       }
     )
@@ -176,7 +172,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
         this.observation.statut = {}
         this.observation.demandeid = this.demandeCession.idDemande;
         this.observation.statut.libelle = StatutEnum.rejetee;
-        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+        this.observationService.postObservation(this.observation).subscribe(data => data)
         Swal.fire(
           'Rejetée!',
           'La demande a bien été rejetée.',
@@ -190,7 +186,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
   }
   async accepterDemande(bonEngagement) {
-    console.log('affiche MOI' + this.code)
 
     bonEngagement.exercice = this.selectedYear.getFullYear();
 
@@ -207,7 +202,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
             this.observation.statut = {}
             this.observation.demandeid = this.demandeCession.idDemande;
             this.observation.statut.libelle = StatutEnum.recevable;
-            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+            this.observationService.postObservation(this.observation).subscribe(data => data)
 
             Swal.fire({
               position: 'center',
@@ -267,7 +262,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
         bonEngagement.dateSoumissionServiceDepensier = new Date(this.datepipe.transform(bonEngagement.dateSoumissionServiceDepensier, 'yyyy-MM-dd'));
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
         this.code = this.infosBEForm.value['code'];
-        console.log(mergedObj, bonEngagement, this.bonEngagement)
         this.rejeterDemande(mergedObj)
         //location.reload()
         //this.router.navigate(['workstation/cdmp/recevabilite'])
@@ -303,7 +297,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
         bonEngagement.montantCreance = this.infosBEForm.value['montantCreance'];
         let mergedObj = { ...bonEngagement, ...this.bonEngagement }
         this.code = this.infosBEForm.value['code'];
-        console.log(mergedObj, bonEngagement, this.bonEngagement)
         this.accepterDemande(mergedObj)
       } else if (result.isDenied) {
         Swal.fire('Traitement non effectif!', '', 'info')

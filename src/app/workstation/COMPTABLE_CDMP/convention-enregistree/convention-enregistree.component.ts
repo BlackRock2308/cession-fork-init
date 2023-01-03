@@ -65,7 +65,6 @@ export class ConventionEnregistreeComponent implements OnInit {
   //sélectionner le fichier dE la convention
   selectCONVENTIONFile(files: any): void {
     this.selectedCONVENTIONFiles = files.target.files[0];
-    console.log(this.selectedCONVENTIONFiles);
   }
 
   dismiss() {
@@ -113,10 +112,10 @@ export class ConventionEnregistreeComponent implements OnInit {
     }
 
     this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
-      data => { console.log( data) }),
+      data => {  data}),
 
       this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'CONVENTION').subscribe(
-        data => { console.log(data) }),
+        data => { data }),
 
       this.demandeCessionService.updateStatut(this.demande.idDemande, StatutEnum.ConventionTransmise)
         .subscribe((response: any) => {
@@ -141,7 +140,7 @@ export class ConventionEnregistreeComponent implements OnInit {
     this.observation.statut = {}
     this.observation.demandeid = this.demande.idDemande;
     this.observation.statut.libelle = StatutEnum.ConventionTransmise;
-    this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    this.observationService.postObservation(this.observation).subscribe(data => data)
   }
 
 }

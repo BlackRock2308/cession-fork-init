@@ -98,7 +98,6 @@ export class AdhesionComponent implements OnInit {
 
   setMinDate() {
     this.minDate = ((new Date(this.form.value['dateCreation'])).getDate() + 1).toString()
-    console.log(this.minDate)
   }
 
   matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
@@ -141,7 +140,6 @@ export class AdhesionComponent implements OnInit {
   //sélectionner le fichier du ninea
   selectNINEAFile(files: any): void {
     this.selectedNINEAFiles = files.target.files[0];
-    console.log(this.selectedNINEAFiles);
   }
 
   matchValuesNINEA(): (AbstractControl) => ValidationErrors | null {
@@ -222,7 +220,6 @@ export class AdhesionComponent implements OnInit {
     };
     this.pmeService.postPME(body).subscribe((response: PME) => {
       let data = JSON.parse(JSON.stringify(response));
-      console.log(data);
       let body2 = {
         ninea: this.pme.ninea,
         rccm: this.pme.rccm,

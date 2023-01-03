@@ -83,7 +83,6 @@ message:string = "";
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme
-      console.log(this.pme)
 
     this.telephonePME = this.tokenStorage.getPME().telephonePME;
     this.raisonSocial = this.tokenStorage.getPME().raisonSocial;
@@ -202,7 +201,6 @@ majPME() {
         })
 
       }
-  console.log(result)
   this.tokenStorage.savePME(result)
       
   })

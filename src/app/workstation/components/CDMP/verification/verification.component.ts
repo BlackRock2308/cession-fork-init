@@ -25,7 +25,6 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data
-      console.log('ttttttt' + JSON.stringify(this.demande))
       this.id = data.id
     })
   }
@@ -33,7 +32,6 @@ export class VerificationComponent implements OnInit {
   nextPage() {
     this.demande.isactive = this.active
     this.demande.hasninea = this.existant
-    console.log(this.demande)
     this.demandeAdhesionService.setDemandeObs(this.demande)
     this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/informations_ninea']);
   }
