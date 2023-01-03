@@ -37,7 +37,6 @@
     "file-saver": "^2.0.5",
     "google-libphonenumber": "^3.2.31",
     "intl-tel-input": "^17.0.3",
-    "json-server": "^0.17.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.25",
     "libphonenumber-js": "^1.10.14",
