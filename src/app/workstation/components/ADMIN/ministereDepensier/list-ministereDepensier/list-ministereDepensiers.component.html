@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="card">
-            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter un ministère"
+            <button  style="margin-left: 80%;" id="valider" pButton pRipple label="Ajouter un ministère" 
                 icon="pi pi-plus" class="successButton" (click)="ajouterMinistereDepensier()"></button>
             <p-table #dt [value]="ministereDepensiers" [columns]="cols" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['code','libelle']" [rows]="10"

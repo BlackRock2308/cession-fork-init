@@ -1,7 +1,7 @@
 <div class="stepsdemo-content">
     <p-card>
         <ng-template pTemplate="content">
-            <div class="p-formgrid p-fluid grid row container" [formGroup]="informationsForm" (ngSubmit)="onSubmit()">
+            <div class="p-formgrid p-fluid grid row container" [formGroup]="informationsForm" >
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Dénomination<span
                             class="required">*</span></label>
@@ -53,14 +53,20 @@
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Forme Juridique</label>
-                    <div class="p-inputgroup">
-                        <span class="p-float-label">
-                            <input pInputText id="name3" type="text" [(ngModel)]="pme.formeJuridique"
-                                formControlName="formeJuridique" placeholder="{{pme.formeJuridique}}"
-                                style="width: 100%;" />
-                        </span>
-
-                    </div>
+                    <p-dropdown [options]="formeJuridiques" [style]="{width: '100%'}"
+                    formControlName="formeJuridique" [(ngModel)]="pme.formeJuridique" optionLabel="libelle" [filter]="true" filterBy="libelle"
+                    [showClear]="true" placeholder="Selectionner une forme" [ngStyle]="{'width': '100%'}">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value" *ngIf="pme.formeJuridique">
+                            <div>{{pme.formeJuridique.code}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-formeJuridique pTemplate="item">
+                        <div class="country-item">
+                            <div>{{formeJuridique.libelle}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown> 
                     <span *ngIf="submit && f['formeJuridique'].errors!"
                         class="error-validation">{{message}}</span>
                 </div>
@@ -99,13 +105,22 @@
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Centre Fiscal<span
                             class="required">*</span></label>
-                    <div class="p-inputgroup">
-                        <span class="p-float-label">
-                            <input pInputText id="name3" type="text" [(ngModel)]="pme.centreFiscal"
-                                placeholder="{{pme.centreFiscal}}" formControlName="centreFiscal"
-                                style="width: 100%;" />
-                        </span>
-                    </div> <span *ngIf="submit && f['centreFiscal'].errors!"
+                    <p-dropdown [options]="centreFiscals" [style]="{width: '100%'}"
+                                            formControlName="centreFiscal" [(ngModel)]="pme.centreFiscal" optionLabel="libelle" [filter]="true" filterBy="libelle"
+                                            [showClear]="true" 
+                                            placeholder="Sélectionnez un centre fiscal" [ngStyle]="{'width': '100%'}">
+                                            <ng-template pTemplate="selectedItem">
+                                                <div class="country-item country-item-value" *ngIf="pme.centreFiscal">
+                                                    <div>{{pme.centreFiscal.code}}</div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template let-centreFiscal pTemplate="item">
+                                                <div class="country-item">
+                                                    <div>{{centreFiscal.libelle}}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-dropdown>
+                    <span *ngIf="submit && f['centreFiscal'].errors!"
                         class="error-validation">{{message}}</span>
 
                 </div>
@@ -249,7 +264,7 @@
                 <button id="suivant" pButton pRipple label="Précedent" class="p-button-raised simpleButton"
                     (click)="prevPage()"></button>
                 <button id="suivant" pButton pRipple label="Valider l'adhésion" icon="pi pi-check" class="successButton"
-                    type="submit"></button>
+                    type="button" (click)="onSubmit()"></button>
             </div>
         </ng-template>
     </p-card>

@@ -61,6 +61,14 @@ export class GenericService {
       );
   }
 
+  patchd<T>(url: string, body: T) {
+    return this.http.patch(url, body, httpOptions)
+      .pipe(
+        catchError(this.handleError('patch', body))
+      );
+  }
+
+
   upload<T>(url: string, body: T) {
     return this.http.post(url, body, httpOptions2)
       .pipe(
