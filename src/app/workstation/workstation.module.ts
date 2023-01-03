@@ -59,7 +59,9 @@ import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique
 import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecote/add-parametreDecote/add-parametreDecote.component';
 import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
 import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
-import { ObservationsComponent } from './components/observations/observations.component';
+import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
+import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
+import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
@@ -110,7 +112,13 @@ import { ObservationsComponent } from './components/observations/observations.co
     UpdateFormeJuridiqueComponent,
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    ListParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    AddUtilisateurComponent,
+    ListUtilisateurComponent,
+    UpdateUtilisateurComponent
 
     //AdminComponent
     
