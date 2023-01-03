@@ -6,7 +6,6 @@ import { Component, OnInit ,AfterViewInit,
   QueryList,
   ViewChild,
   ViewChildren} from '@angular/core';
-  import { TimelineElement } from './timeline-element';
   import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
   import { UtilisateurService } from '../../service/utilisateur/utilisateur.service';
 import { PrimeIcons } from 'primeng/api';
@@ -80,141 +79,141 @@ export class ObservationsComponent implements AfterViewInit {
   private _timelineWrapperWidth = 720;
 
   
-  @Input()
-  set timelineWrapperWidth(value: number) {
-    this._timelineWrapperWidth = value;
-    this._cdr.detectChanges();
-  }
+  // @Input()
+  // set timelineWrapperWidth(value: number) {
+  //   this._timelineWrapperWidth = value;
+  //   this._cdr.detectChanges();
+  // }
 
-  private _eventsMinDistance: number = 80;
+  // private _eventsMinDistance: number = 80;
 
-  @Input()
-  set eventsMinDistance(value: number) {
-    this._eventsMinDistance = value;
-    this.initView();
-  }
+  // @Input()
+  // set eventsMinDistance(value: number) {
+  //   this._eventsMinDistance = value;
+  //   this.initView();
+  // }
 
-  private _timelineElements: TimelineElement[];
+  // private _timelineElements: TimelineElement[];
 
-  get timelineElements(): TimelineElement[] {
-    return this._timelineElements;
-  }
+  // get timelineElements(): TimelineElement[] {
+  //   return this._timelineElements;
+  // }
 
-  @Input()
-  set timelineElements(value: TimelineElement[]) {
-    this._timelineElements = value;
-    this.initView();
-  }
+  // @Input()
+  // set timelineElements(value: TimelineElement[]) {
+  //   this._timelineElements = value;
+  //   this.initView();
+  // }
 
-  private _dateFormat: string = 'dd.MM.yyyy';
+  // private _dateFormat: string = 'dd.MM.yyyy';
 
-  get dateFormat(): string {
-    return this._dateFormat;
-  }
+  // get dateFormat(): string {
+  //   return this._dateFormat;
+  // }
 
-  @Input()
-  set dateFormat(value: string) {
-    this._dateFormat = value;
-    this.initView();
-  }
+  // @Input()
+  // set dateFormat(value: string) {
+  //   this._dateFormat = value;
+  //   this.initView();
+  // }
 
-  private _disabled: boolean = false;
+  // private _disabled: boolean = false;
 
-  @Input()
-  set disabled(value: boolean) {
-    this._disabled = value;
-  }
+  // @Input()
+  // set disabled(value: boolean) {
+  //   this._disabled = value;
+  // }
 
-  private _showContent: boolean = false;
+  // private _showContent: boolean = false;
 
-  get showContent(): boolean {
-    return this._showContent;
-  }
+  // get showContent(): boolean {
+  //   return this._showContent;
+  // }
 
-  @Input()
-  set showContent(value: boolean) {
-    this._showContent = value;
-    this._cdr.detectChanges();
-  }
+  // @Input()
+  // set showContent(value: boolean) {
+  //   this._showContent = value;
+  //   this._cdr.detectChanges();
+  // }
 
-  private static pxToNumber(val: string): number {
-    return Number(val.replace('px', ''));
-  }
+  // private static pxToNumber(val: string): number {
+  //   return Number(val.replace('px', ''));
+  // }
 
-  private static getElementWidth(element: Element): number {
-    const computedStyle = window.getComputedStyle(element);
-    if (!computedStyle.width) {
-      return 0;
-    }
-    return ObservationsComponent.pxToNumber(computedStyle.width);
-  }
+  // private static getElementWidth(element: Element): number {
+  //   const computedStyle = window.getComputedStyle(element);
+  //   if (!computedStyle.width) {
+  //     return 0;
+  //   }
+  //   return ObservationsComponent.pxToNumber(computedStyle.width);
+  // }
 
-  private static parentElement(element: any, tagName: string) {
-    if (!element || !element.parentNode) {
-      return null;
-    }
+  // private static parentElement(element: any, tagName: string) {
+  //   if (!element || !element.parentNode) {
+  //     return null;
+  //   }
 
-    let parent = element.parentNode;
-    while (true) {
-      if (parent.tagName.toLowerCase() == tagName) {
-        return parent;
-      }
-      parent = parent.parentNode;
-      if (!parent) {
-        return null;
-      }
-    }
-  }
+  //   let parent = element.parentNode;
+  //   while (true) {
+  //     if (parent.tagName.toLowerCase() == tagName) {
+  //       return parent;
+  //     }
+  //     parent = parent.parentNode;
+  //     if (!parent) {
+  //       return null;
+  //     }
+  //   }
+  // }
 
-  private static getTranslateValue(timeline: Element) {
-    let timelineStyle = window.getComputedStyle(timeline);
-    let timelineTranslate = timelineStyle.getPropertyValue('-webkit-transform') ||
-      timelineStyle.getPropertyValue('-moz-transform') ||
-      timelineStyle.getPropertyValue('-ms-transform') ||
-      timelineStyle.getPropertyValue('-o-transform') ||
-      timelineStyle.getPropertyValue('transform');
+  // private static getTranslateValue(timeline: Element) {
+  //   let timelineStyle = window.getComputedStyle(timeline);
+  //   let timelineTranslate = timelineStyle.getPropertyValue('-webkit-transform') ||
+  //     timelineStyle.getPropertyValue('-moz-transform') ||
+  //     timelineStyle.getPropertyValue('-ms-transform') ||
+  //     timelineStyle.getPropertyValue('-o-transform') ||
+  //     timelineStyle.getPropertyValue('transform');
 
-    let translateValue = 0;
-    if (timelineTranslate.indexOf('(') >= 0) {
-      let timelineTranslateStr = timelineTranslate
-        .split('(')[1]
-        .split(')')[0]
-        .split(',')[4];
-      translateValue = Number(timelineTranslateStr);
-    }
+  //   let translateValue = 0;
+  //   if (timelineTranslate.indexOf('(') >= 0) {
+  //     let timelineTranslateStr = timelineTranslate
+  //       .split('(')[1]
+  //       .split(')')[0]
+  //       .split(',')[4];
+  //     translateValue = Number(timelineTranslateStr);
+  //   }
 
-    return translateValue;
-  }
+  //   return translateValue;
+  // }
 
   
-  private static setTransformValue(element: any, property: any, value: any) {
-    element.style['-webkit-transform'] = property + '(' + value + ')';
-    element.style['-moz-transform'] = property + '(' + value + ')';
-    element.style['-ms-transform'] = property + '(' + value + ')';
-    element.style['-o-transform'] = property + '(' + value + ')';
-    element.style['transform'] = property + '(' + value + ')';
-  }
+  // private static setTransformValue(element: any, property: any, value: any) {
+  //   element.style['-webkit-transform'] = property + '(' + value + ')';
+  //   element.style['-moz-transform'] = property + '(' + value + ')';
+  //   element.style['-ms-transform'] = property + '(' + value + ')';
+  //   element.style['-o-transform'] = property + '(' + value + ')';
+  //   element.style['transform'] = property + '(' + value + ')';
+  // }
 
-  private static dayDiff(first: Date, second: Date): number {
-    console.log(first);
-    console.log(second);
+  // private static dayDiff(first: Date, second: Date): number {
+  //   console.log(first);
+  //   console.log(second);
 
     
-    return Math.round(second.getTime() - first.getTime());
-  }
+  //   return Math.round(second.getTime() - first.getTime());
+  // }
 
-  private static minLapse(elements: TimelineElement[]): number {
-    if (elements && elements.length && elements.length === 1) {
-      return 0;
-    }
+  // private static minLapse(elements: TimelineElement[]): number {
+  //   if (elements && elements.length && elements.length === 1) {
+  //     return 0;
+  //   }
 
-    let result: number = 0;
-    for (let i = 1; i < elements.length; i++) {
-      let distance = ObservationsComponent.dayDiff(elements[i - 1].dateObservation, elements[i].dateObservation);
-      result = result ? Math.min(result, distance) : distance;
-    }
-    return result * 0.5;
-  }
+  //   let result: number = 0;
+  //   for (let i = 1; i < elements.length; i++) {
+  //     let distance = ObservationsComponent.dayDiff(elements[i - 1].dateObservation, elements[i].dateObservation);
+  //     result = result ? Math.min(result, distance) : distance;
+  //   }
+  //   return result * 0.5;
+  // }
 
   ngAfterViewInit(): void {
     this._cdr.detach();
@@ -226,137 +225,138 @@ export class ObservationsComponent implements AfterViewInit {
   //     {status: 'Delivered', date: '16/10/2020 10:00', icon: PrimeIcons.CHECK, color: '#607D8B'}
   // ];
 
-    this.initView();
-   // this.poste = localStorage.getItem('profil');
-    //this.poste = this.utilisateurService.getById
-    console.log(this.poste)
+  //   this.initView();
+  //  // this.poste = localStorage.getItem('profil');
+  //   //this.poste = this.utilisateurService.getById
+  //   console.log(this.poste)
 
-  }
+  // }
 
-  onScrollClick(event: Event, forward: boolean) {
-    event.preventDefault();
-    this.updateSlide(this.eventsWrapperWidth, forward);
-    this._cdr.detectChanges();
-  }
+  // onScrollClick(event: Event, forward: boolean) {
+  //   event.preventDefault();
+  //   this.updateSlide(this.eventsWrapperWidth, forward);
+  //   this._cdr.detectChanges();
+  // }
 
-  onEventClick(event: Event, selectedItem: TimelineElement) {
-    event.preventDefault();
-    if (this._disabled) {
-      return;
-    }
-    let element = event.target;
-    // detect click on the a single event - show new event content
-    let visibleItem = this._timelineElements[0];
-    this._timelineElements.forEach(function (item: TimelineElement) {
-      if (item.selected && item != selectedItem) {
-        visibleItem = item;
-        item.selected = false;
-      }
-    });
-    this.selectedIndex = this._timelineElements.indexOf(selectedItem);
-    selectedItem.selected = true;
-    this.updateFilling(element);
-    this._cdr.detectChanges();
-  }
+  // onEventClick(event: Event, selectedItem: TimelineElement) {
+  //   event.preventDefault();
+  //   if (this._disabled) {
+  //     return;
+  //   }
+  //   let element = event.target;
+  //   // detect click on the a single event - show new event content
+  //   let visibleItem = this._timelineElements[0];
+  //   this._timelineElements.forEach(function (item: TimelineElement) {
+  //     if (item.selected && item != selectedItem) {
+  //       visibleItem = item;
+  //       item.selected = false;
+  //     }
+  //   });
+  //   this.selectedIndex = this._timelineElements.indexOf(selectedItem);
+  //   selectedItem.selected = true;
+  //   this.updateFilling(element);
+  //   this._cdr.detectChanges();
+  // }
 
-  initTimeline(timeLines: TimelineElement[]) {
-    let eventsMinLapse = ObservationsComponent.minLapse(timeLines);
-    // assign a left position to the single events along the timeline
-    this.setDatePosition(timeLines, this._eventsMinDistance, eventsMinLapse);
-    // assign a width to the timeline
-    this.setTimelineWidth(timeLines, this._eventsMinDistance, eventsMinLapse);
-    // the timeline has been initialize - show it
-    this.loaded = true;
-  }
+  // initTimeline(timeLines: TimelineElement[]) {
+  //   let eventsMinLapse = ObservationsComponent.minLapse(timeLines);
+  //   // assign a left position to the single events along the timeline
+  //   this.setDatePosition(timeLines, this._eventsMinDistance, eventsMinLapse);
+  //   // assign a width to the timeline
+  //   this.setTimelineWidth(timeLines, this._eventsMinDistance, eventsMinLapse);
+  //   // the timeline has been initialize - show it
+  //   this.loaded = true;
+  // }
 
-  updateSlide(timelineTotWidth: number, forward: boolean) {
-    let translateValue = ObservationsComponent.getTranslateValue(this.eventsWrapper.nativeElement);
+  // updateSlide(timelineTotWidth: number, forward: boolean) {
+  //   let translateValue = ObservationsComponent.getTranslateValue(this.eventsWrapper.nativeElement);
 
-    if (forward) {
-      this.translateTimeline(translateValue - this._timelineWrapperWidth + this._eventsMinDistance, this._timelineWrapperWidth - timelineTotWidth)
-    } else {
-      this.translateTimeline(translateValue + this._timelineWrapperWidth - this._eventsMinDistance, null);
-    }
-  }
+  //   if (forward) {
+  //     this.translateTimeline(translateValue - this._timelineWrapperWidth + this._eventsMinDistance, this._timelineWrapperWidth - timelineTotWidth)
+  //   } else {
+  //     this.translateTimeline(translateValue + this._timelineWrapperWidth - this._eventsMinDistance, null);
+  //   }
+  // }
 
-  updateTimelinePosition(element: Element) {
-    let eventStyle = window.getComputedStyle(element);
-    let eventLeft = ObservationsComponent.pxToNumber(eventStyle.getPropertyValue('left'));
-    let translateValue = ObservationsComponent.getTranslateValue(this.eventsWrapper.nativeElement);
+  // updateTimelinePosition(element: Element) {
+  //   let eventStyle = window.getComputedStyle(element);
+  //   let eventLeft = ObservationsComponent.pxToNumber(eventStyle.getPropertyValue('left'));
+  //   let translateValue = ObservationsComponent.getTranslateValue(this.eventsWrapper.nativeElement);
 
-    if (eventLeft > this._timelineWrapperWidth - translateValue) {
-      this.translateTimeline(-eventLeft + this._timelineWrapperWidth / 2, this._timelineWrapperWidth - this.eventsWrapperWidth);
-    }
-  }
+  //   if (eventLeft > this._timelineWrapperWidth - translateValue) {
+  //     this.translateTimeline(-eventLeft + this._timelineWrapperWidth / 2, this._timelineWrapperWidth - this.eventsWrapperWidth);
+  //   }
+  // }
 
-  translateTimeline(value: number, totWidth: number | null) {
-    // only negative translate value
-    value = (value > 0) ? 0 : value;
-    // do not translate more than timeline width
-    value = ( !(totWidth === null) && value < totWidth ) ? totWidth : value;
-    ObservationsComponent.setTransformValue(this.eventsWrapper.nativeElement, 'translateX', value + 'px');
-    // update navigation arrows visibility
-    this.prevLinkInactive = value === 0;
-    this.nextLinkInactive = value === totWidth;
-  }
+  // translateTimeline(value: number, totWidth: number | null) {
+  //   // only negative translate value
+  //   value = (value > 0) ? 0 : value;
+  //   // do not translate more than timeline width
+  //   value = ( !(totWidth === null) && value < totWidth ) ? totWidth : value;
+  //   ObservationsComponent.setTransformValue(this.eventsWrapper.nativeElement, 'translateX', value + 'px');
+  //   // update navigation arrows visibility
+  //   this.prevLinkInactive = value === 0;
+  //   this.nextLinkInactive = value === totWidth;
+  // }
 
-  setTimelineWidth(elements: TimelineElement[], width: number, eventsMinLapse: number) {
-    let timeSpan = 100;
-    if (elements.length > 1) {
-      timeSpan = ObservationsComponent.dayDiff(elements[0].dateObservation, elements[elements.length - 1].dateObservation);
-    }
-    let timeSpanNorm = timeSpan / eventsMinLapse;
-    timeSpanNorm = Math.round(timeSpanNorm) + 4;
-    this.eventsWrapperWidth = timeSpanNorm * width;
-    let aHref = this.eventsWrapper.nativeElement.querySelectorAll('a.selected')[0];
+  // setTimelineWidth(elements: TimelineElement[], width: number, eventsMinLapse: number) {
+  //   let timeSpan = 100;
+  //   if (elements.length > 1) {
+  //     timeSpan = ObservationsComponent.dayDiff(elements[0].dateObservation, elements[elements.length - 1].dateObservation);
+  //   }
+  //   let timeSpanNorm = timeSpan / eventsMinLapse;
+  //   timeSpanNorm = Math.round(timeSpanNorm) + 4;
+  //   this.eventsWrapperWidth = timeSpanNorm * width;
+  //   let aHref = this.eventsWrapper.nativeElement.querySelectorAll('a.selected')[0];
 
-    this.updateFilling(aHref);
-    this.updateTimelinePosition(aHref);
-    return this.eventsWrapperWidth;
-  }
+  //   this.updateFilling(aHref);
+  //   this.updateTimelinePosition(aHref);
+  //   return this.eventsWrapperWidth;
+  // }
 
-  private updateFilling(element: any) {
-    // change .filling-line length according to the selected event
-    console.log(element);
+  // private updateFilling(element: any) {
+  //   // change .filling-line length according to the selected event
+  //   console.log(element);
     
-    let eventStyle = window.getComputedStyle(element);
-    let eventLeft = eventStyle.getPropertyValue('left');
-    let eventWidth = eventStyle.getPropertyValue('width');
-    let eventLeftNum = ObservationsComponent.pxToNumber(eventLeft) + ObservationsComponent.pxToNumber(eventWidth) / 2;
-    let scaleValue = eventLeftNum / this.eventsWrapperWidth;
-    ObservationsComponent.setTransformValue(this.fillingLine.nativeElement, 'scaleX', scaleValue);
-  }
+  //   let eventStyle = window.getComputedStyle(element);
+  //   let eventLeft = eventStyle.getPropertyValue('left');
+  //   let eventWidth = eventStyle.getPropertyValue('width');
+  //   let eventLeftNum = ObservationsComponent.pxToNumber(eventLeft) + ObservationsComponent.pxToNumber(eventWidth) / 2;
+  //   let scaleValue = eventLeftNum / this.eventsWrapperWidth;
+  //   ObservationsComponent.setTransformValue(this.fillingLine.nativeElement, 'scaleX', scaleValue);
+  // }
 
-  private initView(): void {
-    if (!this._viewInitialized) {
-      return;
-    }
+  // private initView(): void {
+  //   if (!this._viewInitialized) {
+  //     return;
+  //   }
 
-    if (this._timelineElements && this._timelineElements.length) {
-      for (let i = 0; i < this._timelineElements.length; i++) {
-        if (this._timelineElements[i].selected) {
-          this.selectedIndex = i;
-          break;
-        }
-      }
-      this.initTimeline(this._timelineElements);
-    }
-    this._cdr.detectChanges();
-  }
+  //   if (this._timelineElements && this._timelineElements.length) {
+  //     for (let i = 0; i < this._timelineElements.length; i++) {
+  //       if (this._timelineElements[i].selected) {
+  //         this.selectedIndex = i;
+  //         break;
+  //       }
+  //     }
+  //     this.initTimeline(this._timelineElements);
+  //   }
+  //   this._cdr.detectChanges();
+  // }
 
-  private setDatePosition(elements: TimelineElement[], min: number, eventsMinLapse: number) {
-    let timelineEventsArray = this.timelineEvents.toArray();
-    let i: number = 0;
-    for (let component of elements) {
-      let distance = ObservationsComponent.dayDiff(elements[0].dateObservation, component.dateObservation);
-      let distanceNorm = Math.round(distance / eventsMinLapse);
-      timelineEventsArray[i].nativeElement.style.left = distanceNorm * min + 'px';
-      // span
-      let span: HTMLSpanElement = <HTMLSpanElement>timelineEventsArray[i].nativeElement.parentElement.children[1];
-      let spanWidth = ObservationsComponent.getElementWidth(span);
-      span.style.left = distanceNorm * min + spanWidth / 2 + 'px';
-      i++;
-    }
-  }
+  // private setDatePosition(elements: TimelineElement[], min: number, eventsMinLapse: number) {
+  //   let timelineEventsArray = this.timelineEvents.toArray();
+  //   let i: number = 0;
+  //   for (let component of elements) {
+  //     let distance = ObservationsComponent.dayDiff(elements[0].dateObservation, component.dateObservation);
+  //     let distanceNorm = Math.round(distance / eventsMinLapse);
+  //     timelineEventsArray[i].nativeElement.style.left = distanceNorm * min + 'px';
+  //     // span
+  //     let span: HTMLSpanElement = <HTMLSpanElement>timelineEventsArray[i].nativeElement.parentElement.children[1];
+  //     let spanWidth = ObservationsComponent.getElementWidth(span);
+  //     span.style.left = distanceNorm * min + spanWidth / 2 + 'px';
+  //     i++;
+  //   }
+  // }
 
+}
 }

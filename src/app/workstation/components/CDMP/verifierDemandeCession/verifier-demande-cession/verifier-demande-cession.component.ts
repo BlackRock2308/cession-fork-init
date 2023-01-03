@@ -106,7 +106,6 @@ export class VerifierDemandeCessionComponent implements OnInit {
              if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
                element.libelle="Pas d'observations."
            })
-      console.log(this.events1)
       // this.observationService.getObservationByDemandeCession(this.demandeCession.idDemande).subscribe(data => {
       //   this.observations = data
       //   console.log('yup',this.observations)

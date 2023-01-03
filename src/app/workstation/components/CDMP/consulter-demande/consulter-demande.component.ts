@@ -8,7 +8,6 @@ import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-d
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
-import { TimelineElement } from '../../observations/timeline-element';
 @Component({
     selector: 'app-consulter-demande',
     templateUrl: './consulter-demande.component.html',
@@ -17,8 +16,6 @@ import { TimelineElement } from '../../observations/timeline-element';
 
 })
 export class ConsulterDemandeComponent implements OnInit {
-
-    events1: TimelineElement[] = [];
 
     demandeCession: any;
 
@@ -98,14 +95,6 @@ export class ConsulterDemandeComponent implements OnInit {
                     console.log(this.observationLibelle)
                 }
             )
-            this.events1 = [];
-      this.events1=this.demandeCession.observations
-      this.events1.find(element=>{
-        
-             if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
-               element.libelle="Pas d'observations."
-           })
-      console.log(this.events1)
           })
 
           //this.observationService.getByDemandeAndStatut(this.demandeCession.idDemande,StatutEnum.)

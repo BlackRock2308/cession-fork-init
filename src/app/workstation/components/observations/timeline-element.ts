@@ -1,12 +1,11 @@
 export interface TimelineElement {
-  // caption: string;
-  // date: Date;
-  // title: string;
-   selected?: boolean;
-  // content: string;
-  dateObservation: Date;
- nomUtilisateur : string ; 
-  profil : string;
-  libelle : string ; 
-  statut : string ;
+  caption: string;
+  date: Date;
+  title: string;
+  selected?: boolean;
+  content: string;
+  libelle : string;
+  dateObseration : Date ; 
+  statut : string ; 
+  
 }

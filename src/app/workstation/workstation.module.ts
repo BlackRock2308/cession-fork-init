@@ -59,7 +59,6 @@ import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique
 import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecote/add-parametreDecote/add-parametreDecote.component';
 import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
 import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
-import { ObservationsComponent } from './components/observations/observations.component';
 import { ParametrageDecoteServices } from './service/parametrageDecote/parametrageDecoteServices.service';
 import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
 import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
@@ -115,38 +114,8 @@ import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utl
     UpdateFormeJuridiqueComponent,
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent
 
-    UpdateParametrageDecoteComponent,
-    AddMinistereDepensierComponent,
-    ListMinistereDepensierComponent,
-    UpdateMinistereDepensierComponent,
-    AddFormeJuridiqueComponent,
-    ListFormeJuridiqueComponent,
-    UpdateFormeJuridiqueComponent,
-    AddCentreDesServicesFiscauxComponent,
-    ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent,
-    AddParametrageDecoteComponent,
-    ListParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent,
-    AddMinistereDepensierComponent,
-    ListMinistereDepensierComponent,
-    UpdateMinistereDepensierComponent,
-    AddFormeJuridiqueComponent,
-    ListFormeJuridiqueComponent,
-    UpdateFormeJuridiqueComponent,
-    AddCentreDesServicesFiscauxComponent,
-    ListCentreDesServicesFiscauxComponent,
-    UpdateCentreDesServicesFiscauxComponent,
-    AddParametrageDecoteComponent,
-    ListParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent,
-    UpdateUtilisateurComponent,
-    ListUtilisateurComponent,
-    AddUtilisateurComponent
-   
-    
     //AdminComponent
     
     
