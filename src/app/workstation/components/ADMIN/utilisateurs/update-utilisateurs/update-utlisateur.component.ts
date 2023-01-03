@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { CountryISO, SearchCountryField } from "ngx-intl-tel-input";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MinistereDepensier } from "src/app/workstation/model/ministereDepensier";
@@ -26,6 +27,10 @@ export class UpdateUtilisateurComponent implements OnInit {
   profil:Roles = {};
   ministereDepensiers: MinistereDepensier []=[];
   ministereDepensier: MinistereDepensier ={};
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   constructor(
     private formBuilder: FormBuilder,
     private utilisateurService : UtilisateurService, private ministereDepensierServices : MinistereDepensierService,
@@ -38,7 +43,11 @@ export class UpdateUtilisateurComponent implements OnInit {
 
   ngOnInit() {
     this.message = "Champ obligatoire";
-    this.utilisateur = this.config.data.Utilisateur;
+    this.utilisateur = this.config.data.utilisateur;
+    this.profil = this.utilisateur.roles[0];
+    if(!this.utilisateur.minister){
+      this.ministereDepensier = this.utilisateur.minister;
+    }
     this.form = this.formBuilder.group({
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
@@ -91,16 +100,19 @@ export class UpdateUtilisateurComponent implements OnInit {
     this.submit = true;
     if (this.form.invalid) {
       return;
-    }  
+    }   
+    this.utilisateur.roles.push(this.profil);
+    this.utilisateur.telephone = this.form.get('telephone').value.internationalNumber;
+    this.utilisateur.minister = this.ministereDepensier;
     this.utilisateurService
-      .updateUtilisateur(this.utilisateur)
+      .updateUser(this.utilisateur)
       .subscribe((res: any) => {
         this.dismiss();
-        if(res.status == "409"){
+        if(res.status == "409" ||res.status == "400"){
           Swal.fire({
             icon: 'error',
             title: 'Erreur',
-            text: 'Ce code existe',
+            text: 'Ce email existe',
           })
          }else{
         Swal.fire({

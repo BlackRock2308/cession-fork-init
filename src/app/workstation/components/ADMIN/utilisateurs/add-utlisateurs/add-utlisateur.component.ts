@@ -9,7 +9,7 @@ import { Utilisateur } from "src/app/workstation/model/utilisateur";
 import { MinistereDepensierService } from "src/app/workstation/service/ministereDepensier/ministereDepensierService.service";
 import { UtilisateurService } from "src/app/workstation/service/utilisateur/utilisateur.service";
 import Swal from "sweetalert2";
-
+import { SearchCountryField, CountryISO } from "ngx-intl-tel-input";
 @Component({
   selector: "app-add-utlisateur",
   templateUrl: "./add-utlisateur.component.html",
@@ -24,7 +24,11 @@ export class AddUtilisateurComponent implements OnInit {
   roles:Roles[]=[];
   profil:Roles = {};
   ministereDepensiers: MinistereDepensier []=[];
-  ministereDepensier: MinistereDepensier ={};
+  ministereDepensier: MinistereDepensier ={}; 
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   constructor(
     private formBuilder: FormBuilder,
     private utilisateurService : UtilisateurService, private ministereDepensierServices : MinistereDepensierService,
@@ -36,6 +40,7 @@ export class AddUtilisateurComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.utilisateur.roles=[];
     this.message = "Champ obligatoire";
     this.form = this.formBuilder.group({
       prenom: ['', Validators.required],
@@ -82,7 +87,7 @@ export class AddUtilisateurComponent implements OnInit {
     
     if(this.profil?.libelle == "ORDONNATEUR"){
       //this.form.controls['profil'].setValidators(['', Validators.required]);
-      this.form.controls['ministere'].addValidators(Validators.required)
+      this.form.controls['ministere'].addValidators([Validators.required])
     }else{
       this.form.controls['ministere'].removeValidators(Validators.required)
     }
@@ -96,22 +101,23 @@ export class AddUtilisateurComponent implements OnInit {
       return;
     }  
     this.utilisateur.roles.push(this.profil);
+    this.utilisateur.telephone = this.form.get('telephone').value.internationalNumber;
     this.utilisateur.minister = this.ministereDepensier;
     this.utilisateurService
       .addUtilisateur(this.utilisateur)
       .subscribe((res: any) => {
         this.dismiss();
-        if(res.status == "409"){
+        if(res.status == "409" ||res.status == "400"){
           Swal.fire({
             icon: 'error',
             title: 'Erreur',
-            text: 'Ce code existe',
+            text: 'Ce email existe',
           })
          }else{
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Centre des services fiscaux enregistré avec succès.',
+          title: 'Utilisateur enregistré avec succès.',
           showConfirmButton: false,
           timer: 1500
         })

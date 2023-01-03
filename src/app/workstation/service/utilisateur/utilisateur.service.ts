@@ -32,7 +32,11 @@ export class UtilisateurService extends GenericService {
   }
 
   addUtilisateur(data){
-    return this.add(this.utilisateurUrl+'/create', data)
+    return this.add(this.utilisateurUrl, data)
+  }
+
+  updateUser(data) {
+      return this.update(this.utilisateurUrl,data)
   }
 
   getAllUtilisateur(){
