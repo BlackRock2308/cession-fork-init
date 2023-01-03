@@ -17,6 +17,7 @@ import { Observation } from 'src/app/workstation/model/observation';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { TimelineElement } from '../../observations/timeline-element';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -25,6 +26,42 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 })
 export class TacheAnalyseComponent implements OnInit {
 
+    events1: TimelineElement[] = [];
+//   load() {
+//     this.timeline = [];
+    
+ 
+
+//     this.timeline = this.demandeCession.observations
+//     this.timeline.find(element=>{
+//         if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+//         element.libelle="Pas d'observations."
+
+//       if(element['statut']['code']==StatutEnum.risquee || element['statut']['code']==StatutEnum.nonRisquee || element['statut']['code']==StatutEnum.completee){
+
+//         element.selected=true
+//         return true
+//       }
+       
+      
+//       else{
+//         if(element['statut']['code']==StatutEnum.recevable)
+//           element.selected=true
+//           return true
+        
+      
+        
+//         }
+//     })
+//     //this.timeline[0].selected=true
+//     console.log(this.timeline);
+    
+//     this.timeline.forEach(element => {
+//       element.dateObservation=new Date(element.dateObservation)
+      
+//     });  
+//     console.log(this.timeline)
+//   }
     demandeCession: any;
 
     editNinea: PME;
@@ -57,7 +94,7 @@ export class TacheAnalyseComponent implements OnInit {
     items: MenuItem[];
     home: MenuItem;
     msgs1: Message[];
-
+    contentShow : any
     observation:Observation={};
     observationLibelle: string;
 
@@ -93,12 +130,21 @@ export class TacheAnalyseComponent implements OnInit {
             this.documents=this.documents.concat(this.demandeCession.pme.documents);
             this.documents=this.documents.concat(this.demandeCession.documents);
 
-            this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
-                data => {
-                    this.observationLibelle=data.libelle
-                    console.log(this.observationLibelle)
-                })
+            // this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+            //     data => {
+            //         this.observationLibelle=data.libelle
+            //         console.log(this.observationLibelle)
+            //     })
           })
+
+          this.events1 = [];
+      this.events1=this.demandeCession.observations
+      this.events1.find(element=>{
+        
+             if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+               element.libelle="Pas d'observations."
+           })
+      console.log(this.events1)
       
         //get all documents from the demand
         
@@ -134,6 +180,9 @@ export class TacheAnalyseComponent implements OnInit {
             { field: 'inventoryStatus', header: 'Status' }
         ];
     }
+    showText(){
+        this.contentShow = true;
+       }
     showViaService() {
 
         this.router.navigate(['/workstation/cdmp/analyse_risque']);
