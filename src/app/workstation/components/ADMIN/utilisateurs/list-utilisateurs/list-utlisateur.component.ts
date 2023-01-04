@@ -86,14 +86,12 @@ export class ListUtilisateurComponent implements OnInit {
 
   active_desactiveUtilisateur(utilisateur) {
     let libelle =[];
+    let libelleADesative=["désactiver", "désactivé", "désactivation"];
+    let libelleActive=["activer", "activé", "Activation"];
    if(utilisateur.active == true){
-    libelle.push("desactiver");
-    libelle.push("desactivé")
-    libelle.push("Desactivation")
+    libelle = libelleADesative;
    }else{
-    libelle.push("activer");
-    libelle.push("activé")
-    libelle.push("Activation")
+    libelle=libelleActive;
    }
    Swal.fire({
     title: 'Voulez-vous '+libelle[0]+' le compte de '+utilisateur.prenom+'?',
