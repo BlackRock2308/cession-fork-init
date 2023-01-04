@@ -88,18 +88,18 @@
         <span class="h5texte">Forme Juridique</span>
 
         <span class="p-float-label">
-            <p-dropdown [options]="centreFiscals" [style]="{width: '100%'}"
-                                            formControlName="centreFiscal"  optionLabel="libelle" [filter]="true" filterBy="libelle"
+            <p-dropdown [options]="formeJuridiques" [style]="{width: '100%'}"
+                                            formControlName="formeJuridique"  optionLabel="libelle" [filter]="true" filterBy="libelle"
                                             [showClear]="true" 
-                                            placeholder="Sélectionnez un centre fiscal" [ngStyle]="{'width': '100%'}">
+                                            placeholder="Sélectionnez une forme juridique" [ngStyle]="{'width': '100%'}">
                                             <ng-template pTemplate="selectedItem">
-                                                <div class="country-item country-item-value" *ngIf="centreFiscal">
-                                                    <div>{{centreFiscal.code}}</div>
+                                                <div class="country-item country-item-value" *ngIf="formeJuridique">
+                                                    <div>{{formeJuridique.code}}</div>
                                                 </div>
                                             </ng-template>
-                                            <ng-template let-centreFiscal pTemplate="item">
+                                            <ng-template let-formeJuridique pTemplate="item">
                                                 <div class="country-item">
-                                                    <div>{{centreFiscal.libelle}}</div>
+                                                    <div>{{formeJuridique.libelle}}</div>
                                                 </div>
                                             </ng-template>
                                         </p-dropdown>

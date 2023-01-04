@@ -86,12 +86,11 @@ export class UpdateParametrageDecoteComponent implements OnInit {
       }
       }),
       (error) => {
-        this.servicemsg.add({
-          key: "tst",
-          severity: "danger",
-          summary: "Erreur",
-          detail: "Erreur, Décote non modifié",
-        });   
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Modification échouée',
+        })  
   }
 }
 
