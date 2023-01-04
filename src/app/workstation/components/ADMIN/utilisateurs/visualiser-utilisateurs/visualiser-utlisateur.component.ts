@@ -21,7 +21,7 @@ export class ViewUtilisateurComponent implements OnInit {
   profil:Roles = {};
   ministereDepensiers: MinistereDepensier []=[];
   ministereDepensier: MinistereDepensier ={};
-  separateDialCode = true;
+  separateDialCode = false;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];

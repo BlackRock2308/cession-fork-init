@@ -25,7 +25,7 @@ export class AddUtilisateurComponent implements OnInit {
   profil:Roles = {};
   ministereDepensiers: MinistereDepensier []=[];
   ministereDepensier: MinistereDepensier ={}; 
-  separateDialCode = true;
+  separateDialCode = false;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
@@ -34,7 +34,6 @@ export class AddUtilisateurComponent implements OnInit {
     private utilisateurService : UtilisateurService, private ministereDepensierServices : MinistereDepensierService,
     public activeModal: NgbActiveModal,
     public ref: DynamicDialogRef,
-    private servicemsg: MessageService,
     public config: DynamicDialogConfig,
   ) {
   }

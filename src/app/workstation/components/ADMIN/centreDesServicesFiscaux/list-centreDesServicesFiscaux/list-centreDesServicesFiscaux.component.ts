@@ -67,7 +67,7 @@ export class ListCentreDesServicesFiscauxComponent implements OnInit {
   getAllCentreDesServicesFiscaux() {
     this.centreDesServicesFiscauxService.getAllCentreDesServicesFiscaux()
     .subscribe((res:CentreDesServicesFiscaux[]) =>{
-      this.centreDesServicesFiscaux = res;
+      this.centreDesServicesFiscaux = res.reverse();
     })
   }
 

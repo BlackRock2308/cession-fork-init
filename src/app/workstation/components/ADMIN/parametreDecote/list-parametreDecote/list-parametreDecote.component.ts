@@ -68,7 +68,7 @@ export class ListParametrageDecoteComponent implements OnInit {
   getAllParametrageDecote() {
     this.parametrageDecoteService.getAllParametrageDecote()
     .subscribe((res:ParametrageDecote[]) =>{
-      this.parametrageDecotes = res;
+      this.parametrageDecotes = res.reverse();
     })
   }
 
