@@ -170,6 +170,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         this.observation.statut.libelle =this.detailPaiement.paiementDto.statutPme.libelle;
 
         this.observationService.postObservation(this.observation).subscribe(data => 
+          data
           );
       };
       } else if (result.isDenied) {
