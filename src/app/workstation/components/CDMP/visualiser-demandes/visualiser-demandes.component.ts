@@ -80,13 +80,8 @@ export class VisualiserDemandesComponent implements OnInit {
        if(this.demande?.bonEngagement?.documents.length > 0){
         this.documents=this.documents.concat(this.demande?.bonEngagement?.documents)
        }
-       console.log(data,this.documents)
 
-      //  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
-      //   data => {
-      //       this.observationLibelle=data.libelle
-      //       console.log(this.observationLibelle)
-      //   })
+     
      })
 
     // //recuperer les infos d'une demande d'adhesion
@@ -99,10 +94,6 @@ export class VisualiserDemandesComponent implements OnInit {
       { field: 'typeDocument', header: 'Type de Document' },
       { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
-
-    //récupérer les informations du nantissement en cours de modification
-    // this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-    // console.log(this.demandeNantissementInfos)
 
     //détail à visualiser( page préceédente)
     this.route.queryParams.subscribe(
@@ -119,11 +110,9 @@ export class VisualiserDemandesComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
-    console.log('(page-rendered)');
   }
 
   /**
@@ -146,7 +135,6 @@ export class VisualiserDemandesComponent implements OnInit {
     this.textLayerRenderedCb++;
 
     // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
 
   }
 
@@ -154,7 +142,6 @@ export class VisualiserDemandesComponent implements OnInit {
 * Permet de faire une rotation sur l'affichage du document
 */
   rotate() {
-    console.log(this.angle);
     if (this.angle === 0) {
       this.angle = 90;
     } else if (this.angle === 90) {

@@ -79,7 +79,7 @@ export class ConventionSignerComponent implements OnInit {
       this.conventionService
         .updateDecote(this.convention.idConvention, this.form.value["decote"])
         .subscribe((res: any) => {
-          console.log(res);
+          res;
         });
     }
     this.conventionService.signerConventionDG(this.codePIN, this.idUser, this.convention.idConvention

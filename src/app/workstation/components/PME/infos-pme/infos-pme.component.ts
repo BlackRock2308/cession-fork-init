@@ -225,7 +225,6 @@ majPME() {
         })
 
       }
-  console.log(result)
   this.tokenStorage.savePME(result)
       
   })

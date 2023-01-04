@@ -76,7 +76,6 @@ export class ProfilComponent implements OnInit {
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme
-      console.log(this.pme)
 
     })
 

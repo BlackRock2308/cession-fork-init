@@ -49,7 +49,6 @@ export class VisualiserDocumentComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.config.data);
     if(this.config.data.demande){
       this.demande = this.config.data.demande;
       if(this.demande.idDemande)
@@ -57,16 +56,13 @@ export class VisualiserDocumentComponent implements OnInit {
         this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
           data => {
               this.observationLibelle=data.libelle
-              console.log(this.observationLibelle)
           })
       }
     }
 
     this.srcFile = this.config.data.document.urlFile;
-    console.log('test '+this.srcFile)
     this.dowloadFile(this.srcFile);
     this.profil = localStorage.getItem('profil');
-    console.log(this.profil)
 
     this.statut = this.config.data.demande?.statut;
     if (this.config.data.paiement === 'true') {
@@ -97,7 +93,6 @@ export class VisualiserDocumentComponent implements OnInit {
   }
 
   docUploadProgress($event: any) {
-    console.log($event);
     if ($event.loaded == $event.total) {
       this.docLoading = false;
     }
@@ -142,7 +137,6 @@ export class VisualiserDocumentComponent implements OnInit {
   print() {
     var dataView = this.src;
     const url = this.src;
-    console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         const element = document.createElement('iframe');   // Create an IFrame.
@@ -160,7 +154,6 @@ export class VisualiserDocumentComponent implements OnInit {
  * Permet de faire une rotation sur l'affichage du document
  */
   rotate() {
-    console.log(this.angle);
     if (this.angle === 0) {
       this.angle = 90;
     } else if (this.angle === 90) {
@@ -191,12 +184,10 @@ export class VisualiserDocumentComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
     this.pageRenderCb++;
-    console.log('(page-rendered)');
   }
 
   textLayerRendered(e: CustomEvent) {
@@ -270,7 +261,6 @@ export class VisualiserDocumentComponent implements OnInit {
       this.observationSave.dateObservation = new Date();
       this.observationService.addObservation(this.observationSave)  
                .subscribe((response: any) => {
-                  console.log(response)
               },
               (error)=>{},
               ()=>{
@@ -319,7 +309,6 @@ export class VisualiserDocumentComponent implements OnInit {
       this.observationSave.statut.libelle = StatutEnum.ConventionRejeteeParDG;
       this.observationSave.dateObservation = new Date();
       this.observationService.addObservation(this.observationSave).subscribe((response: any) => {
-        console.log(response)
               },
               (error)=>{},
               ()=>{

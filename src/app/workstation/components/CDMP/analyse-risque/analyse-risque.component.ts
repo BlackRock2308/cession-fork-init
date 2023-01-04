@@ -381,7 +381,6 @@ export class AnalyseRisqueComponent implements OnInit {
 
   pmeInfo(demande: any) {
     //this.demande = {...demande};
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
 
     this.router.navigate(['workstation/cdmp/analyser']);
@@ -405,26 +404,20 @@ export class AnalyseRisqueComponent implements OnInit {
         this.rangeDates[1] = new Date((new Date(this.rangeDates[1])).toDateString())
       }
 
-      console.log(this.filterService.filters.is(value, this.rangeDates[0]))
       //comparaison et filtre
       if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
-        console.log(value)
-        console.log(1)
         return true;
       }
 
       if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
-        console.log(2)
         return true;
       }
 
       if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
         this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
-        console.log(3)
         return true;
       }
 
-      console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
       return false;
     })
   }
@@ -438,7 +431,6 @@ export class AnalyseRisqueComponent implements OnInit {
   consulterDemande(demande) {
     this.demande = { ...demande };
     //this.demandeDialog = true;
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
     this.router.navigate(['workstation/cdmp/consulter_demande'], { queryParams: { page: 'demande cession' } });
   }

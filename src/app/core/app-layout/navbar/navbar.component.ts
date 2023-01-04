@@ -88,7 +88,6 @@ export class NavbarComponent implements OnInit {
     this.nom = this.tokenStorage.getUser().nom
     this.prenom = this.tokenStorage.getUser().prenom
     this.roles=this.tokenStorage.getUser().roles[0].description;
-    console.log('affichhh' + JSON.stringify(this.tokenStorage.getUser()))
 
   }
 
@@ -107,7 +106,6 @@ export class NavbarComponent implements OnInit {
   }
   modifierInfosPME(demande: DemandeCession) {
     this.demande = { ...demande };
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
     this.router.navigate(['workstation/pme/infosPME']);
   }

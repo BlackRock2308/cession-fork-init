@@ -48,7 +48,6 @@ export class CodeComponent implements OnInit {
   private valider() {
     this.user.codePin = this.code
     this.user.updateCodePin = false
-    console.log(this.user.updateCodePin)
     this.utilisateurService.updateUtilisateur(this.user).subscribe(
       (response) => { },
       (error) => { },
@@ -56,7 +55,6 @@ export class CodeComponent implements OnInit {
         this.utilisateurService.getByIdemail(this.tokenStorage.getUser().email).subscribe(
 
           data => {
-            console.log(data, this.tokenStorage.getUser().email)
             this.tokenStorage.saveUser(data)
           }
         )

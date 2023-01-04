@@ -90,7 +90,6 @@ export class TacheAnalyseComponent implements OnInit {
     
         this.demandeCessionService.getDemandeObs().subscribe(data => {
             this.demandeCession = data
-            console.log(this.demandeCession)
             this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents);
             this.documents=this.documents.concat(this.demandeCession.pme.documents);
             this.documents=this.documents.concat(this.demandeCession.documents);
@@ -105,36 +104,9 @@ export class TacheAnalyseComponent implements OnInit {
             this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
                 data => {
                     this.observationLibelle=data.libelle
-                    console.log(this.observationLibelle)
                 })
           })
       
-        //get all documents from the demand
-        
-
-        // this.demandeCession.bonEngagement.documents.forEach(document => {
-        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-        //         this.documents=this.documents.concat(data);
-        //         console.log(this.documents)
-        //     });
-        // });
-
-        // this.demandeCession.pme.documents.forEach(document => {
-        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-        //         this.documents=this.documents.concat(data);
-        //         console.log(this.documents)
-        //     });
-        // });
-
-        // this.demandeCession.documents.forEach(document => {
-        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-        //         this.documents=this.documents.concat(data);
-        //         console.log(this.documents)
-        //     });
-        // });
-
-        
-
         this.cols = [
             { field: 'ninea', header: 'NINEA' },
             { field: 'rccm', header: 'RCCM' },
@@ -210,7 +182,6 @@ export class TacheAnalyseComponent implements OnInit {
 
     visualiserDocument(document: any) {
         let nom = document.nom;
-        console.log('nom: ' + document.nom + 'path ' +document.urlFile )
         const ref = this.dialogService.open(VisualiserDocumentComponent, {
             data: {
                 document: document
@@ -254,7 +225,7 @@ export class TacheAnalyseComponent implements OnInit {
                         this.observation.statut={}
                         this.observation.demandeid = this.demandeCession.idDemande;
                         this.observation.statut.libelle =StatutEnum.nonRisquee;
-                        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+                        this.observationService.postObservation(this.observation).subscribe(data => data)
         
                         Swal.fire({
                             position: 'center',
@@ -313,7 +284,7 @@ export class TacheAnalyseComponent implements OnInit {
                         this.observation.statut={}                        
                         this.observation.demandeid = this.demandeCession.idDemande;
                         this.observation.statut.libelle =StatutEnum.risquee;
-                        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+                        this.observationService.postObservation(this.observation).subscribe(data => data)
 
                         Swal.fire(
                             'Rejetée!',
@@ -359,7 +330,7 @@ export class TacheAnalyseComponent implements OnInit {
                             this.observation.statut={}                
                             this.observation.demandeid = this.demandeCession.idDemande;
                             this.observation.statut.libelle =StatutEnum.complementRequis;
-                            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+                            this.observationService.postObservation(this.observation).subscribe(data => data)
             
                             Swal.fire({
                                 html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Demande de complément de dossier soumise !</p> <br><p style='font-size: large;font-weight: bold;'></p>",

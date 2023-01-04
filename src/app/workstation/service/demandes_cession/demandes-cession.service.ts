@@ -27,7 +27,6 @@ export class DemandesCessionService extends GenericService {
 
     }
     catch (e) {
-      console.error("pas encore de variable de session pour une demande de cession.Certainement c'est la première connexion")
     }
   }
 
@@ -143,7 +142,6 @@ export class DemandesCessionService extends GenericService {
       reportProgress: true,
       responseType: 'json'
     });
-    console.log(codePin)
 
     return this.http.request(req);
   }
@@ -185,8 +183,6 @@ export class DemandesCessionService extends GenericService {
 
     const params = new HttpParams()
       .set('statut', statut.toString())
-
-    console.log(params);
 
     return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/statut`, {}, { params });
   }

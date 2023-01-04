@@ -88,7 +88,6 @@ export class RecevabiliteComponent implements OnInit {
   }
 
   paginate(event) { 
-  console.log(this.page);
   
     let statutsParam
     if (Array.isArray(this.paramStatuts)) {
@@ -130,9 +129,7 @@ initGetDemandes(statuts: StatutEnum[]) {
   this.page=args
   this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
     this.demandes = data.content
-    console.log(data)
     this.totalRecords=data.totalElements
-    console.log(this.totalRecords)
   });
 
 
@@ -152,9 +149,7 @@ OnPageEvent(){
 }
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };
-    //console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
-
     this.router.navigate(['workstation/cdmp/recevabilite/verifier']);
 
 
@@ -181,23 +176,18 @@ OnPageEvent(){
       }
 
       if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
-        console.log(value)
-        console.log(1)
         return true;
       }
 
       if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
-        console.log(2)
         return true;
       }
 
       if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
         this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
-        console.log(3)
         return true;
       }
 
-      console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
       return false;
     })
   }
@@ -210,8 +200,6 @@ OnPageEvent(){
 
   consulterDemande(demande) {
     this.demande = { ...demande };
-    //this.demandeDialog = true;
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
     this.router.navigate(['workstation/cdmp/consulter_demande'], {  queryParams: {  page: 'demande cession' } });
   }

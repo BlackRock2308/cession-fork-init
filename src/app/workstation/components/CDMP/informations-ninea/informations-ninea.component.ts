@@ -163,7 +163,6 @@ message:string = "";
       email: this.pme.email
     }
     this.utilisateurService.createCompte(infoEmail).subscribe((result) => {
-      console.log(result)
     })
   }
 
@@ -179,7 +178,6 @@ message:string = "";
     this.pmeService.updatePme(this.pme).subscribe((result) => {
       this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
         (result) => {
-          console.log(result)
         },
         () => {
           Swal.fire({

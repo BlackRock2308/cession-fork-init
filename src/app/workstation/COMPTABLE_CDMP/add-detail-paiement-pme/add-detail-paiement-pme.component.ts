@@ -135,7 +135,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
             this.uploadFileService
               .uploadFile('/detailsPaiements/', data.id, this.selectedFiles, typeDocument)
               .subscribe((resFil: any) => {
-                console.log(resFil);
+                resFil;
               });
           //}
         }
@@ -171,10 +171,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
         this.observation.statut={}
         this.observation.demandeid =  this.detailPaiement.paiementDto.demandecessionid;
         this.observation.statut.libelle =this.detailPaiement.paiementDto.statutPme.libelle;
-        console.log(this.observation)
 
         this.observationService.postObservation(this.observation).subscribe(data => 
-          console.log(data)
+          data
           );
       }
     } else if (result.isDenied) {

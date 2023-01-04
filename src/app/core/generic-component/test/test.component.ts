@@ -204,9 +204,9 @@ export class TestComponent implements OnInit {
     }
 
 
-    onRowSelect = (event: any) => console.log(event.data);
-    onRowUnselect = (event: any) => console.log(event.data);
-    selectedRow = (event: any) => console.log(event);
+    onRowSelect = (event: any) => event.data;
+    onRowUnselect = (event: any) => event.data;
+    selectedRow = (event: any) => event;
 
     reload = () => this.getItems;
 
@@ -215,9 +215,9 @@ export class TestComponent implements OnInit {
         // this[fn]($event[1]);
     }
 
-    startFn = (item: any) => console.log(item);
-    editFn = (item: any) => console.log(item);
-    deleteFn = (item: any) => console.log(item);
+    startFn = (item: any) => item;
+    editFn = (item: any) => item;
+    deleteFn = (item: any) => item;
 
     // Dialog
     openDialog = () => {
@@ -242,14 +242,14 @@ export class TestComponent implements OnInit {
         this.dialogConfig.canSave = true; // enable save
     }
 
-    previous = (activeTab: number) => console.log(activeTab);
+    previous = (activeTab: number) => activeTab;
 
     save = () => {
         // this.dialogConfig!.display = false;
         this.dialogConfig.display = false;
     }
 
-    cancel = () => console.log('cancel');
+    cancel = () => 'cancel';
 
 
 }

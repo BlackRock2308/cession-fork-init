@@ -166,11 +166,9 @@ export class ConventionCessionComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
-    console.log('(page-rendered)');
   }
 
   /**
@@ -193,7 +191,6 @@ export class ConventionCessionComponent implements OnInit {
     this.textLayerRenderedCb++;
 
     // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
   }
 
   editConvention(demande) {
@@ -264,7 +261,6 @@ export class ConventionCessionComponent implements OnInit {
   consulterDemande(demande) {
     this.demande = { ...demande };
     //this.demandeDialog = true;
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
     this.router.navigate(['workstation/cdmp/consulter_demande'], { queryParams: { page: 'demande cession' } });
   }

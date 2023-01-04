@@ -40,11 +40,9 @@ export class AppLoginComponent implements OnInit {
 
       this.tokenStorage.signOut();
 
-    console.log(JSON.stringify({ email: username, password: motdepasse }))
 
     this.authService.login(JSON.stringify({ email: username, password: motdepasse })).subscribe(
       (data) => {
-        console.log(data)
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.utilisateur);
         this.tokenStorage.authenticate(true);
@@ -93,7 +91,6 @@ export class AppLoginComponent implements OnInit {
             this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
               data =>{
                 if(data){
-                  console.log(data)
                   this.tokenStorage.savePME(data)
 
                   localStorage.setItem('profil', 'PME'); 
