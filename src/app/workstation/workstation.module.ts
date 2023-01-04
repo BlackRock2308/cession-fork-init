@@ -59,13 +59,15 @@ import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique
 import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecote/add-parametreDecote/add-parametreDecote.component';
 import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
 import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
-import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
-import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
+import { ParametrageDecoteServices } from './service/parametrageDecote/parametrageDecoteServices.service';
 import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
+import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
+import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
   declarations: [
+    
     NouvelleDemandeComponent,
     DemandesAdhesionComponent,
     DemandeAdhesionComponent,
@@ -113,12 +115,12 @@ import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/upda
     AddCentreDesServicesFiscauxComponent,
     ListCentreDesServicesFiscauxComponent,
     UpdateCentreDesServicesFiscauxComponent,
-    AddParametrageDecoteComponent,
-    ListParametrageDecoteComponent,
-    UpdateParametrageDecoteComponent,
-    AddUtilisateurComponent,
+    UpdateUtilisateurComponent,
     ListUtilisateurComponent,
-    UpdateUtilisateurComponent
+    AddUtilisateurComponent,
+    UpdateParametrageDecoteComponent,
+    ListParametrageDecoteComponent,
+    AddParametrageDecoteComponent
 
     //AdminComponent
     
@@ -144,6 +146,7 @@ import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/upda
     AddDetailsPaiementPMEComponent,
     ConventionSignerComponent,
     CodeComponent,
+    UpdateUtilisateurComponent,
     AddDetailsPaiementPMEComponent,
     UpdateMinistereDepensierComponent,
     AddFormeJuridiqueComponent,
@@ -152,9 +155,34 @@ import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/upda
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
     UpdateParametrageDecoteComponent,
-    AddUtilisateurComponent,
-    UpdateUtilisateurComponent
-     
+    VisualiserDocumentComponent,
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
+    ConventionSignerComponent,
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
+    ConventionSignerComponent,
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    ListUtilisateurComponent
+ 
 ],
 providers: [
   NgbActiveModal,

@@ -20,7 +20,7 @@ import { Observation } from 'src/app/workstation/model/observation';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
-
+import { TimelineElement } from '../../../observations/timeline-element';
 @Component({
   selector: 'app-verifier-demande-cession',
   templateUrl: './verifier-demande-cession.component.html',
@@ -32,15 +32,21 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
   })
 
 export class VerifierDemandeCessionComponent implements OnInit {
+
+  events1: TimelineElement[] = [];
+  
+
+
   demandeCession: any;
+  demande : any;
   bonEngagement: BonEngagement;
   dateTime = new Date();
   ministeres: Ministere[];
   code: string;
-  events1: any[];
-    
+  date: Date;
   events2: any[];
-
+  contentShow : any;
+  poste : string;
   documents: any[] = [];
   cols: any[];
   pas_identifie: boolean;
@@ -48,7 +54,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   identifie: boolean;
   pas_atd: boolean;
   date10: Date;
-
+  observations : any ;
   atd: boolean;
   pas_nantissement: boolean;
   pas_interdiction: boolean;
@@ -83,16 +89,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.events1 = [
-      {status: 'Ordered', date: '15/10/2020 10:30', icon: PrimeIcons.SHOPPING_CART, color: '#9C27B0', image: 'game-controller.jpg'},
-      {status: 'Processing', date: '15/10/2020 14:00', icon: PrimeIcons.COG, color: '#673AB7'},
-      {status: 'Shipped', date: '15/10/2020 16:15', icon: PrimeIcons.ENVELOPE, color: '#FF9800'},
-      {status: 'Delivered', date: '16/10/2020 10:00', icon: PrimeIcons.CHECK, color: '#607D8B'}
-  ];
-
-  this.events2 = [
-      "2020", "2021", "2022" , "2023" , "2024"
-  ];
+     
     this.observation.libelle = ''
     this.demandeCessionService.getDemandeObs().subscribe(data => {
       this.demandeCession = data
@@ -100,8 +97,27 @@ export class VerifierDemandeCessionComponent implements OnInit {
       this.documents = this.documents.concat(this.demandeCession.bonEngagement.documents)
       this.documents = this.documents.concat(this.demandeCession.pme.documents)
       this.documents = this.documents.concat(this.demandeCession.documents)
+      console.log(this.documents)
+      this.events1 = [];
+      this.events1=this.demandeCession.observations
+      this.events1.find(element=>{
+        
+             if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+               element.libelle="Pas d'observations."
+           })
+      // this.observationService.getObservationByDemandeCession(this.demandeCession.idDemande).subscribe(data => {
+      //   this.observations = data
+      //   console.log('yup',this.observations)
+        
+    
+      // })
+    
 
     })
+
+  
+
+    this.poste = localStorage.getItem('profil');
 
     this.demandeCessionService.getAllMinistere().subscribe(data => {
       this.ministeres = <Ministere[]>data;
@@ -133,6 +149,8 @@ export class VerifierDemandeCessionComponent implements OnInit {
 
     });
   }
+
+  
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
@@ -228,6 +246,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     )
   }
 
+
   visualiserDocument(document: Documents) {
     let nom = document.nomDocument;
     const ref = this.dialogService.open(VisualiserDocumentComponent, {
@@ -241,6 +260,7 @@ export class VerifierDemandeCessionComponent implements OnInit {
     });
   }
 
+  
   onSubmitRejet(bonEngagement) {
 
     Swal.fire({

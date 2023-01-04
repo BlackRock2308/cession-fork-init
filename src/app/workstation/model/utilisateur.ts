@@ -9,7 +9,7 @@ export interface Utilisateur {
     adresse?:String;
     codePin?:string;
     urlimagesignature?:String;
-    telephone?:number;
+    telephone?:string;
     email?:String;
     urlmagerofil?:String;
     username ?: String;

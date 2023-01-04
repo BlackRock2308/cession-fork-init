@@ -89,9 +89,6 @@ message:string = "";
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme;
-      console.log(this.pme);
-      this.centreFiscal = this.pme.centreFiscal;
-      this.formeJuridique = this.pme.formeJuridique;
     this.telephonePME = this.tokenStorage.getPME().telephonePME;
     this.raisonSocial = this.tokenStorage.getPME().raisonSocial;
     this.adressePME = this.tokenStorage.getPME().adressePME;
@@ -107,7 +104,6 @@ message:string = "";
     this.email = this.tokenStorage.getPME().email;
     this.ninea=this.tokenStorage.getPME().ninea;
     this.rccm=this.tokenStorage.getPME().rccm;
-
     this.getFormeJuridiques();
     this.getCentreFiscals();
 

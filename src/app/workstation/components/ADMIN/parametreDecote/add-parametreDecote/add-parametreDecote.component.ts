@@ -80,12 +80,11 @@ export class AddParametrageDecoteComponent implements OnInit {
       }
       }),
       (error) => {
-        this.servicemsg.add({
-          key: "tst",
-          severity: "danger",
-          summary: "Erreur",
-          detail: "Erreur, Décote non ajouté",
-        });   
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Création échouée',
+        }) 
   }
 }
 

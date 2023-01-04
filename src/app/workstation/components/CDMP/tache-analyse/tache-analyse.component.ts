@@ -17,6 +17,7 @@ import { Observation } from 'src/app/workstation/model/observation';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { TimelineElement } from '../../observations/timeline-element';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -24,6 +25,7 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
     providers: [DialogService,MessageService]
 })
 export class TacheAnalyseComponent implements OnInit {
+    events1: TimelineElement[] = [];
 
     demandeCession: any;
 
@@ -92,6 +94,13 @@ export class TacheAnalyseComponent implements OnInit {
             this.documents=this.documents.concat(this.demandeCession.pme.documents);
             this.documents=this.documents.concat(this.demandeCession.documents);
 
+            this.events1 = [];
+            this.events1=this.demandeCession.observations
+            this.events1.find(element=>{
+              
+                   if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+                     element.libelle="Pas d'observations."
+                 })
             this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
                 data => {
                     this.observationLibelle=data.libelle

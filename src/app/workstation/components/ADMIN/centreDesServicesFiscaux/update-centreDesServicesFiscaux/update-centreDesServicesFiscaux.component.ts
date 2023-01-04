@@ -72,12 +72,11 @@ export class UpdateCentreDesServicesFiscauxComponent implements OnInit {
       }
       }),
       (error) => {
-        this.servicemsg.add({
-          key: "tst",
-          severity: "danger",
-          summary: "Erreur",
-          detail: "Erreur, CDMP non payé",
-        });   
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Modification échouée',
+        })
   }
 }
 
