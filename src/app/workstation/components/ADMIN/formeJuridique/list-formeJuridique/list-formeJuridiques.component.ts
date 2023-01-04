@@ -67,7 +67,7 @@ export class ListFormeJuridiqueComponent implements OnInit {
   getAllFormeJuridique() {
     this.formeJuridiqueService.getAllFormeJuridique()
     .subscribe((res:FormeJuridique[]) =>{
-      this.formeJuridiques = res;
+      this.formeJuridiques = res.reverse();
     })
   }
 

@@ -66,7 +66,7 @@ export class ListMinistereDepensierComponent implements OnInit {
   getAllMinistereDepensier() {
     this.ministereDepensierService.getAllMinistereDepensier()
     .subscribe((res:MinistereDepensier[]) =>{
-      this.ministereDepensiers = res;
+      this.ministereDepensiers = res.reverse();
     })
   }
 

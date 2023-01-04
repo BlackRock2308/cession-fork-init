@@ -23,15 +23,12 @@
                 <div class="field grid">
                     <label htmlFor="telephone" class="col-12 mb-2 md:col-3 md:mb-0">Téléphone</label>
                     <div class="col-12 md:col-9" >
-                        <div class="col-12 md:col-12">
                         <ngx-intl-tel-input [preferredCountries]="preferredCountries" [(ngModel)]="utilisateur.telephone"
                         [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
                         [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [style]="{width: '100%'}"
                         [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
-                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone" disabled="true"
-                        >
+                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone" disabled="true">
                     </ngx-intl-tel-input>
-                </div>
                       </div>
                 </div>
                 <div class="field grid">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { CountryISO, SearchCountryField } from "ngx-intl-tel-input";
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from "ngx-intl-tel-input";
 import { MessageService } from "primeng/api";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { MinistereDepensier } from "src/app/workstation/model/ministereDepensier";
@@ -26,10 +26,10 @@ export class UpdateUtilisateurComponent implements OnInit {
   profil:Roles = {};
   ministereDepensiers: MinistereDepensier []=[];
   ministereDepensier: MinistereDepensier ={};
-  separateDialCode = true;
+  separateDialCode = false;
+  PhoneNumberFormat = PhoneNumberFormat;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
-  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   constructor(
     private formBuilder: FormBuilder,
     private utilisateurService : UtilisateurService, private ministereDepensierServices : MinistereDepensierService,

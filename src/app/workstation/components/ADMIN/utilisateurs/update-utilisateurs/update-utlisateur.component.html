@@ -45,15 +45,13 @@
                         'has-error':(form.get('telephone').touched || form.get('telephone').dirty ) &&
                         !form.get('telephone').valid
                         }">
-                        <div class="col-12 md:col-12">
-                        <ngx-intl-tel-input [preferredCountries]="preferredCountries" [(ngModel)]="utilisateur.telephone"
+                        <ngx-intl-tel-input [(ngModel)]="utilisateur.telephone"
                         [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
                         [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [style]="{width: '100%'}"
-                        [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
-                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone"
+                        [selectFirstCountry]="false" [maxLength]="15"
+                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone" [numberFormat]="PhoneNumberFormat.National"
                         formControlName="telephone" >
                     </ngx-intl-tel-input>
-                </div>
                     <span *ngIf="submit && f['telephone'].invalid && !f['telephone'].hasError('required')"
                     class="error-validation">Renseigner un bon numéro</span>
                         <span *ngIf="f['telephone'].hasError('required') && submit" class="error-validation">
