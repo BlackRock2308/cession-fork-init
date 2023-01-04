@@ -37,7 +37,6 @@ export class ViewUtilisateurComponent implements OnInit {
     this.utilisateur = this.config.data.utilisateur;
     this.profil = this.utilisateur.roles[0];
       this.ministereDepensier = this.utilisateur.minister;
-      console.log(this.ministereDepensier);
     this.getRoles();
     this.getMinistere();
   }

@@ -83,8 +83,6 @@ export class AddUtilisateurComponent implements OnInit {
 
 
   rolesChange(event) {
-    console.log(this.profil);
-    
     if(this.profil?.libelle == "ORDONNATEUR"){
       //this.form.controls['profil'].setValidators(['', Validators.required]);
       this.form.controls['ministere'].addValidators([Validators.required])
