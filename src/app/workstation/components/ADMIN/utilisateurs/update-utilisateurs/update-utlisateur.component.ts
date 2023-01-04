@@ -97,6 +97,7 @@ export class UpdateUtilisateurComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }   
+    this.utilisateur.roles=[];
     this.utilisateur.roles.push(this.profil);
     this.utilisateur.telephone = this.form.get('telephone').value.internationalNumber;
     this.utilisateur.minister = this.ministereDepensier;

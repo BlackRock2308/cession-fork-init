@@ -143,9 +143,7 @@ export class ListUtilisateurComponent implements OnInit {
     });
   }
 
-  visuliserUtilisateur(utilisateur) {
-    console.log(utilisateur);
-    
+  visuliserUtilisateur(utilisateur) {    
     const ref = this.dialogService.open(ViewUtilisateurComponent, {
       data: {
         utilisateur: utilisateur,
