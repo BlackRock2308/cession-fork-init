@@ -72,13 +72,16 @@
                             <div class="flex">                                
                                 <button pButton pRipple icon="pi pi-pencil" pTooltip="Modifier l'utilisateur"
                                 class="p-button-rounded p-button-text mr-2 button-edit simpleButton" 
-                                    (click)="modifierUtilisateur(utilisateur)"></button>                                                                    
-                                <button pButton pRipple icon="pi pi-trash" pTooltip="Supprimer l'utilisateur"
-                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton"
-                                (click)="supprimerUtilisateur(utilisateur)"></button>
+                                    (click)="modifierUtilisateur(utilisateur)"></button>
                                 <button pButton pRipple icon="pi pi-eye" pTooltip="Visuliser l'utilisateur"
                                 class="p-button-rounded p-button-text mr-2 button-view simpleButton"
-                                (click)="visuliserUtilisateur(utilisateur)"></button>
+                                (click)="visuliserUtilisateur(utilisateur)"></button>                                                                    
+                                <button pButton pRipple icon="pi pi-check-circle" pTooltip="Activer l'utilisateur"
+                                class="p-button-rounded p-button-text mr-2 button-active simpleButton"
+                                (click)="active_desactiveUtilisateur(utilisateur)" *ngIf="!utilisateur.active"></button>                                                                    
+                                <button pButton pRipple icon="pi pi-times-circle" pTooltip="Desactiver l'utilisateur"
+                                class="p-button-rounded p-button-text mr-2 button-delete simpleButton"
+                                (click)="active_desactiveUtilisateur(utilisateur)" *ngIf="utilisateur.active"></button>
                             </div>
                         </td>
                     </tr>

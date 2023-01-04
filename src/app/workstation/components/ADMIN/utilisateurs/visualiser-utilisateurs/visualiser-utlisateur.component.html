@@ -1,0 +1,64 @@
+<div class="container-fluid text-left">
+    <div style="display: block;">
+            <div class="modal-body" style="height: 100%;">
+                <div class="card p-fluid">
+                <div class="field grid">
+                    <label htmlFor="prenom" class="col-12 mb-2 md:col-3 md:mb-0">Prénom</label>
+                    <div class="col-12 md:col-9" >
+                        <input pInputText id="prenom" type="text" [(ngModel)]="utilisateur.prenom" disabled="true"/>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="nom" class="col-12 mb-2 md:col-3 md:mb-0">Nom</label>
+                    <div class="col-12 md:col-9">
+                        <input pInputText id="nom"  type="text" [(ngModel)]="utilisateur.nom" disabled="true"/>
+                     </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="email" class="col-12 mb-2 md:col-3 md:mb-0">Email</label>
+                    <div class="col-12 md:col-9">
+                        <input pInputText id="email"  type="text" [(ngModel)]="utilisateur.email" disabled="true"/>
+                       </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="telephone" class="col-12 mb-2 md:col-3 md:mb-0">Téléphone</label>
+                    <div class="col-12 md:col-9" >
+                        <div class="col-12 md:col-12">
+                        <ngx-intl-tel-input [preferredCountries]="preferredCountries" [(ngModel)]="utilisateur.telephone"
+                        [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [style]="{width: '100%'}"
+                        [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
+                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone" disabled="true"
+                        >
+                    </ngx-intl-tel-input>
+                </div>
+                      </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="adresse" class="col-12 mb-2 md:col-3 md:mb-0">Adresse</label>
+                    <div class="col-12 md:col-9" >
+                        <input pInputText id="adresse" type="text" [(ngModel)]="utilisateur.adresse" disabled="true"/>  
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="profil" class="col-12 mb-2 md:col-3 md:mb-0">Profil</label>
+                      <div class="col-12 md:col-9" >
+                        <input pInputText id="profil" type="text" [(ngModel)]="profil.description" disabled="true"/> 
+                </div>
+                </div>
+                <div class="field grid" *ngIf="profil?.libelle === 'ORDONNATEUR'">
+                    <label htmlFor="ministere" class="col-12 mb-2 md:col-3 md:mb-0">Ministère</label>
+                    <div class="col-12 md:col-9">
+                        <input pInputText id="ministere" type="text" [(ngModel)]="ministereDepensier.libelle" disabled="true"/>  
+                    </div>
+                </div>
+        </div>
+        <br/>
+        <div class="modal-footer">
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                class="p-button-raised simpleButton" (click)="dismiss()"></button>
+               
+            </div>
+        </div>
+    </div>

@@ -17,5 +17,6 @@ export interface Utilisateur {
     poste ?:String;
     minister?: MinistereDepensier;
     roles?:Roles[];
+    active?:boolean;
    
 }
