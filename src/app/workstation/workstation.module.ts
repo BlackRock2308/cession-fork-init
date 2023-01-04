@@ -63,6 +63,7 @@ import { ParametrageDecoteServices } from './service/parametrageDecote/parametra
 import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
 import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
 import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
+import { ViewUtilisateurComponent } from './components/ADMIN/utilisateurs/visualiser-utilisateurs/visualiser-utlisateur.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
@@ -118,6 +119,7 @@ import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utl
     UpdateUtilisateurComponent,
     ListUtilisateurComponent,
     AddUtilisateurComponent,
+    ViewUtilisateurComponent,
     UpdateParametrageDecoteComponent,
     ListParametrageDecoteComponent,
     AddParametrageDecoteComponent
@@ -181,7 +183,9 @@ import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utl
     UpdateCentreDesServicesFiscauxComponent,
     AddParametrageDecoteComponent,
     UpdateParametrageDecoteComponent,
-    ListUtilisateurComponent
+    AddUtilisateurComponent,
+    UpdateUtilisateurComponent,
+    ViewUtilisateurComponent
  
 ],
 providers: [

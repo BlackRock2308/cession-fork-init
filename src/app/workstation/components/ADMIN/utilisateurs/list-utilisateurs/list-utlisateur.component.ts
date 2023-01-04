@@ -9,6 +9,7 @@ import { Utilisateur } from "src/app/workstation/model/utilisateur";
 import { UtilisateurService } from "src/app/workstation/service/utilisateur/utilisateur.service";
 import { AddUtilisateurComponent } from "../add-utlisateurs/add-utlisateur.component";
 import { UpdateUtilisateurComponent } from "../update-utilisateurs/update-utlisateur.component";
+import { ViewUtilisateurComponent } from "../visualiser-utilisateurs/visualiser-utlisateur.component";
 registerLocaleData(localeFr, 'fr')
 @Component({
   selector: "app-list-utlisateur",
@@ -69,7 +70,7 @@ export class ListUtilisateurComponent implements OnInit {
   getAllUtilisateur() {
     this.utilisateurService.getAllUtilisateur()
     .subscribe((res:Utilisateur[]) =>{
-      this.utilisateurs = res;
+      this.utilisateurs = res.reverse();
     })
   }
 
@@ -81,42 +82,54 @@ export class ListUtilisateurComponent implements OnInit {
       baseZIndex: 10000,
     });
   }
-  supprimerUtilisateur(utilisateur) {
-    Swal.fire({
-      title: 'Voulez-vous supprimer le centre des services fiscaux '+utilisateur.libelle+'?',
-      showDenyButton: true,
-      confirmButtonText: 'Oui',
-      denyButtonText: `Non`,
-      confirmButtonColor:'#99CC33FF',
-        denyButtonColor:'#981639FF',
-        cancelButtonColor:'#333366FF',
-        customClass: {
-          actions: 'my-actions',
-          denyButton: 'order-1 right-gap',
-          confirmButton: 'order-2',
-        }
-    }).then((result) => {
-      if (result.isConfirmed) {
-      // this.utilisateurService
-      //   .deleteUtilisateur(utilisateur.id)
-      //   .subscribe((res: any) => {        
-      //     Swal.fire({
-      //       position: 'center',
-      //       icon: 'success',
-      //       title: 'centre supprimé avec succès.',
-      //       showConfirmButton: false,
-      //       timer: 1500
-      //     })          
-      //     location.reload();
-      //   }),
-      //   (error) => {
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: 'Erreur',
-      //       text: 'Erreur de suppression!',
-      //     })
-      //   }
-  }})
+
+
+  active_desactiveUtilisateur(utilisateur) {
+    let libelle =[];
+   if(utilisateur.active == true){
+    libelle.push("desactiver");
+    libelle.push("desactivé")
+    libelle.push("Desactivation")
+   }else{
+    libelle.push("activer");
+    libelle.push("activé")
+    libelle.push("Activation")
+   }
+   Swal.fire({
+    title: 'Voulez-vous '+libelle[0]+' le compte de '+utilisateur.prenom+'?',
+    showDenyButton: true,
+    confirmButtonText: 'Oui',
+    denyButtonText: `Non`,
+    confirmButtonColor:'#99CC33FF',
+      denyButtonColor:'#981639FF',
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
+  }).then((result) => {
+    if (result.isConfirmed) {
+    this.utilisateurService
+      .active_desactiveUtilisateur(utilisateur)
+      .subscribe((res: any) => {        
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Compte '+libelle[1],
+          showConfirmButton: false,
+          timer: 1500
+        })          
+        location.reload();
+      }),
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: libelle[2]+'échouée!',
+        })
+      }
+}})
 }
 
   modifierUtilisateur(utilisateur) {
@@ -131,7 +144,9 @@ export class ListUtilisateurComponent implements OnInit {
   }
 
   visuliserUtilisateur(utilisateur) {
-    const ref = this.dialogService.open(UpdateUtilisateurComponent, {
+    console.log(utilisateur);
+    
+    const ref = this.dialogService.open(ViewUtilisateurComponent, {
       data: {
         utilisateur: utilisateur,
       },

@@ -1,6 +1,5 @@
-import { Component, Inject, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { CountryISO, SearchCountryField } from "ngx-intl-tel-input";
 import { MessageService } from "primeng/api";
@@ -36,7 +35,6 @@ export class UpdateUtilisateurComponent implements OnInit {
     private utilisateurService : UtilisateurService, private ministereDepensierServices : MinistereDepensierService,
     public activeModal: NgbActiveModal,
     public ref: DynamicDialogRef,
-    private servicemsg: MessageService,
     public config: DynamicDialogConfig,
   ) {
   }
@@ -45,9 +43,7 @@ export class UpdateUtilisateurComponent implements OnInit {
     this.message = "Champ obligatoire";
     this.utilisateur = this.config.data.utilisateur;
     this.profil = this.utilisateur.roles[0];
-    if(!this.utilisateur.minister){
       this.ministereDepensier = this.utilisateur.minister;
-    }
     this.form = this.formBuilder.group({
       prenom: ['', Validators.required],
       nom: ['', Validators.required],

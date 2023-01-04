@@ -46,4 +46,7 @@ export class UtilisateurService extends GenericService {
   getAllRoles(){
     return this.getAll(this.utilisateurUrl+'/getAllRoles')
 }
+active_desactiveUtilisateur(data){
+  return this.add(this.utilisateurUrl+'/'+data.id, data)
+}
 }
