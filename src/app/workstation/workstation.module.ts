@@ -105,6 +105,9 @@ import { ViewUtilisateurComponent } from './components/ADMIN/utilisateurs/visual
     ConventionCessionPMEComponent,
     CodeComponent,
     SignerconventionPMEComponent,
+    SearchFilterComponent,
+    
+
     CorrigerConventionComponent,
     InfosPMEComponent,
     AddMinistereDepensierComponent,

@@ -126,6 +126,7 @@ export class RecevabiliteComponent implements OnInit {
   
 
   paginate(event) { 
+  
     console.log(this.page);
     let statutsParam
     if (Array.isArray(this.paramStatuts)) {
