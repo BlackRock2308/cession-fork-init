@@ -34,6 +34,7 @@ message:string = "";
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   submit: boolean = false;
+  messageCNI:string='';
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
@@ -41,7 +42,8 @@ message:string = "";
     private utilisateurService: UtilisateurService,
     private centreDesServicesFiscauxService: CentreDesServicesFiscauxService,
     private formeJuridiqueService : FormeJuridiqueService
-  ) { this.informationsForm = this.formBuilder.group({
+  ) {
+     this.informationsForm = this.formBuilder.group({
     raisonSocial: ['', Validators.required],
     formeJuridique: ['', Validators.required],
     centreFiscal: ['', Validators.required],
@@ -64,10 +66,12 @@ message:string = "";
   }); }
 
   ngOnInit(): void {
-    this.message = "Champ obligatoire"
+    this.message = "Champ obligatoire";
+    this.messageCNI = "Renseigner 13 caratères";
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme;
+     this.informationsForm.value = this.pme;
       this.getFormeJuridiques();
       this.getCentreFiscals();
     })
@@ -76,11 +80,21 @@ message:string = "";
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
         !!control.parent.value && !!control.value &&
-        control.value.length === 13
+        control.value.length === 13 && this.getPremierChiffre(control.value)
         ? null
         : { isMatching: false };
     };
   }
+
+  getPremierChiffre(cni){
+    if(cni[0] == '1' || cni[0] == '2' ){
+      this.messageCNI = "Renseigner 13 caratères";
+      return true;
+    }
+    this.messageCNI = "CNI doit commencer par 1 ou 2"
+    return false;
+  }
+
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
@@ -117,6 +131,8 @@ message:string = "";
 
   onSubmit() {
     this.submit = true;
+    console.log(this.informationsForm);
+    
     // if (this.informationsForm.invalid ) {
     //   return;
     // }

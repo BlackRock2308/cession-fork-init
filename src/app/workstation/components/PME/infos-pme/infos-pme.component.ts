@@ -29,21 +29,6 @@ message:string = "";
   formeJuridique:FormeJuridique ={};
   centreFiscals: any[];
   centreFiscal: CentreDesServicesFiscaux={}; 
-  ninea : number
-  activitePrincipale: string
-  email : string
-  prenomRepresentant: string
-  nomRepresentant: string
-  dateCreation:Date
-  effectifPermanent: number
-  nombreEtablissementSecondaires: number
-  chiffresDaffaires: number
-  cniRepresentant: number
-  capitalSocial: number
-  adressePME: string;
-  rccm : string
-  raisonSocial : string;
-  telephonePME: string;
   pme: PME;
   idPme: number;
   observation: Observation = {};
@@ -52,6 +37,7 @@ message:string = "";
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   submit: boolean = false;
+  messageCNI:string = '';
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
@@ -78,7 +64,7 @@ message:string = "";
         nombreEtablissementSecondaires: [''],
         chiffresDaffaires: [''],
         cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
-        dateImmatriculation: ['' , [Validators.required, this.matchValues()]],
+        dateImmatriculation: ['' , [this.matchValues()]],
         telephonePME: ['', Validators.required],
         capitalSocial: [''],
         autorisationMinisterielle: ['']
@@ -86,30 +72,15 @@ message:string = "";
     }
 
   ngOnInit(): void {
+    this.messageCNI = "Renseigner 13 caratères";
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
       this.pme = this.demande.pme;
-    this.telephonePME = this.tokenStorage.getPME().telephonePME;
-    this.raisonSocial = this.tokenStorage.getPME().raisonSocial;
-    this.adressePME = this.tokenStorage.getPME().adressePME;
-    this.prenomRepresentant = this.tokenStorage.getPME().prenomRepresentant;
-    this.dateCreation = this.tokenStorage.getPME().dateCreation;
-    this.formeJuridique = this.tokenStorage.getPME().formeJuridique;
-    this.cniRepresentant = this.tokenStorage.getPME().cniRepresentant;
-    this.centreFiscal = this.tokenStorage.getPME().centreFiscal;
-    this.activitePrincipale = this.tokenStorage.getPME().activitePrincipale;
-    this.capitalSocial = this.tokenStorage.getPME().capitalSocial;
-    this.effectifPermanent = this.tokenStorage.getPME().effectifPermanent;
-    this.nombreEtablissementSecondaires = this.tokenStorage.getPME().nombreEtablissementSecondaires;
-    this.email = this.tokenStorage.getPME().email;
-    this.ninea=this.tokenStorage.getPME().ninea;
-    this.rccm=this.tokenStorage.getPME().rccm;
+      console.log(this.pme);      
+    this.formeJuridique = this.pme.formeJuridique;
+    this.centreFiscal = this.pme.centreFiscal;
     this.getFormeJuridiques();
     this.getCentreFiscals();
-
-
-
-
   })
 
 }
@@ -117,10 +88,19 @@ matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
   return (control: AbstractControl): ValidationErrors | null => {
     return !!control.parent &&
       !!control.parent.value && !!control.value &&
-      control.value.length === 13
+      control.value.length === 13 && this.getPremierChiffre(control.value)
       ? null
       : { isMatching: false };
   };
+}
+
+getPremierChiffre(cni){
+  if(cni[0] == '1' || cni[0] == '2' ){
+    this.messageCNI = "Renseigner 13 caratères";
+    return true;
+  }
+  this.messageCNI = "CNI doit commencer par 1 ou 2"
+  return false;
 }
 matchValues(): (AbstractControl) => ValidationErrors | null {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -191,9 +171,6 @@ onSubmit() {
       Swal.fire('Traitement de la mise a jour non effective!', '', 'info')
     }
   })
-
-
-
   //fermer la boite de dialogue
   this.demandeAdhesionService.setDialog(false)
 
@@ -201,16 +178,13 @@ onSubmit() {
 
 
 
-majPME() {
-  
+majPME() {  
   let body = {
-    idPME: this.tokenStorage.getPME().idPME,
+    idPME: this.pme.idPME,
    
     ...this.informationsForm.value
   }
-  this.pmeService.updatePme(body).subscribe((result) => {
-   
-      
+  this.pmeService.updatePme(body).subscribe((result) => { 
       () => {
         Swal.fire({
           position: 'center',

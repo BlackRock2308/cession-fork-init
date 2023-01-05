@@ -11,7 +11,7 @@
                         <span class="h5texte">NINEA</span>
                         <div class="p-inputgroup">
                             <span class="p-float-label">
-                                <input type="text" [(ngModel)]="ninea" placeholder="{{ninea}}" formControlName="ninea"
+                                <input type="text" [(ngModel)]="pme.ninea" formControlName="ninea"
                                     id="inputtext" pInputText [disabled]="true" />
                                 <label for="inputtext"></label>
                             </span>
@@ -21,7 +21,7 @@
                         <span class="h5texte">RCCM</span>
                         <div class="p-inputgroup">
                             <span class="p-float-label">
-                                <input type="text" [(ngModel)]="rccm" placeholder="{{rccm}}" formControlName="rccm"
+                                <input type="text" [(ngModel)]="pme.rccm" formControlName="rccm"
                                     id="inputtext" pInputText [disabled]="true" />
                                 <label for="inputtext"></label>
                             </span>
@@ -31,10 +31,9 @@
                 <div class="form-row justify-content-center">
                     <div class="field col-6 md:col-4">
                         <span class="h5texte">Denomination</span>
-
                         <span class="p-float-label  p-input-icon-left">
                             <i class="pi pi-home"></i>
-                            <input type="text" [(ngModel)]="raisonSocial" placeholder="{{raisonSocial}}"
+                            <input type="text" [(ngModel)]="pme.raisonSocial" 
                                 formControlName="raisonSocial" id="inputtext" pInputText>
                             <label for="inputtext"></label>
                         </span>
@@ -44,7 +43,7 @@
 
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-globe"></i>
-                            <input [(ngModel)]="email" placeholder="{{email}}" formControlName="email" type="text"
+                            <input [(ngModel)]="pme.email" formControlName="email" type="text"
                                 id="inputtext-left" pInputText>
                             <label for="inputtext-left"></label>
                         </span>
@@ -54,41 +53,32 @@
 
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-user"></i>
-                            <input [(ngModel)]="prenomRepresentant" placeholder="{{prenomRepresentant}}"
+                            <input [(ngModel)]="pme.prenomRepresentant"
                                 formControlName="prenomRepresentant" type="text" id="inputtext-right" pInputText>
                             <label for="inputtext-left"></label>
-
                         </span>
-
                     </div>
                 </div>
                 <div class="form-row justify-content-center">
-
-
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Nom Représentant</span>
-
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-user"></i>
-                            <input type="text" id="inputtext-right" pInputText [(ngModel)]="nomRepresentant"
-                                placeholder="{{nomRepresentant}}" formControlName="nomRepresentant">
+                            <input type="text" id="inputtext-right" pInputText [(ngModel)]="pme.nomRepresentant"
+                              formControlName="nomRepresentant">
                             <label for="inputtext-right"></label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Date Création</span>
-
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-calendar"></i>
-                            <input type="text" [(ngModel)]="dateCreation" placeholder="{{dateCreation}}"
-                                formControlName="dateCreation" id="inputtext-right" pInputText>
+                            <input type="text" [(ngModel)]="pme.dateCreation" formControlName="dateCreation" id="inputtext-right" pInputText>
                             <label for="inputtext-right"></label>
                         </span>
-
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Forme Juridique</span>
-
                         <span class="p-float-label">
                             <p-dropdown [options]="formeJuridiques" [style]="{width: '100%'}"
                                 formControlName="formeJuridique"  [(ngModel)]="formeJuridique" optionLabel="libelle" [filter]="true"
@@ -111,15 +101,12 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="form-row justify-content-center">
-
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Téléphone</span>
-
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-phone"></i>
-                            <input type="text" [(ngModel)]="telephonePME" placeholder="{{telephonePME}}"
+                            <input type="text" [(ngModel)]="pme.telephonePME"
                                 formControlName="telephonePME" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
@@ -128,7 +115,7 @@
                         <span class="h5texte">N° CNI du représentant</span>
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-wallet"></i>
-                            <input type="text" [(ngModel)]="cniRepresentant" placeholder="{{cniRepresentant}}"
+                            <input type="text" [(ngModel)]="pme.cniRepresentant" 
                                 formControlName="cniRepresentant" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
@@ -159,13 +146,11 @@
                     </div>
                 </div>
                 <div class="form-row justify-content-center">
-
-
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Adresse</span>
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-home"></i>
-                            <input type="text" [(ngModel)]="adressePME" placeholder="{{adressePME}}"
+                            <input type="text" [(ngModel)]="pme.adressePME" 
                                 formControlName="adressePME" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
@@ -173,7 +158,7 @@
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Activité Principale</span>
                         <span class="p-float-label">
-                            <input type="text" [(ngModel)]="activitePrincipale" placeholder="{{activitePrincipale}}"
+                            <input type="text" [(ngModel)]="pme.activitePrincipale"
                                 formControlName="activitePrincipale" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
@@ -182,20 +167,18 @@
                         <span class="h5texte">Capital Social</span>
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-money-bill"></i>
-                            <input type="text" [(ngModel)]="capitalSocial" placeholder="{{capitalSocial}}"
+                            <input type="text" [(ngModel)]="pme.capitalSocial"
                                 formControlName="capitalSocial" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
                     </div>
                 </div>
-
                 <div class="form-row justify-content-center">
-
                     <div class="field col-12 md:col-4">
                         <span class="h5texte">Effectif Permanent</span>
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-users"></i>
-                            <input type="text" [(ngModel)]="effectifPermanent" placeholder="{{effectifPermanent}}"
+                            <input type="text" [(ngModel)]="pme.effectifPermanent"
                                 formControlName="effectifPermanent" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
@@ -204,8 +187,7 @@
                         <span class="h5texte">Nombre d'établissements</span>
                         <span class="p-float-label p-input-icon-left">
                             <i class="pi pi-chart-bar"></i>
-                            <input type="text" [(ngModel)]="nombreEtablissementSecondaires"
-                                placeholder="{{nombreEtablissementSecondaires}}"
+                            <input type="text" [(ngModel)]="pme.nombreEtablissementSecondaires"
                                 formControlName="nombreEtablissementSecondaires" id="inputtext-right" pInputText>
                             <label for="chips"></label>
                         </span>
@@ -216,7 +198,6 @@
                         <button id="valider" pButton pRipple label="Annuler" icon="pi pi-times"
                             class="float-right dangerButton" routerLink="../demandes_en_cours"></button>
                     </div>
-
                     <div class="col-3">
                         <button type="submit" id="valider" pButton pRipple label="Enregistrer" icon="pi pi-check"
                             class="float-right successButton" type="submit"></button>

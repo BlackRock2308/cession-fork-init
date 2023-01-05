@@ -46,7 +46,7 @@
                 <div class="field grid" *ngIf="profil?.libelle === 'ORDONNATEUR'">
                     <label htmlFor="ministere" class="col-12 mb-2 md:col-3 md:mb-0">Ministère</label>
                     <div class="col-12 md:col-9">
-                        <input pInputText id="ministere" type="text" [(ngModel)]="ministereDepensier.libelle" disabled="true"/>  
+                        <textarea pInputText id="ministere" type="text" [(ngModel)]="ministereDepensier.libelle" disabled="true"></textarea>  
                     </div>
                 </div>
         </div>

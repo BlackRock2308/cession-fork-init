@@ -1,24 +1,14 @@
-<!-- <div class="layout-topbar-left">
-
-</div>
-<div class="layout-megamenu-wrapper">
-    <a class="">
-        <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.png" alt="mirage-layout" />
-
-    </a>
-
-</div> -->
 <div class="adhesion-topbar">
     <div class="layout-topbar-wrapper">
-      <div class="layout-topbar-left">
-        <div class="layout-megamenu-wrapper">
-          <a class="" >
-            <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.png" alt="mirage-layout" />
-          </a>  
+        <div class="layout-topbar-left">
+            <div class="layout-megamenu-wrapper">
+                <a class="">
+                    <img class="logo-menu" src="../../../assets/layout/images/logo-cdmp.png" alt="mirage-layout" />
+                </a>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 <div class="card card-w-title">
     <h4 style="text-align: center;">Demande d'adhésion</h4>
 </div>
@@ -26,103 +16,98 @@
     <div class="mt-8 p-fluid " style="width:70vw; right: 100px ; position: relative;">
         <p-card>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-               <div style="width: 90%;margin: 0 0 0 7.5rem;">
-                <div class="field grid">
-                    <label htmlFor="name3" class="col-12 md:col-1 mb-2 text">NINEA<span class="required">*</span></label>
-                    <div class="col-12 md:col-4 mb-2">
-                        <input pInputText formControlName="ninea" placeholder="10585678" type="text" id="ninea">
-                        <span *ngIf="submit && f['ninea'].errors! && !f['ninea'].hasError('required')"
-                            class="error-validation">Renseigner au plus 13 caractères</span>
-                        <span *ngIf="submit && f['ninea'].hasError('required')" class="error-validation">{{message}}</span>
-                    </div>
-                    <div class="col-12 md:col-5 mb-2">
-                        <div class="col-12">
-                            <div class="formgroup-inline">
-                                <div class="field col-12 md:col-12 mb-1">
-                                    <div class=" inputContainer">
-                                        <span class="p-float-label">
-                                            <input *ngIf="selectedNINEAFiles==null;else elseNINEABlock" id="NINEAfile"
-                                                type="text" pInputText
-                                                pTooltip="Charger le document de référence du NINEA">
-                                            <label for="NINEAfile"></label>
-                                        </span>
-                                        <ng-template #elseNINEABlock id="NINEAfile" type="text" pInputText
-                                            pTooltip="Charger document">
-                                            <input id="NINEAfile" type="text" pInputText
-                                                pTooltip="Charger le document de référence du NINEA"
-                                                placeholder="{{selectedNINEAFiles.name}}">
-                                        </ng-template>
-                                        <input formControlName="nineaFile" class="hidden" type="file" accept=".pdf,.
+                <div style="width: 90%;margin: 0 0 0 7.5rem;">
+                    <div class="field grid">
+                        <label htmlFor="name3" class="col-12 md:col-1 mb-2 text">NINEA<span
+                                class="required">*</span></label>
+                        <div class="col-12 md:col-4 mb-2">
+                            <input pInputText formControlName="ninea" placeholder="10585678" type="text" id="ninea">
+                            <span *ngIf="submit && f['ninea'].errors! && !f['ninea'].hasError('required')"
+                                class="error-validation">Renseigner au plus 13 caractères</span>
+                            <span *ngIf="submit && f['ninea'].hasError('required')"
+                                class="error-validation">{{message}}</span>
+                        </div>
+                        <div class="col-12 md:col-5 mb-2">
+                            <div class="col-12">
+                                <div class="formgroup-inline">
+                                    <div class="field col-12 md:col-12 mb-1">
+                                        <div class=" inputContainer">
+                                            <span class="p-float-label">
+                                                <input *ngIf="selectedNINEAFiles==null;else elseNINEABlock"
+                                                    id="NINEAfile" type="text" pInputText
+                                                    pTooltip="Charger le document de référence du NINEA">
+                                                <label for="NINEAfile"></label>
+                                            </span>
+                                            <ng-template #elseNINEABlock id="NINEAfile" type="text" pInputText
+                                                pTooltip="Charger document">
+                                                <input id="NINEAfile" type="text" pInputText
+                                                    pTooltip="Charger le document de référence du NINEA"
+                                                    placeholder="{{selectedNINEAFiles.name}}">
+                                            </ng-template>
+                                            <input formControlName="nineaFile" class="hidden" type="file" accept=".pdf,.
                                             PDF" id="upload-NINEAfile" name="upload-NINEAfile" ngf-max-size="2MB"
-                                            (change)="selectNINEAFile($event)">
-                                        <button type="button" pButton pRipple icon="pi pi-upload"
-                                            class="upload p-button-rounded p-button-text"
-                                            id="upload-NINEAfile" (click)="handleNINEAClick()"></button>
-                                        <span *ngIf="submit && f['nineaFile'].errors"
-                                            class="error-validation">{{message}}</span>
+                                                (change)="selectNINEAFile($event)">
+                                            <button type="button" pButton pRipple icon="pi pi-upload"
+                                                class="upload p-button-rounded p-button-text" id="upload-NINEAfile"
+                                                (click)="handleNINEAClick()"></button>
+                                            <span *ngIf="submit && f['nineaFile'].errors"
+                                                class="error-validation">{{message}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                </div>
-                <div class="field grid">
-                    <label htmlFor="name3" class="col-12 md:col-1 mb-2 text">RCCM<span class="required">*</span></label>
-                    <div class="col-12 md:col-4">
-                        <input pInputText formControlName="rccm" placeholder="SN-DKR 2011 G 24532" type="text"
-                            id="rccm">
-                        <span *ngIf="submit && f['rccm'].errors" class="error-validation">{{message}}</span>
-                    </div>
-
-
-
-
-                    <div class="col-12 md:col-5 mb-2">
-                        <div class="col-12">
-                            <div class="formgroup-inline">
-                                <div class="field col-12 md:col-12 mb-1">
-                                    <div class="inputContainer">
-                                        <span class="p-float-label">
-                                            <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile"
-                                                type="text" pInputText
-                                                pTooltip="Charger le document de référence du RCCM">
-                                            <label for="RCCMfile"></label>
-                                        </span>
-                                        <ng-template #elseRCCMBlock id="RCCMfile" type="text" pInputText
-                                            pTooltip="Upload file">
-                                            <input id="RCCMfile" type="text" pInputText
-                                                pTooltip="Changer le document de référence du RCCM"
-                                                placeholder="{{selectedRCCMFiles.name}}">
-                                        </ng-template>
-                                        <input formControlName="rccmFile" class="hidden" type="file" accept=".pdf,.
+                    <div class="field grid">
+                        <label htmlFor="name3" class="col-12 md:col-1 mb-2 text">RCCM<span
+                                class="required">*</span></label>
+                        <div class="col-12 md:col-4">
+                            <input pInputText formControlName="rccm" placeholder="SN-DKR 2011 G 24532" type="text"
+                                id="rccm">
+                            <span *ngIf="submit && f['rccm'].errors" class="error-validation">{{message}}</span>
+                        </div>
+                        <div class="col-12 md:col-5 mb-2">
+                            <div class="col-12">
+                                <div class="formgroup-inline">
+                                    <div class="field col-12 md:col-12 mb-1">
+                                        <div class="inputContainer">
+                                            <span class="p-float-label">
+                                                <input *ngIf="selectedRCCMFiles==null;else elseRCCMBlock" id="RCCMfile"
+                                                    type="text" pInputText
+                                                    pTooltip="Charger le document de référence du RCCM">
+                                                <label for="RCCMfile"></label>
+                                            </span>
+                                            <ng-template #elseRCCMBlock id="RCCMfile" type="text" pInputText
+                                                pTooltip="Upload file">
+                                                <input id="RCCMfile" type="text" pInputText
+                                                    pTooltip="Changer le document de référence du RCCM"
+                                                    placeholder="{{selectedRCCMFiles.name}}">
+                                            </ng-template>
+                                            <input formControlName="rccmFile" class="hidden" type="file" accept=".pdf,.
                                         PDF" id="upload-RCCMfile" name="upload-RCCMfile" ngf-max-size="2MB"
-                                            (change)="selectRCCMFile($event)">
-                                        <button type="button" pButton pRipple icon="pi pi-upload"
-                                            class="upload p-button-rounded p-button-text " id="upload-RCCMfile"
-                                            (click)="handleRCCMClick()"></button>
-                                        <span *ngIf="submit && f['rccmFile'].errors"
-                                            class="error-validation">{{message}}</span>
+                                                (change)="selectRCCMFile($event)">
+                                            <button type="button" pButton pRipple icon="pi pi-upload"
+                                                class="upload p-button-rounded p-button-text " id="upload-RCCMfile"
+                                                (click)="handleRCCMClick()"></button>
+                                            <span *ngIf="submit && f['rccmFile'].errors"
+                                                class="error-validation">{{message}}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- <input formControlName="rccmFile" class="hidden" type="file" accept=".pdf,.
-                                PDF" id="upload-RCCMfile" name="upload-RCCMfile" ngf-max-size="2MB"
-                                    (change)="selectRCCMFile($event)"> -->
                             </div>
                         </div>
                     </div>
                 </div>
-               </div>
                 <div>
-                    <br/>
+                    <br />
                     <div class="stepsdemo-content">
                         <p-card>
                             <ng-template pTemplate="content">
                                 <div class="p-formgrid p-fluid grid row container">
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Dénomination<span class="required">*</span></label>
+                                            style="font-weight: bold;color: #203359;">Dénomination<span
+                                                class="required">*</span></label>
                                         <div class="p-inputgroup">
                                             <span class="p-float-label">
                                                 <input pInputText id="name3" type="text"
@@ -134,24 +119,23 @@
                                             class="error-validation">{{message}}</span>
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Email<span class="required">*</span></label>
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Email<span
+                                                class="required">*</span></label>
                                         <div class="p-inputgroup">
                                             <span class="p-float-label">
                                                 <input formControlName="email" pInputText id="email3" type="text"
-                                                placeholder="exemple@mail.sn"
-                                                    style="width: 100%;" />
+                                                    placeholder="exemple@mail.sn" style="width: 100%;" />
                                             </span>
                                         </div>
-                        <span *ngIf="submit && f['email'].errors! && !f['email'].hasError('required')"
-                            class="error-validation">Renseigner un bon email</span>
-                        <span *ngIf="submit && f['email'].hasError('required')" class="error-validation">{{message}}</span>
-                   
-
+                                        <span *ngIf="submit && f['email'].errors! && !f['email'].hasError('required')"
+                                            class="error-validation">Renseigner un bon email</span>
+                                        <span *ngIf="submit && f['email'].hasError('required')"
+                                            class="error-validation">{{message}}</span>
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;"> Prénom représentant<span class="required">*</span>
-                                             <span class="required"></span></label>
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;"> Prénom
+                                            représentant<span class="required">*</span>
+                                            <span class="required"></span></label>
                                         <div class="p-inputgroup">
                                             <span class="p-float-label">
                                                 <input pInputText id="name3" type="text" placeholder="Prénom "
@@ -160,19 +144,19 @@
                                         </div>
                                         <span *ngIf="submit && f['prenomRepresentant'].errors"
                                             class="error-validation">{{message}}</span>
-
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nom représentant<span class="required">*</span>
-                                             <span class="required"></span></label>
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nom
+                                            représentant<span class="required">*</span>
+                                            <span class="required"></span></label>
                                         <div class="p-inputgroup">
                                             <span class="p-float-label">
                                                 <input pInputText id="name3" type="text" placeholder="Nom"
                                                     formControlName="nomRepresentant" style="width: 100%;" />
                                             </span>
                                         </div>
-                                        <span *ngIf="submit && f['nomRepresentant'].errors" class="error-validation">{{message}}</span>
-
+                                        <span *ngIf="submit && f['nomRepresentant'].errors"
+                                            class="error-validation">{{message}}</span>
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
@@ -185,56 +169,61 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Forme Juridique<span class="required">*</span><span class="required"></span></label>
-                                        <div class="p-inputgroup">                                            
-
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Forme
+                                            Juridique<span class="required">*</span><span
+                                                class="required"></span></label>
+                                        <div class="p-inputgroup">
                                             <p-dropdown [options]="formeJuridiques" [style]="{width: '100%'}"
-                                            formControlName="formeJuridique" [(ngModel)]="formeJuridique" optionLabel="libelle" [filter]="true" filterBy="libelle"
-                                            [showClear]="true" placeholder="Selectionner une forme" [ngStyle]="{'width': '100%'}">
-                                            <ng-template pTemplate="selectedItem">
-                                                <div class="country-item country-item-value" *ngIf="formeJuridique">
-                                                    <div>{{formeJuridique.code}}</div>
-                                                </div>
-                                            </ng-template>
-                                            <ng-template let-formeJuridique pTemplate="item">
-                                                <div class="country-item">
-                                                    <div>{{formeJuridique.libelle}}</div>
-                                                </div>
-                                            </ng-template>
-                                        </p-dropdown>                                           
+                                                formControlName="formeJuridique" [(ngModel)]="formeJuridique"
+                                                optionLabel="libelle" [filter]="true" filterBy="libelle"
+                                                [showClear]="true" placeholder="Selectionner une forme"
+                                                [ngStyle]="{'width': '100%'}">
+                                                <ng-template pTemplate="selectedItem">
+                                                    <div class="country-item country-item-value" *ngIf="formeJuridique">
+                                                        <div>{{formeJuridique.code}}</div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-formeJuridique pTemplate="item">
+                                                    <div class="country-item">
+                                                        <div>{{formeJuridique.libelle}}</div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-dropdown>
 
                                         </div>
                                         <span *ngIf="submit && f['formeJuridique'].errors"
-                                        class="error-validation">{{message}}</span>
+                                            class="error-validation">{{message}}</span>
                                     </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">N° CNI du représentant<span
-                                                class="required">*</span></label>
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">N° CNI du
+                                            représentant</label>
                                         <div class="p-inputgroup">
                                             <span class="p-float-label">
-                                                <input pInputText id="name3" type="text" placeholder="00000000000"
+                                                <input pInputText id="name3" type="text"
                                                     formControlName="cniRepresentant" style="width: 100%;" />
                                             </span>
-                                            
-
                                         </div>
-                                        <span *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')"
-                                        class="error-validation">Veuillez renseigner 13 caratères</span>
+                                        <span
+                                            *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')"
+                                            class="error-validation">{{messageCNI}}</span>
+                                        <span *ngIf="submit && f['cniRepresentant'].hasError('required')"
+                                            class="error-validation">{{message}}</span>
                                     </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Téléphone<span class="required">*</span><span class="required"></span></label>
-                                            <ngx-intl-tel-input [preferredCountries]="preferredCountries"
-                                                [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
-                                                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-                                                [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal" [maxLength]="15"
-                                                [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone"
-                                                formControlName="telephonePME" >
-                                            </ngx-intl-tel-input>
-                                            <span *ngIf="submit && f['telephonePME'].invalid && !f['telephonePME'].hasError('required')"
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Téléphone<span
+                                                class="required">*</span><span class="required"></span></label>
+                                        <ngx-intl-tel-input [preferredCountries]="preferredCountries"
+                                            [enableAutoCountrySelect]="false" [enablePlaceholder]="false"
+                                            [searchCountryFlag]="true"
+                                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Senegal"
+                                            [maxLength]="15" [phoneValidation]="true"
+                                            [separateDialCode]="separateDialCode" name="phone"
+                                            formControlName="telephonePME">
+                                        </ngx-intl-tel-input>
+                                        <span
+                                            *ngIf="submit && f['telephonePME'].invalid && !f['telephonePME'].hasError('required')"
                                             class="error-validation">Renseigner un bon numéro</span>
                                         <span *ngIf="submit && f['telephonePME'].hasError('required')"
                                             class="error-validation">{{message}}</span>
@@ -242,10 +231,9 @@
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Centre
                                             Fiscal<span class="required">*</span><span class="required"></span></label>
-                                            
-                                            <p-dropdown [options]="centreFiscals" [style]="{width: '100%'}"
-                                            formControlName="centreFiscal" [(ngModel)]="centreFiscal" optionLabel="libelle" [filter]="true" filterBy="libelle"
-                                            [showClear]="true" 
+                                        <p-dropdown [options]="centreFiscals" [style]="{width: '100%'}"
+                                            formControlName="centreFiscal" [(ngModel)]="centreFiscal"
+                                            optionLabel="libelle" [filter]="true" filterBy="libelle" [showClear]="true"
                                             placeholder="Sélectionnez un centre fiscal" [ngStyle]="{'width': '100%'}">
                                             <ng-template pTemplate="selectedItem">
                                                 <div class="country-item country-item-value" *ngIf="centreFiscal">
@@ -258,113 +246,102 @@
                                                 </div>
                                             </ng-template>
                                         </p-dropdown>
-                                                                                 
+
                                         <span *ngIf="submit && f['centreFiscal'].errors"
-                                                class="error-validation">{{message}}</span>
+                                            class="error-validation">{{message}}</span>
                                     </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359; width: 100%;">Date de création<span class="required">*</span>
+                                            style="font-weight: bold;color: #203359; width: 100%;">Date de création<span
+                                                class="required">*</span>
                                             <span class="required"></span></label>
-                                        <p-calendar inputId="dateFormat" formControlName="dateCreation"  dateFormat="dd/mm/yy" [maxDate]="dateTime"
-                                            [ngStyle]="{'width': '100%'}">
+                                        <p-calendar inputId="dateFormat" formControlName="dateCreation"
+                                            dateFormat="dd-mm-yy" [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
                                         </p-calendar>
                                         <span *ngIf="submit && f['dateCreation'].errors"
                                             class="error-validation">{{message}}</span>
 
-                                        </div>
-                                   
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Adresse/BP<span class="required"></span></label>
-                                        <div class="p-inputgroup">
-                                                    <span class="p-float-label">
-                                            <input pInputText id="name3" type="text" placeholder="Adresse" formControlName="adressePME"
-                                                style="width: 100%;" />
-                                                </span>
-                                        </div>
                                     </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Localité<span class="required"></span></label>
-                                        <div class="p-inputgroup">
-                                                    <span class="p-float-label">
-                                            <input pInputText id="name3" type="text" formControlName="localite" style="width: 100%;"/>
-                                        </span>
-                                        </div>
-                                    </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Contrôle<span class="required"></span></label>
-                                        <div class="p-inputgroup">
-                                                    <span class="p-float-label">
-                                            <input pInputText id="name3" type="number" formControlName="controle" style="width: 100%;" />
-                                       </span>
-                                        </div>
-                                    </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Activité Principale<span
+
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Adresse/BP<span
                                                 class="required"></span></label>
                                         <div class="p-inputgroup">
-                                                    <span class="p-float-label">
-                                            <input pInputText id="name3" type="text" placeholder="Secteur d'activité"
-                                                formControlName="activitePrincipale" style="width: 100%;" />
-                                                </span>
+                                            <span class="p-float-label">
+                                                <input pInputText id="name3" type="text" placeholder="Adresse"
+                                                    formControlName="adressePME" style="width: 100%;" />
+                                            </span>
                                         </div>
                                     </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Autorisation Ministérielle <span
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Localité<span
                                                 class="required"></span></label>
                                         <div class="p-inputgroup">
-                                                    <span class="p-float-label">
-                                            <input pInputText id="name3" type="text" formControlName="autorisationMinisterielle"
-                                                style="width: 100%;" />
-                                                </span>
+                                            <span class="p-float-label">
+                                                <input pInputText id="name3" type="text" formControlName="localite"
+                                                    style="width: 100%;" />
+                                            </span>
                                         </div>
                                     </div>
-                                    <!-- <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Registre de commerce<span
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Contrôle<span
                                                 class="required"></span></label>
                                         <div class="p-inputgroup">
-                                                    <span class="p-float-label">
-                                            <input pInputText id="name3" type="text" placeholder="SN DKR 2013 A 10515"
-                                                formControlName="registre" style="width: 100%;" />
-                                                </span>
+                                            <span class="p-float-label">
+                                                <input pInputText id="name3" type="number" formControlName="controle"
+                                                    style="width: 100%;" />
+                                            </span>
                                         </div>
-                                    </div> -->
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Date d'immatriculation<span
-                                                class="required"></span></label>
-                                            <p-calendar inputId="dateFormat"   dateFormat="dd/mm/yy" formControlName="dateImmatriculation"   [minDate]="form.value['dateCreation']" [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
-                                           </p-calendar>
-                                           <span *ngIf="!form.value['dateCreation'] && form.controls.dateImmatriculation.touched"
-                                            class="error-validation">Veuillez renseigner la date de création d'abord.</span>
                                     </div>
-                                    
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Capital Social<span class="required"></span></label>
-                                            <p-inputNumber formControlName="capitalSocial" [(ngModel)]="capitalSocial" placeholder="{{capitalSocial}}" mode="currency" currency="CFA">
-                                            </p-inputNumber>
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Activité
+                                            Principale<span class="required"></span></label>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                                <input pInputText id="name3" type="text"
+                                                    placeholder="Secteur d'activité"
+                                                    formControlName="activitePrincipale" style="width: 100%;" />
+                                            </span>
                                         </div>
-                                    <div  class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3"
-                                            style="font-weight: bold;color: #203359;">Dernier chiffre d'affaires déclaré<span
-                                                class="required"></span></label>                      
-                                            <p-inputNumber formControlName="chiffresDaffaires" [(ngModel)]="chiffresDaffaires" placeholder="{{chiffresDaffaires}}"  mode="currency" currency="CFA">
-                                            </p-inputNumber>
                                     </div>
-                                    <!-- <div class="field grid col-12 md:col-4 mr-2">
-                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Chiffre
-                                            d'affaires<span class="required"></span></label>
-                                        <p-inputNumber formControlName="chiffresDaffaires" mode="currency"
-                                            currency="CFA">
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Autorisation
+                                            Ministérielle <span class="required"></span></label>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                                <input pInputText id="name3" type="text"
+                                                    formControlName="autorisationMinisterielle" style="width: 100%;" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date
+                                            d'immatriculation<span class="required"></span></label>
+                                        <p-calendar inputId="dateFormat" dateFormat="dd-mm-yy"
+                                            formControlName="dateImmatriculation" [minDate]="form.value['dateCreation']"
+                                            [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">
+                                        </p-calendar>
+                                        <span
+                                            *ngIf="!form.value['dateCreation'] && form.controls.dateImmatriculation.touched"
+                                            class="error-validation">Veuillez renseigner la date de création
+                                            d'abord.</span>
+                                    </div>
+
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Capital
+                                            Social<span class="required"></span></label>
+                                        <p-inputNumber formControlName="capitalSocial" [(ngModel)]="capitalSocial"
+                                            placeholder="{{capitalSocial}}" mode="currency" currency="CFA">
                                         </p-inputNumber>
-                                    </div> -->
+                                    </div>
+                                    <div class="field grid col-12 md:col-4 mr-2">
+                                        <label htmlFor="name3" style="font-weight: bold;color: #203359;">Dernier chiffre
+                                            d'affaires déclaré<span class="required"></span></label>
+                                        <p-inputNumber formControlName="chiffresDaffaires"
+                                            [(ngModel)]="chiffresDaffaires" placeholder="{{chiffresDaffaires}}"
+                                            mode="currency" currency="CFA">
+                                        </p-inputNumber>
+                                    </div>
                                     <div class="field grid col-12 md:col-4 mr-2">
                                         <label htmlFor="name3" style="font-weight: bold;color: #203359;">Effectif
                                             Permanent<span class="required"></span></label>
@@ -402,7 +379,6 @@
                     </div>
                 </div>
                 <div class="col-12 justify-content-end pr-0 d-flex">
-
                     <div class="col-3">
                         <button pButton pRipple label="Annuler" class="dangerButton" routerLink="../../login"></button>
                     </div>
@@ -411,11 +387,6 @@
                     </div>
                 </div>
             </form>
-
         </p-card>
     </div>
-
-
-
-
 </div>
