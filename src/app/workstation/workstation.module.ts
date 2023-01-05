@@ -46,9 +46,6 @@ import { CodeComponent } from './components/profil/code/code.component';
 import { SignerconventionPMEComponent } from './components/PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { SearchFilterComponent } from './components/generic/search-filter/search-filter.component';
-
-
 import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
 import { AddMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/add-ministereDepensier/add-ministereDepensiers.component';
 import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
