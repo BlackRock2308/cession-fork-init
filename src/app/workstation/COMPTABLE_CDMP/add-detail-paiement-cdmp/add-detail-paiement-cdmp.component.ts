@@ -103,7 +103,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
       title: 'Voulez-vous continuer le paiement?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -132,7 +132,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
             this.uploadFileService
               .uploadFile('/detailsPaiements/', data.id, this.selectedFiles, typeDocument)
               .subscribe((resFil: any) => {
-                console.log(resFil);
+                resFil;
               });
         }
        if(res.status == "503"){
@@ -148,7 +148,7 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Payement CDMP enregistré avec succès.',
+          title: 'Paiement CDMP enregistré avec succès.',
           showConfirmButton: false,
           timer: 1500
         })
@@ -168,10 +168,9 @@ export class AddDetailPaiementCDMPComponent implements OnInit {
         this.observation.statut={}
         this.observation.demandeid =  this.detailPaiement.paiementDto.demandecessionid;
         this.observation.statut.libelle =this.detailPaiement.paiementDto.statutPme.libelle;
-        console.log(this.observation)
 
         this.observationService.postObservation(this.observation).subscribe(data => 
-          console.log(data)
+          data
           );
       };
       } else if (result.isDenied) {

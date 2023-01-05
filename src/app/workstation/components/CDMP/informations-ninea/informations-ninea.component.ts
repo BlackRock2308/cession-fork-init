@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { Observation } from 'src/app/workstation/model/observation';
 import { PME } from 'src/app/workstation/model/pme';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import { UtilisateurService } from 'src/app/workstation/service/utilisateur/utilisateur.service';
 import Swal from 'sweetalert2';
+import { CentreDesServicesFiscauxService } from 'src/app/workstation/service/centreDesServicesFiscaux/centreDesServicesFiscauxService.service';
+import { FormeJuridiqueService } from 'src/app/workstation/service/formeJuridique/formeJuridiqueService.service';
+import { FormeJuridique } from 'src/app/workstation/model/formeJuridique';
+import { CentreDesServicesFiscaux } from 'src/app/workstation/model/centreDesServicesFiscaux';
 @Component({
   selector: 'app-informations-ninea',
   templateUrl: './informations-ninea.component.html',
@@ -24,47 +26,50 @@ message:string = "";
   pme: PME;
   idPme: number;
   observation: Observation = {};
+  
+  formeJuridiques: any[];
+  centreFiscals: any[];
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-  submit: boolean = true;
+  submit: boolean = false;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private demandeAdhesionService: DemandesAdhesionService,
     private pmeService: PmeService,
     private utilisateurService: UtilisateurService,
-
+    private centreDesServicesFiscauxService: CentreDesServicesFiscauxService,
+    private formeJuridiqueService : FormeJuridiqueService
   ) { this.informationsForm = this.formBuilder.group({
     raisonSocial: ['', Validators.required],
     formeJuridique: ['', Validators.required],
     centreFiscal: ['', Validators.required],
-    adressePME: ['', Validators.required],
-    enseigne: ['', Validators.required],
-    localite: ['', Validators.required],
-    controle: ['', Validators.required],
-    activitePrincipale: ['', Validators.required],
-    registre: ['', Validators.required],
+    adressePME: [''],
+    enseigne: [''],
+    localite: [''],
+    controle: [''],
+    activitePrincipale: [''],
     prenomRepresentant: ['', Validators.required],
     nomRepresentant: ['', Validators.required],
-    dateCreation: [''],
-    effectifPermanent: ['', Validators.required],
-    nombreEtablissementSecondaires: ['', Validators.required],
-    chiffresDaffaires: ['', Validators.required],
+    dateCreation: ['', [Validators.required, this.matchValues()]],
+    effectifPermanent: [''],
+    nombreEtablissementSecondaires: [''],
+    chiffresDaffaires: [''],
     cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
-    dateImmatriculation: [''],
+    dateImmatriculation: ['' , [Validators.required, this.matchValues()]],
     telephonePME: ['', Validators.required],
-    capitalSocial: ['', Validators.required],
-    autorisationMinisterielle: ['', Validators.required]
+    capitalSocial: [''],
+    autorisationMinisterielle: ['']
   }); }
 
   ngOnInit(): void {
     this.message = "Champ obligatoire"
     this.demandeAdhesionService.getDemandeObs().subscribe(data => {
       this.demande = data;
-      this.pme = this.demande.pme
-      console.log(this.pme)
-
+      this.pme = this.demande.pme;
+      this.getFormeJuridiques();
+      this.getCentreFiscals();
     })
   }
   matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
@@ -88,25 +93,41 @@ message:string = "";
   get f() {
     return this.informationsForm.controls;
   }
+  getFormeJuridiques(){
+    this.formeJuridiqueService.getAllFormeJuridique()
+    .subscribe((res:FormeJuridique[])=>{
+      if(res.length){
+        this.formeJuridiques = res;
+      }
+    })
+  }
 
+  getCentreFiscals(){
+    this.centreDesServicesFiscauxService.getAllCentreDesServicesFiscaux()
+    .subscribe((res:CentreDesServicesFiscaux[])=>{
+      if(res.length){
+        this.centreFiscals = res;
+      }
+    })
+  }
   prevPage() {
 
     this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/verification']);
   }
 
   onSubmit() {
-    if (this.informationsForm.invalid || this.f['cniRepresentant'].invalid || this.f['dateCreation'].invalid || this.f['dateImmatriculation'].invalid || this.f['telephonePME'].invalid ) {
-      return;
-    }
-    this.submit = false;
+    this.submit = true;
+    // if (this.informationsForm.invalid ) {
+    //   return;
+    // }
     let telephonePME = this.informationsForm.get('telephonePME').value.internationalNumber;
     this.informationsForm.get('telephonePME').setValue(telephonePME);
-
+    this.pme.telephonePME = telephonePME;
     Swal.fire({
       title: 'La demande d\'adhésion sera validée et les informations de la PME mises à jour. Voulez vous continuer?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor: '#99CC33FF',
       denyButtonColor: '#981639FF',
       cancelButtonColor: '#333366FF',
@@ -141,9 +162,7 @@ message:string = "";
     let infoEmail = {
       email: this.pme.email
     }
-    console.log(infoEmail)
     this.utilisateurService.createCompte(infoEmail).subscribe((result) => {
-      console.log(result)
     })
   }
 
@@ -156,10 +175,9 @@ message:string = "";
       idPME: this.pme.idPME,
       ...this.informationsForm.value, ...body2
     }
-    this.pmeService.updatePme(body).subscribe((result) => {
+    this.pmeService.updatePme(this.pme).subscribe((result) => {
       this.demandeAdhesionService.validerAdhesion(this.demande.idDemande).subscribe(
         (result) => {
-          console.log(result)
         },
         () => {
           Swal.fire({
@@ -173,7 +191,7 @@ message:string = "";
             confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
             allowOutsideClick: false
           })
-          
+
         })
         this.createCompte()
     })

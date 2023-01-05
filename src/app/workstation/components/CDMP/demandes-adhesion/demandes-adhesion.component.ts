@@ -54,20 +54,14 @@ export class DemandesAdhesionComponent implements OnInit {
 
   ngOnInit() {
     this.calenderFilter()
-    console.log(this.rangeDates)
-    //this.productDialog = this.communicationService.getDialogObs();
-    //this.productService.getProducts().then(data => this.products = data);
     this.initGetDemandes()
-    // this.demandesAdhesionService.getDemandesAdhesion().subscribe(data => {
-    //   this.demandes = data.content
-    //   console.log(this.demandes)
-    //   //this.demandes.forEach(element =>element.dateDemandeAdhesion=new Date(element.dateDemandeAdhesion))
-    //   console.log(this.demandes[0].dateDemandeAdhesion)
-    // });
+ 
 
     this.cols = [
       { field: 'ninea', header: 'NINEA' },
       { field: 'rccm', header: 'RCCM' },
+      { field: 'raisonSocial', header: 'Raison Sociale' },
+
       { field: 'date_soumission', header: 'Date Soumission' },
       { field: 'statut', header: 'Statut' }
     ];
@@ -75,10 +69,7 @@ export class DemandesAdhesionComponent implements OnInit {
       {label: 'Soumise', value: 'ADHESION_SOUMISE'},
       {label: 'Rejetée', value: 'ADHESION_REJETEE'}
   ]
-    console.log(this.nineas)
-    // this.items1 = [
-    //   { label: 'Liste des demandes' }
-    // ];
+  
 
 
     this.items = [
@@ -163,7 +154,6 @@ filterByStatus(event){
   verifierDemande(demande: DemandeAdhesion) {
     this.demande = { ...demande };
     this.demandeDialog = true;
-    console.log(demande)
     this.demandesAdhesionService.setDemandeObs(demande);
     this.router.navigate(['workstation/cdmp/demandes_en_cours/steps/verification']);
 
@@ -172,8 +162,6 @@ filterByStatus(event){
 
   visualiserDemande(demande: DemandeAdhesion) {
     this.demande = { ...demande };
-    //this.demandeDialog = true;
-    console.log(demande)
     this.demandesAdhesionService.setDemandeObs(demande);
     this.router.navigate(['workstation/cdmp/visualiser-demandes'], {  queryParams: {  page: 'adhesion' } });
     
@@ -210,23 +198,18 @@ filterByStatus(event){
       }
 
       if (this.filterService.filters.is(value,this.rangeDates[0]) && this.rangeDates[1] === null) {
-        console.log(value)
-        console.log(1)
         return true;
     }
    
     if (this.filterService.filters.is(value,this.rangeDates[1])  && this.rangeDates[0] === null) {
-      console.log(2)
         return true;
     }
    
     if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
       this.filterService.filters.after(value,this.rangeDates[0]) && this.filterService.filters.before(value,this.rangeDates[1])) {
-        console.log(3)
         return true;
     }
    
-    console.log(5,this.filterService.filters.after(value,this.rangeDates[0]),this.filterService.filters.before(value,this.rangeDates[1]),value,this.rangeDates[0])
     return false;
    })
    }

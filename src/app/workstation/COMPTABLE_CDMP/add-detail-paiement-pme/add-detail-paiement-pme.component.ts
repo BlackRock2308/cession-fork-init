@@ -105,7 +105,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
     title: 'Voulez-vous continuer le paiement?',
     showDenyButton: true,
     confirmButtonText: 'Oui',
-    denyButtonText: `Annuler`,
+    denyButtonText: `Non`,
     confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -135,7 +135,7 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
             this.uploadFileService
               .uploadFile('/detailsPaiements/', data.id, this.selectedFiles, typeDocument)
               .subscribe((resFil: any) => {
-                console.log(resFil);
+                resFil;
               });
           //}
         }
@@ -144,14 +144,14 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Erreur',
-          text: 'Le montant renseigné dépasse la solde PME!',
+          text: 'Le montant renseigné dépasse le solde à payer à la PME!',
         })
        }else{
         this.close(this.detailPaiement);
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Payement PME enregistré avec succès.',
+          title: 'Paiement PME enregistré avec succès.',
           showConfirmButton: false,
           timer: 1500
         })          
@@ -171,10 +171,9 @@ export class AddDetailsPaiementPMEComponent implements OnInit {
         this.observation.statut={}
         this.observation.demandeid =  this.detailPaiement.paiementDto.demandecessionid;
         this.observation.statut.libelle =this.detailPaiement.paiementDto.statutPme.libelle;
-        console.log(this.observation)
 
         this.observationService.postObservation(this.observation).subscribe(data => 
-          console.log(data)
+          data
           );
       }
     } else if (result.isDenied) {

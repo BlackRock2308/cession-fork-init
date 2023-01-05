@@ -1,14 +1,15 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConventionSignerComponent } from 'src/app/workstation/COMPTABLE_CDMP/convention-signer/convention-signer.component';
 import { ApiSettings } from 'src/app/workstation/generic/const/apiSettings.const';
-import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { SignerconventionPMEComponent } from '../../PME/signer-convention/signerconvention-pme/signerconvention-pme.component';
 import Swal from 'sweetalert2';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { CorrigerConventionComponent } from 'src/app/workstation/COMPTABLE_CDMP/corrigerConvention/corriger-convention/corriger-convention.component';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
+import { Observation } from 'src/app/workstation/model/observation';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-visualiser-document',
@@ -39,32 +40,29 @@ export class VisualiserDocumentComponent implements OnInit {
   observation: void;
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
   observationLibelle: string;
-
+  observationSave: Observation = {};
 
   constructor(public activeModal: NgbActiveModal,
-    private demandeCessionService:DemandesCessionService,
+    private tokenStorage: TokenStorageService,
     public ref: DynamicDialogRef, public dialogService: DialogService, public config: DynamicDialogConfig,
     private observationService:ObservationService) { }
 
 
   ngOnInit() {
-    console.log(this.config.data);
-    
-    this.demande = this.config.data.demande;
+    if(this.config.data.demande){
+      this.demande = this.config.data.demande;
       if(this.demande.idDemande)
       {
         this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
           data => {
               this.observationLibelle=data.libelle
-              console.log(this.observationLibelle)
           })
       }
+    }
 
     this.srcFile = this.config.data.document.urlFile;
-    console.log('test '+this.srcFile)
     this.dowloadFile(this.srcFile);
     this.profil = localStorage.getItem('profil');
-    console.log(this.profil)
 
     this.statut = this.config.data.demande?.statut;
     if (this.config.data.paiement === 'true') {
@@ -95,7 +93,6 @@ export class VisualiserDocumentComponent implements OnInit {
   }
 
   docUploadProgress($event: any) {
-    console.log($event);
     if ($event.loaded == $event.total) {
       this.docLoading = false;
     }
@@ -140,7 +137,6 @@ export class VisualiserDocumentComponent implements OnInit {
   print() {
     var dataView = this.src;
     const url = this.src;
-    console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         const element = document.createElement('iframe');   // Create an IFrame.
@@ -158,7 +154,6 @@ export class VisualiserDocumentComponent implements OnInit {
  * Permet de faire une rotation sur l'affichage du document
  */
   rotate() {
-    console.log(this.angle);
     if (this.angle === 0) {
       this.angle = 90;
     } else if (this.angle === 90) {
@@ -189,12 +184,10 @@ export class VisualiserDocumentComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
     this.pageRenderCb++;
-    console.log('(page-rendered)');
   }
 
   textLayerRendered(e: CustomEvent) {
@@ -242,16 +235,15 @@ export class VisualiserDocumentComponent implements OnInit {
     });
     this.dismiss();
   }
-  rejetConventionPME() {
-    console.log("hello");
-    
-    this.dismiss();
 
+
+  rejetConventionPME() {
+    this.dismiss();
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -261,19 +253,14 @@ export class VisualiserDocumentComponent implements OnInit {
         confirmButton: 'order-2',
       }
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        let body = {
-      
-          idDemande:this.demande.idDemande
-      }
-      console.log(body)
-    
-      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParPME)
-                .subscribe((response: any) => {
-                  console.log(response)
-    
-                  //console.log(StatutEnum.ConventionRejeteeParPME)
+      if (result.isConfirmed) {       
+      this.observationSave.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observationSave.statut = {};
+      this.observationSave.demandeid = this.demande.idDemande;
+      this.observationSave.statut.libelle = StatutEnum.ConventionRejeteeParPME;
+      this.observationSave.dateObservation = new Date();
+      this.observationService.addObservation(this.observationSave)  
+               .subscribe((response: any) => {
               },
               (error)=>{},
               ()=>{
@@ -286,35 +273,26 @@ export class VisualiserDocumentComponent implements OnInit {
                     color:"#203359",
                     confirmButtonColor:"#99CC33",
                     confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
-                    allowOutsideClick:false,
-                    
-                  })
-                
-    
+                    allowOutsideClick:false,                    
+                  })             
               })
+              setTimeout(() => {
+                location.reload()
+               }, 1500);
       } else if (result.isDenied) {
         Swal.fire('Opération de rejet annulée', '', 'info')
       }
     })
-    
-
-    
-
-    setTimeout(() => {
-      location.reload()
-     }, 1500);
 
   }
 
   rejetConventionDG(){
-
     this.dismiss();
-
     Swal.fire({
       title: 'Etes-vous sûr de vouloir rejeter la convention?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -324,20 +302,13 @@ export class VisualiserDocumentComponent implements OnInit {
         confirmButton: 'order-2',
       }
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        let body = {
-      
-          idDemande:this.demande.idDemande
-      }
-      console.log(body)
-    
-      this.demandeCessionService.updateStatut(this.demande.idDemande,StatutEnum.ConventionRejeteeParDG)
-                .subscribe((response: any) => {
-                  console.log(response)
-                 // this.dismiss();
-    
-                 // console.log(StatutEnum.ConventionRejeteeParDG)
+      this.observationSave.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observationSave.statut = {};
+      this.observationSave.demandeid = this.demande.idDemande;
+      this.observationSave.statut.libelle = StatutEnum.ConventionRejeteeParDG;
+      this.observationSave.dateObservation = new Date();
+      this.observationService.addObservation(this.observationSave).subscribe((response: any) => {
               },
               (error)=>{},
               ()=>{
@@ -354,9 +325,7 @@ export class VisualiserDocumentComponent implements OnInit {
                     
                   })
                   this.dismiss();
-    
-              })
-    
+              })    
               setTimeout(() => {
                 location.reload()
                }, 1500);

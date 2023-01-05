@@ -35,7 +35,6 @@ export class GenericService {
   getAllPagination<T>(url: string,args:any={}) {
     let params = new HttpParams();
     Object.keys(args).forEach(key => {
-      console.log(key, args[key]);
       
       params = params.set(key, args[key]);
     
@@ -66,6 +65,7 @@ export class GenericService {
       );
   }
 
+<<<<<<< HEAD
   addWithText<T>(url: string, body: T) {
     return this.http.post(url, body, httpOptionsText)
       .pipe(
@@ -73,6 +73,16 @@ export class GenericService {
       );
   }
 
+=======
+  patchd<T>(url: string, body: T) {
+    return this.http.patch(url, body, httpOptions)
+      .pipe(
+        catchError(this.handleError('patch', body))
+      );
+  }
+
+
+>>>>>>> 5d906ca0b3358b3ae6bb913da6c33b7bc9b78c2d
   upload<T>(url: string, body: T) {
     return this.http.post(url, body, httpOptions2)
       .pipe(
@@ -171,10 +181,8 @@ export class GenericService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(error as T);

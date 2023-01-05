@@ -9,7 +9,27 @@
 ::ng-deep .p-inputswitch.p-inputswitch-checked.oui:not(p.disabled):hover .p-inputswitch-slider {
     background: #99CC33;
 }
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+    
+    &.oui {
+        background: #C8E6C9;
+        color: $success;
+    }
 
+    &.non{
+        background: #FFCDD2;
+        color: $danger;
+    }
+    
+    
+
+}
 ::ng-deep .p-inputswitch.oui .p-inputswitch-slider {
     background: #98163988;
     

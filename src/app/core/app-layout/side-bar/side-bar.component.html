@@ -19,7 +19,7 @@
                 </div>
                 <ul class="list-unstyled components mb-5 menu">
                     <li *ngIf="profil === 'DG' || profil === 'DRC' || profil === 'DSEAR' || profil === 'DAF' || profil === 'PME'" class="tableau_bord">
-                                <a [attr.tabindex]="0" [routerLink]="['cdmp/dashboard']">
+                                <a [attr.tabindex]="0" [routerLink]="['cdmp/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">
                                     <span class="mn"> Tableau de bord</span>
                                     <i class="pi pi-fw pi-chart-line layout-menuitem-icon"></i>
                                 </a>
@@ -44,17 +44,17 @@
                             </li>
                         </ul>
                     </li>
+                    <li *ngIf="profil === 'PME'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['pme/convention_cession']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Convention de cession</span>
+                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
+                        </a>
+                    </li>
                     <li class="nav-item" *ngIf="profil === 'PME'">
                         <a [attr.tabindex]="0" 
                          [routerLink]="['pme/paiements']">
                             <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"> Suivi des paiements</span>
                             <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
-                        </a>
-                    </li>
-                    <li *ngIf="profil === 'PME'">
-                        <a [attr.tabindex]="0" disabled [routerLink]="['pme/convention_cession']">
-                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Convention de cession</span>
-                            <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
                         </a>
                     </li>
                     <li *ngIf="profil === 'DSEAR'">
@@ -83,7 +83,7 @@
                     </li>
                     <li *ngIf="profil === 'DAF'">
                         <a [attr.tabindex]="0" disabled [routerLink]="['comptable/paiements']">
-                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Paiements/Recouvrement</span>
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Paiements</span>
                                 <i class="pi pi-fw pi-money-bill layout-menuitem-icon"></i>
                             </a>
                     </li>
@@ -93,10 +93,45 @@
                             <i class="pi pi-fw pi-file layout-menuitem-icon"></i>
                         </a>
                     </li>
+                    
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/ministere_depensier']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Ministères</span>
+                            <i class="pi pi-fw pi-building layout-menuitem-icon"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/centre_des_servicesFiscaux']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Centres des Services Fiscaux</span>
+                            <i class="pi pi-fw pi-home layout-menuitem-icon"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/forme_juridique']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Formes Juridiques</span>
+                            <i class="pi pi-fw pi-book layout-menuitem-icon"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/parametrages_decotes']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Paramétrage décotes</span>
+                            <i class="pi pi-fw pi-cog layout-menuitem-icon"></i>
+                        </a>
+                    </li>
+                    <li *ngIf="profil === 'ADMIN'">
+                        <a [attr.tabindex]="0" disabled [routerLink]="['admin/utilisateurs']">
+                            <span class="mn" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Utilisateurs</span>
+                            <i class="pi pi-fw pi-users layout-menuitem-icon"></i>
+                        </a>
+                    </li>
                 </ul>
-                <div class="footer">
-                </div>
+               
             </div>
         </ul>
+        <br><br><br><br><br>
+        <div class="footer">
+            <span style="margin-top: 2000px; margin-left: 10%;"> Assistance : 33 800 00 00</span>
+         </div>
     </div>
+   
 </div>

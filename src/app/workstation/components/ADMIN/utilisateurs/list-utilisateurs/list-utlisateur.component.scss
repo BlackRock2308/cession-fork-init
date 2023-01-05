@@ -1,0 +1,186 @@
+
+@import "../../../../../../assets/sass/custom/variables.scss";
+@import "../../../../../../assets/sass/custom/layout.scss";
+.textLeft {
+    text-align: left;
+    font-size: 130%;
+    color: #333333;
+}
+
+.textRight {
+    text-align: right;
+    font-size: 130%;
+    color: #333333;
+    margin-left: 52%;
+}
+
+h1 {
+    color: white;
+
+    font-weight: bold;
+}
+
+.tableau_bord {
+    border-top: 1px solid rgba(123, 224, 120, 0.579);
+    ;
+
+    border-bottom: 1px solid rgba(123, 224, 120, 0.632);
+
+}
+
+
+.horizontal-text {
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    position: absolute;
+    top: 45%;
+    right: .5rem;
+}
+
+.horizontal-text-hover {
+    color: #981639;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    position: absolute;
+}
+
+.logo-circle {
+    background-color: white;
+    border-radius: 50%
+}
+
+.bottom-menu-text {
+    padding-left: 1rem;
+    position: absolute;
+    bottom: 1rem;
+    text-transform: uppercase;
+}
+
+
+.dark-blue-bg {
+    background-color: #203359;
+}
+
+
+#navbar {
+    position: relative;
+    top: 1px;
+}
+
+.abdou {
+    color: rgb(60, 60, 60);
+    font-weight: bold;
+    text-align: center;
+}
+
+.logo-menu {
+    height: 30px;
+}
+
+.dropdown-item {
+    color: black;
+}
+
+#navbar {
+    bottom: 35px;
+}
+
+.mymenu {
+    left: 30px;
+    position: relative;
+}
+
+#pi {
+    color: white;
+}
+
+p {
+    color: white;
+    font-size: large;
+
+}
+
+h3 {
+    color: white;
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+#sidebar {
+    background-color: #203359;
+}
+
+#navbar {
+    background-color: #203359;
+
+}
+
+//cacher les bouton de filtre
+::ng-deep button.p-column-filter-menu-button {
+    display: none;
+}
+
+::ng-deep button.p-column-filter-clear-button {
+    display: none;
+}
+
+
+.modalTitle {
+    justify-content: center;
+    display: flex;
+
+
+
+}
+
+::ng-deep span.p-paginator-current.ng-star-inserted {
+    color: #203359;
+
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-page.p-paginator-element.p-highlight.ng-star-inserted {
+    background-color: #203359;
+
+}
+
+::ng-deep li#p-highlighted-option.p-ripple.p-element.p-dropdown-item.p-highlight {
+    background-color: #203359;
+
+}
+
+.title {
+    color: #203359;
+    font-weight: bold;
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-alt {
+    color: #203359;
+
+}
+
+::ng-deep i.p-sortable-column-icon.pi.pi-fw.pi-sort-amount-up-alt {
+    color: #203359;
+
+}
+.button-delete{
+    background-color:  #981639;
+    color: white;
+}
+
+.button-active{
+    background-color:  green;
+    color: white;
+}
+.button-edit{
+    color: white;
+    background-color: #203359;
+}
+
+.button-view{
+    color: white;
+    background-color: #696969;
+}

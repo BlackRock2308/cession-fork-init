@@ -139,15 +139,41 @@
                 </ng-template>
             </p-table>
         </div>
-        <label class="form-label" for="textAreaExample">Observations</label>
+        <!-- <label class="form-label" for="textAreaExample">Observations</label>
         <div class="d-flex flex-start w-100">
 
             <div class="form-outline w-100">
                 <textarea class="form-control" id="textAreaExample" rows="4" style="background-color:#D3D3D3;">{{observationLibelle}}</textarea>
 
             </div>
-        </div>
+        </div> -->
 
 
     </div>
 </div>
+
+<p-card>
+    <div class="d-flex justify-content-center col-12">
+        <div class="col-12 md:col-10 modalTitle  ">
+            <h4 class="title">Historique</h4>
+        </div>
+    </div>
+<p-timeline [value]="events1" class="d-flex">
+    <ng-template  pTemplate="content" let-event>
+        <div class="d-flex justify-content-between">
+            <span
+            [class]="'product-badge status-' + (event.statut.libelle ? event.statut.libelle.toLowerCase() : '')">{{event.statut.libelle.replaceAll('_',
+            ' ')}}</span>
+            <span style="color: rgb(11, 11, 189);">{{event.dateObservation | date:'medium'}}</span>
+        </div>
+        <br>
+        <div>
+        {{event.libelle }}
+        <br>
+        <hr class="dotted">
+
+    </div>
+   
+    </ng-template>
+</p-timeline>
+</p-card>

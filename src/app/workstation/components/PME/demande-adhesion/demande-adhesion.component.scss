@@ -25,6 +25,11 @@
         color: #256029;
     }
 
+    &.status-convention_transmise{
+        background: #C8E6C9;
+        color: #256029;
+    }
+
     &.status-risquée {
         background: #FFCDD2;
         color: #C63737;
@@ -50,6 +55,11 @@
         color: #354d8f;
     }
     &.status-convention_generee {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+
+    &.status-demande_bouclee {
         background: #c9ddfa;
         color: #354d8f;
     }

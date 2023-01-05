@@ -86,7 +86,6 @@ getPageRecevabilites(args:any): Observable<any> {
 
 
 // private handleError(error: any) {
-//   console.error('An error occurred', error);
 //   return observableThrowError(error);
 // }
 }

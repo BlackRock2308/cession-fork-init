@@ -30,4 +30,23 @@ export class UtilisateurService extends GenericService {
   updateUtilisateur(data): Observable<Utilisateur> {
     return this.patch(`${this.utilisateurUrl}/update`, data);
   }
+
+  addUtilisateur(data){
+    return this.add(this.utilisateurUrl, data)
+  }
+
+  updateUser(data) {
+      return this.update(this.utilisateurUrl,data)
+  }
+
+  getAllUtilisateur(){
+      return this.getAll(this.utilisateurUrl+'/getAll')
+  }
+
+  getAllRoles(){
+    return this.getAll(this.utilisateurUrl+'/getAllRoles')
+}
+active_desactiveUtilisateur(data){
+  return this.add(this.utilisateurUrl+'/'+data.id, data)
+}
 }

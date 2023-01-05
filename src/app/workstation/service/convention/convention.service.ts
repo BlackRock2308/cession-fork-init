@@ -25,6 +25,9 @@ export class ConventionService extends GenericService {
     return this.http.get<any[]>(`${this.conventionUrl}/conventionsPME`);
   }
 
+  getTextConvention(id){
+    return this.getById(this.conventionUrl+'/textConvention',id);
+  }
   postConvention(data) {
 
     let body = JSON.stringify(data);

@@ -3,11 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { DemandeAdhesion } from 'src/app/workstation/model/demande';
 import { Documents } from 'src/app/workstation/model/document';
 import { DemandesAdhesionService } from 'src/app/workstation/service/demandes_adhesion/demandes-adhesion.service';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
-import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { VisualiserDocumentComponent } from '../visualiser-document/visualiser-document.component';
 
 @Component({
@@ -47,8 +44,7 @@ export class VisualiserDemandesComponent implements OnInit {
     public messageService: MessageService,
     private route: ActivatedRoute,
     private demandeAdhesionService: DemandesAdhesionService,
-    private breadcrumbService: BreadcrumbService,
-    private observationService:ObservationService) {
+    private breadcrumbService: BreadcrumbService) {
     this.profile = localStorage.getItem('profil');
     if (this.profile === 'PME') {
       this.breadcrumbService.setItems([
@@ -84,13 +80,8 @@ export class VisualiserDemandesComponent implements OnInit {
        if(this.demande?.bonEngagement?.documents.length > 0){
         this.documents=this.documents.concat(this.demande?.bonEngagement?.documents)
        }
-       console.log(data,this.documents)
 
-      //  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande,this.demande.statut.libelle).subscribe(
-      //   data => {
-      //       this.observationLibelle=data.libelle
-      //       console.log(this.observationLibelle)
-      //   })
+     
      })
 
     // //recuperer les infos d'une demande d'adhesion
@@ -103,10 +94,6 @@ export class VisualiserDemandesComponent implements OnInit {
       { field: 'typeDocument', header: 'Type de Document' },
       { field: 'dateSoumission', header: 'Date de Soumission' },
     ];
-
-    //récupérer les informations du nantissement en cours de modification
-    // this.demandeAdhesionService.getDemandenantissementObs().subscribe(data => this.demandeNantissementInfos = data);
-    // console.log(this.demandeNantissementInfos)
 
     //détail à visualiser( page préceédente)
     this.route.queryParams.subscribe(
@@ -123,11 +110,9 @@ export class VisualiserDemandesComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
-    console.log('(page-rendered)');
   }
 
   /**
@@ -150,7 +135,6 @@ export class VisualiserDemandesComponent implements OnInit {
     this.textLayerRenderedCb++;
 
     // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
 
   }
 
@@ -158,7 +142,6 @@ export class VisualiserDemandesComponent implements OnInit {
 * Permet de faire une rotation sur l'affichage du document
 */
   rotate() {
-    console.log(this.angle);
     if (this.angle === 0) {
       this.angle = 90;
     } else if (this.angle === 90) {

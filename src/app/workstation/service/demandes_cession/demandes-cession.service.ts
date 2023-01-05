@@ -9,71 +9,71 @@ import { StatutEnum } from '../../model/statut-enum';
 @Injectable({
   providedIn: 'root'
 })
-export class DemandesCessionService extends GenericService{
-    
-    
+export class DemandesCessionService extends GenericService {
+
+
   private baseUrl = ApiSettings.API_CDMP;
 
   private cessionObs: BehaviorSubject<any> = new BehaviorSubject({
-    id: 1,
-    ninea: "567567",
-    statut: "Non Risquée",
-    raisonSocial: "Modelsis SARL",
-    referenceBE: "294067",
-    dateDemande: "21/03/2021",
-    numeroDemande: "2022-0001",
-    nomMarche: "Contruction d'immeuble",
-    ATD :"Aucun ATD",
-    denomination : "Modelsis SARL",
-    nantissement :"Creance  nanti",
-    interdiction :"Aucune interdiction bancaire"
   });
 
   constructor(public http: HttpClient) {
     super(http);
     //garder les infos demandes de cession en variable de session au cas où l'on fait un refresh
-    try{
-      let storedDemandeCession=localStorage.getItem('storedDemandeCession');
-      if(storedDemandeCession)
+    try {
+      let storedDemandeCession = localStorage.getItem('storedDemandeCession');
+      if (storedDemandeCession)
         this.setDemandeObs(JSON.parse(storedDemandeCession));
 
     }
-    catch(e){
-      console.error("pas encore de variable de session pour une demande de cession.Certainement c'est la première connexion")
+    catch (e) {
     }
-   }
+  }
 
   getDemandesCession(): Observable<DemandeCession[]> {
     return this.http.get<DemandeCession[]>(`${this.baseUrl}/demandes_cession`);
   }
-  getPageDemandesCession(args:any): Observable<any> {
-    return this.getAllPagination(`${this.baseUrl}/demandecession`,args)
+  getPageDemandesCession(args: any): Observable<any> {
+    return this.getAllPagination(`${this.baseUrl}/demandecession`, args)
   }
 
   //Demande de cession par statut avec pagination
-  getPageDemandeCessionByStatut(args:any): Observable<any> {
-    return this.getAllPagination(`${this.baseUrl}/demandecession/bystatut`,args)
-}
+  getPageDemandeCessionByStatut(args: any): Observable<any> {
+    return this.getAllPagination(`${this.baseUrl}/demandecession/bystatut`, args)
+  }
 
-   //Ajouter une nouvelle demande de cession
-public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
+  getAllMinistere(){
+    return this.getAll(`${this.baseUrl}/ministeres`)
+  }
   
-  return this.http.post<DemandeCession>(`${this.baseUrl}/demandecession`, demandeCession);
-}
+  getMinistereByCode(code: string){
+    return this.getByName(`${this.baseUrl}/ministeres`, code)
+  }
+
+   //Demande de cession par statut avec pagination
+   getPageDemandeCessionByStatutAndMinister(args: any): Observable<any> {
+    return this.getAllPagination(`${this.baseUrl}/demandecession/byministereandstatut`, args)
+  }
+
+  //Ajouter une nouvelle demande de cession
+  public addDemandeCession(demandeCession: any): Observable<DemandeCession> {
+
+    return this.http.post<DemandeCession>(`${this.baseUrl}/demandecession`, demandeCession);
+  }
 
 
-  getDemandesCessionById(id){
-    return this.getById(this.baseUrl+'/demandecession',id);
+  getDemandesCessionById(id) {
+    return this.getById(this.baseUrl + '/demandecession', id);
   }
 
   //renseigner les informations de la demande de cession sélectionné
   setDemandeObs(demande: any) {
-    localStorage.setItem('storedDemandeCession',JSON.stringify(demande));
+    localStorage.setItem('storedDemandeCession', JSON.stringify(demande));
     this.cessionObs.next(demande);
   }
 
   //récupérer les informations de la demande de cession sélectionné
-  getDemandeObs(): Observable<any> {
+  getDemandeObs(): Observable<DemandeCession> {
     return this.cessionObs.asObservable();
   }
 
@@ -83,8 +83,8 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
   }
 
   //mettre à jour la demande de cession
-  patchConvention(id:number,demandeCession:DemandeCession): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('PATCH', `${this.baseUrl}/conventions/${id}`,demandeCession, {
+  patchConvention(id: number, demandeCession: DemandeCession): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/conventions/${id}`, demandeCession, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -92,8 +92,8 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
   }
 
   //patch demande de cession
-  patchDemandeCession(id:number,demandeCession:DemandeCession): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandes_cession/${id}`,demandeCession, {
+  patchDemandeCession(id: number, demandeCession: DemandeCession): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandes_cession/${id}`, demandeCession, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -106,95 +106,93 @@ public addDemandeCession(demandeCession : any ) : Observable<DemandeCession>{
   }
 
   //get demandeCession par statut
-  getDemandeCessionByStatut(statut:string): Observable<any> {
-      const params = new HttpParams()
-      .set('statut',statut)
+  getDemandeCessionByStatut(statut: string): Observable<any> {
+    const params = new HttpParams()
+      .set('statut', statut)
 
-    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`,{params});
+    return this.http.get<any>(`${this.baseUrl}/demandecession/bystatut`, { params });
   }
 
-  getDemandesCessionByPmeAndStatut(idPME: any, statut: string): Observable<any>  {
+  getDemandesCessionByPmeAndStatut(idPME: any, statut: string): Observable<any> {
     const params = new HttpParams()
-    .set('statut',statut)
-    .set('pme',idPME)
+      .set('statut', statut)
+      .set('pme', idPME)
 
-  return this.http.get<any>(`${this.baseUrl}/demandecession/byStatutAndPme`,{params});  }
+    return this.http.get<any>(`${this.baseUrl}/demandecession/byStatutAndPme`, { params });
+  }
 
   validateAnalyseRisque(id: any) {
-    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/validateAnalyse`,id, {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/validateAnalyse`, id, {
       reportProgress: true,
       responseType: 'json'
     });
     return this.http.request(req);
-}
+  }
 
-signerConventionPME(codePin : string , idUtilisateur : any , idDemande : any){
-  const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-pme/${idUtilisateur}`,codePin,{
-    reportProgress: true,
-    responseType: 'json'
-  });
-  return this.http.request(req);
-}
+  signerConventionPME(codePin: string, idUtilisateur: any, idDemande: any) {
+    const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-pme/${idUtilisateur}`, codePin, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
 
-signerConventionDG(codePin : string , idUtilisateur : any , idDemande : any){
-  const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-dg/${idUtilisateur}`,codePin,{
-    reportProgress: true,
-    responseType: 'json'
-  });
-  console.log(codePin)
+  signerConventionDG(codePin: string, idUtilisateur: any, idDemande: any) {
+    const req = new HttpRequest('POST', `${this.baseUrl}/demandecession/${idDemande}/signer-convention-dg/${idUtilisateur}`, codePin, {
+      reportProgress: true,
+      responseType: 'json'
+    });
 
-  return this.http.request(req);
-}
-rejeterAnalyseRisque(id: any) {
-  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/rejectedAnalyse`,id, {
-    reportProgress: true,
-    responseType: 'json'
-  });
-  return this.http.request(req);
-}
+    return this.http.request(req);
+  }
+  rejeterAnalyseRisque(id: any) {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/rejectedAnalyse`, id, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
 
-demanderComplement(id: any) {
-  const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/complementAnalyse`,id, {
-    reportProgress: true,
-    responseType: 'json'
-  });
-  return this.http.request(req);
-}
+  demanderComplement(id: any) {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/demandecession/${id}/complementAnalyse`, id, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
 
-getDemandesCessionByPme(idPME: any):Observable<any>  {
-  
-  return this.http.get<any>(`${this.baseUrl}/demandecession/pme/${idPME}`)
-}
+  getDemandesCessionByPme(idPME: any): Observable<any> {
 
-getPMEBenRejByAnne(anne: any):Observable<any>  {
-  
-  return this.http.get<any>(`${this.baseUrl}/demandecession/statistiqueDemandeCession/${anne}`)
-}
+    return this.http.get<any>(`${this.baseUrl}/demandecession/pme/${idPME}`)
+  }
 
-completeDemande(idDemande: number): Observable<any>{
-  const req = new HttpRequest('PATCH', `${this.baseUrl}/pme/${idDemande}/complete-demande/`,idDemande, {
-    reportProgress: true,
-    responseType: 'json'
-  });
-  return this.http.request(req);
-}
+  getPMEBenRejByAnne(anne: any): Observable<any> {
 
-updateStatut(idDemande: any,statut:StatutEnum):Observable<any>  {
+    return this.http.get<any>(`${this.baseUrl}/demandecession/statistiqueDemandeCession/${anne}`)
+  }
 
-  const params = new HttpParams()
-      .set('statut',statut.toString())
+  completeDemande(idDemande: number): Observable<any> {
+    const req = new HttpRequest('PATCH', `${this.baseUrl}/pme/${idDemande}/complete-demande/`, idDemande, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
 
-      console.log(params);
-      
-    return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/statut`,{},{params});
-}
+  updateStatut(idDemande: any, statut: StatutEnum): Observable<any> {
 
-accepterRecevabilite(idDemande: any):Observable<any> {
-  return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/validerRecevabilite`,idDemande);
-}
-rejeterRecevabilite(idDemande: any):Observable<any> {
-  return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/rejeterRecevabilite`,idDemande);
-}
+    const params = new HttpParams()
+      .set('statut', statut.toString())
+
+    return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/statut`, {}, { params });
+  }
+
+  accepterRecevabilite(idDemande: any, code: string): Observable<any> {
+    return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/${code}/validerRecevabilite`, idDemande);
+  }
+  rejeterRecevabilite(idDemande: any, code: string): Observable<any> {
+    return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/${code}/rejeterRecevabilite`, idDemande);
+  }
 
 search(body:any,params:any):Observable<any> {  
 

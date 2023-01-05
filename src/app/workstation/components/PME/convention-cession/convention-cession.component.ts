@@ -83,15 +83,7 @@ export class ConventionCessionPMEComponent implements OnInit {
   ngOnInit() {
     this.profil = localStorage.getItem('profil');
 
-    // this.pmeService.getConventions().subscribe(data => {
-    //   this.documents = data
-    //   console.log( JSON.stringify(data))
-    // });
-
-
     this.getDemandes()
-
-
 
     this.cols = [
       { field: 'nomDocument', header: 'Nom de Document' },
@@ -187,11 +179,9 @@ export class ConventionCessionPMEComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
-    console.log('(page-rendered)');
   }
 
   /**
@@ -214,7 +204,6 @@ export class ConventionCessionPMEComponent implements OnInit {
     this.textLayerRenderedCb++;
 
     // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
 
   }
 
@@ -222,7 +211,6 @@ export class ConventionCessionPMEComponent implements OnInit {
   * Permet de faire une rotation sur l'affichage du document
   */
   rotate() {
-    console.log(this.angle);
     if (this.angle === 0) {
       this.angle = 90;
     } else if (this.angle === 90) {
@@ -264,23 +252,19 @@ export class ConventionCessionPMEComponent implements OnInit {
       }
 
       if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
-        console.log(value)
-        console.log(1)
+     
         return true;
       }
 
       if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
-        console.log(2)
         return true;
       }
 
       if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
         this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
-        console.log(3)
         return true;
       }
 
-      console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
       return false;
     })
   }

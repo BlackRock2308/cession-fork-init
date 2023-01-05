@@ -48,8 +48,30 @@ import { CorrigerConventionComponent } from './COMPTABLE_CDMP/corrigerConvention
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SearchFilterComponent } from './components/generic/search-filter/search-filter.component';
 
+
+import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
+import { AddMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/add-ministereDepensier/add-ministereDepensiers.component';
+import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
+import { UpdateMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/update-ministereDepensier/update-ministereDepensiers.component';
+import { AddFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/add-formeJuridique/add-formeJuridique.component';
+import { ListFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/list-formeJuridique/list-formeJuridiques.component';
+import { AddCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/add-centreDesServicesFiscaux/add-centreDesServicesFiscaux.component';
+import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
+import { UpdateCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/update-centreDesServicesFiscaux/update-centreDesServicesFiscaux.component';
+import { UpdateFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/update-formeJuridique/update-formeJuridique.component';
+import { AddParametrageDecoteComponent } from './components/ADMIN/parametreDecote/add-parametreDecote/add-parametreDecote.component';
+import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
+import { UpdateParametrageDecoteComponent } from './components/ADMIN/parametreDecote/update-parametreDecote/update-parametreDecote.component';
+import { ParametrageDecoteServices } from './service/parametrageDecote/parametrageDecoteServices.service';
+import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/update-utilisateurs/update-utlisateur.component';
+import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
+import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
+import { ViewUtilisateurComponent } from './components/ADMIN/utilisateurs/visualiser-utilisateurs/visualiser-utlisateur.component';
+//import { AdminComponent } from './components/ADMIN/admin/admin.component';
+
 @NgModule({
   declarations: [
+    
     NouvelleDemandeComponent,
     DemandesAdhesionComponent,
     DemandeAdhesionComponent,
@@ -86,8 +108,29 @@ import { SearchFilterComponent } from './components/generic/search-filter/search
     ConventionCessionPMEComponent,
     CodeComponent,
     SignerconventionPMEComponent,
+    SearchFilterComponent,
+    
+
     CorrigerConventionComponent,
-    SearchFilterComponent
+    InfosPMEComponent,
+    AddMinistereDepensierComponent,
+    ListMinistereDepensierComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    ListFormeJuridiqueComponent,
+    UpdateFormeJuridiqueComponent,
+    AddCentreDesServicesFiscauxComponent,
+    ListCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    UpdateUtilisateurComponent,
+    ListUtilisateurComponent,
+    AddUtilisateurComponent,
+    ViewUtilisateurComponent,
+    UpdateParametrageDecoteComponent,
+    ListParametrageDecoteComponent,
+    AddParametrageDecoteComponent
+
+    //AdminComponent
     
     
   ],
@@ -110,8 +153,46 @@ import { SearchFilterComponent } from './components/generic/search-filter/search
     AddDetailPaiementCDMPComponent,
     AddDetailsPaiementPMEComponent,
     ConventionSignerComponent,
-    CodeComponent
-     
+    CodeComponent,
+    UpdateUtilisateurComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    VisualiserDocumentComponent,
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
+    ConventionSignerComponent,
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    
+    AddDetailPaiementCDMPComponent,
+    AddDetailsPaiementPMEComponent,
+    ConventionSignerComponent,
+    CodeComponent,
+    AddDetailsPaiementPMEComponent,
+    UpdateMinistereDepensierComponent,
+    AddFormeJuridiqueComponent,
+    UpdateMinistereDepensierComponent,
+    AddCentreDesServicesFiscauxComponent,
+    UpdateCentreDesServicesFiscauxComponent,
+    AddParametrageDecoteComponent,
+    UpdateParametrageDecoteComponent,
+    AddUtilisateurComponent,
+    UpdateUtilisateurComponent,
+    ViewUtilisateurComponent
+ 
 ],
 providers: [
   NgbActiveModal,

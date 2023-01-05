@@ -67,7 +67,6 @@ export class ComplementDocumentsComponent implements OnInit {
     this.documents=this.documents.concat(data.bonEngagement.documents)
     this.documents=this.documents.concat(data.pme.documents)
     this.documents=this.documents.concat(data.documents)
-    console.log(this.demandeNantissementInfos)
 
 
   })
@@ -75,7 +74,6 @@ export class ComplementDocumentsComponent implements OnInit {
   this.observationService.getObservationByDemandeCessionANDStatut(this.demandeNantissementInfos.idDemande,this.demandeNantissementInfos.statut.libelle).subscribe(
     data => {
         this.observationLibelle=data.libelle
-        console.log(this.observationLibelle)
     })
 
     this.documentForm= this.formBuilder.group({
@@ -136,7 +134,6 @@ this.typesDocument=[
     this.documents.push(this.document);
     this.newDocuments.push(this.document);
     files.target.files=null;
-    console.log(this.newDocuments)        
   }
 
   //ouvrir la boite de dialogue du répertoire
@@ -158,7 +155,7 @@ this.typesDocument=[
         title: 'Voulez-vous soumettre complément de dossier',
         showDenyButton: true,
         confirmButtonText: 'Oui',
-        denyButtonText: `Annuler`,
+        denyButtonText: `Non`,
         confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -198,9 +195,8 @@ this.typesDocument=[
         this.observation.statut={}        
         this.observation.demandeid =  this.demandeNantissementInfos.idDemande;
         this.observation.statut.libelle =StatutEnum.completee;
-        console.log(this.observation,response)
         this.observationService.postObservation(this.observation).subscribe(
-          (data) => {console.log(data)},
+          (data) => {data},
           
         (error) =>{},
         () =>{
@@ -234,11 +230,10 @@ this.typesDocument=[
   private async enregistrerDocument(document:Document):Promise<any>{
     //fonction à continuer 
     try{
-      let file=await this.documenService.uploadFile('/pme/',this.demandeNantissementInfos.pme.idPME,document.file,document.typeDocument).subscribe()
-      console.log(file)
+      let file=await this.documenService.uploadFile('/demandes/',this.demandeNantissementInfos.idDemande,document.file,document.typeDocument).subscribe()
     }
     catch(error){
-      console.log(error)
+      error
     }
         
   }
@@ -252,7 +247,6 @@ this.typesDocument=[
   if (myIndex0 !== -1) {
     this.newDocuments.splice(myIndex0, 1);
 }
-  console.log(this.documents)
   }
   
 }

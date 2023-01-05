@@ -7,7 +7,7 @@ import {
   AbstractControl,
 } from "@angular/forms";
 import { Observable } from "rxjs";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { AdhesionService } from "src/app/workstation/service/adhesion/adhesion.service";
 import { PME } from "src/app/workstation/model/pme";
 import Swal from "sweetalert2";
@@ -16,9 +16,11 @@ import { FileUploadService } from "src/app/workstation/service/fileUpload.servic
 import { PmeService } from "src/app/workstation/service/pme/pmeservice.service";
 import { DemandeAdhesion } from "../../../model/demande";
 import { Observation } from "src/app/workstation/model/observation";
-import { TokenStorageService } from "src/app/auth/token-storage.service";
-import { ObservationService } from "src/app/workstation/service/observation/observation.service";
 import { SearchCountryField, CountryISO } from "ngx-intl-tel-input";
+import { CentreDesServicesFiscaux } from "src/app/workstation/model/centreDesServicesFiscaux";
+import { CentreDesServicesFiscauxService } from "src/app/workstation/service/centreDesServicesFiscaux/centreDesServicesFiscauxService.service";
+import { FormeJuridiqueService } from "src/app/workstation/service/formeJuridique/formeJuridiqueService.service";
+import { FormeJuridique } from "src/app/workstation/model/formeJuridique";
 
 @Component({
   selector: "app-adhesion",
@@ -31,8 +33,11 @@ export class AdhesionComponent implements OnInit {
   selectedNINEAFiles: File | null = null;
   selectedRCCMFiles: File | null = null;
   currentFile?: File;
-  formeJuridique: any[];
-
+  formeJuridiques: any[];
+  selectedCentre: string;
+  formeJuridique:FormeJuridique ={};
+  centreFiscals: any[];
+  centreFiscal: CentreDesServicesFiscaux={}; 
   progress = 0;
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -41,7 +46,7 @@ export class AdhesionComponent implements OnInit {
   message = "";
   fileInfos?: Observable<any>;
   form!: FormGroup;
-  submit = true;
+  submit: boolean = false;
   pme: PME;
   myFiles: Document[] = [];
   demande: DemandeAdhesion;
@@ -52,44 +57,14 @@ export class AdhesionComponent implements OnInit {
     private router: Router,
     private adhesionService: AdhesionService,
     private pmeService: PmeService,
-    private uploadFileService: FileUploadService
+    private uploadFileService: FileUploadService,
+    private centreDesServicesFiscauxService: CentreDesServicesFiscauxService,
+    private formeJuridiqueService : FormeJuridiqueService
   ) { }
 
   ngOnInit(): void {
-    this.formeJuridique = [
-      {
-        "type": "SA",
-        "nom": " Société anonyme"
-      },
-      {
-        "type": "SARL",
-        "nom": "Société à Responsabilité Limitée"
-      },
-      {
-        "type": "GIE",
-        "nom": "GIE"
-      },
-      {
-        "type": "SNC",
-        "nom": "Société en Nom Collectif"
-      },
-      {
-        "type": "SCS",
-        "nom": "Société en Commandite Simple"
-      },
-      {
-        "type": "Société civile",
-        "nom": "Société civile"
-      },
-      {
-        "type": "Société Coopérative",
-        "nom": "Société Coopérative"
-      },
-      {
-        "type": "Entreprise Individuelle",
-        "nom": "Entreprise Individuelle"
-      }
-    ]
+    this.getFormeJuridiques();
+    this.getCentreFiscals();
     this.message = "Champ obligatoire";
     this.form = this.formBuilder.group({
       ninea: ["", [Validators.required, this.matchValuesNINEA()]],
@@ -123,7 +98,6 @@ export class AdhesionComponent implements OnInit {
 
   setMinDate() {
     this.minDate = ((new Date(this.form.value['dateCreation'])).getDate() + 1).toString()
-    console.log(this.minDate)
   }
 
   matchValuesCNI(): (AbstractControl) => ValidationErrors | null {
@@ -135,6 +109,7 @@ export class AdhesionComponent implements OnInit {
         : { isMatching: false };
     };
   }
+
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
@@ -145,10 +120,26 @@ export class AdhesionComponent implements OnInit {
     };
   }
 
+  getFormeJuridiques(){
+    this.formeJuridiqueService.getAllFormeJuridique()
+    .subscribe((res:FormeJuridique[])=>{
+      if(res.length){
+        this.formeJuridiques = res;
+      }
+    })
+  }
+
+  getCentreFiscals(){
+    this.centreDesServicesFiscauxService.getAllCentreDesServicesFiscaux()
+    .subscribe((res:CentreDesServicesFiscaux[])=>{
+      if(res.length){
+        this.centreFiscals = res;
+      }
+    })
+  }
   //sélectionner le fichier du ninea
   selectNINEAFile(files: any): void {
     this.selectedNINEAFiles = files.target.files[0];
-    console.log(this.selectedNINEAFiles);
   }
 
   matchValuesNINEA(): (AbstractControl) => ValidationErrors | null {
@@ -196,6 +187,8 @@ export class AdhesionComponent implements OnInit {
   //enregistrement du pme avec l'appel du service d'enregistrement
   enregistrerPme() {
     this.pme = this.form.value;
+    this.pme.formeJuridique = this.formeJuridique;
+    this.pme.centreFiscal = this.centreFiscal;
     this.pme.nineaFile = this.selectedNINEAFiles;
     this.pme.rccmFile = this.selectedRCCMFiles;
     let body = {
@@ -215,7 +208,7 @@ export class AdhesionComponent implements OnInit {
       prenomRepresentant: this.pme.prenomRepresentant,
       nomRepresentant: this.pme.nomRepresentant,
       dateCreation: this.pme.dateCreation,
-      effectifPermanent: this.pme.effectif,
+      effectifPermanent: this.pme.effectifPermanent,
       nombreEtablissementSecondaires: this.pme.nombreEtablissementSecondaires,
       chiffresDaffaires: this.pme.chiffresDaffaires,
       cniRepresentant: this.pme.cniRepresentant,
@@ -227,7 +220,6 @@ export class AdhesionComponent implements OnInit {
     };
     this.pmeService.postPME(body).subscribe((response: PME) => {
       let data = JSON.parse(JSON.stringify(response));
-      console.log(data);
       let body2 = {
         ninea: this.pme.ninea,
         rccm: this.pme.rccm,
@@ -260,7 +252,7 @@ export class AdhesionComponent implements OnInit {
             Swal.fire({
               icon: "error",
               title: "Erreur",
-              text: "Erreur de création de la demande.",
+              text: "Erreur lors de la création de la demande.",
             });
           }
         });

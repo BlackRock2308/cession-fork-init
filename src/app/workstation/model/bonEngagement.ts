@@ -20,3 +20,9 @@ export interface BonEngagement {
     dateSoumissionServiceDepensier?:Date;
     documents?: Document[];
 }
+
+export interface Ministere {
+    id?:number;
+    code?: string;
+    libelle?: string;
+}

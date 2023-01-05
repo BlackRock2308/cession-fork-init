@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { AppBreadcrumbComponent } from '../core/breadcrumb/app.breadcrumb.component';
+import { ListCentreDesServicesFiscauxComponent } from './components/ADMIN/centreDesServicesFiscaux/list-centreDesServicesFiscaux/list-centreDesServicesFiscaux.component';
+import { ListFormeJuridiqueComponent } from './components/ADMIN/formeJuridique/list-formeJuridique/list-formeJuridiques.component';
+import { ListMinistereDepensierComponent } from './components/ADMIN/ministereDepensier/list-ministereDepensier/list-ministereDepensiers.component';
+import { ListParametrageDecoteComponent } from './components/ADMIN/parametreDecote/list-parametreDecote/list-parametreDecote.component';
+import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
 import { AnalyseRisqueComponent } from './components/CDMP/analyse-risque/analyse-risque.component';
 import { ConsulterDemandeComponent } from './components/CDMP/consulter-demande/consulter-demande.component';
 import { DashboardDGComponent } from './components/CDMP/dashboard-dg/dashboard-dg.component';
@@ -18,6 +23,7 @@ import { AdhesionComponent } from './components/PME/adhesion/adhesion.component'
 import { ComplementDocumentsComponent } from './components/PME/complement_documents/complement_documents.component';
 import { ConventionCessionPMEComponent } from './components/PME/convention-cession/convention-cession.component';
 import { DemandeAdhesionComponent } from './components/PME/demande-adhesion/demande-adhesion.component';
+import { InfosPMEComponent } from './components/PME/infos-pme/infos-pme.component';
 import { ListPaiementsComponent } from './components/PME/list-paiements/list-paiements.component';
 import { NouvelleDemandeComponent } from './components/PME/nouvelle-demande/nouvelle-demande.component';
 import { PaiementsComponent } from './components/PME/paiements/paiements.component';
@@ -60,7 +66,7 @@ const routes: Routes = [
   {path:'comptable/signer' , component:ConventionSignerComponent},
 
   //PME
-  
+  {path:'pme/infosPME',component:InfosPMEComponent},
   //Liste des demandes de la PME
   {path: 'pme/demandes_en_cours', component: DemandeAdhesionComponent},
 
@@ -83,9 +89,12 @@ const routes: Routes = [
   {path:'ordonnateur/conventions',component:ListeConventionsComponent},
   {path:'ordonnateur/conventions/details_convention',component:DetailsConventionComponent},
 
-  //test generic 
-  {path:'generic/test',component:SearchFilterComponent},
-
+  //admin
+  {path: 'admin/ministere_depensier', component:ListMinistereDepensierComponent},
+  {path: 'admin/forme_juridique', component:ListFormeJuridiqueComponent},  
+  {path: 'admin/centre_des_servicesFiscaux', component:ListCentreDesServicesFiscauxComponent},
+  {path: 'admin/parametrages_decotes', component:ListParametrageDecoteComponent},  
+  {path: 'admin/utilisateurs', component:ListUtilisateurComponent}
 ];
 
 @NgModule({

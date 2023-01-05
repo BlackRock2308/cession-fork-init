@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { PmeService } from 'src/app/workstation/service/pme/pmeservice.service';
 import Swal from 'sweetalert2';
-import { Convention } from '../../model/convention';
 import { Observation } from '../../model/observation';
 import { StatutEnum } from '../../model/statut-enum';
+import { TextConvention } from '../../model/TextConvention';
 import { ConventionService } from '../../service/convention/convention.service';
 import { ObservationService } from '../../service/observation/observation.service';
 
@@ -20,8 +20,6 @@ export class EditerConventionComponent implements OnInit {
 
 
   dateEdit:Date;
-  //selectedFiles: File | null = null;
-  //selectedFile?: File;
   typesDocument: any[];
   filteredtypeDocument: any[];
   selectedTypeDocument: string;
@@ -29,60 +27,92 @@ export class EditerConventionComponent implements OnInit {
   observation:Observation={}
   remarqueJuriste:string;
   decode:number;
-  convention:any;
+  convention:any =null;
+  motifRejet:String;
+  text:TextConvention = null;
+  text2:TextConvention=new TextConvention();
   constructor(
     private router : Router,
     private ref: DynamicDialogRef, private pmeService: PmeService
     ,private conventionService : ConventionService, private config: DynamicDialogConfig,
     private tokenStorage:TokenStorageService,
     private observationService:ObservationService
-
-  ) { }
+  ) {     
+    
+  }
+  
 
   ngOnInit(): void {
     this.dateEdit = new Date();
    this.demande = this.config.data.demande;
    if(this.demande.conventions.length){
+    this.decode = this.demande.conventions[0].valeurDecoteByDG*this.demande.bonEngagement.montantCreance;
+    this.getTextConvention(this.demande.conventions[0].idConvention);
+    this.getObervation();
     this.convention = {      
       idDemande:this.demande.idDemande,
-      remarqueJuriste: this.demande.conventions[0].remarqueJuriste,
       idConvention: this.demande.conventions[0].idConvention
     }
    }else{
+    this.text = new TextConvention("valorisation des contreparties","contribuer au financement du projet",
+    "l’intégralité de la contribution", "les documents écrits relatifs au projet",
+     "réclamation ou revendication", "5 % du montant");
+     //this.text2 =this.text;
     this.convention = {
-      remarqueJuriste:"",
       idDemande:this.demande.idDemande,
       pme:{
         idPME:this.demande.pme.idPME
     }
     }
-    console.log(this.convention);
     
    }
   }
 
+getObervation(){
+  this.observationService.getObservationByDemandeCessionANDStatut(this.demande.idDemande, this.demande.statut.libelle)
+  .subscribe((res:Observation) =>{
+    this.motifRejet = res.libelle;
+  })
+}
+
+getTextConvention(id){
+  this.conventionService.getTextConvention(id)
+  .subscribe((res:TextConvention) =>{
+    this.text = res;
+  })
+}
 
 
-  //ouvrir la boite de dialogue du répertoire
-  handleClick() {
-    document.getElementById('upload-file').click();
+onNameChangeVar1(val) {
+  this.text2.var1 =val;
   }
+onNameChangeVar2(val) {
+  this.text2.var2 =val;
+}
+onNameChangeVar3(val) {
+  this.text2.var3 =val;
+}
+onNameChangeVar4(val) {
+  this.text2.var4 =val;
+}
+onNameChangeVar5(val) {
+  this.text2.var5 =val;
+}
+
+onNameChangeVar6(val) {
+  this.text2.var6 =val;
+}
+
 
   //envoie du formulaire
   onSubmit() {
 
     this.ref.close();
-
-    // arrêter si le formulaire est invalide
-    // if (this.documentForm.invalid) {
-    //   return;
-    // }
-
     Swal.fire({
-      title: 'Voulez-vous enregistrer la convention',
+      title: 'Voulez-vous enregistrer la convention?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor: '#99CC33FF',
       denyButtonColor: '#981639FF',
       cancelButtonColor: '#333366FF',
@@ -105,8 +135,32 @@ export class EditerConventionComponent implements OnInit {
     this.pmeService.patchStatutDemande(id, statut).subscribe()
   }
 
+  getData(){
+    if(this.text2.var1 ==null ){
+      this.text2.var1 = this.text.var1;
+    }
+    if(this.text2.var2 ==null ){
+      this.text2.var2 = this.text.var2;
+    }
+    if(this.text2.var3 ==null ){
+      this.text2.var3 = this.text.var3;
+    }
+    if(this.text2.var4 ==null ){
+      this.text2.var4 = this.text.var4;
+    }
+    if(this.text2.var6 ==null ){
+      this.text2.var6 = this.text.var6;
+    }
+    if(this.text2.var5 ==null ){
+      this.text2.var5 = this.text.var5;
+    }
+  }
+
   //enregistrement du document avec l'appel du service d'enregistrement
-  enregistrerConvention() {   
+  enregistrerConvention() { 
+    this.getData()
+    this.text2.id = this.text?.id;
+    this.convention.textConventionDto = this.text2;
     if(this.demande.conventions[0] !=null){
       this.conventionService.corrigerConvention(this.convention)
       .subscribe((response: any) =>  {
@@ -114,7 +168,7 @@ export class EditerConventionComponent implements OnInit {
         this.observation.statut={}      
         this.observation.demandeid = this.demande.idDemande;
       this.observation.statut.libelle =StatutEnum.conventionCorrigee;
-      this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+      this.observationService.postObservation(this.observation).subscribe(data => data)
       Swal.fire({
 
         html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a été corrigée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -135,7 +189,7 @@ export class EditerConventionComponent implements OnInit {
   
       },
       (error) => {
-        console.log(error)      }
+        error   }
       )
     }
    else{
@@ -145,7 +199,7 @@ export class EditerConventionComponent implements OnInit {
       this.observation.statut={}      
       this.observation.demandeid = this.demande.idDemande;
     this.observation.statut.libelle =StatutEnum.conventionGeneree;
-    this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    this.observationService.postObservation(this.observation).subscribe(data => data)
     Swal.fire({
 
       html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été enregistrée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
@@ -166,7 +220,8 @@ export class EditerConventionComponent implements OnInit {
 
     },
     (error) => {
-      console.log(error)      }
+      error
+      }
     )
    }
   }
@@ -177,3 +232,5 @@ export class EditerConventionComponent implements OnInit {
 
 
 }
+
+

@@ -107,7 +107,7 @@ export class NouvelleDemandeComponent implements OnInit {
   pme: PME;
   observation: Observation={};
   idBE: number;
-
+  submit:boolean = false;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -131,6 +131,7 @@ export class NouvelleDemandeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.message = "Champ obligatoire";
     this.typesDocument = [
       {
         "type": "DOCUMENT_MARCHE",
@@ -165,8 +166,8 @@ export class NouvelleDemandeComponent implements OnInit {
     ]
 
     this.documentForm = this.formBuilder.group({
-      typeDocument: [''],
-      file: [''],
+      typeDocument:  ['', [Validators.required]],
+      file:  ['', [Validators.required]],
       refBE: ['', [Validators.required]],
       nomMarche: ['', [Validators.required]],
       typeMarche: ['', [Validators.required]]
@@ -184,8 +185,7 @@ export class NouvelleDemandeComponent implements OnInit {
     this.document.file = files.target.files[0];
     this.documents.push(files.target.files[0]);
     this.documentPresentation.push(this.document);
-    console.log(this.documentPresentation)
-    console.log(this.documents)
+ 
 
   }
 
@@ -195,14 +195,15 @@ export class NouvelleDemandeComponent implements OnInit {
   }
 
   onSubmit() {
-
-    console.log(this.bonEngagement);
+    this.submit =true;
+    if(this.documentForm.invalid){
+      return;
+    }
     let body = {
       reference: this.documentForm.value['refBE'],
       nomMarche: this.documentForm.value['nomMarche'],
       typeMarche:this.documentForm.value['typeMarche']
     };
-    console.log(body);
 
     this.postDemandeCession();    
 
@@ -221,12 +222,11 @@ export class NouvelleDemandeComponent implements OnInit {
       }
     }
 
-    console.log(JSON.stringify(body))
     Swal.fire({
-      title: 'Votre demande de cession sera enregistrée. Voulez vous continuer ?',
+      title: 'Votre demande de cession sera enregistrée. Voulez-vous continuer ?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -240,20 +240,17 @@ export class NouvelleDemandeComponent implements OnInit {
       if (result.isConfirmed) {
         await this.demandeCessionService.addDemandeCession(body).subscribe((result) => {
           this.idBE = result.bonEngagement.idBonEngagement
-          console.log(result)
           for (var i = 0; i < this.documents.length; i++) {
-            console.log(this.idBE)
-            this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => console.log(data)
+            this.uploadfileservice.uploadFile('/bonEngagement/', this.idBE, this.documents[i], this.documentForm.value['typeDocument']).subscribe(data => data
             )
           }
           this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          console.log('affiche' + this.tokenStorage.getUser().idUtilisateur)
           this.observation.statut={}
+          this.observation.libelle= "Création de la demande de cession"
           this.observation.demandeid =  result.idDemande;
           this.observation.statut.libelle =StatutEnum.soumise;
-          console.log(this.observation)
     
-          this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+          this.observationService.postObservation(this.observation).subscribe(data => data)
     
         },
         (error) =>{},
@@ -280,10 +277,6 @@ export class NouvelleDemandeComponent implements OnInit {
       }
     })
 
-    
-
-    console.log("finish")
-
   }
 
   filtertypeDocument(event) {
@@ -308,7 +301,6 @@ export class NouvelleDemandeComponent implements OnInit {
     if (myIndex !== -1) {
       this.documentPresentation.splice(myIndex2, 1)
     }
-    console.log(this.documents)
   }
 
   visualiserDocument(document: Documents) {

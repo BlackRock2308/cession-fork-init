@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterMatchMode, FilterService, MenuItem, MessageService, SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
+import { FilterMatchMode, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { VisualiserDocumentComponent } from '../../components/CDMP/visualiser-document/visualiser-document.component';
-import { Convention } from '../../model/convention';
-import { DemandeAdhesion, DemandeCession } from '../../model/demande';
+import { DemandeCession } from '../../model/demande';
 import { Document, Documents } from '../../model/document';
 import { StatutEnum } from '../../model/statut-enum';
 import { DemandesCessionService } from '../../service/demandes_cession/demandes-cession.service';
-import { DocumentService } from '../../service/document/document.service';
 import { ConventionEnregistreeComponent } from '../convention-enregistree/convention-enregistree.component';
-import { ConventionSignerComponent } from '../convention-signer/convention-signer.component';
 import { EditerConventionComponent } from '../editer-convention/editer-convention.component';
 
 @Component({
@@ -59,10 +57,8 @@ export class ConventionCessionComponent implements OnInit {
   statuts: any[];
   paramStatuts: any[];
   page: any;
-  constructor(
-    private documentService: DocumentService, public dialogService: DialogService, public messageService: MessageService,
+  constructor(public dialogService: DialogService, public router: Router,public messageService: MessageService,
     private breadcrumbService: BreadcrumbService,
-    private filterService: FilterService,
     private demandeCessionService: DemandesCessionService
 
   ) {
@@ -134,7 +130,7 @@ export class ConventionCessionComponent implements OnInit {
     });
   }
 
-  initGetDemandes(statuts: StatutEnum[]) {
+    initGetDemandes(statuts: StatutEnum[]) {
     let statutsParam
     if (Array.isArray(statuts)) {
       statutsParam = statuts.join(",")
@@ -170,11 +166,9 @@ export class ConventionCessionComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   pageRendered(e: CustomEvent) {
-    console.log('(page-rendered)');
   }
 
   /**
@@ -197,7 +191,6 @@ export class ConventionCessionComponent implements OnInit {
     this.textLayerRenderedCb++;
 
     // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
   }
 
   editConvention(demande) {
@@ -206,7 +199,19 @@ export class ConventionCessionComponent implements OnInit {
         demande: demande
       },
       header: "Editer la convention",
-      width: '700px',
+      width: '70%',
+      //height: 'calc(50% - 100px)',
+      baseZIndex: 50
+    });
+  }
+
+  corrigerConvention(demande) {
+    const ref = this.dialogService.open(EditerConventionComponent, {
+      data: {
+        demande: demande
+      },
+      header: "Corriger la convention",
+      width: '70%',
       //height: 'calc(50% - 100px)',
       baseZIndex: 50
     });
@@ -225,7 +230,7 @@ export class ConventionCessionComponent implements OnInit {
       data: {
         demande: demande
       },
-      header: "Chargement de la convention enregistrée",
+      header: "Chargement de la convention enregistrée aux impôts",
       width: '40%',
       height: 'calc(50% - 100px)',
       baseZIndex: 50
@@ -253,6 +258,12 @@ export class ConventionCessionComponent implements OnInit {
     this.ref.close();
   }
 
+  consulterDemande(demande) {
+    this.demande = { ...demande };
+    //this.demandeDialog = true;
+    this.demandeCessionService.setDemandeObs(demande);
+    this.router.navigate(['workstation/cdmp/consulter_demande'], { queryParams: { page: 'demande cession' } });
+  }
 
 
 }

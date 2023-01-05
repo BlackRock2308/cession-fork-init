@@ -7,7 +7,9 @@ RUN npm run build
 #stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist/wootoo-front /usr/share/nginx/html
-#stage 
+COPY --from=node /app/nginx.conf /etc/nginx/conf.d/nginx.conf.template
+ENV API_URL=http://10.42.1.131:8081
+#stage 3
 CMD ["/bin/sh", "-c", "\
-sed -i s#API_URL#$API_URL#g /usr/share/nginx/html/main.*.js &&\
+envsubst '${API_URL}' < /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/default.conf &&\
 nginx -g 'daemon off;'"]

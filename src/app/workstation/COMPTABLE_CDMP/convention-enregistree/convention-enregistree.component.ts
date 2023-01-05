@@ -49,9 +49,9 @@ export class ConventionEnregistreeComponent implements OnInit {
       convention: ['', Validators.required]
     });
 
-      this.demande = this.config.data.demande;
-      this.pme = this.demande.pme
-      this.convention = this.demande.conventions[0];
+    this.demande = this.config.data.demande;
+    this.pme = this.demande.pme
+    this.convention = this.demande.conventions[0];
 
     this.form = this.formBuilder.group({
 
@@ -65,7 +65,6 @@ export class ConventionEnregistreeComponent implements OnInit {
   //sélectionner le fichier dE la convention
   selectCONVENTIONFile(files: any): void {
     this.selectedCONVENTIONFiles = files.target.files[0];
-    console.log(this.selectedCONVENTIONFiles);
   }
 
   dismiss() {
@@ -83,10 +82,10 @@ export class ConventionEnregistreeComponent implements OnInit {
     }
 
     Swal.fire({
-      title: 'Voulez-vous soumettre la convention enregistrée',
+      title: 'Voulez-vous soumettre la convention chargée ?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor: '#99CC33FF',
       denyButtonColor: '#981639FF',
       cancelButtonColor: '#333366FF',
@@ -113,10 +112,10 @@ export class ConventionEnregistreeComponent implements OnInit {
     }
 
     this.conventionService.transmettreConvention(this.convention, this.convention.idConvention).subscribe(
-      data => { console.log(data) }),
+      data => {  data}),
 
-      this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'AUTRE').subscribe(
-        data => { console.log(data) }),
+      this.uploadFileService.uploadFile('/conventions/', this.convention.idConvention, this.selectedCONVENTIONFiles, 'CONVENTION').subscribe(
+        data => { data }),
 
       this.demandeCessionService.updateStatut(this.demande.idDemande, StatutEnum.ConventionTransmise)
         .subscribe((response: any) => {
@@ -130,19 +129,18 @@ export class ConventionEnregistreeComponent implements OnInit {
             timer: 2500
 
           }).then(() => {
-              this.router.navigate(['workstation/comptable/convention_cession'])
-             
+            this.router.navigate(['workstation/comptable/convention_cession'])
+
           })
           setTimeout(() => {
             location.reload()
-          },1600);
+          }, 1600);
         })
     this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
     this.observation.statut = {}
     this.observation.demandeid = this.demande.idDemande;
     this.observation.statut.libelle = StatutEnum.ConventionTransmise;
-    this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    this.observationService.postObservation(this.observation).subscribe(data => data)
   }
-      
+
 }
-      

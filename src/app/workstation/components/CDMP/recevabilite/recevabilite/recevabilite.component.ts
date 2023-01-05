@@ -126,6 +126,7 @@ export class RecevabiliteComponent implements OnInit {
   
 
   paginate(event) { 
+  
     console.log(this.page);
     let statutsParam
     if (Array.isArray(this.paramStatuts)) {
@@ -176,9 +177,7 @@ initGetDemandes(statuts: StatutEnum[]) {
   this.page=args
   this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
     this.demandes = data.content
-    console.log(data)
     this.totalRecords=data.totalElements
-    console.log(this.totalRecords)
   });
 
 
@@ -219,9 +218,7 @@ OnPageEvent(){
 }
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };
-    //console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
-
     this.router.navigate(['workstation/cdmp/recevabilite/verifier']);
 
 
@@ -244,8 +241,6 @@ OnPageEvent(){
 
   consulterDemande(demande) {
     this.demande = { ...demande };
-    //this.demandeDialog = true;
-    console.log(demande)
     this.demandeCessionService.setDemandeObs(demande);
     this.router.navigate(['workstation/cdmp/consulter_demande'], {  queryParams: {  page: 'demande cession' } });
   }
