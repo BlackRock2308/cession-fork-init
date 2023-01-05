@@ -17,6 +17,7 @@ import { Observation } from 'src/app/workstation/model/observation';
 import { ObservationService } from 'src/app/workstation/service/observation/observation.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { TimelineElement } from '../../observations/timeline-element';
 @Component({
     selector: 'app-tache-analyse',
     templateUrl: './tache-analyse.component.html',
@@ -24,6 +25,7 @@ import { StatutEnum } from 'src/app/workstation/model/statut-enum';
     providers: [DialogService,MessageService]
 })
 export class TacheAnalyseComponent implements OnInit {
+    events1: TimelineElement[] = [];
 
     demandeCession: any;
 
@@ -70,7 +72,7 @@ export class TacheAnalyseComponent implements OnInit {
          private observationService:ObservationService,
          private tokenStorage:TokenStorageService) {
             this.breadcrumbService.setItems([
-                { label: 'Liste de demandes à analyser'},
+                { label: 'Liste de demandes à analyser' , routerLink :  'cdmp/analyse_risque'},
                 { label: 'Analyse du risque',  routerLink: ['/cdmp/analyse_risque']  }
             ]);
             this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink:  ['cdmp/dashboard'] })
@@ -88,44 +90,23 @@ export class TacheAnalyseComponent implements OnInit {
     
         this.demandeCessionService.getDemandeObs().subscribe(data => {
             this.demandeCession = data
-            console.log(this.demandeCession)
             this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents);
             this.documents=this.documents.concat(this.demandeCession.pme.documents);
             this.documents=this.documents.concat(this.demandeCession.documents);
 
+            this.events1 = [];
+            this.events1=this.demandeCession.observations
+            this.events1.find(element=>{
+              
+                   if(!(element.libelle) || element.libelle=='' || element.libelle==undefined)
+                     element.libelle="Pas d'observations."
+                 })
             this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
                 data => {
                     this.observationLibelle=data.libelle
-                    console.log(this.observationLibelle)
                 })
           })
       
-        //get all documents from the demand
-        
-
-        // this.demandeCession.bonEngagement.documents.forEach(document => {
-        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-        //         this.documents=this.documents.concat(data);
-        //         console.log(this.documents)
-        //     });
-        // });
-
-        // this.demandeCession.pme.documents.forEach(document => {
-        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-        //         this.documents=this.documents.concat(data);
-        //         console.log(this.documents)
-        //     });
-        // });
-
-        // this.demandeCession.documents.forEach(document => {
-        //     this.documentService.dowloadFile(document.urlFile).subscribe(data => {
-        //         this.documents=this.documents.concat(data);
-        //         console.log(this.documents)
-        //     });
-        // });
-
-        
-
         this.cols = [
             { field: 'ninea', header: 'NINEA' },
             { field: 'rccm', header: 'RCCM' },
@@ -201,7 +182,6 @@ export class TacheAnalyseComponent implements OnInit {
 
     visualiserDocument(document: any) {
         let nom = document.nom;
-        console.log('nom: ' + document.nom + 'path ' +document.urlFile )
         const ref = this.dialogService.open(VisualiserDocumentComponent, {
             data: {
                 document: document
@@ -221,7 +201,7 @@ export class TacheAnalyseComponent implements OnInit {
             title: 'Etes-vous sûr de vouloir valider la demande de cession?',
             showDenyButton: true,
             confirmButtonText: 'Oui',
-            denyButtonText: `Annuler`,
+            denyButtonText: `Non`,
             confirmButtonColor:'#99CC33FF',
             denyButtonColor:'#981639FF',
             cancelButtonColor:'#333366FF',
@@ -233,6 +213,10 @@ export class TacheAnalyseComponent implements OnInit {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
+                setTimeout(() => {
+                    location.reload()
+                  }, 1000);
+                  this.router.navigate(['workstation/cdmp/analyse_risque'])
                 this.demandeCessionService.validateAnalyseRisque(this.demandeCession.idDemande).subscribe(
                     (response) => {},
                     (error) => {},
@@ -241,7 +225,7 @@ export class TacheAnalyseComponent implements OnInit {
                         this.observation.statut={}
                         this.observation.demandeid = this.demandeCession.idDemande;
                         this.observation.statut.libelle =StatutEnum.nonRisquee;
-                        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+                        this.observationService.postObservation(this.observation).subscribe(data => data)
         
                         Swal.fire({
                             position: 'center',
@@ -259,20 +243,11 @@ export class TacheAnalyseComponent implements OnInit {
                                 this.router.navigate(['workstation/cdmp/analyse_risque'])
                             })
                     }
-                    
-                )
-              
-            
+                )            
             } else if (result.isDenied) {
               Swal.fire('Changements non effectués', '', 'info')
             }
-          })
-       
-        
-        
-    
-    
-          
+          })  
     }
 
     onSubmitRejet() {
@@ -280,7 +255,7 @@ export class TacheAnalyseComponent implements OnInit {
     
         Swal.fire({
             position: 'center',
-            title: 'Etes-vous sur de vouloir rejeter la demande?',
+            title: 'Etes-vous sûr de vouloir rejeter la demande?',
             icon: 'warning',
             showCancelButton: true,
             color:"#203359",
@@ -297,6 +272,9 @@ export class TacheAnalyseComponent implements OnInit {
           
         }).then((result) => {
           if (result.isConfirmed) {
+            setTimeout(() => {
+                location.reload()
+              }, 1000);
             this.router.navigate(['workstation/cdmp/analyse_risque'])
             this.demandeCessionService.rejeterAnalyseRisque(this.demandeCession.idDemande).subscribe(
                 (response) => {},
@@ -306,7 +284,7 @@ export class TacheAnalyseComponent implements OnInit {
                         this.observation.statut={}                        
                         this.observation.demandeid = this.demandeCession.idDemande;
                         this.observation.statut.libelle =StatutEnum.risquee;
-                        this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+                        this.observationService.postObservation(this.observation).subscribe(data => data)
 
                         Swal.fire(
                             'Rejetée!',
@@ -327,7 +305,7 @@ export class TacheAnalyseComponent implements OnInit {
             title: 'Une demande de complément de dossier sera soumise à la PME. Voulez-vous poursuivre?',
             showDenyButton: true,
             confirmButtonText: 'Oui',
-            denyButtonText: `Annuler`,
+            denyButtonText: `Non`,
             confirmButtonColor:'#99CC33FF',
             denyButtonColor:'#981639FF',
             cancelButtonColor:'#333366FF',
@@ -339,6 +317,9 @@ export class TacheAnalyseComponent implements OnInit {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
+                setTimeout(() => {
+                    location.reload()
+                  }, 1000);
                 this.router.navigate(['workstation/cdmp/analyse_risque'])
 
                 this.demandeCessionService.demanderComplement(this.demandeCession.idDemande).subscribe(
@@ -349,7 +330,7 @@ export class TacheAnalyseComponent implements OnInit {
                             this.observation.statut={}                
                             this.observation.demandeid = this.demandeCession.idDemande;
                             this.observation.statut.libelle =StatutEnum.complementRequis;
-                            this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+                            this.observationService.postObservation(this.observation).subscribe(data => data)
             
                             Swal.fire({
                                 html:"<p style='font-size: large;font-weight: bold;justify-content:center;'>Demande de complément de dossier soumise !</p> <br><p style='font-size: large;font-weight: bold;'></p>",
@@ -363,6 +344,7 @@ export class TacheAnalyseComponent implements OnInit {
                                 
                               }).then((result) => {
                                 if (result.isConfirmed) {
+                                  
                                   this.router.navigate(['workstation/cdmp/analyse_risque'])
                                   
                                 }})
@@ -370,13 +352,7 @@ export class TacheAnalyseComponent implements OnInit {
                   )            } else if (result.isDenied) {
               Swal.fire('Demande non soumise', '', 'info')
             }
-          })
-       
-      
-    
-        
-    
-          
+          })   
     }
 
 }

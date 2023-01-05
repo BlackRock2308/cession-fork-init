@@ -71,6 +71,13 @@
               </div>
               <i class="pi pi-angle-right"></i>
             </li>
+            <li *ngIf="profil === 'PME'" class="layout-submenu-item">
+              <i class="pi pi-file icon icon-1" ></i>
+              <div class="menu-text" (click)="modifierInfosPME(demande)" >
+                <p>Informations relatives a la PME </p>
+              </div>
+              <i class="pi pi-angle-right"></i>
+            </li>
             <li class="layout-submenu-footer">
               <button (click)="loggout()" class="signout-button" style="float: right;">Se déconnecter</button>
             </li>

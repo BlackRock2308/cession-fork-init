@@ -1,0 +1,120 @@
+<div class="container-fluid text-left">
+    <div style="display: block;">
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+            <div class="modal-body" style="height: 100%;">
+                <div class="card p-fluid">
+                <div class="field grid">
+                    <label htmlFor="prenom" class="col-12 mb-2 md:col-3 md:mb-0">Prénom<span class="required">*</span></label>
+                    <div class="col-12 md:col-9" [ngClass]="{
+                        'has-error':(form.get('prenom').touched || form.get('prenom').dirty ) &&
+                        !form.get('prenom').valid
+                        }">
+                        <input pInputText id="prenom" formControlName="prenom" type="text" [(ngModel)]="utilisateur.prenom" />
+                        <span *ngIf="form.get('prenom').errors && submit" class="error-validation">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="nom" class="col-12 mb-2 md:col-3 md:mb-0">Nom<span class="required">*</span></label>
+                    <div class="col-12 md:col-9" [ngClass]="{
+                        'has-error':(form.get('nom').touched || form.get('nom').dirty ) &&
+                        !form.get('nom').valid
+                        }">
+                        <input pInputText id="nom" formControlName="nom" type="text" [(ngModel)]="utilisateur.nom" />
+                        <span *ngIf="form.get('nom').errors && submit" class="error-validation">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="email" class="col-12 mb-2 md:col-3 md:mb-0">Email<span class="required">*</span></label>
+                    <div class="col-12 md:col-9" [ngClass]="{
+                        'has-error':(form.get('email').touched || form.get('email').dirty ) &&
+                        !form.get('email').valid
+                        }">
+                        <input pInputText id="email" formControlName="email" type="text" [(ngModel)]="utilisateur.email" />
+                         <span *ngIf="submit && f['email'].errors! && !f['email'].hasError('required')"
+                        class="error-validation">Renseigner un bon email</span>
+                    <span *ngIf="submit && f['email'].hasError('required')" class="error-validation">{{message}}</span>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="telephone" class="col-12 mb-2 md:col-3 md:mb-0">Téléphone<span class="required">*</span></label>
+                    <div class="col-12 md:col-9" [ngClass]="{
+                        'has-error':(form.get('telephone').touched || form.get('telephone').dirty ) &&
+                        !form.get('telephone').valid
+                        }">
+                        <ngx-intl-tel-input [(ngModel)]="utilisateur.telephone"
+                        [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [style]="{width: '100%'}"
+                        [selectFirstCountry]="false" [maxLength]="15"
+                        [phoneValidation]="true" [separateDialCode]="separateDialCode" name="phone" [numberFormat]="PhoneNumberFormat.National"
+                        formControlName="telephone" >
+                    </ngx-intl-tel-input>
+                    <span *ngIf="submit && f['telephone'].invalid && !f['telephone'].hasError('required')"
+                    class="error-validation">Renseigner un bon numéro</span>
+                        <span *ngIf="f['telephone'].hasError('required') && submit" class="error-validation">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="adresse" class="col-12 mb-2 md:col-3 md:mb-0">Adresse</label>
+                    <div class="col-12 md:col-9" [ngClass]="{
+                        'has-error':(form.get('adresse').touched || form.get('adresse').dirty ) &&
+                        !form.get('adresse').valid
+                        }">
+                        <input pInputText id="adresse" formControlName="adresse" type="text" [(ngModel)]="utilisateur.adresse" />  
+                    </div>
+                </div>
+                <div class="field grid">
+                    <label htmlFor="profil" class="col-12 mb-2 md:col-3 md:mb-0">Profil<span class="required">*</span></label>
+                      <div class="col-12 md:col-9" [ngClass]="{
+                        'has-error':(form.get('ministere').touched || form.get('ministere').dirty ) &&
+                        !form.get('ministere').valid
+                        }">
+                        <p-dropdown [options]="roles" [showClear]="true" (onChange)="rolesChange($event)" formControlName="profil"
+                         [(ngModel)]="profil" optionLabel="libelle"  placeholder="Sélectionnez un profil">
+                        </p-dropdown>
+                        <span *ngIf="form.get('profil').errors && submit" class="error-validation">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+                <div class="field grid" *ngIf="profil?.libelle === 'ORDONNATEUR'">
+                    <label htmlFor="ministere" class="col-12 mb-2 md:col-3 md:mb-0">Ministère<span class="required">*</span></label>
+                    <div class="col-12 md:col-9">
+                        <p-dropdown [options]="ministereDepensiers" class="pup-dropdown-panel"
+                        formControlName="ministere" [(ngModel)]="ministereDepensier" optionLabel="libelle" [filter]="true" filterBy="libelle"
+                        [showClear]="true" placeholder="Sélectionnez un ministère" >
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="ministereDepensier">
+                                <div>{{ministereDepensier.code}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-ministereDepensier pTemplate="item">
+                            <div class="country-item">
+                                <div>{{ministereDepensier.libelle}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                        <span *ngIf="form.get('ministere').errors && submit" class="error-validation">
+                           {{message}}
+                        </span>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <br/>
+        <div class="modal-footer">
+            <div class="col-12  pr-0 d-flex  flex-row-reverse">
+                <button type="submit" id="valider" style="width: min-content;" pButton pRipple label="Sauvegarder"
+                icon="pi pi-check"  class="p-button-raised successButton"></button>
+                <button id="valider" style="width: min-content;" pButton pRipple label="Fermer" icon="pi pi-times"
+                    class="p-button-raised dangerButton" (click)="dismiss()"></button>
+               
+            </div>
+        </div>
+        </form>
+    </div>

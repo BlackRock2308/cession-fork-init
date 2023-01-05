@@ -34,10 +34,8 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                   if (error.error instanceof ErrorEvent) {
                       // erreur client
                       errorMessage = `Error: ${error.error.message}`;
-                      console.log('erreur client')
                   } else {
                       // erreur serveur
-                      console.log('erreur serveur',error.name,error.type,error.statusText,error.url,)
                       errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
                       if(error.status===404){
                         this.router.navigate(['404'])
@@ -54,7 +52,6 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                         
                       }
                   }
-                  console.log(errorMessage);
                   return throwError(error);
               })
           )

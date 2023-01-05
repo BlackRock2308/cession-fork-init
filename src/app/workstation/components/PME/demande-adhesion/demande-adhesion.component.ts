@@ -179,7 +179,6 @@ export class DemandeAdhesionComponent implements OnInit {
     getDemandeCessionByPME(idPME){
         this.demandesCessionService.getDemandesCessionByPme(idPME).subscribe(data => {
             this.demandes = data
-            console.log(this.demandes)
         });
     }
     onSubmit() {
@@ -194,7 +193,6 @@ export class DemandeAdhesionComponent implements OnInit {
     //sélectionner le fichier du ninea
     selectBONFile(files: any): void {
         this.selectedBONFiles = files.target.files[0];
-        console.log(this.selectedBONFiles);
     }
 
     //ouvrir la boite de dialogue du répertoire
@@ -207,18 +205,12 @@ export class DemandeAdhesionComponent implements OnInit {
     private enregistrerBon() {
         this.pme = this.form.value;
         this.pme.nineaFile = this.selectedBONFiles;
-        //fonction à continuer 
-        console.log(this.pme);
-        /*this.adhesionService.postPME(this.pme)
-            .subscribe(() => {
-               })*/
-
+     
     }
 
     consulterDemande(demande) {
         this.demande = { ...demande };
         //this.demandeDialog = true;
-        console.log(demande)
         this.demandesAdhesionService.setDemandeObs(demande);
         this.router.navigate(['workstation/cdmp/visualiser-demandes'], { queryParams: { page: 'demande cession' } });
     }
@@ -387,7 +379,6 @@ export class DemandeAdhesionComponent implements OnInit {
     //récupération des informations de la demandes
     setDemandeInfo(demande: DemandeAdhesion) {
         this.demandesAdhesionService.setDemandenantissementObs(demande);
-        console.log(this.demandesAdhesionService.getDemandenantissementObs())
     }
 
     //filtre par intervalle de date
@@ -408,23 +399,18 @@ export class DemandeAdhesionComponent implements OnInit {
             }
 
             if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
-                console.log(value)
-                console.log(1)
                 return true;
             }
 
             if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
-                console.log(2)
                 return true;
             }
 
             if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
                 this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
-                console.log(3)
                 return true;
             }
 
-            console.log(5, this.filterService.filters.after(value, this.rangeDates[0]), this.filterService.filters.before(value, this.rangeDates[1]), value, this.rangeDates[0])
             return false;
         })
     }

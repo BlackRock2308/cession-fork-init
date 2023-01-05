@@ -40,11 +40,9 @@ export class AppLoginComponent implements OnInit {
 
       this.tokenStorage.signOut();
 
-    console.log(JSON.stringify({ email: username, password: motdepasse }))
 
     this.authService.login(JSON.stringify({ email: username, password: motdepasse })).subscribe(
       (data) => {
-        console.log(data)
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data.utilisateur);
         this.tokenStorage.authenticate(true);
@@ -93,7 +91,6 @@ export class AppLoginComponent implements OnInit {
             this.authService.getPmebyUser(this.tokenStorage.getUser().idUtilisateur).subscribe(
               data =>{
                 if(data){
-                  console.log(data)
                   this.tokenStorage.savePME(data)
 
                   localStorage.setItem('profil', 'PME'); 
@@ -145,12 +142,23 @@ export class AppLoginComponent implements OnInit {
           }
           if (this.roles.find(elem => elem.libelle == 'ORDONNATEUR') != null) {
             localStorage.setItem('profil', 'ORDONNATEUR');
+            localStorage.setItem('CODE_MINISTERE', 'ORDONNATEUR');
             if (this.changeCodePin) {
               this.router.navigate(['workstation/profil']);
 
             }
             else {
               this.router.navigate(['workstation/ordonnateur/conventions']);
+            }
+          }
+          if (this.roles.find(elem => elem.libelle == 'ADMIN') != null) {
+            localStorage.setItem('profil', 'ADMIN');
+            if (this.changeCodePin) {
+              this.router.navigate(['workstation/profil']);
+
+            }
+            else {
+              this.router.navigate(['workstation/admin/ministere_depensier']);
             }
           }
         }

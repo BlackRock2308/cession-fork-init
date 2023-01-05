@@ -16,13 +16,13 @@ export class CodeComponent implements OnInit {
 
   form!: FormGroup;
   user: Utilisateur;
-  code:string;
+  code: string;
 
   constructor(
     private formBuilder: FormBuilder,
     public ref: DynamicDialogRef,
     private utilisateurService: UtilisateurService,
-    private tokenStorage:TokenStorageService
+    private tokenStorage: TokenStorageService
   ) { }
 
   ngOnInit(): void {
@@ -46,21 +46,19 @@ export class CodeComponent implements OnInit {
 
   //enregistrement du pme avec l'appel du service d'enregistrement
   private valider() {
-    this.user.codePin=this.code
-    this.user.updateCodePin=false
-    console.log(this.user.updateCodePin)
+    this.user.codePin = this.code
+    this.user.updateCodePin = false
     this.utilisateurService.updateUtilisateur(this.user).subscribe(
-      (response) => {},
-      (error) => {},
+      (response) => { },
+      (error) => { },
       () => {
         this.utilisateurService.getByIdemail(this.tokenStorage.getUser().email).subscribe(
-          
+
           data => {
-            console.log(data,this.tokenStorage.getUser().email)
             this.tokenStorage.saveUser(data)
           }
         )
-        
+
         Swal.fire({
           html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Votre Code PIN a été modifié avec succès. Vous pouvez maintenant créer une demande de cession</p>",
           color: "#203359",
@@ -70,13 +68,13 @@ export class CodeComponent implements OnInit {
           icon: 'success',
           showConfirmButton: false,
           timer: 1500
-                })
-    
+        })
+
         setTimeout(() => {
           location.reload()
-         }, 1500);
-        }
-     
+        }, 1500);
+      }
+
     )
 
   }

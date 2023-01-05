@@ -97,7 +97,6 @@ export class PaiementsComponent implements OnInit {
   getAllPaiements(){
     this.paiementsService.getPaiementsByIdPME(this.tokenStorage.getPME().idPME).subscribe((data)=>{
       this.paiements=data
-    console.log(this.paiements)
   });
   }
   visualiserListPaiement(paiement: Paiements) {

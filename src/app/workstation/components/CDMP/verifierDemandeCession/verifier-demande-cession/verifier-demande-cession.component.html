@@ -151,32 +151,34 @@
                         <h4 class="title">Vérification de la recevabilité</h4>
                     </div>
                 </div>
-                <div class="field col-12 ml-1 d-flex  etape mb-0 mt-0">
-                    <div class="col-10 d-flex justify-content-start">
-                        <span class="h5texte">Le marché est-il identifié au niveau de la Direction Générale du
-                            Budget?</span>
-                    </div>
-                    <div class="col-2   d-flex switch">
-                        <div class="col-6 d-flex ">
-                            <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true"
-                                [(ngModel)]="identifie" id="active">
-                            </p-inputSwitch>
+                <div class="col-12 mt-0 ml-0">
+                    <div class="field col-12 d-flex etape">
+                        <div class="col-10 mt-0  d-flex justify-content-start">
+                            <span class="h5texte">Le marché est-il identifié au niveau de la Direction Générale du
+                                Budget?</span>
                         </div>
-                        <div class="col-2 d-flex ">
-                        </div>
-                        <div class="col-4 d-flex ">
-                            <span *ngIf="identifie" [class]="'product-badge oui'">Oui</span>
-                            <div *ngIf="!identifie" [class]="'product-badge non'">Non</div>
+                        <div class="col-2 d-flex switch">
+                            <div class="col-6 d-flex ">
+                                <p-inputSwitch type="radio" name="ninea" styleClass="oui" value="true"
+                                    [(ngModel)]="identifie" id="active">
+                                </p-inputSwitch>
+                            </div>
+                            <div class="col-2 d-flex ">
+                            </div>
+                            <div class="col-4 d-flex ">
+                                <span *ngIf="identifie" [class]="'product-badge oui'">Oui</span>
+                                <div *ngIf="!identifie" [class]="'product-badge non'">Non</div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 mt-0 ml-0" *ngIf="identifie">
-                    <div class="field col-12 d-flex etape">
+                    <div class="field col-12 d-flex etape1">
                         <div class="col-10 mt-0  d-flex justify-content-start">
                             <span class="h5texte">Y a-t-il un Avis à Tiers Détenteur sur cette PME?
                             </span>
                         </div>
-                        <div class="col-2   d-flex switch">
+                        <div class="col-2 d-flex switch">
                             <div class="col-6 d-flex ">
                                 <p-inputSwitch styleClass="oui" [(ngModel)]="atd">
                                 </p-inputSwitch>
@@ -275,8 +277,8 @@
                             </div>
                         </div>
                         <div class="field grid col-12 md:col-4    mr-2">
-                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nature de la prestation<span
-                                    class="required">*</span></label>
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nature de la
+                                prestation<span class="required">*</span></label>
                             <div class="p-inputgroup">
                                 <span class="p-float-label">
                                     <input pInputText id="name3" type="text" formControlName="naturePrestation"
@@ -328,17 +330,16 @@
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Montant de la dépense<span
                                     class="required">*</span></label>
                             <p-inputNumber mode="currency" currency="CFA" formControlName="montantCreance"
-                                [(ngModel)]="bonEngagement.montantCreance">
+                                [(ngModel)]="montantCreance" placeholder="{{montantCreance}}">
                             </p-inputNumber>
                         </div>
                         <div class="field grid col-12 md:col-4 mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date d'engagement<span
                                     class="required">*</span></label>
-                            <p-calendar inputId="basic" formControlName="dateBonEngagement"
+                            <p-calendar inputId="basic" formControlName="dateBonEngagement" [maxDate]="dateTime"
                                 [ngStyle]="{'width': '100%'}" [(ngModel)]="bonEngagement.dateBonEngagement">
                             </p-calendar>
-                            <span *ngIf="submit && f['dateBonEngagement'].errors! && !f['dateBonEngagement'].hasError('required')"
-                                style="color: red;">Date supérieure à la date du jour</span>
+
                         </div>
                         <div class="field grid col-12 md:col-4    mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Identification
@@ -370,14 +371,34 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="field grid col-12 md:col-4 mr-2">
+                            <label htmlFor="name3" style="font-weight: bold;color: #203359;">Ministère Dépensier<span
+                                class="required">*</span></label>
+                                <p-dropdown [options]="ministeres" formControlName="code"
+                                    optionLabel="libelle" optionValue="code" [filter]="true"
+                                    filterBy="code" [showClear]="true" 
+                                    placeholder="Sélectionnez le Ministère Dépensier" [ngStyle]="{'width': '100%'}">
+                                    <ng-template pTemplate="selectedItem" >
+                                        <div class="country-item country-item-value" *ngIf="infosBEForm.value['code']">
+                                            <div>{{infosBEForm.value['code']}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-ministere>
+                                        <div class="country-item">
+                                            <div>{{ministere.libelle}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                        </div> 
                         <div class="field grid col-12 md:col-4   mr-2">
                             <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date soumission du service
                                 depensier<span class="required">*</span></label>
                             <p-calendar inputId="basic" formControlName="dateSoumissionServiceDepensier"
-                                [ngStyle]="{'width': '100%'}"
+                                [maxDate]="dateTime" [ngStyle]="{'width': '100%'}"
                                 [(ngModel)]="bonEngagement.dateSoumissionServiceDepensier">
                             </p-calendar>
-                            <span *ngIf="submit && f['dateSoumissionServiceDepensier'].errors! && !f['dateSoumissionServiceDepensier'].hasError('required')"
+                            <span
+                                *ngIf="submit && f['dateSoumissionServiceDepensier'].errors! && !f['dateSoumissionServiceDepensier'].hasError('required')"
                                 style="color: red;">Date supérieure à la date du jour</span>
                         </div>
                     </div>
@@ -388,6 +409,8 @@
         <br>
         <br>
         <label class="form-label" for="textAreaExample">Observations</label>
+
+        
         <div class="d-flex flex-start w-100">
 
             <div class="form-outline w-100">
@@ -400,10 +423,46 @@
         <div class="float-end">
             <button pButton pRipple icon="pi pi-times" class="p-button-raised dangerButton" label="Rejeter la demande"
                 (click)="onSubmitRejet(bonEngagement)"></button>
-            <button  *ngIf="identifie" pButton pRipple icon="pi pi-check"
-                class="p-button-raised successButton" label="Valider" (click)="onSubmitAccept(bonEngagement)"></button>
+            <button *ngIf="identifie" pButton pRipple icon="pi pi-check" class="p-button-raised successButton"
+                label="Valider" (click)="onSubmitAccept(bonEngagement)"></button>
 
         </div>
 
+       
+
     </div>
+</p-card>
+
+<br>
+<br>
+<!-- <p-timeline [value]="events2" layout="horizontal" align="top">
+    <ng-template pTemplate="content" let-event>
+        {{event}}
+    </ng-template>
+</p-timeline> -->
+
+<p-card>
+    <div class="d-flex justify-content-center col-12">
+        <div class="col-12 md:col-10 modalTitle  ">
+            <h4 class="title">Historique</h4>
+        </div>
+    </div>
+<p-timeline [value]="events1" class="d-flex">
+    <ng-template  pTemplate="content" let-event>
+        <div class="d-flex justify-content-between">
+            <span
+            [class]="'product-badge status-' + (event.statut.libelle ? event.statut.libelle.toLowerCase() : '')">{{event.statut.libelle.replaceAll('_',
+            ' ')}}</span>
+            <span style="color: rgb(11, 11, 189);">{{event.dateObservation | date:'medium'}}</span>
+        </div>
+        <br>
+        <div>
+        {{event.libelle }}
+        <br>
+        <hr class="dotted">
+
+    </div>
+   
+    </ng-template>
+</p-timeline>
 </p-card>

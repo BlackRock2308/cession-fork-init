@@ -7,46 +7,50 @@
     border-radius:0px;
 }
 
+:host ::ng-deep .p-dropdown {
+    width: 14rem;
+}
+
+.country-item-value {
+    img.flag {
+        width: 17px;
+    }
+}
+
+p-skeleton {
+    width: 100%;
+}
+.required{
+    color: red;
+}
 .text{
     color: #203359;
     font-weight: bold;
 }
+.error-validation{
+    color:  red;
+    font-size: small;
+}
+.adhesion-topbar{
+    height: 5rem;
+}
 .logo-menu{
-    height: 30px;
+    height: 2.2rem;
+    margin: 1.25rem;
 }
+.layout-wrapper .adhesion-topbar .topbar-logo a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .layout-wrapper .adhesion-topbar .topbar-logo a .app-name {
+    margin-left: 10px;
+    color: #d8dee9;
+    font-size: 18px;
+  }
 
-/*::ng-deep .p-fileupload{
-    display:flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    background: none;
-    height: 1px;
-
-}
-
-::ng-deep .p-fileupload-buttonbar .p-fileupload-choose{
-    color: #243E73;
-    margin: 0%;
-    padding: 0%;
-    font-weight: bolder;
-    width: 100px;
-    background-color: gainsboro;
-    border: 0px;
-    
-}
-
-::ng-deep .p-fileupload-buttonbar{
-    margin: 0%;
-    padding: 0%;
-}
-
-::ng-deep .p-button-icon{
-    color: #243E73;
-    margin: 0%;
-    padding: 0%;
-    font-weight: bolder;
-
-}*/
 .p-button-danger{
     background-color: #A6325C;
 }
@@ -87,6 +91,9 @@
     font-weight: bold;
 }
 
+:host ::ng-deep .p-dropdown {
+    width: 14rem;
+  }
 
 
 

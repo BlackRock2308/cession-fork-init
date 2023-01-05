@@ -25,6 +25,6 @@ export const genericRetryPolicy =
           // retry after 2s, 4s, 6s
           return timer(retryAttempt * scalingDuration);
         }),
-        finalize(() => console.log('Retry end, We are done!'))
+        finalize(() => 'Retry end, We are done!')
       );
     };

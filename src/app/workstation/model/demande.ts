@@ -24,6 +24,7 @@ export class DemandeCession {
     statut?:string;
     dateDemandeCession?: Date;
     numeroDemande ?: string;
+    minister?: String;
     constructor(obj: any = {}) {
         this.idDemande= obj.idDemande;
         this.pme= obj.pme;
@@ -32,6 +33,7 @@ export class DemandeCession {
         this.statut= obj.statut;
         this.dateDemandeCession= obj.dateDemandeCession;
         this.numeroDemande= obj.numeroDemande;
+        this.minister= obj.minister;
     }    
 }
 

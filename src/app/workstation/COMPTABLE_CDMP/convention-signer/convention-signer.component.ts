@@ -18,8 +18,8 @@ export class ConventionSignerComponent implements OnInit {
   form!: FormGroup;
   convention: any;
   codePIN: string;
-  idUser:any;
-  decote : number;
+  idUser: any;
+  decote: number;
   observation: Observation = {};
   constructor(
     private formBuilder: FormBuilder,
@@ -54,7 +54,7 @@ export class ConventionSignerComponent implements OnInit {
       title: "Voulez vous signer la convention?",
       showDenyButton: true,
       confirmButtonText: "Oui",
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor: "#99CC33FF",
       denyButtonColor: "#981639FF",
       cancelButtonColor: "#333366FF",
@@ -73,52 +73,53 @@ export class ConventionSignerComponent implements OnInit {
     });
   }
 
-   signerConventionDG() {
+  signerConventionDG() {
     this.codePIN = this.form.value["codePIN"];
     if (this.form.value["decote"] !== null) {
       this.form.value['decote']=this.form.value['decote']/100
       this.conventionService
         .updateDecote(this.convention.idConvention, this.form.value["decote"])
         .subscribe((res: any) => {
-          console.log(res);
-        });        
-      this.conventionService.signerConventionDG( this.codePIN, this.idUser, this.convention.idConvention
-        )
-        .subscribe((response) => {
-          if (response==true) {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              showConfirmButton: false,
-              timer: 1500,
-              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Convention Signée avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
-              color: "#203359",
-              confirmButtonColor: "#99CC33",
-              confirmButtonText:
-                '<i class="pi pi-check confirm succesButton"></i>OK',
-              allowOutsideClick: false,
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.router.navigate([
-                  "workstation/comptable/convention_cession",
-                ]);
-              }
-            });
-
-            setTimeout(() => {
-              location.reload();
-            }, 1600);
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Erreur",
-              text: "Le code pin saisi est incorrect!",
-              confirmButtonText: '<i class="pi pi-check"></i>OK',
-              confirmButtonColor: "#99CC33FF",
-            });
-          }
+          res;
         });
     }
+    this.conventionService.signerConventionDG(this.codePIN, this.idUser, this.convention.idConvention
+    )
+      .subscribe((response) => {
+        if (response == true) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+            html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>Convention Signée avec succès.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+            color: "#203359",
+            confirmButtonColor: "#99CC33",
+            confirmButtonText:
+              '<i class="pi pi-check confirm succesButton"></i>OK',
+            allowOutsideClick: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate([
+                "workstation/comptable/convention_cession",
+              ]);
+            }
+          });
+
+          setTimeout(() => {
+            location.reload();
+          }, 1600);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Erreur",
+            text: "Le code pin saisi est incorrect!",
+            confirmButtonText: '<i class="pi pi-check"></i>OK',
+            confirmButtonColor: "#99CC33FF",
+          });
+        }
+      });
+
   }
 
   

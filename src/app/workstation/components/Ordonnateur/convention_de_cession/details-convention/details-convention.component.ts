@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
-import { Convention, DemandeCession } from 'src/app/workstation/model/demande';
+import { Convention} from 'src/app/workstation/model/demande';
 import { Document, Documents } from 'src/app/workstation/model/document';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
-import { DocumentService } from 'src/app/workstation/service/document/document.service';
 import { FileUploadService } from 'src/app/workstation/service/fileUpload.service';
 import { VisualiserDocumentComponent } from '../../../CDMP/visualiser-document/visualiser-document.component';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
@@ -43,14 +42,12 @@ export class DetailsConventionComponent implements OnInit {
   private documentFileUrl = ApiSettings.API_CDMP + '/documents/file?path='
   observationLibelle: string;
 
-
   constructor(
     private router: Router,
     private demandeCessionService: DemandesCessionService,
     private paiementService: PaiementsService,
     private dialogService: DialogService,
     public ref: DynamicDialogRef,
-    private uploadFileService: FileUploadService,
     private breadcrumbService: BreadcrumbService,
     private observationService: ObservationService,
     private tokenStorage: TokenStorageService
@@ -63,39 +60,31 @@ export class DetailsConventionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.demandeCessionService.getDemandeObs().subscribe(data => {
-    //   this.demandeCession = data
+    this.demandeCessionService.getDemandeObs().subscribe(data => {
+      this.demandeCession = data
       
-    //   console.log(this.demandeCession)
-    //   this.conventions = this.demandeCession.conventions;
-    //   //console.log('afficher1' +JSON.stringify( this.conventions))
-    //   this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
-    //   this.documents=this.documents.concat(this.demandeCession.pme.documents)
-    //   this.documents=this.documents.concat(this.demandeCession.documents)
+      
+      this.documents=this.documents.concat(this.demandeCession.bonEngagement.documents)
+      this.documents=this.documents.concat(this.demandeCession.pme.documents)
+      this.documents=this.documents.concat(this.demandeCession.documents)
+      this.conventions = this.demandeCession.conventions;
+      this.conventions.forEach(el => {
+        this.docConventions = el.documents
+        this.documents=this.documents.concat(el.documents)
+      })
+      this.conventions = this.demandeCession.convention;
 
-    //   this.conventions.forEach(el => {
-    //     this.docConventions = el.documents
-    //     this.documents=this.documents.concat(el.documents)
-    //   })
-    //   console.log('afficher' +JSON.stringify( this.docConventions))
-    //   //this.documents = this.docConventions;
-    //   this.conventions = this.demandeCession.convention;
+      //this.conventions.forEach(el => this.docConventions = el.documents )
 
-    //   //this.conventions.forEach(el => this.docConventions = el.documents )
-
-    //   this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
-    //     data => {
-    //         this.observationLibelle=data.libelle
-    //         console.log(this.observationLibelle)
-    //     })
+      this.observationService.getObservationByDemandeCessionANDStatut(this.demandeCession.idDemande,this.demandeCession.statut.libelle).subscribe(
+        data => {
+            this.observationLibelle=data.libelle
+        })
 
 
-    // });
-    console.log(this.documents)
-
+     });
 
     this.dowloadFile(this.docConventions[0].urlFile);
-    console.log('affiche2r' + this.docConventions[0].urlFile)
 
     this.cols = [
       { field: 'typeDocument', header: 'Type de document' },
@@ -107,17 +96,18 @@ export class DetailsConventionComponent implements OnInit {
   onSubmitRejet() {
 
     Swal.fire({
-      position: 'center',
-      title: 'Etes-vous sur de vouloir rejeter la convention?',
-      icon: 'warning',
-      showCancelButton: true,
-      color: "#203359",
-      confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>Continuer',
-      allowOutsideClick: false,
+      title: 'Etes-vous sûr de vouloir rejeter la convention?',
+      showDenyButton: true,
+      confirmButtonText: 'Oui',
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
-      cancelButtonColor:'#333366FF'
-
+      cancelButtonColor:'#333366FF',
+      customClass: {
+        actions: 'my-actions',
+        denyButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         this.conventionRejetee();
@@ -131,10 +121,10 @@ export class DetailsConventionComponent implements OnInit {
   onSubmitAccept() {
 
     Swal.fire({
-      title: 'Voulez-vous valider la convention',
+      title: 'Voulez-vous accepter la convention?',
       showDenyButton: true,
       confirmButtonText: 'Oui',
-      denyButtonText: `Annuler`,
+      denyButtonText: `Non`,
       confirmButtonColor:'#99CC33FF',
       denyButtonColor:'#981639FF',
       cancelButtonColor:'#333366FF',
@@ -155,44 +145,42 @@ export class DetailsConventionComponent implements OnInit {
     
   }
 
-  private async conventionRejetee() {
-
-
-    await this.demandeCessionService.updateStatut(this.demandeCession.idDemande,StatutEnum.ConventionRejetee)
+  conventionRejetee() {
+    this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
+      this.observation.statut = {};
+      this.observation.demandeid = this.demandeCession.idDemande;
+      this.observation.statut.libelle = StatutEnum.ConventionRejetee;
+      this.observation.dateObservation = new Date();
+    this.observationService.addObservation(this.observation) 
             .subscribe((response: any) => {
-              console.log(response)
-              console.log(StatutEnum.ConventionRejetee)
+              response
           },
           (error)=>{},
           ()=>{
-            Swal.fire(
-              'Rejetée!',
-              'La convention a bien été rejetée.',
-              'success'
-            )
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500,
+              html: "<p style='font-size: large;font-weight: bold;justify-content:center;'>La convention a bien été rejetée.</p><br><p style='font-size: large;font-weight: bold;'></p>",
+              color: "#203359",
+              confirmButtonColor: "#99CC33",
+              confirmButtonText: '<i class="pi pi-check confirm succesButton"></i>OK',
+              allowOutsideClick: false,  
+            }).then(() => {  
+              this.router.navigate(['workstation/ordonnateur/conventions'])
+            })           
           })
-          this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
-          this.observation.statut={}    
-          this.observation.demandeid= this.demandeCession.idDemande;
-          this.observation.statut.libelle=StatutEnum.ConventionRejetee;
-          await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
-  }
+         }
 
   private async conventionAcceptee() {
-
     let body = {
 
       demandeId: this.demandeCession.idDemande,
     }
-
-    console.log(body)
-
-
-
     await this.demandeCessionService.updateStatut(this.demandeCession.idDemande, StatutEnum.ConventionAcceptee)
       .subscribe((response: any) => {
-        console.log(response)
-        console.log(StatutEnum.ConventionAcceptee)
+        response
       },
         (error) => { },
         () => {
@@ -212,14 +200,14 @@ export class DetailsConventionComponent implements OnInit {
             this.router.navigate(['workstation/ordonnateur/conventions'])
           })
           this.paiementService.postPaiement(body).subscribe(
-            data => { console.log(data) })
+            data => { data })
         })
 
     this.observation.utilisateurid = this.tokenStorage.getUser().idUtilisateur;
     this.observation.statut = {}
     this.observation.demandeid = this.demandeCession.idDemande;
     this.observation.statut.libelle = StatutEnum.ConventionAcceptee;
-    await this.observationService.postObservation(this.observation).subscribe(data => console.log(data))
+    await this.observationService.postObservation(this.observation).subscribe(data => data)
   }
 
   dowloadFile(path: string) {
@@ -229,7 +217,6 @@ export class DetailsConventionComponent implements OnInit {
 
   pageRendered(e: CustomEvent) {
     this.pageRenderCb++;
-    console.log('(page-rendered)');
   }
 
   download(blob?) {
@@ -252,13 +239,11 @@ export class DetailsConventionComponent implements OnInit {
     this.textLayerRenderedCb++;
 
     // Finds anchors and sets hrefs void
-    console.log('(text-layer-rendered)');
 
   }
 
   print() {
     const url = this.src;
-    console.log('donne ' + JSON.stringify(url))
     fetch(url).then(function (t) {
       return t.blob().then((b) => {
         const element = document.createElement('iframe');   // Create an IFrame.
@@ -296,11 +281,9 @@ export class DetailsConventionComponent implements OnInit {
   afterLoadComplete(pdf: any) {
     this.afterpageLoadedCb++;
     this.totalPages = pdf.numPages;
-    console.log('after-load-complete', this.totalPages);
   }
 
   rotate() {
-    console.log(this.angle);
     if (this.angle === 0) {
       this.angle = 90;
     } else if (this.angle === 90) {

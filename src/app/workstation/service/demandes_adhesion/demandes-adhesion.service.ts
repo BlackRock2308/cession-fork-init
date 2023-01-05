@@ -49,7 +49,6 @@ export class DemandesAdhesionService extends GenericService {
 
     }
     catch (e) {
-      console.error("pas encore de variable de session pour le paiement.Certainement c'est la première connexion")
     }
   }
 

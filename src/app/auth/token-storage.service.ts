@@ -34,7 +34,6 @@ export class TokenStorageService {
   }
 
   public savePME(pme) {
-    console.log(pme)
     window.sessionStorage.removeItem(PME_KEY);
     window.sessionStorage.setItem(PME_KEY, JSON.stringify(pme));
   }

@@ -61,10 +61,10 @@
                 
                 <ng-template pTemplate="summary">
                     <span class="textLeft">
-                        SOLDE :{{paiement.soldePME}} F CFA
+                        SOLDE :{{paiement?.soldePME}} F CFA
                     </span>
                     <span class="textRight">
-                        Montant total : {{paiement.montantCreance-paiement.soldePME}} F CFA
+                        Montant total : {{paiement?.montantCreance-paiement?.soldePME}} F CFA
                     </span>
                 </ng-template>
                 
