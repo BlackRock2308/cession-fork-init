@@ -1,0 +1,50 @@
+<form [formGroup]="searchForm" (ngSubmit)="getSearch() " id="form">
+    <p-card style="width: fit-content;height: fit-content;">
+        <div class="row col-12 mx-0 px-0 my-0 py-0">
+            <div  *ngFor="let col of inputs" class="col">
+                <div *ngIf="!(col.name==='date_demande' || col.name==='date_marche') " class="col" >
+                    <span class="p-float-label">
+                        <input pInputText type="text" formControlName="{{col.name}}" >
+                        <label for="inputtext">{{col.placeholder}}</label>
+                    </span>
+                </div>
+            </div>
+            
+            <div *ngIf="isDateDemande" class="col mt-2">
+                
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="rangeDateDemande" [ngModelOptions]="{standalone: true}" selectionMode="range" [readonlyInput]="true"
+                        inputId="range" formDate="dd/mm/yyyy" ></p-calendar>                        
+                        <label for="inputtext">Date de la demande</label>
+                    </span>
+            </div>
+            <div  *ngIf="isDateMarche" class="col mt-2">
+                <span class="p-float-label">
+                    <p-calendar [(ngModel)]="rangeDateMarche" [ngModelOptions]="{standalone: true}"  selectionMode="range" [readonlyInput]="true"
+                    inputId="range" formDate="dd/mm/yyyy" ></p-calendar>                      
+                    <label for="inputtext">Date du marché</label>
+                </span>
+                            </div>
+            <div class="col mt-2">
+                        <p-dropdown #dropDownThing formControlName="statut_libelle" [options]="statuts" placeholder="Statuts" [showClear]="true" id="status">
+                            <ng-template let-option pTemplate="item">
+                                <span
+                                    [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
+                            </ng-template>
+                        </p-dropdown>
+            </div>
+                <div class="col mt-2">
+                    <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
+                        class="p-button-rounded simpleBoldButton search" label="Rechercher"
+                        type="submit"></button>
+                </div>
+                <div  class=" col mt-2" *ngIf="searchForm.value">
+                    <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
+                        label="Annuler" (click)="clear()"
+                        style="background: white; color:#203359"></button>
+                </div>
+        </div>
+    </p-card>
+        
+ 
+</form>

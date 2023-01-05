@@ -194,6 +194,10 @@ export class DemandesCessionService extends GenericService {
     return this.http.patch<any>(`${this.baseUrl}/demandecession/${idDemande}/${code}/rejeterRecevabilite`, idDemande);
   }
 
+search(body:any,params:any):Observable<any> {  
 
+  console.log(params);
+  return this.http.post<any>(`${this.baseUrl}/demandecession/search`, body,{params});
+}
 }
 

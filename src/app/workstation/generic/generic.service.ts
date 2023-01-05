@@ -15,7 +15,11 @@ const httpOptions2 = {
     'enctype':'multipart/form-data'
   })
 };
-
+const httpOptionsText = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain; charset=utf-8'
+  })
+};
 @Injectable()
 export class GenericService {
 
@@ -61,13 +65,12 @@ export class GenericService {
       );
   }
 
-  patchd<T>(url: string, body: T) {
-    return this.http.patch(url, body, httpOptions)
+  addWithText<T>(url: string, body: T) {
+    return this.http.post(url, body, httpOptionsText)
       .pipe(
-        catchError(this.handleError('patch', body))
+        catchError(this.handleError('add', body))
       );
   }
-
 
   upload<T>(url: string, body: T) {
     return this.http.post(url, body, httpOptions2)
@@ -117,6 +120,8 @@ export class GenericService {
         catchError(this.handleError('getByName', nom))
       );
   }
+
+  
 
   findwithParameter<T>(url: string, parameter: string) {
     return this.http.get(url + parameter, httpOptions)
