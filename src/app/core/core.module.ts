@@ -81,9 +81,6 @@ import {TooltipModule} from 'primeng/tooltip';
 import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
-import {CdmpDialogComponent} from './generic-component/cdmp-dialog/cdmp-dialog.component';
-import {CdmpTableComponent} from './generic-component/cdmp-table/cdmp-table.component';
-import {TestComponent} from './generic-component/test/test.component';
 import {HttpReqInterceptor} from './utils/http.interceptor';
 import {TranslateModule} from '@ngx-translate/core';
 import {ConfirmationService} from 'primeng/api';
@@ -103,8 +100,6 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
 // @ts-ignore
 @NgModule({
     declarations: [
-        CdmpTableComponent,
-        CdmpDialogComponent,
         AppAccessdeniedComponent,
         AppMainComponent,
         DashboardComponent,
@@ -115,8 +110,7 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
         AppFooterComponent,
         AppBreadcrumbComponent,
         AppTopBarComponent,
-        AppMenuComponent,
-        TestComponent,
+        AppMenuComponent
         
     ],
 
@@ -304,10 +298,7 @@ import { AppMenuComponent } from './app-layout/side-menu/app.menu.component';
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        TranslateModule,
-        CdmpTableComponent,
-        CdmpDialogComponent,
-        TestComponent
+        TranslateModule
     ],
 })
 export class CoreModule {

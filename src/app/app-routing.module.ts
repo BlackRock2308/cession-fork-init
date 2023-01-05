@@ -6,7 +6,6 @@ import { AppNotfoundComponent } from './core/not-found/app.notfound.component';
 import { AppErrorComponent } from './core/error/app.error.component';
 import { AppAccessdeniedComponent } from './core/access-denied/app.accessdenied.component';
 import { AppLoginComponent } from './auth/login/app.login.component';
-import { TestComponent } from './core/generic-component/test/test.component';
 import { MajMdpComponent } from './auth/maj-mdp/maj-mdp.component';
 import { RecupMdpComponent } from './auth/recup-mdp/recup-mdp.component';
 import { CodeVerificationComponent } from './auth/recup-mdp/code-verification/code-verification.component';
@@ -32,8 +31,6 @@ const routes: Routes = [
     //{ path: '**', redirectTo: 'login' },
 
     { path: 'pme/adhesion', component: AdhesionComponent},
-
-    { path: 'test', component: TestComponent },
 
 
     // Auth path

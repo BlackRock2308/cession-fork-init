@@ -6,7 +6,6 @@ import { BreadcrumbService } from 'src/app/core/breadcrumb/breadcrumb.service';
 import { Router } from '@angular/router';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
-import { RowSizes } from 'src/app/core/generic-component/cdmp-table/row-sizes.model';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
 import { FormBuilder } from '@angular/forms';
 import { SearchInput } from '../../../generic/search-input';
@@ -27,7 +26,6 @@ export class RecevabiliteComponent implements OnInit {
   submitted: boolean;
 
   cols: any[];
-  rowSizes: any = RowSizes;
   totalRecords: number;
 
   rowsPerPageOptions : any[]=[5,10,15,20,30];
