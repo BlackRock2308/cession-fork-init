@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilterMatchMode, FilterService, SelectItem } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
 import { DemandeCession } from 'src/app/workstation/model/demande';
@@ -8,6 +8,10 @@ import { DemandesCessionService } from 'src/app/workstation/service/demandes_ces
 import { RecevabiliteService } from 'src/app/workstation/service/recevabilite/recevabilite.service';
 import { RowSizes } from 'src/app/core/generic-component/cdmp-table/row-sizes.model';
 import { StatutEnum } from 'src/app/workstation/model/statut-enum';
+import { FormBuilder } from '@angular/forms';
+import { SearchInput } from '../../../generic/search-input';
+import { PaginationSearchParam } from '../../../generic/pagination-param';
+import { SearchFilterComponent } from '../../../generic/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-recevabilite',
@@ -26,7 +30,7 @@ export class RecevabiliteComponent implements OnInit {
   rowSizes: any = RowSizes;
   totalRecords: number;
 
-  rowsPerPageOptions = [5, 10, 20];
+  rowsPerPageOptions : any[]=[5,10,15,20,30];
 
   items: MenuItem[];
   home: MenuItem;
@@ -35,9 +39,19 @@ export class RecevabiliteComponent implements OnInit {
   matchModeOptions: SelectItem[];
   page: any={};
   statuts:any[];
+  searchEntry:SearchInput[];
+  searchDateEntry:SearchInput[];
   paramStatuts:any[];
   paramStatutsInit:any[];
   defaultRows:number;
+  defaultPageSize:number;
+  searchForm: any;
+  nomMarche:string='';
+  referenceBE:string='';
+  paginationParams:PaginationSearchParam;
+  searching:boolean;
+
+  @ViewChild(SearchFilterComponent) searchComponent!:SearchFilterComponent;
   
 
 
@@ -46,13 +60,19 @@ export class RecevabiliteComponent implements OnInit {
     private demandeCessionService: DemandesCessionService,
     private recevabiliteService: RecevabiliteService,
     private breadcrumbService: BreadcrumbService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private formBuilder:FormBuilder
   ) {
     this.breadcrumbService.setItems([
       { label: 'Liste des demandes de cession' },
     ]);
     this.breadcrumbService.setHome({ icon: 'pi pi-home', routerLink: ['cdmp/dashboard'] })
     //location.reload()
+
+    this.searchForm = this.formBuilder.group({
+      nom_marche: ['',],
+      reference_be: ['',]
+    })
   }
 
  
@@ -71,7 +91,6 @@ export class RecevabiliteComponent implements OnInit {
     ];
 
     //filtre par range date
-    this.calenderFilter()
 
 
     this.matchModeOptions = [
@@ -85,16 +104,37 @@ export class RecevabiliteComponent implements OnInit {
       {label: 'Rejetée', value: 'REJETEE'},
       {label: 'Recevable', value: 'RECEVABLE'}
     ]
+    this.searchEntry = [
+      {name: 'nom_marche', placeholder: 'Nom Marché'},
+      {name: 'raison_social', placeholder: 'Raison Social'},
+      {name: 'reference_be', placeholder: 'Référence BE'},
+
+      
+    ]
+    this.searchDateEntry = [
+      {name: 'date_demande', placeholder: 'Date de soumission'},
+    ]
+
+    this.paginationParams={
+      page:0,
+      size:5,
+      sort:"dateDemandeCession,DESC",
+
+    }
   }
+
+  
 
   paginate(event) { 
   
+    console.log(this.page);
     let statutsParam
     if (Array.isArray(this.paramStatuts)) {
       statutsParam = this.paramStatuts.join(",")
     }
     else
       statutsParam = this.paramStatuts
+    
     const args = {
       page: event.page,
       size: event.rows,
@@ -103,11 +143,19 @@ export class RecevabiliteComponent implements OnInit {
 
       // search: this.searchText,
     };
-    this.page=args
-    this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
+
+    if(this.searching){
+      this.paginationParams=args
+      this.searchComponent.getSearch()
+    }
+    else{
+      this.page=args
+      this.demandeCessionService.getPageDemandeCessionByStatut(args).subscribe(data => {
       this.demandes = data.content
       this.page = data
     });
+    }
+    
     
 }
 
@@ -141,11 +189,32 @@ filterStatus(event){
   else
     this.paramStatuts=this.paramStatutsInit
   this.initGetDemandes(this.paramStatuts)
+  this.OnPageEvent;
+  
+}
 
+getSearch(data){
+  this.demandes=data.content
+  this.searching=true
+}
+clear(annuler){
+  if(annuler){
+    this.initGetDemandes(this.paramStatutsInit)
+    this.searching=false
+  }
+}
+searchPaginate(event){
+  
+    this.paginationParams={
+      page: event.page,
+      size: event.rows,
+      sort: "dateDemandeCession,DESC",
+    }
   
 }
 OnPageEvent(){
   this.defaultRows=5;
+  this.rowsPerPageOptions=[5,10,15,20,30];
 }
   verifierDemandeCession(demande: DemandeCession) {
     this.demande = { ...demande };
@@ -155,42 +224,14 @@ OnPageEvent(){
 
   }
 
+  private filter(){
+    
+  }
+
   // ngOnDestroy() {
   //   this.subscribe.unsubscribe();
   // }
 
-  //filtre par intervalle de date
-  public calenderFilter() {
-
-    this.filterService.register('rangeDate', (value: any, filter: any): boolean => {
-      //Afficher toute les lignes du tableau au démarrage
-      if (this.rangeDates == undefined) {
-        return true;
-      }
-      //redéfinir les dates pour comparer sans prendre en compte l'heure
-      //on donne toutes les date l'heure 00:00:00
-      value = new Date((new Date(value)).toDateString())
-      this.rangeDates[0] = new Date((new Date(this.rangeDates[0])).toDateString())
-      if (this.rangeDates[1] !== null) {
-        this.rangeDates[1] = new Date((new Date(this.rangeDates[1])).toDateString())
-      }
-
-      if (this.filterService.filters.is(value, this.rangeDates[0]) && this.rangeDates[1] === null) {
-        return true;
-      }
-
-      if (this.filterService.filters.is(value, this.rangeDates[1]) && this.rangeDates[0] === null) {
-        return true;
-      }
-
-      if (this.rangeDates[0] !== null && this.rangeDates[1] !== null &&
-        this.filterService.filters.after(value, this.rangeDates[0]) && this.filterService.filters.before(value, this.rangeDates[1])) {
-        return true;
-      }
-
-      return false;
-    })
-  }
 
   //effacer le filtre par date
   clearRange(table) {

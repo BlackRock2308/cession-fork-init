@@ -44,9 +44,12 @@ export class ErrorInterceptorService  implements HttpInterceptor {
                       //   this.router.navigate(['error'])
                       // }
                       if(error.status===403 || error.status===401){
-                        this.tokenStorage.signOut()
+                        if(!(this.router.url === '/login' || this.router.url === '/')){
+                          this.tokenStorage.signOut()
 
-                        this.router.navigate(['denied'])
+                          this.router.navigate(['denied'])
+                        }
+                        
                       }
                   }
                   return throwError(error);
