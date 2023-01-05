@@ -27,6 +27,7 @@ import { ConventionSignerComponent } from './COMPTABLE_CDMP/convention-signer/co
 import { ListPaiementCdmpComponent } from './COMPTABLE_CDMP/list-detail-paiement-cdmp/list-detail-paiement-cdmp.component';
 import { ListPaiementPMEComponent } from './COMPTABLE_CDMP/list-detail-paiement-pme/list-detail-paiement-pme.component';
 import { PaimentsComponent } from './COMPTABLE_CDMP/paiments/paiements.component';
+import {SearchFilterComponent} from './components/generic/search-filter/search-filter.component'
 
 const routes: Routes = [
 
@@ -80,7 +81,11 @@ const routes: Routes = [
   //ordonnateur
 
   {path:'ordonnateur/conventions',component:ListeConventionsComponent},
-  {path:'ordonnateur/conventions/details_convention',component:DetailsConventionComponent}
+  {path:'ordonnateur/conventions/details_convention',component:DetailsConventionComponent},
+
+  //test generic 
+  {path:'generic/test',component:SearchFilterComponent},
+
 ];
 
 @NgModule({

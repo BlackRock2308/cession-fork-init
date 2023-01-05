@@ -1,0 +1,91 @@
+@import "../../../../../assets/sass/custom/variables.scss";
+@import "../../../../../assets/sass/custom/layout.scss";
+
+.product-badge {
+    border-radius: var(--border-radius);
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+    
+    &.status-recevable {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-convention_acceptee {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-rejetee{
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-soumise {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-convention_rejetee {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_corrigee {
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-convention_acceptee{
+        background: #C8E6C9;
+        color: #256029;
+    }
+
+    &.status-risquée {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_rejetee_par_pme {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_rejetee_par_dg {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-convention_signee_par_pme {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-convention_signee_par_dg {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-convention_soumise {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+    &.status-convention_generee {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+    &.status-convention_signee_par_pme {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-convention_transmise {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.status-complement_requis {
+        background: #c9ddfa;
+        color: #354d8f;
+    }
+    
+
+}
+
+.search{
+    margin-right: 0rem;
+}
+

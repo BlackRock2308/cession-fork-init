@@ -7,6 +7,8 @@
                     <h3 class="title">Recevabilité des demandes de cession</h3>
                 </div>
             </div>
+                <app-search-filter [paginationParams]="paginationParams" [inputs]="searchEntry" [inputsDate]="searchDateEntry" [statuts]="statuts" (search)="getSearch($event)" (annuler)="clear($event)" ></app-search-filter>
+
             <br>
             <p-table #dt [value]="demandes" [columns]="cols" responsiveLayout="scroll" [rows]="5"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="5"
@@ -14,48 +16,7 @@
                 currentPageReportTemplate="{totalRecords} demandes de cessions" [rowHover]="true" dataKey="id"
                 lazy="true" [totalRecords]="totalRecords">
 
-                <ng-template pTemplate="header" [formGroup]="searchForm">
-                    <tr>
-                        <th>
-                            <input pInputText type="text" formControlName="nom_marche" placeholder="Nom Marché">
-                        </th>
-                        <th>
-                            <input pInputText type="text" field="raisonSocial" placeholder="Raison Sociale">
-                            
-                        </th>
-                        <th>
-                            <input pInputText type="text" field="reference" formControlName="reference_be" placeholder="Référence du BE">
-                        </th>
-                        <th>
-                            <p-columnFilter type="date" field="dateDemandeCession" placeholder="Date de demande"
-                                [matchModeOptions]="matchModeOptions" [matchMode]="'rangeDate'" selectionMode="range"
-                                style="display: none;"></p-columnFilter>
-                            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
-                                inputId="range" formDate="dd/mm/yyyy" placeholder="Date de demande"></p-calendar>
-                        </th>
-                        <th>
-                            <p-columnFilter field="statut" matchMode="equals" [showMenu]="false">
-                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="statuts" (onChange)="filterStatus($event)" placeholder="Statuts" [showClear]="true">
-                                        <ng-template let-option pTemplate="item">
-                                            <span
-                                                [class]="'product-badge status-' + (option.value ? option.value.toLowerCase() : '')">{{option.label}}</span>
-                                        </ng-template>
-                                    </p-dropdown>
-                                </ng-template>
-                            </p-columnFilter>
-                        </th>
-                        <th>
-                            <button pButton pRipple pTooltip="Rechercher" icon="pi pi-search"
-                                class="p-button-rounded mr-2 simpleBoldButton" label="Rechercher"
-                                (click)="search()"></button>
-                        </th>
-                        <th *ngIf="rangeDates!=undefined">
-                            <button pButton pRipple pTooltip="Annuler" icon="pi pi-times" class="p-button-rounded "
-                                label="Annuler" (click)="clearRange(dt)"
-                                style="background: white; color:#203359"></button>
-                        </th>
-                    </tr>
+                <ng-template pTemplate="header" >
                     <tr>
                         <th pSortableColumn="nomMarche" style="color: #203359;">Nom Marché <p-sortIcon
                                 field="nomMarche"></p-sortIcon>
