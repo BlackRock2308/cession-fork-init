@@ -124,7 +124,7 @@ export class ListUtilisateurComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Erreur',
-          text: libelle[2]+'échouée!',
+          text: libelle[2]+' échouée!',
         })
       }
 }})

@@ -52,6 +52,7 @@ export class AdhesionComponent implements OnInit {
   demande: DemandeAdhesion;
   minDate: any;
   observation: Observation = {};
+  messageCNI:string='';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -66,6 +67,7 @@ export class AdhesionComponent implements OnInit {
     this.getFormeJuridiques();
     this.getCentreFiscals();
     this.message = "Champ obligatoire";
+    this.messageCNI = "Renseigner 13 caratères";
     this.form = this.formBuilder.group({
       ninea: ["", [Validators.required, this.matchValuesNINEA()]],
       rccm: ["", Validators.required],
@@ -88,7 +90,7 @@ export class AdhesionComponent implements OnInit {
       nombreEtablissementSecondaires: [''],
       chiffresDaffaires: [''],
       cniRepresentant: ['', [Validators.required, this.matchValuesCNI()]],
-      dateImmatriculation: ['', [Validators.required, this.matchValues()]],
+      dateImmatriculation: ['', [this.matchValues()]],
       telephonePME: ['', [Validators.required]],
       capitalSocial: [''],
       autorisationMinisterielle: ['']
@@ -104,12 +106,20 @@ export class AdhesionComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&
         !!control.parent.value && !!control.value &&
-        control.value.length === 13
+        control.value.length === 13 && this.getPremierChiffre(control.value)
         ? null
         : { isMatching: false };
     };
   }
-
+  
+  getPremierChiffre(cni){
+    if(cni[0] == '1' || cni[0] == '2' ){
+      this.messageCNI = "Renseigner 13 caratères";
+      return true;
+    }
+    this.messageCNI = "CNI doit commencer par 1 ou 2"
+    return false;
+  }
   matchValues(): (AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       return !!control.parent &&

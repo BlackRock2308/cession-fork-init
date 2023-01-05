@@ -1,7 +1,7 @@
 <div class="stepsdemo-content">
     <p-card>
         <ng-template pTemplate="content">
-            <div class="p-formgrid p-fluid grid row container" [formGroup]="informationsForm" >
+            <div class="p-formgrid p-fluid grid row container" [formGroup]="informationsForm">
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Dénomination<span
                             class="required">*</span></label>
@@ -12,8 +12,7 @@
                                 style="width: 100%;" />
                         </span>
                     </div>
-                    <span *ngIf="submit && f['raisonSocial'].errors!"
-                        class="error-validation">{{message}}</span>
+                    <span *ngIf="submit && f['raisonSocial'].errors!" class="error-validation">{{message}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;"> Prénom représentant <span
@@ -25,8 +24,7 @@
                                 style="width: 100%;" />
                         </span>
                     </div>
-                    <span *ngIf="submit && f['prenomRepresentant'].errors!"
-                        class="error-validation">{{message}}</span>
+                    <span *ngIf="submit && f['prenomRepresentant'].errors!" class="error-validation">{{message}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nom représentant <span
@@ -38,8 +36,7 @@
                                 style="width: 100%;" />
                         </span>
                     </div>
-                    <span *ngIf="submit && f['nomRepresentant'].errors!"
-                        class="error-validation">{{message}}</span>
+                    <span *ngIf="submit && f['nomRepresentant'].errors!" class="error-validation">{{message}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Enseigne/Sigle</label>
@@ -49,30 +46,29 @@
                                 placeholder="{{pme.enseigne}}" formControlName="enseigne" style="width: 100%;" />
                         </span>
                     </div>
-                   
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
-                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">Forme Juridique</label>
-                    <p-dropdown [options]="formeJuridiques" [style]="{width: '100%'}"
-                    formControlName="formeJuridique" [(ngModel)]="pme.formeJuridique" optionLabel="libelle" [filter]="true" filterBy="libelle"
-                    [showClear]="true" placeholder="Selectionner une forme" [ngStyle]="{'width': '100%'}">
-                    <ng-template pTemplate="selectedItem">
-                        <div class="country-item country-item-value" *ngIf="pme.formeJuridique">
-                            <div>{{pme.formeJuridique.code}}</div>
-                        </div>
-                    </ng-template>
-                    <ng-template let-formeJuridique pTemplate="item">
-                        <div class="country-item">
-                            <div>{{formeJuridique.libelle}}</div>
-                        </div>
-                    </ng-template>
-                </p-dropdown> 
-                    <span *ngIf="submit && f['formeJuridique'].errors!"
-                        class="error-validation">{{message}}</span>
+                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">Forme Juridique<span
+                        class="required">*</span></label>
+                    <p-dropdown [options]="formeJuridiques" [style]="{width: '100%'}" formControlName="formeJuridique"
+                        [(ngModel)]="pme.formeJuridique" optionLabel="libelle" [filter]="true" filterBy="libelle"
+                        [showClear]="true" placeholder="Selectionner une forme" [ngStyle]="{'width': '100%'}">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="pme.formeJuridique">
+                                <div>{{pme.formeJuridique.code}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-formeJuridique pTemplate="item">
+                            <div class="country-item">
+                                <div>{{formeJuridique.libelle}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    <span *ngIf="submit && f['formeJuridique'].errors!" class="error-validation">{{message}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
-                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">N° CNI du représentant<span
-                            ></span></label>
+                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">N° CNI du
+                        représentant<span class="required">*</span></label>
                     <div class="p-inputgroup">
                         <span class="p-float-label">
                             <input pInputText id="name3" type="text" [(ngModel)]="pme.cniRepresentant"
@@ -82,9 +78,8 @@
                     </div>
                     <span *ngIf="submit && f['cniRepresentant'].errors! && !f['cniRepresentant'].hasError('required')"
                         class="error-validation">Veuillez renseigner 13 caratères</span>
-
                     <span *ngIf="submit && f['cniRepresentant'].hasError('required')"
-                        class="error-validation">{{message}}</span>
+                        class="error-validation">{{messageCNI}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Téléphone<span
@@ -105,35 +100,31 @@
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Centre Fiscal<span
                             class="required">*</span></label>
-                    <p-dropdown [options]="centreFiscals" [style]="{width: '100%'}"
-                                            formControlName="centreFiscal" [(ngModel)]="pme.centreFiscal" optionLabel="libelle" [filter]="true" filterBy="libelle"
-                                            [showClear]="true" 
-                                            placeholder="Sélectionnez un centre fiscal" [ngStyle]="{'width': '100%'}">
-                                            <ng-template pTemplate="selectedItem">
-                                                <div class="country-item country-item-value" *ngIf="pme.centreFiscal">
-                                                    <div>{{pme.centreFiscal.code}}</div>
-                                                </div>
-                                            </ng-template>
-                                            <ng-template let-centreFiscal pTemplate="item">
-                                                <div class="country-item">
-                                                    <div>{{centreFiscal.libelle}}</div>
-                                                </div>
-                                            </ng-template>
-                                        </p-dropdown>
-                    <span *ngIf="submit && f['centreFiscal'].errors!"
-                        class="error-validation">{{message}}</span>
-
+                    <p-dropdown [options]="centreFiscals" [style]="{width: '100%'}" formControlName="centreFiscal"
+                        [(ngModel)]="pme.centreFiscal" optionLabel="libelle" [filter]="true" filterBy="libelle"
+                        [showClear]="true" placeholder="Sélectionnez un centre fiscal" [ngStyle]="{'width': '100%'}">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="pme.centreFiscal">
+                                <div>{{pme.centreFiscal.code}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-centreFiscal pTemplate="item">
+                            <div class="country-item">
+                                <div>{{centreFiscal.libelle}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    <span *ngIf="submit && f['centreFiscal'].errors!" class="error-validation">{{message}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
-                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date d'immatriculation</label>
-                    <p-calendar inputId="basic" [maxDate]="dateTime"
-                    inputId="dateFormat"   dateFormat="dd/mm/yy"
-                        [ngModel]="pme.dateImmatriculation" formControlName="dateImmatriculation"
-                        placeholder="{{pme.dateImmatriculation | date :'dd/MM/yyyy'}}"
-                        [ngStyle]="{'width': '100%'}">{{pme.dateImmatriculation}}
+                    <label htmlFor="name3" style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
+                            class="required">*</span></label>
+                    <p-calendar formControlName="dateCreation" value="pme.dateCreation" inputId="dateFormat"
+                        dateFormat="dd-mm-yy" [(ngModel)]="pme.dateCreation"
+                        placeholder="{{pme.dateCreation | date :'dd-MM-yyyy'}}" [maxDate]="dateTime"
+                        [ngStyle]="{'width': '100%'}">
                     </p-calendar>
-
-                    <span *ngIf="submit && f['dateImmatriculation'].hasError('required')"
+                    <span *ngIf="submit && f['dateCreation'].hasError('required')"
                         class="error-validation">{{message}}</span>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
@@ -145,7 +136,7 @@
                                 [(ngModel)]="pme.adressePME" formControlName="adressePME" style="width: 100%;" />
                         </span>
                     </div>
-                    
+
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Localité<span
@@ -156,8 +147,6 @@
                                 [(ngModel)]="pme.localite" placeholder="{{pme.localite}}" style="width: 100%;" />
                         </span>
                     </div>
-                   
-
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Contrôle<span
@@ -168,8 +157,6 @@
                                 [(ngModel)]="pme.controle" placeholder="{{pme.controle}}" style="width: 100%;" />
                         </span>
                     </div>
-                   
-
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Activité Principale<span
@@ -181,7 +168,7 @@
                                 style="width: 100%;" />
                         </span>
                     </div>
-               
+
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Autorisation Ministérielle <span
@@ -193,42 +180,25 @@
                                 placeholder="{{pme.autorisationMinisterielle}}" style="width: 100%;" />
                         </span>
                     </div>
-                    
-                </div>
-                <!-- <div class="field grid col-12 md:col-4 mr-2">
-                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">Registre de commerce<span
-                            class="required">*</span></label>
-                    <div class="p-inputgroup">
-                        <span class="p-float-label">
-                            <input pInputText id="name3" type="text" [(ngModel)]="pme.registre"
-                                placeholder="{{pme.registre}}" formControlName="registre" style="width: 100%;" />
-                        </span>
-                    </div>
-                    <span *ngIf="submit && f['registre'].errors!"
-                        class="error-validation">{{message}}</span>
-                </div> -->
-                <div class="field grid col-12 md:col-4 mr-2">
-                    <label htmlFor="name3" style="font-weight: bold;color: #203359; width: 100%;">Date de création <span
-                            class="required">*</span></label>
-                    <p-calendar formControlName="dateCreation" value="pme.dateCreation"
-                        placeholder="{{pme.dateImmatriculation | date :'dd/MM/yyyy'}}" inputId="dateFormat"
-                          dateFormat="dd/mm/yy" [(ngModel)]="pme.dateCreation"
-                        [maxDate]="dateTime" [ngStyle]="{'width': '100%'}">{{pme.dateCreation}} 
-                    </p-calendar>
 
-                    <span *ngIf="submit && f['dateCreation'].hasError('required')"
-                        class="error-validation">{{message}}</span>
+                </div>
+                <div class="field grid col-12 md:col-4 mr-2">
+                    <label htmlFor="name3" style="font-weight: bold;color: #203359;">Date d'immatriculation</label>
+                    <p-calendar inputId="basic" [maxDate]="dateTime" inputId="dateFormat" dateFormat="dd-mm-yy"
+                        [ngModel]="pme.dateImmatriculation" formControlName="dateImmatriculation"
+                        placeholder="{{pme.dateImmatriculation | date :'dd-MM-yyyy'}}" [ngStyle]="{'width': '100%'}">
+                    </p-calendar>
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Capital Social</label>
                     <p-inputNumber formControlName="capitalSocial" [(ngModel)]="pme.capitalSocial"
                         placeholder="{{pme.capitalSocial}}" mode="currency" currency="CFA">
                     </p-inputNumber>
-              
+
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Chiffre d'affaires déclaré
-                        </label>
+                    </label>
                     <p-inputNumber formControlName="chiffresDaffaires" [(ngModel)]="pme.chiffresDaffaires"
                         mode="currency" currency="CFA">
                     </p-inputNumber>
@@ -243,7 +213,7 @@
                                 placeholder="{{pme.effectifPermanent}}" formControlName="effectifPermanent" />
                         </span>
                     </div>
-                  
+
                 </div>
                 <div class="field grid col-12 md:col-4 mr-2">
                     <label htmlFor="name3" style="font-weight: bold;color: #203359;">Nombre d'établ. sdaires<span
@@ -255,7 +225,7 @@
                                 formControlName="nombreEtablissementSecondaires" />
                         </span>
                     </div>
-         
+
                 </div>
             </div>
         </ng-template>
