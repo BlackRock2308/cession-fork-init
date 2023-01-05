@@ -64,6 +64,7 @@ import { UpdateUtilisateurComponent } from './components/ADMIN/utilisateurs/upda
 import { ListUtilisateurComponent } from './components/ADMIN/utilisateurs/list-utilisateurs/list-utlisateur.component';
 import { AddUtilisateurComponent } from './components/ADMIN/utilisateurs/add-utlisateurs/add-utlisateur.component';
 import { ViewUtilisateurComponent } from './components/ADMIN/utilisateurs/visualiser-utilisateurs/visualiser-utlisateur.component';
+import { SearchFilterComponent } from './components/generic/search-filter/search-filter.component';
 //import { AdminComponent } from './components/ADMIN/admin/admin.component';
 
 @NgModule({
