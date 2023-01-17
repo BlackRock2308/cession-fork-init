@@ -84,7 +84,7 @@ const routes: Routes = [
   //convention cession
   {path:'pme/convention_cession',component:ConventionCessionPMEComponent},
 
-  //ordonnateur
+  //DG
 
   {path:'ordonnateur/conventions',component:ListeConventionsComponent},
   {path:'ordonnateur/conventions/details_convention',component:DetailsConventionComponent},

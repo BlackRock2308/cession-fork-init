@@ -85,7 +85,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CodeVerificationComponent,
         
     ],
-    providers: [
+    providers: [,
         AuthGuard,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         , BreadcrumbService, MessageService, MenuService,

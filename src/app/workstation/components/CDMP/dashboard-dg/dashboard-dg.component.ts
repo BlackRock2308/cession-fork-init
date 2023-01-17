@@ -27,13 +27,24 @@ import {
   StatistiquePaiementCDMP,
   StatistiquePaiementPME,
 } from "src/app/workstation/model/dashboard";
+import { WebsocketService } from "src/app/workstation/service/websocket/websocket.service";
+import { MyWebSocketServiceService } from "src/app/workstation/service/my-web-socket-service.service";
+import { PushNotificationsService } from 'ng-push-ivy';
+import { AppNotification } from "src/app/workstation/service/websocket/model/app-notification";
+import { Socket } from "ngx-socket-io";
+
+
+
 @Component({
   selector: "app-dashboard-dg",
   templateUrl: "./dashboard-dg.component.html",
   styleUrls: ["./dashboard-dg.component.scss"],
-  providers: [DialogService],
+  providers: [DialogService, PushNotificationsService],
 })
 export class DashboardDGComponent implements OnInit {
+
+  counter: number;
+
   demandeDialog: boolean;
 
   fileName = "MarchesCDMP.xlsx";
@@ -97,8 +108,15 @@ export class DashboardDGComponent implements OnInit {
     public dialogService: DialogService,
     private dashboardServices: DashboardServices,
     private breadcrumbService: BreadcrumbService,
-    private filterService: FilterService
+    private filterService: FilterService,
+
+    private websocketService : WebsocketService,
+    private notificationService : MyWebSocketServiceService,
+    private pushNotifications: PushNotificationsService,
   ) {
+    this.pushNotifications.requestPermission();
+    this.counter = 0;
+
     this.breadcrumbService.setItems([{ label: "Tableau de bord" }]);
     this.breadcrumbService.setHome({
       icon: "pi pi-home",
@@ -107,7 +125,46 @@ export class DashboardDGComponent implements OnInit {
   }
   exportColumns: any[];
 
-  ngOnInit() {
+  messageList: string[] = [];
+
+
+  connect(): void {
+
+    console.log("******* Connecting to Notification App *********");
+    
+    this.notificationService.connect();
+
+    // subscribe receives the value.
+    this.websocketService.notificationMessage.subscribe((data) => {
+      console.log('receive message from notification service', data);
+      this.notify(data);           
+    });
+  }
+
+
+
+  disconnect(): void {
+    this.notificationService.disconnect();
+  }
+
+
+  notify(message: AppNotification): void {
+    this.counter++;
+    const options = {
+      body: message.content,
+      //icon: icon.get(message.type.toLowerCase())
+    };
+    this.pushNotifications.create('New Alert', options).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+  }
+
+
+  async ngOnInit() {
+
+    this.connect();
+
     this.mois = [
       "Janvier",
       "Février",

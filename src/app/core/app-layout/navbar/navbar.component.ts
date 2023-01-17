@@ -8,6 +8,10 @@ import { ProfilComponent } from '../../../workstation/components/profil/profil.c
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 import { DemandesCessionService } from 'src/app/workstation/service/demandes_cession/demandes-cession.service';
 import { DemandeCession } from 'src/app/workstation/model/demande';
+import { WebsocketService } from 'src/app/workstation/service/websocket/websocket.service';
+
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -77,11 +81,15 @@ export class NavbarComponent implements OnInit {
   prenom : string;
   roles:string;
 
+  userEmail : string;
+  userPassword : string;
+
   constructor(public renderer: Renderer2, public dialogService: DialogService,
     public appMain: AppMainComponent, public router: Router,
     private demandeCessionService: DemandesCessionService,
-
-    private tokenStorage:TokenStorageService) { }
+    private tokenStorage:TokenStorageService,
+    private socket : WebsocketService) { }
+    
   ngOnInit() {
     this.paramStatuts = this.paramStatutsInit
     this.profil = localStorage.getItem('profil')
@@ -89,16 +97,39 @@ export class NavbarComponent implements OnInit {
     this.prenom = this.tokenStorage.getUser().prenom
     this.roles=this.tokenStorage.getUser().roles[0].description;
 
+    console.log(sessionStorage.getItem("auth-user"))
+
+    var storedArray = sessionStorage.getItem("auth-user");
+
+    var retrievedArray = JSON.parse(storedArray);
+
+    // Get the first element of the array
+    this.userEmail = retrievedArray.email;
+
+    this.userPassword = retrievedArray.password;
+
+
+    console.log("Email of the User : " + this.userEmail);
+    console.log("Password of the User : " + this.userPassword);
+
+
+
+  }
+
+  disconnect(){
+    this.socket._disconnect(this.userEmail);
   }
 
   loggout() {
-    this.tokenStorage.signOut()
+    this.tokenStorage.signOut();
+    this.disconnect();
     this.router.navigate(['/login']);
     localStorage.removeItem('auth-user');
     localStorage.removeItem('is-auth');
     localStorage.removeItem('auth-token');
     localStorage.removeItem('storedDemande');
     localStorage.removeItem('profil');
+
   }
 
   visualiserProfil() {

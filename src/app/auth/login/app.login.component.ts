@@ -1,8 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MyWebSocketServiceService } from 'src/app/workstation/service/my-web-socket-service.service';
+import { WebsocketService } from 'src/app/workstation/service/websocket/websocket.service';
 import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token-storage.service';
+// import { webSocket } from 'rxjs/webSocket';
 
 @Component({
   selector: 'app-login',
@@ -27,18 +30,48 @@ export class AppLoginComponent implements OnInit {
   notAuthorized: boolean;
   changePassword: boolean;
   changeCodePin: boolean;
-  constructor(public router: Router, private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(public router: Router, 
+    private authService: AuthService, 
+    private tokenStorage: TokenStorageService,
+    private socket : WebsocketService,
+    ) { }
   ngOnInit(): void {
-
 
     //this.login('sene@gmail.com','passer');
   }
+
+
+  // this.webSocketService.connect();
+  // this.webSocketService.subscribe().subscribe(message => {
+  //   console.log(message);
+  // });
+
+  connect(){
+    this.socket._connect(this.username, this.password);
+
+    // this.webSocketService.connect(this.username, this.password);
+    // this.webSocketService.subscribe().subscribe(message => {
+    // });
+
+  }
+  
+  // disconnect(){
+  //   this.socket._disconnect(this.username);
+  // }
+
+  sendMessage(){
+    this.socket._send(this.username);
+  }
+
 
   login(username, motdepasse) {
 
     this.credentials = { username, motdepasse },
 
       this.tokenStorage.signOut();
+
+      this.connect();
+
 
 
     this.authService.login(JSON.stringify({ email: username, password: motdepasse })).subscribe(
@@ -51,6 +84,8 @@ export class AppLoginComponent implements OnInit {
         this.changePassword = this.tokenStorage.getUser().updatePassword;
         this.changeCodePin = this.tokenStorage.getUser().updateCodePin;
 
+        
+        //this.sendMessage();
 
         if (this.changePassword) {
           this.router.navigate(['login/maj_pwd']);
