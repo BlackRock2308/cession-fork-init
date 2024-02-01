@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  WS_BASE_URL: 'ws://localhost:8083/ws-notification',
+  WS_BASE_URL: ' ws://localhost:8092/ws',
+  // ws://localhost:8083/ws-notification
 };
 
 /*

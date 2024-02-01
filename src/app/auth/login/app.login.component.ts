@@ -49,6 +49,8 @@ export class AppLoginComponent implements OnInit {
   connect(){
     this.socket._connect(this.username, this.password);
 
+    console.log("Test me");
+
     // this.webSocketService.connect(this.username, this.password);
     // this.webSocketService.subscribe().subscribe(message => {
     // });

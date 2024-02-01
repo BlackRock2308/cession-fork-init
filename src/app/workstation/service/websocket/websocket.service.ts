@@ -5,7 +5,8 @@ import { AppComponent } from 'src/app/app.component';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import * as Stomp from 'stompjs';
-import * as SockJS from 'sockjs-client';
+import { WEBSOCKET_NOTIFY_TOPIC } from '../../constants/base-url-constants';
+
 
 
 
@@ -16,13 +17,14 @@ const headers = new HttpHeaders().set('username', 'john.smith').set('password', 
 })
 export class WebsocketService {
 
+    stompClient: any;
+
     notificationMessage = new EventEmitter();
 
     private socket$: WebSocketSubject<string>;
 
     webSocketEndPoint: string = 'http://localhost:8092/messaging';
     topic: string = "/topic/notif";
-    stompClient: any;
 
 
 
@@ -37,15 +39,22 @@ export class WebsocketService {
 
         console.log("My websocet data : {}", username)
 
-
-        this.socket$.subscribe(
+        // this.socket$.subscribe(
             
-
-        (message) => console.log('Next:', message),
+        // (message) => console.log('Next:', message),
         
-        (error) => console.log('Error:', error),
-        () => console.log('Completed')
-        );
+        // (error) => console.log('Error:', error),
+        // () => console.log('Completed')
+        // );
+
+        this.stompClient = Stomp.over(this.socket$);
+        const _this = this;
+        _this.stompClient.connect({}, function(frame) {
+          console.log('Inside stompClient connect :');
+            _this.stompClient.subscribe(WEBSOCKET_NOTIFY_TOPIC, function(sdkEvent) {
+                _this.onMessageReceived(sdkEvent);
+            });
+        }, this.errorCallBack);
 
 
 
@@ -72,6 +81,13 @@ export class WebsocketService {
         );
 
     }
+
+
+  onMessageReceived(message) {
+    console.log('Message Recieved from Server :: ' + message);
+   // Emits the event.
+    // this.notificationService.notificationMessage.emit(JSON.parse(message.body));
+  }
 
     // on error, schedule a reconnection attempt
     errorCallBack(error) {

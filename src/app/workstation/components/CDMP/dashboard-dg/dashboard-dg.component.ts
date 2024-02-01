@@ -32,6 +32,7 @@ import { MyWebSocketServiceService } from "src/app/workstation/service/my-web-so
 import { PushNotificationsService } from 'ng-push-ivy';
 import { AppNotification } from "src/app/workstation/service/websocket/model/app-notification";
 import { Socket } from "ngx-socket-io";
+import { WebSocketSubject } from "rxjs/webSocket";
 
 
 
@@ -102,6 +103,9 @@ export class DashboardDGComponent implements OnInit {
   matchModeOptions: SelectItem[];
   statuts: any[];
   optionsBenRej: any;
+
+  socket$: WebSocketSubject<string>;
+
   constructor(
     private configService: AppConfigService,
     private demandesAdhesionService: DemandesAdhesionService,
@@ -113,6 +117,9 @@ export class DashboardDGComponent implements OnInit {
     private websocketService : WebsocketService,
     private notificationService : MyWebSocketServiceService,
     private pushNotifications: PushNotificationsService,
+
+
+
   ) {
     this.pushNotifications.requestPermission();
     this.counter = 0;
@@ -122,13 +129,21 @@ export class DashboardDGComponent implements OnInit {
       icon: "pi pi-home",
       routerLink: ["cdmp/dashboard"],
     });
+
+    //this.socket$ = this.notificationService.getSocket();
+
   }
   exportColumns: any[];
 
   messageList: string[] = [];
 
 
+
+
   connect(): void {
+
+
+    //this.socket$ = this.notificationService.getSocket();
 
     console.log("******* Connecting to Notification App *********");
     
@@ -162,6 +177,21 @@ export class DashboardDGComponent implements OnInit {
 
 
   async ngOnInit() {
+
+    // this.socket$.next("Good morning from heaven");
+
+    //  this.socket$.subscribe(
+
+    // (message)=> {
+    //   console.log("message received : " +message);
+    // },
+    // (err)=>{
+    //   console.log("error : " + err);
+    // },
+    // () => {
+    //   console.log("complete");
+    // }
+    //  );
 
     this.connect();
 

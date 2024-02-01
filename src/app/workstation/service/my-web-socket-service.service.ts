@@ -32,9 +32,15 @@ export class MyWebSocketServiceService {
   private websocketSubject = new Subject<any>();
 
   constructor(private notificationService : WebsocketService,
-    ) { }
+    ) {
+       
+     }
 
 subject = webSocket('ws://localhost:8083/ws-notification');
+
+getSocket(): WebSocketSubject<any>{
+  return webSocket('ws://localhost:8092/ws');
+}
 
 
   private socket$: WebSocketSubject<string>;
@@ -43,8 +49,16 @@ subject = webSocket('ws://localhost:8083/ws-notification');
 
       console.log("MyWebSocketServiceService:connect Initialize WebSocket Connection with notificatiom service");
       this.socket$ = new WebSocketSubject(WEBSOCKET_ENDPOINT);
-      console.log('webSocket Connection url .....');
+      console.log('webSocket Connection url : ' + WEBSOCKET_ENDPOINT);
       this.socket$.next(JSON.stringify({ type: 'user-notification', data: {"Mbaye": "SENE" } }));
+
+      this.socket$.subscribe(
+            
+        (message) => console.log('Next:', message),
+        
+        (error) => console.log('Error:', error),
+        () => console.log('Completed')
+        );
 
       this.stompClient = Stomp.over(this.socket$);
       const _this = this;
